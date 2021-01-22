@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MyErp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+        <style>
+        .menu-hor {color: #222222;
+        background-color: #CCCCCC;
+        border-color: #888888;
+        text-align: center;
+        }
+         .row-full{
+            width: 100vw;
+            position: relative;
+            }
+        </style>
+        <style>
+        .visible {
+            visibility: visible;
+            display:block;
+            color: #444444;
+            background-color: #EEEEEE;
+            border-color: #FFFFFF;
+            text-align: left;
+            }
+
+    </style>
+    <style>
+        .invisible {
+            visibility: hidden;
+            display:none;
+            text-align: left;
+            }
+    </style>
+    <style>       
+        .cont-titles {color: #222222;
+        background-color: #CCCCCC;
+        border-color: #888888;
+        text-align: center;
+        }
+        .cont-titles-l {color: #222222;
+        background-color: #CCCCCC;
+        border-color: #888888;
+        text-align: left;
+        }
+    </style>
+    <style>
+        .cont-body {color: #444444;
+        background-color: #EEEEEE;
+        border-color: #FFFFFF;
+        text-align: left;
+        }
+    </style>
+    <style>
+        .table-norm {
+        border: 1px solid white;
+        }
+        .table-bold {
+        border: 1px solid white;
+        background-color: #CCCCCC;
+        }
+        .div-bold {
+        visibility: visible;
+        display:block;
+        color: #444444;
+        font-weight: bold;
+        background-color: #CCCCCC;
+        border-color: #FFFFFF;
+        text-align: center;
+
+        }
+    </style>
+    <style>
+        .head-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        border-top-color : #FFFFFF
+        text-align: center;
+        }
+    </style>
+    <style>
+        .col-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: right;
+        }
+    </style>
+    <style>
+        .norm-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: left;
+        }
+        .norm-num {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: right;
+        }
+        .col-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: left;
+        }
+        .col-num {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: right;
+        }
+        .medium-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: left;
+        font-size: large;
+        }
+        .big-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: left;
+        width: 270px;
+        }
+    </style>
+    <style>
+        .botcol-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+    </style>    
+    <style>
+        .red-number {color: #222222;        
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+
+    </style>    <style>
+       .blue-number {color: #222222;        
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+    </style>
+    <style>
+        .botred-number {color: #222222;        
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+
+    </style>
+    <style>
+       .botblue-number {color: #222222;        
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+    </style>
+
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyErp</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TPerson" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">HR Area</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TSuplier" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">Purchasing</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TCustomer" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">Sales</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">Engineering</a>
+                        </li>                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - MyErp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

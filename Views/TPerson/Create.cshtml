@@ -1,0 +1,103 @@
+@using MyErp.Models
+@model TPerson
+<div class="cont-titles">
+<h1>Add a New Person</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border="1">
+        <tr>
+            <td>@Html.LabelFor(p => p.PerName,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerName, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerName1,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerName1, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerName1)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerDni,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerDni, new { htmlAttributes = new { @class = "norm-text", @style = "width:120px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerDni)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerBird,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerBird, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerBird)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerBiCity,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerBiCity, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerBiCity)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerBiCtry,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                @Html.DropDownListFor(p => p.PerBiCtry,
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerAddr,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerAddr, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+            <td>@Html.LabelFor(p => p.PerContDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerContDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerAddr)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerContDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerAddr1,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerAddr1, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+            <td>@Html.LabelFor(p => p.PerEntDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerEntDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerAddr1)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerEntDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerAddCtry,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                @Html.DropDownListFor(p => p.PerAddCtry,
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+            <td>@Html.LabelFor(p => p.PerExiDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerExiDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerAddCtry)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerExiDate)</td>
+        </tr>
+       <tr>
+            <td></td>
+            <td><input type="submit" value="Add"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+}

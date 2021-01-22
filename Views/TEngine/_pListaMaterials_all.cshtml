@@ -1,0 +1,39 @@
+@model List<TMaterial>
+    @using (Html.BeginForm("Index","TEngine",FormMethod.Post)) {        
+    <table>
+            <td>
+                <input type="hidden" name="panel" value="4"/>
+            </td>
+
+            <td class="medium-text">Material Class</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @*@Html.DropDownList("WcdId", (SelectList)ViewBag.ddlReferVD, new { @class ="medium-text" , onchange = "this.form.submit();" })*@
+                @Html.DropDownList("Code",
+               new SelectList(DataSource.GetMCatlassL(), "Code", "Name"),new { @class = "norm-text", onchange = "this.form.submit();" })
+            </td>
+    </table>
+    }
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>Materials Data</h2>
+    </div>
+    <tr>
+        <th class="head-text">Refer</th> 
+        <th class="head-text">Description</th>                
+        <th class="head-text">Class</th>        
+    </tr>
+   
+    @foreach (var c in Model) {
+        <tr>
+            <td class ="col-text">@c.MatRefer</td>            
+            <td class ="big-text">@c.MatDescr</td>
+            <td class ="norm-text">@c.MatClass</td>
+            <td class="col-text">@Html.ActionLink("Delete", "MatDelete", new { id = c.MatId}, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "MatEdit", new { id = c.MatId ,panel=4})</td>
+            
+        </tr>
+    }
+    </table>
+    @Html.ActionLink("Add a New Item", "MatCreate")
+

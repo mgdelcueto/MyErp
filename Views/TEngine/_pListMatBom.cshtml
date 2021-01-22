@@ -1,0 +1,22 @@
+@model List<TExplosion>
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    </div>
+    <tr>
+        <th class="head-text">Level</th> 
+        <th class="head-text">Reference</th>                
+        <th class="head-text">Description</th>                
+    </tr>
+   
+    @foreach (var c in Model) {
+        <tr>
+            <td class ="col-text">@c.ExpsLevel</td>            
+            <td class ="norm-text">@c.ExpRefer</td>
+            <td class ="norm-text">@c.ExpDescr</td>
+            <td class="col-text">@Html.ActionLink("Delete", "CBomDelete", new { id = c.ExpComp,MId= c.ExpComp}, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "CBomEdit", new { id = c.ExpComp ,MId= c.ExpComp,panel=4})</td>
+            
+        </tr>
+    }
+    </table>
+

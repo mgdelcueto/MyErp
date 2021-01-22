@@ -1,0 +1,64 @@
+@using MyErp.Models
+@model TCCproduct
+<div class="cont-titles">
+<h1>Edit a Product record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.HiddenFor(p => p.CprodId)
+    @Html.HiddenFor(p => p.CprodCustId)
+    @Html.ValidationSummary(true)
+
+    <div class ="visible">
+        <tr>
+            <td>Custome:</td>
+            <td>@(((TCustomer)ViewBag.Customer).CustRasoc)</td>
+            <td> </td>
+            <td>@(((TCustomer)ViewBag.Customer).CustNif)</td>
+        </tr>
+    </div>
+@*
+    <div class ="div-bold">
+        <tr>
+            @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
+            <div class ="visible">
+            <td>@Html.LabelFor(p => p.CprodCplantId,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownListFor(p => p.CprodCplantId,(SelectList)ViewBag.ddlPlantVB,"",new { @class = "norm-text" })
+           
+            </td>
+            </div>
+            }
+        </tr>
+    </div>
+*@
+    <table class="table-norm" border ="1">
+
+        <tr>
+            <td>@Html.LabelFor(p => p.CprodRefInt,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CprodRefInt, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.CprodRefInt)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CprodDescInt,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CprodDescInt, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.CprodDescInt)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CprodCrDate,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.CprodCrDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.CprodCrDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CprodStatus,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.CprodStatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.CprodStatus)</td>
+        </tr>        
+          <tr>
+            <td><input type="submit" value="Update"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+}

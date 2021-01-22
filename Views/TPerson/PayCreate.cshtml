@@ -1,0 +1,60 @@
+@using MyErp.Models
+@model TPPay
+<div class="cont-titles">
+<h1>Add a New Pay record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border="1">
+        <tr>
+            <input type="hidden" name="PayPerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
+            <td>Nombre :</td>
+            <td>@(((TPerson)ViewBag.Person).PerName)</td>
+            <td> </td>
+            <td>@(((TPerson)ViewBag.Person).PerName1)</td>
+        </tr>
+    </table>
+    <table class="table-norm" border="1">
+        <hr style="width:100%;text-align:left;margin-left:0">
+        <tr>
+            <td>@Html.LabelFor(p => p.PayStDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PayStDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PayStDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PayType,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PayType, new { htmlAttributes = new { @class = "norm-text", @style = "width:175px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PayType)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PayRet,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PayRet, new { htmlAttributes = new { @class = "norm-text", @style = "width:175px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PayRet)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PayAccount,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PayAccount, new { htmlAttributes = new { @class = "norm-text", @style = "width:225px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PayAccount)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+
+        </tr>
+    </table>
+    </div>
+}

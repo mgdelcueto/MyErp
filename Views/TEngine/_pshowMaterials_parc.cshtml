@@ -1,0 +1,37 @@
+@model TMaterial
+        <tr>
+            <td>@Html.LabelFor(p => p.MatRefer,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.MatRefer, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.MatClass,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                @*
+                @Html.DropDownListFor(p => p.MatClass,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-text" })
+                *@
+                @Html.DropDownListFor(p => p.MatClass,
+               new SelectList(DataSource.GetMCatlass(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.MatRefer)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.MatClass)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.MatType,new { @class = "norm-text" })</td>
+            <td class="norm-text">
+                @*
+                @Html.DropDownListFor(p => p.MatClass,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-text" })
+                *@
+                @Html.DropDownListFor(p => p.MatType,
+               new SelectList(DataSource.GetMatType(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+            <td>@Html.LabelFor(p => p.MatDescr,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.MatDescr, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.MatType)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.MatDescr)</td>
+        </tr>

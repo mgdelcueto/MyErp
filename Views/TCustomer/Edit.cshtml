@@ -1,0 +1,334 @@
+@using MyErp.Models
+@model TCustomer
+@using (Html.BeginForm()) {
+    @Html.HiddenFor(p => p.CustId)
+    @Html.ValidationSummary(true)
+
+@functions {
+        string panelBold(int panel)
+    {            
+        int tpan = (int)ViewData["panel"];
+        string cstyle ="";
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+        return cstyle;
+    }
+
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+    int thisPanel(){
+         int opanel = (int)ViewData["panel"];
+         return opanel;
+    }
+}
+@section Styles
+{
+
+}
+
+<h1>Edit a Customer</h1>
+@using (Html.BeginForm()) {
+    
+    <table>
+        <div class="cont-titles-l">
+        <h2>>>@Html.DisplayFor(p => p.CustRasoc)  @Html.DisplayFor(p => p.CustNif)</h2>
+        </div>
+        <table>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TCustomer" asp-action="Prev" asp-route-id="@Model.CustId" asp-route-panel="@thisPanel()" asp-route-move="1">&lt&ltPrev</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TCustomer" asp-action="Edit" asp-route-id="@Model.CustId" asp-route-panel="1" asp-route-move="0">Customer</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(2)"asp-area="" asp-controller="TCustomer" asp-action="Edit" asp-route-id="@Model.CustId" asp-route-panel="2" asp-route-move="0">Products</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(3)" asp-area="" asp-controller="TCustomer" asp-action="Edit" asp-route-id="@Model.CustId" asp-route-panel="3" asp-route-move="0">Plants</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(4)" asp-area="" asp-controller="TCustomer" asp-action="Edit" asp-route-id="@Model.CustId" asp-route-panel="4" asp-route-move="0">Planning</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(5)" asp-area="" asp-controller="TCustomer" asp-action="Edit" asp-route-id="@Model.CustId" asp-route-panel="5" asp-route-move="0">Orders</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TCustomer" asp-action="Index">Home</a>
+                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TCustomer" asp-action="Next" asp-route-id="@Model.CustId" asp-route-panel="@thisPanel()" asp-route-move="2">Next&gt&gt</a>
+                        </li>                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        </table>
+    </table>
+    <div class=@isVisible(1)>
+    <table>
+        <div class="cont-titles">
+        <h2>Customer Data</h2>
+        </div>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustRasoc,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustRasoc, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustRasoc)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustNif,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustNif, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustNif)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustCrDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCrDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustCrDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustCode,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:250px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustCode)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustAdStrt,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustAdStrt, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px"} })</td>
+            <td>@Html.LabelFor(p => p.CustAdCity,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustAdCity, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustAdStrt)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustAdCity)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustAdCtry,new { @class = "norm-text",})</td>
+            <td>
+                @Html.DropDownListFor(p => p.CustAdCtry,
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+            <td>@Html.LabelFor(p => p.CustCtPhone,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCtPhone, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustAdCtry)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustCtPhone)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustCtEmailLog,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCtEmailLog, new { htmlAttributes = new { @class = "norm-text", @style = "width:250px"} })</td>
+            <td>@Html.LabelFor(p => p.CustCtEdilog,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCtEdilog, new { htmlAttributes = new { @class = "norm-text", @style = "width:250px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustCtEmailLog)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustCtEdilog)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update"name="actionType"/></td>
+            <td><input type="submit" value="Cancel"  name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+    <!-- Prod Data -->
+    <div class=@isVisible(2)>
+    @*
+    @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
+    <table>
+            <td>Planta</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="norm-text" , onchange = "this.form.submit();" })
+            </td>
+    </table>
+    }
+    *@
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>Product Data</h2>
+    </div>
+    <tr>
+        <th class="head-text">Referencia</th> 
+        <th class="head-text">Descripcion</th>                
+        <th class="head-text">Fecha Creacion</th>                
+        <th class="head-text">Status</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListProd) {
+        <tr>
+            <td class ="col-text">@c.CprodRefInt</td>            
+            @{ string DateProd = string.Format("{0:dd-MM-yyyy}", c.CprodCrDate); }
+            <td class ="col-text">@c.CprodDescInt</td>
+            <td class ="col-text">@DateProd</td>
+            <td class ="col-text">@c.CprodStatus</td>
+            <td class="col-text">@Html.ActionLink("Delete", "ProDelete", new { id = c.CprodId,Pid = c.CprodCustId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "ProEdit", new { id = c.CprodId ,panel=2,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Plan", "Edit", new { id = c.CprodCustId ,panel=4,skip =0,plant =c.CprodCplantId, prod=c.CprodId})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "ProCreate",new {Pid=@Model.CustId,plant=@ViewData["Plant"]})
+</div>
+<!-- En Prod Data -->
+<!--Plant Data -->
+<div class=@isVisible(3)>
+    <div class="cont-titles">
+    <h2>Plant Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">Plant Code</th> 
+        <th class="head-text">Denominacion</th>        
+        <th class="head-text">Direccion</th>        
+        <th class="head-text">Ciudad</th>        
+        <th class="head-text">Pais</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListPlant) {
+        <tr>
+            <td class ="col-text">@c.CplantCode</td>            
+            <td class ="col-text">@c.CplantDeno</td>
+            <td class ="col-text">@c.CplantAdStrt</td>
+            <td class ="col-text">@c.CplantAdCity</td>
+            <td class ="col-text">@c.CplantAdCtry</td>
+            <td class="col-text">@Html.ActionLink("Delete", "PlantDelete", new { id = c.CplantId,Pid = c.CplantCustId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PlantEdit", new { id = c.CplantId ,panel=3,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "PlantCreate",new {Pid=@Model.CustId})
+</div>  
+<!-- End Plant Data-->  
+<div class=@isVisible(4)>
+    <div class="cont-titles">
+    <h2>Planning Data</h2>
+    </div>
+    @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
+    <table>
+        <tr>
+            <td class="medium-text">Planta<input type="hidden" name="CustId" value="@(Model.CustId)"/></td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
+            </td>
+        </tr>
+        <tr>
+            <td class="medium-text">Referencia :</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownList("CprodId",  (SelectList)ViewBag.ddlReferVO, new { @class = "medium-text", onchange = "this.form.submit();" })
+            </td>            
+            <td>
+                <input type="hidden" name="panel" value="@thisPanel()"/>
+            </td>
+        </tr>
+    </table>
+    }
+    <table class="table-norm" border ="1" >
+    <hr style="width:100%;text-align:left;margin-left:0">
+    <tr>
+        <th class="head-text">Producto[RI]</th> 
+        <th class="head-text">Producto[Desc]</th> 
+        <th class="head-text">Desde Fecha</th>        
+        <th class="head-text">Hasta Fecha</th>        
+        <th class="head-text">Env.Cantidad</th>        
+        <th class="head-text">Firme</th>        
+    </tr>
+   
+    @foreach ( VTCCplanning  c in (List<VTCCplanning>)ViewBag.ListPlan) {
+        <tr>
+            <td class ="col-text">@c.CprodRefInt</td>            
+            <td class ="col-text">@c.CprodDescInt</td>            
+            @{ string DateFrom = string.Format("{0:dd-MM-yyyy}", c.CplanDateFrom); }
+            <td class ="col-text">@DateFrom</td>
+            @{ string DateTo = string.Format("{0:dd-MM-yyyy}", c.CplanDateTo); }
+            <td class ="col-text">@DateTo</td>
+            <td class ="col-num">@c.CplanQty</td>
+            <td class ="col-text">@c.CplanFirmSt</td>
+            <td class="col-text">@Html.ActionLink("Delete", "PlanDelete", new { id = c.CplanId,Pid = c.CplanCustId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PlanEdit", new { id = c.CplanId ,panel=4,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "PlanCreate",new {Pid=@Model.CustId,plant=@ViewData["Plant"],prod=@ViewData["cProd"]})
+</div>    
+<!--PO Data -->
+    <div class=@isVisible(5)>
+    @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
+    <table>
+            <td>
+                <input type="hidden" name="CustId" value="@(Model.CustId)"/>
+                <input type="hidden" name="panel" value="@thisPanel()"/>
+            </td>
+
+            <td class="medium-text">Planta</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
+            </td>
+    </table>
+    }
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>PO Data</h2>
+    </div>
+    <tr>
+        <th class="head-text">Pedido</th> 
+        <th class="head-text">Referencia Cli.</th>        
+        <th class="head-text">Referencia Int.</th>        
+        <th class="head-text">Descripcion Cli.</th>        
+        <th class="head-text">Precio</th>        
+        <th class="head-text">Divisa</th>        
+    </tr>
+   
+    @foreach (VTCPorder c in (List<VTCPorder>) ViewBag.listpo) {
+        <tr>
+            <td class ="col-text">@c.Cpopo</td>            
+            <td class ="col-text">@c.CporeferEx</td>
+            <td class ="col-text">@c.CprodRefInt</td>
+            <td class ="col-text">@c.CpodescEx</td>
+            <td class ="col-num">@c.Cpoprice</td>
+            <td class ="col-text">@c.Cpocurcy</td>
+            <td class="col-text">@Html.ActionLink("Delete", "PoDelete", new { id = c.Cpoid,Pid = c.CpocustId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PoEdit", new { id = c.Cpoid ,panel=5,skip =0})</td>
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "PoCreate",new {Pid=@Model.CustId,plant=@ViewData["Plant"]})
+</div>    
+<!--end PO-->
+}
+}
+
+
+
+

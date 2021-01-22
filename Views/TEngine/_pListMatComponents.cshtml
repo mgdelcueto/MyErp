@@ -1,0 +1,28 @@
+@model List<VTMComponent>
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    </div>
+    <tr>
+        <th class="head-text">Component</th> 
+        <th class="head-text">Description</th>                
+        <th class="head-text">Ref Qty</th>        
+        <th class="head-text">Ref UM</th>        
+        <th class="head-text">Comp Qty</th>        
+        <th class="head-text">Comp UM</th>        
+    </tr>
+   
+    @foreach (var c in Model) {
+        <tr>
+            <td class ="col-text">@c.CoComRe</td>            
+            <td class ="big-text">@c.CoComDes</td>
+            <td class ="norm-text">@c.CoRefQt</td>
+            <td class ="norm-text">@c.CoRefUM</td>
+            <td class ="norm-text">@c.CoComQt</td>
+            <td class ="norm-text">@c.CoComUM</td>
+            <td class="col-text">@Html.ActionLink("Delete", "CMatDelete", new { id = c.CoCoId}, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "CMatEdit", new { id = c.CoCoId ,MId= c.CoRefId,panel=4})</td>
+            
+        </tr>
+    }
+    </table>
+

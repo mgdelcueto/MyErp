@@ -1,0 +1,54 @@
+@using MyErp.Models
+@model TPCurric
+<div class="visicont-titlesble">
+<h1>Edit a Curriculum record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(p => p.CurrId)
+    @Html.HiddenFor(p => p.CurrPerId)
+    <div class ="div-bold">
+        <tr>
+            <td>Nombre :</td>
+            <td>@(((TPerson)ViewBag.Person).PerName)</td>
+            <td> </td>
+            <td>@(((TPerson)ViewBag.Person).PerName1)</td>
+        </tr>    </div>
+    <table class="table-norm" border ="1">
+        <tr>
+            <td>@Html.LabelFor(p => p.CurrRevDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.EditorFor(p => p.CurrRevDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.ValidationMessageFor(p => p.CurrRevDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CurrArea, new { htmlAttributes = new { @class = "norm-text", @style = "width:110px" } })</td>
+            <td>@Html.EditorFor(p => p.CurrArea, new { htmlAttributes = new { @class = "norm-text", @style = "width:110px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.CurrArea)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.CurrAreaDesc, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px" } })</td>
+            <td>@Html.EditorFor(p => p.CurrAreaDesc, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.CurrAreaDesc)</td>
+
+        </tr>        
+        <tr>
+            <!--string DisplayName = test.GetDisplayName(t => t.Name);-->
+            <td>@Html.LabelFor(p=> p.CurrAreaLevel, new { htmlAttributes = new { @class = "norm-level"} })</td>
+            <td>@Html.EditorFor(p => p.CurrAreaLevel, new { htmlAttributes = new { @class = "norm-text", @style = "width:50px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.CurrAreaLevel)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.CurrObs, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px" } })</td>
+            <td>@Html.EditorFor(p => p.CurrObs, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.CurrObs)</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+
+        </tr>
+    </table>
+    </div>
+}

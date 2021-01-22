@@ -1,0 +1,51 @@
+@using MyErp.Models
+@model TPPresen
+<div class="cont-titles">
+<h1>Add a New Presence record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border="1">
+        <tr>
+            <input type="hidden" name="PresPerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
+            <td>Nombre :</td>
+            <td>@(((TPerson)ViewBag.Person).PerName)</td>
+            <td> </td>
+            <td>@(((TPerson)ViewBag.Person).PerName1)</td>
+        </tr>
+    </table>
+    <table class="table-norm" border="1">
+        <tr>
+            <td>@Html.LabelFor(p => p.PresLocal,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PresLocal, new { htmlAttributes = new { @class = "norm-text", @style = "width:225px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PresLocal)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PresDateEvent,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PresDateEvent, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PresDateEvent)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PresTimeEvent,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PresTimeEvent, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PresTimeEvent)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add" name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+
+        </tr>
+    </table>
+    </div>
+}

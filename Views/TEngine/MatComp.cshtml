@@ -1,0 +1,26 @@
+@{Layout = "_LyIndex";}
+
+@using MyErp.Models
+@model TMaterial
+
+@functions {
+}
+<div class="cont-titles">
+<h1>Edit a Material record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @*@Html.HiddenFor(p => p.MatId)*@
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border ="1">
+        @Html.Partial("_pshowMaterials_parc",(TMaterial)ViewBag.Material)
+    </table>
+    </div>
+    <div class="cont-titles">
+    <h2>Components of @Model.MatDescr</h2>
+    <table class="table-norm" border ="1">
+        @Html.Partial("_pListMatComponents",(List<VTMComponent>)ViewBag.ListMatComp)
+    </table>
+    </div>
+    @Html.Partial("_pmenuMatCo",Model)
+}

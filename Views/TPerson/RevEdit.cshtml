@@ -1,0 +1,51 @@
+@using MyErp.Models
+@model TPReview
+<div class="visicont-titlesble">
+<h1>Edit a Objective review record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.HiddenFor(p => p.RevId)
+    @Html.HiddenFor(p => p.RevPerId)
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border="1">
+        <tr>
+            <td>Nombre :</td>
+            <td>@(((TPerson)ViewBag.Person).PerName)</td>
+            <td> </td>
+            <td>@(((TPerson)ViewBag.Person).PerName1)</td>
+        </tr>
+    </table>
+    <table class="table-norm" border="1">
+        <tr>
+            <td>@Html.LabelFor(p => p.RevDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.RevDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.RevDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.RevObj,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.RevObj, new { htmlAttributes = new { @class = "norm-text", @style = "width:425px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.RevObj)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.RevObRat,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.RevObRat, new { htmlAttributes = new { @class = "norm-text", @style = "width:125px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.RevObRat)</td>
+        </tr>
+       <tr>
+            <td></td>
+            <td><input type="submit" value="Update" name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+}

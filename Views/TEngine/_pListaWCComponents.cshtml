@@ -1,0 +1,15 @@
+@model List<TWccomponent>
+    <tr>
+        <th class="head-text">Code</th> 
+        <th class="head-text">Description</th>                
+        <th class="head-text">Type</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListPodAs) {
+        <tr>
+            <td class ="col-text">@c.WcoCode</td>            
+            <td class ="big-text">@c.WcoDescr</td>
+            <td class ="norm-text">@c.WcoType</td>
+            <td class="col-text">@Html.ActionLink("Remove", "WCeEdit", new { id= c.WcoWcid, wrem = c.WcoId, wass=0}, new { onclick="return confirm('Are you sure?');"})</td>
+        </tr>
+    }

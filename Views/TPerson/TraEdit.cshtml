@@ -1,0 +1,67 @@
+@using MyErp.Models
+@model TPTrain
+<div class="visicont-titlesble">
+<h1>Edit a Training record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.HiddenFor(p => p.TrainId)
+    @Html.HiddenFor(p => p.TrainPerId)
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border="1">
+        <tr>
+            <td>Nombre :</td>
+            <td>@(((TPerson)ViewBag.Person).PerName)</td>
+            <td> </td>
+            <td>@(((TPerson)ViewBag.Person).PerName1)</td>
+        </tr>
+    </table>
+    <table class="table-norm" border="1">
+        <tr>
+            <td>@Html.LabelFor(p => p.TrainDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.TrainDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.TrainDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.TrainArea,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.TrainArea, new { htmlAttributes = new { @class = "norm-text", @style = "width:125px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.TrainArea)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.TrainCourse,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.TrainCourse, new { htmlAttributes = new { @class = "norm-text", @style = "width:125px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.TrainCourse)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.TrainCalif,new { @class = "norm-num",})</td>
+            <td>@Html.EditorFor(p => p.TrainCalif, new { htmlAttributes = new { @class = "norm-text", @style = "width:175px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.TrainCalif)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.TrainObser,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.TrainObser, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.TrainObser)</td>
+        </tr>
+       <tr>
+            <td></td>
+            <td><input type="submit" value="Update"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+}

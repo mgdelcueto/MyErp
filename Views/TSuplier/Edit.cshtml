@@ -1,0 +1,231 @@
+@using MyErp.Models
+@using System.Linq;
+@model TSuplier
+@using (Html.BeginForm()) {
+    @Html.HiddenFor(p => p.SupId)
+@functions {
+    string panelBold(int panel)
+    {            
+        int tpan = (int)ViewData["panel"];
+        string cstyle ="";
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+        return cstyle;
+    }
+
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+    int thisPanel(){
+         int opanel = (int)ViewData["panel"];
+         return opanel;
+    }
+}
+@section Styles
+{
+
+}
+
+<h1>Edit a Suplier</h1>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <table>
+        <div class="cont-titles-l">
+        <h2>>>@Html.DisplayFor(p => p.SupRasoc)  @Html.DisplayFor(p => p.SupNif)</h2>
+        </div>
+        <table>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="@thisPanel()" asp-route-move="1">&lt&ltPrev</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="1" asp-route-move="0">Suplier</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(2)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="2" asp-route-move="0">Products</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(3)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="3" asp-route-move="0">Planning</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TSuplier" asp-action="Index">Home</a>
+                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="@thisPanel()" asp-route-move="2">Next&gt&gt</a>
+                        </li>                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+         </table>
+    </table>
+    <div class=@isVisible(1)>
+    <table>
+        <div class="cont-titles">
+        <h2>Suplier data</h2>
+        </div>
+        <tr>
+            <td>@Html.LabelFor(p => p.SupRasoc,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.SupRasoc, new { htmlAttributes = new { @class = "norm-num", @style = "width:320" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.SupRasoc)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.SupNif,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.SupNif, new { htmlAttributes = new { @class = "norm-num", @style = "width:90" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.SupNif)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.SupCrDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.SupCrDate, new { htmlAttributes = new { @class = "norm-num"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.SupCrDate)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.SupCode,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.SupCode, new { htmlAttributes = new { @class = "norm-num", @style = "width:150" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.SupCode)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.SupAdStrt,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.SupAdStrt, new { htmlAttributes = new { @class = "norm-num", @style = "width:350" } })</td>
+            <td>@Html.LabelFor(p => p.SupAdCity,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.SupAdCity, new { htmlAttributes = new { @class = "norm-num", @style = "width:150" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.SupAdStrt)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.SupAdCity)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.SupAdCtry,new { @class = "norm-text",})</td>
+            <td>
+                @Html.DropDownListFor(p => p.SupAdCtry,
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+            <td>@Html.LabelFor(p => p.SupCtPhone,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.SupCtPhone, new { htmlAttributes = new { @class = "norm-num", @style = "width:150" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.SupAdCtry)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.SupCtPhone)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.SupCtEmailLog,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.SupCtEmailLog, new { htmlAttributes = new { @class = "norm-num", @style = "width:250" } })</td>
+            <td>@Html.LabelFor(p => p.SupCtEdilog,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.SupCtEdilog, new { htmlAttributes = new { @class = "norm-num", @style = "width:250" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.SupCtEmailLog)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.SupCtEdilog)</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update" name="actionType"/></td>
+            <td><input type="submit" value="Cancel"  name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+    <div class=@isVisible(2)>
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>Product Data</h2>
+    </div>
+    <tr>
+        <th class="head-text">Referencia</th> 
+        <th class="head-text">Descripcion</th> 
+        <th class="head-text">Fecha Creacion</th>                
+        <th class="head-text">Status</th>        
+        <th class="head-text">Fecha Status</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListProd) {
+        <tr>
+            <td class ="col-text">@c.ProdRefer</td>            
+            <td class ="col-text">@c.ProdDescr</td>            
+            @{ string DateCr = string.Format("{0:dd-MM-yyyy}", c.ProdCrDate); }
+            <td class ="col-text">@DateCr</td>
+            <td class ="col-text">@c.ProdStatus</td>
+            @{ string DateSt = string.Format("{0:dd-MM-yyyy}", c.ProdStDate); }
+            <td class ="col-text">@DateSt</td>
+            <td class="col-text">@Html.ActionLink("Delete", "ProDelete", new { id = c.ProdId,Pid = c.ProdSupId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "ProEdit", new { id = c.ProdId ,panel=2,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Plan", "Edit", new { id = c.ProdSupId ,panel=3,skip =0,prod=c.ProdId})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "ProCreate",new {Pid=@Model.SupId})
+    </div>
+    <div class=@isVisible(3)>
+    <div class="cont-titles">
+    <h2>Planning Data</h2>
+    </div>
+    @using (Html.BeginForm("Edit","TSuplier",FormMethod.Post,new{panel=3})) {        
+    <table>
+            <td class="medium-text">Referencia</td>
+            <td class="norm-text">
+                <!--@ViewData["Prod"]-->
+                @Html.DropDownList("ProdId", (SelectList)ViewBag.ddlReferVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
+            </td>
+    </table>
+    }
+    <table class="table-norm" border ="1" >
+    <hr style="width:100%;text-align:left;margin-left:0">
+    <tr>
+        <th class="head-text">Producto[Re]</th> 
+        <th class="head-text">Producto[De]</th> 
+        <th class="head-text">Desde Fecha</th>        
+        <th class="head-text">Hasta Fecha</th>        
+        <th class="head-text">Env.Cantidad</th>        
+        <th class="head-text">Firme</th>        
+    </tr>
+   
+    @foreach ( TSPlanningV  c in (List<TSPlanningV>)ViewBag.ListPlan) {
+        <tr>
+            <td class ="col-text">@c.ProdRefer</td>            
+            <td class ="col-text">@c.ProdDescr</td>            
+            @{ string DateFrom = string.Format("{0:dd-MM-yyyy}", c.PlanDateFrom); }
+            <td class ="col-text">@DateFrom</td>
+            @{ string DateTo = string.Format("{0:dd-MM-yyyy}", c.PlanDateTo); }
+            <td class ="col-text">@DateTo</td>
+            <td class ="col-num">@c.PlanQty</td>
+            <td class ="col-text">@c.PlanFirmSt</td>
+            <td class="col-text">@Html.ActionLink("Delete", "PlanDelete", new { id = c.PlanId,Pid = c.PlanSupId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PlanEdit", new { id = c.PlanId ,panel=3,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "PlanCreate",new {Pid=@Model.SupId,prod=@ViewData["cProd"]})
+    </div>    
+}
+}
+
+
+
+

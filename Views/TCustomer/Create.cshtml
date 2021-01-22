@@ -1,0 +1,88 @@
+@using MyErp.Models
+@model TCustomer
+<div class="cont-titles">
+<h1>Add a New Customer</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border="1">
+        <tr>
+            <td>@Html.LabelFor(p => p.CustRasoc,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustRasoc, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustRasoc)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustNif,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustNif, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustNif)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustCrDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCrDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustCrDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustCode,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:250px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustCode)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustAdStrt,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustAdStrt, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px"} })</td>
+            <td>@Html.LabelFor(p => p.CustAdCity,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustAdCity, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustAdStrt)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustAdCity)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustAdCtry,new { @class = "norm-text",})</td>
+            <td>
+                @Html.DropDownListFor(p => p.CustAdCtry,
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+            <td>@Html.LabelFor(p => p.CustCtPhone,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCtPhone, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustAdCtry)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustCtPhone)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustCtEmailLog,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCtEmailLog, new { htmlAttributes = new { @class = "norm-text", @style = "width:250px"} })</td>
+            <td>@Html.LabelFor(p => p.CustCtEdilog,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCtEdilog, new { htmlAttributes = new { @class = "norm-text", @style = "width:250px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustCtEmailLog)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CustCtEdilog)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+}

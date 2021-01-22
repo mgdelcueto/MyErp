@@ -1,0 +1,86 @@
+@using MyErp.Models
+@model TCCplanning
+@functions {
+    int CustId(){
+        return ((TCustomer)ViewBag.Customer).CustId;
+    }
+    int? Planta(){
+        int? retcol = (int?)ViewData["Plant"];
+        return retcol;
+    }
+    int? Produc(){
+        int? retcol = (int?)ViewData["cProd"];
+        return retcol;
+    }
+}
+<div class="cont-titles">
+<h1>Add a New Planning record</h1>
+</div>
+@using (Html.BeginForm()) {
+<div class="visible">
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border="1">
+        <tr>
+            <input type="hidden" name="CPlanCustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
+            <input type="hidden" name="CPlanCPlantId" value="@Planta()"/>
+            <input type="hidden" name="CPlanCProdId" value="@Produc()"/>
+            <td>Customer :</td>
+            <td>@(((TCustomer)ViewBag.Customer).CustRasoc)</td>
+            <td>  Nif:</td>
+            <td>@(((TCustomer)ViewBag.Customer).CustNif)</td>
+        </tr>
+        <table>
+        <hr style="width:100%;text-align:left;margin-left:0">
+        <tr>
+            <td>@Html.LabelFor(p => p.CplanCplantId,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @*
+                @Html.DropDownListFor(p=> p.CplanCplantId, (SelectList)ViewBag.ddlPlantVB, new { @class ="norm-text" , onchange = "this.form.submit();" })
+                *@
+                @Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="norm-text" , onchange = "this.form.submit();" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CplanCprodId,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @*
+                @Html.DropDownListFor(p=> p.CplanCprodId, (SelectList)ViewBag.ddlReferVO, new { @class ="norm-text"  , onchange = "this.form.submit();"  })
+                *@
+                @Html.DropDownList("CprodId", (SelectList)ViewBag.ddlReferVO, new { @class ="norm-text"  , onchange = "this.form.submit();"  })
+            </td>
+        </tr>
+        </table>
+        <table>
+        <hr style="width:100%;text-align:left;margin-left:0">
+        <tr>
+            <td>@Html.LabelFor(p => p.CplanDateFrom,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CplanDateFrom, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.ValidationMessageFor(p => p.CplanDateFrom)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.CplanDateTo,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CplanDateTo, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.ValidationMessageFor(p => p.CplanDateTo)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.CplanQty,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CplanQty, new { htmlAttributes = new { @class = "norm-num", @style = "width:120px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.CplanQty)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.CplanFirmSt,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CplanFirmSt, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.CplanFirmSt)</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+
+        </tr>
+    </table>
+    </table>
+    </div>
+}

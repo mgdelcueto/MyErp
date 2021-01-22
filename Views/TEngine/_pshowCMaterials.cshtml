@@ -1,0 +1,43 @@
+@model VTMComponent
+        <tr>
+            @Html.HiddenFor(p => p.CoRefId)
+            @Html.HiddenFor(p => p.CoRefRe)
+            @Html.HiddenFor(p => p.CoRefDes)
+            @Html.HiddenFor(p => p.CoRefUM)
+            <td>@Html.LabelFor(p => p.CoRefRe,new { @class = "norm-text",})</td>
+            <td>@Model.CoRefRe</td>
+            <td>@Html.LabelFor(p => p.CoRefDes,new { @class = "norm-text",})</td>
+            <td>@Model.CoRefDes</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CoComId,new { @class = "norm-text" })</td>
+            @using (Html.BeginForm()) {
+            <input type="hidden" name="Filter" value="2"/>
+            <td class="norm-text">
+                @Html.DropDownListFor(p => p.CoComId,(SelectList)ViewBag.ddlMatCOM,"",new { @class = "norm-text" , onchange = "this.form.submit();" })
+            </td>
+            }
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CoComId)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CoRefQt,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CoRefQt, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
+            <td>@Model.CoRefUM</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CoRefQt)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CoComQt,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CoComQt, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
+            <td>@Model.CoComUM</td>
+            
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CoComQt)</td>
+        </tr>

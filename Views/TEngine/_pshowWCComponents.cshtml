@@ -1,0 +1,86 @@
+@model TWccomponent
+        <tr>
+            <td>@Html.LabelFor(p => p.WcoCode,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.WcoCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoCode)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.WcoType,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.WcoType, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.WcoDescr,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.WcoDescr, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoType)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoDescr)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.WcoWcid,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownListFor(p => p.WcoWcid,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-text" })
+           
+            </td>
+            <td>@Html.LabelFor(p => p.WcoAcct,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.WcoAcct, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoWcid)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoAcct)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.WcoCrDate,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.WcoCrDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.WcoStatus,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.WcoStatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoCrDate)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoStatus)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.WcoStDate,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.WcoStDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.WcoDim1,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.WcoDim1, new { htmlAttributes = new { @class = "norm-num", @style = "width:150px" } })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoStDate)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoDim1)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.WcoDim2,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.WcoDim2, new { htmlAttributes = new { @class = "norm-num", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.WcoDim3,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.WcoDim3,new { htmlAttributes = new { @class = "norm-num", @style = "width:150px" } })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoDim2)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoDim3)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.WcoWeight,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.WcoWeight, new { htmlAttributes = new { @class = "norm-num", @style = "width:150px," } })</td>
+            <td>@Html.LabelFor(p => p.WcoCostMin,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.WcoCostMin, new { htmlAttributes = new { @class = "norm-num", @style = "width:150px," } })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoWeight)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcoCostMin)</td>
+        </tr>
+ 

@@ -1,0 +1,15 @@
+@model List<TWorkCenter>
+    <tr>
+        <th class="head-text">Code</th> 
+        <th class="head-text">Description</th>                
+        <th class="head-text">Type</th>        
+    </tr>
+   
+    @foreach (var c in Model) {
+        <tr>
+            <td class ="col-text">@c.Wccode</td>            
+            <td class ="big-text">@c.Wcdescr</td>
+            <td class ="norm-text">@c.Wctype</td>
+            <td class="col-text">@Html.ActionLink("Remove", "FacEdit", new { id= c.WcfaId, wrem = c.WcdId, wass=0}, new { onclick="return confirm('Are you sure?');"})</td>
+        </tr>
+    }

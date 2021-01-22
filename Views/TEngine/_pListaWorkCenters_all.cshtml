@@ -1,0 +1,39 @@
+@model List<TWorkCenter>
+    @using (Html.BeginForm("Index","TEngine",FormMethod.Post)) {        
+    <table>
+            <td>
+                <input type="hidden" name="panel" value="2"/>
+            </td>
+
+            <td class="medium-text">Facility</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownList("FaId", (SelectList)ViewBag.ddlPlantVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
+            </td>
+    </table>
+    }
+
+
+   <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>Work Centers Data</h2>
+    </div>
+    <tr>
+        <th class="head-text">Code</th> 
+        <th class="head-text">Description</th>                
+        <th class="head-text">Type</th>        
+    </tr>
+   
+    @foreach (var c in Model) {
+        <tr>
+            <td class ="col-text">@c.Wccode</td>            
+            <td class ="big-text">@c.Wcdescr</td>
+            <td class ="norm-text">@c.Wctype</td>
+            <td class="col-text">@Html.ActionLink("Delete", "WCeDelete", new { id = c.WcdId}, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "WCeEdit", new { id = c.WcdId ,panel=2})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "WCeCreate")
+<

@@ -1,0 +1,53 @@
+@using MyErp.Models
+@model TPCareer
+<div class="cont-titles">
+<h1>Add a New Career record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border ="1">
+        <tr>
+            <input type="hidden" name="CarePerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
+            <td>Nombre</td>
+            <td>@(((TPerson)ViewBag.Person).PerName)</td>
+        </tr>
+        <tr>
+            <td>Apellidos</td>
+            <td>@(((TPerson)ViewBag.Person).PerName1)</td>
+        </tr>
+    </table>
+    <table class="table-norm" border ="1">
+        <hr style="width:100%;text-align:left;margin-left:0">
+        <tr>
+            <td>@Html.LabelFor(p => p.CareDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CareDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CareDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CarePosit,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CarePosit, new { htmlAttributes = new { @class = "norm-text", @style = "width:125px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CarePosit)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CareObser,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CareObser, new { htmlAttributes = new { @class = "norm-text", @style = "width:425px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CareObser)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add" name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+}

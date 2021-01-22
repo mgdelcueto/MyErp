@@ -1,0 +1,100 @@
+@model IEnumerable<MyErp.Models.TPerson>
+@{
+    ViewData["Title"] = "HR Area Index Page";
+}
+@functions {
+    string myformat(double? value){
+    string ret =string.Format("{0:C2}", value);
+    //string rets = value.ToString("N", CultureInfo.InvariantCulture);
+    return ret;
+}
+    string mycolor(double? value){
+    string retcol="red-number";
+    if (value >=0 ){
+        retcol="blue-number";}
+    return retcol;
+    }
+    string colcolor(int item){
+    string retcol="col-text";
+    if (item==0)
+    {
+        retcol="botcol-text";
+    }
+    return retcol;
+    }
+    string isVisible(){
+        int filter =0;
+        try{
+        filter = (int) ViewData["Filter"];}
+        catch{}
+        string retcol="";
+        if (filter==0){retcol="invisible";}
+        else{retcol="visible";}
+        return retcol;
+    }
+    string fValue (int valor){
+        string ret1="";
+        if (valor ==1){
+        try{
+            ret1 = (string)ViewData["Fil1"];
+        }
+        catch{}
+        }
+        else{
+        try{
+            ret1 = (string)ViewData["Fil2"];
+        }
+        catch{}
+        }
+        return ret1;
+    }
+}
+@section Styles
+{
+
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class = "cont-titles">
+ <h2>Person Table</h2>   
+</div>
+<td><a class="nav-link text-dark" asp-area="" asp-controller="TPerson" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">Filter</a></td>
+<div class="@isVisible()">
+    @using (Html.BeginForm()) {
+        <tr>
+            <input type="hidden" name="Filter" value="2"/>
+            <td>Filtrar por Nombre:</td>
+            <td class ="norm-text"><input value ="@fValue(1)" class="norm-text" id="pNam" name="pNam" type="text"></input></td>
+            <td> Apellidos:</td>
+            <td class ="norm-text"><input value="@fValue(2)" class ="norm-text" id="pNam1" name="pNam1" type="text"></input></td>
+            <td><input type="submit" value="Filter" /></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    }
+</div>
+<div class="visible">
+<table class="table-norm" border="1">
+    <tr>
+        <th class="head-text">Name</th> 
+        <th class="head-text">SurName</th>                
+        <th class="head-text">DNI</th>        
+        <th class="head-text">Address</th>
+        <th class="head-text">Country</th>
+        <th class="head-text">Delete</th>        
+        <th class="head-text">Edit</th>        
+    </tr>
+    @foreach (var p in Model) {
+        <tr>
+            <td class ="col-text">@p.PerName</td>            
+            <td class ="norm-text">@p.PerName1</td>
+            <td class ="norm-text">@p.PerDni</td>
+            <td class ="norm-text">@p.PerAddr</td>
+            <td class ="norm-text">@p.PerAddCtry</td>
+            <td class="col-text">@Html.ActionLink("Delete", "Delete", new { id = p.PerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "Edit", new { id = p.PerId ,panel=1,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "Create")
+</div>

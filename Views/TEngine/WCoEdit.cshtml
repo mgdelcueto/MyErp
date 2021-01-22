@@ -1,0 +1,19 @@
+@{Layout = "_LyIndex";}
+@using MyErp.Models
+@model TWccomponent
+<div class="cont-titles">
+<h1>Edit a Component record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.HiddenFor(p => p.WcoId)
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border ="1">
+        @Html.Partial("_pshowWCComponents",Model)
+        <tr>
+            <td><input type="submit" value="Update"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+}

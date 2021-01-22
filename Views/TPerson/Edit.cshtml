@@ -1,0 +1,372 @@
+@using MyErp.Models
+@using System.Linq;
+@model TPerson
+@using (Html.BeginForm()) {
+    @Html.HiddenFor(p => p.PerId)
+    @Html.ValidationSummary(true)
+@functions {
+    string panelBold(int panel)
+    {            
+        int tpan = (int)ViewData["panel"];
+        string cstyle ="";
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+        return cstyle;
+    }
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+    int thisPanel(){
+         int opanel = (int)ViewData["panel"];
+         return opanel;
+    }
+}
+@section Styles
+{
+
+}
+
+<h1>Edit a Person</h1>
+@using (Html.BeginForm()) {
+    
+    <table>
+        <div class="cont-titles-l">
+        <h2>>>@Html.DisplayFor(p => p.PerName)  @Html.DisplayFor(p => p.PerName1)</h2>
+        </div>
+        <table>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="@thisPanel()" asp-route-move="1">&lt&ltPrev</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(1)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="1" asp-route-move="0">Person</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(2)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="2" asp-route-move="0">Career</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(3)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="3" asp-route-move="0">Contract</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(4)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="4" asp-route-move="0">Curriculum</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(5)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="5" asp-route-move="0">Pay</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(6)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="6" asp-route-move="0">Presence</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(7)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="7" asp-route-move="0">Obj.Review</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(8)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="8" asp-route-move="0">Training</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(0)" asp-area="" asp-controller="TPerson" asp-action="Index">Home</a>
+                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"  style="@panelBold(0)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="@thisPanel()" asp-route-move="2">Next&gt&gt</a>
+                        </li>                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+         </table>
+    </table>
+    <div class=@isVisible(1)>
+    <table>
+        <div class="cont-titles">
+        <h2>Person Data</h2>
+        </div>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerName,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerName, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerName1,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerName1, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerName1)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerDni,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerDni, new { htmlAttributes = new { @class = "norm-text", @style = "width:120px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerDni)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerBird,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerBird, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerBird)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerBiCity,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerBiCity, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerBiCity)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerBiCtry,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                @Html.DropDownListFor(p => p.PerBiCtry,
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerAddr,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerAddr, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+            <td>@Html.LabelFor(p => p.PerContDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerContDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerAddr)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerContDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerAddr1,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerAddr1, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+            <td>@Html.LabelFor(p => p.PerEntDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerEntDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerAddr1)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerContDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerAddCtry,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                @Html.DropDownListFor(p => p.PerAddCtry,
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+            <td>@Html.LabelFor(p => p.PerExiDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.PerExiDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerAddCtry)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerExiDate)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel"  name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+    <div class=@isVisible(2)>
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>Career Data</h2>
+    </div>
+    <tr>
+        <th class="head-text">Date</th> 
+        <th class="head-text">Position</th>                
+        <th class="head-text">Observations</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListCareer) {
+        <tr>
+            @{ string CareDate = string.Format("{0:dd-MM-yyyy}", c.CareDate); }
+            <td class ="col-text">@CareDate</td>            
+            <td class ="norm-text">@c.CarePosit</td>
+            <td class ="big-text">@c.CareObser</td>
+            <td class="col-text">@Html.ActionLink("Delete", "CarDelete", new { id = c.CareId,Pid = c.CarePerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "CarEdit", new { id = c.CareId ,panel=2,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "CarCreate",new {Pid=@Model.PerId})
+    </div>
+    <div class=@isVisible(3)>
+    <div class="cont-titles">
+    <h2>Contract Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">Date</th> 
+        <th class="head-text">Observations</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListContract) {
+        <tr>
+            @{ string ConRevDate = string.Format("{0:dd-MM-yyyy}", c.ConRevDate); }
+            <td class ="col-text">@ConRevDate</td>            
+            <td class ="big-text">@c.ConObs</td>
+            <td class="col-text">@Html.ActionLink("Delete", "ConDelete", new { id = c.ConId,Pid = c.ConPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "ConEdit", new { id = c.ConId ,panel=3,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "ConCreate",new {Pid=@Model.PerId})
+    </div>    
+    <div class=@isVisible(4)>
+    <div class="cont-titles">
+    <h2>Curriculum Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">Date</th> 
+        <th class="head-text">K.Area</th>        
+        <th class="head-text">Area Desc</th>        
+        <th class="head-text">Level</th>        
+        <th class="head-text">Observations</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListCurric) {
+        <tr>
+            @{ string DateRev = string.Format("{0:dd-MM-yyyy}", c.CurrRevDate); }
+            <td class ="norm-text">@DateRev</td>
+            <td class ="norm-text">@c.CurrArea</td>
+            <td class ="norm-text">@c.CurrAreaDesc</td>
+            <td class ="norm-text">@c.CurrAreaLevel</td>
+            <td class ="big-text">@c.CurrObs</td>
+            <td class="col-text">@Html.ActionLink("Delete", "CurDelete", new { id = c.CurrId,Pid = c.CurrPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "CurEdit", new { id = c.CurrId ,panel=4,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "CurCreate",new {Pid=@Model.PerId})
+
+</div>    
+    <div class=@isVisible(5)>
+    <div class="cont-titles">
+    <h2>Pay Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">St.Date</th> 
+        <th class="head-text">Concept Type</th>        
+        <th class="head-text">Retention</th>        
+        <th class="head-text">Accounty</th>
+    </tr>
+   
+    @foreach (var c in ViewBag.ListPay) {
+        <tr>
+            @{ string PayStDate = string.Format("{0:dd-MM-yyyy}", c.PayStDate); }
+            <td class ="col-text">@PayStDate</td>            
+            <td class ="norm-text">@c.PayType</td>
+            <td class ="norm-text">@c.PayRet</td>
+            <td class ="norm-text">@c.PayAccount</td>
+            <td class="col-text">@Html.ActionLink("Delete", "PayDelete", new { id = c.PayId,Pid = c.PayPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PayEdit", new { id = c.PayId ,panel=5,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "PayCreate",new {Pid=@Model.PerId})
+    </div>    
+    <div class=@isVisible(6)>
+    <div class="cont-titles">
+    <h2>Presence Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">Local</th> 
+        <th class="head-text">fecha</th>        
+        <th class="head-text">Hora</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListPre) {
+        <tr>
+            @{ string PresDateEvent = string.Format("{0:dd-MM-yyyy}", c.PresDateEvent); }
+            @{ string PresTimeEvent = string.Format("{0:hh:mm:ss}", c.PresTimeEvent); }
+            <td class ="col-text">@c.PresLocal</td>            
+            <td class ="norm-text">@PresDateEvent</td>
+            <td class ="norm-text">@PresTimeEvent</td>
+            <td class="col-text">@Html.ActionLink("Delete", "PreDelete", new { id = c.PresId,Pid = c.PresPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PreEdit", new { id = c.PresId ,panel=6,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "PreCreate",new {Pid=@Model.PerId})
+    </div>    
+    <div class=@isVisible(7)>
+    <div class="cont-titles">
+    <h2>Objective Review Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">Fecha</th> 
+        <th class="head-text">Objectivo</th>        
+        <th class="head-text">Rating</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListRev) {
+        <tr>
+            @{ string RevDate = string.Format("{0:dd-MM-yyyy}", c.RevDate); }
+            <td class ="col-text">@RevDate</td>            
+            <td class ="big-text">@c.RevObj</td>
+            <td class ="norm-num">@c.RevObRat</td>
+            <td class="col-text">@Html.ActionLink("Delete", "RevDelete", new { id = c.RevId,Pid = c.RevPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "RevEdit", new { id = c.RevId ,panel=7,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "RevCreate",new {Pid=@Model.PerId})
+    </div>    
+    <div class=@isVisible(8)>
+    <div class="cont-titles">
+    <h2>Training Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">Fecha</th> 
+        <th class="head-text">Area</th>        
+        <th class="head-text">Curso</th>        
+        <th class="head-text">Calificacion</th>        
+        <th class="head-text">Observaciones</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListTra) {
+        <tr>
+            @{ string TrainDate = string.Format("{0:dd-MM-yyyy}", c.TrainDate); }
+            <td class ="col-text">@TrainDate</td>            
+            <td class ="norm-text">@c.TrainArea</td>
+            <td class ="norm-text">@c.TrainCourse</td>
+            <td class ="norm-text">@c.TrainCalif</td>
+            <td class ="big-text">@c.TrainObser</td>
+            <td class="col-text">@Html.ActionLink("Delete", "TraDelete", new { id = c.TrainId,Pid = c.TrainPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "TraEdit", new { id = c.TrainId ,panel=8,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "TraCreate",new {Pid=@Model.PerId})
+    </div>    
+}
+}
+
+
+
+
