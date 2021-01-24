@@ -13,6 +13,7 @@ namespace MyErp.Models {
         public static IList<MatClass> MatClassesL { get; }
         public static IList<MatType> MatTypes { get; }
         public static IList<MeasureU> MeasureUs { get; }
+        public static IList<TimeU> TimeUs { get; }
         static DataSource() {
             Countries = new List<Country>();
             Countries.Add(new Country("ES", "Spain"));
@@ -50,7 +51,19 @@ namespace MyErp.Models {
             MeasureUs.Add(new MeasureU("UN", "Unit (PCE)"));
             MeasureUs.Add(new MeasureU("M", "Meters"));            
             MeasureUs.Add(new MeasureU("KG", "Kilograms"));
-            MeasureUs.Add(new MeasureU("M2", "Square Meters"));        }
+            MeasureUs.Add(new MeasureU("M2", "Square Meters")); 
+
+            TimeUs = new List<TimeU>();
+            TimeUs.Add(new TimeU("H", "Hour "));
+            TimeUs.Add(new TimeU("M", "Minute"));            
+            TimeUs.Add(new TimeU("S", "Second"));
+            TimeUs.Add(new TimeU("D", "Day"));        
+            TimeUs.Add(new TimeU("Mo", "Month"));        
+            TimeUs.Add(new TimeU("Y", "Year"));        
+            
+            }
+
+
         public static IList<Country> GetCountry() {
             var result = Countries;
             //result.ForEach(p => p.Type = _productTypes[p.TypeID]);
@@ -84,6 +97,12 @@ namespace MyErp.Models {
 
         public static IList<MeasureU> GetMatUnits() {
             var result = MeasureUs;
+            //result.ForEach(p => p.Type = _productTypes[p.TypeID]);
+            return result;
+        }
+
+        public static IList<TimeU> GetTimeUnits() {
+            var result = TimeUs;
             //result.ForEach(p => p.Type = _productTypes[p.TypeID]);
             return result;
         }

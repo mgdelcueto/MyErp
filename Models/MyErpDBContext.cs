@@ -28,6 +28,7 @@ namespace MyErp.Models
         public virtual DbSet<TMComponent> TMComponents  { get; set; }
         public virtual DbSet<TMPoprice> TMPoprices { get; set; }
         public virtual DbSet<TMPorder> TMPorders { get; set; }
+        public virtual DbSet<TMRouting> TMRoutings { get; set; }
         public virtual DbSet<TMStorage> TMStorages { get; set; }
         public virtual DbSet<TMaterial> TMaterials { get; set; }
         public virtual DbSet<TPCareer> TPCareers { get; set; }
@@ -421,6 +422,33 @@ namespace MyErp.Models
                     .IsRequired()
                     .HasMaxLength(25)
                     .HasColumnName("POType");
+            });
+
+            modelBuilder.Entity<TMRouting>(entity =>
+            {
+                entity.HasKey(e => e.RouId)
+                    .HasName("PK__T_M_Rout__FF625823FFECC554");
+
+                entity.ToTable("T_M_Routing");
+
+                entity.Property(e => e.RouFase)
+                    .IsRequired()
+                    .HasMaxLength(25);
+
+                entity.Property(e => e.RouOper)
+                    .IsRequired()
+                    .HasMaxLength(225);
+
+                entity.Property(e => e.RouTunit)
+                    .IsRequired()
+                    .HasMaxLength(25)
+                    .HasColumnName("RouTUnit");
+
+                entity.Property(e => e.RouWcid).HasColumnName("RouWCId");
+
+                entity.Property(e => e.RouWtime).HasColumnName("RouWTime");
+
+                entity.Property(e => e.RouWunit).HasColumnName("RouWUnit");
             });
 
             modelBuilder.Entity<TMStorage>(entity =>

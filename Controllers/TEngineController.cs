@@ -131,6 +131,38 @@ namespace MyErp.Controllers {
             _dbContext.Database.ExecuteSqlRaw("Xx_Explosion {0}", table);
 
             ViewBag.ListMatBom=explosio; //querybo;
+
+            var querywcen1 = (from p in _dbContext.TWorkCenters 
+                        orderby p.Wcdescr
+                        //where p.MatClass !="FG"
+                        select new TWorkCenter{WcdId=p.WcdId,Wcdescr=p.Wcdescr} ).ToList();
+            var querywcen0 = ( from p in _dbContext.TMaterials  
+            select new TWorkCenter{WcdId=0,Wcdescr="Select a Component"}).Distinct().ToList();
+            var querywcen = querywcen0.Concat(querywcen1);
+            ViewBag.ddlWCenter = new SelectList(querywcen.ToList(), "WcdId", "Wcdescr",0); 
+
+
+            var queryro =(from pl in _dbContext.TMRoutings 
+            join p in _dbContext.TMaterials on pl.RouRefId equals p.MatId
+            join q in _dbContext.TWorkCenters on pl.RouWcid equals q.WcdId
+            orderby pl.RouFase 
+            where pl.RouRefId ==Coid 
+            select new VTMRouting { 
+                RoRoId=pl.RouId,
+                RoRoMatId=p.MatId ,
+                RoRoMatRe = p.MatRefer ,
+                RoRoMatDe=p.MatDescr ,
+                RoRoFase=pl.RouFase,
+                RoRoOper=pl.RouOper,
+                RoRoTunit=pl.RouTunit,
+                RoRoWCId=pl.RouWcid,
+                RoRoWCDe=q.Wcdescr,
+                RoRoWtime=pl.RouWtime,
+                RoRoWunit=pl.RouWunit
+                }).ToList();
+            
+            ViewBag.ListMatRou=queryro;
+
        }
 
         private void  WCeRemove(int id) {
@@ -374,6 +406,74 @@ namespace MyErp.Controllers {
             return RedirectToAction("MatComp",new{id=id});
         }
 
+        [HttpGet]
+        public IActionResult RMatCreate(int id,string actionType) {
+            CreateViewBags(0,0);
+            TMaterial mat=(from  ma in _dbContext.TMaterials
+            where ma.MatId==id select ma).SingleOrDefault();
+            ViewData["panel"]=4;
+            VTMRouting queryco=(from  ma in _dbContext.TMaterials
+            join co in _dbContext.TMRoutings on ma.MatId equals co.RouRefId
+            into RefComp
+            from pco in RefComp.DefaultIfEmpty()
+            where ma.MatId==id
+            select new VTMRouting { 
+                RoRoId=0,
+                RoRoMatId=id,
+                RoRoMatRe =mat.MatRefer,
+                RoRoMatDe=mat.MatDescr,
+                RoRoFase="",
+                RoRoOper="",
+                RoRoTunit="S",
+                RoRoWCId=0,
+                RoRoWCDe="",
+                RoRoWtime=0,
+                RoRoWunit=1}).Distinct().SingleOrDefault();
+             //ViewBag.ListMatComp=queryco;
+            return View((VTMRouting)queryco);      
+        }
+
+        [HttpPost]
+        public IActionResult RMatCreate(VTMRouting routing,int id,string actionType) {
+            ViewData["panel"]=4;
+            if(actionType=="Add"){
+             if (ModelState.IsValid){
+                    try{
+                        TMRouting nmod = new TMRouting();
+                            nmod.RouWcid=routing.RoRoWCId; 
+                            nmod.RouWunit=routing.RoRoWunit;
+                            nmod.RouWtime=routing.RoRoWtime;
+                            nmod.RouTunit=routing.RoRoTunit;
+                            nmod.RouFase=routing.RoRoFase;
+                            nmod.RouOper=routing.RoRoOper;
+                            nmod.RouRefId=routing.RoRoMatId;
+                        _dbContext.TMRoutings.Add(nmod); 
+                        _dbContext.SaveChanges();
+                   }
+                 catch(Exception ex){
+                     string mensaje = ex.Message;
+                     return View("Error");}
+                 } 
+            else {
+                CreateViewBags(0,0);    
+                return View(routing);
+                }
+            }
+            else{
+            if (actionType=="Cancel"){}
+            else {
+               try{
+                //cambia el material componente idicar la unidad de medida
+                }catch{}                
+                CreateViewBags(0,0);    
+                return View(routing);
+                }
+            }
+            //CreateViewBags(0,0);    
+            ViewData["panel"]=4;
+
+            return RedirectToAction("MatRoute",new{id=id});
+        }
 
         public IActionResult FacDelete(int id) {
             var mode = _dbContext.TFacilities
@@ -426,8 +526,6 @@ namespace MyErp.Controllers {
             ViewData["panel"]=4;
             return RedirectToAction("Index",new{panel=4});
         }
-
-
         public IActionResult CMatDelete(int id) {
             int Mid=0;
             var mode = _dbContext.TMComponents
@@ -442,6 +540,23 @@ namespace MyErp.Controllers {
             ViewData["panel"]=4;
             return RedirectToAction("MatComp",new{id=Mid});
         }
+
+        public IActionResult RMatDelete(int id) {
+            int Mid=0;
+            var mode = _dbContext.TMRoutings
+                .SingleOrDefault(u => u.RouId.Equals(id));
+            try{
+            Mid=mode.RouRefId;
+            _dbContext.TMRoutings.Remove(mode);
+            _dbContext.SaveChanges();
+            }  
+            catch{}          
+            CreateViewBags(0,0);                
+            ViewData["panel"]=4;
+            return RedirectToAction("MatRoute",new{id=Mid});
+        }
+
+
         [HttpGet]
         public IActionResult FacEdit(int id, int wrem, int wass,int assign, int WcfaId) {
             ViewData["panel"]=1;
@@ -674,6 +789,84 @@ namespace MyErp.Controllers {
 
         } 
 
+
+        [HttpGet]
+        public IActionResult RMatEdit(int id, int MId ,int pamen){
+            CreateViewBags(0,0);
+            ViewData["pamen"]=pamen;
+            ViewData["panel"]=4;
+            try{
+            VTMRouting model =(from pl in _dbContext.TMRoutings 
+            join p in _dbContext.TMaterials on pl.RouRefId equals p.MatId
+            join q in _dbContext.TWorkCenters on pl.RouWcid equals q.WcdId
+            orderby p.MatDescr 
+            where pl.RouId ==id 
+            select new VTMRouting { 
+                RoRoId=pl.RouId,
+                RoRoMatId=p.MatId ,
+                RoRoMatRe = p.MatRefer ,
+                RoRoMatDe=p.MatDescr ,
+                RoRoFase=pl.RouFase,
+                RoRoOper=pl.RouOper,
+                RoRoTunit=pl.RouTunit,
+                RoRoWCId=pl.RouWcid,
+                RoRoWCDe=q.Wcdescr,
+                RoRoWtime=pl.RouWtime,
+                RoRoWunit=pl.RouWunit
+                }).SingleOrDefault();
+            return View(model);
+            }
+            catch{return View("Error");}  
+
+         }
+
+        [HttpPost]
+        public IActionResult RMatEdit(VTMRouting routing,int id ,int MId, string actionType) {
+            
+            if (actionType=="Update"){
+            if (ModelState.IsValid){
+                try{
+                    TMRouting nmod = new TMRouting();
+                            nmod.RouId=id;
+                            nmod.RouWcid=routing.RoRoWCId; 
+                            nmod.RouWunit=routing.RoRoWunit;
+                            nmod.RouWtime=routing.RoRoWtime;
+                            nmod.RouTunit=routing.RoRoTunit;
+                            nmod.RouFase=routing.RoRoFase;
+                            nmod.RouOper=routing.RoRoOper;
+                            nmod.RouRefId=routing.RoRoMatId;
+                        _dbContext.TMRoutings.Update(nmod); 
+                        _dbContext.SaveChanges();
+                }
+                 catch(Exception ex){
+                     string mensaje = ex.Message;
+                     return View("Error");}
+                 } 
+            else {
+                CreateViewBags(0,0);    
+                ViewData["panel"]=4;
+                return View(routing);
+                }
+            }
+            else{
+                if (actionType=="Cancel"){}
+                else{
+                try{
+                //cambia el material componente idicar la unidad de medida
+                }catch{}
+                CreateViewBags(0,0);    
+                ViewData["panel"]=4;
+                return View(routing);
+                }
+            }
+            //CreateViewBags(0,0);    
+            ViewData["panel"]=4;
+
+            return RedirectToAction("MatRoute",new{id=MId});
+
+        } 
+
+
         public IActionResult MatComp(int id) {
             var mode = _dbContext.TMaterials
                 .SingleOrDefault(u => u.MatId.Equals(id));
@@ -686,6 +879,17 @@ namespace MyErp.Controllers {
         }
 
         public IActionResult MatBom(int id) {
+            var mode = _dbContext.TMaterials
+                .SingleOrDefault(u => u.MatId.Equals(id));
+            CreateViewBags(0,0,"",id);    
+            ViewData["panel"]=4;
+            ViewBag.Material=mode;   
+
+            return View(mode);
+
+        }
+
+        public IActionResult MatRoute(int id) {
             var mode = _dbContext.TMaterials
                 .SingleOrDefault(u => u.MatId.Equals(id));
             CreateViewBags(0,0,"",id);    
