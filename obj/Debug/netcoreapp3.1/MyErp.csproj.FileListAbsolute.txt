@@ -310,3 +310,15 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\RMat
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pListMatRou.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pmenuMatRo.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pshowRMaterials.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\LoCreate.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\LoEdit.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pListaStorages_all.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pshowLocations.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pmenuFac.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pListaStorages.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\LMatCreate.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\LMatEdit.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\MatLocal.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pmenuMatLo.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pshowLMaterials.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pListMatLocations.cshtml.g.cs

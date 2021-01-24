@@ -39,6 +39,14 @@ namespace MyErp.Controllers {
                         where p.WcfaId==plant
                         select p).ToList();
             ViewBag.ListProdAs=querycas;
+
+            var querylos = (from p in _dbContext.TLocations 
+                        orderby p.LocCode 
+                        where p.LocFaId==plant
+                        select p).ToList();
+            ViewBag.ListStorAs=querylos;
+
+
             var querycan1 = (from p in _dbContext.TWorkCenters 
                         orderby p.Wccode 
                         where p.WcfaId!=plant
@@ -47,6 +55,26 @@ namespace MyErp.Controllers {
             select new TWorkCenter{WcdId=0,Wcdescr="Select a WorkCenter"}).Distinct().ToList();
             var querycans = querycan0.Concat(querycan1);
             ViewBag.ddlProdNAS = new SelectList(querycans.ToList(), "WcdId", "Wcdescr",0); 
+
+
+            var querylan1 = (from p in _dbContext.TLocations 
+                        orderby p.LocCode 
+                        where p.LocFaId!=plant
+                        select new TLocation{LocId=p.LocId,LocDescr=p.LocDescr} ).ToList();
+            var querylan0 = ( from p in _dbContext.TWorkCenters  
+            select new TLocation{LocId=0,LocDescr="Select a Location"}).Distinct().ToList();
+            var querylans = querylan0.Concat(querylan1);
+            ViewBag.ddlLocNAS = new SelectList(querylans.ToList(), "LocId", "LocDescr",0); 
+
+            var querylax1 = (from p in _dbContext.TLocations 
+                        orderby p.LocCode 
+                        select new TLocation{LocId=p.LocId,LocDescr=p.LocDescr} ).ToList();
+            var querylax0 = ( from p in _dbContext.TWorkCenters  
+            select new TLocation{LocId=0,LocDescr="Select a Location"}).Distinct().ToList();
+            var querylaxs = querylan0.Concat(querylax1);
+            ViewBag.ddlLocNAX = new SelectList(querylaxs.ToList(), "LocId", "LocDescr",0); 
+
+
 
             var resuld1 = from p in _dbContext.TWorkCenters 
                         orderby p.Wcdescr
@@ -85,6 +113,10 @@ namespace MyErp.Controllers {
                         select po).ToList();
             ViewBag.ListMA=queryma;
 
+            var querylo =(from po in _dbContext.TLocations
+                        orderby po.LocDescr
+                        select po).ToList();
+            ViewBag.ListLO=querylo;
 
             var queryman1 = (from p in _dbContext.TMaterials 
                         orderby p.MatRefer
@@ -115,6 +147,20 @@ namespace MyErp.Controllers {
             CoRefQt=pl.CoQtyRe,CoComQt=pl.CoQtyCo,
             CoRefId=q.MatId,CoComId=p.MatId}).ToList();
             ViewBag.ListMatComp=queryco;
+
+
+            var querylom =(from pl in _dbContext.TMLocations 
+            join p in _dbContext.TMaterials on pl.MLocMatId equals p.MatId
+            join q in _dbContext.TLocations on pl.MLocLodId equals q.LocId
+            orderby p.MatDescr 
+            where pl.MLocMatId ==Coid 
+            select new VTMLocation { LoLoId=pl.MLocId ,LoRefRe = p.MatRefer ,
+            LoRefDes=p.MatDescr ,LoRefUM = p.MatUnMed,
+            LoRefSt=pl.MLocStock ,   LoRefId=p.MatId,
+            LoLocCode=q.LocCode,LoLocDescr=q.LocDescr
+            }).ToList();
+            ViewBag.ListMatLoca=querylom;
+
 
             Guid g = Guid.NewGuid();
             string Table = g.ToString();
@@ -186,6 +232,29 @@ namespace MyErp.Controllers {
             }
             catch{}            
         }
+
+        private void  LoRemove(int id) {
+            try{
+            var model = _dbContext.TLocations
+                .SingleOrDefault(u => u.LocId.Equals(id));
+                model.LocFaId=null;
+               _dbContext.TLocations.Update(model);
+               _dbContext.SaveChanges();
+            }
+            catch{}            
+        }
+
+        private void  LoAssign(int id,int wca) {
+            try{
+            var model = _dbContext.TLocations
+                .SingleOrDefault(u => u.LocId.Equals(wca));
+                model.LocFaId=id;
+               _dbContext.TLocations.Update(model);
+               _dbContext.SaveChanges();
+            }
+            catch{}            
+        }
+
         private void  WCoRemove(int id) {
             try{
             var model = _dbContext.TWccomponents
@@ -278,6 +347,35 @@ namespace MyErp.Controllers {
             CreateViewBags(0,wcenter.WcfaId);    
 
             return RedirectToAction("Index",new{panel=2});
+        }
+
+
+        [HttpGet]
+        public IActionResult LoCreate(string actionType) {
+            CreateViewBags(0,0);
+            ViewData["panel"]=5;
+            return View();      
+        }
+
+        [HttpPost]
+        public IActionResult LoCreate(TLocation location,string actionType) {
+            ViewData["panel"]=5;
+            if(actionType=="Add"){
+             if (ModelState.IsValid){
+                    try{
+                        _dbContext.TLocations.Add(location); 
+                        _dbContext.SaveChanges();
+                   }
+                 catch{return View("Error");}
+                 } 
+            else {
+                CreateViewBags(0,location.LocFaId);    
+                return View(location);
+                }
+            }
+            CreateViewBags(0,location.LocFaId);    
+
+            return RedirectToAction("Index",new{panel=5});
         }
 
         [HttpGet]
@@ -406,6 +504,64 @@ namespace MyErp.Controllers {
             return RedirectToAction("MatComp",new{id=id});
         }
 
+
+        [HttpGet]
+        public IActionResult LMatCreate(int id,string actionType) {
+            CreateViewBags(0,0);
+            TMaterial mat=(from  ma in _dbContext.TMaterials
+            where ma.MatId==id select ma).SingleOrDefault();
+            ViewData["panel"]=4;
+            VTMLocation queryco=(from  ma in _dbContext.TMaterials
+            join co in _dbContext.TMLocations on ma.MatId equals co.MLocMatId
+            into RefComp
+            from pco in RefComp.DefaultIfEmpty()
+            where ma.MatId==id
+            select new VTMLocation { 
+                LoRefId=id,
+                LoRefRe =mat.MatRefer,
+                LoRefDes=mat.MatDescr,
+                LoRefUM = mat.MatUnMed, 
+                LoRefSt=0,}).Distinct().SingleOrDefault();
+             //ViewBag.ListMatComp=queryco;
+            return View((VTMLocation)queryco);      
+        }
+
+        [HttpPost]
+        public IActionResult LMatCreate(VTMLocation location,int id,string actionType) {
+            ViewData["panel"]=5;
+            if(actionType=="Add"){
+             if (ModelState.IsValid){
+                    try{
+                        TMLocation nmod = new TMLocation();
+                            nmod.MLocLodId =location.LoLoId; 
+                            nmod.MLocStock=location.LoRefSt;
+                            nmod.MLocMatId=location.LoRefId;
+                        _dbContext.TMLocations.Add(nmod); 
+                        _dbContext.SaveChanges();
+                   }
+                 catch(Exception ex){
+                     string mensaje = ex.Message;
+                     return View("Error");}
+                 } 
+            else {
+                CreateViewBags(0,0);    
+                return View(location);
+                }
+            }
+            else{
+            if (actionType=="Cancel"){}
+            else {
+                CreateViewBags(0,0);    
+                return View(location);
+                }
+            }
+            //CreateViewBags(0,0);    
+            ViewData["panel"]=5;
+
+            return RedirectToAction("MatLocal",new{id=id});
+        }
+
+
         [HttpGet]
         public IActionResult RMatCreate(int id,string actionType) {
             CreateViewBags(0,0);
@@ -501,6 +657,19 @@ namespace MyErp.Controllers {
             return RedirectToAction("Index",new{panel=2});
         }
 
+        public IActionResult LoDelete(int id) {
+            var mode = _dbContext.TLocations
+                .SingleOrDefault(u => u.LocId.Equals(id));
+            try{
+            _dbContext.TLocations.Remove(mode);
+            _dbContext.SaveChanges();
+            }  
+            catch{}          
+            CreateViewBags(0,0);                
+            ViewData["panel"]=5;
+            return RedirectToAction("Index",new{panel=5});
+        }
+
         public IActionResult WCoDelete(int id) {
             var mode = _dbContext.TWccomponents
                 .SingleOrDefault(u => u.WcoId.Equals(id));
@@ -541,6 +710,21 @@ namespace MyErp.Controllers {
             return RedirectToAction("MatComp",new{id=Mid});
         }
 
+        public IActionResult LMatDelete(int id) {
+            int? Mid=0;
+            var mode = _dbContext.TMLocations
+                .SingleOrDefault(u => u.MLocId.Equals(id));
+            try{
+            Mid=mode.MLocMatId;
+            _dbContext.TMLocations.Remove(mode);
+            _dbContext.SaveChanges();
+            }  
+            catch{}          
+            CreateViewBags(0,0);                
+            ViewData["panel"]=4;
+            return RedirectToAction("MatLocal",new{id=Mid});
+        }
+
         public IActionResult RMatDelete(int id) {
             int Mid=0;
             var mode = _dbContext.TMRoutings
@@ -558,12 +742,20 @@ namespace MyErp.Controllers {
 
 
         [HttpGet]
-        public IActionResult FacEdit(int id, int wrem, int wass,int assign, int WcfaId) {
-            ViewData["panel"]=1;
+        public IActionResult FacEdit(int id, int wrem,int wrel, int wass,int wasl, int assign,int assigl,int panel,int vpanel, int WcdId, int LocId) {
+            ViewData["panel"]=panel;
+            ViewData["vpanel"]=vpanel;
             try{
-            if (assign==1){ViewData["Assign"]=1;}
-            if (wrem!=0){WCeRemove(wrem);}
-            if (wass!=0){WCeAssign(id,WcfaId);}
+                if (vpanel==1){
+                    if (assign==1){ViewData["Assign"]=1;}
+                    if (wrem!=0){WCeRemove(wrem);}
+                    if (wass!=0){WCeAssign(id,WcdId);}
+                }
+                else{
+                    if (assigl==1){ViewData["LAssign"]=1;}
+                    if (wrel!=0){LoRemove(wrel);}
+                    if (wasl!=0){LoAssign(id,LocId);}
+                }
             var model = _dbContext.TFacilities
                 .SingleOrDefault(u => u.FaId.Equals(id));
             CreateViewBags(0,model.FaId);  
@@ -573,15 +765,24 @@ namespace MyErp.Controllers {
         }
 
         [HttpPost]
-        public IActionResult FacEdit(TFacility facility,int id ,int WcfaId , int wass, string actionType) {
+        public IActionResult FacEdit(TFacility facility,int id ,int WcdId , int LocId,int wass,int wasl, string actionType) {
+            ViewData["panel"]=1;
             if (actionType=="Cancel"){}
             else{
-            if (wass!=0 && WcfaId!=0){
-                WCeAssign(id,WcfaId);
+            if (wass!=0 && WcdId!=0){
+                WCeAssign(id,WcdId);
                 var model = _dbContext.TFacilities
                     .SingleOrDefault(u => u.FaId.Equals(id));
                 CreateViewBags(0,model.FaId);  
-                ViewData["panel"]=1;
+                ViewData["vpanel"]=1;
+                return View(model);
+            }
+            if (wasl!=0 && LocId!=0){
+                LoAssign(id,LocId);
+                var model = _dbContext.TFacilities
+                    .SingleOrDefault(u => u.FaId.Equals(id));
+                CreateViewBags(0,model.FaId);  
+                ViewData["vpanel"]=2;
                 return View(model);
             }
             }
@@ -651,6 +852,42 @@ namespace MyErp.Controllers {
             ViewData["panel"]=2;
 
             return RedirectToAction("Index",new{panel=2, FaId=wcenter.WcfaId});
+        } 
+
+
+        [HttpGet]
+        public IActionResult LoEdit(int id, int wrem, int wass,int assign, int WcoId) {
+            ViewData["panel"]=5;
+            try{
+            var model = _dbContext.TLocations
+                .SingleOrDefault(u => u.LocId.Equals(id));
+            CreateViewBags(id,model.LocFaId);  
+            return View(model);
+            }
+            catch{return View("Error");}            
+        }
+
+        [HttpPost]
+        public IActionResult LoEdit(TLocation location,int id ,int WcoId , int wass, string actionType) {
+            if (actionType=="Cancel"){}
+            if (actionType=="Update"){
+            if (ModelState.IsValid){
+                try{
+                    _dbContext.TLocations.Update(location);
+                    _dbContext.SaveChanges();
+                }
+                catch{}
+                }
+                else {
+                    CreateViewBags(0,location.LocFaId);    
+                    ViewData["panel"]=5;
+                 return View(location);
+                }
+            }
+            CreateViewBags(0,location.LocFaId);    
+            ViewData["panel"]=5;
+
+            return RedirectToAction("Index",new{panel=5, FaId=location.LocFaId});
         } 
 
         [HttpGet]
@@ -791,6 +1028,67 @@ namespace MyErp.Controllers {
 
 
         [HttpGet]
+        public IActionResult LMatEdit(int id, int MId ,int pamen){
+            CreateViewBags(0,0);
+            ViewData["pamen"]=pamen;
+            ViewData["panel"]=5;
+            try{
+            VTMLocation model =(from pl in _dbContext.TMLocations 
+            join p in _dbContext.TMaterials on pl.MLocMatId equals p.MatId
+            join q in _dbContext.TLocations on pl.MLocLodId equals q.LocId
+            orderby p.MatDescr 
+            where pl.MLocId ==id 
+            select new VTMLocation { 
+                LoLoId=pl.MLocLodId  ,LoRefRe = p.MatRefer ,
+                LoRefDes=p.MatDescr ,LoRefUM = p.MatUnMed,
+                LoRefSt=pl.MLocStock,LoRefId=p.MatId}).SingleOrDefault();
+            return View(model);
+            }
+            catch{return View("Error");}  
+
+         }
+
+        [HttpPost]
+        public IActionResult LMatEdit(VTMLocation location,int id ,int MId, string actionType) {
+            
+            if (actionType=="Update"){
+            if (ModelState.IsValid){
+                try{
+                    TMLocation nmod = new TMLocation();
+                        nmod.MLocId=id;
+                        nmod.MLocLodId=location.LoLoId; 
+                        nmod.MLocStock=location.LoRefSt;
+                        nmod.MLocMatId=location.LoRefId;
+                        _dbContext.TMLocations.Update(nmod); 
+                        _dbContext.SaveChanges();
+                }
+                 catch(Exception ex){
+                     string mensaje = ex.Message;
+                     return View("Error");}
+                 } 
+            else {
+                CreateViewBags(0,0);    
+                ViewData["panel"]=5;
+                return View(location);
+                }
+            }
+            else{
+                if (actionType=="Cancel"){}
+                else{
+                CreateViewBags(0,0);    
+                ViewData["panel"]=5;
+                return View(location);
+                }
+            }
+            //CreateViewBags(0,0);    
+            ViewData["panel"]=5;
+
+            return RedirectToAction("MatLocal",new{id=MId});
+
+        } 
+
+
+        [HttpGet]
         public IActionResult RMatEdit(int id, int MId ,int pamen){
             CreateViewBags(0,0);
             ViewData["pamen"]=pamen;
@@ -872,6 +1170,17 @@ namespace MyErp.Controllers {
                 .SingleOrDefault(u => u.MatId.Equals(id));
             CreateViewBags(0,0,"",id);    
             ViewData["panel"]=4;
+            ViewBag.Material=mode;   
+
+            return View(mode);
+
+        }
+
+        public IActionResult MatLocal(int id) {
+            var mode = _dbContext.TMaterials
+                .SingleOrDefault(u => u.MatId.Equals(id));
+            CreateViewBags(0,0,"",id);    
+            ViewData["panel"]=5;
             ViewBag.Material=mode;   
 
             return View(mode);

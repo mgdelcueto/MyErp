@@ -25,7 +25,9 @@ namespace MyErp.Models
         public virtual DbSet<TCustomer> TCustomers { get; set; }
         public virtual DbSet<TExplosion> TExplosions { get; set; }
         public virtual DbSet<TFacility> TFacilities { get; set; }
+        public virtual DbSet<TLocation> TLocations { get; set; }
         public virtual DbSet<TMComponent> TMComponents  { get; set; }
+        public virtual DbSet<TMLocation> TMLocations { get; set; }
         public virtual DbSet<TMPoprice> TMPoprices { get; set; }
         public virtual DbSet<TMPorder> TMPorders { get; set; }
         public virtual DbSet<TMRouting> TMRoutings { get; set; }
@@ -355,6 +357,28 @@ namespace MyErp.Models
                 entity.Property(e => e.FaType).HasMaxLength(25);
             });
 
+            modelBuilder.Entity<TLocation>(entity =>
+            {
+                entity.HasKey(e => e.LocId)
+                    .HasName("PK__T_Locati__6A46DE8955CD23A6");
+
+                entity.ToTable("T_Locations");
+
+                entity.Property(e => e.LocAcct).HasMaxLength(225);
+
+                entity.Property(e => e.LocCode).HasMaxLength(125);
+
+                entity.Property(e => e.LocCrDate).HasColumnType("datetime");
+
+                entity.Property(e => e.LocDescr).HasMaxLength(225);
+
+                entity.Property(e => e.LocStDate).HasColumnType("datetime");
+
+                entity.Property(e => e.LocStatus).HasMaxLength(125);
+
+                entity.Property(e => e.LocType).HasMaxLength(25);
+            });
+
             modelBuilder.Entity<TMComponent>(entity =>
             {
                 entity.HasKey(e => e.CoId)
@@ -365,6 +389,22 @@ namespace MyErp.Models
                 entity.Property(e => e.CoStDate).HasColumnType("datetime");
 
                 entity.Property(e => e.CoStat).HasMaxLength(125);
+            });
+
+            modelBuilder.Entity<TMLocation>(entity =>
+            {
+                entity.HasKey(e => e.MLocId)
+                    .HasName("PK__T_M_Loca__EC8E957571BCE195");
+
+                entity.ToTable("T_M_Locations");
+
+                entity.Property(e => e.MLocId).HasColumnName("mLocId");
+
+                entity.Property(e => e.MLocLodId).HasColumnName("mLocLodId");
+
+                entity.Property(e => e.MLocMatId).HasColumnName("mLocMatId");
+
+                entity.Property(e => e.MLocStock).HasColumnName("mLocStock");
             });
 
             modelBuilder.Entity<TMPoprice>(entity =>

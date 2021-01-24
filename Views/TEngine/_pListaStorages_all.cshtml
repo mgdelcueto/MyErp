@@ -1,0 +1,39 @@
+@model List<TLocation>
+    @using (Html.BeginForm("Index","TEngine",FormMethod.Post)) {        
+    <table>
+            <td>
+                <input type="hidden" name="panel" value=""/>
+            </td>
+
+            <td class="medium-text">Material</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownList("FaId", (SelectList)ViewBag.ddlPlantVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
+            </td>
+    </table>
+    }
+
+
+   <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>Locations Data</h2>
+    </div>
+    <tr>
+        <th class="head-text">Code</th> 
+        <th class="head-text">Description</th>                
+        <th class="head-text">Type</th>        
+    </tr>
+   
+    @foreach (var c in Model) {
+        <tr>
+            <td class ="col-text">@c.LocCode</td>            
+            <td class ="big-text">@c.LocDescr</td>
+            <td class ="norm-text">@c.LocType</td>
+            <td class="col-text">@Html.ActionLink("Delete", "LoDelete", new { id = c.LocId}, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "LoEdit", new { id = c.LocId ,panel=5})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "LoCreate")
+<

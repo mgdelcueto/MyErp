@@ -1,0 +1,24 @@
+@model List<VTMLocation>
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    </div>
+    <tr>
+        <th class="head-text">Location Code </th> 
+        <th class="head-text">Description</th>                
+        <th class="head-text">Stock</th>        
+        <th class="head-text">Ref UM</th>        
+    </tr>
+   
+    @foreach (var c in Model) {
+        <tr>
+            <td class ="col-text">@c.LoLocCode</td>            
+            <td class ="big-text">@c.LoLocDescr </td>
+            <td class ="norm-text">@c.LoRefSt</td>
+            <td class ="norm-text">@c.LoRefUM</td>
+            <td class="col-text">@Html.ActionLink("Delete", "LMatDelete", new { id = c.LoLoId}, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "LMatEdit", new { id = c.LoLoId ,MId= c.LoRefId,panel=5})</td>
+            
+        </tr>
+    }
+    </table>
+

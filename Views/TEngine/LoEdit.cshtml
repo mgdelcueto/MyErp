@@ -1,0 +1,52 @@
+@{Layout = "_LyIndex";}
+@using MyErp.Models
+@model TLocation
+@functions {
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+string assVisible()
+{
+    string retcol="invisible";
+    try{
+    if ((int)ViewData["Assign"]==1)
+    {retcol="visible";}
+    }
+    catch{}
+    return retcol;
+ }
+private int VAssign(){
+    int resul = 1;
+    try{
+    if ((int)ViewData["Assign"]==1)
+    {resul=0;}
+    }
+    catch{}
+    return resul;
+
+}
+
+
+}
+
+<div class="cont-titles">
+<h1>Edit a Location record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.HiddenFor(p => p.LocId)
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border ="1">
+        @Html.Partial("_pshowLocations",Model)
+         <tr>
+            <td><input type="submit" value="Update"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+
+}

@@ -31,5 +31,10 @@
     @Html.Partial("_pListaMaterials_all",(List<TMaterial>)ViewBag.ListMA)
     </div>
 
+    <!--Storages-->
+    <div class=@isVisible(5)>
+    @Html.Partial("_pListaStorages_all",(List<TLocation>)ViewBag.ListLO)
+    </div>
+
 
 </div>

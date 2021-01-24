@@ -14447,6 +14447,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\LMatEdit.cshtml",
+      "TargetPath": "Views\\TEngine\\LMatEdit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaWorkCenters_all.cshtml",
       "TargetPath": "Views\\TEngine\\_pListaWorkCenters_all.cshtml",
       "FileKind": "mvc"
@@ -14454,6 +14459,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowMaterials_parc.cshtml",
       "TargetPath": "Views\\TEngine\\_pshowMaterials_parc.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pmenuFac.cshtml",
+      "TargetPath": "Views\\TEngine\\_pmenuFac.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14522,8 +14532,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pmenuMatLo.cshtml",
+      "TargetPath": "Views\\TEngine\\_pmenuMatLo.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_LyIndex.cshtml",
       "TargetPath": "Views\\TEngine\\_LyIndex.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowLMaterials.cshtml",
+      "TargetPath": "Views\\TEngine\\_pshowLMaterials.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14542,6 +14562,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\MatLocal.cshtml",
+      "TargetPath": "Views\\TEngine\\MatLocal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\PlantCreate.cshtml",
       "TargetPath": "Views\\TCustomer\\PlantCreate.cshtml",
       "FileKind": "mvc"
@@ -14554,6 +14579,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowRMaterials.cshtml",
       "TargetPath": "Views\\TEngine\\_pshowRMaterials.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\LoEdit.cshtml",
+      "TargetPath": "Views\\TEngine\\LoEdit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14612,6 +14642,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaStorages.cshtml",
+      "TargetPath": "Views\\TEngine\\_pListaStorages.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListMatBom.cshtml",
       "TargetPath": "Views\\TEngine\\_pListMatBom.cshtml",
       "FileKind": "mvc"
@@ -14644,6 +14679,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\CurEdit.cshtml",
       "TargetPath": "Views\\TPerson\\CurEdit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListMatLocations.cshtml",
+      "TargetPath": "Views\\TEngine\\_pListMatLocations.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14692,8 +14732,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaStorages_all.cshtml",
+      "TargetPath": "Views\\TEngine\\_pListaStorages_all.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\CurCreate.cshtml",
       "TargetPath": "Views\\TPerson\\CurCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowLocations.cshtml",
+      "TargetPath": "Views\\TEngine\\_pshowLocations.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\LoCreate.cshtml",
+      "TargetPath": "Views\\TEngine\\LoCreate.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14784,6 +14839,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\Index.cshtml",
       "TargetPath": "Views\\TPerson\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\LMatCreate.cshtml",
+      "TargetPath": "Views\\TEngine\\LMatCreate.cshtml",
       "FileKind": "mvc"
     },
     {
