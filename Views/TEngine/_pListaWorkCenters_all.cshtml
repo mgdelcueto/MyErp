@@ -30,7 +30,7 @@
             <td class ="big-text">@c.Wcdescr</td>
             <td class ="norm-text">@c.Wctype</td>
             <td class="col-text">@Html.ActionLink("Delete", "WCeDelete", new { id = c.WcdId}, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "WCeEdit", new { id = c.WcdId ,panel=2})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "WCeEdit", new { id = c.WcdId ,panel=2,panem=0})</td>
             
         </tr>
     }

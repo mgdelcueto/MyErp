@@ -49,10 +49,10 @@
         <tr>
             <td>@Html.LabelFor(p => p.RoRoWtime,new { @class = "norm-text",})</td>
             <td>@Html.EditorFor(p => p.RoRoWtime, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.RoRoTunit,new { @class = "norm-text",})</td>
             <td>
                 @Html.DropDownListFor(p => p.RoRoTunit,
                new SelectList(DataSource.GetTimeUnits(), "Code", "Name"),new { @class = "norm-text" })
-                @Html.LabelFor(p => p.RoRoTunit,new { @class = "norm-text",})
             </td>
         </tr>
         <tr>

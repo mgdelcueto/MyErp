@@ -14402,6 +14402,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowWCenters_parc.cshtml",
+      "TargetPath": "Views\\TEngine\\_pshowWCenters_parc.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\Create.cshtml",
       "TargetPath": "Views\\TSuplier\\Create.cshtml",
       "FileKind": "mvc"
@@ -14547,6 +14552,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\OphEdit.cshtml",
+      "TargetPath": "Views\\TEngine\\OphEdit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\RMatEdit.cshtml",
       "TargetPath": "Views\\TEngine\\RMatEdit.cshtml",
       "FileKind": "mvc"
@@ -14597,6 +14607,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListWCeComponents_____.cshtml",
+      "TargetPath": "Views\\TEngine\\_pListWCeComponents_____.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\CMatEdit.cshtml",
       "TargetPath": "Views\\TEngine\\CMatEdit.cshtml",
       "FileKind": "mvc"
@@ -14604,6 +14619,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaWCOperators.cshtml",
+      "TargetPath": "Views\\TEngine\\_pListaWCOperators.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14637,6 +14657,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pmenuWCe.cshtml",
+      "TargetPath": "Views\\TEngine\\_pmenuWCe.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\PlanCreate.cshtml",
       "TargetPath": "Views\\TSuplier\\PlanCreate.cshtml",
       "FileKind": "mvc"
@@ -14644,6 +14669,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaStorages.cshtml",
       "TargetPath": "Views\\TEngine\\_pListaStorages.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\OphCreate.cshtml",
+      "TargetPath": "Views\\TEngine\\OphCreate.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14677,8 +14707,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaOperators_all.cshtml",
+      "TargetPath": "Views\\TEngine\\_pListaOperators_all.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\CurEdit.cshtml",
       "TargetPath": "Views\\TPerson\\CurEdit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowOperators.cshtml",
+      "TargetPath": "Views\\TEngine\\_pshowOperators.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14749,6 +14789,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\LoCreate.cshtml",
       "TargetPath": "Views\\TEngine\\LoCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\WCEComp.cshtml",
+      "TargetPath": "Views\\TEngine\\WCEComp.cshtml",
       "FileKind": "mvc"
     },
     {

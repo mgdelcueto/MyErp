@@ -36,5 +36,9 @@
     @Html.Partial("_pListaStorages_all",(List<TLocation>)ViewBag.ListLO)
     </div>
 
+    <!--Roles-->
+    <div class=@isVisible(6)>
+    @Html.Partial("_pListaOperators_all",(List<TOperator>)ViewBag.ListOP)
+    </div>
 
 </div>

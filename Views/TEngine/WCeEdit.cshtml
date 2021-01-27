@@ -1,6 +1,7 @@
 @{Layout = "_LyIndex";}
 @using MyErp.Models
 @model TWorkCenter
+
 @functions {
     string isVisible(int panel){
         string retcol="";
@@ -9,28 +10,33 @@
         else{retcol="invisible";}
         return retcol;
     }
-string assVisible()
+    string isVisibleM(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panem"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+
+string assVisible(int panel)
 {
     string retcol="invisible";
     try{
-    if ((int)ViewData["Assign"]==1)
+    if ((int)ViewData["Assign"]==panel)
     {retcol="visible";}
     }
     catch{}
     return retcol;
  }
 private int VAssign(){
-    int resul = 1;
+    int resul = 0;
     try{
-    if ((int)ViewData["Assign"]==1)
-    {resul=0;}
+    resul=(int)ViewData["Assign"];
     }
     catch{}
     return resul;
 
 }
-
-
 }
 
 <div class="cont-titles">
@@ -48,20 +54,24 @@ private int VAssign(){
         </tr>
     </table>
     </div>
+@Html.Partial("_pmenuWCe",Model)
 
+
+<div class=@isVisibleM(1)>
 <!--Work Center's components-->
-    <div class=visible>
+<div class=visible>
     <table class="table-norm" border="1">
-    <div class="cont-titles">
-    <h2>>Components Asigned</h2>
-    </div>
-    @Html.Partial("_pListaWCComponents",(List<TWccomponent>)ViewBag.ListPodAs)
-</table>
-@Html.ActionLink("Assig a new Component", "WCeEdit", new { id= @Model.WcdId, wrem = 0, wass=0,assign=@VAssign()})</div>
-<div class=@assVisible()>
+        <div class="cont-titles">
+        <h2>>Components Asigned</h2>
+        </div>
+   '     @Html.Partial("_pListaWCComponents",(List<TWccomponent>)ViewBag.ListPodAs)'
+    </table>
+    @Html.ActionLink("Assig a new Component", "WCeEdit", new { id= @Model.WcdId, wrem = 0,panem=1, wass=0,assign=1})
+</div>
+<div class=@assVisible(1)>
     <table>
         <tr>
-            @using (Html.BeginForm("WCeEdit","TEngine", new { id= @Model.WcdId, wrem = 0, wass=1},FormMethod.Post)) {        
+            @using (Html.BeginForm("WCeEdit","TEngine", new { id= @Model.WcdId, wrem = 0, panem=1,wass=1,assign =1},FormMethod.Post)) {        
             <td>Work Center to assign
             <input type="hidden" name="wass" value="1"/>
             </td>
@@ -73,6 +83,47 @@ private int VAssign(){
         </tr>
     </table>
 </div>
+</div>
 
+<div class=@isVisibleM(2)>
+<!--Operators-->
+<div class=visible>
+    <table class="table-norm" border="1">
+        <div class="cont-titles">
+        <h2>>Operators Asigned</h2>
+        </div>
+        @Html.Partial("_pListaWCOperators",(List<VTWOperator>)ViewBag.ListOpdAs)
+    </table>
+    @Html.ActionLink("Assig a new Component", "WCeEdit", new { id= @Model.WcdId, wrem = 0,panem=2, wass=0,assign=2})
+</div>
+<div class=@assVisible(2)>
+    <table>
+        @*@using (Html.BeginForm("WCeEdit","TEngine", new { id= @Model.WcdId, wrem = 0, panem=2,wass=1,assign =2},FormMethod.Post)) {        
+            *@
+        <tr>
+            <td>Operator to assign
+            <input type="hidden" name="wass" value="1"/>
+            </td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownList("OpeId", (SelectList)ViewBag.ddlPodOPS, new { @class ="medium-text" })
+            </td>
+        </tr>
+        <tr>
+            <td>Number of operators</td>
+            <td>            
+                <input type="text" name="opnum" value="1"/>
+            </td>
+         <tr>
+            
+            <td><input type="submit" value="OK"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel_" name="actionType"/></td>
+            
+        </tr>
+        </tr>
+        @*}*@
+    </table>
+</div>
+</div>
 
 }

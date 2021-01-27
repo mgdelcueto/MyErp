@@ -1,0 +1,26 @@
+@model List<TOperator>
+   <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>Operators Data</h2>
+    </div>
+    <tr>
+        <th class="head-text">Code</th> 
+        <th class="head-text">Description</th>                
+        <th class="head-text">Cost</th>        
+        <th class="head-text">Currency</th>        
+    </tr>
+   
+    @foreach (var c in Model) {
+        <tr>
+            <td class ="col-text">@c.OpeCode</td>            
+            <td class ="big-text">@c.OpeDesc</td>
+            <td class ="norm-text">@c.OpeCosth</td>
+            <td class ="norm-text">@c.OpeCurcy</td>
+            <td class="col-text">@Html.ActionLink("Delete", "OphDelete", new { id = c.OpeId}, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "OphEdit", new { id = c.OpeId ,panel=6})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "OphCreate")
+<

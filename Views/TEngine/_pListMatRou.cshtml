@@ -6,6 +6,9 @@
         <th class="head-text">Fase</th> 
         <th class="head-text">Operation</th>                
         <th class="head-text">WorkCenter</th>                
+        <th class="head-text">Parts Produced</th>                
+        <th class="head-text">Time to produce</th>                
+        <th class="head-text">Time Unit</th>                
     </tr>
    
     @foreach (var c in Model) {
@@ -13,6 +16,9 @@
             <td class ="col-text">@c.RoRoFase</td>            
             <td class ="norm-text">@c.RoRoOper</td>
             <td class ="norm-text">@c.RoRoWCDe</td>
+            <td class ="norm-text">@c.RoRoWunit</td>
+            <td class ="norm-text">@c.RoRoWtime</td>
+            <td class ="norm-text">@c.RoRoTunit</td>
             <td class="col-text">@Html.ActionLink("Delete", "RMatDelete", new { id = c.RoRoId,MId= c.RoRoMatId}, new { onclick="return confirm('Are you sure?');"})</td>
             <td class="col-text">@Html.ActionLink("Edit", "RMatEdit", new { id = c.RoRoId ,MId= c.RoRoMatId,panel=4})</td>
             

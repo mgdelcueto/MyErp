@@ -1,0 +1,29 @@
+@model TWorkCenter
+        <tr>
+            <td>@Html.LabelFor(p => p.Wccode,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.Wccode, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.Wctype,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.Wctype, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.Wccode)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.Wctype)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Wcdescr,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.Wcdescr, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
+            <td>@Html.LabelFor(p => p.WcfaId,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownListFor(p => p.WcfaId,(SelectList)ViewBag.ddlPlantVB,"",new { @class = "norm-text" })
+           
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.Wcdescr)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.WcfaId)</td>
+        </tr>

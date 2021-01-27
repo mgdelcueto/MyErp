@@ -96,6 +96,18 @@ namespace MyErp.Controllers {
                         where p.WcoWcid==prod
                         select p).ToList();
             ViewBag.ListPodAs=querypas;
+
+            var queryopas = (from p in _dbContext.TWcoperators
+                join w in _dbContext.TWorkCenters on p.WcopWcid equals w.WcdId
+                join o in _dbContext.TOperators on p.WcopOpId equals o.OpeId
+                where p.WcopWcid==prod
+                select new VTWOperator {OpWcId=p.WcopWcid, OpOpId=p.WcopOpId,
+                                       OpOpCode=o.OpeCode,OpOpDes=o.OpeDesc,
+                                       OpOPAcct=o.OpeAcct,OpOpCost=o.OpeCosth,
+                                       OpOPCurcy=o.OpeCurcy, OpWcCode=w.Wccode,OpWcDes=w.Wcdescr}).ToList();
+
+            ViewBag.ListOpdAs=queryopas;
+
             var querypan1 = (from p in _dbContext.TWccomponents 
                         orderby p.WcoCode
                         where p.WcoWcid!=prod
@@ -104,6 +116,15 @@ namespace MyErp.Controllers {
             select new TWccomponent{WcoId=0,WcoDescr="Select a Component"}).Distinct().ToList();
             var querypans = querypan0.Concat(querypan1);
             ViewBag.ddlPodNAS = new SelectList(querypans.ToList(), "WcoId", "WcoDescr",0); 
+
+            var queryopan1 = (from p in _dbContext.TOperators 
+                        orderby p.OpeDesc
+                        //where p.WcoWcid!=prod
+                        select new TOperator{OpeId=p.OpeId,OpeDesc=p.OpeDesc} ).ToList();
+            var queryopan0 = ( from p in _dbContext.TWccomponents  
+            select new TOperator{OpeId=0,OpeDesc="Select a Operator"}).Distinct().ToList();
+            var queryopans = queryopan0.Concat(queryopan1);
+            ViewBag.ddlPodOPS = new SelectList(queryopans.ToList(), "OpeId", "OpeDesc",0); 
 
 
             var queryma =(from po in _dbContext.TMaterials
@@ -115,8 +136,16 @@ namespace MyErp.Controllers {
 
             var querylo =(from po in _dbContext.TLocations
                         orderby po.LocDescr
+                        where po.LocFaId ==plant || plant==0
                         select po).ToList();
             ViewBag.ListLO=querylo;
+
+            var querylop =(from po in _dbContext.TOperators
+                        orderby po.OpeDesc
+                        //where po.LocFaId ==plant || plant==0
+                        select po).ToList();
+            ViewBag.ListOP=querylop;
+
 
             var queryman1 = (from p in _dbContext.TMaterials 
                         orderby p.MatRefer
@@ -276,6 +305,29 @@ namespace MyErp.Controllers {
             }
             catch{}            
         }
+        private void  WOpRemove(int wcid,int opid) {
+            try{
+                var model = _dbContext.TWcoperators
+                    .SingleOrDefault(u => u.WcopWcid.Equals(wcid)&& u.WcopOpId.Equals(opid));
+                _dbContext.TWcoperators.Remove(model);
+                _dbContext.SaveChanges();
+                }  
+            catch{}                  
+        }
+
+        private void  WOpAssign(int wcid,int opid,float opnum) {
+                    try{
+                        TWcoperator nmod = new TWcoperator();
+                            nmod.WcopWcid=wcid; 
+                            nmod.WcopOpId=opid;
+                            nmod.WcopNum=opnum;
+                        _dbContext.TWcoperators.Add(nmod); 
+                        _dbContext.SaveChanges();
+                    }
+                    catch(Exception ex){
+                        string mensaje =ex.Message;
+                    }
+        }
 
         public IActionResult Index(int panel, int? FaId, int? WcdId, string Code, string actionType) {
             if(panel ==0 ){panel=1;}
@@ -376,6 +428,35 @@ namespace MyErp.Controllers {
             CreateViewBags(0,location.LocFaId);    
 
             return RedirectToAction("Index",new{panel=5});
+        }
+
+
+        [HttpGet]
+        public IActionResult OphCreate(string actionType) {
+            CreateViewBags(0,0);
+            ViewData["panel"]=6;
+            return View();      
+        }
+
+        [HttpPost]
+        public IActionResult OphCreate(TOperator myoperator,string actionType) {
+            ViewData["panel"]=6;
+            if(actionType=="Add"){
+             if (ModelState.IsValid){
+                    try{
+                        _dbContext.TOperators.Add(myoperator); 
+                        _dbContext.SaveChanges();
+                   }
+                 catch{return View("Error");}
+                 } 
+            else {
+                CreateViewBags(0,0);    
+                return View(myoperator);
+                }
+            }
+            CreateViewBags(0,0);    
+
+            return RedirectToAction("Index",new{panel=6});
         }
 
         [HttpGet]
@@ -670,6 +751,18 @@ namespace MyErp.Controllers {
             return RedirectToAction("Index",new{panel=5});
         }
 
+        public IActionResult OphDelete(int id) {
+            var mode = _dbContext.TOperators
+                .SingleOrDefault(u => u.OpeId.Equals(id));
+            try{
+            _dbContext.TOperators.Remove(mode);
+            _dbContext.SaveChanges();
+            }  
+            catch{}          
+            CreateViewBags(0,0);                
+            ViewData["panel"]=6;
+            return RedirectToAction("Index",new{panel=6});
+        }
         public IActionResult WCoDelete(int id) {
             var mode = _dbContext.TWccomponents
                 .SingleOrDefault(u => u.WcoId.Equals(id));
@@ -807,12 +900,28 @@ namespace MyErp.Controllers {
         } 
 
         [HttpGet]
-        public IActionResult WCeEdit(int id, int wrem, int wass,int assign, int WcoId) {
+        public IActionResult WCeEdit(int id, int wrem, int wass,int assign, int WcoId,int OpeId, float opnum, int panem) {
             ViewData["panel"]=2;
+            ViewData["panem"]=panem;
             try{
-            if (assign==1){ViewData["Assign"]=1;}
-            if (wrem!=0){WCoRemove(wrem);}
-            if (wass!=0){WCoAssign(id,WcoId);}
+            ViewData["Assign"]=assign;
+            //if (assign==1){ViewData["Assign"]=1;}
+            if (assign==1){
+                if (wrem!=0){
+                    ViewData["Assign"]=0;
+                    WCoRemove(wrem);}
+                if (wass!=0){
+                    ViewData["Assign"]=0;
+                    WCoAssign(id,WcoId);}
+            }
+            if (assign==2){
+                if (wrem!=0){
+                    ViewData["Assign"]=0;
+                    WOpRemove(id,wrem);}
+                if (wass!=0){
+                    ViewData["Assign"]=0;
+                    WOpAssign(id,OpeId,opnum);}
+            }
             var model = _dbContext.TWorkCenters
                 .SingleOrDefault(u => u.WcdId.Equals(id));
             CreateViewBags(id,model.WcfaId);  
@@ -822,17 +931,30 @@ namespace MyErp.Controllers {
         }
 
         [HttpPost]
-        public IActionResult WCeEdit(TWorkCenter wcenter,int id ,int WcoId , int wass, string actionType) {
+        public IActionResult WCeEdit(TWorkCenter wcenter,int id ,int WcoId ,int OpeId, float opnum, int wass, int assign,int panem,string actionType) {
+            ViewData["panem"]=panem;
             if (actionType=="Cancel"){}
             else{
-            if (wass!=0 && WcoId!=0){
-                WCoAssign(id,WcoId);
-                var model = _dbContext.TWorkCenters
-                    .SingleOrDefault(u => u.WcdId.Equals(id));
-                CreateViewBags(id,model.WcfaId);  
-                ViewData["panel"]=2;
-                return View(model);
-            }
+                if (assign ==1){
+                    if (wass!=0 && WcoId!=0){
+                        WCoAssign(id,WcoId);
+                        var model = _dbContext.TWorkCenters
+                            .SingleOrDefault(u => u.WcdId.Equals(id));
+                         CreateViewBags(id,model.WcfaId);  
+                        ViewData["panel"]=2;
+                        return View(model);
+                    }
+                }
+                if (assign ==2){
+                    if (wass!=0 && OpeId!=0){
+                        WOpAssign(id,OpeId,opnum);
+                        var model = _dbContext.TWorkCenters
+                            .SingleOrDefault(u => u.WcdId.Equals(id));
+                         CreateViewBags(id,model.WcfaId); 
+                         ViewData["panel"]=2;
+                         return View(model);
+                      }
+                }
             }
             if (actionType=="Update"){
             if (ModelState.IsValid){
@@ -850,6 +972,16 @@ namespace MyErp.Controllers {
             }
             CreateViewBags(0,wcenter.WcfaId);    
             ViewData["panel"]=2;
+            if (actionType=="Cancel_")
+            {
+                ViewData["Assign"]=0;
+                var model = _dbContext.TWorkCenters
+                    .SingleOrDefault(u => u.WcdId.Equals(id));
+                CreateViewBags(id,model.WcfaId);  
+                ViewData["panel"]=2;
+                return View(model);
+
+            }
 
             return RedirectToAction("Index",new{panel=2, FaId=wcenter.WcfaId});
         } 
@@ -889,6 +1021,42 @@ namespace MyErp.Controllers {
 
             return RedirectToAction("Index",new{panel=5, FaId=location.LocFaId});
         } 
+
+        [HttpGet]
+        public IActionResult OphEdit(int id, int wrem, int wass,int assign, int WcoId) {
+            ViewData["panel"]=6;
+            try{
+            var model = _dbContext.TOperators
+                .SingleOrDefault(u => u.OpeId.Equals(id));
+            CreateViewBags(0,0);  
+            return View(model);
+            }
+            catch{return View("Error");}            
+        }
+
+        [HttpPost]
+        public IActionResult OphEdit(TOperator myoperator,int id ,int WcoId , int wass, string actionType) {
+            if (actionType=="Cancel"){}
+            if (actionType=="Update"){
+            if (ModelState.IsValid){
+                try{
+                    _dbContext.TOperators.Update(myoperator);
+                    _dbContext.SaveChanges();
+                }
+                catch{}
+                }
+                else {
+                    CreateViewBags(0,0);    
+                    ViewData["panel"]=6;
+                 return View(myoperator);
+                }
+            }
+            CreateViewBags(0,0);    
+            ViewData["panel"]=6;
+
+            return RedirectToAction("Index",new{panel=6, FaId=0});
+        } 
+
 
         [HttpGet]
         public IActionResult WCoEdit(int id) {
@@ -1175,6 +1343,38 @@ namespace MyErp.Controllers {
             return View(mode);
 
         }
+        
+        [HttpGet]
+        public IActionResult WCEComp(int id, int wrem, int wass,int assign, int WcoId) {
+            ViewData["panel"]=2;
+            try{
+            if (assign==1){ViewData["Assign"]=1;}
+            if (wrem!=0){WCoRemove(wrem);}
+            if (wass!=0){WCoAssign(id,WcoId);}
+            var model = _dbContext.TWorkCenters
+                .SingleOrDefault(u => u.WcdId.Equals(id));
+            CreateViewBags(id,model.WcfaId);  
+            ViewBag.WCenter=model;   
+            return View(model);
+            }
+            catch{return View("Error");}            
+        }
+
+        [HttpPost]
+        public IActionResult WCEComp(TWorkCenter wcenter,int id ,int WcoId , int wass, string actionType) {
+            if (wass!=0 && WcoId!=0){
+                WCoAssign(id,WcoId);
+            }
+
+            ViewData["panel"]=2;
+            var model = _dbContext.TWorkCenters
+                    .SingleOrDefault(u => u.WcdId.Equals(id));
+            CreateViewBags(id,model.WcfaId);  
+            ViewData["panel"]=2;
+            ViewBag.WCenter=model;   
+            return View(model);
+        } 
+
 
         public IActionResult MatLocal(int id) {
             var mode = _dbContext.TMaterials

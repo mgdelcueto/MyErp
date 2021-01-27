@@ -1,0 +1,107 @@
+@{Layout = "_LyIndex";}
+
+@using MyErp.Models
+@model TWorkCenter
+
+@functions {
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+string assVisible()
+{
+    string retcol="invisible";
+    try{
+    if ((int)ViewData["Assign"]==1)
+    {retcol="visible";}
+    }
+    catch{}
+    return retcol;
+ }
+private int VAssign(){
+    int resul = 1;
+    try{
+    if ((int)ViewData["Assign"]==1)
+    {resul=0;}
+    }
+    catch{}
+    return resul;
+
+}
+
+
+}
+<div class="cont-titles">
+<h1>Edit a Work Center record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @*@Html.HiddenFor(p => p.MatId)*@
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border ="1">
+        @Html.Partial("_pshowWCenters_parc",(TWorkCenter)ViewBag.WCenter)
+    </table>
+    </div>
+    <div class="cont-titles">
+    <h2>Components of @Model.Wcdescr</h2>
+    <table class="table-norm" border ="1">
+        @Html.Partial("_pListaWCComponents",(List<TWccomponent>)ViewBag.ListPodAs)
+    </table>
+    </div>
+@*    @Html.Partial("_pmenuMatCo",Model) *@
+
+
+@Html.ActionLink("Assig a new Component", "WCEComp", new { id= @Model.WcdId, wrem = 0, wass=0,assign=@VAssign()})
+<div class=@assVisible()>
+    <table>
+        <tr>
+            @using (Html.BeginForm("WCEComp","TEngine", new { id= @Model.WcdId, wrem = 0, wass=1},FormMethod.Post)) {        
+            <td>Work Center to assign
+            <input type="hidden" name="wass" value="1"/>
+            </td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownList("WcoId", (SelectList)ViewBag.ddlPodNAS, new { @class ="medium-text" , onchange = "this.form.submit();" })
+            </td>
+            }
+        </tr>
+    </table>
+</div>
+
+
+
+
+
+
+}
+
+@*
+<!--Work Center's components-->
+<div class=visible>
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>Components Asigned</h2>
+    </div>
+    @Html.Partial("_pListaWCComponents",(List<TWccomponent>)ViewBag.ListPodAs)
+</table>
+@Html.ActionLink("Assig a new Component", "WCeEdit", new { id= @Model.WcdId, wrem = 0, wass=0,assign=@VAssign()})</div>
+<div class=@assVisible()>
+    <table>
+        <tr>
+            @using (Html.BeginForm("WCeEdit","TEngine", new { id= @Model.WcdId, wrem = 0, wass=1},FormMethod.Post)) {        
+            <td>Work Center to assign
+            <input type="hidden" name="wass" value="1"/>
+            </td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownList("WcoId", (SelectList)ViewBag.ddlPodNAS, new { @class ="medium-text" , onchange = "this.form.submit();" })
+            </td>
+            }
+        </tr>
+    </table>
+</div>
+
+*@

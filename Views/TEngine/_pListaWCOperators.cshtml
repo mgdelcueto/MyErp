@@ -1,0 +1,17 @@
+@model List<VTWOperator>
+    <tr>
+        <th class="head-text">Code</th> 
+        <th class="head-text">Description</th>                
+        <th class="head-text">Cost</th>        
+        <th class="head-text">Currency</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListOpdAs) {
+        <tr>
+            <td class ="col-text">@c.OpOpCode</td>            
+            <td class ="big-text">@c.OpOpDes</td>
+            <td class ="norm-text">@c.OpOpCost</td>
+            <td class ="norm-text">@c.OpOPCurcy</td>
+            <td class="col-text">@Html.ActionLink("Remove", "WCeEdit", new { id= c.OpWcId, assign =2,wrem = c.OpOpId, wass=0,panem=2}, new { onclick="return confirm('Are you sure?');"})</td>
+        </tr>
+    }

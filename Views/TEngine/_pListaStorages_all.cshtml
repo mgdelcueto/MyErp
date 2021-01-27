@@ -2,10 +2,10 @@
     @using (Html.BeginForm("Index","TEngine",FormMethod.Post)) {        
     <table>
             <td>
-                <input type="hidden" name="panel" value=""/>
+                <input type="hidden" name="panel" value="5"/>
             </td>
 
-            <td class="medium-text">Material</td>
+            <td class="medium-text">Facility :</td>
             <td class="norm-text">
                 <!--@ViewData["Plant"]-->
                 @Html.DropDownList("FaId", (SelectList)ViewBag.ddlPlantVB, new { @class ="medium-text" , onchange = "this.form.submit();" })

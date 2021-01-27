@@ -10,6 +10,6 @@
             <td class ="col-text">@c.WcoCode</td>            
             <td class ="big-text">@c.WcoDescr</td>
             <td class ="norm-text">@c.WcoType</td>
-            <td class="col-text">@Html.ActionLink("Remove", "WCeEdit", new { id= c.WcoWcid, wrem = c.WcoId, wass=0}, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Remove", "WCeEdit", new { id= c.WcoWcid, assign =1,wrem = c.WcoId, wass=0,panem=1}, new { onclick="return confirm('Are you sure?');"})</td>
         </tr>
     }

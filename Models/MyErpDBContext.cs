@@ -33,6 +33,7 @@ namespace MyErp.Models
         public virtual DbSet<TMRouting> TMRoutings { get; set; }
         public virtual DbSet<TMStorage> TMStorages { get; set; }
         public virtual DbSet<TMaterial> TMaterials { get; set; }
+        public virtual DbSet<TOperator> TOperators { get; set; }
         public virtual DbSet<TPCareer> TPCareers { get; set; }
         public virtual DbSet<TPContract> TPContracts { get; set; }
         public virtual DbSet<TPCurric> TPCurrics { get; set; }
@@ -46,6 +47,7 @@ namespace MyErp.Models
         public virtual DbSet<TStorage> TStorages { get; set; }
         public virtual DbSet<TSuplier> TSupliers { get; set; }
         public virtual DbSet<TWccomponent> TWccomponents { get; set; }
+        public virtual DbSet<TWcoperator> TWcoperators { get; set; }
         public virtual DbSet<TWorkCenter> TWorkCenters { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -526,6 +528,22 @@ namespace MyErp.Models
 
                 entity.Property(e => e.MatUnMed).HasMaxLength(25);
             });
+
+            modelBuilder.Entity<TOperator>(entity =>
+            {
+                entity.HasKey(e => e.OpeId)
+                    .HasName("PK__T_Operat__7F2A4FC62AA056F6");
+
+                entity.ToTable("T_Operator");
+
+                entity.Property(e => e.OpeAcct).HasMaxLength(125);
+
+                entity.Property(e => e.OpeCode).HasMaxLength(25);
+
+                entity.Property(e => e.OpeCurcy).HasMaxLength(25);
+
+                entity.Property(e => e.OpeDesc).HasMaxLength(225);
+            });
             modelBuilder.Entity<TPCareer>(entity =>
             {
                 entity.HasKey(e => e.CareId)
@@ -807,6 +825,22 @@ namespace MyErp.Models
                 entity.Property(e => e.WcoWcid).HasColumnName("WCoWCId");
 
                 entity.Property(e => e.WcoWeight).HasColumnName("WCoWeight");
+            });
+
+            modelBuilder.Entity<TWcoperator>(entity =>
+            {
+                entity.HasKey(e => e.WcopId)
+                    .HasName("PK__T_WCOper__A18DE990AC098384");
+
+                entity.ToTable("T_WCOperator");
+
+                entity.Property(e => e.WcopId).HasColumnName("WCOpId");
+
+                entity.Property(e => e.WcopNum).HasColumnName("WCOpNum");
+
+                entity.Property(e => e.WcopOpId).HasColumnName("WCOpOpId");
+
+                entity.Property(e => e.WcopWcid).HasColumnName("WCOpWCId");
             });
 
             modelBuilder.Entity<TWorkCenter>(entity =>
