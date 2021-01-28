@@ -14,6 +14,8 @@ namespace MyErp.Models
         public int? CprodCplantId { get; set; }
         public int? CprodCustId { get; set; }
         public int? CprodPoid { get; set; }
+        [Display(Name = "Material (Int)")]
+        public int? CprodMatInt{get;set;}
 
         [Display(Name = "My Date")]
         [Required,DataType(DataType.Date)]         
@@ -24,11 +26,9 @@ namespace MyErp.Models
         public string CprodStatus { get; set; }
 
         [Display(Name = "My Refer Int")]
-        [Required,StringLength(125)]
         public string CprodRefInt { get; set; }
 
         [Display(Name = "My Description")]
-        [Required,StringLength(255)]
         public string CprodDescInt { get; set; }
     }
 }

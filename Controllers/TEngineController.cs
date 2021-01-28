@@ -201,7 +201,7 @@ namespace MyErp.Controllers {
             var table = new SqlParameter("@p3", Table);
             //_dbContext.Database.ExecuteSqlRaw("Explosion @p0, @p1, @p2, @p3", conjunto,level,order,table);
             _dbContext.Database.ExecuteSqlRaw("Explosion {0}, {1}, {2}, {3}", conjunto,level,order,table);
-            var sql = "SELECT ExpId,ExpOrder,ExpLevel,ExpComp,m.MatRefer as ExpRefer,m.MatDescr as ExpDescr,ExpsLevel FROM ["+Table+"] as t LEFT JOIN T_Material as m ON  t.ExpComp = m.MatId";
+            var sql = "SELECT ExpId,ExpOrder,ExpLevel,ExpComp,m.MatRefer as ExpRefer,m.MatDescr as ExpDescr,ExpsLevel,ExpCoef,ExpAcCoef FROM ["+Table+"] as t LEFT JOIN T_Material as m ON  t.ExpComp = m.MatId";
             var explosio = _dbContext.TExplosions.FromSqlRaw(sql).ToList();
             _dbContext.Database.ExecuteSqlRaw("Xx_Explosion {0}", table);
 

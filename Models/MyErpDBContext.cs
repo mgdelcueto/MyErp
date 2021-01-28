@@ -23,6 +23,8 @@ namespace MyErp.Models
         public virtual DbSet<TCCproduct> TCCproducts { get; set; }
         public virtual DbSet<TCPorder> TCPorders { get; set; }
         public virtual DbSet<TCustomer> TCustomers { get; set; }
+        public virtual DbSet<TExpMater> TExpMaters { get; set; }
+        public virtual DbSet<TExpOper> TExpOpers { get; set; }
         public virtual DbSet<TExplosion> TExplosions { get; set; }
         public virtual DbSet<TFacility> TFacilities { get; set; }
         public virtual DbSet<TLocation> TLocations { get; set; }
@@ -323,6 +325,36 @@ namespace MyErp.Models
                 entity.Property(e => e.CustStatus).HasMaxLength(25);
             });
 
+            modelBuilder.Entity<TExpMater>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("T_ExpMater");
+
+                entity.Property(e => e.MatDescr).HasMaxLength(225);
+
+                entity.Property(e => e.MatRefer).HasMaxLength(125);
+
+                entity.Property(e => e.MatUnMed).HasMaxLength(25);
+
+                entity.Property(e => e.TcomQty).HasColumnName("TComQty");
+            });
+
+            modelBuilder.Entity<TExpOper>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("T_ExpOper");
+
+                entity.Property(e => e.Wccode)
+                    .HasMaxLength(125)
+                    .HasColumnName("WCCode");
+
+                entity.Property(e => e.Wcdescr)
+                    .HasMaxLength(225)
+                    .HasColumnName("WCDescr");
+            });
+
             modelBuilder.Entity<TExplosion>(entity =>
             {
                 entity.HasKey(e => e.ExpId)
@@ -336,7 +368,7 @@ namespace MyErp.Models
 
                 entity.Property(e => e.ExpsLevel).HasMaxLength(25);
             });
-            
+     
             modelBuilder.Entity<TFacility>(entity =>
             {
                 entity.HasKey(e => e.FaId)

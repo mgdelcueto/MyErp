@@ -34,7 +34,16 @@
     </div>
 *@
     <table class="table-norm" border ="1">
+        <tr>
+            <td>@Html.LabelFor(p => p.CprodMatInt,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownListFor(p => p.CprodMatInt,(SelectList)ViewBag.ddlMatCOM,"",new { @class = "norm-text" })
+                <td>@Html.ValidationMessageFor(p => p.CprodMatInt)</td>
+            </td>
 
+        </tr>
+@*
         <tr>
             <td>@Html.LabelFor(p => p.CprodRefInt,new { @class = "norm-text",})</td>
             <td>@Html.EditorFor(p => p.CprodRefInt, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
@@ -45,6 +54,7 @@
             <td>@Html.EditorFor(p => p.CprodDescInt, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CprodDescInt)</td>
         </tr>
+*@
         <tr>
             <td>@Html.LabelFor(p => p.CprodCrDate,new { @class = "norm-text" })</td>
             <td>@Html.EditorFor(p => p.CprodCrDate, new { htmlAttributes = new { @class = "norm-text" } })</td>

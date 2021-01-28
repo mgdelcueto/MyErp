@@ -1,0 +1,44 @@
+@{Layout = "_LyIndex";}
+@using MyErp.Models
+@using System.Linq;
+@functions {
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+}
+
+    <!--Facilities-->
+    <div class=@isVisible(1)>
+    @Html.Partial("_pListaCustPlan")@*,(List<VCCplanning>)ViewBag.ListCustPlan)*@
+    </div>
+@*
+    <!--Work Centers-->
+    <div class=@isVisible(2)>
+    @Html.Partial("_pListaWorkCenters_all",(List<TWorkCenter>)ViewBag.ListProd)
+    </div>
+
+    <!--Work Centers Components-->
+    <div class=@isVisible(3)>
+    @Html.Partial("_pListaWCComponents_all",(List<TWccomponent>)ViewBag.ListPO)
+    </div>
+
+    <!--Materials-->
+    <div class=@isVisible(4)>
+    @Html.Partial("_pListaMaterials_all",(List<TMaterial>)ViewBag.ListMA)
+    </div>
+
+    <!--Storages-->
+    <div class=@isVisible(5)>
+    @Html.Partial("_pListaStorages_all",(List<TLocation>)ViewBag.ListLO)
+    </div>
+
+    <!--Roles-->
+    <div class=@isVisible(6)>
+    @Html.Partial("_pListaOperators_all",(List<TOperator>)ViewBag.ListOP)
+    </div>
+*@
+</div>

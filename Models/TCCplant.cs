@@ -8,7 +8,7 @@ namespace MyErp.Models
 {
     public partial class TCCplant
     {
-        public int CplantId { get; set; }
+        public int? CplantId { get; set; }
         public int? CplantCustId { get; set; }
 
 

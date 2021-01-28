@@ -14577,6 +14577,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\_pListaCustPlan.cshtml",
+      "TargetPath": "Views\\TMRP\\_pListaCustPlan.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\PlantCreate.cshtml",
       "TargetPath": "Views\\TCustomer\\PlantCreate.cshtml",
       "FileKind": "mvc"
@@ -14792,8 +14797,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\Index.cshtml",
+      "TargetPath": "Views\\TMRP\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\WCEComp.cshtml",
       "TargetPath": "Views\\TEngine\\WCEComp.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\_LyIndex.cshtml",
+      "TargetPath": "Views\\TMRP\\_LyIndex.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14899,6 +14914,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\MatBom.cshtml",
       "TargetPath": "Views\\TEngine\\MatBom.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\_MRPcGo.cshtml",
+      "TargetPath": "Views\\TMRP\\_MRPcGo.cshtml",
       "FileKind": "mvc"
     }
   ],

@@ -14,5 +14,7 @@ namespace MyErp.Models
         public string ExpRefer { get; set; }
         public string ExpDescr { get; set; }
         public string ExpsLevel { get; set; }
+        public double ExpCoef { get; set; }
+        public double ExpAcCoef { get; set; }
     }
 }

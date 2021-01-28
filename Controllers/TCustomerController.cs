@@ -63,64 +63,93 @@ namespace MyErp.Controllers {
 //solamante a nivel del pedido se asigna a la planta una referncia de producto de un cliente
 //que puede estar asignado a varias plantas del mismo cliente
             var resulpo = from or in _dbContext.TCPorders
-                            where or.CpocustId==id && or.CpocplantId==plant 
-                            join pro in _dbContext.TCCproducts  
-                            on or.CpocprodId equals pro.CprodId 
+                            where or.CpocustId==id && or.CpocplantId==plant &&or.CpocprodId !=null
+                            join mat in _dbContext.TMaterials
+                            on or.CpocprodId equals mat.MatId
                             into Popro
                           from Pop in Popro.DefaultIfEmpty()
-                        where (Pop.CprodId!=0)
-                        orderby Pop.CprodDescInt                        
-                        select new {Pop.CprodId ,Pop.CprodDescInt};
+                        where (Pop.MatId!=0)
+                        orderby Pop.MatDescr                        
+                        select new {Pop.MatId ,Pop.MatDescr};
+
             var resuld = from p in _dbContext.TCCproducts 
-                        orderby p.CprodDescInt
+                        join mat in _dbContext.TMaterials
+                        on p.CprodMatInt equals mat.MatId
+                        orderby mat.MatDescr
                         where p.CprodCustId==id //&&p.CprodCplantId==plant
-                        select new {p.CprodId ,p.CprodDescInt};
+                        select new {mat.MatId ,mat.MatDescr};
+                        
             var result = from p in _dbContext.TCCproducts 
-                        orderby p.CprodRefInt
+                        join mat in _dbContext.TMaterials
+                        on p.CprodMatInt equals mat.MatId
+                        orderby mat.MatRefer
                         where p.CprodCustId==id //&&p.CprodCplantId==plant
-                        select new {p.CprodId ,p.CprodRefInt};
+                        select new {mat.MatId ,mat.MatRefer};
+                        
             var resulpo_pr = from or in _dbContext.TCPorders
                             where or.CpocustId==id && or.CpocplantId==plant
-                            join pro in _dbContext.TCCproducts  
-                            on or.CpocprodId equals pro.CprodId 
+                            join mat in _dbContext.TMaterials
+                            on or.CpocprodId equals mat.MatId 
                             into Popro
                           from Pop in Popro.DefaultIfEmpty() 
-                        where Pop.CprodId==prod   
-                        select new {Pop.CprodId };        
+                        where Pop.MatId==prod   
+                        select new {Pop.MatId };        
             var resulpo_pl = from or in _dbContext.TCPorders
                             where or.CpocustId==id && or.CpocplantId==plant
-                            join pro in _dbContext.TCCproducts  
-                            on or.CpocprodId equals pro.CprodId 
+                            join mat in _dbContext.TMaterials
+                            on or.CpocprodId equals mat.MatId 
                             into Popro
                           from Pop in Popro.DefaultIfEmpty() 
-                        select new {Pop.CprodId };                  
+                        select new {Pop.MatId };                  
             var result_pr = from p in _dbContext.TCCproducts 
-                        orderby p.CprodRefInt
-                        where p.CprodCustId==id && p.CprodId==prod //&&p.CprodCplantId==plant 
-                        select new {p.CprodId ,p.CprodRefInt};
+                            join mat in _dbContext.TMaterials
+                            on p.CprodMatInt equals mat.MatId
+                        orderby mat.MatRefer
+                        where p.CprodCustId==id && mat.MatId==prod //&&p.CprodCplantId==plant 
+                        select new {mat.MatId ,mat.MatRefer};
             try{
-                prod =resulpo_pr.ToList()[0].CprodId; //ddlrefer puede contnener una referencia que no corresponde con la planta de ddl plabnta que ha cambiado
+                prod =resulpo_pr.ToList()[0].MatId; //ddlrefer puede contnener una referencia que no corresponde con la planta de ddl plabnta que ha cambiado
             }
             catch{prod=0;}   
                                        //ponemos prod a cer y lo tratamoa a continuacion
             if (prod==0 || prod==null){                 //si prod es cero le signa una referencia de la planta en cuestion
                 try{
-                    prod =resulpo_pl.ToList()[0].CprodId;
+                    prod =resulpo_pl.ToList()[0].MatId;
                 }
                 catch{prod =0;}
             }
             
-            ViewBag.ddlReferVO = new SelectList(resulpo.ToList(), "CprodId", "CprodDescInt",prod); 
-            ViewBag.ddlReferVD = new SelectList(resuld.ToList(), "CprodId", "CprodDescInt",prod); 
-            ViewBag.ddlReferVB = new SelectList(result.ToList(), "CprodId", "CprodRefInt",prod); 
+            ViewBag.ddlReferVO = new SelectList(resulpo.ToList(), "MatId", "MatDescr",prod); 
+            ViewBag.ddlReferVD = new SelectList(resuld.ToList(), "MatId", "MatDescr",prod); 
+            ViewBag.ddlReferVB = new SelectList(result.ToList(), "MatId", "MatRefer",prod); 
             ViewData["cProd"]=prod;
 
             var queryca = from p in _dbContext.TCCproducts 
+                        join r in _dbContext.TMaterials on p.CprodMatInt equals r.MatId
                         orderby p.CprodRefInt 
                         where p.CprodCustId==id //&&p.CprodCplantId==plant //&&p.CprodId==prod
-                        select p;
+                        select new TCCproduct {
+                            CprodCplantId=p.CprodCplantId,
+                            CprodCrDate=p.CprodCrDate,
+                            CprodCustId=p.CprodCustId,
+                            CprodDescInt=r.MatDescr,
+                            CprodId=p.CprodId,
+                            CprodMatInt=p.CprodMatInt,
+                            CprodPoid=p.CprodPoid,
+                            CprodRefInt=r.MatRefer,
+                            CprodStatus=p.CprodStatus
+                            };
             var qListca = queryca.ToList();
             ViewBag.ListProd=qListca;
+
+            var queryran1 = (from p in _dbContext.TMaterials 
+                        orderby p.MatRefer
+                        where p.MatClass =="FG"
+                        select new TMaterial{MatId=p.MatId,MatDescr=p.MatDescr} ).ToList();
+            var queryran0 = ( from p in _dbContext.TMaterials  
+            select new TMaterial{MatId=0,MatDescr="Select a Finish Good"}).Distinct().ToList();
+            var queryrans = queryran0.Concat(queryran1);
+            ViewBag.ddlMatCOM = new SelectList(queryrans.ToList(), "MatId", "MatDescr",0); 
 
 
 /*
@@ -131,8 +160,8 @@ namespace MyErp.Controllers {
                         (plan.CplanCprodId==prod ||prod==null || prod==0)
                         select plan;
 */
-            var queryco =from pl in _dbContext.TCCplannings join p in _dbContext.TCCproducts on  
-                            pl.CplanCprodId equals p.CprodId
+            var queryco =from pl in _dbContext.TCCplannings join p in _dbContext.TMaterials on  
+                            pl.CplanCprodId equals p.MatId
                             orderby pl.CplanCprodId ,pl.CplanDateFrom 
                         where pl.CplanCustId ==id &&
                         pl.CplanCplantId==plant &&
@@ -140,8 +169,8 @@ namespace MyErp.Controllers {
                         select new VTCCplanning {CplanCplantId=pl.CplanCplantId,CplanCprodId=pl.CplanCprodId,
                         CplanCustId=pl.CplanCustId, CplanDateFrom=pl.CplanDateFrom,
                         CplanDateTo=pl.CplanDateTo,CplanFirmSt=pl.CplanFirmSt,
-                        CplanId=pl.CplanId,CplanQty=pl.CplanQty,CprodRefInt=p.CprodRefInt,
-                        CprodDescInt=p.CprodDescInt};
+                        CplanId=pl.CplanId,CplanQty=pl.CplanQty,CprodRefInt=p.MatRefer,
+                        CprodDescInt=p.MatDescr};
 
             var qListco = queryco.ToList();
             ViewBag.ListPlan=qListco;
@@ -150,11 +179,12 @@ namespace MyErp.Controllers {
 
 
             var querypo_0 =(from po in _dbContext.TCPorders
-                            join pro in _dbContext.TCCproducts  on po.CpocprodId equals pro.CprodId 
+                            join pro in _dbContext.TCCproducts  on po.CpocprodId equals pro.CprodMatInt
+                            join mat in _dbContext.TMaterials on pro.CprodMatInt equals mat.MatId 
                         orderby po.Cpopo
                         where po.CpocustId==id && po.CpocplantId==plant
                         select new VTCPorder {Cpoid=po.Cpoid,CpocustId=po.CpocustId,Cpopo=po.Cpopo,CporeferEx=po.CporeferEx,
-                                    CprodRefInt=pro.CprodRefInt,CpodescEx=po.CpodescEx,CprodDescInt=pro.CprodDescInt,
+                                    CprodRefInt=mat.MatRefer,CpodescEx=po.CpodescEx,CprodDescInt=mat.MatDescr,
                                     Cpoprice=po.Cpoprice,Cpocurcy=po.Cpocurcy}).ToList();
             var querypo_1=(from po in _dbContext.TCPorders 
                         where  po.CpocustId==id && po.CpocplantId==plant &&
