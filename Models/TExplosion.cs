@@ -16,5 +16,6 @@ namespace MyErp.Models
         public string ExpsLevel { get; set; }
         public double ExpCoef { get; set; }
         public double ExpAcCoef { get; set; }
+        public string ExpUM { get; set; }
     }
 }

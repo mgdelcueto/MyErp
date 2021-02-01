@@ -198,11 +198,12 @@ namespace MyErp.Controllers {
             var conjunto = new SqlParameter("@p0", Coid);
             var level = new SqlParameter("@p1", int.Parse("0"));
             var order = new SqlParameter("@p2",int.Parse("0"));
-            var table = new SqlParameter("@p3", Table);
-            //_dbContext.Database.ExecuteSqlRaw("Explosion @p0, @p1, @p2, @p3", conjunto,level,order,table);
-            _dbContext.Database.ExecuteSqlRaw("Explosion {0}, {1}, {2}, {3}", conjunto,level,order,table);
-            var sql = "SELECT ExpId,ExpOrder,ExpLevel,ExpComp,m.MatRefer as ExpRefer,m.MatDescr as ExpDescr,ExpsLevel,ExpCoef,ExpAcCoef FROM ["+Table+"] as t LEFT JOIN T_Material as m ON  t.ExpComp = m.MatId";
-            var explosio = _dbContext.TExplosions.FromSqlRaw(sql).ToList();
+            var coef = new SqlParameter("@p3",int.Parse("1"));
+            var table = new SqlParameter("@p4", Table);
+            _dbContext.Database.ExecuteSqlRaw("bCExplosion {0}, {1}, {2}, {3},{4}", conjunto,level,order,coef,table);
+            //var sql = "SELECT ExpId,ExpOrder,ExpLevel,ExpComp,m.MatRefer as ExpRefer,m.MatDescr as ExpDescr,ExpsLevel,ExpCoef,ExpAcCoef,m.MatUnMed as ExpUM FROM ["+Table+"] as t LEFT JOIN T_Material as m ON  t.ExpComp = m.MatId";
+            var sql = "SELECT ExpId,ExpComp,ExpsLevel,ExpRefer,ExpDescr,ExpCoef,ExpUM,WCCode,ExpRouFase,ExpRouOper,ExpRouTime,ExpRouTUnit FROM ["+Table+"] ORDER BY  ExpId";
+            var explosio = _dbContext.TExplosionBs.FromSqlRaw(sql).ToList();
             _dbContext.Database.ExecuteSqlRaw("Xx_Explosion {0}", table);
 
             ViewBag.ListMatBom=explosio; //querybo;
@@ -1096,10 +1097,13 @@ namespace MyErp.Controllers {
         public IActionResult MatEdit(int id) {
             ViewData["panel"]=4;
             try{
+            if (id==0){return View();}
+            else{
             var model = _dbContext.TMaterials
                 .SingleOrDefault(u => u.MatId.Equals(id));
             CreateViewBags(0,0,model.MatClass);  
             return View(model);
+            }
             }
             catch{return View("Error");}            
         }

@@ -26,6 +26,7 @@ namespace MyErp.Models
         public virtual DbSet<TExpMater> TExpMaters { get; set; }
         public virtual DbSet<TExpOper> TExpOpers { get; set; }
         public virtual DbSet<TExplosion> TExplosions { get; set; }
+        public virtual DbSet<TExplosionB> TExplosionBs { get; set; }
         public virtual DbSet<TFacility> TFacilities { get; set; }
         public virtual DbSet<TLocation> TLocations { get; set; }
         public virtual DbSet<TMComponent> TMComponents  { get; set; }
@@ -367,7 +368,34 @@ namespace MyErp.Models
                 entity.Property(e => e.ExpDescr).HasMaxLength(225);
 
                 entity.Property(e => e.ExpsLevel).HasMaxLength(25);
+
+                entity.Property(e => e.ExpUM).HasMaxLength(25);
             });
+            modelBuilder.Entity<TExplosionB>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("T_ExplosionB");
+
+                entity.Property(e => e.ExpDescr).HasMaxLength(225);
+
+                entity.Property(e => e.ExpRefer).HasMaxLength(125);
+
+                entity.Property(e => e.ExpRouFase).HasMaxLength(25);
+
+                entity.Property(e => e.ExpRouOper).HasMaxLength(225);
+
+                entity.Property(e => e.ExpRouTunit)
+                    .HasMaxLength(25)
+                    .HasColumnName("ExpRouTUnit");
+
+                entity.Property(e => e.ExpUm)
+                    .HasMaxLength(25)
+                    .HasColumnName("ExpUM");
+
+                entity.Property(e => e.ExpsLevel).HasMaxLength(25);
+            });
+
      
             modelBuilder.Entity<TFacility>(entity =>
             {
