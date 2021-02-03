@@ -46,6 +46,7 @@ namespace MyErp.Models
         public virtual DbSet<TPTrain> TPTrains { get; set; }
         public virtual DbSet<TPerson> TPersons { get; set; }
         public virtual DbSet<TSPlanning> TSPlannings { get; set; }
+        public virtual DbSet<TSPorder> TSPorders { get; set; }
         public virtual DbSet<TSProduct> TSProducts { get; set; }
         public virtual DbSet<TStorage> TStorages { get; set; }
         public virtual DbSet<TSuplier> TSupliers { get; set; }
@@ -750,6 +751,46 @@ namespace MyErp.Models
                 entity.Property(e => e.PlanDateTo).HasColumnType("datetime");
 
                 entity.Property(e => e.PlanFirmSt).HasMaxLength(55);
+            });
+
+            modelBuilder.Entity<TSPorder>(entity =>
+            {
+                entity.HasKey(e => e.Spoid)
+                    .HasName("PK__T_S_POrd__BD87825083A3CB29");
+
+                entity.ToTable("T_S_POrder");
+
+                entity.Property(e => e.Spoid).HasColumnName("SPOId");
+
+                entity.Property(e => e.SpocprodId).HasColumnName("SPOCProdId");
+
+                entity.Property(e => e.Spocurcy)
+                    .HasMaxLength(25)
+                    .HasColumnName("SPOCurcy");
+
+                entity.Property(e => e.Spodate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("SPODate");
+
+                entity.Property(e => e.SpodescEx)
+                    .HasMaxLength(225)
+                    .HasColumnName("SPODescEx");
+
+                entity.Property(e => e.Spopo)
+                    .HasMaxLength(125)
+                    .HasColumnName("SPOPO");
+
+                entity.Property(e => e.Spoprice).HasColumnName("SPOPrice");
+
+                entity.Property(e => e.SporeferEx)
+                    .HasMaxLength(125)
+                    .HasColumnName("SPOReferEx");
+
+                entity.Property(e => e.Spostatus)
+                    .HasMaxLength(25)
+                    .HasColumnName("SPOStatus");
+
+                entity.Property(e => e.SposupId).HasColumnName("SPOSupId");
             });
 
             modelBuilder.Entity<TSProduct>(entity =>

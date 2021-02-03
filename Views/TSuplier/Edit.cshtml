@@ -56,6 +56,9 @@
                            <a class="nav-link text-dark" style="@panelBold(3)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="3" asp-route-move="0">Planning</a>
                          </li>
                         <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(4)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="4" asp-route-move="0">Orders</a>
+                         </li>
+                        <li class="nav-item">
                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TSuplier" asp-action="Index">Home</a>
                          </li>
                         <li class="nav-item">
@@ -181,6 +184,8 @@
 </table>
 @Html.ActionLink("Add a New Item", "ProCreate",new {Pid=@Model.SupId})
     </div>
+
+
     <div class=@isVisible(3)>
     <div class="cont-titles">
     <h2>Planning Data</h2>
@@ -223,6 +228,49 @@
 </table>
 @Html.ActionLink("Add a New Item", "PlanCreate",new {Pid=@Model.SupId,prod=@ViewData["cProd"]})
     </div>    
+
+<!--PO Data -->
+    <div class=@isVisible(4)>
+    @using (Html.BeginForm("Edit","TSuplier",FormMethod.Post)) {        
+    <table>
+            <td>
+                <input type="hidden" name="SupId" value="@(Model.SupId)"/>
+                <input type="hidden" name="panel" value="@thisPanel()"/>
+            </td>
+
+    </table>
+    }
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>PO Data</h2>
+    </div>
+    <tr>
+        <th class="head-text">Pedido</th> 
+        <th class="head-text">Referencia Ext.</th>        
+        <th class="head-text">Referencia Int.</th>        
+        <th class="head-text">Descripcion Ext.</th>        
+        <th class="head-text">Precio</th>        
+        <th class="head-text">Divisa</th>        
+    </tr>
+   
+    @foreach (VTSPorder c in (List<VTSPorder>) ViewBag.listSpo) {
+        <tr>
+            <td class ="col-text">@c.Spopo</td>            
+            <td class ="col-text">@c.SporeferEx</td>
+            <td class ="col-text">@c.SprodRefInt</td>
+            <td class ="col-text">@c.SpodescEx</td>
+            <td class ="col-num">@c.Spoprice</td>
+            <td class ="col-text">@c.Spocurcy</td>
+            <td class="col-text">@Html.ActionLink("Delete", "PoDelete", new { id = c.Spoid,Pid = c.SposupId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PoEdit", new { id = c.Spoid ,panel=4,skip =0})</td>
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "PoCreate",new {Pid=@Model.SupId})
+</div>    
+<!--end PO-->
+
+
 }
 }
 

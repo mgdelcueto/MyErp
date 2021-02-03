@@ -1,0 +1,74 @@
+@using MyErp.Models
+@model TSPorder
+<div class="cont-titles">
+<h1>Edit an Order record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.HiddenFor(p => p.Spoid)
+    @Html.HiddenFor(p => p.SposupId)
+    @Html.ValidationSummary(true)
+
+    <div class ="visible">
+        <tr>
+            <td>Suplier:</td>
+            <td>@(((TSuplier)ViewBag.Suplier).SupRasoc)</td>
+            <td> </td>
+            <td>@(((TSuplier)ViewBag.Suplier).SupNif)</td>
+        </tr>
+    </div>
+
+    <table class="table-norm" border ="1">
+
+        <tr>
+            <td>@Html.LabelFor(p => p.Spopo,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.Spopo, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.Spopo)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Spodate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.Spodate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.ValidationMessageFor(p => p.Spodate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.SporeferEx,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.SporeferEx, new { htmlAttributes = new { @class = "norm-text", @style = "width:170px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.SporeferEx)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.SpodescEx,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.SpodescEx, new { htmlAttributes = new { @class = "norm-text" , @style = "width:450px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.SpodescEx)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.SpocprodId,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                <!--@ViewData["Plant"]-->
+                @Html.DropDownListFor(p => p.SpocprodId,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-text" })
+                <td>@Html.ValidationMessageFor(p => p.SpocprodId)</td>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Spoprice,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.Spoprice, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.Spoprice)</td>
+        </tr>        
+        <tr>        
+            <td>Divisa:</td>
+            <td>
+                @Html.DropDownListFor(p => p.Spocurcy,
+               new SelectList(DataSource.GetCurrency(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Spostatus,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.Spostatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:170px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.Spostatus)</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Add"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+}

@@ -14402,6 +14402,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\PoEdit.cshtml",
+      "TargetPath": "Views\\TSuplier\\PoEdit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowWCenters_parc.cshtml",
       "TargetPath": "Views\\TEngine\\_pshowWCenters_parc.cshtml",
       "FileKind": "mvc"
@@ -14667,8 +14672,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\PoCreate.cshtml",
+      "TargetPath": "Views\\TSuplier\\PoCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\PlanCreate.cshtml",
       "TargetPath": "Views\\TSuplier\\PlanCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListMatImp.cshtml",
+      "TargetPath": "Views\\TEngine\\_pListMatImp.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14854,6 +14869,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\Create.cshtml",
       "TargetPath": "Views\\TCustomer\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\MatImp.cshtml",
+      "TargetPath": "Views\\TEngine\\MatImp.cshtml",
       "FileKind": "mvc"
     },
     {

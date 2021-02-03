@@ -200,13 +200,23 @@ namespace MyErp.Controllers {
             var order = new SqlParameter("@p2",int.Parse("0"));
             var coef = new SqlParameter("@p3",int.Parse("1"));
             var table = new SqlParameter("@p4", Table);
-            _dbContext.Database.ExecuteSqlRaw("bCExplosion {0}, {1}, {2}, {3},{4}", conjunto,level,order,coef,table);
+            //Ejecutamos la explosion
+            var explo = new SqlParameter("@p5",int.Parse("1"));
+            _dbContext.Database.ExecuteSqlRaw("bCExplosion {0}, {1}, {2}, {3},{4},{5}", conjunto,level,order,coef,table,explo);
             //var sql = "SELECT ExpId,ExpOrder,ExpLevel,ExpComp,m.MatRefer as ExpRefer,m.MatDescr as ExpDescr,ExpsLevel,ExpCoef,ExpAcCoef,m.MatUnMed as ExpUM FROM ["+Table+"] as t LEFT JOIN T_Material as m ON  t.ExpComp = m.MatId";
-            var sql = "SELECT ExpId,ExpComp,ExpsLevel,ExpRefer,ExpDescr,ExpCoef,ExpUM,WCCode,ExpRouFase,ExpRouOper,ExpRouTime,ExpRouTUnit FROM ["+Table+"] ORDER BY  ExpId";
-            var explosio = _dbContext.TExplosionBs.FromSqlRaw(sql).ToList();
+            var sqle = "SELECT ExpId,ExpComp,ExpsLevel,ExpRefer,ExpDescr,ExpCoef,ExpUM,WCCode,ExpRouFase,ExpRouOper,ExpRouTime,ExpRouTUnit FROM ["+Table+"] ORDER BY  ExpId";
+            var explosio = _dbContext.TExplosionBs.FromSqlRaw(sqle).ToList();
             _dbContext.Database.ExecuteSqlRaw("Xx_Explosion {0}", table);
-
             ViewBag.ListMatBom=explosio; //querybo;
+
+            //ejecutamos la implosion
+            var implo = new SqlParameter("@p5",int.Parse("0"));
+            _dbContext.Database.ExecuteSqlRaw("bCExplosion {0}, {1}, {2}, {3},{4},{5}", conjunto,level,order,coef,table,implo);
+            //var sql = "SELECT ExpId,ExpOrder,ExpLevel,ExpComp,m.MatRefer as ExpRefer,m.MatDescr as ExpDescr,ExpsLevel,ExpCoef,ExpAcCoef,m.MatUnMed as ExpUM FROM ["+Table+"] as t LEFT JOIN T_Material as m ON  t.ExpComp = m.MatId";
+            var sqli = "SELECT ExpId,ExpComp,ExpsLevel,ExpRefer,ExpDescr,ExpCoef,ExpUM,WCCode,ExpRouFase,ExpRouOper,ExpRouTime,ExpRouTUnit FROM ["+Table+"] ORDER BY  ExpId";
+            var implosio = _dbContext.TExplosionBs.FromSqlRaw(sqli).ToList();
+            _dbContext.Database.ExecuteSqlRaw("Xx_Explosion {0}", table);
+            ViewBag.ListMatImp=implosio; //querybo;
 
             var querywcen1 = (from p in _dbContext.TWorkCenters 
                         orderby p.Wcdescr
@@ -1392,6 +1402,17 @@ namespace MyErp.Controllers {
         }
 
         public IActionResult MatBom(int id) {
+            var mode = _dbContext.TMaterials
+                .SingleOrDefault(u => u.MatId.Equals(id));
+            CreateViewBags(0,0,"",id);    
+            ViewData["panel"]=4;
+            ViewBag.Material=mode;   
+
+            return View(mode);
+
+        }
+
+        public IActionResult MatImp(int id) {
             var mode = _dbContext.TMaterials
                 .SingleOrDefault(u => u.MatId.Equals(id));
             CreateViewBags(0,0,"",id);    

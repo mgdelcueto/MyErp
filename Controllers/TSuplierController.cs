@@ -30,12 +30,20 @@ namespace MyErp.Controllers {
             var qListco = queryco.ToList();
             ViewBag.ListPlan=qListco;
 
-            var result = from p in _dbContext.TSProducts 
-                        orderby p.ProdRefer
-                        where p.ProdSupId==id
-                        select new {p.ProdId,p.ProdDescr};
-            ViewBag.ddlReferVB = new SelectList(result.ToList(), "ProdId", "ProdDescr",prod); 
+            var result = from p in _dbContext.TSPorders
+                        join  mat in _dbContext.TMaterials on p.SpocprodId equals mat.MatId
+                        orderby mat.MatDescr
+                        where p.SposupId==id
+                        select new {mat.MatId,mat.MatDescr};
+            ViewBag.ddlReferVB = new SelectList(result.ToList(), "MatId", "MatDescr",prod); 
             
+            var resuld = from  mat in _dbContext.TMaterials
+                        orderby mat.MatDescr
+                        where mat.MatClass=="RM"
+                        select new {mat.MatId ,mat.MatDescr};
+            ViewBag.ddlReferVD = new SelectList(resuld.ToList(), "MatId", "MatDescr",prod); 
+
+
             var queryc = from p in _dbContext.TSupliers 
                         where p.SupId==id
                         select p;
@@ -49,6 +57,23 @@ namespace MyErp.Controllers {
             ViewData["cProd"]=prod;}
             catch{ViewData["Prod"]="No Filter <<<";
             ViewData["cProd"]=0;}
+
+            var querypo_0 =(from po in _dbContext.TSPorders
+                            join mat in _dbContext.TMaterials on po.SpocprodId equals mat.MatId 
+                        orderby po.Spopo
+                        where po.SposupId==id 
+                        select new VTSPorder {Spoid=po.Spoid,SposupId=po.SposupId,Spopo=po.Spopo,SporeferEx=po.SporeferEx,
+                                    SprodRefInt=mat.MatRefer,SpodescEx=po.SpodescEx,SprodDescInt=mat.MatDescr,
+                                    Spoprice=po.Spoprice,Spocurcy=po.Spocurcy}).ToList();
+            var querypo_1=(from po in _dbContext.TSPorders 
+                        where  po.SposupId==id && (po.SpocprodId==null ||po.SpocprodId ==0) 
+                        select new VTSPorder {Spoid=po.Spoid,SposupId=po.SposupId,Spopo=po.Spopo,SporeferEx=po.SporeferEx,
+                                    SprodRefInt="NE",SpodescEx=po.SpodescEx,SprodDescInt="NE",
+                                    Spoprice=po.Spoprice,Spocurcy=po.Spocurcy}).ToList();
+            var querypo = querypo_0.Concat(querypo_1);
+            var qListpo = querypo.ToList();
+            ViewBag.ListSpo=qListpo;
+
         }
 
         public IActionResult Index(int filter,string pNam, string pNam1,string actionType) {
@@ -158,6 +183,39 @@ namespace MyErp.Controllers {
             return RedirectToAction("Edit",new{id=Pid,panel=3,move=0,prod=planning.PlanProdId});
         }
 
+
+        [HttpGet]
+        public IActionResult PoCreate(int Pid, int prod, string actionType) {
+            var queryc = from p in _dbContext.TSupliers 
+                        where p.SupId==Pid
+                        select p;
+            var qList=queryc.ToList();
+            ViewBag.Suplier=qList[0];
+            CreateViewBags(Pid,prod);
+            return View();      
+        }
+
+        [HttpPost]
+        public IActionResult PoCreate(TSPorder porder,int Pid, int prod, string actionType) {
+            if (actionType=="Add"){
+                if (ModelState.IsValid){
+                    try{
+                        _dbContext.TSPorders.Add(porder); 
+                        _dbContext.SaveChanges();
+                    }
+                    catch{return View("Error");}
+                }
+            else {
+                 CreateViewBags(Pid,porder.SpocprodId);
+                 return View(porder);
+                }
+            }
+             CreateViewBags(Pid,porder.SpocprodId);
+            ViewData["panel"]=4;
+            return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=0});
+        }
+
+
         public IActionResult Delete(int id) {
             var model = _dbContext.TSupliers
                 .SingleOrDefault(u => u.SupId.Equals(id));
@@ -200,6 +258,21 @@ namespace MyErp.Controllers {
             return View("Edit",model);
 
             //return RedirectToAction("Edit");
+        }
+
+        public IActionResult PoDelete(int id,int Pid) {
+            var mode = _dbContext.TSPorders
+                .SingleOrDefault(u => u.Spoid.Equals(id));
+            int? pro =mode.SpocprodId;
+            try{
+            _dbContext.TSPorders.Remove(mode);
+            _dbContext.SaveChanges();
+            }  
+            catch{}    
+
+            CreateViewBags(Pid,pro);                
+            ViewData["panel"]=4;
+            return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=pro});
         }
 
 
@@ -275,6 +348,41 @@ namespace MyErp.Controllers {
             ViewData["panel"]=3;
             return RedirectToAction("Edit",new{id=Pid,panel=3,move=0,prod=planning.PlanProdId});
 
+        }     
+
+        [HttpGet]
+        public IActionResult PoEdit(int id) {
+            try{
+            var model = _dbContext.TSPorders
+                .SingleOrDefault(u => u.Spoid.Equals(id));
+            int?Pid=model.SposupId;
+
+            CreateViewBags(Pid,model.SpocprodId);    
+
+            return View(model);
+            }
+            catch{return View("Error");}            
+        }
+
+        [HttpPost]
+        public IActionResult PoEdit(TSPorder porder, string actionType) {
+            int? Pid=porder.SposupId;
+            if (actionType=="Update"){
+                if (ModelState.IsValid){
+                    try{
+                        _dbContext.TSPorders.Update(porder);
+                        _dbContext.SaveChanges();
+                 }
+                    catch{}
+                    }
+            else {
+                 CreateViewBags(Pid,porder.SpocprodId);    
+                 return View(porder);
+            }
+            }
+            CreateViewBags(Pid,porder.SpocprodId);    
+            ViewData["panel"]=4;
+            return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=porder.SpocprodId});
         }     
 
         [HttpGet]
