@@ -13,8 +13,10 @@ namespace MyErp.Controllers {
             _dbContext = dbContext;
         }
         */
-        private readonly IStringLocalizer<TPersonController> _localizer;
         private readonly ILogger<TPersonController> _logger;    
+        /* esta version de localizacion no la utilizamos ahora
+        private readonly IStringLocalizer<TPersonController> _localizer;
+
         public TPersonController(MyErpDBContext dbContext,IStringLocalizer<TPersonController> localizer,
         
         ILogger<TPersonController> logger)
@@ -23,6 +25,14 @@ namespace MyErp.Controllers {
             _localizer = (IStringLocalizer<TPersonController>)localizer;
             _logger = (ILogger<TPersonController>)logger;
         }    
+        */
+
+        public TPersonController(MyErpDBContext dbContext,ILogger<TPersonController> logger)
+        {
+            _dbContext = dbContext;
+            _logger = (ILogger<TPersonController>)logger;
+        }    
+
         private void CreateViewBags(int? id)
         {
                         var queryca = from p in _dbContext.TPCareers 
@@ -85,8 +95,8 @@ namespace MyErp.Controllers {
         }
         public IActionResult Index(int filter,string pNam, string pNam1,string actionType) {
             if (actionType=="Cancel"){filter=0;}
-            string variable =_localizer["Indexmessage"];
-            ViewData["Title"] = _localizer["Indexmessage"];
+            //string variable =_localizer["Indexmessage"];
+            //ViewData["Title"] = _localizer["Indexmessage"];
             ViewData["Filter"]=filter;
             ViewData["Fil1"]=pNam;
             ViewData["Fil2"]=pNam1;
