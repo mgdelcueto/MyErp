@@ -1,5 +1,10 @@
 @using MyErp.Models
 @using System.Linq;
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
 @model TPerson
 @using (Html.BeginForm()) {
     @Html.HiddenFor(p => p.PerId)
@@ -30,7 +35,7 @@
 
 }
 
-<h1>Edit a Person</h1>
+<h1>@SharedLocalizer.GetLocalizedHtmlString("EditPerson")</h1>
 @using (Html.BeginForm()) {
     
     <table>
@@ -43,37 +48,37 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="@thisPanel()" asp-route-move="1">&lt&ltPrev</a>
+                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="@thisPanel()" asp-route-move="1">@SharedLocalizer.GetLocalizedHtmlString("<<Prev")</a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark"  style="@panelBold(1)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="1" asp-route-move="0">Person</a>
+                           <a class="nav-link text-dark"  style="@panelBold(1)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Person")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark"  style="@panelBold(2)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="2" asp-route-move="0">Career</a>
+                           <a class="nav-link text-dark"  style="@panelBold(2)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="2" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Career")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark"  style="@panelBold(3)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="3" asp-route-move="0">Contract</a>
+                           <a class="nav-link text-dark"  style="@panelBold(3)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="3" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Contract")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark"  style="@panelBold(4)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="4" asp-route-move="0">Curriculum</a>
+                           <a class="nav-link text-dark"  style="@panelBold(4)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="4" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Curriculum")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark"  style="@panelBold(5)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="5" asp-route-move="0">Pay</a>
+                           <a class="nav-link text-dark"  style="@panelBold(5)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="5" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Pay")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark"  style="@panelBold(6)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="6" asp-route-move="0">Presence</a>
+                           <a class="nav-link text-dark"  style="@panelBold(6)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="6" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Presence")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark"  style="@panelBold(7)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="7" asp-route-move="0">Obj.Review</a>
+                           <a class="nav-link text-dark"  style="@panelBold(7)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="7" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("ObjReview")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark"  style="@panelBold(8)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="8" asp-route-move="0">Training</a>
+                           <a class="nav-link text-dark"  style="@panelBold(8)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="8" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Training")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark"  style="@panelBold(0)" asp-area="" asp-controller="TPerson" asp-action="Index">Home</a>
+                           <a class="nav-link text-dark"  style="@panelBold(0)" asp-area="" asp-controller="TPerson" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Home")</a>
                          </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark"  style="@panelBold(0)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="@thisPanel()" asp-route-move="2">Next&gt&gt</a>
+                            <a class="nav-link text-dark"  style="@panelBold(0)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="@thisPanel()" asp-route-move="2">@SharedLocalizer.GetLocalizedHtmlString("Next>>")</a>
                         </li>                        
                     </ul>
                 </div>
@@ -84,7 +89,7 @@
     <div class=@isVisible(1)>
     <table>
         <div class="cont-titles">
-        <h2>Person Data</h2>
+        <h2>@SharedLocalizer.GetLocalizedHtmlString("PersonData")</h2>
         </div>
         <tr>
             <td>@Html.LabelFor(p => p.PerName,new { @class = "norm-text",})</td>

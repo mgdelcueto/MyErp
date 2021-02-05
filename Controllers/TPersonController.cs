@@ -1,13 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
 using MyErp.Models;
+using System;
 using System.Linq;
 
 namespace MyErp.Controllers {
     public class TPersonController : Controller {
         private readonly MyErpDBContext _dbContext;
+        /*
         public TPersonController(MyErpDBContext dbContext) {
             _dbContext = dbContext;
         }
+        */
+        private readonly IStringLocalizer<TPersonController> _localizer;
+        private readonly ILogger<TPersonController> _logger;    
+        public TPersonController(MyErpDBContext dbContext,IStringLocalizer<TPersonController> localizer,
+        
+        ILogger<TPersonController> logger)
+        {
+            _dbContext = dbContext;
+            _localizer = (IStringLocalizer<TPersonController>)localizer;
+            _logger = (ILogger<TPersonController>)logger;
+        }    
         private void CreateViewBags(int? id)
         {
                         var queryca = from p in _dbContext.TPCareers 
@@ -70,7 +85,8 @@ namespace MyErp.Controllers {
         }
         public IActionResult Index(int filter,string pNam, string pNam1,string actionType) {
             if (actionType=="Cancel"){filter=0;}
-            ViewData["Title"] = "All Items";
+            string variable =_localizer["Indexmessage"];
+            ViewData["Title"] = _localizer["Indexmessage"];
             ViewData["Filter"]=filter;
             ViewData["Fil1"]=pNam;
             ViewData["Fil2"]=pNam1;
@@ -87,7 +103,10 @@ namespace MyErp.Controllers {
              }
              return View(model);
             }
-            catch{return View("Error");}
+            catch(Exception ex)
+            {
+                string mensaje = ex.Message;
+                return View("Error");}
             
         }
         public IActionResult ShowDetail(int id) {

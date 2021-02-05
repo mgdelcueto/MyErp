@@ -1,0 +1,60 @@
+Home=Home
+Privacy=Privacy
+HRArea=HR Area
+Purchasing=Purchasing
+Sales=Sales
+Engineering=Engineering
+MRPPLanning=MRP Planning
+HRAreaIndexPage=HR Area Index Page
+PersonTable=Person Table
+Filter=Filter
+FilterByName=Filter By Name:
+Name=Name
+Surname=Surnames
+DNI=ID
+Adress=Adress
+Country=Country
+<<Prev=<<Prev
+EditPerson=Edit a Person
+Person=Employees
+Career=Career
+Contract=Contract
+Curriculum=Curriculum
+Pay=Payroll
+Presence=Presence
+ObjReview=Objectives Rev
+Training=Training
+Next>>=Next>>
+PersonData=Person Data
+BirdDate=Date of Bird
+CityOrigin=Birthplace
+CountryOrigin=Country of Origin
+AdressAd=Aditional Adress
+CounntryRes=Country of Residence
+ContractDate=Date of Contract
+EntryDate=Date of entry
+ExitDate=Date of exit
+Update=Update
+Cancel=Cancel
+mDNI=ID Field is required
+mBirD=Bird Date field is required
+mCitB=City Origin Field is required
+mCtrOr=Country Field is required
+mName=Name field is required
+mSname=Surname Field is required
+mAdr=Adress Field Is required
+mConD=Contract Date field is required
+mEntD=Entry Date Field is required
+
+
+
+
+
+
+
+
+
+
+
+
+

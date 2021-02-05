@@ -1,6 +1,11 @@
 @model IEnumerable<MyErp.Models.TPerson>
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
 @{
-    ViewData["Title"] = "HR Area Index Page";
+    ViewData["Titles"] = @SharedLocalizer.GetLocalizedHtmlString("HRAreaIndexPage");
 }
 @functions {
     string myformat(double? value){
@@ -56,16 +61,16 @@
 
 <h1>@ViewData["Title"]</h1>
 <div class = "cont-titles">
- <h2>Person Table</h2>   
+ <h2>@SharedLocalizer.GetLocalizedHtmlString("PersonTable")</h2>   
 </div>
-<td><a class="nav-link text-dark" asp-area="" asp-controller="TPerson" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">Filter</a></td>
+<td><a class="nav-link text-dark" asp-area="" asp-controller="TPerson" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Filter")</a></td>
 <div class="@isVisible()">
     @using (Html.BeginForm()) {
         <tr>
             <input type="hidden" name="Filter" value="2"/>
-            <td>Filtrar por Nombre:</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("FilterByName")</td>
             <td class ="norm-text"><input value ="@fValue(1)" class="norm-text" id="pNam" name="pNam" type="text"></input></td>
-            <td> Apellidos:</td>
+            <td> @SharedLocalizer.GetLocalizedHtmlString("Surname")</td>
             <td class ="norm-text"><input value="@fValue(2)" class ="norm-text" id="pNam1" name="pNam1" type="text"></input></td>
             <td><input type="submit" value="Filter" /></td>
             <td><input type="submit" value="Cancel" name="actionType"/></td>
@@ -75,13 +80,11 @@
 <div class="visible">
 <table class="table-norm" border="1">
     <tr>
-        <th class="head-text">Name</th> 
-        <th class="head-text">SurName</th>                
-        <th class="head-text">DNI</th>        
-        <th class="head-text">Address</th>
-        <th class="head-text">Country</th>
-        <th class="head-text">Delete</th>        
-        <th class="head-text">Edit</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Name")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Surname")</th>                
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("DNI")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Adress")</th>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Country")</th>
     </tr>
     @foreach (var p in Model) {
         <tr>

@@ -40,7 +40,18 @@ C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\appsettings.json
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\MyErp.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\MyErp.runtimeconfig.json
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\MyErp.pdb
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\de-CH\MyErp.resources.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\en-US\MyErp.resources.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\es-ES\MyErp.resources.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\fr-FR\MyErp.resources.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.AspNetCore.Razor.Language.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.CodeAnalysis.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.CodeAnalysis.Razor.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.Data.SqlClient.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.EntityFrameworkCore.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.EntityFrameworkCore.Relational.dll
@@ -51,6 +62,7 @@ C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.Extens
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.DependencyModel.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.Logging.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.Options.dll
@@ -62,6 +74,7 @@ C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.Identi
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.IdentityModel.Tokens.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Newtonsoft.Json.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Newtonsoft.Json.Bson.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\System.Collections.Immutable.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\System.ComponentModel.Annotations.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\System.Configuration.ConfigurationManager.dll
