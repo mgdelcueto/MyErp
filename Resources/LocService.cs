@@ -1,5 +1,6 @@
 ﻿namespace MyErp.Resources
 {
+    using System.Globalization;
     using System.Reflection;
 
     using Microsoft.Extensions.Localization;
@@ -17,6 +18,8 @@
 
         public LocalizedString GetLocalizedHtmlString(string key)
         {
+            string traduce = (string)_localizer[key];
+            string culture = CultureInfo.CurrentCulture.Name;
             return _localizer[key];
         }
     }

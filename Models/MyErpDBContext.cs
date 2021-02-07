@@ -21,6 +21,8 @@ namespace MyErp.Models
         public virtual DbSet<TCCplant> TCCplants { get; set; }
         public virtual DbSet<TCCplantPort> TCCplantPorts { get; set; }
         public virtual DbSet<TCCproduct> TCCproducts { get; set; }
+        public virtual DbSet<TChart> TCharts { get; set; }
+        public virtual DbSet<TChartRol> TChartRols { get; set; }
         public virtual DbSet<TCPorder> TCPorders { get; set; }
         public virtual DbSet<TCustomer> TCustomers { get; set; }
         public virtual DbSet<TExpMater> TExpMaters { get; set; }
@@ -37,6 +39,7 @@ namespace MyErp.Models
         public virtual DbSet<TMStorage> TMStorages { get; set; }
         public virtual DbSet<TMaterial> TMaterials { get; set; }
         public virtual DbSet<TOperator> TOperators { get; set; }
+        public virtual DbSet<TOrganizacion> TOrganizacions { get; set; }
         public virtual DbSet<TPCareer> TPCareers { get; set; }
         public virtual DbSet<TPContract> TPContracts { get; set; }
         public virtual DbSet<TPCurric> TPCurrics { get; set; }
@@ -50,6 +53,7 @@ namespace MyErp.Models
         public virtual DbSet<TSProduct> TSProducts { get; set; }
         public virtual DbSet<TStorage> TStorages { get; set; }
         public virtual DbSet<TSuplier> TSupliers { get; set; }
+        public virtual DbSet<TUser> TUsers { get; set; }
         public virtual DbSet<TWccomponent> TWccomponents { get; set; }
         public virtual DbSet<TWcoperator> TWcoperators { get; set; }
         public virtual DbSet<TWorkCenter> TWorkCenters { get; set; }
@@ -275,6 +279,48 @@ namespace MyErp.Models
                 entity.Property(e => e.Cpostatus)
                     .HasMaxLength(25)
                     .HasColumnName("CPOStatus");
+            });
+
+            modelBuilder.Entity<TChart>(entity =>
+            {
+                entity.HasKey(e => e.CharId)
+                    .HasName("PK__T_Chart__AA7BC274F083FB15");
+
+                entity.ToTable("T_Chart");
+
+                entity.Property(e => e.CharAdress).HasMaxLength(225);
+
+                entity.Property(e => e.CharAdressad).HasMaxLength(225);
+
+                entity.Property(e => e.CharCity).HasMaxLength(125);
+
+                entity.Property(e => e.CharCode).HasMaxLength(125);
+
+                entity.Property(e => e.CharCtry).HasMaxLength(125);
+
+                entity.Property(e => e.CharDate).HasColumnType("datetime");
+
+                entity.Property(e => e.CharEmail).HasMaxLength(125);
+
+                entity.Property(e => e.CharName).HasMaxLength(225);
+
+                entity.Property(e => e.CharTel).HasMaxLength(125);
+
+                entity.Property(e => e.CharWeb).HasMaxLength(125);
+            });
+
+            modelBuilder.Entity<TChartRol>(entity =>
+            {
+                entity.HasKey(e => e.RcharId)
+                    .HasName("PK__T_Chart___F67669D4612FE92F");
+
+                entity.ToTable("T_Chart_Rol");
+
+                entity.Property(e => e.RcharId).HasColumnName("RCharId");
+
+                entity.Property(e => e.RcharCharId).HasColumnName("RCharCharId");
+
+                entity.Property(e => e.RcharRolId).HasColumnName("RCharRolId");
             });
 
             modelBuilder.Entity<TCustomer>(entity =>
@@ -605,6 +651,39 @@ namespace MyErp.Models
 
                 entity.Property(e => e.OpeDesc).HasMaxLength(225);
             });
+
+            modelBuilder.Entity<TOrganizacion>(entity =>
+            {
+                entity.HasKey(e => e.OrgId)
+                    .HasName("PK__T_Organi__420C9E6CE3A74B13");
+
+                entity.ToTable("T_Organizacion");
+
+                entity.Property(e => e.OrgAdress).HasMaxLength(225);
+
+                entity.Property(e => e.OrgAdressad).HasMaxLength(225);
+
+                entity.Property(e => e.OrgCity).HasMaxLength(125);
+
+                entity.Property(e => e.OrgCode).HasMaxLength(125);
+
+                entity.Property(e => e.OrgCtry).HasMaxLength(125);
+
+                entity.Property(e => e.OrgDate).HasColumnType("datetime");
+
+                entity.Property(e => e.OrgEmail).HasMaxLength(125);
+
+                entity.Property(e => e.OrgName).HasMaxLength(225);
+
+                entity.Property(e => e.OrgNif)
+                    .HasMaxLength(125)
+                    .HasColumnName("OrgNIF");
+
+                entity.Property(e => e.OrgTel).HasMaxLength(125);
+
+                entity.Property(e => e.OrgWeb).HasMaxLength(125);
+            });
+
             modelBuilder.Entity<TPCareer>(entity =>
             {
                 entity.HasKey(e => e.CareId)
@@ -875,6 +954,36 @@ namespace MyErp.Models
 
                 entity.Property(e => e.SupStatus).HasMaxLength(25);
             });
+
+            modelBuilder.Entity<TUser>(entity =>
+            {
+                entity.HasKey(e => e.UserId)
+                    .HasName("PK__T_Users__1788CCAC456FBD1C");
+
+                entity.ToTable("T_Users");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.Property(e => e.UserFirstName).HasMaxLength(40);
+
+                entity.Property(e => e.UserLastName).HasMaxLength(40);
+
+                entity.Property(e => e.UserLoginName)
+                    .IsRequired()
+                    .HasMaxLength(40);
+
+                entity.Property(e => e.UserPassDate).HasColumnType("datetime");
+
+                entity.Property(e => e.UserPasswordHash)
+                    .IsRequired()
+                    .HasMaxLength(64)
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.UserStatus)
+                    .IsRequired()
+                    .HasMaxLength(4);
+            });
+
 
             modelBuilder.Entity<TWccomponent>(entity =>
             {

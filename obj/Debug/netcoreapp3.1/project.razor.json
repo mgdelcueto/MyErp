@@ -14392,6 +14392,11 @@
   "RootNamespace": "MyErp",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\Edit.cshtml",
+      "TargetPath": "Views\\TOrganiza\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowFacilities.cshtml",
       "TargetPath": "Views\\TEngine\\_pshowFacilities.cshtml",
       "FileKind": "mvc"
@@ -14579,6 +14584,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\MatLocal.cshtml",
       "TargetPath": "Views\\TEngine\\MatLocal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_LyIndex.cshtml",
+      "TargetPath": "Views\\TOrganiza\\_LyIndex.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14867,6 +14877,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\Index.cshtml",
+      "TargetPath": "Views\\TOrganiza\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\Create.cshtml",
       "TargetPath": "Views\\TCustomer\\Create.cshtml",
       "FileKind": "mvc"
@@ -14879,11 +14894,6 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\Index copy.cshtml",
-      "TargetPath": "Views\\TEngine\\Index copy.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14929,6 +14939,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\MatComp.cshtml",
       "TargetPath": "Views\\TEngine\\MatComp.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Shared\\_SelectLanguagePartial.cshtml",
+      "TargetPath": "Views\\Shared\\_SelectLanguagePartial.cshtml",
       "FileKind": "mvc"
     },
     {

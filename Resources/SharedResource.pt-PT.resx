@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Home" xml:space="preserve">
+    <value>Casa</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Privacidade</value>
+  </data>
+  <data name="HRArea" xml:space="preserve">
+    <value>Área de RH</value>
+  </data>
+  <data name="Purchasing" xml:space="preserve">
+    <value>aquisitivo</value>
+  </data>
+  <data name="Sales" xml:space="preserve">
+    <value>Vendas</value>
+  </data>
+  <data name="Engineering" xml:space="preserve">
+    <value>Engenharia</value>
+  </data>
+  <data name="MRPPLanning" xml:space="preserve">
+    <value>Planejamento MRP</value>
+  </data>
+  <data name="HRAreaIndexPage" xml:space="preserve">
+    <value>HR Página Índice de Área</value>
+  </data>
+  <data name="PersonTable" xml:space="preserve">
+    <value>pessoa Tabela</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="FilterByName" xml:space="preserve">
+    <value>Filtrar por nome:</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>sobrenomes</value>
+  </data>
+  <data name="DNI" xml:space="preserve">
+    <value>EU IRIA</value>
+  </data>
+  <data name="Adress" xml:space="preserve">
+    <value>adress</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="&lt;&lt;Prev" xml:space="preserve">
+    <value>&lt;&lt; Anterior</value>
+  </data>
+  <data name="EditPerson" xml:space="preserve">
+    <value>Editar uma Pessoa</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>funcionários</value>
+  </data>
+  <data name="Career" xml:space="preserve">
+    <value>Carreira</value>
+  </data>
+  <data name="Contract" xml:space="preserve">
+    <value>Contrato</value>
+  </data>
+  <data name="Curriculum" xml:space="preserve">
+    <value>Currículo</value>
+  </data>
+  <data name="Pay" xml:space="preserve">
+    <value>Folha de pagamento</value>
+  </data>
+  <data name="Presence" xml:space="preserve">
+    <value>Presença</value>
+  </data>
+  <data name="ObjReview" xml:space="preserve">
+    <value>objetivos Rev</value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>Treinamento</value>
+  </data>
+  <data name="Next&gt;&gt;" xml:space="preserve">
+    <value>Next &gt;&gt;</value>
+  </data>
+  <data name="PersonData" xml:space="preserve">
+    <value>pessoa de dados</value>
+  </data>
+  <data name="BirdDate" xml:space="preserve">
+    <value>Data de Pássaro</value>
+  </data>
+  <data name="CityOrigin" xml:space="preserve">
+    <value>local de nascimento</value>
+  </data>
+  <data name="CountryOrigin" xml:space="preserve">
+    <value>País de origem</value>
+  </data>
+  <data name="AdressAd" xml:space="preserve">
+    <value>adicional Adress</value>
+  </data>
+  <data name="CounntryRes" xml:space="preserve">
+    <value>País de Residência</value>
+  </data>
+  <data name="ContractDate" xml:space="preserve">
+    <value>Data de Contrato</value>
+  </data>
+  <data name="EntryDate" xml:space="preserve">
+    <value>Data de entrada</value>
+  </data>
+  <data name="ExitDate" xml:space="preserve">
+    <value>Data de saída</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Atualizar</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="mDNI" xml:space="preserve">
+    <value>ID campo é obrigatório</value>
+  </data>
+  <data name="mBirD" xml:space="preserve">
+    <value>campo Data pássaro é necessária</value>
+  </data>
+  <data name="mCitB" xml:space="preserve">
+    <value>Cidade de origem campo é obrigatório</value>
+  </data>
+  <data name="mCtrOr" xml:space="preserve">
+    <value>País Campo obrigatório</value>
+  </data>
+  <data name="mName" xml:space="preserve">
+    <value>campo nome é obrigatório</value>
+  </data>
+  <data name="mSname" xml:space="preserve">
+    <value>Sobrenome Campo obrigatório</value>
+  </data>
+  <data name="mAdr" xml:space="preserve">
+    <value>Endereço campo é obrigatório</value>
+  </data>
+  <data name="mConD" xml:space="preserve">
+    <value>campo Data Contrato é necessária</value>
+  </data>
+  <data name="mEntD" xml:space="preserve">
+    <value>Data entrada campo é obrigatório</value>
+  </data>
+  <data name="OrgreaIndexPage" xml:space="preserve">
+    <value>área de Organização Índice Página</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>área de Organização Índice Página</value>
+  </data>
+  <data name="Chart" xml:space="preserve">
+    <value>Organograma</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Tecnologia</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>línguas</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Comercial</value>
+  </data>
+  <data name="OrgTable" xml:space="preserve">
+    <value>mesa da organização</value>
+  </data>
+  <data name="OrgData" xml:space="preserve">
+    <value>Dados da Organização</value>
+  </data>
+  <data name="OrgCode" xml:space="preserve">
+    <value>Código de Organização</value>
+  </data>
+  <data name="mOrgCode" xml:space="preserve">
+    <value>Código campo é obrigatório</value>
+  </data>
+  <data name="OrgNif" xml:space="preserve">
+    <value>Id da organização</value>
+  </data>
+  <data name="mOrgNif" xml:space="preserve">
+    <value>Campo Organização ID é necessária</value>
+  </data>
+  <data name="OrgName" xml:space="preserve">
+    <value>Nome da organização</value>
+  </data>
+  <data name="mOrgName" xml:space="preserve">
+    <value>Nome campo é obrigatório</value>
+  </data>
+  <data name="OrgAdd" xml:space="preserve">
+    <value>Endereço postal</value>
+  </data>
+  <data name="mOrgAdd" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="OrgAdi" xml:space="preserve">
+    <value>Postal Endereço Cont</value>
+  </data>
+  <data name="mOrgAdi" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>Telefone</value>
+  </data>
+  <data name="mTelephone" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="OrgWeb" xml:space="preserve">
+    <value>página da Internet</value>
+  </data>
+  <data name="mOrgWeb" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="OrgEmail" xml:space="preserve">
+    <value>o email</value>
+  </data>
+  <data name="mOrgEmail" xml:space="preserve">
+    <value>Fiel é necessária</value>
+  </data>
+  <data name="mOrgCtry" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="mOrgCity" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="OrgDate" xml:space="preserve">
+    <value>Dia da fundação</value>
+  </data>
+  <data name="mOrgDate" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+</root>

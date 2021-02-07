@@ -45,16 +45,31 @@ mSname=Surname Field is required
 mAdr=Adress Field Is required
 mConD=Contract Date field is required
 mEntD=Entry Date Field is required
-
-
-
-
-
-
-
-
-
-
-
-
-
+OrgreaIndexPage=Organization area Index Page
+Organization=Organization area Index Page
+Chart=Organization Chart
+Resources=Technology
+Languages=Languages
+Users=Users
+OrgTable=Organization's table
+OrgData=Organization's data
+OrgCode=Organization's Code
+mOrgCode=Field Code Is required
+OrgNif=Organization's Id
+mOrgNif=Field Organization ID is required
+OrgName=Organization's Name
+mOrgName=Field Name is required
+OrgAdd=Postal Adress
+mOrgAdd=Field is required
+OrgAdi=Postal Adress Cont
+mOrgAdi=Field is required
+Telephone=Telephone
+mTelephone=Field is required
+OrgWeb=Web page
+mOrgWeb=Field is required
+OrgEmail=email
+mOrgEmail=Fiel is required
+mOrgCtry=Field is required
+mOrgCity=Field is required
+OrgDate=Foundation Date
+mOrgDate=Field is required

@@ -57,7 +57,11 @@ namespace MyErp
                     var supportedCultures = new List<CultureInfo>
                         {
                             new CultureInfo("en-US"),
-                            new CultureInfo("es-ES")                        };
+                            new CultureInfo("es-ES"),                        
+                            new CultureInfo("fr-FR"),
+                            new CultureInfo("de-DE"),
+                            new CultureInfo("pt-PT")
+                        };
 
                     options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
                     options.SupportedCultures = supportedCultures;

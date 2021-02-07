@@ -165,9 +165,12 @@ C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\MyErp.runtimeconfig.dev.
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\MyErp.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\MyErp.pdb
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\de-CH\MyErp.resources.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\de-DE\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\en-US\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\es-ES\MyErp.resources.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\es\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\fr-FR\MyErp.resources.dll
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\pt-PT\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\MyErp.Views.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\MyErp.Views.pdb
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\Humanizer.dll
@@ -224,9 +227,12 @@ C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstan
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.csprojAssemblyReference.cache
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.de-CH.resources
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.de-DE.resources
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.en-US.resources
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.es-ES.resources
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.es.resources
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.fr-FR.resources
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.pt-PT.resources
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.csproj.GenerateResource.cache
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.AssemblyInfoInputs.cache
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.AssemblyInfo.cs
@@ -236,12 +242,18 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.RazorAssemblyInfo.
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.RazorAssemblyInfo.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\de-CH\MyErp.resources.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\de-CH\MyErp.resources.dll
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\de-DE\MyErp.resources.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\de-DE\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\en-US\MyErp.resources.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\en-US\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\es-ES\MyErp.resources.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\es-ES\MyErp.resources.dll
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\es\MyErp.resources.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\es\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\fr-FR\MyErp.resources.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\fr-FR\MyErp.resources.dll
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\pt-PT\MyErp.resources.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\pt-PT\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\staticwebassets\MyErp.StaticWebAssets.Manifest.cache
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\staticwebassets\MyErp.StaticWebAssets.xml
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\scopedcss\bundle\MyErp.styles.css
@@ -252,6 +264,7 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.c
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SelectLanguagePartial.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TCustomer\Create.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TCustomer\Edit-new.cshtml.g.cs
@@ -269,7 +282,6 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\CMat
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\CMatEdit.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\FacCreate.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\FacEdit.cshtml.g.cs
-C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\Index copy.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\Index.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\LMatCreate.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\LMatEdit.cshtml.g.cs
@@ -329,6 +341,9 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TMRP\Index.c
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TMRP\_LyIndex.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TMRP\_MRPcGo.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TMRP\_pListaCustPlan.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\Edit.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\Index.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\_LyIndex.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TPerson\CarCreate.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TPerson\CarEdit.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TPerson\ConCreate.cshtml.g.cs

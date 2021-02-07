@@ -1,0 +1,46 @@
+@{Layout = "_LyIndex";}
+@using MyErp.Models
+@using System.Linq;
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+
+@functions {
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+}
+
+    <!--Organization-->
+@*
+    <!--Chart-->
+    <div class=@isVisible(2)>
+    @await Html.PartialAsync("_pListaChart",(List<TFacility>)ViewBag.ListFA)
+    </div>
+
+    <!--Languages-->
+    <div class=@isVisible(3)>
+    @await Html.PartialAsync("_SelectLanguagePartial")
+    </div>
+
+    <!--Resources-->
+    <div class=@isVisible(4)>
+    @await Html.PartialAsync("_SelectLanguagePartial")
+    </div>
+
+    <!--Users-->
+    <div class=@isVisible(5)>
+    @await Html.PartialAsync("_pListaChart",(List<TFacility>)ViewBag.ListFA)
+    </div>
+*@
+    <!--Languages-->
+    <div class=@isVisible(3)>
+        <tr>
+            @SharedLocalizer.GetLocalizedHtmlString("Useddltoselect")
+        </tr>
+    </div>
+</div>

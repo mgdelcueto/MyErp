@@ -231,7 +231,7 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="nDNI" xml:space="preserve">
+  <data name="mDNI" xml:space="preserve">
     <value>ID Field is required</value>
   </data>
   <data name="mBirD" xml:space="preserve">
@@ -257,5 +257,89 @@
   </data>
   <data name="mEntD" xml:space="preserve">
     <value>Entry Date Field is required</value>
+  </data>
+  <data name="OrgreaIndexPage" xml:space="preserve">
+    <value>Organization area Index Page</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Organization area Index Page</value>
+  </data>
+  <data name="Chart" xml:space="preserve">
+    <value>Organization Chart</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Technology</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Languages</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="OrgTable" xml:space="preserve">
+    <value>Organization's table</value>
+  </data>
+  <data name="OrgData" xml:space="preserve">
+    <value>Organization's data</value>
+  </data>
+  <data name="OrgCode" xml:space="preserve">
+    <value>Organization's Code</value>
+  </data>
+  <data name="mOrgCode" xml:space="preserve">
+    <value>Field Code Is required</value>
+  </data>
+  <data name="OrgNif" xml:space="preserve">
+    <value>Organization's Id</value>
+  </data>
+  <data name="mOrgNif" xml:space="preserve">
+    <value>Field Organization ID is required</value>
+  </data>
+  <data name="OrgName" xml:space="preserve">
+    <value>Organization's Name</value>
+  </data>
+  <data name="mOrgName" xml:space="preserve">
+    <value>Field Name is required</value>
+  </data>
+  <data name="OrgAdd" xml:space="preserve">
+    <value>Postal Adress</value>
+  </data>
+  <data name="mOrgAdd" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="OrgAdi" xml:space="preserve">
+    <value>Postal Adress Cont</value>
+  </data>
+  <data name="mOrgAdi" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>Telephone</value>
+  </data>
+  <data name="mTelephone" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="OrgWeb" xml:space="preserve">
+    <value>Web page</value>
+  </data>
+  <data name="mOrgWeb" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="OrgEmail" xml:space="preserve">
+    <value>email</value>
+  </data>
+  <data name="mOrgEmail" xml:space="preserve">
+    <value>Fiel is required</value>
+  </data>
+  <data name="mOrgCtry" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="mOrgCity" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="OrgDate" xml:space="preserve">
+    <value>Foundation Date</value>
+  </data>
+  <data name="mOrgDate" xml:space="preserve">
+    <value>Field is required</value>
   </data>
 </root>
