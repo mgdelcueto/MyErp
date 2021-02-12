@@ -193,7 +193,7 @@
     <value>objetivos Rev</value>
   </data>
   <data name="Training" xml:space="preserve">
-    <value>Formación</value>
+    <value>Capacitación</value>
   </data>
   <data name="Next&gt;&gt;" xml:space="preserve">
     <value>Siguiente &gt;&gt;</value>
@@ -319,13 +319,13 @@
     <value>Se requiere campo</value>
   </data>
   <data name="OrgWeb" xml:space="preserve">
-    <value>página web</value>
+    <value>Página web</value>
   </data>
   <data name="mOrgWeb" xml:space="preserve">
     <value>Se requiere campo</value>
   </data>
   <data name="OrgEmail" xml:space="preserve">
-    <value>correo electrónico</value>
+    <value>Email</value>
   </data>
   <data name="mOrgEmail" xml:space="preserve">
     <value>Se requiere Fiel</value>
@@ -340,6 +340,96 @@
     <value>Fecha de fundación</value>
   </data>
   <data name="mOrgDate" xml:space="preserve">
-    <value>Se requiere campomEntD=se requiere la entrada de campo de fecha</value>
+    <value>Se requiere campo</value>
+  </data>
+  <data name="SelectLang" xml:space="preserve">
+    <value>Seleccione el idioma</value>
+  </data>
+  <data name="Useddltoselect" xml:space="preserve">
+    <value>Por favor, use la lista desplegable de abajo para seleccionar el idioma deseado</value>
+  </data>
+  <data name="CharCode" xml:space="preserve">
+    <value>Código del Departamento</value>
+  </data>
+  <data name="mCharCode" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharName" xml:space="preserve">
+    <value>Nombre de departamento</value>
+  </data>
+  <data name="mCharName" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharDate" xml:space="preserve">
+    <value>Fecha de creación</value>
+  </data>
+  <data name="mCharDate" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharAdress" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="mCharAdress" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharAdressad" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="mCharAdressad" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharTel" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="mCharTel" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharWeb" xml:space="preserve">
+    <value>Sitio web</value>
+  </data>
+  <data name="mCharWeb" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharEmail" xml:space="preserve">
+    <value>dirección de correo electrónico</value>
+  </data>
+  <data name="mCharEmail" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharCity" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="mCharCity" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharCtry" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="mCharCtry" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharHName" xml:space="preserve">
+    <value>Nombre del Director</value>
+  </data>
+  <data name="mCharHName" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="Head" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="CharData" xml:space="preserve">
+    <value>Datos del Organigrama</value>
+  </data>
+  <data name="AdChart" xml:space="preserve">
+    <value>Agregar una tabla de registro Organización</value>
+  </data>
+  <data name="EdChart" xml:space="preserve">
+    <value>Editar una tabla de registro Organización</value>
+  </data>
+  <data name="AdRChart" xml:space="preserve">
+    <value>Añadir a Rol departamento ordanization</value>
   </data>
 </root>

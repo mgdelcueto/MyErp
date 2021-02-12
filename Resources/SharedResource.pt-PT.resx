@@ -157,7 +157,7 @@
     <value>sobrenomes</value>
   </data>
   <data name="DNI" xml:space="preserve">
-    <value>EU IRIA</value>
+    <value>EU IA</value>
   </data>
   <data name="Adress" xml:space="preserve">
     <value>adress</value>
@@ -172,7 +172,7 @@
     <value>Editar uma Pessoa</value>
   </data>
   <data name="Person" xml:space="preserve">
-    <value>funcionários</value>
+    <value>Funcionários</value>
   </data>
   <data name="Career" xml:space="preserve">
     <value>Carreira</value>
@@ -214,7 +214,7 @@
     <value>adicional Adress</value>
   </data>
   <data name="CounntryRes" xml:space="preserve">
-    <value>País de Residência</value>
+    <value>país de residência</value>
   </data>
   <data name="ContractDate" xml:space="preserve">
     <value>Data de Contrato</value>
@@ -341,5 +341,95 @@
   </data>
   <data name="mOrgDate" xml:space="preserve">
     <value>Campo é obrigatório</value>
+  </data>
+  <data name="SelectLang" xml:space="preserve">
+    <value>Selecione o idioma</value>
+  </data>
+  <data name="Useddltoselect" xml:space="preserve">
+    <value>Por favor Use lista suspensa abaixo para selecionar o idioma desejado</value>
+  </data>
+  <data name="CharCode" xml:space="preserve">
+    <value>Código de Departamento</value>
+  </data>
+  <data name="mCharCode" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="CharName" xml:space="preserve">
+    <value>Nome do Dept</value>
+  </data>
+  <data name="mCharName" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="CharDate" xml:space="preserve">
+    <value>Data de criação</value>
+  </data>
+  <data name="mCharDate" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="CharAdress" xml:space="preserve">
+    <value>Endereço</value>
+  </data>
+  <data name="mCharAdress" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="CharAdressad" xml:space="preserve">
+    <value>Endereço</value>
+  </data>
+  <data name="mCharAdressad" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="CharTel" xml:space="preserve">
+    <value>telefone</value>
+  </data>
+  <data name="mCharTel" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="CharWeb" xml:space="preserve">
+    <value>Local na rede Internet</value>
+  </data>
+  <data name="mCharWeb" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="CharEmail" xml:space="preserve">
+    <value>endereço de email</value>
+  </data>
+  <data name="mCharEmail" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="CharCity" xml:space="preserve">
+    <value>Cidade</value>
+  </data>
+  <data name="mCharCity" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="CharCtry" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="mCharCtry" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="CharHName" xml:space="preserve">
+    <value>Nome do director</value>
+  </data>
+  <data name="mCharHName" xml:space="preserve">
+    <value>Campo é obrigatório</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="Head" xml:space="preserve">
+    <value>Diretor</value>
+  </data>
+  <data name="CharData" xml:space="preserve">
+    <value>Dados da Organização Chart</value>
+  </data>
+  <data name="AdChart" xml:space="preserve">
+    <value>Adicionar um gráfico de registro Organização</value>
+  </data>
+  <data name="EdChart" xml:space="preserve">
+    <value>Editar um gráfico de registro Organização</value>
+  </data>
+  <data name="AdRChart" xml:space="preserve">
+    <value>Adicionar Rol para o departamento ordanization</value>
   </data>
 </root>

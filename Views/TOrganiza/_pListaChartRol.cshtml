@@ -1,0 +1,32 @@
+@model List<VTChartRol>
+@using MyErp.Resources
+@functions {
+    int ChartId(){
+        int retcol=0;
+        try{retcol=(int)ViewData["ChartId"];}catch{}
+        return retcol;
+    }
+}
+ 
+@inject LocService SharedLocalizer
+
+   <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>@SharedLocalizer.GetLocalizedHtmlString("CharData")</h2>
+    </div>
+    <tr>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Id")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Name")</th>        
+    </tr>
+   
+    @foreach (var c in (List<VTChartRol>) ViewBag.ListCharRol) {
+        <tr>
+            <td class ="col-text">@c.RcharRolId</td>            
+            <td class ="big-text">@c.RcharPerName</td>
+            <td class="col-text">@Html.ActionLink("Remove", "RCharDelete", new { id = c.RcharId,  chid = c.RcharCharId} ,new { onclick="return confirm('Are you sure?');"})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "RCharCreate",new {chid=@ChartId()})
+<

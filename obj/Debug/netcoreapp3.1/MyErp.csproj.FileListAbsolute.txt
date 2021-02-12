@@ -380,3 +380,10 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.csproj.CopyComplet
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.dll
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.pdb
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.genruntimeconfig.cache
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\CharCreate.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\CharEdit.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\_pListaChart.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\_pmenuChart.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\_pshowChart.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\RCharCreate.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\_pListaChartRol.cshtml.g.cs

@@ -1,0 +1,80 @@
+@model TChart
+        <tr>
+            <td>@Html.LabelFor(p => p.CharCode,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CharCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.CharName,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CharName, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
+        </tr>
+        <tr>
+            <td>@Html.ValidationMessageFor(p => p.CharCode)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CharName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CharDate,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CharDate, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.CharHeadId,new { @class = "norm-text" })</td>
+            <td class="norm-text">
+        
+                @Html.DropDownListFor(p => p.CharHeadId,(SelectList)ViewBag.ddlPerso,"",new { @class = "norm-text" })
+                      @*
+                @Html.DropDownListFor(p => p.CharHeadId,new SelectList(ViewBag.ddlPerso, "PerId", "PerName"),new { @class = "norm-text" })
+              *@
+            </td>
+
+        </tr>        
+        <tr>
+            <td>@Html.ValidationMessageFor(p => p.CharDate)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CharHeadId)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CharAdress,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CharAdress, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.CharAdressad,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CharAdressad, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CharAdress)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CharAdressad)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CharCity,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.CharCity, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
+            <td>@Html.LabelFor(p => p.CharCtry,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                @*
+                @Html.DropDownListFor(p => p.MatClass,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-text" })
+                *@
+                @Html.DropDownListFor(p => p.CharCtry,
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CharCity)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CharTel)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CharWeb,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.CharWeb, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
+            <td>@Html.LabelFor(p => p.CharTel,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.CharTel, new { htmlAttributes = new { @class = "norm-text" } })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CharWeb)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CharTel)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CharEmail,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.CharEmail, new { htmlAttributes = new { @class = "norm-text" } })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.CharEmail)</td>
+        </tr>

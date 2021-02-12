@@ -14482,6 +14482,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_pListaChart.cshtml",
+      "TargetPath": "Views\\TOrganiza\\_pListaChart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\PlantEdit.cshtml",
       "TargetPath": "Views\\TCustomer\\PlantEdit.cshtml",
       "FileKind": "mvc"
@@ -14667,6 +14672,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\RCharCreate.cshtml",
+      "TargetPath": "Views\\TOrganiza\\RCharCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\Edit.cshtml",
       "TargetPath": "Views\\TCustomer\\Edit.cshtml",
       "FileKind": "mvc"
@@ -14702,8 +14712,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\CharCreate.cshtml",
+      "TargetPath": "Views\\TOrganiza\\CharCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\OphCreate.cshtml",
       "TargetPath": "Views\\TEngine\\OphCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_pmenuChart.cshtml",
+      "TargetPath": "Views\\TOrganiza\\_pmenuChart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_pListaChartRol.cshtml",
+      "TargetPath": "Views\\TOrganiza\\_pListaChartRol.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14857,6 +14882,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\CharEdit.cshtml",
+      "TargetPath": "Views\\TOrganiza\\CharEdit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\PlanEdit.cshtml",
       "TargetPath": "Views\\TSuplier\\PlanEdit.cshtml",
       "FileKind": "mvc"
@@ -14894,6 +14924,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_pshowChart.cshtml",
+      "TargetPath": "Views\\TOrganiza\\_pshowChart.cshtml",
       "FileKind": "mvc"
     },
     {

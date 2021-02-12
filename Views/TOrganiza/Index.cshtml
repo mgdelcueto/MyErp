@@ -16,12 +16,12 @@
 }
 
     <!--Organization-->
-@*
+
     <!--Chart-->
     <div class=@isVisible(2)>
-    @await Html.PartialAsync("_pListaChart",(List<TFacility>)ViewBag.ListFA)
+    @await Html.PartialAsync("_pListaChart",(List<VTChart>)ViewBag.ListChar)
     </div>
-
+@*
     <!--Languages-->
     <div class=@isVisible(3)>
     @await Html.PartialAsync("_SelectLanguagePartial")

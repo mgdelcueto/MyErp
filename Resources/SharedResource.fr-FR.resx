@@ -121,7 +121,7 @@
     <value>Accueil</value>
   </data>
   <data name="Privacy" xml:space="preserve">
-    <value>Intimité</value>
+    <value>Vie privée</value>
   </data>
   <data name="HRArea" xml:space="preserve">
     <value>zone RH</value>
@@ -163,7 +163,7 @@
     <value>Une robe</value>
   </data>
   <data name="Country" xml:space="preserve">
-    <value>Pays</value>
+    <value>De campagne</value>
   </data>
   <data name="&lt;&lt;Prev" xml:space="preserve">
     <value>&lt;&lt; Précédent</value>
@@ -226,7 +226,7 @@
     <value>Date de sortie</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Mise à jour</value>
+    <value>Mettre à jour</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuler</value>
@@ -325,7 +325,7 @@
     <value>Champ requis</value>
   </data>
   <data name="OrgEmail" xml:space="preserve">
-    <value>email</value>
+    <value>e-mail</value>
   </data>
   <data name="mOrgEmail" xml:space="preserve">
     <value>Fiel est nécessaire</value>
@@ -341,5 +341,95 @@
   </data>
   <data name="mOrgDate" xml:space="preserve">
     <value>Champ requis</value>
+  </data>
+  <data name="SelectLang" xml:space="preserve">
+    <value>Choisir la langue</value>
+  </data>
+  <data name="Useddltoselect" xml:space="preserve">
+    <value>S'il vous plaît utiliser la liste déroulante ci-dessous pour sélectionner la langue souhaitée</value>
+  </data>
+  <data name="CharCode" xml:space="preserve">
+    <value>Code de département</value>
+  </data>
+  <data name="mCharCode" xml:space="preserve">
+    <value>Champ requis</value>
+  </data>
+  <data name="CharName" xml:space="preserve">
+    <value>Nom de département</value>
+  </data>
+  <data name="mCharName" xml:space="preserve">
+    <value>Champ requis</value>
+  </data>
+  <data name="CharDate" xml:space="preserve">
+    <value>Date de création</value>
+  </data>
+  <data name="mCharDate" xml:space="preserve">
+    <value>Champ requis</value>
+  </data>
+  <data name="CharAdress" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="mCharAdress" xml:space="preserve">
+    <value>Champ requis</value>
+  </data>
+  <data name="CharAdressad" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="mCharAdressad" xml:space="preserve">
+    <value>Champ requis</value>
+  </data>
+  <data name="CharTel" xml:space="preserve">
+    <value>Téléphone</value>
+  </data>
+  <data name="mCharTel" xml:space="preserve">
+    <value>Champ requis</value>
+  </data>
+  <data name="CharWeb" xml:space="preserve">
+    <value>Site Internet</value>
+  </data>
+  <data name="mCharWeb" xml:space="preserve">
+    <value>Champ requis</value>
+  </data>
+  <data name="CharEmail" xml:space="preserve">
+    <value>adresse e-mail</value>
+  </data>
+  <data name="mCharEmail" xml:space="preserve">
+    <value>Champ requis</value>
+  </data>
+  <data name="CharCity" xml:space="preserve">
+    <value>Ville</value>
+  </data>
+  <data name="mCharCity" xml:space="preserve">
+    <value>Champ requis</value>
+  </data>
+  <data name="CharCtry" xml:space="preserve">
+    <value>De campagne</value>
+  </data>
+  <data name="mCharCtry" xml:space="preserve">
+    <value>Champ requis</value>
+  </data>
+  <data name="CharHName" xml:space="preserve">
+    <value>Nom de l'administrateur</value>
+  </data>
+  <data name="mCharHName" xml:space="preserve">
+    <value>Champ requis</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Head" xml:space="preserve">
+    <value>Réalisateur</value>
+  </data>
+  <data name="CharData" xml:space="preserve">
+    <value>Les données de l'Organisation Graphique</value>
+  </data>
+  <data name="AdChart" xml:space="preserve">
+    <value>Ajouter un organigramme Enregistrez</value>
+  </data>
+  <data name="EdChart" xml:space="preserve">
+    <value>Modifier un organigramme Enregistrement</value>
+  </data>
+  <data name="AdRChart" xml:space="preserve">
+    <value>Ajouter Rol au département ordanization</value>
   </data>
 </root>

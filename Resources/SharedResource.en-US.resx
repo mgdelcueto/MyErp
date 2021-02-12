@@ -342,4 +342,94 @@
   <data name="mOrgDate" xml:space="preserve">
     <value>Field is required</value>
   </data>
+  <data name="SelectLang" xml:space="preserve">
+    <value>Select language</value>
+  </data>
+  <data name="Useddltoselect" xml:space="preserve">
+    <value>Please Use drop down list below to select desired language</value>
+  </data>
+  <data name="CharCode" xml:space="preserve">
+    <value>Code of Department</value>
+  </data>
+  <data name="mCharCode" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="CharName" xml:space="preserve">
+    <value>Name Of Dept</value>
+  </data>
+  <data name="mCharName" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="CharDate" xml:space="preserve">
+    <value>Creation Date</value>
+  </data>
+  <data name="mCharDate" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="CharAdress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="mCharAdress" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="CharAdressad" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="mCharAdressad" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="CharTel" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="mCharTel" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="CharWeb" xml:space="preserve">
+    <value>Web site</value>
+  </data>
+  <data name="mCharWeb" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="CharEmail" xml:space="preserve">
+    <value>email address</value>
+  </data>
+  <data name="mCharEmail" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="CharCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="mCharCity" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="CharCtry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="mCharCtry" xml:space="preserve">
+    <value>Field is required</value>
+  </data>
+  <data name="CharHName" xml:space="preserve">
+    <value>Name Of Director</value>
+  </data>
+  <data name="mCharHName" xml:space="preserve">
+    <value>Field is Required</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Head" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="CharData" xml:space="preserve">
+    <value>Organization Chart's Data</value>
+  </data>
+  <data name="AdChart" xml:space="preserve">
+    <value>Add a Organization Chart Record</value>
+  </data>
+  <data name="EdChart" xml:space="preserve">
+    <value>Edit a Organization Chart Record</value>
+  </data>
+  <data name="AdRChart" xml:space="preserve">
+    <value>Add Rol to ordanization department</value>
+  </data>
 </root>

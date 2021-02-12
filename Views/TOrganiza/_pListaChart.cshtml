@@ -1,0 +1,28 @@
+@model List<VTChart>
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+
+   <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>@SharedLocalizer.GetLocalizedHtmlString("CharData")</h2>
+    </div>
+    <tr>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Code")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Name")</th>                
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Head")</th>        
+    </tr>
+   
+    @foreach (var c in (List<VTChart>) ViewBag.ListChar) {
+        <tr>
+            <td class ="col-text">@c.CharCode</td>            
+            <td class ="big-text">@c.CharName</td>
+            <td class ="norm-text">@c.CharHName</td>
+            <td class="col-text">@Html.ActionLink("Delete", "CharDelete", new { id = c.CharId}, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "CharEdit", new { id = c.CharId ,panel=2})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "CharCreate")
+<

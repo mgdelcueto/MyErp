@@ -118,144 +118,318 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Home" xml:space="preserve">
-    <value>Home</value>
+    <value>Hogar</value>
   </data>
   <data name="Privacy" xml:space="preserve">
-    <value>Privacy</value>
+    <value>Intimidad</value>
   </data>
   <data name="HRArea" xml:space="preserve">
-    <value>HR Area</value>
+    <value>HR Área</value>
   </data>
   <data name="Purchasing" xml:space="preserve">
-    <value>Purchasing</value>
+    <value>Adquisitivo</value>
   </data>
   <data name="Sales" xml:space="preserve">
-    <value>Sales</value>
+    <value>Ventas</value>
   </data>
   <data name="Engineering" xml:space="preserve">
-    <value>Engineering</value>
+    <value>Ingenieria</value>
   </data>
   <data name="MRPPLanning" xml:space="preserve">
-    <value>MRP Planning</value>
+    <value>Planificación MRP</value>
   </data>
   <data name="HRAreaIndexPage" xml:space="preserve">
-    <value>HR Area Index Page</value>
+    <value>Índice de Área de Recursos Humanos Página</value>
   </data>
   <data name="PersonTable" xml:space="preserve">
-    <value>Person Table</value>
+    <value>Tabla persona</value>
   </data>
   <data name="Filter" xml:space="preserve">
-    <value>Filter</value>
+    <value>Filtrar</value>
   </data>
   <data name="FilterByName" xml:space="preserve">
-    <value>Filter By Name:</value>
+    <value>Nombre de filtro:</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Nombre</value>
   </data>
   <data name="Surname" xml:space="preserve">
-    <value>Surnames</value>
+    <value>apellidos</value>
   </data>
   <data name="DNI" xml:space="preserve">
-    <value>ID</value>
+    <value>CARNÉ DE IDENTIDAD</value>
   </data>
   <data name="Adress" xml:space="preserve">
     <value>Adress</value>
   </data>
   <data name="Country" xml:space="preserve">
-    <value>Country</value>
+    <value>País</value>
   </data>
   <data name="&lt;&lt;Prev" xml:space="preserve">
-    <value>&lt;&lt;Prev</value>
+    <value>&lt;&lt; Anterior</value>
   </data>
   <data name="EditPerson" xml:space="preserve">
-    <value>Edit a Person</value>
+    <value>Edición de una persona</value>
   </data>
   <data name="Person" xml:space="preserve">
-    <value>Employees</value>
+    <value>Empleados</value>
   </data>
   <data name="Career" xml:space="preserve">
-    <value>Career</value>
+    <value>Carrera</value>
   </data>
   <data name="Contract" xml:space="preserve">
-    <value>Contract</value>
+    <value>Contrato</value>
   </data>
   <data name="Curriculum" xml:space="preserve">
-    <value>Curriculum</value>
+    <value>Plan de estudios</value>
   </data>
   <data name="Pay" xml:space="preserve">
-    <value>Payroll</value>
+    <value>Nómina de sueldos</value>
   </data>
   <data name="Presence" xml:space="preserve">
-    <value>Presence</value>
+    <value>Presencia</value>
   </data>
   <data name="ObjReview" xml:space="preserve">
-    <value>Objectives Rev</value>
+    <value>objetivos Rev</value>
   </data>
   <data name="Training" xml:space="preserve">
-    <value>Training</value>
+    <value>Capacitación</value>
   </data>
   <data name="Next&gt;&gt;" xml:space="preserve">
-    <value>Next&gt;&gt;</value>
+    <value>Siguiente &gt;&gt;</value>
   </data>
   <data name="PersonData" xml:space="preserve">
-    <value>Person Data</value>
+    <value>datos persona</value>
   </data>
   <data name="BirdDate" xml:space="preserve">
-    <value>Date of Bird</value>
+    <value>Fecha de Aves</value>
   </data>
   <data name="CityOrigin" xml:space="preserve">
-    <value>Birthplace</value>
+    <value>Lugar de nacimiento</value>
   </data>
   <data name="CountryOrigin" xml:space="preserve">
-    <value>Country of Origin</value>
+    <value>País de origen</value>
   </data>
   <data name="AdressAd" xml:space="preserve">
-    <value>Aditional Adress</value>
+    <value>Adicional Dirección</value>
   </data>
   <data name="CounntryRes" xml:space="preserve">
-    <value>Country of Residence</value>
+    <value>País de residencia</value>
   </data>
   <data name="ContractDate" xml:space="preserve">
-    <value>Date of Contract</value>
+    <value>Fecha de Contrato</value>
   </data>
   <data name="EntryDate" xml:space="preserve">
-    <value>Date of entry</value>
+    <value>Fecha de entrada</value>
   </data>
   <data name="ExitDate" xml:space="preserve">
-    <value>Date of exit</value>
+    <value>Fecha de salida</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Update</value>
+    <value>Actualizar</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
-  <data name="nDNI" xml:space="preserve">
-    <value>ID Field is required</value>
+  <data name="mDNI" xml:space="preserve">
+    <value>se requiere identificador de campo</value>
   </data>
   <data name="mBirD" xml:space="preserve">
-    <value>Bird Date field is required</value>
+    <value>Se requiere campo Fecha de aves</value>
   </data>
   <data name="mCitB" xml:space="preserve">
-    <value>City Origin Field is required</value>
+    <value>Se requiere Ciudad de origen Campo</value>
   </data>
   <data name="mCtrOr" xml:space="preserve">
-    <value>Country Field is required</value>
+    <value>Se requiere país Campo</value>
   </data>
   <data name="mName" xml:space="preserve">
-    <value>Name field is required</value>
+    <value>Se requiere campo de nombre</value>
   </data>
   <data name="mSname" xml:space="preserve">
-    <value>Surname Field is required</value>
+    <value>Se requiere el apellido Campo</value>
   </data>
   <data name="mAdr" xml:space="preserve">
-    <value>Adress Field Is required</value>
+    <value>Dirección campo es obligatorio</value>
   </data>
   <data name="mConD" xml:space="preserve">
-    <value>Contract Date field is required</value>
+    <value>Se requiere campo Fecha de contrato</value>
   </data>
   <data name="mEntD" xml:space="preserve">
-    <value>Entry Date Field is required</value>
+    <value>se requiere la entrada de campo de fecha</value>
+  </data>
+  <data name="OrgreaIndexPage" xml:space="preserve">
+    <value>área de organización Índice Página</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>área de organización Índice Página</value>
+  </data>
+  <data name="Chart" xml:space="preserve">
+    <value>Organigrama</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Tecnología</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>idiomas</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>usuarios</value>
+  </data>
+  <data name="OrgTable" xml:space="preserve">
+    <value>tabla de organización</value>
+  </data>
+  <data name="OrgData" xml:space="preserve">
+    <value>Los datos de la organización</value>
+  </data>
+  <data name="OrgCode" xml:space="preserve">
+    <value>Código de Organización</value>
+  </data>
+  <data name="mOrgCode" xml:space="preserve">
+    <value>Código de campo es obligatorio</value>
+  </data>
+  <data name="OrgNif" xml:space="preserve">
+    <value>Id de la organización</value>
+  </data>
+  <data name="mOrgNif" xml:space="preserve">
+    <value>El campo ID de la organización se requiere</value>
+  </data>
+  <data name="OrgName" xml:space="preserve">
+    <value>Nombre de la Organización</value>
+  </data>
+  <data name="mOrgName" xml:space="preserve">
+    <value>El nombre es necesario Campo</value>
+  </data>
+  <data name="OrgAdd" xml:space="preserve">
+    <value>Dirección postal</value>
+  </data>
+  <data name="mOrgAdd" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="OrgAdi" xml:space="preserve">
+    <value>Postal Dirección Cont</value>
+  </data>
+  <data name="mOrgAdi" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="mTelephone" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="OrgWeb" xml:space="preserve">
+    <value>Página web</value>
+  </data>
+  <data name="mOrgWeb" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="OrgEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="mOrgEmail" xml:space="preserve">
+    <value>Se requiere Fiel</value>
+  </data>
+  <data name="mOrgCtry" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="mOrgCity" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="OrgDate" xml:space="preserve">
+    <value>Fecha de fundación</value>
+  </data>
+  <data name="mOrgDate" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="SelectLang" xml:space="preserve">
+    <value>Seleccione el idioma</value>
+  </data>
+  <data name="Useddltoselect" xml:space="preserve">
+    <value>Por favor, use la lista desplegable de abajo para seleccionar el idioma deseado</value>
+  </data>
+  <data name="CharCode" xml:space="preserve">
+    <value>Código del Departamento</value>
+  </data>
+  <data name="mCharCode" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharName" xml:space="preserve">
+    <value>Nombre de departamento</value>
+  </data>
+  <data name="mCharName" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharDate" xml:space="preserve">
+    <value>Fecha de creación</value>
+  </data>
+  <data name="mCharDate" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharAdress" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="mCharAdress" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharAdressad" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="mCharAdressad" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharTel" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="mCharTel" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharWeb" xml:space="preserve">
+    <value>Sitio web</value>
+  </data>
+  <data name="mCharWeb" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharEmail" xml:space="preserve">
+    <value>dirección de correo electrónico</value>
+  </data>
+  <data name="mCharEmail" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharCity" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="mCharCity" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharCtry" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="mCharCtry" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="CharHName" xml:space="preserve">
+    <value>Nombre del Director</value>
+  </data>
+  <data name="mCharHName" xml:space="preserve">
+    <value>Se requiere campo</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="Head" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="CharData" xml:space="preserve">
+    <value>Datos del Organigrama</value>
+  </data>
+  <data name="AdChart" xml:space="preserve">
+    <value>Agregar una tabla de registro Organización</value>
+  </data>
+  <data name="EdChart" xml:space="preserve">
+    <value>Editar una tabla de registro Organización</value>
+  </data>
+  <data name="AdRChart" xml:space="preserve">
+    <value>Añadir a Rol departamento ordanization</value>
   </data>
 </root>
