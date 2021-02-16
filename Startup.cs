@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -42,6 +43,13 @@ namespace MyErp
                 .AddViewLocalization()
                 .AddDataAnnotationsLocalization();                        
             */
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => {
+                    options.LoginPath = "/Account/Noauthorized/";
+                    options.AccessDeniedPath = "/Account/Forbidden/";
+                });
+
             services.AddControllersWithViews();
             services.AddDbContext<MyErpDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MyProjectConnectionString")));
@@ -93,6 +101,7 @@ namespace MyErp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

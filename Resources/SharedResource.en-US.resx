@@ -432,4 +432,34 @@
   <data name="AdRChart" xml:space="preserve">
     <value>Add Rol to ordanization department</value>
   </data>
+  <data name="Org" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>Unauthorized</value>
+  </data>
+  <data name="Pleaselogin" xml:space="preserve">
+    <value>Please Login</value>
+  </data>
+  <data name="Logoff" xml:space="preserve">
+    <value>Logoff</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="EnterUsername" xml:space="preserve">
+    <value>Enter Username</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Enter Password</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Forbidden" xml:space="preserve">
+    <value>Forbidden</value>
+  </data>
 </root>

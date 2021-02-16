@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@functions {
+    string Enlace(){
+        string retcol="";
+        try{
+        retcol = (string)ViewData["link"];
+        }catch{}
+        return retcol;
+    }
+}
+<div class="text-center">
+    <h1 class="display-4">Unauthorized</h1>
+    <tr>
+        <td>@Html.ActionLink("Please Login", "Login")</td>
+    </tr>
+</div>

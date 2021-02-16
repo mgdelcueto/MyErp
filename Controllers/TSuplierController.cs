@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyErp.Models;
 using System.Linq;
 
 namespace MyErp.Controllers {
+    [Authorize]
     public class TSuplierController : Controller {
         private readonly MyErpDBContext _dbContext;
         public TSuplierController(MyErpDBContext dbContext) {

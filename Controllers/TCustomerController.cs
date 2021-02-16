@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyErp.Models;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace MyErp.Controllers {
+    [Authorize]
     public class TCustomerController : Controller {
         private readonly MyErpDBContext _dbContext;
         public TCustomerController(MyErpDBContext dbContext) {

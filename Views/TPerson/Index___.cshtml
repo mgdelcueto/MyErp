@@ -1,0 +1,364 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+@{
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("HRAreaIndexPage");
+}
+@functions {
+    string myformat(double? value){
+    string ret =string.Format("{0:C2}", value);
+    //string rets = value.ToString("N", CultureInfo.InvariantCulture);
+    return ret;
+}
+    string mycolor(double? value){
+    string retcol="red-number";
+    if (value >=0 ){
+        retcol="blue-number";}
+    return retcol;
+    }
+    string colcolor(int item){
+    string retcol="col-text";
+    if (item==0)
+    {
+        retcol="botcol-text";
+    }
+    return retcol;
+    }
+
+    string panelBold(int panel)
+    {            
+        int tpan = (int)ViewData["panel"];
+        string cstyle ="";
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+        return cstyle;
+    }
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+    int thisPanel(){
+         int opanel = (int)ViewData["panel"];
+         return opanel;
+    }
+
+
+
+    string isVisible(){
+        int filter =0;
+        try{
+        filter = (int) ViewData["Filter"];}
+        catch{}
+        string retcol="";
+        if (filter==0){retcol="invisible";}
+        else{retcol="visible";}
+        return retcol;
+    }
+    string fValue (int valor){
+        string ret1="";
+        if (valor ==1){
+        try{
+            ret1 = (string)ViewData["Fil1"];
+        }
+        catch{}
+        }
+        else{
+        try{
+            ret1 = (string)ViewData["Fil2"];
+        }
+        catch{}
+        }
+        return ret1;
+    }
+}
+@section Styles
+{
+
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class = "cont-titles">
+ <h2>@SharedLocalizer.GetLocalizedHtmlString("PersonTable")</h2>   
+</div>
+<td><a class="nav-link text-dark" asp-area="" asp-controller="TPerson" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Filter")</a></td>
+
+    <table>
+        <div class="cont-titles-l">
+        @*
+        <h2>>>@Html.DisplayFor(p => p.PerName)  @Html.DisplayFor(p => p.PerName1)</h2>
+        *@
+        </div>
+        <table>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(1)" asp-area="" asp-controller="TPerson" asp-action="Index"  asp-route-panel="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Person")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(2)" asp-area="" asp-controller="TPerson" asp-action="Index"  asp-route-panel="2" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Career")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(3)" asp-area="" asp-controller="TPerson" asp-action="Index"  asp-route-panel="3" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Contract")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(4)" asp-area="" asp-controller="TPerson" asp-action="Index"  asp-route-panel="4" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Curriculum")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(5)" asp-area="" asp-controller="TPerson" asp-action="Index"  asp-route-panel="5" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Pay")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(6)" asp-area="" asp-controller="TPerson" asp-action="Index"  asp-route-panel="6" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Presence")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(7)" asp-area="" asp-controller="TPerson" asp-action="Index"  asp-route-panel="7" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("ObjReview")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(8)" asp-area="" asp-controller="TPerson" asp-action="Index"  asp-route-panel="8" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Training")</a>
+                         </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+         </table>
+    </table>
+
+<div class=@isVisible(1)>
+    @using (Html.BeginForm()) {
+        <tr>
+            <input type="hidden" name="Filter" value="2"/>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("FilterByName")</td>
+            <td class ="norm-text"><input value ="@fValue(1)" class="norm-text" id="pNam" name="pNam" type="text"></input></td>
+            <td> @SharedLocalizer.GetLocalizedHtmlString("Surname")</td>
+            <td class ="norm-text"><input value="@fValue(2)" class ="norm-text" id="pNam1" name="pNam1" type="text"></input></td>
+            <td><input type="submit" value="Filter" /></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    }
+</div>
+<div class="visible">
+<table class="table-norm" border="1">
+    <tr>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Name")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Surname")</th>                
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("DNI")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Adress")</th>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Country")</th>
+    </tr>
+    @foreach (var p in ViewBag.ListPerson) {
+        <tr>
+            <td class ="col-text">@p.PerName</td>            
+            <td class ="norm-text">@p.PerName1</td>
+            <td class ="norm-text">@p.PerDni</td>
+            <td class ="norm-text">@p.PerAddr</td>
+            <td class ="norm-text">@p.PerAddCtry</td>
+            <td class="col-text">@Html.ActionLink("Delete", "Delete", new { id = p.PerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "Edit", new { id = p.PerId ,panel=1,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "Create")
+</div>
+
+    <div class=@isVisible(2)>
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>Career Data</h2>
+    </div>
+    <tr>
+        <th class="head-text">Date</th> 
+        <th class="head-text">Position</th>                
+        <th class="head-text">Observations</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListCareer) {
+        <tr>
+            @{ string CareDate = string.Format("{0:dd-MM-yyyy}", c.CareDate); }
+            <td class ="col-text">@CareDate</td>            
+            <td class ="norm-text">@c.CarePosit</td>
+            <td class ="big-text">@c.CareObser</td>
+            <td class="col-text">@Html.ActionLink("Delete", "CarDelete", new { id = c.CareId,Pid = c.CarePerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "CarEdit", new { id = c.CareId ,panel=2,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "CarCreate",new {Pid=@Model.PerId})
+    </div>
+    <div class=@isVisible(3)>
+    <div class="cont-titles">
+    <h2>Contract Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">Date</th> 
+        <th class="head-text">Observations</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListContract) {
+        <tr>
+            @{ string ConRevDate = string.Format("{0:dd-MM-yyyy}", c.ConRevDate); }
+            <td class ="col-text">@ConRevDate</td>            
+            <td class ="big-text">@c.ConObs</td>
+            <td class="col-text">@Html.ActionLink("Delete", "ConDelete", new { id = c.ConId,Pid = c.ConPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "ConEdit", new { id = c.ConId ,panel=3,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "ConCreate",new {Pid=@Model.PerId})
+    </div>    
+    <div class=@isVisible(4)>
+    <div class="cont-titles">
+    <h2>Curriculum Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">Date</th> 
+        <th class="head-text">K.Area</th>        
+        <th class="head-text">Area Desc</th>        
+        <th class="head-text">Level</th>        
+        <th class="head-text">Observations</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListCurric) {
+        <tr>
+            @{ string DateRev = string.Format("{0:dd-MM-yyyy}", c.CurrRevDate); }
+            <td class ="norm-text">@DateRev</td>
+            <td class ="norm-text">@c.CurrArea</td>
+            <td class ="norm-text">@c.CurrAreaDesc</td>
+            <td class ="norm-text">@c.CurrAreaLevel</td>
+            <td class ="big-text">@c.CurrObs</td>
+            <td class="col-text">@Html.ActionLink("Delete", "CurDelete", new { id = c.CurrId,Pid = c.CurrPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "CurEdit", new { id = c.CurrId ,panel=4,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "CurCreate",new {Pid=@Model.PerId})
+
+</div>    
+    <div class=@isVisible(5)>
+    <div class="cont-titles">
+    <h2>Pay Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">St.Date</th> 
+        <th class="head-text">Concept Type</th>        
+        <th class="head-text">Retention</th>        
+        <th class="head-text">Accounty</th>
+    </tr>
+   
+    @foreach (var c in ViewBag.ListPay) {
+        <tr>
+            @{ string PayStDate = string.Format("{0:dd-MM-yyyy}", c.PayStDate); }
+            <td class ="col-text">@PayStDate</td>            
+            <td class ="norm-text">@c.PayType</td>
+            <td class ="norm-text">@c.PayRet</td>
+            <td class ="norm-text">@c.PayAccount</td>
+            <td class="col-text">@Html.ActionLink("Delete", "PayDelete", new { id = c.PayId,Pid = c.PayPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PayEdit", new { id = c.PayId ,panel=5,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "PayCreate",new {Pid=@Model.PerId})
+    </div>    
+    <div class=@isVisible(6)>
+    <div class="cont-titles">
+    <h2>Presence Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">Local</th> 
+        <th class="head-text">fecha</th>        
+        <th class="head-text">Hora</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListPre) {
+        <tr>
+            @{ string PresDateEvent = string.Format("{0:dd-MM-yyyy}", c.PresDateEvent); }
+            @{ string PresTimeEvent = string.Format("{0:hh:mm:ss}", c.PresTimeEvent); }
+            <td class ="col-text">@c.PresLocal</td>            
+            <td class ="norm-text">@PresDateEvent</td>
+            <td class ="norm-text">@PresTimeEvent</td>
+            <td class="col-text">@Html.ActionLink("Delete", "PreDelete", new { id = c.PresId,Pid = c.PresPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PreEdit", new { id = c.PresId ,panel=6,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "PreCreate",new {Pid=@Model.PerId})
+    </div>    
+    <div class=@isVisible(7)>
+    <div class="cont-titles">
+    <h2>Objective Review Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">Fecha</th> 
+        <th class="head-text">Objectivo</th>        
+        <th class="head-text">Rating</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListRev) {
+        <tr>
+            @{ string RevDate = string.Format("{0:dd-MM-yyyy}", c.RevDate); }
+            <td class ="col-text">@RevDate</td>            
+            <td class ="big-text">@c.RevObj</td>
+            <td class ="norm-num">@c.RevObRat</td>
+            <td class="col-text">@Html.ActionLink("Delete", "RevDelete", new { id = c.RevId,Pid = c.RevPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "RevEdit", new { id = c.RevId ,panel=7,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "RevCreate",new {Pid=@Model.PerId})
+    </div>    
+    <div class=@isVisible(8)>
+    <div class="cont-titles">
+    <h2>Training Data</h2>
+    </div>
+    <table class="table-norm" border ="1" >
+    <tr>
+        <th class="head-text">Fecha</th> 
+        <th class="head-text">Area</th>        
+        <th class="head-text">Curso</th>        
+        <th class="head-text">Calificacion</th>        
+        <th class="head-text">Observaciones</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListTra) {
+        <tr>
+            @{ string TrainDate = string.Format("{0:dd-MM-yyyy}", c.TrainDate); }
+            <td class ="col-text">@TrainDate</td>            
+            <td class ="norm-text">@c.TrainArea</td>
+            <td class ="norm-text">@c.TrainCourse</td>
+            <td class ="norm-text">@c.TrainCalif</td>
+            <td class ="big-text">@c.TrainObser</td>
+            <td class="col-text">@Html.ActionLink("Delete", "TraDelete", new { id = c.TrainId,Pid = c.TrainPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "TraEdit", new { id = c.TrainId ,panel=8,skip =0})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add a New Item", "TraCreate",new {Pid=@Model.PerId})
+</div>    
+
+
+
+
+
+
+
+
+
+
+

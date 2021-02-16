@@ -182,7 +182,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="TOrganiza" asp-action="Index">MyErp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyErp</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -190,10 +190,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Home")</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">@SharedLocalizer.GetLocalizedHtmlString("Privacy")</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TOrganiza" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Org")</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="TPerson" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("HRArea")</a>
@@ -209,6 +206,9 @@
                         </li>                        
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="" asp-route-panel="1" asp-route-panel1="1">@SharedLocalizer.GetLocalizedHtmlString("MRPPLanning")</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut" >@SharedLocalizer.GetLocalizedHtmlString("Logout")</a>
                         </li>                        
                     </ul>
                 </div>

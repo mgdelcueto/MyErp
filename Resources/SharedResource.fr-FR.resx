@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
+    <value>Maison</value>
   </data>
   <data name="Privacy" xml:space="preserve">
     <value>Vie privée</value>
@@ -157,7 +157,7 @@
     <value>noms de famille</value>
   </data>
   <data name="DNI" xml:space="preserve">
-    <value>ID</value>
+    <value>identifiant</value>
   </data>
   <data name="Adress" xml:space="preserve">
     <value>Une robe</value>
@@ -178,7 +178,7 @@
     <value>Carrière</value>
   </data>
   <data name="Contract" xml:space="preserve">
-    <value>Contrat</value>
+    <value>Contracter</value>
   </data>
   <data name="Curriculum" xml:space="preserve">
     <value>programme d'études</value>
@@ -431,5 +431,35 @@
   </data>
   <data name="AdRChart" xml:space="preserve">
     <value>Ajouter Rol au département ordanization</value>
+  </data>
+  <data name="Org" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>non autorisée</value>
+  </data>
+  <data name="Pleaselogin" xml:space="preserve">
+    <value>Connectez-vous s'il vous plaît</value>
+  </data>
+  <data name="Logoff" xml:space="preserve">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="EnterUsername" xml:space="preserve">
+    <value>Saisissez votre nom d'utilisateur</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Entrer le mot de passe</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Connexion</value>
+  </data>
+  <data name="Forbidden" xml:space="preserve">
+    <value>Interdit</value>
   </data>
 </root>

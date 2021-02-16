@@ -15,6 +15,7 @@ namespace MyErp.Models
         public int? CplanCustId { get; set; }
 
         [Display(Name = "My Product")]
+        [Required(ErrorMessage="Product is required"),Range(1,int.MaxValue,ErrorMessage="Product is reuqired")]
         public int? CplanCprodId { get; set; }
 
         [Display(Name = "My Date From")]

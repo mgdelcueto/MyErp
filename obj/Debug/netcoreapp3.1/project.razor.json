@@ -14492,6 +14492,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\Edit____.cshtml",
+      "TargetPath": "Views\\TPerson\\Edit____.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\TraEdit.cshtml",
       "TargetPath": "Views\\TPerson\\TraEdit.cshtml",
       "FileKind": "mvc"
@@ -14499,6 +14504,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pmenuMatCo.cshtml",
       "TargetPath": "Views\\TEngine\\_pmenuMatCo.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Account\\Login.cshtml",
+      "TargetPath": "Views\\Account\\Login.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14737,6 +14747,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Account\\Forbidden.cshtml",
+      "TargetPath": "Views\\Account\\Forbidden.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Account\\Noauthorized.cshtml",
+      "TargetPath": "Views\\Account\\Noauthorized.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\WCoEdit.cshtml",
       "TargetPath": "Views\\TEngine\\WCoEdit.cshtml",
       "FileKind": "mvc"
@@ -14774,6 +14794,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowOperators.cshtml",
       "TargetPath": "Views\\TEngine\\_pshowOperators.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\Index___.cshtml",
+      "TargetPath": "Views\\TPerson\\Index___.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14984,6 +15009,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\MatBom.cshtml",
       "TargetPath": "Views\\TEngine\\MatBom.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Account\\LogOut.cshtml",
+      "TargetPath": "Views\\Account\\LogOut.cshtml",
       "FileKind": "mvc"
     },
     {

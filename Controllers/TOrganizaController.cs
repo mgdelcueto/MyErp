@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
@@ -7,6 +8,7 @@ using System;
 using System.Linq;
 
 namespace MyErp.Controllers {
+    [Authorize]
     public class TOrganizaController : Controller {
         private readonly MyErpDBContext _dbContext;
         private readonly ILogger<TPersonController> _logger;    

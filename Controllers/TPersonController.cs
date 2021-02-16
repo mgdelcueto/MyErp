@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
@@ -6,6 +7,7 @@ using System;
 using System.Linq;
 
 namespace MyErp.Controllers {
+    [Authorize(Roles="Administrator,HR")]
     public class TPersonController : Controller {
         private readonly MyErpDBContext _dbContext;
         /*
@@ -35,7 +37,13 @@ namespace MyErp.Controllers {
 
         private void CreateViewBags(int? id)
         {
-                        var queryca = from p in _dbContext.TPCareers 
+            var querype = from p in _dbContext.TPersons 
+                        orderby p.PerName,p.PerName1
+                        select p;
+            var qListpe = querype.ToList();
+            ViewBag.ListPerson=qListpe;
+
+            var queryca = from p in _dbContext.TPCareers 
                         orderby p.CareDate
                         where p.CarePerId==id
                         select p;
@@ -127,7 +135,9 @@ namespace MyErp.Controllers {
             else
                 return RedirectToAction("Index");
         }
+
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Create() {
             return View();      
         }

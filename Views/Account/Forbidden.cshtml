@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@functions {
+    string Enlace(){
+        string retcol="";
+        try{
+        retcol = (string)ViewData["link"];
+        }catch{}
+        return retcol;
+    }
+}
+<div class="text-center">
+    <h1 class="display-4">Forbidden</h1>
+    <p>Learn about <a href=@Enlace()></a>.</p>
+</div>

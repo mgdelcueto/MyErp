@@ -157,7 +157,7 @@
     <value>apellidos</value>
   </data>
   <data name="DNI" xml:space="preserve">
-    <value>CARNÉ DE IDENTIDAD</value>
+    <value>IDENTIFICACIÓN</value>
   </data>
   <data name="Adress" xml:space="preserve">
     <value>Adress</value>
@@ -175,7 +175,7 @@
     <value>Empleados</value>
   </data>
   <data name="Career" xml:space="preserve">
-    <value>Carrera</value>
+    <value>Carrera profesional</value>
   </data>
   <data name="Contract" xml:space="preserve">
     <value>Contrato</value>
@@ -431,5 +431,35 @@
   </data>
   <data name="AdRChart" xml:space="preserve">
     <value>Añadir a Rol departamento ordanization</value>
+  </data>
+  <data name="Org" xml:space="preserve">
+    <value>Organización</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>No autorizado</value>
+  </data>
+  <data name="Pleaselogin" xml:space="preserve">
+    <value>Por favor Iniciar sesión</value>
+  </data>
+  <data name="Logoff" xml:space="preserve">
+    <value>Desconectarse</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nombre de usuario</value>
+  </data>
+  <data name="EnterUsername" xml:space="preserve">
+    <value>Introduzca su nombre de usuario</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Introducir la contraseña</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Acceso</value>
+  </data>
+  <data name="Forbidden" xml:space="preserve">
+    <value>Prohibido</value>
   </data>
 </root>

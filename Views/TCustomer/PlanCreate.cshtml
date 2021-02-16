@@ -45,12 +45,14 @@
             <td>@Html.LabelFor(p => p.CplanCprodId,new { @class = "norm-text",})</td>
             <td class="norm-text">
                 <!--@ViewData["Plant"]-->
-                @*
                 @Html.DropDownListFor(p=> p.CplanCprodId, (SelectList)ViewBag.ddlReferVO, new { @class ="norm-text"  , onchange = "this.form.submit();"  })
-                *@
+                @*
                 @Html.DropDownList("CprodId", (SelectList)ViewBag.ddlReferVO, new { @class ="norm-text"  , onchange = "this.form.submit();"  })
+                @Html.DropDownList("CprodId", (SelectList)ViewBag.ddlReferVO, new { @class ="norm-text"  , onchange = "this.form.submit();"  })
+                *@
             </td>
-        </tr>
+            <td>@Html.ValidationMessageFor(p => p.CplanCprodId)</td>  
+          </tr>
         </table>
         <table>
         <hr style="width:100%;text-align:left;margin-left:0">

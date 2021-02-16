@@ -7,8 +7,10 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyErp.Controllers {
+    [Authorize(Roles="Engineer,Administrator")]
     public class TEngineController : Controller {
         private readonly MyErpDBContext _dbContext;
         public TEngineController(MyErpDBContext dbContext) {
