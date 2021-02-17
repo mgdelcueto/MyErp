@@ -1,0 +1,28 @@
+@model List<TUsRol>
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+@functions {
+    int UserId(){
+        int retcol=0;
+        try{retcol=(int)ViewData["UserId"];}catch{}
+        return retcol;
+    }
+}
+   <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>@SharedLocalizer.GetLocalizedHtmlString("UsrRolData")</h2>
+    </div>
+    <tr>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("RolName")</th>                
+    </tr>
+   
+    @foreach (var c in (List<TUsRol>) ViewBag.ListUserRol) {
+        <tr>
+            <td class ="col-text">@c.UsRolName</td>            
+            <td class="col-text">@Html.ActionLink("Remove", "RolDelete", new { id = c.UsRolId, usid = c.UsRolUsId}, new { onclick="return confirm('Are you sure?');"})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink(@SharedLocalizer.GetLocalizedHtmlString("AddItem"), "RolCreate",new {usid=@UserId()})

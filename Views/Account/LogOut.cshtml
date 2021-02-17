@@ -1,16 +1,23 @@
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
 <form action="LogOut" method="post">
 
   <div class="visible">
+    <Table>
     <tr>
-        <td><label for="UserName"><b>UserName</b></label></td>
-        <td><input type="text" placeholder="Enter Username" name="UserName" required></td>
-    </tr>
-    <tr>
-        <button type="submit">LogOut</button>
+        <td><button name="actionType" value="Go" type="submit">>@SharedLocalizer.GetLocalizedHtmlString("Logoff")</button></td>
+        <td><button name ="actionType" value ="Cancel" type="submit" class="cancelbtn">>@SharedLocalizer.GetLocalizedHtmlString("Cancel")</button></td>
     </tr>
   </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
+</Table>
+  <div>
+    <Table>
+      <tr>
+        <td>
+          @Html.ActionLink(@SharedLocalizer.GetLocalizedHtmlString("ChangePassword"), "ChLogin")
+        </td>
+      </tr>  
+    </Table>
   </div>
 </form>

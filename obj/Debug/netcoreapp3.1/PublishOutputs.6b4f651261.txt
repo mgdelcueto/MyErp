@@ -44,7 +44,6 @@ C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\de-CH\MyErp.reso
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\de-DE\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\en-US\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\es-ES\MyErp.resources.dll
-C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\es\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\fr-FR\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\pt-PT\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\Microsoft.AspNetCore.JsonPatch.dll

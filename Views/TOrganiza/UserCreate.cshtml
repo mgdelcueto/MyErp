@@ -1,0 +1,35 @@
+@{Layout = "_LyIndex";}
+@using MyErp.Models
+@model TUser
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+@functions {
+    string Coment(){
+        string coment="";
+        try{
+        coment =@SharedLocalizer.GetLocalizedHtmlString((string)ViewData["Coment"]);
+        coment = coment +" "+(string)ViewData["NewPw"];
+        }catch{}
+        return coment;
+    }
+}
+
+<div class="cont-titles">
+<h1>@SharedLocalizer.GetLocalizedHtmlString("AdUser")</h1>
+</div>
+@using (Html.BeginForm()) {
+   <div class="visible">
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border ="1">
+        @Html.Partial("_pshowUser",Model)
+        <tr>
+            @Coment()
+        </tr>
+         <tr>
+            <td><input type="submit" value="Add"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+}

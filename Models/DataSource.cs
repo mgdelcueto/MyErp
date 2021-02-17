@@ -14,6 +14,7 @@ namespace MyErp.Models {
         public static IList<MatType> MatTypes { get; }
         public static IList<MeasureU> MeasureUs { get; }
         public static IList<TimeU> TimeUs { get; }
+        public static IList<AppRol> AppRols { get; }
         static DataSource() {
             Countries = new List<Country>();
             Countries.Add(new Country("ES", "Spain"));
@@ -60,7 +61,16 @@ namespace MyErp.Models {
             TimeUs.Add(new TimeU("D", "Day"));        
             TimeUs.Add(new TimeU("Mo", "Month"));        
             TimeUs.Add(new TimeU("Y", "Year"));        
-            
+
+            AppRols = new List<AppRol>();
+            AppRols.Add(new AppRol("Administrator", "Administrator"));
+            AppRols.Add(new AppRol("Customer", "Customer"));            
+            AppRols.Add(new AppRol("Engineer", "Engineer"));
+            AppRols.Add(new AppRol("Planner", "Planner"));        
+            AppRols.Add(new AppRol("Organization", "Organization"));        
+            AppRols.Add(new AppRol("HR", "HR"));        
+            AppRols.Add(new AppRol("Supplier", "Supplier"));        
+
             }
 
 
@@ -107,6 +117,11 @@ namespace MyErp.Models {
             return result;
         }
 
+        public static IList<AppRol> GetAppRols() {
+            var result = AppRols;
+            //result.ForEach(p => p.Type = _productTypes[p.TypeID]);
+            return result;
+        }
         /*
         public static List<Referencia> GetRefSup(int? id) {
             MyErpDBContext _dbContext=new MyErpDBContext();

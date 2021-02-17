@@ -53,6 +53,8 @@ namespace MyErp.Models
         public virtual DbSet<TSProduct> TSProducts { get; set; }
         public virtual DbSet<TStorage> TStorages { get; set; }
         public virtual DbSet<TSuplier> TSupliers { get; set; }
+        public virtual DbSet<TUsRol> TUsRols { get; set; }
+
         public virtual DbSet<TUser> TUsers { get; set; }
         public virtual DbSet<TWccomponent> TWccomponents { get; set; }
         public virtual DbSet<TWcoperator> TWcoperators { get; set; }
@@ -953,6 +955,22 @@ namespace MyErp.Models
                 entity.Property(e => e.SupStDate).HasColumnType("datetime");
 
                 entity.Property(e => e.SupStatus).HasMaxLength(25);
+            });
+
+            modelBuilder.Entity<TUsRol>(entity =>
+            {
+                entity.HasKey(e => e.UsRolId)
+                    .HasName("PK__T_UsRol__4657E5364746CC13");
+
+                entity.ToTable("T_UsRol");
+
+                entity.Property(e => e.UsRolId).HasColumnName("UsRolID");
+
+                entity.Property(e => e.UsRolDateEnd).HasColumnType("datetime");
+
+                entity.Property(e => e.UsRolName)
+                    .IsRequired()
+                    .HasMaxLength(40);
             });
 
             modelBuilder.Entity<TUser>(entity =>

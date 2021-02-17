@@ -1,24 +1,32 @@
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+
 <form action="Login" method="post">
 
   <div class="visible">
+    <Table>
     <tr>
-        <td><label for="UserName"><b>UserName</b></label></td>
-        <td><input type="text" placeholder="Enter Username" name="UserName" required></td>
+        <td><label for="UserName"><b>@SharedLocalizer.GetLocalizedHtmlString("Username")</b></label></td>
+        <td><input type="text" placeholder="@SharedLocalizer.GetLocalizedHtmlString("EnterUsername")" name="UserName" ></td>
     </tr>
     <tr>
-        <td><label for="Password"><b>Password</b></label></td>
-        <td><input type="password" placeholder="Enter Password" name="psw" required></td>
+        <td><label for="Password"><b>@SharedLocalizer.GetLocalizedHtmlString("Password")</b></label></td>
+        <td><input type="password" placeholder="@SharedLocalizer.GetLocalizedHtmlString("EnterPassword")" name="Password" ></td>
     </tr>
     <tr>
-        <button type="submit">Login</button>
+        <td><button name = "actionType" value="Login" type="submit">@SharedLocalizer.GetLocalizedHtmlString("LogIn")</button></td>
+        <td><button name ="actionType" value="Cancel" type="submit" class="cancelbtn">@SharedLocalizer.GetLocalizedHtmlString("Cancell")</button></td>
     </tr>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
+  </Table>
   </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
+  <div>
+    <Table>
+      <tr>
+        <td>
+          @Html.ActionLink(@SharedLocalizer.GetLocalizedHtmlString("ChangePassword"), "ChLogin")
+        </td>
+      </tr>  
+    </Table>
   </div>
 </form>

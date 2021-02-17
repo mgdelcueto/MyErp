@@ -14467,6 +14467,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_pListaUsers.cshtml",
+      "TargetPath": "Views\\TOrganiza\\_pListaUsers.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaWorkCenters_all.cshtml",
       "TargetPath": "Views\\TEngine\\_pListaWorkCenters_all.cshtml",
       "FileKind": "mvc"
@@ -14479,6 +14484,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pmenuFac.cshtml",
       "TargetPath": "Views\\TEngine\\_pmenuFac.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Account\\Languages.cshtml",
+      "TargetPath": "Views\\Account\\Languages.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14757,6 +14767,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\RolCreate.cshtml",
+      "TargetPath": "Views\\TOrganiza\\RolCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_pshowUser.cshtml",
+      "TargetPath": "Views\\TOrganiza\\_pshowUser.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\WCoEdit.cshtml",
       "TargetPath": "Views\\TEngine\\WCoEdit.cshtml",
       "FileKind": "mvc"
@@ -14937,6 +14957,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_pListaUserRol.cshtml",
+      "TargetPath": "Views\\TOrganiza\\_pListaUserRol.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\Create.cshtml",
       "TargetPath": "Views\\TCustomer\\Create.cshtml",
       "FileKind": "mvc"
@@ -14944,6 +14969,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\MatImp.cshtml",
       "TargetPath": "Views\\TEngine\\MatImp.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\UserCreate.cshtml",
+      "TargetPath": "Views\\TOrganiza\\UserCreate.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14972,6 +15002,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Account\\ChLogin.cshtml",
+      "TargetPath": "Views\\Account\\ChLogin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
@@ -14984,6 +15019,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\PlanEdit.cshtml",
       "TargetPath": "Views\\TCustomer\\PlanEdit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\UserEdit.cshtml",
+      "TargetPath": "Views\\TOrganiza\\UserEdit.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -1,6 +1,10 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+
 @functions {
     string Enlace(){
         string retcol="";
@@ -11,6 +15,5 @@
     }
 }
 <div class="text-center">
-    <h1 class="display-4">Forbidden</h1>
-    <p>Learn about <a href=@Enlace()></a>.</p>
+    <h1 class="display-4">>@SharedLocalizer.GetLocalizedHtmlString("Forbidden")</h1>
 </div>

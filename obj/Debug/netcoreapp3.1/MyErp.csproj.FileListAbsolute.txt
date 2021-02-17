@@ -168,7 +168,6 @@ C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\de-CH\MyErp.resources.dl
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\de-DE\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\en-US\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\es-ES\MyErp.resources.dll
-C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\es\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\fr-FR\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\pt-PT\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\MyErp.Views.dll
@@ -230,7 +229,6 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedRe
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.de-DE.resources
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.en-US.resources
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.es-ES.resources
-C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.es.resources
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.fr-FR.resources
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.pt-PT.resources
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.csproj.GenerateResource.cache
@@ -248,8 +246,6 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\en-US\MyErp.resources.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\en-US\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\es-ES\MyErp.resources.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\es-ES\MyErp.resources.dll
-C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\es\MyErp.resources.cs
-C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\es\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\fr-FR\MyErp.resources.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\fr-FR\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\pt-PT\MyErp.resources.cs
@@ -393,3 +389,11 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Forb
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Noauthorized.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\LogOut.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Languages.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\UserCreate.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\UserEdit.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\_pListaUsers.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\_pshowUser.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\RolCreate.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\_pListaUserRol.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChLogin.cshtml.g.cs

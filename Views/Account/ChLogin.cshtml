@@ -1,0 +1,51 @@
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+@functions {
+    string Coment(){
+        string coment="";
+        try{
+        coment =@SharedLocalizer.GetLocalizedHtmlString((string)ViewData["Coment"]);
+        coment = coment +" "+(string)ViewData["NewPw"];
+        }catch{}
+        return coment;
+    }
+    string UserId(){
+        string coment="";
+        try{
+        coment = (string)ViewData["UserId"];
+        }catch{}
+        return coment;
+    }
+
+}
+
+
+<form action="ChLogin" method="post">
+
+  <div class="visible">
+    <table>
+    <tr>
+        <input type ="hidden" name ="UserId" value ="@UserId()"> 
+        <td><label for="UserName"><b>@SharedLocalizer.GetLocalizedHtmlString("Username")</b></label></td>
+        <td><input type="text" placeholder="@SharedLocalizer.GetLocalizedHtmlString("EnterUsername")" name="UserName" ></td>
+    </tr>
+    <tr>
+        <td><label for="Password"><b>@SharedLocalizer.GetLocalizedHtmlString("Password")</b></label></td>
+        <td><input type="password" placeholder="@SharedLocalizer.GetLocalizedHtmlString("EnterPassword")" name="Password" ></td>
+    </tr>
+    <tr>
+        <td><label for="Password"><b>@SharedLocalizer.GetLocalizedHtmlString("NewPassword")</b></label></td>
+        <td><input type="password" placeholder="@SharedLocalizer.GetLocalizedHtmlString("EnterPassword")" name="NPassword" ></td>
+    </tr>
+    <tr>
+        <td><label for="Password"><b>@SharedLocalizer.GetLocalizedHtmlString("RepNewPassword")</b></label></td>
+        <td><input type="password" placeholder="@SharedLocalizer.GetLocalizedHtmlString("EnterPassword")" name="RPassword" ></td>
+    </tr>
+    <tr>
+        <td><button name="actionType" value="Go" type="submit">@SharedLocalizer.GetLocalizedHtmlString("GO")</button></td>
+        <td><button name ="actionType" value="Cancel" type="submit" class="cancelbtn">@SharedLocalizer.GetLocalizedHtmlString("Cancell")</button></td>
+    </tr>
+</table>
+</div>
+</form>

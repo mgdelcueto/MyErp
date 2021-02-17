@@ -438,7 +438,7 @@
   <data name="Unauthorized" xml:space="preserve">
     <value>Unauthorized</value>
   </data>
-  <data name="Pleaselogin" xml:space="preserve">
+  <data name="PleaseLogin" xml:space="preserve">
     <value>Please Login</value>
   </data>
   <data name="Logoff" xml:space="preserve">
@@ -461,5 +461,32 @@
   </data>
   <data name="Forbidden" xml:space="preserve">
     <value>Forbidden</value>
+  </data>
+  <data name="UsrData" xml:space="preserve">
+    <value>User's Data</value>
+  </data>
+  <data name="UName" xml:space="preserve">
+    <value>User's Name</value>
+  </data>
+  <data name="ULastName" xml:space="preserve">
+    <value>User's Last Name</value>
+  </data>
+  <data name="AddItem" xml:space="preserve">
+    <value>Add Item</value>
+  </data>
+  <data name="AdUser" xml:space="preserve">
+    <value>Add User</value>
+  </data>
+  <data name="EdUser" xml:space="preserve">
+    <value>Edit User</value>
+  </data>
+  <data name="UsRolData" xml:space="preserve">
+    <value>User's Rol Data</value>
+  </data>
+  <data name="RolName" xml:space="preserve">
+    <value>Rol's Name</value>
+  </data>
+  <data name="AdRol" xml:space="preserve">
+    <value>Add Rol </value>
   </data>
 </root>

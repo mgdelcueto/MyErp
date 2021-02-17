@@ -1,0 +1,24 @@
+@model TUser
+        <tr>
+            <td>@Html.LabelFor(p => p.UserLoginName,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.UserLoginName, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.UserFirstName,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.UserFirstName, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
+        </tr>
+        <tr>
+            <td>@Html.ValidationMessageFor(p => p.UserLoginName)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.UserFirstName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.UserLastName,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.UserLastName, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.UserStatus,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.UserStatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+
+        </tr>        
+        <tr>
+            <td>@Html.ValidationMessageFor(p => p.UserLastName)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.UserStatus)</td>
+        </tr>

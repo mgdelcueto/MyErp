@@ -318,9 +318,6 @@
           "es-ES/MyErp.resources.dll": {
             "locale": "es-ES"
           },
-          "es/MyErp.resources.dll": {
-            "locale": "es"
-          },
           "fr-FR/MyErp.resources.dll": {
             "locale": "fr-FR"
           },

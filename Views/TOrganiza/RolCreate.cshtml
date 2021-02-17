@@ -1,0 +1,32 @@
+@{Layout = "_LyIndex";}
+@using MyErp.Models
+@model TUsRol
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+@functions {
+}
+<div class="cont-titles">
+<h1>@SharedLocalizer.GetLocalizedHtmlString("AdRol")</h1>
+</div>
+@using (Html.BeginForm()) {
+   <div class="visible">
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border ="1">
+        <tr>
+            <td>@Html.LabelFor(p => p.UsRolName,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                @Html.DropDownListFor(p => p.UsRolName,
+               new SelectList(DataSource.GetAppRols(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+        </tr>        
+        <tr>
+            <td>@Html.ValidationMessageFor(p => p.UsRolName)</td>
+        </tr>
+         <tr>
+            <td><input type="submit" value="Add"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+}

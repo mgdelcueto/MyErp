@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using MyErp.Models;
@@ -12,7 +14,7 @@ namespace MyErp.Controllers {
     public class TOrganizaController : Controller {
         private readonly MyErpDBContext _dbContext;
         private readonly ILogger<TPersonController> _logger;    
-        private void CreateViewBags(int chid=0)
+        private void CreateViewBags(int chid=0,int usrid=0)
         {
 
             var chart = from p in _dbContext.TCharts
@@ -35,6 +37,17 @@ namespace MyErp.Controllers {
                         CharHName=e.PerName+" "+e.PerName1
                         };
             ViewBag.ListChar = chart.ToList(); 
+
+            var user = from p in _dbContext.TUsers
+                        orderby p.UserLastName,p.UserFirstName
+                        select p;
+            ViewBag.ListUS = user.ToList(); 
+
+            var usrol = from p in _dbContext.TUsRols
+                        orderby p.UsRolName
+                        where p.UsRolUsId==usrid
+                        select p;
+            ViewBag.ListUserRol = usrol.ToList(); 
 
             var chartrol = from p in _dbContext.TChartRols
                         join e in _dbContext.TPersons 
@@ -115,6 +128,63 @@ namespace MyErp.Controllers {
         }
 
         [HttpGet]
+        public IActionResult UserCreate(string actionType) {
+            CreateViewBags();
+            ViewData["panel"]=5;
+            return View();      
+        }
+
+        [HttpPost]
+        public IActionResult UserCreate(TUser user,string actionType) {
+            int id =0;
+            ViewData["panel"]=5;
+            if(actionType=="Add"){
+             if (ModelState.IsValid){
+                    try{
+                        id = user.UserId;
+                        Guid guid = Guid.NewGuid();
+                        string re = guid.ToString();
+                        string Passw = re.Substring(1,4)+re.Substring(re.Length-5,4) ;
+                        string Login = user.UserLoginName;
+                        string Fname = user.UserFirstName;
+                        string Lname = user.UserLastName;
+                        var login = new SqlParameter("@plog", Login);
+                        var pass = new SqlParameter("@ppw", Passw);
+                        var fname = new SqlParameter("@pfn", Fname);
+                        var lname = new SqlParameter("@pln", Lname);
+                        var retor = new SqlParameter{                            
+                            ParameterName="@ret",
+                            SqlDbType=System.Data.SqlDbType.Int,
+                            Direction= System.Data.ParameterDirection.Output,
+                            Value=0};
+                        _dbContext.Database.ExecuteSqlRaw("uspAddUser @plog,@ppw,@pfn,@pln,@ret OUT", login,pass,fname,lname,retor);
+                        int mId =(int)retor.Value;
+                        //"0" ok
+                        //"1" incorrect Throw exception
+                        //_dbContext.TUsers.Add(user); 
+                        //_dbContext.SaveChanges();
+                        CreateViewBags(0,id);    
+                        ViewData["panel"]=5;
+                        ViewData["Coment"]="PassChanged";
+                        ViewData["NewPw"]=Passw;
+                        //return View(user);
+                        return RedirectToAction("UserEdit", new { id = mId ,panel=5,npassw=Passw});
+                   }
+                 catch(Exception ex){
+                     string mensaje = ex.Message;
+                     return View("Error");}
+                 } 
+            else {
+                CreateViewBags();    
+                return View(user);
+                }
+            }
+            CreateViewBags(0,id);    
+
+            return RedirectToAction("Index",new{panel=5});
+        }
+
+        [HttpGet]
         public IActionResult RCharCreate(int chid,string actionType) {
             CreateViewBags(chid);
             ViewData["panel"]=2;
@@ -143,6 +213,40 @@ namespace MyErp.Controllers {
 
             return RedirectToAction("CharEdit",new{id=chid, panel=2});
         }
+
+        [HttpGet]
+        public IActionResult RolCreate(int usid,string actionType) {
+            CreateViewBags(0,usid);
+            ViewData["panel"]=2;
+            return View();      
+        }
+
+        [HttpPost]
+        public IActionResult RolCreate(TUsRol rols,int usid,string actionType) {
+            ViewData["panel"]=5;
+            //int chid=chart.RcharCharId;
+            rols.UsRolUsId=usid;
+            rols.UsRolDateEnd=System.DateTime.Now;
+            if(actionType=="Add"){
+             if (ModelState.IsValid){
+                    try{
+                        _dbContext.TUsRols.Add(rols); 
+                        _dbContext.SaveChanges();
+                   }
+                 catch(Exception ex){
+                     string mensaje = ex.Message;
+                     return View("Error");}
+                 } 
+            else {
+                CreateViewBags(0,usid);    
+                return View(rols);
+                }
+            }
+            CreateViewBags(0,usid);    
+
+            return RedirectToAction("UserEdit",new{id=usid, panel=5});
+        }
+
         public IActionResult CharDelete(int id) {
             var mode = _dbContext.TCharts
                 .SingleOrDefault(u => u.CharId.Equals(id));
@@ -155,6 +259,20 @@ namespace MyErp.Controllers {
             ViewData["panel"]=2;
             return RedirectToAction("Index",new{panel=2});
         }
+
+        public IActionResult UserDelete(int id) {
+            var mode = _dbContext.TUsers
+                .SingleOrDefault(u => u.UserId.Equals(id));
+            try{
+            _dbContext.TUsers.Remove(mode);
+            _dbContext.SaveChanges();
+            }  
+            catch{}          
+            CreateViewBags();                
+            ViewData["panel"]=5;
+            return RedirectToAction("Index",new{panel=5});
+        }
+
         public IActionResult RCharDelete(int id,int chid) {
             var mode = _dbContext.TChartRols
                 .SingleOrDefault(u => u.RcharId.Equals(id));
@@ -166,6 +284,18 @@ namespace MyErp.Controllers {
             CreateViewBags(chid);                
             ViewData["panel"]=2;
             return RedirectToAction("CharEdit",new{id =chid,panel=2});
+        }
+        public IActionResult RolDelete(int id,int usid) {
+            var mode = _dbContext.TUsRols
+                .SingleOrDefault(u => u.UsRolId.Equals(id));
+            try{
+            _dbContext.TUsRols.Remove(mode);
+            _dbContext.SaveChanges();
+            }  
+            catch{}          
+            CreateViewBags(0,usid);                
+            ViewData["panel"]=5;
+            return RedirectToAction("UserEdit",new{id =usid,panel=5});
         }
 
         [HttpGet]
@@ -240,6 +370,89 @@ namespace MyErp.Controllers {
             ViewData["panel"]=2;
 
             return RedirectToAction("Index",new{panel=2, FaId=0});
+        } 
+        [HttpGet]
+        public IActionResult UserEdit(int id, string npassw=null) {
+            ViewData["panel"]=5;
+            ViewData["UserId"]=id;
+            try{
+            var model = _dbContext.TUsers
+                .SingleOrDefault(u => u.UserId.Equals(id));
+            CreateViewBags(0,id);  
+            if (npassw !=null)
+            {
+                string Passw=npassw;
+                ViewData["Coment"]="PassChanged";
+                ViewData["NewPw"]=Passw;
+            }
+            return View(model);
+            }
+            catch{return View("Error");}            
+        }
+
+        [HttpPost]
+        public IActionResult UserEdit(TUser user,int id , string actionType,string npassw=null, string nresetpw=null ) {
+            if (actionType=="Cancel"){}
+            if (actionType=="Update"){
+            if (ModelState.IsValid){
+            try{
+            int type =1;
+            if (nresetpw=="on"){type =2;}
+            Guid guid = Guid.NewGuid();
+            string re = guid.ToString();
+            string Passw = re.Substring(1,4)+re.Substring(re.Length-5,4) ;
+            string Login = user.UserLoginName;
+            string Fname = user.UserFirstName;
+            string Lname = user.UserLastName;
+            var pType = new SqlParameter{
+                ParameterName="@ptype",
+                SqlDbType=System.Data.SqlDbType.Int,
+                Value=type};
+            var pId = new SqlParameter{
+                ParameterName="@pid",
+                SqlDbType=System.Data.SqlDbType.Int,
+                Value=id};
+            var login = new SqlParameter("@plog", Login);
+            var pass = new SqlParameter("@ppw", Passw);
+            var fname = new SqlParameter("@pfnam", Fname);
+            var lname = new SqlParameter("@plnam", Lname);
+            var retor = new SqlParameter{                            
+                ParameterName="@ret",
+                SqlDbType=System.Data.SqlDbType.NVarChar,
+                Direction= System.Data.ParameterDirection.Output,
+                Value=" "};
+            _dbContext.Database.ExecuteSqlRaw("uspUpdUser @pid,@ptype,@plog,@ppw,@pfnam,@plnam,@ret OUT", pId,pType,login,pass,fname,lname,retor);
+            string mensaje =(string)retor.Value;
+                        //"0" ok
+                        //"1" incorrect Throw exception
+                        //_dbContext.TUsers.Add(user); 
+                        //_dbContext.SaveChanges();
+            if (type==2||npassw !=null)
+            {
+                if (npassw !=null){Passw=npassw;}
+                CreateViewBags(0,id);    
+                ViewData["panel"]=5;
+                ViewData["Coment"]="PassChanged";
+                ViewData["NewPw"]=Passw;
+                return View(user);
+            }
+            }
+            catch(Exception ex){
+                string mensaje = ex.Message;
+                return View("Error");}
+            } 
+            }
+            /*
+            else {
+                CreateViewBags(0,id);    
+                ViewData["panel"]=5;
+                return View(user);
+            }
+            */
+            CreateViewBags(0,id);    
+            ViewData["panel"]=5;
+
+            return RedirectToAction("Index",new{panel=5, FaId=0});
         } 
 
     }

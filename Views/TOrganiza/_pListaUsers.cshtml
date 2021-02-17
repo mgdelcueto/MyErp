@@ -1,0 +1,26 @@
+@model List<TUser>
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+
+   <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>@SharedLocalizer.GetLocalizedHtmlString("UsrData")</h2>
+    </div>
+    <tr>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("UName")</th>                
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ULastName")</th>        
+    </tr>
+   
+    @foreach (var c in (List<TUser>) ViewBag.ListUS) {
+        <tr>
+            <td class ="col-text">@c.UserFirstName</td>            
+            <td class ="big-text">@c.UserLastName</td>
+            <td class="col-text">@Html.ActionLink("Delete", "UserDelete", new { id = c.UserId}, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "UserEdit", new { id = c.UserId ,panel=5})</td>
+            
+        </tr>
+    }
+</table>
+@Html.ActionLink(@SharedLocalizer.GetLocalizedHtmlString("AddItem"), "UserCreate")
+<

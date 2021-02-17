@@ -1,0 +1,47 @@
+@{Layout = "_LyIndex";}
+@using MyErp.Models
+@model TUser
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+@functions {
+    string Coment(){
+        string coment="";
+        try{
+        coment =@SharedLocalizer.GetLocalizedHtmlString((string)ViewData["Coment"]);
+        coment = coment +" "+(string)ViewData["NewPw"];
+        }catch{}
+        return coment;
+    }
+}
+
+<div class="cont-titles">
+<h1>@SharedLocalizer.GetLocalizedHtmlString("EdUser")</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.HiddenFor(p => p.UserId)
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border ="1">
+        @Html.Partial("_pshowUser",Model)
+        <tr>
+            <td><label for="resetpw">@SharedLocalizer.GetLocalizedHtmlString("Reset_Pw")</label></td>
+            <td><input type="checkbox" id="iresetpw" name="nresetpw" ></td>
+        </tr>
+        <tr>
+            @Coment()
+        </tr>
+        <tr>
+            <td><input type="submit" value="Update"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+}
+@*@Html.Partial("_pmenuChart",Model)*@
+
+<div class="visible">
+@await Html.PartialAsync("_pListaUserRol",(List<TUsRol>)ViewBag.ListUserRol)
+</div>
+
+

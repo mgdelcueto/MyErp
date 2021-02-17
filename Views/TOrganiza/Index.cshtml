@@ -32,11 +32,12 @@
     @await Html.PartialAsync("_SelectLanguagePartial")
     </div>
 
+*@
     <!--Users-->
     <div class=@isVisible(5)>
-    @await Html.PartialAsync("_pListaChart",(List<TFacility>)ViewBag.ListFA)
+    @await Html.PartialAsync("_pListaUsers",(List<TUser>)ViewBag.ListUS)
     </div>
-*@
+
     <!--Languages-->
     <div class=@isVisible(3)>
         <tr>
