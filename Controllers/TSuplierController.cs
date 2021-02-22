@@ -5,7 +5,7 @@ using MyErp.Models;
 using System.Linq;
 
 namespace MyErp.Controllers {
-    [Authorize]
+    [Authorize(Roles="Supplier,Administrator")]
     public class TSuplierController : Controller {
         private readonly MyErpDBContext _dbContext;
         public TSuplierController(MyErpDBContext dbContext) {

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace MyErp.Controllers {
-    [Authorize]
+   [Authorize(Roles="Customer,Administrator")]
     public class TCustomerController : Controller {
         private readonly MyErpDBContext _dbContext;
         public TCustomerController(MyErpDBContext dbContext) {
@@ -36,6 +36,24 @@ namespace MyErp.Controllers {
 
             ViewData["Plant"]=plant;
 
+            var queryplan = (from p in _dbContext.TCCplants 
+                        orderby p.CplantDeno
+                        select new TCCplant {CplantId=p.CplantId ,CplantDeno=p.CplantDeno}).ToList();
+            var querypla0 = ( from p in _dbContext.TCCplants  
+            select new TCCplant{CplantId=0,CplantDeno="Select a Plant"}).Distinct().ToList();
+            var queryplans = querypla0.Concat(queryplan);
+            ViewBag.ddlPlantX = new SelectList(queryplans.ToList(), "CplantId", "CplantDeno",0); 
+
+            var querycust = (from p in _dbContext.TCustomers 
+                        orderby p.CustRasoc
+                        select new TCustomer {CustId=p.CustId ,CustRasoc=p.CustRasoc}).ToList();
+            var querycus0 = ( from p in _dbContext.TCCplants  
+            select new TCustomer{CustId=0,CustRasoc="Select a Customer"}).Distinct().ToList();
+            var querycusts = querycus0.Concat(querycust);
+            ViewBag.ddlCustoX = new SelectList(querycusts.ToList(), "CplantId", "CplantDeno",0); 
+
+
+
         }
         private void CreateViewBags(int? id, int? prod, int? plant)
         {
@@ -53,6 +71,22 @@ namespace MyErp.Controllers {
             ViewBag.ddlPlantVB = new SelectList(resulp.ToList(), "CplantId", "CplantDeno",plant); 
 
             ViewData["Plant"]=plant;
+
+            var queryplan = (from p in _dbContext.TCCplants 
+                        orderby p.CplantDeno
+                        select new TCCplant {CplantId=p.CplantId ,CplantDeno=p.CplantDeno}).ToList();
+            var querypla0 = ( from p in _dbContext.TCCplants  
+            select new TCCplant{CplantId=0,CplantDeno="Select a Plant"}).Distinct().ToList();
+            var queryplans = querypla0.Concat(queryplan);
+            ViewBag.ddlPlantX = new SelectList(queryplans.ToList(), "CplantId", "CplantDeno",0); 
+
+            var querycust = (from p in _dbContext.TCustomers 
+                        orderby p.CustRasoc
+                        select new TCustomer {CustId=p.CustId ,CustRasoc=p.CustRasoc}).ToList();
+            var querycus0 = ( from p in _dbContext.TCCplants  
+            select new TCustomer{CustId=0,CustRasoc="Select a Customer"}).Distinct().ToList();
+            var querycusts = querycus0.Concat(querycust);
+            ViewBag.ddlCustoX = new SelectList(querycusts.ToList(), "CplantId", "CplantDeno",0); 
 
             var querypa = from p in _dbContext.TCCplants 
                         orderby p.CplantDeno

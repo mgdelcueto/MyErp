@@ -15,6 +15,7 @@ namespace MyErp.Models {
         public static IList<MeasureU> MeasureUs { get; }
         public static IList<TimeU> TimeUs { get; }
         public static IList<AppRol> AppRols { get; }
+        public static IList<WDay> WDays { get; }
         static DataSource() {
             Countries = new List<Country>();
             Countries.Add(new Country("ES", "Spain"));
@@ -71,6 +72,15 @@ namespace MyErp.Models {
             AppRols.Add(new AppRol("HR", "HR"));        
             AppRols.Add(new AppRol("Supplier", "Supplier"));        
 
+            WDays = new List<WDay>();
+            WDays.Add(new WDay(1, "Sunday"));
+            WDays.Add(new WDay(2, "Monday"));
+            WDays.Add(new WDay(3, "Tuesday"));
+            WDays.Add(new WDay(4, "Wednesday"));
+            WDays.Add(new WDay(5, "Tursday"));
+            WDays.Add(new WDay(6, "Friday"));
+            WDays.Add(new WDay(7, "Saturday"));
+
             }
 
 
@@ -119,6 +129,12 @@ namespace MyErp.Models {
 
         public static IList<AppRol> GetAppRols() {
             var result = AppRols;
+            //result.ForEach(p => p.Type = _productTypes[p.TypeID]);
+            return result;
+        }
+
+        public static IList<WDay> GetWDays() {
+            var result = WDays;
             //result.ForEach(p => p.Type = _productTypes[p.TypeID]);
             return result;
         }

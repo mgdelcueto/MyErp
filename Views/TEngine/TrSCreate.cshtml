@@ -1,0 +1,31 @@
+@{Layout = "_LyIndex";}
+@using MyErp.Models
+@model TCTrSched
+@functions {
+    int? Planta(){
+        int? retcol = (int?)ViewData["Plant"];
+        return retcol;
+    }
+    int Truck(){
+        int  retu = 0;
+        try{retu =(int)ViewData["truck"];}catch{}
+        return retu;
+    }
+}
+<div class="cont-titles">
+<h1>Add a New Truck Schedule record</h1>
+</div>
+@using (Html.BeginForm()) {
+   <div class="visible">
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border ="1">
+        <input type="hidden" id = "TrScTruck" name = "TrScTruck" value ="@Truck()">
+        @Html.Partial("_pshowSTrucks",Model)
+          <tr>
+            <td><input type="submit" value="Add"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+
+   </div>
+}

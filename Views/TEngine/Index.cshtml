@@ -41,4 +41,9 @@
     @Html.Partial("_pListaOperators_all",(List<TOperator>)ViewBag.ListOP)
     </div>
 
+    <!--Trucks-->
+    <div class=@isVisible(7)>
+    @Html.Partial("_pListaTrucks_all",(List<TCTruck>)ViewBag.ListTruck)
+    </div>
+
 </div>

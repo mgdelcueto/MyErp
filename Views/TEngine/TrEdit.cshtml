@@ -1,0 +1,58 @@
+@{Layout = "_LyIndex";}
+@using MyErp.Models
+@model TCTruck
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+@{
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("HRAreaIndexPage");
+}
+@functions {
+    string isVisible(int panel){
+        string retcol="";
+        try{
+        int opanel = (int)ViewData["vpanel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        }catch{}
+        return retcol;
+    }
+string assVisible()
+{
+    string retcol="invisible";
+    try{
+    if ((int)ViewData["Assign"]==1)
+    {retcol="visible";}
+    }
+    catch{}
+    return retcol;
+ }
+}
+<div class="cont-titles">
+<h1>Edit a Truck record</h1>
+</div>
+@using (Html.BeginForm()) {
+    <div class="visible">
+    @Html.HiddenFor(p => p.TruckId)
+    @Html.ValidationSummary(true)
+    <table class="table-norm" border ="1">
+        @Html.Partial("_pshowTrucks",Model)
+        <tr>
+            <td><input type="submit" value="Update"  name="actionType"/></td>
+            <td><input type="submit" value="Cancel" name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+
+@Html.Partial("_pmenuTr",Model)
+
+<!--Work Centers-->
+<div class=@isVisible(1)>
+<table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>Truck Schedules</h2>
+    </div>
+    @Html.Partial("_pListaTruckSchedules",(List<TCTrSched>)ViewBag.ListSTrucks)
+</table>
+@Html.ActionLink("Assign a new Schedule", "TrSCreate", new { tid= @Model.TruckId,vpanel=1})</div>
+}

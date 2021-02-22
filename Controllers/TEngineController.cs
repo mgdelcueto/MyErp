@@ -16,7 +16,7 @@ namespace MyErp.Controllers {
         public TEngineController(MyErpDBContext dbContext) {
             _dbContext = dbContext;
         }
-        private void CreateViewBags(int? prod, int? plant,string Code="",int Coid=0)
+        private void CreateViewBags(int? prod, int? plant,string Code="",int Coid=0,int? CustId=0,int? TruckId=0)
         {
             var queryfa = (from fa in _dbContext.TFacilities
                             orderby fa.FaDescr 
@@ -148,6 +148,18 @@ namespace MyErp.Controllers {
                         select po).ToList();
             ViewBag.ListOP=querylop;
 
+            var querytr =(from po in _dbContext.TCTrucks
+                        orderby po.TruckDeno
+                        //where po.LocFaId ==plant || plant==0
+                        select po).ToList();
+            ViewBag.ListTruck=querytr;
+
+            var querystr =(from po in _dbContext.TCTrScheds
+                        orderby po.TrScDayOfWeek,po.TrScCrLoadStart
+                        where po.TrScTruckId==TruckId 
+                        //where po.LocFaId ==plant || plant==0
+                        select po).ToList();
+            ViewBag.ListSTrucks=querystr;
 
             var queryman1 = (from p in _dbContext.TMaterials 
                         orderby p.MatRefer
@@ -250,6 +262,23 @@ namespace MyErp.Controllers {
                 }).ToList();
             
             ViewBag.ListMatRou=queryro;
+            var queryplan = (from p in _dbContext.TCCplants 
+                        orderby p.CplantDeno
+                        where p.CplantCustId==CustId || CustId==0
+                        select new TCCplant {CplantId=p.CplantId ,CplantDeno=p.CplantDeno}).ToList();
+            var querypla0 = ( from p in _dbContext.TCCplants  
+            select new TCCplant{CplantId=0,CplantDeno="Select a Plant"}).Distinct().ToList();
+            var queryplans = querypla0.Concat(queryplan);
+            ViewBag.ddlPlantX = new SelectList(queryplans.ToList(), "CplantId", "CplantDeno",0); 
+
+            var querycust = (from p in _dbContext.TCustomers 
+                        orderby p.CustRasoc
+                        select new TCustomer {CustId=p.CustId ,CustRasoc=p.CustRasoc}).ToList();
+            var querycus0 = ( from p in _dbContext.TCCplants  
+            select new TCustomer{CustId=0,CustRasoc="Select a Customer"}).Distinct().ToList();
+            var querycusts = querycus0.Concat(querycust);
+            ViewBag.ddlCustoX = new SelectList(querycusts.ToList(), "CustId", "CustRasoc",0); 
+
 
        }
 
@@ -348,7 +377,7 @@ namespace MyErp.Controllers {
             if(WcdId ==null ){WcdId=int.Parse("0");}
             ViewData["panel"]=panel;
             ViewData["Title"] = "Engineer Data";
-            var dbContext = new MyErpDBContext();
+            //var dbContext = new MyErpDBContext();
             try{
                 CreateViewBags(WcdId,FaId,Code);
              return View();
@@ -725,6 +754,68 @@ namespace MyErp.Controllers {
             return RedirectToAction("MatRoute",new{id=id});
         }
 
+
+        [HttpGet]
+        public IActionResult TrCreate(string actionType) {
+            CreateViewBags(0,0);
+            ViewData["panel"]=7;
+            return View();      
+        }
+
+        [HttpPost]
+        public IActionResult TrCreate(TCTruck truck,string actionType) {
+            ViewData["panel"]=7;
+            if(actionType=="Add"){
+             if (ModelState.IsValid){
+                    try{
+                        _dbContext.TCTrucks.Add(truck); 
+                        _dbContext.SaveChanges();
+                   }
+                 catch{return View("Error");}
+                 } 
+            else {
+                CreateViewBags(0,0,"",0,truck.TruckCustId);    
+                return View(truck);
+                }
+            }
+            else {
+                CreateViewBags(0,0,"",0,truck.TruckCustId);    
+                return View(truck);
+                }
+            CreateViewBags(0,0,"",0,truck.TruckCustId);    
+
+            return RedirectToAction("Index",new{panel=7});
+        }
+
+        [HttpGet]
+        public IActionResult TrSCreate(int tid ,string actionType) {
+            CreateViewBags(0,0);
+            ViewData["panel"]=7;
+            ViewData["truck"]=tid;
+            return View();      
+        }
+
+        [HttpPost]
+        public IActionResult TrSCreate(TCTrSched struck,int TrScTruck,string actionType) {
+            ViewData["panel"]=7;
+            if(actionType=="Add"){
+             if (ModelState.IsValid){
+                    try{
+                        struck.TrScTruckId=TrScTruck;
+                        _dbContext.TCTrScheds.Add(struck); 
+                        _dbContext.SaveChanges();
+                   }
+                 catch{return View("Error");}
+                 } 
+            else {
+                return View(struck);
+                }
+            }
+            CreateViewBags(0,0);    
+
+            return RedirectToAction("TrEdit",new{id=TrScTruck});
+        }
+
         public IActionResult FacDelete(int id) {
             var mode = _dbContext.TFacilities
                 .SingleOrDefault(u => u.FaId.Equals(id));
@@ -844,6 +935,32 @@ namespace MyErp.Controllers {
             CreateViewBags(0,0);                
             ViewData["panel"]=4;
             return RedirectToAction("MatRoute",new{id=Mid});
+        }
+
+        public IActionResult TrDelete(int id) {
+            var mode = _dbContext.TCTrucks
+                .SingleOrDefault(u => u.TruckId.Equals(id));
+            try{
+            _dbContext.TCTrucks.Remove(mode);
+            _dbContext.SaveChanges();
+            }  
+            catch{}          
+            CreateViewBags(0,0);                
+            ViewData["panel"]=7;
+            return RedirectToAction("Index",new{panel=7});
+        }
+
+        public IActionResult TrSDelete(int id) {
+            var mode = _dbContext.TCTrScheds
+                .SingleOrDefault(u => u.TrScId.Equals(id));
+            try{
+            _dbContext.TCTrScheds.Remove(mode);
+            _dbContext.SaveChanges();
+            }  
+            catch{}          
+            CreateViewBags(0,0);                
+            ViewData["panel"]=7;
+            return RedirectToAction("Index",new{panel=7});
         }
 
 
@@ -1348,6 +1465,87 @@ namespace MyErp.Controllers {
 
         } 
 
+
+        [HttpGet]
+        public IActionResult TrEdit(int id) {
+            ViewData["panel"]=7;
+            try{
+            var model = _dbContext.TCTrucks
+                .SingleOrDefault(u => u.TruckId.Equals(id));
+            CreateViewBags(0,0,"",0,model.TruckCustId,model.TruckId);    
+            return View(model);
+            }
+            catch{return View("Error");}            
+        }
+
+        [HttpPost]
+        public IActionResult TrEdit(TCTruck truck,int id ,string actionType) {
+            if (actionType=="Cancel")
+            {
+            CreateViewBags(0,0,"",0,truck.TruckCustId);    
+            ViewData["panel"]=7;
+            return RedirectToAction("Index",new{panel=7,WcdId=truck.TruckId});
+            }
+            if (actionType=="Update"){
+            if (ModelState.IsValid){
+                try{
+                    _dbContext.TCTrucks.Update(truck);
+                    _dbContext.SaveChanges();
+                }
+                catch{}
+                }
+                else {
+                    CreateViewBags(0,0,"",0,truck.TruckCustId);    
+                    ViewData["panel"]=7;
+                    return View(truck);
+                }
+            }
+            else
+            {
+                    CreateViewBags(0,0,"",0,truck.TruckCustId);    
+                    ViewData["panel"]=7;
+                    return View(truck);
+            }
+            CreateViewBags(0,0,"",0,truck.TruckCustId);    
+            ViewData["panel"]=7;
+
+            return RedirectToAction("TrEdit",new{panel=7,WcdId=truck.TruckId});
+        } 
+
+        [HttpGet]
+        public IActionResult TrSEdit(int id) {
+            ViewData["panel"]=7;
+            try{
+            var model = _dbContext.TCTrScheds
+                .SingleOrDefault(u => u.TrScId.Equals(id));
+            CreateViewBags(0,0);  
+            ViewData["truck"]=model.TrScTruckId;
+            return View(model);
+            }
+            catch{return View("Error");}            
+        }
+
+        [HttpPost]
+        public IActionResult TrSEdit(TCTrSched struck,int TrScTruck ,string actionType) {
+            if (actionType=="Update"){
+            if (ModelState.IsValid){
+                try{
+                    _dbContext.TCTrScheds.Update(struck);
+                    _dbContext.SaveChanges();
+                }
+                catch{}
+                }
+                else {
+                    CreateViewBags(0,0);    
+                    ViewData["panel"]=7;
+                 return View(struck);
+                }
+            }
+            CreateViewBags(0,0);    
+            ViewData["panel"]=7;
+
+            return RedirectToAction("TrEdit",new{id=TrScTruck});
+        } 
 
         public IActionResult MatComp(int id) {
             var mode = _dbContext.TMaterials

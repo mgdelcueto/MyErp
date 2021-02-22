@@ -397,3 +397,13 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\_p
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\RolCreate.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\_pListaUserRol.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChLogin.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Errores\Index.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\TrCreate.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\TrEdit.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\TrSCreate.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\TrSEdit.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pListaTruckSchedules.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pListaTrucks_all.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pmenuTr.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pshowSTrucks.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TEngine\_pshowTrucks.cshtml.g.cs

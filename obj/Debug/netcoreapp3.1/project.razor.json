@@ -14427,6 +14427,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\TrCreate.cshtml",
+      "TargetPath": "Views\\TEngine\\TrCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowCMaterials.cshtml",
       "TargetPath": "Views\\TEngine\\_pshowCMaterials.cshtml",
       "FileKind": "mvc"
@@ -14519,6 +14524,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Account\\Login.cshtml",
       "TargetPath": "Views\\Account\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\TrSCreate.cshtml",
+      "TargetPath": "Views\\TEngine\\TrSCreate.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14677,6 +14687,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaTrucks_all.cshtml",
+      "TargetPath": "Views\\TEngine\\_pListaTrucks_all.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\ConCreate.cshtml",
       "TargetPath": "Views\\TPerson\\ConCreate.cshtml",
       "FileKind": "mvc"
@@ -14717,6 +14732,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pmenuTr.cshtml",
+      "TargetPath": "Views\\TEngine\\_pmenuTr.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaTruckSchedules.cshtml",
+      "TargetPath": "Views\\TEngine\\_pListaTruckSchedules.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\PlanCreate.cshtml",
       "TargetPath": "Views\\TSuplier\\PlanCreate.cshtml",
       "FileKind": "mvc"
@@ -14734,6 +14759,16 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\CharCreate.cshtml",
       "TargetPath": "Views\\TOrganiza\\CharCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Errores\\Index.cshtml",
+      "TargetPath": "Views\\Errores\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\TrSEdit.cshtml",
+      "TargetPath": "Views\\TEngine\\TrSEdit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14837,6 +14872,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowSTrucks.cshtml",
+      "TargetPath": "Views\\TEngine\\_pshowSTrucks.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\RevCreate.cshtml",
       "TargetPath": "Views\\TPerson\\RevCreate.cshtml",
       "FileKind": "mvc"
@@ -14932,6 +14972,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowTrucks.cshtml",
+      "TargetPath": "Views\\TEngine\\_pshowTrucks.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\PlanEdit.cshtml",
       "TargetPath": "Views\\TSuplier\\PlanEdit.cshtml",
       "FileKind": "mvc"
@@ -14959,6 +15004,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_pListaUserRol.cshtml",
       "TargetPath": "Views\\TOrganiza\\_pListaUserRol.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\TrEdit.cshtml",
+      "TargetPath": "Views\\TEngine\\TrEdit.cshtml",
       "FileKind": "mvc"
     },
     {

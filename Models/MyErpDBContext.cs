@@ -24,6 +24,11 @@ namespace MyErp.Models
         public virtual DbSet<TChart> TCharts { get; set; }
         public virtual DbSet<TChartRol> TChartRols { get; set; }
         public virtual DbSet<TCPorder> TCPorders { get; set; }
+        public virtual DbSet<TCScShop> TCScShops { get; set; }
+        public virtual DbSet<TCSched> TCScheds { get; set; }
+        public virtual DbSet<TCTrSched> TCTrScheds { get; set; }
+        public virtual DbSet<TCTruck> TCTrucks { get; set; }
+
         public virtual DbSet<TCustomer> TCustomers { get; set; }
         public virtual DbSet<TExpMater> TExpMaters { get; set; }
         public virtual DbSet<TExpOper> TExpOpers { get; set; }
@@ -76,11 +81,13 @@ namespace MyErp.Models
             modelBuilder.Entity<TCCplanning>(entity =>
             {
                 entity.HasKey(e => e.CplanId)
-                    .HasName("PK__T_C_CPla__0600298F7F5C86EC");
+                    .HasName("PK__T_C_CPla__0600298FED524920");
 
                 entity.ToTable("T_C_CPlanning");
 
                 entity.Property(e => e.CplanId).HasColumnName("CPlanId");
+
+                entity.Property(e => e.CplanCmatId).HasColumnName("CplanCMatId");
 
                 entity.Property(e => e.CplanCplantId).HasColumnName("CPlanCPlantId");
 
@@ -101,6 +108,10 @@ namespace MyErp.Models
                     .HasColumnName("CPlanFirmSt");
 
                 entity.Property(e => e.CplanQty).HasColumnName("CPlanQty");
+
+                entity.Property(e => e.CplanTruckId).HasColumnName("CPlanTruckId");
+
+                entity.Property(e => e.CplanUemb).HasColumnName("CPlanUEmb");
             });
 
             modelBuilder.Entity<TCCplant>(entity =>
@@ -169,7 +180,10 @@ namespace MyErp.Models
                 entity.Property(e => e.CplantStatus)
                     .HasMaxLength(25)
                     .HasColumnName("CPlantStatus");
+
+                entity.Property(e => e.CplantTruckId).HasColumnName("CPlantTruckId");
             });
+
 
             modelBuilder.Entity<TCCplantPort>(entity =>
             {
@@ -281,6 +295,78 @@ namespace MyErp.Models
                 entity.Property(e => e.Cpostatus)
                     .HasMaxLength(25)
                     .HasColumnName("CPOStatus");
+            });
+
+            modelBuilder.Entity<TCScShop>(entity =>
+            {
+                entity.HasKey(e => e.ShopId)
+                    .HasName("PK__T_C_ScSh__67C557C90C0DCE2A");
+
+                entity.ToTable("T_C_ScShop");
+
+                entity.Property(e => e.ShopComent).HasMaxLength(225);
+
+                entity.Property(e => e.ShopCprodId).HasColumnName("ShopCProdId");
+
+                entity.Property(e => e.ShopDate).HasColumnType("datetime");
+
+                entity.Property(e => e.ShopFg).HasColumnName("ShopFG");
+
+                entity.Property(e => e.ShopFrom).HasColumnType("datetime");
+
+                entity.Property(e => e.ShopTo).HasColumnType("datetime");
+
+                entity.Property(e => e.ShopUemb).HasColumnName("ShopUEmb");
+            });
+
+            modelBuilder.Entity<TCSched>(entity =>
+            {
+                entity.HasKey(e => e.ScId)
+                    .HasName("PK__T_C_Sche__ACB791DAC60C33A1");
+
+                entity.ToTable("T_C_Sched");
+
+                entity.Property(e => e.ScComent).HasMaxLength(225);
+
+                entity.Property(e => e.ScCprodId).HasColumnName("ScCProdId");
+
+                entity.Property(e => e.ScDate).HasColumnType("datetime");
+
+                entity.Property(e => e.ScFrom).HasColumnType("datetime");
+
+                entity.Property(e => e.ScTo).HasColumnType("datetime");
+
+                entity.Property(e => e.ScUemb).HasColumnName("ScUEmb");
+            });
+
+            modelBuilder.Entity<TCTrSched>(entity =>
+            {
+                entity.HasKey(e => e.TrScId)
+                    .HasName("PK__T_C_TrSc__DECC2FE248DFF9ED");
+
+                entity.ToTable("T_C_TrSched");
+
+                entity.Property(e => e.TrScCode).HasMaxLength(225);
+
+                entity.Property(e => e.TrScCrDeparture).HasColumnType("datetime");
+
+                entity.Property(e => e.TrScCrLoadStart).HasColumnType("datetime");
+
+                entity.Property(e => e.TrScDeno).HasMaxLength(225);
+            });
+
+            modelBuilder.Entity<TCTruck>(entity =>
+            {
+                entity.HasKey(e => e.TruckId)
+                    .HasName("PK__T_C_Truc__6632E97B2BE769DA");
+
+                entity.ToTable("T_C_Truck");
+
+                entity.Property(e => e.TruckCode).HasMaxLength(225);
+
+                entity.Property(e => e.TruckCrDate).HasColumnType("datetime");
+
+                entity.Property(e => e.TruckDeno).HasMaxLength(225);
             });
 
             modelBuilder.Entity<TChart>(entity =>

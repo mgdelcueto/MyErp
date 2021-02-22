@@ -102,7 +102,7 @@ namespace MyErp.Controllers
                             {
                                 new Claim("UserId", mId.ToString()),
                                 new Claim(ClaimTypes.Name, UserName),
-                                new Claim("FullName", UserName),
+                                new Claim("FullName", user.UserLastName+" "+user.UserFirstName),
                             };
                             int ind =3;
                             foreach(var c in usrol){
@@ -146,6 +146,8 @@ namespace MyErp.Controllers
             }
             catch(Exception ex){
                 string mensaje = ex.Message;
+                ViewData["Error"]=mensaje;
+                return RedirectToAction("Index", "Errores",new{mensaje=mensaje});
             }
             /*
             var claims = new List<Claim>

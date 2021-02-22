@@ -10,7 +10,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Authorization;
 
 namespace MyErp.Controllers {
-    [Authorize]
+    [Authorize(Roles="Planner,Administrator")]
     public class TMRPController : Controller {
         private readonly MyErpDBContext _dbContext;
         public TMRPController(MyErpDBContext dbContext) {

@@ -67,5 +67,9 @@ namespace MyErp.Models
         [Display(Name = "My EDI Adress")]
         [StringLength(100)]
         public string CplantCtEdilog { get; set; }
+
+        [Display(Name = "Truck")]
+        [Required]
+        public int? CplantTruckId { get; set; }
     }
 }

@@ -1,0 +1,54 @@
+@model List<TCTrSched>
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+@functions {
+    string sDayofWeek(int? ndow){
+        string retcol="";
+        switch(ndow)
+        {
+            case 1:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Sunday"); 
+             break;
+            case 2:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Moday"); 
+             break;
+            case 3:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Tuesday"); 
+             break;
+            case 4:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Wednesday"); 
+             break;
+            case 5:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Tursday"); 
+             break;
+            case 6:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Friday"); 
+             break;
+            case 7:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Saturday"); 
+             break;
+             default:
+                 retcol="NA";
+             break;
+        }
+        return retcol;
+    }
+}
+    <tr>
+        <th class="head-text">DayOfWeek</th> 
+        <th class="head-text">LoadStart</th>                
+        <th class="head-text">Deno</th>        
+    </tr>
+   
+    @foreach (var c in Model) {
+        <tr>
+            @{ string HLoad = string.Format("{0:hh:mm}", c.TrScCrLoadStart); }
+            <td class ="col-text">@sDayofWeek(@c.TrScDayOfWeek)</td>            
+            <td class ="norm-text">@HLoad</td>
+            <td class ="norm-text">@c.TrScDeno</td>
+            <td class="col-text">@Html.ActionLink("Remove", "TrSDelete", new { id= c.TrScId,vpanel=7}, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "TrSEdit", new { id= c.TrScId,vpanel=7})</td>
+        </tr>
+    }
+

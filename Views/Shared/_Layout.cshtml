@@ -1,9 +1,18 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Mvc.Localization
 
 @using MyErp.Resources
  
 @inject LocService SharedLocalizer
+
 @functions {
+    string Errores()
+    {
+        string mensaje ="";
+        try{mensaje =(string)ViewData["Error"];
+        }catch{}
+        return mensaje;
+    }
     string Visible(int modulo)
     {  
         int tmod =0;
@@ -14,7 +23,14 @@
         {cstyle="visible";}
         return cstyle;
     }
+    string getName()
+    {
+        var name = Context.User.Claims.FirstOrDefault(
+                x => x.Type == "FullName")?.Value;
+        return name;
+    }
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -215,6 +231,9 @@
                         </li>                        
                     </ul>
                 </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                @getName()
+                </div>
             </div>
         </nav>
     </header>
@@ -232,6 +251,9 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - MyErp - <a asp-area="" asp-controller="Home" asp-action="Privacy">@SharedLocalizer.GetLocalizedHtmlString("Privacy")</a>
+        </div>
+        <div>
+            @Errores()
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

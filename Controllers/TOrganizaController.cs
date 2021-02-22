@@ -10,7 +10,7 @@ using System;
 using System.Linq;
 
 namespace MyErp.Controllers {
-    [Authorize]
+   [Authorize(Roles="Organization,Administrator")]
     public class TOrganizaController : Controller {
         private readonly MyErpDBContext _dbContext;
         private readonly ILogger<TPersonController> _logger;    

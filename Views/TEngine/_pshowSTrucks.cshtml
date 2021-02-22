@@ -1,0 +1,51 @@
+@model TCTrSched
+
+@*
+        <tr>
+            <td>@Html.LabelFor(p => p.TrScTruckId,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.TrScTruckId, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.TrScTruckId)</td>
+        </tr>
+*@
+        <tr>
+            <td>@Html.LabelFor(p => p.TrScCode,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.TrScCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.TrScCode)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.TrScCrLoadStart,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.TrScCrLoadStart, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
+            <td>@Html.LabelFor(p => p.TrScCrDeparture,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.TrScCrDeparture, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.TrScCrLoadStart)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.TrScCrDeparture)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.TrScDayOfWeek,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                @Html.DropDownListFor(p => p.TrScDayOfWeek,
+               new SelectList(DataSource.GetWDays(), "Code", "Name"),new { @class = "norm-text" })
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.TrScDayOfWeek)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.TrScDeno,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.TrScDeno, new { htmlAttributes = new { @class = "norm-text" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.TrScDeno)</td>
+        </tr>
