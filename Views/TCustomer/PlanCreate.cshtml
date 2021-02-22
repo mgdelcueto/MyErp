@@ -12,6 +12,10 @@
         int? retcol = (int?)ViewData["cProd"];
         return retcol;
     }
+    int? Truck(){
+        int? retcol = (int?)ViewData["truck"];
+        return retcol;
+    }
 }
 <div class="cont-titles">
 <h1>Add a New Planning record</h1>
@@ -24,6 +28,7 @@
             <input type="hidden" name="CPlanCustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
             <input type="hidden" name="CPlanCPlantId" value="@Planta()"/>
             <input type="hidden" name="CPlanCProdId" value="@Produc()"/>
+            <input type="hidden" name="CPlanTruckId" value="@Truck()"/>
             <td>Customer :</td>
             <td>@(((TCustomer)ViewBag.Customer).CustRasoc)</td>
             <td>  Nif:</td>
@@ -70,6 +75,11 @@
             <td>@Html.LabelFor(p => p.CplanQty,new { @class = "norm-text",})</td>
             <td>@Html.EditorFor(p => p.CplanQty, new { htmlAttributes = new { @class = "norm-num", @style = "width:120px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CplanQty)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.CplanUemb,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CplanUemb, new { htmlAttributes = new { @class = "norm-num", @style = "width:120px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.CplanUemb)</td>
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.CplanFirmSt,new { @class = "norm-text",})</td>

@@ -21,6 +21,7 @@
 <div class="visible">
     @Html.HiddenFor(p => p.CplanId)
     @Html.HiddenFor(p => p.CplanCustId)
+    @Html.HiddenFor(p => p.CplanTruckId)
     @Html.ValidationSummary(true)
     <table class="table-norm" border="1">
         <tr>
@@ -68,6 +69,11 @@
             <td>@Html.LabelFor(p => p.CplanQty,new { @class = "norm-text",})</td>
             <td>@Html.EditorFor(p => p.CplanQty, new { htmlAttributes = new { @class = "norm-num", @style = "width:120px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CplanQty)</td>
+        </tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.CplanUemb,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.CplanUemb, new { htmlAttributes = new { @class = "norm-num", @style = "width:120px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.CplanUemb)</td>
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.CplanFirmSt,new { @class = "norm-text",})</td>

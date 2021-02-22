@@ -69,7 +69,6 @@ namespace MyErp.Models
         public string CplantCtEdilog { get; set; }
 
         [Display(Name = "Truck")]
-        [Required]
         public int? CplantTruckId { get; set; }
     }
 }

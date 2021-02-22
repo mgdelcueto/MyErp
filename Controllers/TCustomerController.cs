@@ -13,7 +13,7 @@ namespace MyErp.Controllers {
         public TCustomerController(MyErpDBContext dbContext) {
             _dbContext = dbContext;
         }
-        private void _loadCustomerViewBag( int? Pid,int? plant )
+        private void _loadCustomerViewBag( int? Pid,int? plant ,int? cust=0)
         {
                         var queryc = from p in _dbContext.TCustomers 
                         where p.CustId==Pid
@@ -50,12 +50,20 @@ namespace MyErp.Controllers {
             var querycus0 = ( from p in _dbContext.TCCplants  
             select new TCustomer{CustId=0,CustRasoc="Select a Customer"}).Distinct().ToList();
             var querycusts = querycus0.Concat(querycust);
-            ViewBag.ddlCustoX = new SelectList(querycusts.ToList(), "CplantId", "CplantDeno",0); 
+            ViewBag.ddlCustoX = new SelectList(querycusts.ToList(), "CustId", "CustRasoc",0); 
 
+            var querytruc = (from p in _dbContext.TCTrucks 
+                        where p.TruckCustId==cust && p.TruckPlantId==plant
+                        orderby p.TruckDeno
+                        select new TCTruck {TruckId=p.TruckId ,TruckDeno=p.TruckDeno}).ToList();
+            var querytru0 = ( from p in _dbContext.TCCplants  
+            select new TCTruck{TruckId=0,TruckDeno="Select a Truck"}).Distinct().ToList();
+            var querytrucs = querytru0.Concat(querytruc);
+            ViewBag.ddlCustoX = new SelectList(querycusts.ToList(), "TruckId", "TruckDeno",0); 
 
 
         }
-        private void CreateViewBags(int? id, int? prod, int? plant)
+        private void CreateViewBags(int? id, int? prod, int? plant,int? cust =0)
         {
 
             var resulp = from p in _dbContext.TCCplants 
@@ -86,14 +94,17 @@ namespace MyErp.Controllers {
             var querycus0 = ( from p in _dbContext.TCCplants  
             select new TCustomer{CustId=0,CustRasoc="Select a Customer"}).Distinct().ToList();
             var querycusts = querycus0.Concat(querycust);
-            ViewBag.ddlCustoX = new SelectList(querycusts.ToList(), "CplantId", "CplantDeno",0); 
+            ViewBag.ddlCustoX = new SelectList(querycusts.ToList(), "CustId", "CustRasoc",0); 
 
-            var querypa = from p in _dbContext.TCCplants 
-                        orderby p.CplantDeno
-                        where p.CplantCustId==id
-                        select p;
-            var qListpa = querypa.ToList();
-            ViewBag.ListPlant=qListpa;
+            var querytruc = (from p in _dbContext.TCTrucks 
+                        where p.TruckCustId==cust //&& p.TruckPlantId==plant
+                        orderby p.TruckDeno
+                        select new TCTruck {TruckId=p.TruckId ,TruckDeno=p.TruckDeno}).ToList();
+            var querytru0 = ( from p in _dbContext.TCTrucks  
+            select new TCTruck{TruckId=0,TruckDeno="Select a Truck"}).Distinct().ToList();
+            var querytrucs = querytru0.Concat(querytruc);
+            ViewBag.ddlTruckX = new SelectList(querytrucs.ToList(), "TruckId", "TruckDeno",0); 
+
 
 //se ha cambiado el diseño de modo que el producto no esta asignado a la planta
 //solamante a nivel del pedido se asigna a la planta una referncia de producto de un cliente
@@ -159,6 +170,13 @@ namespace MyErp.Controllers {
             ViewBag.ddlReferVD = new SelectList(resuld.ToList(), "MatId", "MatDescr",prod); 
             ViewBag.ddlReferVB = new SelectList(result.ToList(), "MatId", "MatRefer",prod); 
             ViewData["cProd"]=prod;
+            
+            var querypa = from p in _dbContext.TCCplants 
+                        orderby p.CplantDeno
+                        where p.CplantCustId==id
+                        select p;
+            var qListpa = querypa.ToList();
+            ViewBag.ListPlant=qListpa;
 
             var queryca = from p in _dbContext.TCCproducts 
                         join r in _dbContext.TMaterials on p.CprodMatInt equals r.MatId
@@ -253,11 +271,10 @@ namespace MyErp.Controllers {
             var qListpo = querypo.ToList();
             ViewBag.ListPO=qListpo;
 
-            var queryc = from p in _dbContext.TCustomers 
+            var queryc = (from p in _dbContext.TCustomers 
                         where p.CustId==id
-                        select p;
-            var qList=queryc.ToList();
-            ViewBag.Customer=qList[0];
+                        select p).SingleOrDefault();
+            ViewBag.Customer=queryc;
 
 /*
            try{
@@ -362,13 +379,13 @@ namespace MyErp.Controllers {
             //return View("Edit",model);
         }
 
-
+        [HttpGet]
         public IActionResult PlantCreate(int Pid) {
-            var queryc = from p in _dbContext.TCustomers 
+            var queryc = (from p in _dbContext.TCustomers 
                         where p.CustId==Pid
-                        select p;
-            var qList=queryc.ToList();
-            ViewBag.Customer=qList[0];
+                        select p).FirstOrDefault();
+            ViewBag.Customer=queryc;
+            CreateViewBags(Pid,0,0,Pid);  //Carag ddlTruck para el cliente indicado
             return View();      
         }
 
@@ -383,27 +400,31 @@ namespace MyErp.Controllers {
                 catch{return View("Error");}
                 }
                 else{
-                     //loadCustomerViewBag(Pid,porder.CpocplantId);
-                     CreateViewBags(Pid,0,plant.CplantId);
+                     CreateViewBags(Pid,0,plant.CplantId,Pid);
                      return View(plant);
                 }
             }
             var model = _dbContext.TCustomers
                 .SingleOrDefault(u => u.CustId.Equals(Pid));
 
-            CreateViewBags(Pid,0,plant.CplantId);    
+            CreateViewBags(Pid,0,plant.CplantId,Pid);    
             ViewData["panel"]=3;
             return RedirectToAction("Edit",new{id=Pid,panel=3,move=0,prod=0,plant =plant.CplantId});
         }
 
         [HttpGet]
         public IActionResult PlanCreate(int Pid, int prod,int plant, string actionType) {
-            var queryc = from p in _dbContext.TCustomers 
+            var queryc = (from p in _dbContext.TCustomers 
                         where p.CustId==Pid
-                        select p;
-            var qList=queryc.ToList();
-            ViewBag.Customer=qList[0];
-            CreateViewBags(Pid,prod,plant);
+                        select p).SingleOrDefault();
+            ViewBag.Customer=queryc;
+            CreateViewBags(Pid,prod,plant,Pid);
+
+            var query = (from p in _dbContext.TCCplants 
+            where p.CplantId==plant
+            select p).FirstOrDefault();
+            ViewData["truck"]=query.CplantTruckId;
+
             TCCplanning model = (TCCplanning) (from p in _dbContext.TCCplannings 
                         where p.CplanCustId==Pid && p.CplanCplantId==plant
                         select p).FirstOrDefault();
@@ -423,7 +444,8 @@ namespace MyErp.Controllers {
         }
 
         [HttpPost]
-        public IActionResult PlanCreate(TCCplanning planning,int Pid, int prod,int? plant, string actionType,int? CplantId,int? CprodId) {
+        public IActionResult PlanCreate(TCCplanning planning,int Pid, int prod,int? plant, string actionType,int? CplantId,int? CprodId,int? CPlanTruckId) {
+            ViewData["panel"]=4;
             if (actionType=="Add"){
             if (ModelState.IsValid){
             try{
@@ -440,7 +462,6 @@ namespace MyErp.Controllers {
                 return View(planning);
                 }
             }
-            ViewData["panel"]=4;
             if (actionType=="Cancel"||actionType=="Add"){
              CreateViewBags(Pid,planning.CplanCprodId,planning.CplanCplantId);
             return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=planning.CplanCprodId,plant =planning.CplanCplantId});
@@ -625,11 +646,11 @@ namespace MyErp.Controllers {
                 .SingleOrDefault(u => u.CplantId.Equals(id));
             int?Pid=model.CplantCustId;
 
-            var queryc = from p in _dbContext.TCustomers 
+            var queryc = (from p in _dbContext.TCustomers 
                         where p.CustId==Pid
-                        select p;
-            var qList=queryc.ToList();
-            ViewBag.Customer=qList[0];
+                        select p).SingleOrDefault();
+            ViewBag.Customer=queryc;
+            CreateViewBags(Pid,0,id,Pid);                
             return View(model);
             }
             catch{return View("Error");}            
@@ -649,6 +670,14 @@ namespace MyErp.Controllers {
                 else{
                      //loadCustomerViewBag(Pid,porder.CpocplantId);
                      CreateViewBags(Pid,0,planta.CplantId);    
+                     return View(planta);
+                }
+            }
+            else
+            {
+                if (actionType=="Cancel"){}
+                else{
+                    CreateViewBags(Pid,0,planta.CplantId);    
                      return View(planta);
                 }
             }
@@ -819,7 +848,9 @@ namespace MyErp.Controllers {
             CreateViewBags(id,prod,plant);
             return View("Edit",model);
             }
-            catch{return View("Error");}    
+            catch(Exception ex){
+                string mensaje = ex.Message;
+                return View("Error");}    
         }    
         [HttpPost]
         public IActionResult Edit(TCustomer Customer, int id, int panel,int move,int? CprodId, int? CplantId,string actionType) {

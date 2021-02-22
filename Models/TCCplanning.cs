@@ -40,7 +40,6 @@ namespace MyErp.Models
         public int? CplanUemb { get; set; }
 
         [Display(Name = "Truck")]
-        [Required,Range(0, Int16.MaxValue, ErrorMessage = "Enter valid Code (>0 )")]
         public int? CplanTruckId { get; set; }
 
     }

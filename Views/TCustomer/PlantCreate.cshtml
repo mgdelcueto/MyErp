@@ -45,6 +45,13 @@
             </td>
         </tr>
         <tr>
+            <td>@Html.LabelFor(p => p.CplantTruckId,new { @class = "norm-text",})</td>
+            <td class="norm-text">
+                @Html.DropDownListFor(p => p.CplantTruckId,(SelectList)ViewBag.ddlTruckX,"",new { @class = "norm-text" })
+            </td>
+            <td>@Html.ValidationMessageFor(p => p.CplantTruckId)</td>
+        </tr>
+        <tr>
             <td></td>
             <td><input type="submit" value="Add"  name="actionType"/></td>
             <td><input type="submit" value="Cancel" name="actionType"/></td>
