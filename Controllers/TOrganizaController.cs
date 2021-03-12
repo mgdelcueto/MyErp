@@ -19,7 +19,8 @@ namespace MyErp.Controllers {
 
             var chart = from p in _dbContext.TCharts
                         join e in _dbContext.TPersons 
-                        on p.CharHeadId equals e.PerId
+                        on p.CharHeadId equals e.PerId into ps
+                        from e in ps.DefaultIfEmpty()
                         orderby p.CharName
                         select new VTChart {
                         CharAdress =p.CharAdress,

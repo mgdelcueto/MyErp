@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tUVrKwkkaFsc8XRk6rE0HEXK50V94e3N497Sp2nWwviWTNfyvtrPbdXDI/P0bAG44Rxx5NQWA5Nsfqj+n6z0YQ==",
+  "dgSpecHash": "OGl6NQ0Y1NrdfudNtCvp9akcbPFyDxzxJwuGEzR0O1u2B2JDjgHyHXIOEIzzsm4vE8JWsAkqy8xqNu0yYzqLDA==",
   "success": true,
   "projectFilePath": "C:\\Users\\mgdel\\VSProjects\\MyErp\\MyErp.csproj",
   "expectedPackageFiles": [
@@ -191,8 +191,7 @@
     "C:\\Users\\mgdel\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\mgdel\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Users\\mgdel\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
-    "C:\\Users\\mgdel\\.nuget\\packages\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\mgdel\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.11\\microsoft.netcore.app.host.win-x64.3.1.11.nupkg.sha512"
+    "C:\\Users\\mgdel\\.nuget\\packages\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

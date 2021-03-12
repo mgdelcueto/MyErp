@@ -1,0 +1,37 @@
+@model VCScShop 
+@{Layout = "_LyIndex";}
+@using MyErp.Models
+@using System.Linq;
+@functions {
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+}
+
+@using (Html.BeginForm()) {
+   <div class="visible">
+    @Html.ValidationSummary(true)
+    <table>
+        <tr>
+            <td>@Html.LabelFor(p => p.ShopFrom,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.ShopFrom, new { htmlAttributes = new { @class = "norm-text", @style = "width:250px" } })</td>
+            <td>@Html.LabelFor(p => p.ShopComent,new { @class = "norm-text" })</td>
+            <td>@Html.EditorFor(p => p.ShopComent, new { htmlAttributes = new { @class = "norm-text" } })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.ShopFrom)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.ShopComent)</td>
+        </tr>
+        <tr>
+             <td><input type="submit" value="Go"  name="actionType"/></td>
+        </tr>
+    </table>
+    </div>
+}
+

@@ -61,3 +61,16 @@
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.RoRoTunit)</td>
         </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.RoRoMinLot,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.RoRoMinLot, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.RoRoUEmb,new { @class = "norm-text",})</td>
+            <td>@Html.EditorFor(p => p.RoRoUEmb, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.RoRoMinLot)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.RoRoUEmb)</td>
+        </tr>
+

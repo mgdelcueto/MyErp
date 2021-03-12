@@ -32,5 +32,14 @@ namespace MyErp.Models
         [Display(Name = "Unit Of Time")]
         [Required,StringLength(25)]
         public string RouTunit { get; set; }
-    }
+
+        [Display(Name = "MinLot")]
+        [Required,Range(0.001, double.MaxValue, ErrorMessage = "Enter valid Value (>0)")]
+        public double RouMinLot { get; set; }
+
+        [Display(Name = "UEmba")]
+        [Required,Range(0.001, double.MaxValue, ErrorMessage = "Enter valid Value (>0)")]
+        public double RouUEmb { get; set; }
+
+  }
 }

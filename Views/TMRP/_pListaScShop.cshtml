@@ -1,0 +1,34 @@
+
+@functions {
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel1"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+}
+<!-- Show planing records -->
+<div class="visible">
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>Existing Planning Data</h2>
+    </div>
+    <tr>
+        <th class="head-text">Coment</th> 
+        <th class="head-text">Date</th>                
+        <th class="head-text">Version</th>       
+    </tr>
+    @foreach ( VCScShop  c in (List<VCScShop>)ViewBag.uListScShop) {
+        <tr>
+            <td class ="col-text">@c.ShopComent</td>            
+            <td class ="big-text">@c.ShopFrom</td>
+            <td class ="norm-text">@c.ShopVersion</td>
+            <td class="col-text">@Html.ActionLink("View", "ScView", new { ver = @c.ShopVersion ,datp=@c.ShopFrom,panel=2})</td>
+            <td class="col-text">@Html.ActionLink("Delete", "PlanDelete", new { ver = @c.ShopVersion }, new { onclick="return confirm('Are you sure?');"})</td>
+        </tr>
+    }
+    </table>
+</div>
+ @Html.ActionLink("Create New Plan", "PlanCreate")
+

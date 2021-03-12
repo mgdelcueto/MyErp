@@ -1,0 +1,53 @@
+@{Layout = "_LyIndex";}
+@functions {
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel1"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+    string @Destin(string ShopFg,string ShopTrDeno,string ShopDDescr)
+    {
+        string retorno="";
+        if (ShopFg=="TP"){retorno=ShopTrDeno;}else{retorno=ShopDDescr;}
+        return retorno;
+    }
+
+}
+<!-- Show planing records -->
+
+<div class="visible">
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>Planning Data</h2>
+    </div>
+    <tr>
+        <th class="head-text">ShopWctr</th> 
+        <th class="head-text">ShopFG</th>       
+        <th class="head-text">ShopCProdId</th>       
+        <th class="head-text">ShopDest</th>       
+        <th class="head-text">ShopDate</th>       
+        <th class="head-text">ShopQty</th>       
+        <th class="head-text">ShopTUnit</th>       
+        <th class="head-text">ShopaTUnit</th>       
+        <th class="head-text">ShopMinLot</th>       
+        <th class="head-text">ShopUEmb</th>       
+    </tr>
+    @foreach ( ViScShop  c in (List<ViScShop>) ViewBag.ListScShop) {
+        <tr>
+            <td class ="col-text" style="width: 17%;">@c.ShopWDescr</td>            
+            <td class ="big-text" style="width: 5%;">@c.ShopFg</td>
+            <td class ="norm-text" style="width: 17%;">@c.ShopMDescr</td>
+            <td class ="norm-text" style="width: 17%;">@Destin(@c.ShopFg,@c.ShopTrDeno,@c.ShopDDescr)</td>
+            <td class ="norm-text" style="width: 17%;">@c.ShopDate</td>
+            <td class ="norm-num" style="width: 5%;">@c.ShopQty</td>
+            <td class ="norm-num" style="width: 5%;">@c.ShopTunit </td>
+            <td class ="norm-num" style="width: 5%;">@c.ShopaTunit</td>
+            <td class ="norm-num" style="width: 5%;">@c.ShopMinLot</td>
+            <td class ="norm-num" style="width: 5%;">@c.ShopUemb</td>
+        </tr>
+    }
+    </table>
+</div>
+

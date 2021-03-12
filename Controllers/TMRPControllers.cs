@@ -16,10 +16,47 @@ namespace MyErp.Controllers {
         public TMRPController(MyErpDBContext dbContext) {
             _dbContext = dbContext;
         }
-    private void CreateViewBags()
+    private void CreateViewBags(int ver=0)
     {
         //CreateVB_LCP();
         //CreateVB_cMRP();
+            var queryshu =(from po in _dbContext.TCScShops
+                        orderby po.ShopFrom,po.ShopVersion,po.ShopComent
+                        select new VCScShop{
+                            ShopFrom=po.ShopFrom,
+                            ShopVersion=po.ShopVersion,
+                            ShopComent=po.ShopComent}
+                        ).Distinct().ToList();
+            ViewBag.uListScShop=queryshu;        
+            var querysh =(from po in _dbContext.TCScShops
+                        join t in _dbContext.TMaterials on po.ShopCprodId equals t.MatId into jt
+                        from jtResult in jt.DefaultIfEmpty()
+
+                        join d in _dbContext.TMaterials on po.ShopDest equals d.MatId into jd
+                        from jdResult in jd.DefaultIfEmpty()
+                        
+                        join w in _dbContext.TWorkCenters on po.ShopWctr equals w.WcdId into jw
+                        from jwResult in jw.DefaultIfEmpty()
+                        
+                        join tr in _dbContext.TCTrucks on po.ShopDest equals tr.TruckId into jtr
+                        from jtrResult in jtr.DefaultIfEmpty()
+                        
+                        where po.ShopVersion==ver
+                        orderby po.ShopWctr,po.ShopDate descending //, po.ShopCProdId
+                        select new ViScShop {
+                            ShopFg=po.ShopFg,
+                            ShopDate=po.ShopDate,
+                            ShopQty=po.ShopQty,
+                            ShopTunit=po.ShopTunit,
+                            ShopaTunit=po.ShopaTunit,
+                            ShopMinLot=po.ShopMinLot,
+                            ShopUemb=po.ShopUemb,
+                            ShopMDescr=jtResult.MatDescr,
+                            ShopDDescr=jdResult.MatDescr,
+                            ShopWDescr=jwResult.Wcdescr,
+                            ShopTrDeno=jtrResult.TruckDeno}
+                        ).ToList();
+            ViewBag.ListScShop=querysh; 
     }
         private void CreateVB_cMRP(DateTime? F1, DateTime? F2){
             /*
@@ -71,9 +108,57 @@ namespace MyErp.Controllers {
             ViewBag.ListCustPlan=queryco;
 
         }
+        public IActionResult Index(int panel,int panel1,string actionType) {
+            //panel=0;
+            ViewData["panel"]=panel;
+            ViewData["panel1"]=panel1;
+            ViewData["Title"] = "MRP Data";
+            switch (panel){
+                case 1:
+                    return RedirectToAction("Capacity",new{F1=System.DateTime.Now,F2=System.DateTime.Now,panel=1,panel1=1});
+                    break;
+                default:
+                    return View();
+                    break;
+            }
+        }
+        [HttpGet]
+        public IActionResult ScView(DateTime datp, int ver, int panel,int panel1, string actionType) {
+            if(panel ==0 ){panel=2;}
+            ViewData["panel"]=panel;
+            ViewData["panel1"]=panel1;
+            ViewData["Title"] = "MRP Data";
+            var dbContext = new MyErpDBContext();
+            try{
+                CreateViewBags(ver);
+             return View();
+            }
+            catch(Exception Ex){
+                string mensaje = Ex.Message;
+                return View("Error");}
+            
+        }
 
         [HttpGet]
-        public IActionResult Index(DateTime? F1, DateTime? F2,int panel, int panel1,string actionType) {
+        public IActionResult MRP(DateTime datp, int ver, int panel,int panel1, string actionType) {
+            if(panel ==0 ){panel=2;}
+            ViewData["panel"]=panel;
+            ViewData["panel"]=panel1;
+            ViewData["Title"] = "MRP Data";
+            var dbContext = new MyErpDBContext();
+            try{
+                CreateViewBags();
+             return View();
+            }
+            catch(Exception Ex){
+                string mensaje = Ex.Message;
+                return View("Error");}
+            
+        }
+
+
+        [HttpGet]
+        public IActionResult Capacity(DateTime? F1, DateTime? F2,int panel, int panel1,string actionType) {
             if(panel ==0 ){panel=1;}
             if (F1==null){F1=System.DateTime.Now;}
             if (F2==null){F2=System.DateTime.Now;}
@@ -93,7 +178,7 @@ namespace MyErp.Controllers {
         }
 
         [HttpPost]
-        public IActionResult Index(VCCplanning model, int panel, int panel1,string actionType) {
+        public IActionResult Capacity(VCCplanning model, int panel, int panel1,string actionType) {
             if(panel ==0 ){panel=1;}
             ViewData["panel"]=panel;
             ViewData["Title"] = "MRP Data";
@@ -128,6 +213,41 @@ namespace MyErp.Controllers {
             //return View();      
             return RedirectToAction("Index",new{panel=1,panel1=2});
         }
+
+        [HttpGet]
+        
+        public IActionResult PlanCreate(string actionType) {
+            ViewData["panel"]=2;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult PlanCreate(VCScShop model, string actionType) {
+            ViewData["panel"]=2;
+            /*
+                declare @ff datetime
+                declare @ver int
+                declare @com nvarchar(255)
+                set @ff = convert (datetime, '2021-03-02',126)
+                set @ver =3;
+                set @com = 'Initial Planning Mars 3'
+                exec Xs_Explosion_Start @ff,@ver,@com
+
+            */
+                DateTime? F1 = model.ShopFrom;
+                string com = model.ShopComent;
+                var pF1 = new SqlParameter("@p0", F1);
+                var Com = new SqlParameter("@p1", com);
+                _dbContext.Database.ExecuteSqlRaw("Xs_Explosion_Start {0},{1}", pF1,Com);
+                return RedirectToAction("MRP",new{panel=2,panel1=2});   
+        }
+        public IActionResult PlanDelete(int ver) {
+            var pVer = new SqlParameter("@p0", ver);
+            _dbContext.Database.ExecuteSqlRaw("Xs_Explosion_Stop {0}", pVer);
+            CreateViewBags();                
+            ViewData["panel"]=2;
+            return RedirectToAction("MRP",new{panel=2,panel1=2});   
+        }        
 
     }
 }

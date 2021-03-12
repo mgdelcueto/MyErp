@@ -234,8 +234,10 @@ namespace MyErp.Controllers {
 
             var querypo_0 =(from po in _dbContext.TCPorders
                             join pro in _dbContext.TCCproducts  on 
-                            new{ prod=po.CpocprodId, cust=po.CpocustId,plan=po.CpocplantId} equals 
-                            new {prod =pro.CprodMatInt,cust=pro.CprodCustId, plan=pro.CprodCplantId}
+                            new{ prod=po.CpocprodId, cust=po.CpocustId} equals 
+                            new {prod =pro.CprodMatInt,cust=pro.CprodCustId}
+                            //new{ prod=po.CpocprodId, cust=po.CpocustId,plan=po.CpocplantId} equals 
+                            //new {prod =pro.CprodMatInt,cust=pro.CprodCustId, plan=pro.CprodCplantId}
                             join mat in _dbContext.TMaterials on pro.CprodMatInt equals mat.MatId 
                         orderby po.Cpopo
                         where po.CpocustId==id && po.CpocplantId==plant

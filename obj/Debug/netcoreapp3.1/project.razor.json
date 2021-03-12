@@ -14782,6 +14782,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\PlanCreate.cshtml",
+      "TargetPath": "Views\\TMRP\\PlanCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_pListaChartRol.cshtml",
       "TargetPath": "Views\\TOrganiza\\_pListaChartRol.cshtml",
       "FileKind": "mvc"
@@ -14957,6 +14962,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\_pListaScShop.cshtml",
+      "TargetPath": "Views\\TMRP\\_pListaScShop.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\ProEdit.cshtml",
       "TargetPath": "Views\\TCustomer\\ProEdit.cshtml",
       "FileKind": "mvc"
@@ -15032,6 +15042,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\ScView.cshtml",
+      "TargetPath": "Views\\TMRP\\ScView.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_pshowChart.cshtml",
       "TargetPath": "Views\\TOrganiza\\_pshowChart.cshtml",
       "FileKind": "mvc"
@@ -15067,8 +15082,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\Capacity.cshtml",
+      "TargetPath": "Views\\TMRP\\Capacity.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\PlanEdit.cshtml",
       "TargetPath": "Views\\TCustomer\\PlanEdit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\MRP.cshtml",
+      "TargetPath": "Views\\TMRP\\MRP.cshtml",
       "FileKind": "mvc"
     },
     {

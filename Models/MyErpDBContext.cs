@@ -310,13 +310,19 @@ namespace MyErp.Models
 
                 entity.Property(e => e.ShopDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ShopFg).HasColumnName("ShopFG");
+                entity.Property(e => e.ShopFg)
+                    .HasMaxLength(50)
+                    .HasColumnName("ShopFG");
 
                 entity.Property(e => e.ShopFrom).HasColumnType("datetime");
 
                 entity.Property(e => e.ShopTo).HasColumnType("datetime");
 
+                entity.Property(e => e.ShopTunit).HasColumnName("ShopTUnit");
+
                 entity.Property(e => e.ShopUemb).HasColumnName("ShopUEmb");
+
+                entity.Property(e => e.ShopaTunit).HasColumnName("ShopaTUnit");
             });
 
             modelBuilder.Entity<TCSched>(entity =>
@@ -602,6 +608,10 @@ namespace MyErp.Models
                 entity.Property(e => e.MLocMatId).HasColumnName("mLocMatId");
 
                 entity.Property(e => e.MLocStock).HasColumnName("mLocStock");
+
+                entity.Property(e => e.RLocStock).HasColumnName("rLocStock");
+
+                entity.Property(e => e.XLocStock).HasColumnName("xLocStock");
             });
 
             modelBuilder.Entity<TMPoprice>(entity =>

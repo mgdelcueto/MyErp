@@ -11,7 +11,7 @@
                  retcol = @SharedLocalizer.GetLocalizedHtmlString("Sunday"); 
              break;
             case 2:
-                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Moday"); 
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Monday"); 
              break;
             case 3:
                  retcol = @SharedLocalizer.GetLocalizedHtmlString("Tuesday"); 
@@ -43,7 +43,7 @@
    
     @foreach (var c in Model) {
         <tr>
-            @{ string HLoad = string.Format("{0:hh:mm}", c.TrScCrLoadStart); }
+            @{ string HLoad = string.Format("{0:HH:mm}", c.TrScCrLoadStart); }
             <td class ="col-text">@sDayofWeek(@c.TrScDayOfWeek)</td>            
             <td class ="norm-text">@HLoad</td>
             <td class ="norm-text">@c.TrScDeno</td>

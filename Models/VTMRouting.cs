@@ -45,5 +45,13 @@ namespace MyErp.Models
         [Display(Name = "Unit of time")]
         [Required,StringLength(25)]
         public string RoRoTunit { get; set; }
+
+        [Display(Name = "Min Lot")]
+        [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid number (>0)")]
+        public double RoRoMinLot { get; set; }
+
+        [Display(Name = "Unit Embal")]
+        [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid number (>0)")]
+        public double RoRoUEmb { get; set; }
     }
 }

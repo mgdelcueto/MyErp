@@ -65,17 +65,11 @@
 }
 
 <h2>@ViewData["Title"]</h2>
-<!--
-<div class = "cont-titles">
-<h2>X Customers Table</h2>   
-</div>
-<td><a class="nav-link text-dark" asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">Filter</a></td>
--->
+
 <div class="visible">
     @using (Html.BeginForm()) {
     <table>
         <div class="cont-titles-l">
-        @*<h2>>>@Html.DisplayFor(p => p.CustRaSoc)  @Html.DisplayFor(p => p.CustNif)</h2> *@
         </div>
         <table>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -83,10 +77,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-id="" asp-route-panel="1" asp-route-panel1="1">Capacity</a>
+                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TMRP" asp-action="Capacity" asp-route-id="" asp-route-panel="1" asp-route-panel1="1">Capacity</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(2)"asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-id="" asp-route-panel="2" asp-route-move="0">MRP</a>
+                           <a class="nav-link text-dark" style="@panelBold(2)"asp-area="" asp-controller="TMRP" asp-action="MRP" asp-route-id="" asp-route-panel="2" asp-route-panel1="2" asp-route-move="0">MRP</a>
                          </li>
                         <li class="nav-item">
                            <a class="nav-link text-dark" style="@panelBold(3)"asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-id="" asp-route-panel="3" asp-route-move="0">Production Orders</a>

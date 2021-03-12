@@ -1,0 +1,18 @@
+@{Layout = "_LyIndex";}
+@using MyErp.Models
+@using System.Linq;
+@functions {
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+}
+
+    <!--Facilities-->
+    <div class=@isVisible(1)>
+    @Html.Partial("_pListaCustPlan")@*,(List<VCCplanning>)ViewBag.ListCustPlan)*@
+    </div>
+</div>

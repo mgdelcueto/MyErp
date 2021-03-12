@@ -258,7 +258,9 @@ namespace MyErp.Controllers {
                 RoRoWCId=pl.RouWcid,
                 RoRoWCDe=q.Wcdescr,
                 RoRoWtime=pl.RouWtime,
-                RoRoWunit=pl.RouWunit
+                RoRoWunit=pl.RouWunit,
+                RoRoMinLot=pl.RouMinLot,
+                RoRoUEmb=pl.RouUEmb
                 }).ToList();
             
             ViewBag.ListMatRou=queryro;
@@ -707,7 +709,10 @@ namespace MyErp.Controllers {
                 RoRoWCId=0,
                 RoRoWCDe="",
                 RoRoWtime=0,
-                RoRoWunit=1}).Distinct().SingleOrDefault();
+                RoRoWunit=1,
+                RoRoMinLot=1,
+                RoRoUEmb=1
+                }).Distinct().SingleOrDefault();
              //ViewBag.ListMatComp=queryco;
             return View((VTMRouting)queryco);      
         }
@@ -726,6 +731,8 @@ namespace MyErp.Controllers {
                             nmod.RouFase=routing.RoRoFase;
                             nmod.RouOper=routing.RoRoOper;
                             nmod.RouRefId=routing.RoRoMatId;
+                            nmod.RouMinLot=routing.RoRoMinLot;
+                            nmod.RouUEmb=routing.RoRoUEmb;
                         _dbContext.TMRoutings.Add(nmod); 
                         _dbContext.SaveChanges();
                    }
@@ -1411,7 +1418,9 @@ namespace MyErp.Controllers {
                 RoRoWCId=pl.RouWcid,
                 RoRoWCDe=q.Wcdescr,
                 RoRoWtime=pl.RouWtime,
-                RoRoWunit=pl.RouWunit
+                RoRoWunit=pl.RouWunit,
+                RoRoMinLot=pl.RouMinLot,
+                RoRoUEmb=pl.RouUEmb
                 }).SingleOrDefault();
             return View(model);
             }
@@ -1434,6 +1443,8 @@ namespace MyErp.Controllers {
                             nmod.RouFase=routing.RoRoFase;
                             nmod.RouOper=routing.RoRoOper;
                             nmod.RouRefId=routing.RoRoMatId;
+                            nmod.RouMinLot=routing.RoRoMinLot;
+                            nmod.RouUEmb=routing.RoRoUEmb;
                         _dbContext.TMRoutings.Update(nmod); 
                         _dbContext.SaveChanges();
                 }
