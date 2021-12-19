@@ -1,0 +1,33 @@
+@model System.Data.DataTable
+@functions {
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel1"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+}
+<!-- Show planing records -->
+<div class="visible">
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>Existing Planning Data</h2>
+    </div>
+    <tr>
+         @foreach ( System.Data.DataColumn   col in Model.Columns) 
+         {
+        <td  class="head-text" style="min-width:145px">@col.ColumnName</td> 
+        }
+    </tr>
+    @foreach ( System.Data.DataRow   rows in Model.Rows) {
+        <tr>
+            @foreach ( System.Data.DataColumn   col in Model.Columns) 
+            {
+                <td class ="col-text" style="min-width:145px">@rows[col.ColumnName]</td> 
+            }
+        </tr>
+    }
+    </table>
+</div>
+

@@ -24,6 +24,7 @@
             <td class ="col-text">@c.ShopComent</td>            
             <td class ="big-text">@c.ShopFrom</td>
             <td class ="norm-text">@c.ShopVersion</td>
+            <td class="col-text">@Html.ActionLink("Tr_View", "ScTrView", new { ver = @c.ShopVersion ,datp=@c.ShopFrom,panel=2})</td>
             <td class="col-text">@Html.ActionLink("View", "ScView", new { ver = @c.ShopVersion ,datp=@c.ShopFrom,panel=2})</td>
             <td class="col-text">@Html.ActionLink("Delete", "PlanDelete", new { ver = @c.ShopVersion }, new { onclick="return confirm('Are you sure?');"})</td>
         </tr>

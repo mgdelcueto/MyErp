@@ -8,13 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Protocols;
+using Microsoft.Extensions.Configuration;
+using System.Data;
 
 namespace MyErp.Controllers {
     [Authorize(Roles="Planner,Administrator")]
     public class TMRPController : Controller {
+        private IConfiguration Configuration;
         private readonly MyErpDBContext _dbContext;
-        public TMRPController(MyErpDBContext dbContext) {
+        public TMRPController(MyErpDBContext dbContext,IConfiguration _configuration) {
             _dbContext = dbContext;
+            Configuration = _configuration;            
         }
     private void CreateViewBags(int ver=0)
     {
@@ -138,6 +143,51 @@ namespace MyErp.Controllers {
                 return View("Error");}
             
         }
+        [HttpGet]
+        public IActionResult ScTrView(DateTime datp, int ver, int panel,int panel1, string actionType) {
+            if(panel ==0 ){panel=2;}
+            ViewData["panel"]=panel;
+            ViewData["panel1"]=panel1;
+            ViewData["Title"] = "MRP Data";
+            var dbContext = new MyErpDBContext();
+            try{
+
+                Guid g = Guid.NewGuid();
+                string Table = g.ToString();
+
+                var pVer = new SqlParameter("@p0", ver);
+                var table = new SqlParameter("@p2", Table);
+
+                _dbContext.Database.ExecuteSqlRaw("[Xs_Explosion_End] {0},{1}", pVer,table);
+
+            //esta tabla (Table) ha sido creada como resyltado de la quere Xs_Explosion
+            //que se ejecuto en PlanCreate [Post]
+            //Ahora la cargamos en ViewBag
+                var sqlo = "SELECT * FROM ["+Table+"] ";
+                //var explosiop = _dbContext.Database.ExecuteSqlRaw(sqlo).ToList();
+                string constr = Configuration.GetConnectionString("MyProjectConnectionString");
+                DataTable dt = new DataTable(); //used to store the store procedure result.
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM ["+Table+"] WHERE nRow IN (2,5,9,10,11,12,13,17) ", con))
+                {
+                    con.Open();
+                   
+                    cmd.CommandType = CommandType.Text;
+                    SqlDataAdapter ada = new SqlDataAdapter();
+                    ada.SelectCommand = cmd;
+                    ada.Fill(dt);
+                    _dbContext.Database.ExecuteSqlRaw("[Xz_Explosion] {0}", table);
+                     return View(dt);
+                }
+            }
+
+            }
+            catch(Exception Ex){
+                string mensaje = Ex.Message;
+                return View("Error");}
+            
+        }
 
         [HttpGet]
         public IActionResult MRP(DateTime datp, int ver, int panel,int panel1, string actionType) {
@@ -145,6 +195,7 @@ namespace MyErp.Controllers {
             ViewData["panel"]=panel;
             ViewData["panel"]=panel1;
             ViewData["Title"] = "MRP Data";
+
             var dbContext = new MyErpDBContext();
             try{
                 CreateViewBags();
@@ -236,9 +287,21 @@ namespace MyErp.Controllers {
             */
                 DateTime? F1 = model.ShopFrom;
                 string com = model.ShopComent;
+
+                Guid g = Guid.NewGuid();
+                string Table = g.ToString();
+
                 var pF1 = new SqlParameter("@p0", F1);
                 var Com = new SqlParameter("@p1", com);
-                _dbContext.Database.ExecuteSqlRaw("Xs_Explosion_Start {0},{1}", pF1,Com);
+                var table = new SqlParameter("@p2", Table);
+
+                _dbContext.Database.ExecuteSqlRaw("Xs_Explosion_Start {0},{1},{2}", pF1,Com,table);
+                /*
+                var sqlo = "SELECT * FROM ["+Table+"] ";
+                var explosiop = _dbContext.TExpOpers.FromSqlRaw(sqlo).ToList();
+                ViewBag.ListOpeExp=explosiop; //querybo;
+                */
+
                 return RedirectToAction("MRP",new{panel=2,panel1=2});   
         }
         public IActionResult PlanDelete(int ver) {

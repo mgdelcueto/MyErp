@@ -14997,6 +14997,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\ScTrView.cshtml",
+      "TargetPath": "Views\\TMRP\\ScTrView.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\WCeEdit.cshtml",
       "TargetPath": "Views\\TEngine\\WCeEdit.cshtml",
       "FileKind": "mvc"
