@@ -169,7 +169,7 @@
     <value>&lt;&lt;Prev</value>
   </data>
   <data name="EditPerson" xml:space="preserve">
-    <value>Edit Employee Data</value>
+    <value>Edit a Person</value>
   </data>
   <data name="Person" xml:space="preserve">
     <value>Employees</value>
@@ -199,7 +199,7 @@
     <value>Next&gt;&gt;</value>
   </data>
   <data name="PersonData" xml:space="preserve">
-    <value>Employee Data</value>
+    <value>Person Data</value>
   </data>
   <data name="BirdDate" xml:space="preserve">
     <value>Date of Bird</value>

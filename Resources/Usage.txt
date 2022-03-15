@@ -1,0 +1,3 @@
+C:\Users\mgdel\VSProjects\MyErp\Resources>resgen resources.en.txt SharedResource.en-UK.resx
+Read in 124 resources from "resources.en.txt"
+Writing resource file...  Done.
