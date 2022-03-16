@@ -306,6 +306,9 @@
           "MyErp.dll": {}
         },
         "resources": {
+          "de/MyErp.resources.dll": {
+            "locale": "de"
+          },
           "de-CH/MyErp.resources.dll": {
             "locale": "de-CH"
           },

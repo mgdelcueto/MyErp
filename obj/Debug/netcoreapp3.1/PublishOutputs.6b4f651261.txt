@@ -1,6 +1,9 @@
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\MyErp.exe
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\css\site.css
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\favicon.ico
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\favicon_.ico
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\favicon_k.ico
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\favicon_w.ico
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\js\site.js
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -35,11 +38,15 @@ C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\lib\jque
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\lib\jquery\dist\jquery.min.js
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\lib\jquery\dist\jquery.min.map
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\lib\jquery\LICENSE.txt
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\MyERP_Logo.jpg
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\MyERP_Logo_k.jpg
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\MyERP_Logo_w.jpg
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\appsettings.Development.json
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\appsettings.json
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\MyErp.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\MyErp.runtimeconfig.json
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\MyErp.pdb
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\de\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\de-CH\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\de-DE\MyErp.resources.dll
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\en-US\MyErp.resources.dll
