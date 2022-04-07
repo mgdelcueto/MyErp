@@ -387,7 +387,6 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TPerson\Inde
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TPerson\Index.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Forbidden.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Noauthorized.cshtml.g.cs
-C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\LogOut.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Languages.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TOrganiza\UserCreate.cshtml.g.cs
@@ -418,3 +417,8 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedRe
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.resources.de.resources
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\de\MyErp.resources.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\de\MyErp.resources.dll
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Login.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\MyErp.Resources.SharedResource.en-EN.resources
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\_ChLogin.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Login.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\_Languages.cshtml.g.cs

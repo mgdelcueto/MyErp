@@ -1,12 +1,15 @@
 @model List<TFacility>
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+
     <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>>Facilities Data</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("FacilitiesData")</h2>
     </div>
     <tr>
-        <th class="head-text">Code</th> 
-        <th class="head-text">Description</th>                
-        <th class="head-text">Type</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("FCode")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("FDescr")</th>                
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("FType")</th>        
     </tr>
    
     @foreach (var c in Model) {

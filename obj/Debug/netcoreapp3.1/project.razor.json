@@ -14487,6 +14487,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Account\\_ChLogin.cshtml",
+      "TargetPath": "Views\\Account\\_ChLogin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaWorkCenters_all.cshtml",
       "TargetPath": "Views\\TEngine\\_pListaWorkCenters_all.cshtml",
       "FileKind": "mvc"
@@ -14529,11 +14534,6 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pmenuMatCo.cshtml",
       "TargetPath": "Views\\TEngine\\_pmenuMatCo.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Account\\Login.cshtml",
-      "TargetPath": "Views\\Account\\Login.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14657,6 +14657,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Shared\\_Login.cshtml",
+      "TargetPath": "Views\\Shared\\_Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\LoEdit.cshtml",
       "TargetPath": "Views\\TEngine\\LoEdit.cshtml",
       "FileKind": "mvc"
@@ -14742,6 +14747,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Account\\_Languages.cshtml",
+      "TargetPath": "Views\\Account\\_Languages.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pmenuTr.cshtml",
       "TargetPath": "Views\\TEngine\\_pmenuTr.cshtml",
       "FileKind": "mvc"
@@ -14779,6 +14789,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\TrSEdit.cshtml",
       "TargetPath": "Views\\TEngine\\TrSEdit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Shared\\Login.cshtml",
+      "TargetPath": "Views\\Shared\\Login.cshtml",
       "FileKind": "mvc"
     },
     {

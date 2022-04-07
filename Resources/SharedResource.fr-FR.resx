@@ -142,7 +142,7 @@
     <value>Index Zone RH page</value>
   </data>
   <data name="PersonTable" xml:space="preserve">
-    <value>personne Tableau</value>
+    <value>Liste des employés</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Filtre</value>
@@ -154,22 +154,22 @@
     <value>Nom</value>
   </data>
   <data name="Surname" xml:space="preserve">
-    <value>noms de famille</value>
+    <value>Noms de famille</value>
   </data>
   <data name="DNI" xml:space="preserve">
-    <value>identifiant</value>
+    <value>Carte d'identité</value>
   </data>
   <data name="Adress" xml:space="preserve">
-    <value>Une robe</value>
+    <value>Adresse postale</value>
   </data>
   <data name="Country" xml:space="preserve">
-    <value>De campagne</value>
+    <value>Pays</value>
   </data>
   <data name="&lt;&lt;Prev" xml:space="preserve">
     <value>&lt;&lt; Précédent</value>
   </data>
   <data name="EditPerson" xml:space="preserve">
-    <value>Modifier une personne</value>
+    <value>Modifier les données des employés</value>
   </data>
   <data name="Person" xml:space="preserve">
     <value>Des employés</value>
@@ -199,10 +199,10 @@
     <value>Suivant &gt;&gt;</value>
   </data>
   <data name="PersonData" xml:space="preserve">
-    <value>personne de données</value>
+    <value>Données sur les employés</value>
   </data>
   <data name="BirdDate" xml:space="preserve">
-    <value>Date de Bird</value>
+    <value>Date de naissance</value>
   </data>
   <data name="CityOrigin" xml:space="preserve">
     <value>Lieu de naissance</value>
@@ -211,9 +211,9 @@
     <value>Pays d'origine</value>
   </data>
   <data name="AdressAd" xml:space="preserve">
-    <value>Adresse aditional</value>
+    <value>Adresse supplémentaire</value>
   </data>
-  <data name="CounntryRes" xml:space="preserve">
+  <data name="CountryRes" xml:space="preserve">
     <value>Pays de résidence</value>
   </data>
   <data name="ContractDate" xml:space="preserve">
@@ -232,31 +232,31 @@
     <value>Annuler</value>
   </data>
   <data name="mDNI" xml:space="preserve">
-    <value>ID champ est obligatoire</value>
+    <value>champ est obligatoire</value>
   </data>
   <data name="mBirD" xml:space="preserve">
-    <value>Oiseaux champ Date est nécessaire</value>
+    <value>champ Date est nécessaire</value>
   </data>
   <data name="mCitB" xml:space="preserve">
-    <value>Ville Origine champ est obligatoire</value>
+    <value>Ville Origine est obligatoire</value>
   </data>
   <data name="mCtrOr" xml:space="preserve">
-    <value>Pays champ est obligatoire</value>
+    <value>Pays est obligatoire</value>
   </data>
   <data name="mName" xml:space="preserve">
     <value>champ Nom est requis</value>
   </data>
   <data name="mSname" xml:space="preserve">
-    <value>Nom champ est obligatoire</value>
+    <value>Nom est obligatoire</value>
   </data>
   <data name="mAdr" xml:space="preserve">
-    <value>Adresse champ est obligatoire</value>
+    <value>Adresse est obligatoire</value>
   </data>
   <data name="mConD" xml:space="preserve">
     <value>champ Date du contrat est nécessaire</value>
   </data>
   <data name="mEntD" xml:space="preserve">
-    <value>Date d'entrée champ est obligatoire</value>
+    <value>Date d'entrée est obligatoire</value>
   </data>
   <data name="OrgreaIndexPage" xml:space="preserve">
     <value>zone Organisation Index Page</value>
@@ -346,7 +346,7 @@
     <value>Choisir la langue</value>
   </data>
   <data name="Useddltoselect" xml:space="preserve">
-    <value>S'il vous plaît utiliser la liste déroulante ci-dessous pour sélectionner la langue souhaitée</value>
+    <value>Choisir la langue</value>
   </data>
   <data name="CharCode" xml:space="preserve">
     <value>Code de département</value>
@@ -459,6 +459,15 @@
   <data name="Login" xml:space="preserve">
     <value>Connexion</value>
   </data>
+  <data name="_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="_Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>se déconnecter</value>
+  </data>
   <data name="Forbidden" xml:space="preserve">
     <value>Interdit</value>
   </data>
@@ -488,5 +497,107 @@
   </data>
   <data name="AdRol" xml:space="preserve">
     <value>Ajouter Rol</value>
+  </data>
+  <data name="FDescr" xml:space="preserve">
+    <value>Description de l'installation</value>
+  </data>
+  <data name="FCode" xml:space="preserve">
+    <value>Code de l'établissement</value>
+  </data>
+  <data name="FType" xml:space="preserve">
+    <value>Type d'établissement</value>
+  </data>
+  <data name="FCrDate" xml:space="preserve">
+    <value>Date de création </value>
+  </data>
+  <data name="FSuperf" xml:space="preserve">
+    <value>Surface de l'installation</value>
+  </data>
+  <data name="FCostMin" xml:space="preserve">
+    <value>Coût / Minute</value>
+  </data>
+  <data name="FStatus" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="FStDate" xml:space="preserve">
+    <value>Date d'état</value>
+  </data>
+  <data name="FAcct" xml:space="preserve">
+    <value>Compte</value>
+  </data>
+  <data name="FacilitiesData" xml:space="preserve">
+    <value>Données sur les installations</value>
+  </data>
+  <data name="FLotoAss" xml:space="preserve">
+    <value>Emplacements à attribuer</value>
+  </data>
+  <data name="FStAss" xml:space="preserve">
+    <value>Stockages à affecter</value>
+  </data>
+  <data name="FEdit" xml:space="preserve">
+    <value>Modifier un enregistrement d'établissement</value>
+  </data>
+  <data name="FWCAss" xml:space="preserve">
+    <value>Centres de charge affectés</value>
+  </data>
+  <data name="FWCtoAss" xml:space="preserve">
+    <value>Postes de charge à affecter</value>
+  </data>
+  <data name="FCrea" xml:space="preserve">
+    <value>Ajouter un nouvel enregistrement d'établissement</value>
+  </data>
+  <data name="-----------------M" xml:space="preserve">
+    <value>--------------------------MATERIALS DATA</value>
+  </data>
+  <data name="MData" xml:space="preserve">
+    <value>Données du matériel</value>
+  </data>
+  <data name="MRefer" xml:space="preserve">
+    <value>Référence du matériel</value>
+  </data>
+  <data name="MDescr" xml:space="preserve">
+    <value>Description du matériel</value>
+  </data>
+  <data name="MClass" xml:space="preserve">
+    <value>Classe de matériel</value>
+  </data>
+  <data name="MType" xml:space="preserve">
+    <value>type de materiau</value>
+  </data>
+  <data name="MStatus" xml:space="preserve">
+    <value>Situation matérielle</value>
+  </data>
+  <data name="MStatusDate" xml:space="preserve">
+    <value>Date d'état du matériel</value>
+  </data>
+  <data name="MDim1" xml:space="preserve">
+    <value>Dimension #1</value>
+  </data>
+  <data name="MDim2" xml:space="preserve">
+    <value>Dimension #2</value>
+  </data>
+  <data name="MDim3" xml:space="preserve">
+    <value>Dimension #3</value>
+  </data>
+  <data name="MWeight" xml:space="preserve">
+    <value>Poids</value>
+  </data>
+  <data name="MUN" xml:space="preserve">
+    <value>Unité de mesure</value>
+  </data>
+  <data name="mValDim" xml:space="preserve">
+    <value>Entrez une dimension valide (&gt;0)</value>
+  </data>
+  <data name="mValWei" xml:space="preserve">
+    <value>Entrez un poids valide(&gt;0)</value>
+  </data>
+  <data name="mReq" xml:space="preserve">
+    <value>Champs requis</value>
+  </data>
+  <data name="MCrea" xml:space="preserve">
+    <value>Ajouter un nouvel enregistrement de matériel</value>
+  </data>
+  <data name="MEdit" xml:space="preserve">
+    <value>Modifier un enregistrement de matériel</value>
   </data>
 </root>

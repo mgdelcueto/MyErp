@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Home" xml:space="preserve">
-    <value>Casa</value>
+    <value>Home</value>
   </data>
   <data name="Privacy" xml:space="preserve">
     <value>Privacidade</value>
@@ -139,10 +139,10 @@
     <value>Planejamento MRP</value>
   </data>
   <data name="HRAreaIndexPage" xml:space="preserve">
-    <value>HR Página Índice de Área</value>
+    <value>Área de Recursos Pessoais</value>
   </data>
   <data name="PersonTable" xml:space="preserve">
-    <value>pessoa Tabela</value>
+    <value>Lista de empregados</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Filtro</value>
@@ -154,13 +154,13 @@
     <value>Nome</value>
   </data>
   <data name="Surname" xml:space="preserve">
-    <value>sobrenomes</value>
+    <value>Sobrenomes</value>
   </data>
   <data name="DNI" xml:space="preserve">
-    <value>EU IA</value>
+    <value>Identidade</value>
   </data>
   <data name="Adress" xml:space="preserve">
-    <value>adress</value>
+    <value>Endereço postal</value>
   </data>
   <data name="Country" xml:space="preserve">
     <value>País</value>
@@ -169,7 +169,7 @@
     <value>&lt;&lt; Anterior</value>
   </data>
   <data name="EditPerson" xml:space="preserve">
-    <value>Editar uma Pessoa</value>
+    <value>Editar dados do funcionário</value>
   </data>
   <data name="Person" xml:space="preserve">
     <value>Funcionários</value>
@@ -199,10 +199,10 @@
     <value>Next &gt;&gt;</value>
   </data>
   <data name="PersonData" xml:space="preserve">
-    <value>pessoa de dados</value>
+    <value>Dados do funcionário</value>
   </data>
   <data name="BirdDate" xml:space="preserve">
-    <value>Data de Pássaro</value>
+    <value>Data de nascimento</value>
   </data>
   <data name="CityOrigin" xml:space="preserve">
     <value>local de nascimento</value>
@@ -211,9 +211,9 @@
     <value>País de origem</value>
   </data>
   <data name="AdressAd" xml:space="preserve">
-    <value>adicional Adress</value>
+    <value>Endereço adicional</value>
   </data>
-  <data name="CounntryRes" xml:space="preserve">
+  <data name="CountryRes" xml:space="preserve">
     <value>país de residência</value>
   </data>
   <data name="ContractDate" xml:space="preserve">
@@ -346,7 +346,7 @@
     <value>Selecione o idioma</value>
   </data>
   <data name="Useddltoselect" xml:space="preserve">
-    <value>Por favor Use lista suspensa abaixo para selecionar o idioma desejado</value>
+    <value>Selecione o idioma</value>
   </data>
   <data name="CharCode" xml:space="preserve">
     <value>Código de Departamento</value>
@@ -459,6 +459,15 @@
   <data name="Login" xml:space="preserve">
     <value>Conecte-se</value>
   </data>
+  <data name="_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="_Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Sair</value>
+  </data>
   <data name="Forbidden" xml:space="preserve">
     <value>Proibido</value>
   </data>
@@ -488,5 +497,107 @@
   </data>
   <data name="AdRol" xml:space="preserve">
     <value>Adicionar Rol</value>
+  </data>
+  <data name="FDescr" xml:space="preserve">
+    <value>Descrição da Instalação</value>
+  </data>
+  <data name="FCode" xml:space="preserve">
+    <value>Código da Instalação</value>
+  </data>
+  <data name="FType" xml:space="preserve">
+    <value>Tipo de instalação</value>
+  </data>
+  <data name="FCrDate" xml:space="preserve">
+    <value>Data de criação</value>
+  </data>
+  <data name="FSuperf" xml:space="preserve">
+    <value>Superfície da Instalação</value>
+  </data>
+  <data name="FCostMin" xml:space="preserve">
+    <value>Custo / Minuto</value>
+  </data>
+  <data name="FStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="FStDate" xml:space="preserve">
+    <value>Data de status</value>
+  </data>
+  <data name="FAcct" xml:space="preserve">
+    <value>Conta</value>
+  </data>
+  <data name="FacilitiesData" xml:space="preserve">
+    <value>Dados das Instalações</value>
+  </data>
+  <data name="FLotoAss" xml:space="preserve">
+    <value>Locais a atribuir</value>
+  </data>
+  <data name="FStAss" xml:space="preserve">
+    <value>Armazenamentos a atribuir</value>
+  </data>
+  <data name="FEdit" xml:space="preserve">
+    <value>Editar um registro de instalação</value>
+  </data>
+  <data name="FWCAss" xml:space="preserve">
+    <value>Centros de trabalho atribuídos</value>
+  </data>
+  <data name="FWCtoAss" xml:space="preserve">
+    <value>Centros de trabalho para atribuir</value>
+  </data>
+  <data name="FCrea" xml:space="preserve">
+    <value>Adicionar um novo registro de instalação</value>
+  </data>
+  <data name="-----------------M" xml:space="preserve">
+    <value>--------------------------MATERIALS DATA</value>
+  </data>
+  <data name="MData" xml:space="preserve">
+    <value>Dados do material</value>
+  </data>
+  <data name="MRefer" xml:space="preserve">
+    <value>Referência do Material</value>
+  </data>
+  <data name="MDescr" xml:space="preserve">
+    <value>Descrição do material</value>
+  </data>
+  <data name="MClass" xml:space="preserve">
+    <value>Classe do material</value>
+  </data>
+  <data name="MType" xml:space="preserve">
+    <value>tipo de material</value>
+  </data>
+  <data name="MStatus" xml:space="preserve">
+    <value>Condição do material</value>
+  </data>
+  <data name="MStatusDate" xml:space="preserve">
+    <value>Data de status do material</value>
+  </data>
+  <data name="MDim1" xml:space="preserve">
+    <value>Dimensão #1</value>
+  </data>
+  <data name="MDim2" xml:space="preserve">
+    <value>Dimensão #2</value>
+  </data>
+  <data name="MDim3" xml:space="preserve">
+    <value>Dimensão #3</value>
+  </data>
+  <data name="MWeight" xml:space="preserve">
+    <value>Peso</value>
+  </data>
+  <data name="MUN" xml:space="preserve">
+    <value>Unidade de medida</value>
+  </data>
+  <data name="mValDim" xml:space="preserve">
+    <value>Insira uma dimensão válida (&gt;0)</value>
+  </data>
+  <data name="mValWei" xml:space="preserve">
+    <value>Insira um peso válido (&gt;0)</value>
+  </data>
+  <data name="mReq" xml:space="preserve">
+    <value>Campo obrigatório</value>
+  </data>
+  <data name="MCrea" xml:space="preserve">
+    <value>Adicionar um novo registro de material</value>
+  </data>
+  <data name="MEdit" xml:space="preserve">
+    <value>Editar um registro de material</value>
   </data>
 </root>

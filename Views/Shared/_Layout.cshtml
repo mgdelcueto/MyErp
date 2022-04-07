@@ -26,8 +26,94 @@
     string getName()
     {
         var name = Context.User.Claims.FirstOrDefault(
-                x => x.Type == "FullName")?.Value;
+                x => x.Type == "FullName")?.Value; //FullName
+        string typename ="NM";
+        try{typename =(string)ViewData["Name"];
+        }catch{}
+        if (name==null){typename ="NA";}
+        switch (typename)
+        {
+            case "NA":
+                name =@SharedLocalizer.GetLocalizedHtmlString("Unauthorized");
+                break;
+            default:
+                break;
+        }
         return name;
+    }
+    string getUName()
+    {
+        var name = Context.User.Claims.FirstOrDefault(
+                x => x.Type == "UserName")?.Value; //FullName
+        return name;
+    }
+    string visChange()
+    {
+        string typename ="";
+        try{typename =(string)ViewData["Name"];
+        }catch (Exception exc) {
+            string mensaje = exc.Message;
+        }
+        if (typename==null){typename ="LO";}
+
+        string ret ="xvisible";
+        if (typename=="NA"||typename =="FO"||typename =="NM") {ret="invisible";}
+        return ret;  
+    }
+    string xvisChange()
+    {
+        string typename ="";
+        try{typename =(string)ViewData["Name"];
+        }catch{}
+        if (typename==null){typename ="LO";}
+        return typename;  
+    }
+    string getLink(string ltype)
+    {
+        var link = "";
+        string typename ="NM";
+        try{typename =(string)ViewData["Name"];
+        }catch{}
+        if (typename==null){typename ="LO";}
+        switch (ltype)
+        {
+            case "Text":
+                if (typename=="NA")
+                    {link =@SharedLocalizer.GetLocalizedHtmlString("PleaseLogin");}
+                else 
+                    {
+                        if (typename=="FO")
+                            {
+                                link ="";
+                            }
+                        else 
+                            {
+                                if (typename=="LO" )
+                                {
+                                    {link =@SharedLocalizer.GetLocalizedHtmlString("Logout");}
+                                }
+                            }
+                    }
+                break;
+            case "Action":
+                if (typename=="NA")
+                    {link =@SharedLocalizer.GetLocalizedHtmlString("_Login");}
+                else 
+                    {
+                        if (typename=="FO")
+                            {
+                                link ="";
+                            }
+                        else 
+                            {
+                                {link =@SharedLocalizer.GetLocalizedHtmlString("_Logout");}
+                            }
+                    }
+                break;
+            default:
+                break;
+        }
+        return link;
     }
 }
 
@@ -57,6 +143,14 @@
             color: #222222;
             background-color: #EEEEEE;
             border-color: #888888;
+            text-align: left;
+            }
+
+    </style>
+        <style>
+        .xvisible {
+            visibility: visible;
+            display:block;
             text-align: left;
             }
 
@@ -198,8 +292,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <img src="/MyERP_Logo.jpg" alt="My ERP Logo" style="width:60px;height:60px;" />
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyErp</a>
+                <!--<img src="/MyERP_Logo.jpg" alt="My ERP Logo" style="width:60px;height:60px;" align="bottom"/>
+                -->
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/MyERP_Logo.jpg" alt="My ERP Logo" style="width:60px;height:60px;" align="bottom"/></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -226,14 +321,29 @@
                         </li>                        
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Languages" >@SharedLocalizer.GetLocalizedHtmlString("Languages")</a>
-                        </li>                        
+                        </li>      
+                        <!--                  
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut" >@SharedLocalizer.GetLocalizedHtmlString("Logout")</a>
-                        </li>                        
+                        </li>
+                        -->                        
                     </ul>
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                @getName()
+                <table>
+                    <tr>
+                        <td>@getName()@xvisChange()</td>
+                        <td>
+                    </tr>
+                    <tr>
+                        <td>@Html.ActionLink(@getLink("Text"), @getLink("Action"), "Account")</td>
+                    </tr>
+                    <tr>
+                        <td class=@visChange()>
+                        @Html.ActionLink(@SharedLocalizer.GetLocalizedHtmlString("ChangePassword"), "ChLogin","Account")
+                        </td>
+                    </tr>
+                </table>
                 </div>
             </div>
         </nav>
@@ -243,12 +353,13 @@
             @RenderBody()
         </main>
     </div>
+    <!--
         <div class="container">
             <div class=@Visible(99)>
                 @await Html.PartialAsync("_SelectLanguagePartial")    
             </div>
         </div>
-
+    -->
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - MyErp - <a asp-area="" asp-controller="Home" asp-action="Privacy">@SharedLocalizer.GetLocalizedHtmlString("Privacy")</a>

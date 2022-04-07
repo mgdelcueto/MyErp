@@ -20,8 +20,13 @@ namespace MyErp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
-        {
+        public IActionResult Index(string mensaje="LO")
+        {   
+            string myName ="LO";
+            try{
+            myName=mensaje;}
+            catch{myName="LO";}
+            ViewData["Name"]=myName;
             return View();
         }
 

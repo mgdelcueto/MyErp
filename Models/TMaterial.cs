@@ -10,47 +10,47 @@ namespace MyErp.Models
     {
         public int MatId { get; set; }
 
-        [Display(Name="Reference")]
-        [Required,StringLength(125)]
+        [Display(Name="MRefer")]
+        [Required(ErrorMessage="mReq"),StringLength(125)]
         public string MatRefer { get; set; }
 
-        [Display(Name="Type")]
-        [Required,StringLength(25)]
+        [Display(Name="MType")]
+        [Required(ErrorMessage="mReq"),StringLength(25)]
         public string MatType { get; set; }
 
-        [Display(Name="Class")]
-        [Required,StringLength(25)]
+        [Display(Name="MClass")]
+        [Required(ErrorMessage="mReq"),StringLength(25)]
         public string MatClass { get; set; }
 
-        [Display(Name="Status")]
-        [Required,StringLength(125)]
+        [Display(Name="MStatus")]
+        [Required(ErrorMessage="mReq"),StringLength(125)]
         public string MatStatus { get; set; }
-        [Display(Name="Status Date")]
-        [Required,DataType(DataType.Date)]         
+        [Display(Name="MStatusDate")]
+        [Required(ErrorMessage="mReq"),DataType(DataType.Date)]         
         public DateTime? MatStDate { get; set; }
 
-        [Display(Name="Description")]
-        [Required,StringLength(225)]
+        [Display(Name="MDescr")]
+        [Required(ErrorMessage="mReq"),StringLength(225)]
         public string MatDescr { get; set; }
 
-        [Display(Name = "Dimension 1")]
-        [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid Dimension (>0)")]
+        [Display(Name = "MDim1")]
+        [Required,Range(0, double.MaxValue, ErrorMessage = "mValDim")]
         public double? MatDim1 { get; set; }
 
-        [Display(Name = "Dimension 2")]
-        [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid Dimension (>0)")]
+        [Display(Name = "MDim2")]
+        [Required,Range(0, double.MaxValue, ErrorMessage = "mValDim")]
         public double? MatDim2 { get; set; }
 
-        [Display(Name = "Dimension 3")]
-        [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid Dimension (>0)")]
+        [Display(Name = "MDim3")]
+        [Required,Range(0, double.MaxValue, ErrorMessage = "mValDim")]
         public double? MatDim3 { get; set; }
 
-        [Display(Name = "Weight")]
-        [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid Dimension (>0)")]
+        [Display(Name = "MWeight")]
+        [Required,Range(0, double.MaxValue, ErrorMessage = "mVaWeig")]
         public double? MatWeight { get; set; }
 
-        [Display(Name="Un.Measure")]
-        [Required,StringLength(25)]
+        [Display(Name="MUN")]
+        [Required(ErrorMessage="mReq"),StringLength(25)]
         public string MatUnMed { get; set; }
     }
 }

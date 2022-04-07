@@ -27,23 +27,27 @@ namespace MyErp.Controllers
         public IActionResult  Noauthorized(string ReturnUrl)
         {
             ViewData["link"]=ReturnUrl;
+            ViewData["Name"]="NA";
             return View();
         }
 
         public IActionResult  Forbidden(string ReturnUrl)
         {
             ViewData["link"]=ReturnUrl;
+            //ViewData["Name"]="FO";
             return View();
         }
         public IActionResult  Languages()
         {
-            ViewData["modulo"]=99;
-            return View();
+            ViewData["Name"]="NM"; //"Modulo"=99;
+            return View(new{mensaje="NM"});
+
         }
 
         [HttpGet]
         public IActionResult Login()
         {
+            ViewData["Name"]="NM"; 
             return View();
         }
         [HttpPost]
@@ -98,9 +102,12 @@ namespace MyErp.Controllers
                             orderby p.UsRolName
                             where p.UsRolUsId==mId
                             select p).ToList();
+                            //get the default culture info of the user
+
                             var claims = new List<Claim>
                             {
                                 new Claim("UserId", mId.ToString()),
+                                new Claim("UserName", UserName),
                                 new Claim(ClaimTypes.Name, UserName),
                                 new Claim("FullName", user.UserLastName+" "+user.UserFirstName),
                             };
@@ -114,26 +121,6 @@ namespace MyErp.Controllers
 
                             var authProperties = new AuthenticationProperties
                              {
-                //AllowRefresh = <bool>,
-                // Refreshing the authentication session should be allowed.
-
-                //ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
-                // The time at which the authentication ticket expires. A 
-                // value set here overrides the ExpireTimeSpan option of 
-                // CookieAuthenticationOptions set with AddCookie.
-
-                //IsPersistent = true,
-                // Whether the authentication session is persisted across 
-                // multiple requests. When used with cookies, controls
-                // whether the cookie's lifetime is absolute (matching the
-                // lifetime of the authentication ticket) or session-based.
-
-                //IssuedUtc = <DateTimeOffset>,
-                // The time at which the authentication ticket was issued.
-
-                //RedirectUri = <string>
-                // The full path or absolute URI to be used as an http 
-                // redirect response value.
                             };
 
                             await HttpContext.SignInAsync(
@@ -149,55 +136,23 @@ namespace MyErp.Controllers
                 ViewData["Error"]=mensaje;
                 return RedirectToAction("Index", "Errores",new{mensaje=mensaje});
             }
-            /*
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, UserName),
-                new Claim("FullName", UserName),
-                new Claim(ClaimTypes.Role, UserRole),
-                new Claim(ClaimTypes.Role, UserRole2),
-            };
-
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            var authProperties = new AuthenticationProperties
-            {
-                //AllowRefresh = <bool>,
-                // Refreshing the authentication session should be allowed.
-
-                //ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
-                // The time at which the authentication ticket expires. A 
-                // value set here overrides the ExpireTimeSpan option of 
-                // CookieAuthenticationOptions set with AddCookie.
-
-                //IsPersistent = true,
-                // Whether the authentication session is persisted across 
-                // multiple requests. When used with cookies, controls
-                // whether the cookie's lifetime is absolute (matching the
-                // lifetime of the authentication ticket) or session-based.
-
-                //IssuedUtc = <DateTimeOffset>,
-                // The time at which the authentication ticket was issued.
-
-                //RedirectUri = <string>
-                // The full path or absolute URI to be used as an http 
-                // redirect response value.
-            };
-
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme, 
-                new ClaimsPrincipal(claimsIdentity), 
-                authProperties);
-            */
-            //return View();
             }
-            return RedirectToAction("Index", "Home");
+            ViewData["Name"]="LO";
+            return RedirectToAction("Index", "Home",new{mensaje="LO"});
         }
         [HttpGet]
-        public IActionResult LogOut()
+        public async Task<IActionResult> LogOut()
+        //reemplazamos esto y ahora no solicita confirmacion de logout
+        //{
+        //    ViewData["Name"]="LO";
+        //    return View();
+        //}
         {
-            return View();
+            await HttpContext.SignOutAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
+
         [HttpPost]
         public async Task<IActionResult> LogOut(string UserName,string actionType)
         {
@@ -277,49 +232,62 @@ namespace MyErp.Controllers
                         //"-1" incorrect
                         //"-2" change password
                         //"-3" invalid username
-                        int mId =(int)iretor.Value;
 
-
-            if (mId>0||mId==-2){
-            if (NPassword==RPassword){
-            int type = 0;
-            string nPassw = NPassword ;
-            string nLogin = "";
-            string nFname = "";
-            string nLname = "";
-            var pType = new SqlParameter{
-                ParameterName="@ptype",
-                SqlDbType=System.Data.SqlDbType.Int,
-                Value=type};
-            var pId = new SqlParameter{
-                ParameterName="@pid",
-                SqlDbType=System.Data.SqlDbType.Int,
-                Value=mId};
-            var nlogin = new SqlParameter("@plog", nLogin);
-            var npass = new SqlParameter("@ppw", nPassw);
-            var nfname = new SqlParameter("@pfnam", nFname);
-            var nlname = new SqlParameter("@plnam", nLname);
-            var nretor = new SqlParameter{                            
-                ParameterName="@ret",
-                SqlDbType=System.Data.SqlDbType.NVarChar,
-                Direction= System.Data.ParameterDirection.Output,
-                Value=" "};
-            _dbContext.Database.ExecuteSqlRaw("uspUpdUser @pid,@ptype,@plog,@ppw,@pfnam,@plnam,@ret OUT", pId,pType,nlogin,npass,nfname,nlname,nretor);
-            string mensaje =(string)nretor.Value;
-                        //"0" ok
-                        //"1" incorrect Throw exception
-                        //_dbContext.TUsers.Add(user); 
-                        //_dbContext.SaveChanges();
-            }
+            if (mes>=0)
+                {
+                    int mId =(int)iretor.Value;
+                    if (mId>0||mId==-2)
+                        {
+                            if (NPassword==RPassword)
+                                {
+                                    int type = 0;
+                                    string nPassw = NPassword ;
+                                    string nLogin = "";
+                                    string nFname = "";
+                                    string nLname = "";
+                                    var pType = new SqlParameter{
+                                        ParameterName="@ptype",
+                                        SqlDbType=System.Data.SqlDbType.Int,
+                                        Value=type};
+                                    var pId = new SqlParameter{
+                                        ParameterName="@pid",
+                                        SqlDbType=System.Data.SqlDbType.Int,
+                                        Value=mId};
+                                    var nlogin = new SqlParameter("@plog", nLogin);
+                                    var npass = new SqlParameter("@ppw", nPassw);
+                                    var nfname = new SqlParameter("@pfnam", nFname);
+                                    var nlname = new SqlParameter("@plnam", nLname);
+                                    var nretor = new SqlParameter{                            
+                                        ParameterName="@ret",
+                                        SqlDbType=System.Data.SqlDbType.NVarChar,
+                                        Direction= System.Data.ParameterDirection.Output,
+                                        Value=" "};
+                                    _dbContext.Database.ExecuteSqlRaw("uspUpdUser @pid,@ptype,@plog,@ppw,@pfnam,@plnam,@ret OUT", pId,pType,nlogin,npass,nfname,nlname,nretor);
+                                    string mensaje =(string)nretor.Value;
+                                        //"0" ok
+                                        //"1" incorrect Throw exception
+                                        //_dbContext.TUsers.Add(user); 
+                                        //_dbContext.SaveChanges();
+                                }
+                            else{
+                                ViewData["Coment"]="PassNoMatch";
+                                return View();
+                                }
+                        }
+                    //else{
+                    //    return RedirectToAction("Index", "Home");
+                    //    //ViewData["Coment"]="SomeErrorOccurred";
+                    //    //return View();
+                    //    }
+                }
+                    //return RedirectToAction("Index", "Home"); // RedirectToAction("Login", "Account");
             else{
-                ViewData["Coment"]="PassNoMatch";
+                ViewData["Coment"]="SomeErrorOccurred";
                 return View();
-            }}
+                }
             }
-            else{
-                return RedirectToAction("Index", "Home");
-            }
-            return RedirectToAction("Login", "Account");
+            ViewData["Name"]="LO";
+            return RedirectToAction("Index", "Home",new{mensaje="LO"});
         }
         public IActionResult Index()
         {

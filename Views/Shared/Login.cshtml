@@ -1,38 +1,21 @@
 @using MyErp.Resources
  
 @inject LocService SharedLocalizer
-@functions {
-    string Coment(){
-        string coment="";
-        try{
-        coment =@SharedLocalizer.GetLocalizedHtmlString((string)ViewData["Coment"]);
-        coment = coment +" "+(string)ViewData["NewPw"];
-        }catch{}
-        return coment;
-    }
-    string UserId(){
-        string coment="";
-        try{
-        coment = (string)ViewData["UserId"];
-        }catch{}
-        return coment;
-    }
-    string getUName()
-    {
-        string xname="";
-        try{
-        var name = Context.User.Claims.FirstOrDefault(
-                x => x.Type == "UserName")?.Value; //FullName
-        xname = name;
-        }
-        catch{}
-        return xname;
-    }
 
+<!DOCTYPE html>
 
-}
+<html  dir="ltr" lang="en" xml:lang="en">
+<head>
+    <title>Julia High School: Log in to the site</title>
+
+<meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body  id="page-login-index" class="format-site  path-login chrome dir-ltr lang-en yui-skin-sam yui3-skin-sam pagelayout-login course-1 context-1 notloggedin ">
 <div class="toast-wrapper mx-auto py-0 fixed-top" role="status" aria-live="polite"></div>
+
 <div id="page-wrapper">
+
     <div>
     <a class="sr-only sr-only-focusable" href="#maincontent">Skip to main content</a>
 </div>
@@ -46,22 +29,20 @@
 <div class="col-xl-6 col-sm-8 ">
 <div class="card">
     <div class="card-block">
-            <h1 class="h2 card-header text-center" aria-label="Julia High School: Log in">@SharedLocalizer.GetLocalizedHtmlString("Change_Password")</h1>
+            <h1 class="h2 card-header text-center" aria-label="Julia High School: Log in">@SharedLocalizer.GetLocalizedHtmlString("myERP_Login")</h1>
         <div class="card-body">
 
 
             <div class="row justify-content-md-center">
                 <div class="col-md-5">
-                    <form class="mt-3" action="ChLogin" method="post" id="chlogin">
+                    <form class="mt-3" action="Login" method="post" id="login">
                         <div class="form-group">
                             <label for="username" class="sr-only">@SharedLocalizer.GetLocalizedHtmlString("Username")</label>
-                            <input type ="hidden" name ="UserId" value ="@UserId()"> 
-                            
                             <input type="text" name="UserName" id="UserName"
                                 class="form-control"
-                                value = @getUName()
+                                value=""
                                 placeholder="@SharedLocalizer.GetLocalizedHtmlString("EnterUsername")"
-                                autocomplete="UserName" >
+                                autocomplete="UserName">
                         </div>
                         <div class="form-group">
                             <label for="password" class="sr-only">@SharedLocalizer.GetLocalizedHtmlString("Password")</label>
@@ -70,21 +51,9 @@
                                 placeholder="@SharedLocalizer.GetLocalizedHtmlString("EnterPassword")"
                                 autocomplete="current-password">
                         </div>
-                        <div class="form-group">
-                            <label for="newpassword" class="sr-only">@SharedLocalizer.GetLocalizedHtmlString("NewPassword")</label>
-                            <input type="password" name="NPassword" id="NPassword" value=""
-                                class="form-control"
-                                placeholder="@SharedLocalizer.GetLocalizedHtmlString("EnterNewPassword")"
-                                autocomplete="current-password">
-                        </div>
-                        <div class="form-group">
-                            <label for="newpassword" class="sr-only">@SharedLocalizer.GetLocalizedHtmlString("RepNewPassword")</label>
-                            <input type="password" name="RPassword" id="RPassword" value=""
-                                class="form-control"
-                                placeholder="@SharedLocalizer.GetLocalizedHtmlString("ReEnterNewPassword")"
-                                autocomplete="current-password">
-                        </div>
-                        <button name = "actionType" value="Go" type="submit" class="btn btn-primary btn-block mt-3" id="loginbtn">@SharedLocalizer.GetLocalizedHtmlString("GO")</button>
+                            <div class="rememberpass mt-3">
+                            </div>
+                        <button name = "actionType" value="Login" type="submit" class="btn btn-primary btn-block mt-3" id="loginbtn">@SharedLocalizer.GetLocalizedHtmlString("LogIn")</button>
                         <button name ="actionType" value="Cancel" type="submit" class="btn btn-secondary btn-block" >@SharedLocalizer.GetLocalizedHtmlString("Cancell")</button>
                     </form>
                 </div>
@@ -96,7 +65,6 @@
                     <div class="mt-3">
                         <img src="/MyERP_Logo.jpg" alt="My ERP Logo" style="width:100%;height:100%;" align="bottom"/>   
                     </div>
-                    <label style="color:red">@Coment()</label>
                 </div>
             </div>
         </div>
@@ -109,3 +77,5 @@
             </div>
         </div>
     </div>
+</body>
+</html>

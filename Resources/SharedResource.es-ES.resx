@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Home" xml:space="preserve">
-    <value>Hogar</value>
+    <value>Home</value>
   </data>
   <data name="Privacy" xml:space="preserve">
-    <value>Intimidad</value>
+    <value>Privacidad</value>
   </data>
   <data name="HRArea" xml:space="preserve">
-    <value>HR Área</value>
+    <value>Area de Recursos Humanos</value>
   </data>
   <data name="Purchasing" xml:space="preserve">
-    <value>Adquisitivo</value>
+    <value>Compras</value>
   </data>
   <data name="Sales" xml:space="preserve">
     <value>Ventas</value>
@@ -139,28 +139,28 @@
     <value>Planificación MRP</value>
   </data>
   <data name="HRAreaIndexPage" xml:space="preserve">
-    <value>Índice de Área de Recursos Humanos Página</value>
+    <value>Área de Recursos Humanos</value>
   </data>
   <data name="PersonTable" xml:space="preserve">
-    <value>Tabla persona</value>
+    <value>Listado de empleados</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Filtrar</value>
   </data>
   <data name="FilterByName" xml:space="preserve">
-    <value>Nombre de filtro:</value>
+    <value>Filtrar por Nombre</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nombre</value>
   </data>
   <data name="Surname" xml:space="preserve">
-    <value>apellidos</value>
+    <value>Apellidos</value>
   </data>
   <data name="DNI" xml:space="preserve">
-    <value>IDENTIFICACIÓN</value>
+    <value>Documento de identidad</value>
   </data>
   <data name="Adress" xml:space="preserve">
-    <value>Adress</value>
+    <value>Direccion postal</value>
   </data>
   <data name="Country" xml:space="preserve">
     <value>País</value>
@@ -169,7 +169,7 @@
     <value>&lt;&lt; Anterior</value>
   </data>
   <data name="EditPerson" xml:space="preserve">
-    <value>Edición de una persona</value>
+    <value>Editar datos del empleado</value>
   </data>
   <data name="Person" xml:space="preserve">
     <value>Empleados</value>
@@ -199,10 +199,10 @@
     <value>Siguiente &gt;&gt;</value>
   </data>
   <data name="PersonData" xml:space="preserve">
-    <value>datos persona</value>
+    <value>Datos del Empleado</value>
   </data>
   <data name="BirdDate" xml:space="preserve">
-    <value>Fecha de Aves</value>
+    <value>Fecha de Nacimiento</value>
   </data>
   <data name="CityOrigin" xml:space="preserve">
     <value>Lugar de nacimiento</value>
@@ -211,9 +211,9 @@
     <value>País de origen</value>
   </data>
   <data name="AdressAd" xml:space="preserve">
-    <value>Adicional Dirección</value>
+    <value>Dirección adicional</value>
   </data>
-  <data name="CounntryRes" xml:space="preserve">
+  <data name="CountryRes" xml:space="preserve">
     <value>País de residencia</value>
   </data>
   <data name="ContractDate" xml:space="preserve">
@@ -232,25 +232,25 @@
     <value>Cancelar</value>
   </data>
   <data name="mDNI" xml:space="preserve">
-    <value>se requiere identificador de campo</value>
+    <value>se requiere documento de identidad</value>
   </data>
   <data name="mBirD" xml:space="preserve">
-    <value>Se requiere campo Fecha de aves</value>
+    <value>Se requiere Fecha de nacimiento</value>
   </data>
   <data name="mCitB" xml:space="preserve">
-    <value>Se requiere Ciudad de origen Campo</value>
+    <value>Se requiere Ciudad de origen </value>
   </data>
   <data name="mCtrOr" xml:space="preserve">
-    <value>Se requiere país Campo</value>
+    <value>Se requiere país </value>
   </data>
   <data name="mName" xml:space="preserve">
     <value>Se requiere campo de nombre</value>
   </data>
   <data name="mSname" xml:space="preserve">
-    <value>Se requiere el apellido Campo</value>
+    <value>Se requiere el apellido </value>
   </data>
   <data name="mAdr" xml:space="preserve">
-    <value>Dirección campo es obligatorio</value>
+    <value>Dirección es obligatorio</value>
   </data>
   <data name="mConD" xml:space="preserve">
     <value>Se requiere campo Fecha de contrato</value>
@@ -259,10 +259,10 @@
     <value>se requiere la entrada de campo de fecha</value>
   </data>
   <data name="OrgreaIndexPage" xml:space="preserve">
-    <value>área de organización Índice Página</value>
+    <value>Area de organización </value>
   </data>
   <data name="Organization" xml:space="preserve">
-    <value>área de organización Índice Página</value>
+    <value>Organizacion</value>
   </data>
   <data name="Chart" xml:space="preserve">
     <value>Organigrama</value>
@@ -274,31 +274,31 @@
     <value>idiomas</value>
   </data>
   <data name="Users" xml:space="preserve">
-    <value>usuarios</value>
+    <value>Usuarios</value>
   </data>
   <data name="OrgTable" xml:space="preserve">
-    <value>tabla de organización</value>
+    <value>Tabla de organización</value>
   </data>
   <data name="OrgData" xml:space="preserve">
-    <value>Los datos de la organización</value>
+    <value>Datos de la organización</value>
   </data>
   <data name="OrgCode" xml:space="preserve">
     <value>Código de Organización</value>
   </data>
   <data name="mOrgCode" xml:space="preserve">
-    <value>Código de campo es obligatorio</value>
+    <value>Código es obligatorio</value>
   </data>
   <data name="OrgNif" xml:space="preserve">
     <value>Id de la organización</value>
   </data>
   <data name="mOrgNif" xml:space="preserve">
-    <value>El campo ID de la organización se requiere</value>
+    <value>Se requiere el campo ID de la organización</value>
   </data>
   <data name="OrgName" xml:space="preserve">
     <value>Nombre de la Organización</value>
   </data>
   <data name="mOrgName" xml:space="preserve">
-    <value>El nombre es necesario Campo</value>
+    <value>El campo nombre es necesario </value>
   </data>
   <data name="OrgAdd" xml:space="preserve">
     <value>Dirección postal</value>
@@ -328,7 +328,7 @@
     <value>Email</value>
   </data>
   <data name="mOrgEmail" xml:space="preserve">
-    <value>Se requiere Fiel</value>
+    <value>Se requiere campo</value>
   </data>
   <data name="mOrgCtry" xml:space="preserve">
     <value>Se requiere campo</value>
@@ -346,7 +346,7 @@
     <value>Seleccione el idioma</value>
   </data>
   <data name="Useddltoselect" xml:space="preserve">
-    <value>Por favor, use la lista desplegable de abajo para seleccionar el idioma deseado</value>
+    <value>Seleccione el idioma</value>
   </data>
   <data name="CharCode" xml:space="preserve">
     <value>Código del Departamento</value>
@@ -436,10 +436,10 @@
     <value>Organización</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
-    <value>No autorizado</value>
+    <value>Usted no se ha identificado.</value>
   </data>
   <data name="PleaseLogin" xml:space="preserve">
-    <value>Por favor Iniciar sesión</value>
+    <value>Por favor Inicie sesión</value>
   </data>
   <data name="Logoff" xml:space="preserve">
     <value>Desconectarse</value>
@@ -459,8 +459,17 @@
   <data name="Login" xml:space="preserve">
     <value>Acceso</value>
   </data>
+  <data name="_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="_Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Desconectarse</value>
+  </data>
   <data name="Forbidden" xml:space="preserve">
-    <value>Prohibido</value>
+    <value>No autorizado por favor contacte con su administrador</value>
   </data>
   <data name="UsrData" xml:space="preserve">
     <value>Datos del Usuario</value>
@@ -488,5 +497,107 @@
   </data>
   <data name="AdRol" xml:space="preserve">
     <value>Añadir Rol</value>
+  </data>
+  <data name="FDescr" xml:space="preserve">
+    <value>Descripcion de la Instalacion</value>
+  </data>
+  <data name="FCode" xml:space="preserve">
+    <value>Codigo de la instalacion</value>
+  </data>
+  <data name="FType" xml:space="preserve">
+    <value>Tipo de instalacion</value>
+  </data>
+  <data name="FCrDate" xml:space="preserve">
+    <value>Fecha de creacion </value>
+  </data>
+  <data name="FSuperf" xml:space="preserve">
+    <value>Superficie (m2)</value>
+  </data>
+  <data name="FCostMin" xml:space="preserve">
+    <value>Coste/Minuto</value>
+  </data>
+  <data name="FStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="FStDate" xml:space="preserve">
+    <value>Fecha de Status</value>
+  </data>
+  <data name="FAcct" xml:space="preserve">
+    <value>Cuenta </value>
+  </data>
+  <data name="FacilitiesData" xml:space="preserve">
+    <value>Datos de la Instalacion</value>
+  </data>
+  <data name="FLotoAss" xml:space="preserve">
+    <value>Ubicaciones para asignar</value>
+  </data>
+  <data name="FStAss" xml:space="preserve">
+    <value>Almacenamientos para asignar</value>
+  </data>
+  <data name="FEdit" xml:space="preserve">
+    <value>Editar un registro de instalación</value>
+  </data>
+  <data name="FWCAss" xml:space="preserve">
+    <value>Centros de trabajo asignados</value>
+  </data>
+  <data name="FWCtoAss" xml:space="preserve">
+    <value>Centros de Trabajo a Asignar</value>
+  </data>
+  <data name="FCrea" xml:space="preserve">
+    <value>Añadir un nuevo registro de Instalacion</value>
+  </data>
+  <data name="-----------------M" xml:space="preserve">
+    <value>--------------------------MATERIALS DATA</value>
+  </data>
+  <data name="MData" xml:space="preserve">
+    <value>Datos Materiales</value>
+  </data>
+  <data name="MRefer" xml:space="preserve">
+    <value>Referencia</value>
+  </data>
+  <data name="MDescr" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="MClass" xml:space="preserve">
+    <value>Clase de Material</value>
+  </data>
+  <data name="MType" xml:space="preserve">
+    <value>Tipo de Material</value>
+  </data>
+  <data name="MStatus" xml:space="preserve">
+    <value>Status del Material </value>
+  </data>
+  <data name="MStatusDate" xml:space="preserve">
+    <value>Fecha de Status del Material </value>
+  </data>
+  <data name="MDim1" xml:space="preserve">
+    <value>Dimension #1</value>
+  </data>
+  <data name="MDim2" xml:space="preserve">
+    <value>Dimension #2</value>
+  </data>
+  <data name="MDim3" xml:space="preserve">
+    <value>Dimension #3</value>
+  </data>
+  <data name="MWeight" xml:space="preserve">
+    <value>Peso</value>
+  </data>
+  <data name="MUN" xml:space="preserve">
+    <value>Unida de Medida</value>
+  </data>
+  <data name="mValDim" xml:space="preserve">
+    <value>Intrduzca una dimension valida (&gt;0)</value>
+  </data>
+  <data name="mValWei" xml:space="preserve">
+    <value>Introduzca un peso valido (&gt;0)</value>
+  </data>
+  <data name="mReq" xml:space="preserve">
+    <value>Campo requerido</value>
+  </data>
+  <data name="MCrea" xml:space="preserve">
+    <value>Añadir un nuevo registro de Material</value>
+  </data>
+  <data name="MEdit" xml:space="preserve">
+    <value>Editar un registro de Material</value>
   </data>
 </root>

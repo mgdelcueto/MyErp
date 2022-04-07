@@ -1,4 +1,7 @@
 @model List<TMaterial>
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+
     @using (Html.BeginForm("Index","TEngine",FormMethod.Post)) {        
     <table>
             <td>
@@ -16,12 +19,12 @@
     }
     <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>>Materials Data</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("MData")</h2>
     </div>
     <tr>
-        <th class="head-text">Refer</th> 
-        <th class="head-text">Description</th>                
-        <th class="head-text">Class</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("MRefer")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("MDescr")</th>                
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("MClass")</th>        
     </tr>
    
     @foreach (var c in Model) {

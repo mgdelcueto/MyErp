@@ -138,11 +138,20 @@
   <data name="MRPPLanning" xml:space="preserve">
     <value>MRP Planning</value>
   </data>
+  <data name="Next&gt;&gt;" xml:space="preserve">
+    <value>Next&gt;&gt;</value>
+  </data>
+  <data name="&lt;&lt;Prev" xml:space="preserve">
+    <value>&lt;&lt;Prev</value>
+  </data>
+  <data name="-----------------O" xml:space="preserve">
+    <value>--------------------------HR EMPLOYEE DATA</value>
+  </data>
   <data name="HRAreaIndexPage" xml:space="preserve">
-    <value>HR Area Index Page</value>
+    <value>Personal Resources Area</value>
   </data>
   <data name="PersonTable" xml:space="preserve">
-    <value>Person Table</value>
+    <value>Employee list</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Filter</value>
@@ -157,7 +166,7 @@
     <value>Surnames</value>
   </data>
   <data name="DNI" xml:space="preserve">
-    <value>ID</value>
+    <value>Identification document</value>
   </data>
   <data name="Adress" xml:space="preserve">
     <value>Adress</value>
@@ -165,11 +174,8 @@
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
-  <data name="&lt;&lt;Prev" xml:space="preserve">
-    <value>&lt;&lt;Prev</value>
-  </data>
   <data name="EditPerson" xml:space="preserve">
-    <value>Edit a Person</value>
+    <value>Edit Employee Data</value>
   </data>
   <data name="Person" xml:space="preserve">
     <value>Employees</value>
@@ -195,11 +201,8 @@
   <data name="Training" xml:space="preserve">
     <value>Training</value>
   </data>
-  <data name="Next&gt;&gt;" xml:space="preserve">
-    <value>Next&gt;&gt;</value>
-  </data>
   <data name="PersonData" xml:space="preserve">
-    <value>Person Data</value>
+    <value>Employee Data</value>
   </data>
   <data name="BirdDate" xml:space="preserve">
     <value>Date of Bird</value>
@@ -211,9 +214,9 @@
     <value>Country of Origin</value>
   </data>
   <data name="AdressAd" xml:space="preserve">
-    <value>Aditional Adress</value>
+    <value>Additional address</value>
   </data>
-  <data name="CounntryRes" xml:space="preserve">
+  <data name="CountryRes" xml:space="preserve">
     <value>Country of Residence</value>
   </data>
   <data name="ContractDate" xml:space="preserve">
@@ -435,8 +438,11 @@
   <data name="Org" xml:space="preserve">
     <value>Organization</value>
   </data>
+  <data name="-----------------L" xml:space="preserve">
+    <value>--------------------------LOGINDATA</value>
+  </data>
   <data name="Unauthorized" xml:space="preserve">
-    <value>Unauthorized</value>
+    <value>You are not logged in</value>
   </data>
   <data name="PleaseLogin" xml:space="preserve">
     <value>Please Login</value>
@@ -459,8 +465,20 @@
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="_Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
   <data name="Forbidden" xml:space="preserve">
-    <value>Forbidden</value>
+    <value>Forbidden please contact your administrator</value>
+  </data>
+  <data name="-----------------U" xml:space="preserve">
+    <value>--------------------------USERS DATA</value>
   </data>
   <data name="UsrData" xml:space="preserve">
     <value>User's Data</value>
@@ -488,5 +506,110 @@
   </data>
   <data name="AdRol" xml:space="preserve">
     <value>Add Rol </value>
+  </data>
+  <data name="-----------------F" xml:space="preserve">
+    <value>--------------------------FACILITIES DATA</value>
+  </data>
+  <data name="FDescr" xml:space="preserve">
+    <value>Facility Description</value>
+  </data>
+  <data name="FCode" xml:space="preserve">
+    <value>Facility Code</value>
+  </data>
+  <data name="FType" xml:space="preserve">
+    <value>Facility Type</value>
+  </data>
+  <data name="FCrDate" xml:space="preserve">
+    <value>Facility Creation Date</value>
+  </data>
+  <data name="FSuperf" xml:space="preserve">
+    <value>Facility Surface (m2)</value>
+  </data>
+  <data name="FCostMin" xml:space="preserve">
+    <value>Facility Cost minute</value>
+  </data>
+  <data name="FStatus" xml:space="preserve">
+    <value>facility Status</value>
+  </data>
+  <data name="FStDate" xml:space="preserve">
+    <value>Facility Status Date</value>
+  </data>
+  <data name="FAcct" xml:space="preserve">
+    <value>Facility Account</value>
+  </data>
+  <data name="FacilitiesData" xml:space="preserve">
+    <value>Facilities Data</value>
+  </data>
+  <data name="FLotoAss" xml:space="preserve">
+    <value>Locations to Assign</value>
+  </data>
+  <data name="FStAss" xml:space="preserve">
+    <value>Storages to Assign</value>
+  </data>
+  <data name="FEdit" xml:space="preserve">
+    <value>Edit a Facility Record</value>
+  </data>
+  <data name="FWCAss" xml:space="preserve">
+    <value>Work Centers Assigned</value>
+  </data>
+  <data name="FWCtoAss" xml:space="preserve">
+    <value>Work Centers to Assign</value>
+  </data>
+  <data name="FCrea" xml:space="preserve">
+    <value>Add a New Facility record</value>
+  </data>
+  <data name="-----------------M" xml:space="preserve">
+    <value>--------------------------MATERIALS DATA</value>
+  </data>
+  <data name="MData" xml:space="preserve">
+    <value>Materials Data</value>
+  </data>
+  <data name="MRefer" xml:space="preserve">
+    <value>Material Reference</value>
+  </data>
+  <data name="MDescr" xml:space="preserve">
+    <value>Material Description</value>
+  </data>
+  <data name="MClass" xml:space="preserve">
+    <value>Material Class</value>
+  </data>
+  <data name="MType" xml:space="preserve">
+    <value>Material Type</value>
+  </data>
+  <data name="MStatus" xml:space="preserve">
+    <value>Material Status</value>
+  </data>
+  <data name="MStatusDate" xml:space="preserve">
+    <value>Material Status Date</value>
+  </data>
+  <data name="MDim1" xml:space="preserve">
+    <value>Dimension #1</value>
+  </data>
+  <data name="MDim2" xml:space="preserve">
+    <value>Dimension #2</value>
+  </data>
+  <data name="MDim3" xml:space="preserve">
+    <value>Dimension #3</value>
+  </data>
+  <data name="MWeight" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="MUN" xml:space="preserve">
+    <value>Unit of Meassure</value>
+  </data>
+  <data name="mValDim" xml:space="preserve">
+    <value>Enter a Valid dimension (&gt;0)</value>
+  </data>
+  <data name="mValWei" xml:space="preserve">
+    <value>Enter a Valid weight (&gt;0)</value>
+  </data>
+  <data name="mReq" xml:space="preserve">
+    <value>Required Field</value>
+  </data>
+  <data name="MCrea" xml:space="preserve">
+    <value>Add a New Material record</value>
+  </data>
+  <data name="MEdit" xml:space="preserve">
+    <value>Edit a Material record</value>
   </data>
 </root>

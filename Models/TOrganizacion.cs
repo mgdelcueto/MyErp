@@ -23,6 +23,7 @@ namespace MyErp.Models
         public string OrgName { get; set; }
 
         [Display(Name="OrgDate")]
+        //[DisplayFormat(DataFormatString = "{0:C}",ApplyFormatInEditMode = true)]
         [Required(ErrorMessage="mOrgDate"),DataType(DataType.Date)]         
         public DateTime? OrgDate { get; set; }
 

@@ -1,6 +1,8 @@
 @{Layout = "_LyIndex";}
 @using MyErp.Models
 @model TFacility
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 @functions {
     string isVisible(int panel){
         string retcol="";
@@ -52,7 +54,7 @@ private int LAssign(){
 
 }
 <div class="cont-titles">
-<h1>Edit a Facility record</h1>
+<h1>@SharedLocalizer.GetLocalizedHtmlString("FEdit")</h1>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
@@ -73,7 +75,7 @@ private int LAssign(){
 <div class=@isVisible(1)>
 <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>>Work Centers Asigned</h2>
+    <h2>>@SharedLocalizer.GetLocalizedHtmlString("FWCAss")</h2>
     </div>
     @Html.Partial("_pListaWorkCenters",(List<TWorkCenter>)ViewBag.ListProdAs)
 </table>
@@ -82,7 +84,7 @@ private int LAssign(){
     <table>
         <tr>
             @using (Html.BeginForm("FacEdit","TEngine", new { id= @Model.FaId,vpanel=1, wrem = 0, wass=1},FormMethod.Post)) {        
-            <td>Work Center to assign
+            <td>@SharedLocalizer.GetLocalizedHtmlString("FWCtoAss")
             <input type="hidden" name="wass" value="1"/>
             </td>
             <td class="norm-text">
@@ -100,7 +102,7 @@ private int LAssign(){
 <div class=@isVisible(2)>
 <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>>Storages Asigned</h2>
+    <h2>>@SharedLocalizer.GetLocalizedHtmlString("FStAss")</h2>
     </div>
     @Html.Partial("_pListaStorages",(List<TLocation>)ViewBag.ListStorAs)
 </table>
@@ -109,7 +111,7 @@ private int LAssign(){
     <table>
         <tr>
             @using (Html.BeginForm("FacEdit","TEngine", new { id= @Model.FaId, wrel = 0,vpanel=2, wasl=1},FormMethod.Post)) {        
-            <td>Location to assign
+            <td>@SharedLocalizer.GetLocalizedHtmlString("FLotoAss")
             <input type="hidden" name="wasl" value="1"/>
             </td>
             <td class="norm-text">

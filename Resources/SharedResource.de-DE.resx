@@ -139,10 +139,10 @@
     <value>MRP Planung</value>
   </data>
   <data name="HRAreaIndexPage" xml:space="preserve">
-    <value>HR-Bereich Index Page</value>
+    <value>Bereich Persönliche Ressourcen</value>
   </data>
   <data name="PersonTable" xml:space="preserve">
-    <value>Person Tabelle</value>
+    <value>Mitarbeiterliste</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Filter</value>
@@ -154,13 +154,13 @@
     <value>Name</value>
   </data>
   <data name="Surname" xml:space="preserve">
-    <value>Weitere Namen</value>
+    <value>Nachnamen</value>
   </data>
   <data name="DNI" xml:space="preserve">
-    <value>ICH WÜRDE</value>
+    <value>Ausweis</value>
   </data>
   <data name="Adress" xml:space="preserve">
-    <value>Ein Kleid</value>
+    <value>Postanschrift</value>
   </data>
   <data name="Country" xml:space="preserve">
     <value>Land</value>
@@ -169,7 +169,7 @@
     <value>&lt;&lt; Zurück</value>
   </data>
   <data name="EditPerson" xml:space="preserve">
-    <value>Bearbeiten einer Person</value>
+    <value>Mitarbeiterdaten bearbeiten</value>
   </data>
   <data name="Person" xml:space="preserve">
     <value>Angestellte</value>
@@ -199,10 +199,10 @@
     <value>Weiter &gt;&gt;</value>
   </data>
   <data name="PersonData" xml:space="preserve">
-    <value>Personendaten</value>
+    <value>Mitarbeiterdaten</value>
   </data>
   <data name="BirdDate" xml:space="preserve">
-    <value>Datum Vogel</value>
+    <value>Geburtsdatum</value>
   </data>
   <data name="CityOrigin" xml:space="preserve">
     <value>Geburtsort</value>
@@ -211,9 +211,9 @@
     <value>Herkunftsland</value>
   </data>
   <data name="AdressAd" xml:space="preserve">
-    <value>aditional Adresse</value>
+    <value>zusätzliche Adresse</value>
   </data>
-  <data name="CounntryRes" xml:space="preserve">
+  <data name="CountryRes" xml:space="preserve">
     <value>Aufenthaltsland</value>
   </data>
   <data name="ContractDate" xml:space="preserve">
@@ -346,7 +346,7 @@
     <value>Sprache auswählen</value>
   </data>
   <data name="Useddltoselect" xml:space="preserve">
-    <value>Bitte verwenden Sie im Dropdown-Liste unten die gewünschte Sprache auszuwählen</value>
+    <value>Sprache auswählen</value>
   </data>
   <data name="CharCode" xml:space="preserve">
     <value>Code Abteilungs</value>
@@ -456,6 +456,15 @@
   <data name="EnterPassword" xml:space="preserve">
     <value>Passwort eingeben</value>
   </data>
+  <data name="_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="_Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>abmelden</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Anmeldung</value>
   </data>
@@ -488,5 +497,107 @@
   </data>
   <data name="AdRol" xml:space="preserve">
     <value>In Rol</value>
+  </data>
+  <data name="FDescr" xml:space="preserve">
+    <value>Beschreibung der Einrichtung</value>
+  </data>
+  <data name="FCode" xml:space="preserve">
+    <value>Einrichtungscode</value>
+  </data>
+  <data name="FType" xml:space="preserve">
+    <value>Art der Anlage</value>
+  </data>
+  <data name="FCrDate" xml:space="preserve">
+    <value>Erstellungsdatum der Einrichtung</value>
+  </data>
+  <data name="FSuperf" xml:space="preserve">
+    <value>Einrichtungsfläche (m2)</value>
+  </data>
+  <data name="FCostMin" xml:space="preserve">
+    <value>Einrichtungskosten/Minute</value>
+  </data>
+  <data name="FStatus" xml:space="preserve">
+    <value>Anlagenstatus</value>
+  </data>
+  <data name="FStDate" xml:space="preserve">
+    <value>Statusdatum der Einrichtung</value>
+  </data>
+  <data name="FAcct" xml:space="preserve">
+    <value>Einrichtungskonto</value>
+  </data>
+  <data name="FacilitiesData" xml:space="preserve">
+    <value>Daten der Einrichtungen</value>
+  </data>
+  <data name="FLotoAss" xml:space="preserve">
+    <value>Zuzuweisende Standorte</value>
+  </data>
+  <data name="FStAss" xml:space="preserve">
+    <value>Zuzuweisende Speicher</value>
+  </data>
+  <data name="FEdit" xml:space="preserve">
+    <value>Bearbeiten Sie einen Einrichtungsdatensatz</value>
+  </data>
+  <data name="FWCAss" xml:space="preserve">
+    <value>Arbeitsplätze zugeordnet</value>
+  </data>
+  <data name="FWCtoAss" xml:space="preserve">
+    <value>Zuzuweisende Arbeitsplätze</value>
+  </data>
+  <data name="FCrea" xml:space="preserve">
+    <value>Fügen Sie einen neuen Einrichtungsdatensatz hinzu</value>
+  </data>
+  <data name="-----------------M" xml:space="preserve">
+    <value>--------------------------MATERIALS DATA</value>
+  </data>
+  <data name="MData" xml:space="preserve">
+    <value>Materialdaten</value>
+  </data>
+  <data name="MRefer" xml:space="preserve">
+    <value>Materialreferenz</value>
+  </data>
+  <data name="MDescr" xml:space="preserve">
+    <value>Materialbeschreibung</value>
+  </data>
+  <data name="MClass" xml:space="preserve">
+    <value>Klasse des Materials</value>
+  </data>
+  <data name="MType" xml:space="preserve">
+    <value>Materialtyp</value>
+  </data>
+  <data name="MStatus" xml:space="preserve">
+    <value>Materialstatus</value>
+  </data>
+  <data name="MStatusDate" xml:space="preserve">
+    <value>Materialstatusdatum</value>
+  </data>
+  <data name="MDim1" xml:space="preserve">
+    <value>Abmessungen #1</value>
+  </data>
+  <data name="MDim2" xml:space="preserve">
+    <value>Abmessungen #2</value>
+  </data>
+  <data name="MDim3" xml:space="preserve">
+    <value>Abmessungen #3</value>
+  </data>
+  <data name="MWeight" xml:space="preserve">
+    <value>Gewicht</value>
+  </data>
+  <data name="MUN" xml:space="preserve">
+    <value>Maßeinheit</value>
+  </data>
+  <data name="mValDim" xml:space="preserve">
+    <value>Geben Sie eine gültige Dimension ein (&gt;0)</value>
+  </data>
+  <data name="mValWei" xml:space="preserve">
+    <value>Geben Sie ein gültiges Gewicht ein (&gt;0)</value>
+  </data>
+  <data name="mReq" xml:space="preserve">
+    <value>Pflichtfeld</value>
+  </data>
+  <data name="MCrea" xml:space="preserve">
+    <value>Fügen Sie einen neuen Materialdatensatz hinzu</value>
+  </data>
+  <data name="MEdit" xml:space="preserve">
+    <value>Bearbeiten Sie einen Materialdatensatz</value>
   </data>
 </root>

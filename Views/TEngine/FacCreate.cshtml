@@ -1,6 +1,9 @@
 @{Layout = "_LyIndex";}
 @using MyErp.Models
 @model TFacility
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+
 @functions {
     int? Planta(){
         int? retcol = (int?)ViewData["Plant"];
@@ -8,7 +11,7 @@
     }
 }
 <div class="cont-titles">
-<h1>Add a New Facility record</h1>
+<h1>@SharedLocalizer.GetLocalizedHtmlString("FCrea")</h1>
 </div>
 @using (Html.BeginForm()) {
    <div class="visible">
