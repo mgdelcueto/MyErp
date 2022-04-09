@@ -1,5 +1,7 @@
 @using MyErp.Models
 @model TSPorder
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 @functions {
     int? Planta(){
         int? retcol = (int?)ViewData["Plant"];
@@ -7,7 +9,7 @@
     }
 }
 <div class="cont-titles">
-<h1>Add an Order record</h1>
+<h2>@SharedLocalizer.GetLocalizedHtmlString("AddPORecord")</h2>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
@@ -15,13 +17,13 @@
     <div class ="invisible">
         <tr>
             <input type="hidden" name="SposupId" value="@(((TSuplier)ViewBag.Suplier).SupId)"/>
-            <td>Suplier:</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Suplier"):</td>
             <td>@(((TSuplier)ViewBag.Suplier).SupRasoc)</td>
         </tr>
     </div>
     <div class ="visible">
         <tr>
-            <td>Suplier:</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Suplier"):</td>
             <td>@(((TSuplier)ViewBag.Suplier).SupRasoc)</td>
             <td> </td>
             <td>@(((TSuplier)ViewBag.Suplier).SupNif)</td>
@@ -65,7 +67,7 @@
             <td>@Html.ValidationMessageFor(p => p.Spoprice)</td>
         </tr>        
         <tr>        
-            <td>Divisa:</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("SupCurrency"):</td>
             <td>
                 @Html.DropDownListFor(p => p.Spocurcy,
                new SelectList(DataSource.GetCurrency(), "Code", "Name"),new { @class = "norm-text" })

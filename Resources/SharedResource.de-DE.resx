@@ -259,10 +259,10 @@
     <value>Eintrittsdatum Pflichtfeld</value>
   </data>
   <data name="OrgreaIndexPage" xml:space="preserve">
-    <value>Organisationsbereich Index Page</value>
+    <value>Organisationsbereich</value>
   </data>
   <data name="Organization" xml:space="preserve">
-    <value>Organisationsbereich Index Page</value>
+    <value>Organisation</value>
   </data>
   <data name="Chart" xml:space="preserve">
     <value>Organigramm</value>
@@ -435,6 +435,9 @@
   <data name="Org" xml:space="preserve">
     <value>Organisation</value>
   </data>
+  <data name="CharHeadId" xml:space="preserve">
+    <value>Abteilungsleiter</value>
+  </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>unbefugt</value>
   </data>
@@ -599,5 +602,50 @@
   </data>
   <data name="MEdit" xml:space="preserve">
     <value>Bearbeiten Sie einen Materialdatensatz</value>
+  </data>
+  <data name="-----------------A" xml:space="preserve">
+    <value>---------------------------ABOUT </value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Über</value>
+  </data>
+  <data name="AboutT1" xml:space="preserve">
+    <value>myERP ist ein Open-Source-Projekt, das versucht, ein MRP-System zu schaffen, das sich an kleine und mittlere Unternehmen richtet</value>
+  </data>
+  <data name="AboutT2" xml:space="preserve">
+    <value>Vigo-Winter 2021</value>
+  </data>
+  <data name="AboutT3" xml:space="preserve">
+    <value>Kontakttelefon: +34 616454045 </value>
+  </data>
+  <data name="AboutT4" xml:space="preserve">
+    <value>mail kontaktieren</value>
+  </data>
+  <data name="AboutT5" xml:space="preserve">
+    <value>Besuchen Sie den Schulungskurs myERP</value>
+  </data>
+  <data name="-----------------U" xml:space="preserve">
+    <value>----------------------------USUARIOS</value>
+  </data>
+  <data name="UserLoginName" xml:space="preserve">
+    <value>Benutzername</value>
+  </data>
+  <data name="UserFirstName" xml:space="preserve">
+    <value>Vorname</value>
+  </data>
+  <data name="UserLastName" xml:space="preserve">
+    <value>Familiennamee</value>
+  </data>
+  <data name="UserStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Reset_Pw" xml:space="preserve">
+    <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="UsrRolData" xml:space="preserve">
+    <value>Diesem Benutzer zugewiesene Rollen</value>
+  </data>
+  <data name="SelectEmployee" xml:space="preserve">
+    <value>Einen Mitarbeiter wählen</value>
   </data>
 </root>

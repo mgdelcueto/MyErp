@@ -1,6 +1,8 @@
 @using MyErp.Models
 @using System.Linq;
 @model TSuplier
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 @using (Html.BeginForm()) {
     @Html.HiddenFor(p => p.SupId)
 @functions {
@@ -30,13 +32,13 @@
 
 }
 
-<h1>Edit a Suplier</h1>
+<h2>@SharedLocalizer.GetLocalizedHtmlString("EditSuplier")</h2>
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
 
     <table>
         <div class="cont-titles-l">
-        <h2>>>@Html.DisplayFor(p => p.SupRasoc)  @Html.DisplayFor(p => p.SupNif)</h2>
+        <h3>@Html.DisplayFor(p => p.SupRasoc)  @Html.DisplayFor(p => p.SupNif)</h3>
         </div>
         <table>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -47,19 +49,19 @@
                             <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="@thisPanel()" asp-route-move="1">&lt&ltPrev</a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="1" asp-route-move="0">Suplier</a>
+                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Suplier")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark"  style="@panelBold(2)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="2" asp-route-move="0">Products</a>
+                           <a class="nav-link text-dark"  style="@panelBold(2)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="2" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Products")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(3)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="3" asp-route-move="0">Planning</a>
+                           <a class="nav-link text-dark" style="@panelBold(3)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="3" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Planning")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(4)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="4" asp-route-move="0">Orders</a>
+                           <a class="nav-link text-dark" style="@panelBold(4)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="4" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Orders")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TSuplier" asp-action="Index">Home</a>
+                           <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TSuplier" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Home")</a>
                          </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@Model.SupId" asp-route-panel="@thisPanel()" asp-route-move="2">Next&gt&gt</a>
@@ -73,7 +75,7 @@
     <div class=@isVisible(1)>
     <table>
         <div class="cont-titles">
-        <h2>Suplier data</h2>
+        <h3>@SharedLocalizer.GetLocalizedHtmlString("SuplierData")</h3>
         </div>
         <tr>
             <td>@Html.LabelFor(p => p.SupRasoc,new { @class = "norm-text",})</td>
@@ -156,14 +158,14 @@
     <div class=@isVisible(2)>
     <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>Product Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("ProductData")</h3>
     </div>
     <tr>
-        <th class="head-text">Referencia</th> 
-        <th class="head-text">Descripcion</th> 
-        <th class="head-text">Fecha Creacion</th>                
-        <th class="head-text">Status</th>        
-        <th class="head-text">Fecha Status</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProRefer")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProDescr")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProDateCrea")</th>                
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Status")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("StatusDate")</th>        
     </tr>
    
     @foreach (var c in ViewBag.ListProd) {
@@ -188,11 +190,11 @@
 
     <div class=@isVisible(3)>
     <div class="cont-titles">
-    <h2>Planning Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("SupPlanningData")</h3>
     </div>
     @using (Html.BeginForm("Edit","TSuplier",FormMethod.Post,new{panel=3})) {        
     <table>
-            <td class="medium-text">Referencia</td>
+            <td class="medium-text">@SharedLocalizer.GetLocalizedHtmlString("ProRefer")</td>
             <td class="norm-text">
                 <!--@ViewData["Prod"]-->
                 @Html.DropDownList("ProdId", (SelectList)ViewBag.ddlReferVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
@@ -202,12 +204,12 @@
     <table class="table-norm" border ="1" >
     <hr style="width:100%;text-align:left;margin-left:0">
     <tr>
-        <th class="head-text">Producto[Re]</th> 
-        <th class="head-text">Producto[De]</th> 
-        <th class="head-text">Desde Fecha</th>        
-        <th class="head-text">Hasta Fecha</th>        
-        <th class="head-text">Env.Cantidad</th>        
-        <th class="head-text">Firme</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProRefer")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProDescr")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("DateFrom")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("DateTo")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("SendQty")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PlanFirm")</th>        
     </tr>
    
     @foreach ( TSPlanningV  c in (List<TSPlanningV>)ViewBag.ListPlan) {
@@ -242,15 +244,15 @@
     }
     <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>PO Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("SupPoData")</h3>
     </div>
     <tr>
-        <th class="head-text">Pedido</th> 
-        <th class="head-text">Referencia Ext.</th>        
-        <th class="head-text">Referencia Int.</th>        
-        <th class="head-text">Descripcion Ext.</th>        
-        <th class="head-text">Precio</th>        
-        <th class="head-text">Divisa</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("SupPO")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("SupExtRefer")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("SupIntRefer")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("SupExtDescr")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("SupPrice")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("SupCurrency")</th>        
     </tr>
    
     @foreach (VTSPorder c in (List<VTSPorder>) ViewBag.listSpo) {

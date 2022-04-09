@@ -550,7 +550,7 @@
     <value>--------------------------MATERIALS DATA</value>
   </data>
   <data name="MData" xml:space="preserve">
-    <value>Datos Materiales</value>
+    <value>Datos de Materiales</value>
   </data>
   <data name="MRefer" xml:space="preserve">
     <value>Referencia</value>
@@ -599,5 +599,50 @@
   </data>
   <data name="MEdit" xml:space="preserve">
     <value>Editar un registro de Material</value>
+  </data>
+  <data name="------------------A" xml:space="preserve">
+    <value>--------------------------ABOUT</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="AboutT1" xml:space="preserve">
+    <value>myERP es un proyecto de código abierto que intenta crear un sistema MRP dirigido a pequeñas y medianas empresas</value>
+  </data>
+  <data name="AboutT2" xml:space="preserve">
+    <value>Vigo invierno 2021</value>
+  </data>
+  <data name="AboutT3" xml:space="preserve">
+    <value>teléfono de contacto: +34 616454045 </value>
+  </data>
+  <data name="AboutT4" xml:space="preserve">
+    <value>correo de contacto</value>
+  </data>
+  <data name="AboutT5" xml:space="preserve">
+    <value>Visite el curso de formación myERP</value>
+  </data>
+  <data name="-----------------U" xml:space="preserve">
+    <value>----------------------------USUARIOS</value>
+  </data>
+  <data name="UserLoginName" xml:space="preserve">
+    <value>Nombre de inicio de sesión</value>
+  </data>
+  <data name="UserFirstName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="UserLastName" xml:space="preserve">
+    <value>Apellidos</value>
+  </data>
+  <data name="UserStatus" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="Reset_Pw" xml:space="preserve">
+    <value>Restablecer la contraseña</value>
+  </data>
+  <data name="UsrRolData" xml:space="preserve">
+    <value>Roles asignados a este usuario</value>
+  </data>
+  <data name="SelectEmployee" xml:space="preserve">
+    <value>Seleccione un empleado</value>
   </data>
 </root>

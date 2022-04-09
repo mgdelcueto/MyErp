@@ -16,7 +16,7 @@ namespace MyErp.Controllers {
         public TEngineController(MyErpDBContext dbContext) {
             _dbContext = dbContext;
         }
-        private void CreateViewBags(int? prod, int? plant,string Code="",int Coid=0,int? CustId=0,int? TruckId=0)
+        private void CreateViewBags(int? prod, int? plant,string Code="",int Coid=0,int? CustId=0,int? TruckId=0,int? filter=0,string pNam="", string pNam1="")
         {
             var queryfa = (from fa in _dbContext.TFacilities
                             orderby fa.FaDescr 
@@ -31,11 +31,24 @@ namespace MyErp.Controllers {
             var resulp = resulp0.Concat(resulp1);
             ViewBag.ddlPlantVB = new SelectList(resulp.ToList(), "FaId", "FaDescr",plant); 
 
+            if (filter ==2){
+            var queryca = (from p in _dbContext.TWorkCenters 
+                        orderby p.Wccode 
+                        where (p.WcfaId==plant || plant==0) &&
+                         (p.Wccode.Contains(pNam) || pNam ==null ) && (p.Wcdescr.Contains(pNam1) ||pNam1==null)
+                        //where po.WcoWcid ==prod || prod==0
+                        select p).ToList();
+            ViewBag.ListProd=queryca;
+            }
+            else
+            {
             var queryca = (from p in _dbContext.TWorkCenters 
                         orderby p.Wccode 
                         where p.WcfaId==plant || plant==0
                         select p).ToList();
             ViewBag.ListProd=queryca;
+            }
+
             var querycas = (from p in _dbContext.TWorkCenters 
                         orderby p.Wccode 
                         where p.WcfaId==plant
@@ -87,11 +100,23 @@ namespace MyErp.Controllers {
             var resuld = resuld0.Concat(resuld1);
             ViewBag.ddlReferVD = new SelectList(resuld.ToList(), "WcdId", "Wcdescr",prod); 
 
+            if (filter ==2){
+            var querypo = (from po in _dbContext.TWccomponents
+                        orderby po.WcoDescr
+                        where (po.WcoWcid ==prod || prod==0) &&
+                         (po.WcoCode.Contains(pNam) || pNam ==null ) && (po.WcoDescr.Contains(pNam1) ||pNam1==null)
+                        select po).ToList();
+            ViewBag.ListPO=querypo;
+            }
+            else
+            {
             var querypo =(from po in _dbContext.TWccomponents
                         orderby po.WcoDescr
                         where po.WcoWcid ==prod || prod==0
                         select po).ToList();
             ViewBag.ListPO=querypo;
+            }
+
 
             var querypas = (from p in _dbContext.TWccomponents 
                         orderby p.WcoCode
@@ -128,19 +153,43 @@ namespace MyErp.Controllers {
             var queryopans = queryopan0.Concat(queryopan1);
             ViewBag.ddlPodOPS = new SelectList(queryopans.ToList(), "OpeId", "OpeDesc",0); 
 
-
+            if (filter ==2){
+            var queryma =(from po in _dbContext.TMaterials
+                        orderby po.MatDescr
+                        where (po.MatClass==Code || Code ==null ||Code =="" ||Code=="--") &&
+                         (po.MatRefer.Contains(pNam) || pNam ==null ) && (po.MatDescr.Contains(pNam1) ||pNam1==null)
+                        //where po.WcoWcid ==prod || prod==0
+                        select po).ToList();
+            ViewBag.ListMA=queryma;
+            }
+            else
+            {
             var queryma =(from po in _dbContext.TMaterials
                         orderby po.MatDescr
                         where po.MatClass==Code || Code ==null ||Code =="" ||Code=="--"
                         //where po.WcoWcid ==prod || prod==0
                         select po).ToList();
             ViewBag.ListMA=queryma;
+            }
 
+
+            if (filter ==2){
+            var querylo = (from po in _dbContext.TLocations
+                        orderby po.LocDescr
+                        where (po.LocFaId ==plant || plant==0) &&
+                         (po.LocCode.Contains(pNam) || pNam ==null ) && (po.LocDescr.Contains(pNam1) ||pNam1==null)
+                        select po).ToList();
+            ViewBag.ListLO=querylo;
+            }
+            else
+            {
             var querylo =(from po in _dbContext.TLocations
                         orderby po.LocDescr
                         where po.LocFaId ==plant || plant==0
                         select po).ToList();
             ViewBag.ListLO=querylo;
+            }
+
 
             var querylop =(from po in _dbContext.TOperators
                         orderby po.OpeDesc
@@ -373,15 +422,26 @@ namespace MyErp.Controllers {
                     }
         }
 
-        public IActionResult Index(int panel, int? FaId, int? WcdId, string Code, string actionType) {
+        public IActionResult Index(int panel, int? FaId, int? WcdId, string Code, string actionType,int filter,string pNam, string pNam1,string actiontypef) {
             if(panel ==0 ){panel=1;}
             if(FaId ==null ){FaId=int.Parse("0");}
             if(WcdId ==null ){WcdId=int.Parse("0");}
+            //
+            if (actionType=="Cancel")
+            {filter=0;
+             pNam="";
+             pNam1="";
+            }
+            ViewData["Filter"]=filter;
+            ViewData["Fil1"]=pNam;
+            ViewData["Fil2"]=pNam1;
+            //
             ViewData["panel"]=panel;
             ViewData["Title"] = "Engineer Data";
+            ViewData["Code"]=Code;
             //var dbContext = new MyErpDBContext();
             try{
-                CreateViewBags(WcdId,FaId,Code);
+                CreateViewBags(WcdId,FaId,Code,0,0,0,filter,pNam,pNam1);
              return View();
             }
             catch(Exception Ex){

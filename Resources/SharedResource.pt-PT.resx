@@ -259,10 +259,10 @@
     <value>Data entrada campo é obrigatório</value>
   </data>
   <data name="OrgreaIndexPage" xml:space="preserve">
-    <value>área de Organização Índice Página</value>
+    <value>área de Organização</value>
   </data>
   <data name="Organization" xml:space="preserve">
-    <value>área de Organização Índice Página</value>
+    <value>Organização</value>
   </data>
   <data name="Chart" xml:space="preserve">
     <value>Organograma</value>
@@ -274,7 +274,7 @@
     <value>línguas</value>
   </data>
   <data name="Users" xml:space="preserve">
-    <value>Comercial</value>
+    <value>Utilizadores</value>
   </data>
   <data name="OrgTable" xml:space="preserve">
     <value>mesa da organização</value>
@@ -435,6 +435,9 @@
   <data name="Org" xml:space="preserve">
     <value>Organização</value>
   </data>
+  <data name="CharHeadId" xml:space="preserve">
+    <value>Chefe de departamento</value>
+  </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>Não autorizado</value>
   </data>
@@ -478,7 +481,7 @@
     <value>Nome de Usuário</value>
   </data>
   <data name="ULastName" xml:space="preserve">
-    <value>do usuário Apelido</value>
+    <value>Apelido do usuário </value>
   </data>
   <data name="AddItem" xml:space="preserve">
     <value>Adicionar Item</value>
@@ -599,5 +602,50 @@
   </data>
   <data name="MEdit" xml:space="preserve">
     <value>Editar um registro de material</value>
+  </data>
+  <data name="------------------------------A" xml:space="preserve">
+    <value>-------------------------------ABOUT</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>cerca de</value>
+  </data>
+  <data name="AboutT1" xml:space="preserve">
+    <value>myERP é um projeto de código aberto que tenta criar um sistema MRP voltado para pequenas e médias empresas</value>
+  </data>
+  <data name="AboutT2" xml:space="preserve">
+    <value>Vigo Inverno de 2021</value>
+  </data>
+  <data name="AboutT3" xml:space="preserve">
+    <value>telefone de contato: +34 616454045 </value>
+  </data>
+  <data name="AboutT4" xml:space="preserve">
+    <value>e-mail de contato</value>
+  </data>
+  <data name="AboutT5" xml:space="preserve">
+    <value>Visite o curso de treinamento myERP</value>
+  </data>
+  <data name="-----------------U" xml:space="preserve">
+    <value>----------------------------USUARIOS</value>
+  </data>
+  <data name="UserLoginName" xml:space="preserve">
+    <value>Nome de acesso</value>
+  </data>
+  <data name="UserFirstName" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="UserLastName" xml:space="preserve">
+    <value>Apelidos</value>
+  </data>
+  <data name="UserStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Reset_Pw" xml:space="preserve">
+    <value>Redefinir senha</value>
+  </data>
+  <data name="UsrRolData" xml:space="preserve">
+    <value>Funções atribuídas a este usuário</value>
+  </data>
+  <data name="SelectEmployee" xml:space="preserve">
+    <value>Escolha um funcionário</value>
   </data>
 </root>

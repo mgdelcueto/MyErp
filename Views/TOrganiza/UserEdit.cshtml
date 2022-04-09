@@ -16,14 +16,15 @@
 }
 
 <div class="cont-titles">
-<h1>@SharedLocalizer.GetLocalizedHtmlString("EdUser")</h1>
+<h2>@SharedLocalizer.GetLocalizedHtmlString("EdUser")</h2>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
     @Html.HiddenFor(p => p.UserId)
     @Html.ValidationSummary(true)
     <table class="table-norm" border ="1">
-        @Html.Partial("_pshowUser",Model)
+        @*@Html.Partial("_pshowUser",Model)*@
+        @await Html.PartialAsync("_pshowUser",Model)
         <tr>
             <td><label for="resetpw">@SharedLocalizer.GetLocalizedHtmlString("Reset_Pw")</label></td>
             <td><input type="checkbox" id="iresetpw" name="nresetpw" ></td>

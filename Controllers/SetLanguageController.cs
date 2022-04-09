@@ -9,9 +9,12 @@
     public class SetLanguageController : Controller
     {
         [HttpPost]
-        public IActionResult SetLanguage(string culture, string returnUrl)
+        public IActionResult SetLanguage(string culture, string returnUrl,string actionType)
         {
-            ViewData["modulo"]=99;//88;
+            ViewData["Name"]="LO";//"Modulo"]=99;//88;
+            if (actionType=="setdateOK")
+            {
+
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
@@ -20,6 +23,10 @@
 
             //return LocalRedirect(returnUrl);
             return Redirect("~/Account/Languages");
+            }
+            else{
+            return RedirectToAction("Index", "Home",new{mensaje="LO"});
+            }
         }
     }
 }

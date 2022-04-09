@@ -1,0 +1,76 @@
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+        .ToList();
+}
+
+<div class="toast-wrapper mx-auto py-0 fixed-top" role="status" aria-live="polite"></div>
+
+<div id="page-wrapper">
+
+    <div>
+    <a class="sr-only sr-only-focusable" href="#maincontent">Skip to main content</a>
+</div>
+    <div id="page" class="container-fluid mt-0">
+        <div id="page-content" class="row">
+            <div id="region-main-box" class="col-12">
+                <section id="region-main" class="col-12" aria-label="Content">
+                    <span class="notifications" id="user-notifications"></span>
+                    <div role="main"><span id="maincontent"></span><div class="my-1 my-sm-5"></div>
+<div class="row justify-content-center">
+<div class="col-xl-6 col-sm-8 ">
+<div class="card">
+    <div class="card-block">
+            <h1 class="h2 card-header text-center" aria-label="Julia High School: Log in">@SharedLocalizer.GetLocalizedHtmlString("About")</h1>
+        <div class="card-body">
+            <div class="row justify-content-md-center">
+                <div class="col-md-10" >
+<!--                <form class="mt-1" method="post" id="selectLanguage" role="form" asp-controller="SetPrivacy" asp-action="SetPrivacy" asp-route-returnUrl="@Context.Request.Path">
+-->
+                    <form class="mt-1" method="post" id="Privacy" role="form" asp-controller="Account" asp-action="Privacy" asp-route-returnUrl="@Context.Request.Path">
+                        <div class="form-group">
+                            <label for="username">@SharedLocalizer.GetLocalizedHtmlString("AboutT1")</label>
+                            <br/>
+                            <label for="username" >@SharedLocalizer.GetLocalizedHtmlString("AboutT2")</label>
+                            <br/>
+                            <label for="username" >@SharedLocalizer.GetLocalizedHtmlString("AboutT3")</label>
+                            <br/>
+                            <a href="mailto:mgdelcueto@gmail.com">@SharedLocalizer.GetLocalizedHtmlString("AboutT4")</a>
+                            </br/>
+                            <a href="http://axdebian22">@SharedLocalizer.GetLocalizedHtmlString("AboutT5")</a>
+                        </div>
+                        <div class="form-group">
+                        </div>
+                            <div class="rememberpass mt-1">
+                            </div>
+                        <button name ="actionType" value="Continue" type="submit" class="btn btn-secondary btn-block" >@SharedLocalizer.GetLocalizedHtmlString("Continue")</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div></div>
+                    
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+

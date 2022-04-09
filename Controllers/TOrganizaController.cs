@@ -69,7 +69,7 @@ namespace MyErp.Controllers {
                         //where p.WcfaId==plant
                         select new TPerson{PerId=p.PerId ,PerName=p.PerName1+" "+p.PerName};
             var resuld0 = ( from p in _dbContext.TPersons  
-            select new TPerson{PerId=0,PerName=" Select a Work Center"}).Distinct().ToList();
+            select new TPerson{PerId=0,PerName="--Select Employee"}).Distinct().ToList();
             var resuld = resuld0.Concat(resuld1);
             ViewBag.ddlPerso = new SelectList(resuld.ToList(), "PerId", "PerName"); 
         }

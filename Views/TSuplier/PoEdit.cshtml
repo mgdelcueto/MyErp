@@ -1,7 +1,9 @@
 @using MyErp.Models
 @model TSPorder
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 <div class="cont-titles">
-<h1>Edit an Order record</h1>
+<h2>@SharedLocalizer.GetLocalizedHtmlString("EditPORecord")</h2>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
@@ -11,7 +13,7 @@
 
     <div class ="visible">
         <tr>
-            <td>Suplier:</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Suplier")</td>
             <td>@(((TSuplier)ViewBag.Suplier).SupRasoc)</td>
             <td> </td>
             <td>@(((TSuplier)ViewBag.Suplier).SupNif)</td>
@@ -66,7 +68,7 @@
             <td>@Html.ValidationMessageFor(p => p.Spostatus)</td>
         </tr>
         <tr>
-            <td><input type="submit" value="Add"  name="actionType"/></td>
+            <td><input type="submit" value="Update"  name="actionType"/></td>
             <td><input type="submit" value="Cancel" name="actionType"/></td>
         </tr>
     </table>

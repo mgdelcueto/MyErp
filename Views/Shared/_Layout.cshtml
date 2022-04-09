@@ -163,7 +163,7 @@
             }
     </style>
     <style>       
-        .cont-titles {color: #222222;
+        .cont-titles {color: #666666;
         background-color: #CCCCCC;
         border-color: #888888;
         text-align: center;
@@ -285,7 +285,12 @@
         text-align: right;
         }
     </style>
-
+    <style>
+        .centerul {
+        display: flex;
+        justify-content: center;
+        }
+    </style>
     @RenderSection("Styles", required: false)
 </head>
 <body>
@@ -299,8 +304,8 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse centerul">
+                    <ul class="navbar-nav flex-grow-1 centerul">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="TOrganiza" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Org")</a>
                         </li>
@@ -332,7 +337,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                 <table>
                     <tr>
-                        <td>@getName()@xvisChange()</td>
+                        <td>@getName()</td>
                         <td>
                     </tr>
                     <tr>
@@ -362,7 +367,7 @@
     -->
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - MyErp - <a asp-area="" asp-controller="Home" asp-action="Privacy">@SharedLocalizer.GetLocalizedHtmlString("Privacy")</a>
+            &copy; 2021 - MyErp - <a asp-area="" asp-controller="Account" asp-action="Privacy">@SharedLocalizer.GetLocalizedHtmlString("About")</a>
         </div>
         <div>
             @Errores()

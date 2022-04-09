@@ -1,27 +1,69 @@
 @model List<TWorkCenter>
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@functions{
+        string isVisible(){
+        int filter =0;
+        try{
+        filter = (int) ViewData["Filter"];}
+        catch{}
+        string retcol="";
+        if (filter==0){retcol="invisible";}
+        else{retcol="visible";}
+        return retcol;
+    }
+    string fValue (int valor){
+        string ret1="";
+        if (valor ==1){
+        try{
+            ret1 = (string)ViewData["Fil1"];
+        }
+        catch{}
+        }
+        else{
+        try{
+            ret1 = (string)ViewData["Fil2"];
+        }
+        catch{}
+        }
+        return ret1;
+    }
+    }
     @using (Html.BeginForm("Index","TEngine",FormMethod.Post)) {        
     <table>
             <td>
                 <input type="hidden" name="panel" value="2"/>
             </td>
 
-            <td class="medium-text">Facility</td>
+            <td class="medium-text">@SharedLocalizer.GetLocalizedHtmlString("Facility")</td>
             <td class="norm-text">
                 <!--@ViewData["Plant"]-->
                 @Html.DropDownList("FaId", (SelectList)ViewBag.ddlPlantVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
             </td>
     </table>
+    
+            <tr>
+                <input type="hidden" name="panel" value="2"/>
+                <input type="hidden" name="Filter" value="2"/>
+                <td>@SharedLocalizer.GetLocalizedHtmlString("FilterByCode")</td>
+                <td class ="norm-text"><input value ="@fValue(1)" class="norm-text" id="pNam" name="pNam" type="text"></input></td>
+                <td> @SharedLocalizer.GetLocalizedHtmlString("FilterByDesc")</td>
+                <td class ="norm-text"><input value="@fValue(2)" class ="norm-text" id="pNam1" name="pNam1" type="text"></input></td>
+                <td><input type="submit" value="Filter" /></td>
+                <td><input type="submit" value="Cancel" name="actionType"/></td>
+            </tr>
     }
+
 
 
    <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>>Work Centers Data</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("WorkCenterData")</h2>
     </div>
     <tr>
-        <th class="head-text">Code</th> 
-        <th class="head-text">Description</th>                
-        <th class="head-text">Type</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("WCCode")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("WCDesc")</th>                
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("WCType")</th>        
     </tr>
    
     @foreach (var c in Model) {

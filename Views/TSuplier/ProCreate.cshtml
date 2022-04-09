@@ -1,7 +1,9 @@
 @using MyErp.Models
 @model TSProduct
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 <div class="cont-titles">
-<h1>Add a New Product record</h1>
+<h2>@SharedLocalizer.GetLocalizedHtmlString("AddProdRecord")</h2>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
@@ -9,7 +11,7 @@
     <table class="table-norm" border ="1">
         <tr>
             <input type="hidden" name="ProdSupId" value="@(((TSuplier)ViewBag.Suplier).SupId)"/>
-            <td>Suplier:</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Suplier")</td>
             <td>@(((TSuplier)ViewBag.Suplier).SupRasoc)</td>
         </tr>
         <tr>

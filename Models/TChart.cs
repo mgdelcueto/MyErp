@@ -9,6 +9,7 @@ namespace MyErp.Models
     public partial class TChart
     {
         public int CharId { get; set; }
+        [Display(Name = "CharHeadId")]
         public int? CharHeadId { get; set; }
 
         [Display(Name = "CharCode")]

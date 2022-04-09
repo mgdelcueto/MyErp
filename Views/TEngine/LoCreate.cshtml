@@ -14,7 +14,9 @@
    <div class="visible">
     @Html.ValidationSummary(true)
     <table class="table-norm" border ="1">
-        @Html.Partial("_pshowLocations",Model)
+        @*@Html.Partial("_pshowLocations",Model)*@
+        @await Html.PartialAsync("_pshowLocations",Model)
+
          <tr>
             <td><input type="submit" value="Add"  name="actionType"/></td>
             <td><input type="submit" value="Cancel" name="actionType"/></td>

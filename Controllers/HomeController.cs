@@ -29,11 +29,20 @@ namespace MyErp.Controllers
             ViewData["Name"]=myName;
             return View();
         }
-
+/*      [HttpGet]
         public IActionResult Privacy()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Privacy(string actiontype)
+        {
+            ViewData["Name"]="LO";
+            return RedirectToAction("Index", "Home",new{mensaje="LO"});
+            //return View();
+        }
+*/
         public IActionResult Journal()
         {
             return View();

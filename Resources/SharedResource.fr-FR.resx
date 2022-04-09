@@ -259,10 +259,10 @@
     <value>Date d'entrée est obligatoire</value>
   </data>
   <data name="OrgreaIndexPage" xml:space="preserve">
-    <value>zone Organisation Index Page</value>
+    <value>zone Organisation</value>
   </data>
   <data name="Organization" xml:space="preserve">
-    <value>zone Organisation Index Page</value>
+    <value>Organisation</value>
   </data>
   <data name="Chart" xml:space="preserve">
     <value>Organigramme</value>
@@ -435,6 +435,9 @@
   <data name="Org" xml:space="preserve">
     <value>Organisation</value>
   </data>
+  <data name="CharHeadId" xml:space="preserve">
+    <value>Chef de département</value>
+  </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>non autorisée</value>
   </data>
@@ -599,5 +602,50 @@
   </data>
   <data name="MEdit" xml:space="preserve">
     <value>Modifier un enregistrement de matériel</value>
+  </data>
+  <data name="------------------------------A" xml:space="preserve">
+    <value>-------------------------------ABOUT</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>à propos de</value>
+  </data>
+  <data name="AboutT1" xml:space="preserve">
+    <value>myERP est un projet open source qui tente de créer un système MRP destiné aux petites et moyennes entreprises</value>
+  </data>
+  <data name="AboutT2" xml:space="preserve">
+    <value>Vigo hiver 2021</value>
+  </data>
+  <data name="AboutT3" xml:space="preserve">
+    <value>téléphone de contact : +34 616454045 </value>
+  </data>
+  <data name="AboutT4" xml:space="preserve">
+    <value>contacter le courrier</value>
+  </data>
+  <data name="AboutT5" xml:space="preserve">
+    <value>Visiter la formation myERP</value>
+  </data>
+  <data name="-----------------U" xml:space="preserve">
+    <value>----------------------------USUARIOS</value>
+  </data>
+  <data name="UserLoginName" xml:space="preserve">
+    <value>Identifiant</value>
+  </data>
+  <data name="UserFirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="UserLastName" xml:space="preserve">
+    <value>Nom de famille</value>
+  </data>
+  <data name="UserStatus" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="Reset_Pw" xml:space="preserve">
+    <value>réinitialiser le mot de passe</value>
+  </data>
+  <data name="UsrRolData" xml:space="preserve">
+    <value>Rôles attribués à cet utilisateur</value>
+  </data>
+  <data name="SelectEmployee" xml:space="preserve">
+    <value>Choisir un employé</value>
   </data>
 </root>

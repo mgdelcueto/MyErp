@@ -144,6 +144,27 @@
   <data name="&lt;&lt;Prev" xml:space="preserve">
     <value>&lt;&lt;Prev</value>
   </data>
+  <data name="------------------------------A" xml:space="preserve">
+    <value>-------------------------------ABOUT</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutT1" xml:space="preserve">
+    <value>myERP is a open source project that tries to create an MRP system aimed at small and medium-sized companies</value>
+  </data>
+  <data name="AboutT2" xml:space="preserve">
+    <value>Vigo winter 2021</value>
+  </data>
+  <data name="AboutT3" xml:space="preserve">
+    <value>contact phone: +34 616454045 </value>
+  </data>
+  <data name="AboutT4" xml:space="preserve">
+    <value>contact mail</value>
+  </data>
+  <data name="AboutT5" xml:space="preserve">
+    <value>Visit training course myERP</value>
+  </data>
   <data name="-----------------O" xml:space="preserve">
     <value>--------------------------HR EMPLOYEE DATA</value>
   </data>
@@ -262,10 +283,10 @@
     <value>Entry Date Field is required</value>
   </data>
   <data name="OrgreaIndexPage" xml:space="preserve">
-    <value>Organization area Index Page</value>
+    <value>Organization area</value>
   </data>
   <data name="Organization" xml:space="preserve">
-    <value>Organization area Index Page</value>
+    <value>Organization area</value>
   </data>
   <data name="Chart" xml:space="preserve">
     <value>Organization Chart</value>
@@ -437,6 +458,9 @@
   </data>
   <data name="Org" xml:space="preserve">
     <value>Organization</value>
+  </data>
+  <data name="CharHeadId" xml:space="preserve">
+    <value>Head of department</value>
   </data>
   <data name="-----------------L" xml:space="preserve">
     <value>--------------------------LOGINDATA</value>
@@ -611,5 +635,26 @@
   </data>
   <data name="MEdit" xml:space="preserve">
     <value>Edit a Material record</value>
+  </data>
+  <data name="UserLoginName" xml:space="preserve">
+    <value>Login Name</value>
+  </data>
+  <data name="UserFirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="UserLastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="UserStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Reset_Pw" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="UsrRolData" xml:space="preserve">
+    <value>Roles assignet to this user</value>
+  </data>
+  <data name="SelectEmployee" xml:space="preserve">
+    <value>Choose an employee</value>
   </data>
 </root>

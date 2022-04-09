@@ -1,14 +1,16 @@
 @using MyErp.Models
 @model TSuplier
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 <div class="cont-titles">
-<h1>Add a New Suplier</h1>
+<h2>@SharedLocalizer.GetLocalizedHtmlString("AddSuplier")</h2>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
     @Html.ValidationSummary(true)
     <table class="table-norm" border="1">
         <div class="cont-titles">
-        <h2>Suplier Data</h2>
+        <h3>@SharedLocalizer.GetLocalizedHtmlString("SuplierData")</h3>
         </div>
         <tr>
             <td>@Html.LabelFor(p => p.SupRasoc,new { @class = "norm-text",})</td>

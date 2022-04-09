@@ -1,25 +1,78 @@
 @model List<TMaterial>
 @using MyErp.Resources
 @inject LocService SharedLocalizer
+@functions{
+        string isVisible(){
+        int filter =0;
+        try{
+        filter = (int) ViewData["Filter"];}
+        catch{}
+        string retcol="";
+        if (filter==0){retcol="invisible";}
+        else{retcol="visible";}
+        return retcol;
+    }
+    string isCode(){
+        string  code ="";
+        try{
+        code = (string)ViewData["Code"];}
+        catch{}
+        return code;
+    }
+    string isFilter(){
+        string filter ="0";
+        try{
+        filter = (string) ViewData["Filter"];}
+        catch{}
+        return filter;
+    }
+    string fValue (int valor){
+        string ret1="";
+        if (valor ==1){
+        try{
+            ret1 = (string)ViewData["Fil1"];
+        }
+        catch{}
+        }
+        else{
+        try{
+            ret1 = (string)ViewData["Fil2"];
+        }
+        catch{}
+        }
+        return ret1;
+    }
 
+}
     @using (Html.BeginForm("Index","TEngine",FormMethod.Post)) {        
     <table>
             <td>
                 <input type="hidden" name="panel" value="4"/>
             </td>
 
-            <td class="medium-text">Material Class</td>
+            <td class="medium-text">@SharedLocalizer.GetLocalizedHtmlString("MaterialClass")</td>
             <td class="norm-text">
                 <!--@ViewData["Plant"]-->
                 @*@Html.DropDownList("WcdId", (SelectList)ViewBag.ddlReferVD, new { @class ="medium-text" , onchange = "this.form.submit();" })*@
                 @Html.DropDownList("Code",
-               new SelectList(DataSource.GetMCatlassL(), "Code", "Name"),new { @class = "norm-text", onchange = "this.form.submit();" })
+               new SelectList(DataSource.GetMCatlassL(), "Code", "Name",@isCode()),new { @class = "norm-text", onchange = "this.form.submit();" })
             </td>
     </table>
+    <tr>
+        <input type="hidden" name="panel" value="4"/>
+        <input type="hidden" name="Filter" value="2"/>
+        <td>@SharedLocalizer.GetLocalizedHtmlString("FilterByRefe")</td>
+        <td class ="norm-text"><input value ="@fValue(1)" class="norm-text" id="pNam" name="pNam" type="text"></input></td>
+        <td> @SharedLocalizer.GetLocalizedHtmlString("FilterByDesc")</td>
+        <td class ="norm-text"><input value="@fValue(2)" class ="norm-text" id="pNam1" name="pNam1" type="text"></input></td>
+        <td><input type="submit" value="Filter"  name="actionType"/></td>
+        <td><input type="submit" value="Cancel" name="actionType"/></td>
+    </tr>
     }
+    
     <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>@SharedLocalizer.GetLocalizedHtmlString("MData")</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("MData")</h3>
     </div>
     <tr>
         <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("MRefer")</th> 

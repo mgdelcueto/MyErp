@@ -289,15 +289,40 @@ namespace MyErp.Controllers
             ViewData["Name"]="LO";
             return RedirectToAction("Index", "Home",new{mensaje="LO"});
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
-
+/*
+        [HttpGet]
         public IActionResult Privacy()
         {
             return View();
         }
+
+        [HttpPost]
+*/
+        [HttpGet]
+        public IActionResult Privacy()
+        {
+            ViewData["Name"]="NM";
+            return View(new{mensaje="NM"});
+        }
+
+        [HttpPost]
+        public IActionResult Privacy(string actionType)
+        {
+            ViewData["Name"]="LO";//"Modulo"]=99;//88;
+            return RedirectToAction("Index", "Home",new{mensaje="LO"});
+        }
+
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+/*
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+*/
         public IActionResult Journal()
         {
             return View();

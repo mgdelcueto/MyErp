@@ -1,4 +1,26 @@
 @model List<TWccomponent>
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@functions {
+    string fValue (int valor){
+        string ret1="";
+        if (valor ==1){
+        try{
+            ret1 = (string)ViewData["Fil1"];
+        }
+        catch{}
+        }
+        else{
+        try{
+            ret1 = (string)ViewData["Fil2"];
+        }
+        catch{}
+        }
+        return ret1;
+    }
+
+}
+
     @using (Html.BeginForm("Index","TEngine",FormMethod.Post)) {        
     <table>
             <td>
@@ -11,18 +33,29 @@
                 @Html.DropDownList("WcdId", (SelectList)ViewBag.ddlReferVD, new { @class ="medium-text" , onchange = "this.form.submit();" })
             </td>
     </table>
+    <tr>
+        <input type="hidden" name="panel" value="3"/>
+        <input type="hidden" name="Filter" value="2"/>
+        <td>@SharedLocalizer.GetLocalizedHtmlString("FilterByCode")</td>
+        <td class ="norm-text"><input value ="@fValue(1)" class="norm-text" id="pNam" name="pNam" type="text"></input></td>
+        <td> @SharedLocalizer.GetLocalizedHtmlString("FilterByDesc")</td>
+        <td class ="norm-text"><input value="@fValue(2)" class ="norm-text" id="pNam1" name="pNam1" type="text"></input></td>
+        <td><input type="submit" value="Filter"  name="actionType"/></td>
+        <td><input type="submit" value="Cancel" name="actionType"/></td>
+    </tr>
+
     }
 
 
 
     <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>>Work Centers-Components Data</h2>
+    <h2> @SharedLocalizer.GetLocalizedHtmlString("WCCompData")</h2>
     </div>
     <tr>
-        <th class="head-text">Code</th> 
-        <th class="head-text">Description</th>                
-        <th class="head-text">Type</th>        
+        <th class="head-text"> @SharedLocalizer.GetLocalizedHtmlString("WCCCode")</th> 
+        <th class="head-text"> @SharedLocalizer.GetLocalizedHtmlString("WCCDescr")</th>                
+        <th class="head-text"> @SharedLocalizer.GetLocalizedHtmlString("WCCType")</th>        
     </tr>
    
     @foreach (var c in Model) {

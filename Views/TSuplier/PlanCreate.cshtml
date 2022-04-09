@@ -1,12 +1,15 @@
 @using MyErp.Models
 @model TSPlanning
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+
 @functions {
     int SupId(){
         return ((TSuplier)ViewBag.Suplier).SupId;
     }
 }
 <div class="cont-titles">
-<h1>Add a New Planning record</h1>
+<h2>@SharedLocalizer.GetLocalizedHtmlString("AddPlanningRecord")</h2>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
@@ -15,9 +18,9 @@
         <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
             <input type="hidden" name="PlanSupId" value="@(((TSuplier)ViewBag.Suplier).SupId)"/>
-            <td>Suplier :</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Suplier") :</td>
             <td>@(((TSuplier)ViewBag.Suplier).SupRasoc)</td>
-            <td> Nif: </td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("SupNIF")</td>
             <td>@(((TSuplier)ViewBag.Suplier).SupNif)</td>
         </tr>
     </table>
