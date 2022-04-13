@@ -1,19 +1,28 @@
 @using MyErp.Models
 @model TPCurric
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = "_LayPer";
+}
+
 <div class="cont-titles">
-<h1>Add a New Curriculum record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("CurriculumCreate")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
     @Html.ValidationSummary(true)
+    @*
     <div class ="div-bold">
         <tr>
             <input type="hidden" name="CurrPerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
-            <td>Nombre :</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Name") :</td>
             <td>@(((TPerson)ViewBag.Person).PerName)</td>
             <td> </td>
             <td>@(((TPerson)ViewBag.Person).PerName1)</td>
-        </tr>    </div>
+        </tr>    
+    </div>
+    *@
     <table class="table-norm" border ="1">
         <tr>
             <td>@Html.LabelFor(p => p.CurrRevDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
@@ -41,6 +50,7 @@
             <td>@Html.LabelFor(p => p.CurrObs, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px" } })</td>
             <td>@Html.EditorFor(p => p.CurrObs, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CurrObs)</td>
+            <input type="hidden" name="CurrPerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
         </tr>        
         <tr>
             <td></td>

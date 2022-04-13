@@ -1,7 +1,14 @@
 @using MyErp.Models
 @model TPerson
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = null;  
+    Layout = "_LayPer.cshtml";
+}
+
 <div class="cont-titles">
-<h1>Add a New Person</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("EmployeeCreate")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">

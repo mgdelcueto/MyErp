@@ -1,6 +1,8 @@
 @{Layout = "_LyIndex";}
 @using MyErp.Models
 @model TOperator
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 @functions {
     string isVisible(int panel){
         string retcol="";
@@ -34,7 +36,7 @@ private int VAssign(){
 }
 
 <div class="cont-titles">
-<h1>Edit an Operator record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("OperEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">

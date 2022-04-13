@@ -1,10 +1,12 @@
 @{Layout = "_LyIndex";}
 @using MyErp.Models
 @model VTMRouting
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 @functions {
 }
 <div class="cont-titles">
-<h1>Add a New Operation record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("OperCreate")</h3>
 </div>
 @using (Html.BeginForm(new{id = Model.RoRoMatId})) {
    <div class="visible">

@@ -1,6 +1,8 @@
 @{Layout = "_LyIndex";}
 @using MyErp.Models
 @model TCTrSched
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 @functions {
     int? Planta(){
         int? retcol = (int?)ViewData["Plant"];
@@ -13,7 +15,7 @@
     }
 }
 <div class="cont-titles">
-<h1>Add a New Truck Schedule record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("TruckScheduleCreate")</h3>
 </div>
 @using (Html.BeginForm()) {
    <div class="visible">

@@ -2,6 +2,8 @@
 
 @using MyErp.Models
 @model TWorkCenter
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 
 @functions {
     string isVisible(int panel){
@@ -35,7 +37,7 @@ private int VAssign(){
 
 }
 <div class="cont-titles">
-<h1>Edit a Work Center record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("WCEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
@@ -46,7 +48,7 @@ private int VAssign(){
     </table>
     </div>
     <div class="cont-titles">
-    <h2>Components of @Model.Wcdescr</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("ComponentsOf") @Model.Wcdescr</h3>
     <table class="table-norm" border ="1">
         @Html.Partial("_pListaWCComponents",(List<TWccomponent>)ViewBag.ListPodAs)
     </table>
@@ -59,7 +61,7 @@ private int VAssign(){
     <table>
         <tr>
             @using (Html.BeginForm("WCEComp","TEngine", new { id= @Model.WcdId, wrem = 0, wass=1},FormMethod.Post)) {        
-            <td>Work Center to assign
+            <td>@SharedLocalizer.GetLocalizedHtmlString("WCToAssign")
             <input type="hidden" name="wass" value="1"/>
             </td>
             <td class="norm-text">

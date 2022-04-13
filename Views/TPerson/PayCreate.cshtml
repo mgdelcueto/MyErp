@@ -1,20 +1,28 @@
 @using MyErp.Models
 @model TPPay
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = "_LayPer";
+}
+
 <div class="cont-titles">
-<h1>Add a New Pay record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("PayrollCreate")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
     @Html.ValidationSummary(true)
+    @*
     <table class="table-norm" border="1">
         <tr>
             <input type="hidden" name="PayPerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
-            <td>Nombre :</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Name") :</td>
             <td>@(((TPerson)ViewBag.Person).PerName)</td>
             <td> </td>
             <td>@(((TPerson)ViewBag.Person).PerName1)</td>
         </tr>
     </table>
+    *@
     <table class="table-norm" border="1">
         <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
@@ -48,6 +56,7 @@
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PayAccount)</td>
+            <input type="hidden" name="PayPerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
         </tr>
         <tr>
             <td></td>

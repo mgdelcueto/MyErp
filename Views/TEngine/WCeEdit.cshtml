@@ -1,6 +1,8 @@
 @{Layout = "_LyIndex";}
 @using MyErp.Models
 @model TWorkCenter
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 
 @functions {
     string isVisible(int panel){
@@ -40,7 +42,7 @@ private int VAssign(){
 }
 
 <div class="cont-titles">
-<h1>Edit a Work Center record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("WCEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
@@ -62,7 +64,7 @@ private int VAssign(){
 <div class=visible>
     <table class="table-norm" border="1">
         <div class="cont-titles">
-        <h2>>Components Asigned</h2>
+        <h3>@SharedLocalizer.GetLocalizedHtmlString("WCCoAssigned")</h3>
         </div>
    '     @Html.Partial("_pListaWCComponents",(List<TWccomponent>)ViewBag.ListPodAs)'
     </table>
@@ -72,7 +74,7 @@ private int VAssign(){
     <table>
         <tr>
             @using (Html.BeginForm("WCeEdit","TEngine", new { id= @Model.WcdId, wrem = 0, panem=1,wass=1,assign =1},FormMethod.Post)) {        
-            <td>Work Center to assign
+            <td>@SharedLocalizer.GetLocalizedHtmlString("WCToAssign")
             <input type="hidden" name="wass" value="1"/>
             </td>
             <td class="norm-text">
@@ -90,7 +92,7 @@ private int VAssign(){
 <div class=visible>
     <table class="table-norm" border="1">
         <div class="cont-titles">
-        <h2>>Operators Asigned</h2>
+        <h3>>@SharedLocalizer.GetLocalizedHtmlString("WCOperAssined")</h3>
         </div>
         @Html.Partial("_pListaWCOperators",(List<VTWOperator>)ViewBag.ListOpdAs)
     </table>
@@ -101,7 +103,7 @@ private int VAssign(){
         @*@using (Html.BeginForm("WCeEdit","TEngine", new { id= @Model.WcdId, wrem = 0, panem=2,wass=1,assign =2},FormMethod.Post)) {        
             *@
         <tr>
-            <td>Operator to assign
+            <td>@SharedLocalizer.GetLocalizedHtmlString("WCOperToAssign")
             <input type="hidden" name="wass" value="1"/>
             </td>
             <td class="norm-text">
@@ -110,7 +112,7 @@ private int VAssign(){
             </td>
         </tr>
         <tr>
-            <td>Number of operators</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("WCNumberOperators")</td>
             <td>            
                 <input type="text" name="opnum" value="1"/>
             </td>

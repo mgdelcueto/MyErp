@@ -2,7 +2,6 @@
 @using MyErp.Models
 @model TCTruck
 @using MyErp.Resources
- 
 @inject LocService SharedLocalizer
 @{
     ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("HRAreaIndexPage");
@@ -29,7 +28,7 @@ string assVisible()
  }
 }
 <div class="cont-titles">
-<h1>Edit a Truck record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("TruckEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
@@ -50,7 +49,7 @@ string assVisible()
 <div class=@isVisible(1)>
 <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>>Truck Schedules</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("TruckSchedules")</h3>
     </div>
     @Html.Partial("_pListaTruckSchedules",(List<TCTrSched>)ViewBag.ListSTrucks)
 </table>

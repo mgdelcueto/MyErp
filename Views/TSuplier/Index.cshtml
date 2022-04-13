@@ -3,7 +3,7 @@
 @inject LocService SharedLocalizer
 
 @{
-    ViewData["Title"] = "Purchasing Area Index Page";
+    ViewData["Title"] = "Purchasing Area";
 }
 @functions {
     string myformat(double? value){
@@ -57,9 +57,9 @@
 
 }
 
-<h1>@ViewData["Title"]</h1>
+<h3>@ViewData["Title"]</h3>
 <div class = "cont-titles">
- <h2>Supliers Table</h2>   
+ <h3>@SharedLocalizer.GetLocalizedHtmlString("SupList")</h3>   
 </div>
 <td><a class="nav-link text-dark" asp-area="" asp-controller="TSuplier" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Filter")</a></td>
 <div class="@isVisible()">

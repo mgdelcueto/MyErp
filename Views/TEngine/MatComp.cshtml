@@ -2,11 +2,13 @@
 
 @using MyErp.Models
 @model TMaterial
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 
 @functions {
 }
 <div class="cont-titles">
-<h1>Edit a Material record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("MatEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
@@ -17,7 +19,7 @@
     </table>
     </div>
     <div class="cont-titles">
-    <h2>Components of @Model.MatDescr</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("ComponentsOf") @Model.MatDescr</h3>
     <table class="table-norm" border ="1">
         @Html.Partial("_pListMatComponents",(List<VTMComponent>)ViewBag.ListMatComp)
     </table>

@@ -1,10 +1,12 @@
 @{Layout = "_LyIndex";}
 @using MyErp.Models
 @model VTMLocation
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 @functions {
 }
 <div class="cont-titles">
-<h1>Add a New Material Location record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("MatLocCreate")</h3>
 </div>
 @using (Html.BeginForm(new{id = Model.LoRefId})) {
    <div class="visible">

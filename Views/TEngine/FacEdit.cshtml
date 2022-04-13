@@ -54,7 +54,7 @@ private int LAssign(){
 
 }
 <div class="cont-titles">
-<h1>@SharedLocalizer.GetLocalizedHtmlString("FEdit")</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("FEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
@@ -75,7 +75,7 @@ private int LAssign(){
 <div class=@isVisible(1)>
 <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>>@SharedLocalizer.GetLocalizedHtmlString("FWCAss")</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("FWCAss")</h3>
     </div>
     @Html.Partial("_pListaWorkCenters",(List<TWorkCenter>)ViewBag.ListProdAs)
 </table>

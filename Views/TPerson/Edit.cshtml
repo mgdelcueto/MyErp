@@ -3,9 +3,45 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 
 @using MyErp.Resources
- 
 @inject LocService SharedLocalizer
 @model TPerson
+
+@{
+    Layout = null;  
+    Layout = "_LayPer.cshtml";
+}
+
+@using (Html.BeginForm()) {
+    @Html.HiddenFor(p => p.PerId)
+    @Html.ValidationSummary(true)
+@functions {
+    string panelBold(int panel)
+    {            
+        int tpan = (int)ViewData["panel"];
+        string cstyle ="";
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+        return cstyle;
+    }
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+    int thisPanel(){
+         int opanel = (int)ViewData["panel"];
+         return opanel;
+    }
+        string ThisPerId()
+    {
+        int pid= (int)ViewData["PerId"];//0;//@Model.PerId;
+        return pid.ToString();
+    }
+}
+
+@*
 @using (Html.BeginForm()) {
     @Html.HiddenFor(p => p.PerId)
     @Html.ValidationSummary(true)
@@ -34,13 +70,12 @@
 {
 
 }
-
-<h1>@SharedLocalizer.GetLocalizedHtmlString("EditPerson")</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("EditPerson")</h3>
 @using (Html.BeginForm()) {
     
     <table>
         <div class="cont-titles-l">
-        <h2>>>@Html.DisplayFor(p => p.PerName)  @Html.DisplayFor(p => p.PerName1)</h2>
+        <h4>@Html.DisplayFor(p => p.PerName)  @Html.DisplayFor(p => p.PerName1)</h4>
         </div>
         <table>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -86,10 +121,12 @@
         </nav>
          </table>
     </table>
+*@
+
     <div class=@isVisible(1)>
     <table>
         <div class="cont-titles">
-        <h2>@SharedLocalizer.GetLocalizedHtmlString("PersonData")</h2>
+        <h3>@SharedLocalizer.GetLocalizedHtmlString("PersonData")</h3>
         </div>
         <tr>
             <td>@Html.LabelFor(p => p.PerName,new { @class = "norm-text",})</td>
@@ -187,12 +224,12 @@
     <div class=@isVisible(2)>
     <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>Career Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("CareerData")</h3>
     </div>
     <tr>
-        <th class="head-text">Date</th> 
-        <th class="head-text">Position</th>                
-        <th class="head-text">Observations</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("CareerDateData")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Position")</th>                
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Observations")</th>        
     </tr>
    
     @foreach (var c in ViewBag.ListCareer) {
@@ -201,8 +238,8 @@
             <td class ="col-text">@CareDate</td>            
             <td class ="norm-text">@c.CarePosit</td>
             <td class ="big-text">@c.CareObser</td>
-            <td class="col-text">@Html.ActionLink("Delete", "CarDelete", new { id = c.CareId,Pid = c.CarePerId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "CarEdit", new { id = c.CareId ,panel=2,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Delete", "CarDelete", new { id = c.CareId,pid = c.CarePerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "CarEdit", new { id = c.CareId ,panel=2,skip =0,peid= c.CarePerId })</td>
             
         </tr>
     }
@@ -211,12 +248,12 @@
     </div>
     <div class=@isVisible(3)>
     <div class="cont-titles">
-    <h2>Contract Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("ContractData")</h3>
     </div>
     <table class="table-norm" border ="1" >
     <tr>
-        <th class="head-text">Date</th> 
-        <th class="head-text">Observations</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Date")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Observations")</th>        
     </tr>
    
     @foreach (var c in ViewBag.ListContract) {
@@ -225,7 +262,7 @@
             <td class ="col-text">@ConRevDate</td>            
             <td class ="big-text">@c.ConObs</td>
             <td class="col-text">@Html.ActionLink("Delete", "ConDelete", new { id = c.ConId,Pid = c.ConPerId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "ConEdit", new { id = c.ConId ,panel=3,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "ConEdit", new { id = c.ConId ,panel=3,peid = c.ConPerId,skip =0})</td>
             
         </tr>
     }
@@ -234,15 +271,15 @@
     </div>    
     <div class=@isVisible(4)>
     <div class="cont-titles">
-    <h2>Curriculum Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("CurriculumData")</h3>
     </div>
     <table class="table-norm" border ="1" >
     <tr>
-        <th class="head-text">Date</th> 
-        <th class="head-text">K.Area</th>        
-        <th class="head-text">Area Desc</th>        
-        <th class="head-text">Level</th>        
-        <th class="head-text">Observations</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Date")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("KnowledgeArea")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("KAreaDescr")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Level")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Observations")</th>        
     </tr>
    
     @foreach (var c in ViewBag.ListCurric) {
@@ -254,7 +291,7 @@
             <td class ="norm-text">@c.CurrAreaLevel</td>
             <td class ="big-text">@c.CurrObs</td>
             <td class="col-text">@Html.ActionLink("Delete", "CurDelete", new { id = c.CurrId,Pid = c.CurrPerId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "CurEdit", new { id = c.CurrId ,panel=4,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "CurEdit", new { id = c.CurrId ,panel=4,peid = c.CurrPerId,skip =0})</td>
             
         </tr>
     }
@@ -264,14 +301,14 @@
 </div>    
     <div class=@isVisible(5)>
     <div class="cont-titles">
-    <h2>Pay Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("PayrollData")</h3>
     </div>
     <table class="table-norm" border ="1" >
     <tr>
-        <th class="head-text">St.Date</th> 
-        <th class="head-text">Concept Type</th>        
-        <th class="head-text">Retention</th>        
-        <th class="head-text">Accounty</th>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("StatusDate")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ConceptType")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Retention")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Account")</th>
     </tr>
    
     @foreach (var c in ViewBag.ListPay) {
@@ -282,7 +319,7 @@
             <td class ="norm-text">@c.PayRet</td>
             <td class ="norm-text">@c.PayAccount</td>
             <td class="col-text">@Html.ActionLink("Delete", "PayDelete", new { id = c.PayId,Pid = c.PayPerId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "PayEdit", new { id = c.PayId ,panel=5,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PayEdit", new { id = c.PayId ,panel=5,peid = c.PayPerId,skip =0})</td>
             
         </tr>
     }
@@ -291,13 +328,13 @@
     </div>    
     <div class=@isVisible(6)>
     <div class="cont-titles">
-    <h2>Presence Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("PresenceData")</h3>
     </div>
     <table class="table-norm" border ="1" >
     <tr>
-        <th class="head-text">Local</th> 
-        <th class="head-text">fecha</th>        
-        <th class="head-text">Hora</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Location")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Date")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Time")</th>        
     </tr>
    
     @foreach (var c in ViewBag.ListPre) {
@@ -308,7 +345,7 @@
             <td class ="norm-text">@PresDateEvent</td>
             <td class ="norm-text">@PresTimeEvent</td>
             <td class="col-text">@Html.ActionLink("Delete", "PreDelete", new { id = c.PresId,Pid = c.PresPerId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "PreEdit", new { id = c.PresId ,panel=6,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PreEdit", new { id = c.PresId ,panel=6,peid = c.PresPerId,skip =0})</td>
             
         </tr>
     }
@@ -317,13 +354,13 @@
     </div>    
     <div class=@isVisible(7)>
     <div class="cont-titles">
-    <h2>Objective Review Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("ObjectiveReviewmData")</h3>
     </div>
     <table class="table-norm" border ="1" >
     <tr>
-        <th class="head-text">Fecha</th> 
-        <th class="head-text">Objectivo</th>        
-        <th class="head-text">Rating</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Date")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Objective")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Rating")</th>        
     </tr>
    
     @foreach (var c in ViewBag.ListRev) {
@@ -333,7 +370,7 @@
             <td class ="big-text">@c.RevObj</td>
             <td class ="norm-num">@c.RevObRat</td>
             <td class="col-text">@Html.ActionLink("Delete", "RevDelete", new { id = c.RevId,Pid = c.RevPerId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "RevEdit", new { id = c.RevId ,panel=7,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "RevEdit", new { id = c.RevId ,panel=7,peid = c.RevPerId,skip =0})</td>
             
         </tr>
     }
@@ -342,15 +379,15 @@
     </div>    
     <div class=@isVisible(8)>
     <div class="cont-titles">
-    <h2>Training Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("TrainingData")</h3>
     </div>
     <table class="table-norm" border ="1" >
     <tr>
-        <th class="head-text">Fecha</th> 
-        <th class="head-text">Area</th>        
-        <th class="head-text">Curso</th>        
-        <th class="head-text">Calificacion</th>        
-        <th class="head-text">Observaciones</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Date")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("CurriculumArea")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("TrainingCourse")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Grade")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Observations")</th>        
     </tr>
    
     @foreach (var c in ViewBag.ListTra) {
@@ -362,7 +399,7 @@
             <td class ="norm-text">@c.TrainCalif</td>
             <td class ="big-text">@c.TrainObser</td>
             <td class="col-text">@Html.ActionLink("Delete", "TraDelete", new { id = c.TrainId,Pid = c.TrainPerId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "TraEdit", new { id = c.TrainId ,panel=8,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "TraEdit", new { id = c.TrainId ,panel=8,peid = c.TrainPerId,skip =0})</td>
             
         </tr>
     }
@@ -371,7 +408,5 @@
     </div>    
 }
 }
-
-
 
 

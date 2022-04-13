@@ -14477,6 +14477,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\_xLayout.cshtml",
+      "TargetPath": "Views\\TPerson\\_xLayout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_pListaUsers.cshtml",
       "TargetPath": "Views\\TOrganiza\\_pListaUsers.cshtml",
       "FileKind": "mvc"
@@ -14489,6 +14494,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaWorkCenters_all.cshtml",
       "TargetPath": "Views\\TEngine\\_pListaWorkCenters_all.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\_ViewStart.cshtml",
+      "TargetPath": "Views\\TSuplier\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14637,6 +14647,21 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Home\\_ViewStart.cshtml",
+      "TargetPath": "Views\\Home\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Errores\\_ViewStart.cshtml",
+      "TargetPath": "Views\\Errores\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\_ViewStart.cshtml",
+      "TargetPath": "Views\\TMRP\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\PlantCreate.cshtml",
       "TargetPath": "Views\\TCustomer\\PlantCreate.cshtml",
       "FileKind": "mvc"
@@ -14717,8 +14742,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Shared\\_ViewStart.cshtml",
+      "TargetPath": "Views\\Shared\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\RCharCreate.cshtml",
       "TargetPath": "Views\\TOrganiza\\RCharCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\_ViewStart.cshtml",
+      "TargetPath": "Views\\TCustomer\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14754,6 +14789,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaTruckSchedules.cshtml",
       "TargetPath": "Views\\TEngine\\_pListaTruckSchedules.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_ViewStart.cshtml",
+      "TargetPath": "Views\\TEngine\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14794,6 +14834,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\OphCreate.cshtml",
       "TargetPath": "Views\\TEngine\\OphCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\_LayPer.cshtml",
+      "TargetPath": "Views\\TPerson\\_LayPer.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14914,6 +14959,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\RevCreate.cshtml",
       "TargetPath": "Views\\TPerson\\RevCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\_xViewStart.cshtml",
+      "TargetPath": "Views\\_xViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15077,6 +15127,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TOrganiza\\_ViewStart.cshtml",
+      "TargetPath": "Views\\TOrganiza\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\ScView.cshtml",
       "TargetPath": "Views\\TMRP\\ScView.cshtml",
       "FileKind": "mvc"
@@ -15107,8 +15162,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\_ViewStart.cshtml",
-      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\_ViewStart.cshtml",
+      "TargetPath": "Views\\TPerson\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15159,6 +15214,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\MatBom.cshtml",
       "TargetPath": "Views\\TEngine\\MatBom.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Account\\_ViewStart.cshtml",
+      "TargetPath": "Views\\Account\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {

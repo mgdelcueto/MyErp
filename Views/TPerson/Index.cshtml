@@ -2,10 +2,10 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 
 @using MyErp.Resources
- 
 @inject LocService SharedLocalizer
 @{
     ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("HRAreaIndexPage");
+
 }
 @functions {
     string myformat(double? value){
@@ -59,9 +59,9 @@
 
 }
 
-<h1>@ViewData["Title"]</h1>
+<h3>@ViewData["Title"]</h3>
 <div class = "cont-titles">
- <h2>@SharedLocalizer.GetLocalizedHtmlString("PersonTable")</h2>   
+ <h3>@SharedLocalizer.GetLocalizedHtmlString("PersonTable")</h3>   
 </div>
 <td><a class="nav-link text-dark" asp-area="" asp-controller="TPerson" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Filter")</a></td>
 <div class="@isVisible()">
@@ -93,8 +93,8 @@
             <td class ="norm-text">@p.PerDni</td>
             <td class ="norm-text">@p.PerAddr</td>
             <td class ="norm-text">@p.PerAddCtry</td>
-            <td class="col-text">@Html.ActionLink("Delete", "Delete", new { id = p.PerId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "Edit", new { id = p.PerId ,panel=1,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Delete", "Delete", new { id = p.PerId,perid = p.PerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "Edit", new { id = p.PerId ,panel=1,skip =0,perid = p.PerId})</td>
             
         </tr>
     }

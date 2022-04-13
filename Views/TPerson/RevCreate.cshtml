@@ -1,20 +1,28 @@
 @using MyErp.Models
 @model TPReview
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = "_LayPer";
+}
+
 <div class="cont-titles">
-<h1>Add a New Objectives review record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("ObjectiveReviewCreate")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
     @Html.ValidationSummary(true)
+    @*
     <table class="table-norm" border="1">
         <tr>
             <input type="hidden" name="RevPerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
-            <td>Nombre :</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Name") :</td>
             <td>@(((TPerson)ViewBag.Person).PerName)</td>
             <td> </td>
             <td>@(((TPerson)ViewBag.Person).PerName1)</td>
         </tr>
     </table>
+    *@
     <table class="table-norm" border="1">
         <tr>
             <td>@Html.LabelFor(p => p.RevDate,new { @class = "norm-text",})</td>
@@ -39,6 +47,7 @@
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.RevObRat)</td>
+            <input type="hidden" name="RevPerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
         </tr>
         <tr>
             <td></td>

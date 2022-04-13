@@ -2,7 +2,6 @@
 @using MyErp.Models
 @model TCTrSched
 @using MyErp.Resources
- 
 @inject LocService SharedLocalizer
 @functions {
     string isVisible(int panel){
@@ -29,7 +28,7 @@ string assVisible()
     }
 }
 <div class="cont-titles">
-<h1>Edit a Truck Schedule record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("TruckScheduleEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">

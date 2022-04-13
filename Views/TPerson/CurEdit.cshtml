@@ -1,20 +1,29 @@
 @using MyErp.Models
 @model TPCurric
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = "_LayPer";
+}
+
 <div class="visicont-titlesble">
-<h1>Edit a Curriculum record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("CurriculumEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
     @Html.ValidationSummary(true)
     @Html.HiddenFor(p => p.CurrId)
     @Html.HiddenFor(p => p.CurrPerId)
+    @*
     <div class ="div-bold">
         <tr>
-            <td>Nombre :</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Name") :</td>
             <td>@(((TPerson)ViewBag.Person).PerName)</td>
             <td> </td>
             <td>@(((TPerson)ViewBag.Person).PerName1)</td>
-        </tr>    </div>
+        </tr>    
+    </div>
+    *@
     <table class="table-norm" border ="1">
         <tr>
             <td>@Html.LabelFor(p => p.CurrRevDate, new { htmlAttributes = new { @class = "norm-text"} })</td>

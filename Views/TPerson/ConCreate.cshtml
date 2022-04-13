@@ -1,22 +1,30 @@
 @using MyErp.Models
 @model TPContract
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = "_LayPer";
+}
+
 <div class="cont-titles">
-<h1>Add a New Career record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("ContractCreate")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
     @Html.ValidationSummary(true)
+    @*
     <table class="table-norm" border="1">
         <tr>
             <input type="hidden" name="ConPerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
-            <td>Nombre</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Name")</td>
             <td>@(((TPerson)ViewBag.Person).PerName)</td>
         </tr>
         <tr>
-            <td>Apellidos</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Surnames")</td>
             <td>@(((TPerson)ViewBag.Person).PerName1)</td>
         </tr>
     </table>
+    *@
     <table class="table-norm" border="1">
         <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
@@ -34,6 +42,7 @@
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ConObs)</td>
+            <input type="hidden" name="ConPerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
         </tr>
         <tr>
             <td></td>

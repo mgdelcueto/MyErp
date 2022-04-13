@@ -1,8 +1,11 @@
 @{Layout = "_LyIndex";}
 @using MyErp.Models
 @model TWccomponent
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+
 <div class="cont-titles">
-<h1>Edit a Component record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("WCCompoEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">

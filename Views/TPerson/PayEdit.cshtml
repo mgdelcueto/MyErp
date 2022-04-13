@@ -1,21 +1,29 @@
 @using MyErp.Models
 @model TPPay
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = "_LayPer";
+}
+
 <div class="visicont-titlesble">
-<h1>Edit a Pay record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("PayrollEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
     @Html.HiddenFor(p => p.PayId)
     @Html.HiddenFor(p => p.PayPerId)
     @Html.ValidationSummary(true)
+    @*
     <table class="table-norm" border="1">
         <tr>
-            <td>Nombre :</td>
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Name") :</td>
             <td>@(((TPerson)ViewBag.Person).PerName)</td>
             <td> </td>
             <td>@(((TPerson)ViewBag.Person).PerName1)</td>
         </tr>
     </table>
+    *@
     <table class="table-norm" border="1">
         <hr style="width:100%;text-align:left;margin-left:0">
         <tr>

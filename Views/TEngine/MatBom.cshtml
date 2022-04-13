@@ -2,11 +2,12 @@
 
 @using MyErp.Models
 @model TMaterial
-
+@using MyErp.Resources
+@inject LocService SharedLocalizer
 @functions {
 }
 <div class="cont-titles">
-<h1>Edit a Material record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("MatEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
