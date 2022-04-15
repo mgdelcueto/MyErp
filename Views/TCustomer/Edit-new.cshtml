@@ -1,5 +1,6 @@
 @using MyErp.Models
 @model TCustomer
+
 @using (Html.BeginForm()) {
     @Html.HiddenFor(p => p.CustId)
     @Html.ValidationSummary(true)
@@ -21,7 +22,6 @@
 {
 
 }
-
 <h1>Edit a Customer</h1>
 @using (Html.BeginForm()) {
     

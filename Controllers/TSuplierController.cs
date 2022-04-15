@@ -130,11 +130,28 @@ namespace MyErp.Controllers {
                         select p;
             var qList=queryc.ToList();
             ViewBag.Suplier=qList[0];
+
+             var model = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
+
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=Pid;
+
+            ViewData["panel"]=2;
+
             return View();      
         }
 
         [HttpPost]
         public IActionResult ProCreate(TSProduct product,int Pid, string actionType) {
+            var model = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
+
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=Pid;
+
             if(actionType=="Add"){
             if (ModelState.IsValid){
             try{
@@ -161,12 +178,29 @@ namespace MyErp.Controllers {
                         select p;
             var qList=queryc.ToList();
             ViewBag.Suplier=qList[0];
+
+             var model = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
+
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=Pid;
+
+            ViewData["panel"]=3;
+
             CreateViewBags(Pid,prod);
             return View();      
         }
 
         [HttpPost]
         public IActionResult PlanCreate(TSPlanning planning,int Pid, int prod, string actionType) {
+            var model = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
+
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=Pid;
+
             if (actionType=="Add"){
             if (ModelState.IsValid){
             try{
@@ -193,12 +227,29 @@ namespace MyErp.Controllers {
                         select p;
             var qList=queryc.ToList();
             ViewBag.Suplier=qList[0];
+
+             var model = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
+
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=Pid;
+
+            ViewData["panel"]=4;
+
             CreateViewBags(Pid,prod);
             return View();      
         }
 
         [HttpPost]
         public IActionResult PoCreate(TSPorder porder,int Pid, int prod, string actionType) {
+            var model = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
+
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=Pid;
+
             if (actionType=="Add"){
                 if (ModelState.IsValid){
                     try{
@@ -219,6 +270,7 @@ namespace MyErp.Controllers {
 
 
         public IActionResult Delete(int id) {
+            ViewData["SupId"]=id;
             var model = _dbContext.TSupliers
                 .SingleOrDefault(u => u.SupId.Equals(id));
             try{
@@ -239,6 +291,11 @@ namespace MyErp.Controllers {
             var model = _dbContext.TSupliers
                 .SingleOrDefault(u => u.SupId.Equals(Pid));
             CreateViewBags(Pid,0);                
+
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=Pid;
+
             ViewData["panel"]=2;
             return View("Edit",model);
 
@@ -257,6 +314,11 @@ namespace MyErp.Controllers {
                 .SingleOrDefault(u => u.SupId.Equals(Pid));
             CreateViewBags(Pid,mode.PlanProdId);                
             ViewData["panel"]=3;
+
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=Pid;
+
             return View("Edit",model);
 
             //return RedirectToAction("Edit");
@@ -272,6 +334,14 @@ namespace MyErp.Controllers {
             }  
             catch{}    
 
+            var model = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
+
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=Pid;
+
+
             CreateViewBags(Pid,pro);                
             ViewData["panel"]=4;
             return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=pro});
@@ -279,7 +349,7 @@ namespace MyErp.Controllers {
 
 
         [HttpGet]
-        public IActionResult ProEdit(int id) {
+        public IActionResult ProEdit(int id,int suid) {
             try{
             var model = _dbContext.TSProducts
                 .SingleOrDefault(u => u.ProdId.Equals(id));
@@ -290,6 +360,17 @@ namespace MyErp.Controllers {
                         select p;
             var qList=queryc.ToList();
             ViewBag.Suplier=qList[0];
+
+            var pmodel = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(suid));
+
+            string sName = pmodel.SupRasoc+" " +pmodel.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=suid;
+
+            ViewData["panel"]=2;
+
+
             return View(model);
             }
             catch{return View("Error");}            
@@ -311,19 +392,36 @@ namespace MyErp.Controllers {
               return View(product);
             }
             }
+
+            var model = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=Pid;
+
+
             CreateViewBags(Pid,0);    
             ViewData["panel"]=2;
             return RedirectToAction("Edit",new{id=Pid,panel=2,move=0,prod=product.ProdId});
         } 
 
         [HttpGet]
-        public IActionResult PlanEdit(int id) {
+        public IActionResult PlanEdit(int id,int suid) {
             try{
             var model = _dbContext.TSPlannings
                 .SingleOrDefault(u => u.PlanId.Equals(id));
             int?Pid=model.PlanSupId;
 
             CreateViewBags(Pid,model.PlanProdId);    
+
+            var pmodel = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(suid));
+
+            string sName = pmodel.SupRasoc+" " +pmodel.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=suid;
+
+            ViewData["panel"]=3;
 
             return View(model);
             }
@@ -346,6 +444,12 @@ namespace MyErp.Controllers {
               return View(planning);
             }
             }
+            var model = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=Pid;
+
             CreateViewBags(Pid,planning.PlanProdId);    
             ViewData["panel"]=3;
             return RedirectToAction("Edit",new{id=Pid,panel=3,move=0,prod=planning.PlanProdId});
@@ -353,13 +457,23 @@ namespace MyErp.Controllers {
         }     
 
         [HttpGet]
-        public IActionResult PoEdit(int id) {
+        public IActionResult PoEdit(int id,int suid) {
             try{
             var model = _dbContext.TSPorders
                 .SingleOrDefault(u => u.Spoid.Equals(id));
             int?Pid=model.SposupId;
 
             CreateViewBags(Pid,model.SpocprodId);    
+
+
+            var pmodel = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(suid));
+
+            string sName = pmodel.SupRasoc+" " +pmodel.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=suid;
+
+            ViewData["panel"]=4;
 
             return View(model);
             }
@@ -369,6 +483,13 @@ namespace MyErp.Controllers {
         [HttpPost]
         public IActionResult PoEdit(TSPorder porder, string actionType) {
             int? Pid=porder.SposupId;
+
+            var model = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=Pid;
+
             if (actionType=="Update"){
                 if (ModelState.IsValid){
                     try{
@@ -382,13 +503,14 @@ namespace MyErp.Controllers {
                  return View(porder);
             }
             }
+
             CreateViewBags(Pid,porder.SpocprodId);    
             ViewData["panel"]=4;
             return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=porder.SpocprodId});
         }     
 
         [HttpGet]
-        public IActionResult Edit(int id, int panel, int move,int? prod) {
+        public IActionResult Edit(int id, int panel, int move,int? prod, int supid) {
             if(prod==null){prod=0;}
             ViewData["panel"]=panel;
             try{
@@ -433,6 +555,10 @@ namespace MyErp.Controllers {
             var model = _dbContext.TSupliers
                 .SingleOrDefault(u => u.SupId.Equals(id));
 
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=id;
+
             CreateViewBags(id,prod);
             return View("Edit",model);
             }
@@ -452,6 +578,14 @@ namespace MyErp.Controllers {
 
             }
             }
+
+            //var model = _dbContext.TSupliers
+            //    .SingleOrDefault(u => u.SupId.Equals(id));
+
+            string sName = suplier.SupRasoc+" " +suplier.SupNif;
+            ViewData["sName"]=sName;
+            ViewData["SupId"]=suplier.SupId;
+
 
             CreateViewBags(suplier.SupId,ProdId);
 

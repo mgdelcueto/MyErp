@@ -1,5 +1,11 @@
 @using MyErp.Models
 @model TCCplanning
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = "_LayCus";
+}
+
 @functions {
     int CustId(){
         return ((TCustomer)ViewBag.Customer).CustId;
@@ -17,13 +23,16 @@
         return retcol;
     }
 }
+
 <div class="cont-titles">
-<h1>Add a New Planning record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("AddPlanningRecord")</h3>
 </div>
 @using (Html.BeginForm()) {
 <div class="visible">
     @Html.ValidationSummary(true)
+    
     <table class="table-norm" border="1">
+        @*
         <tr>
             <input type="hidden" name="CPlanCustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
             <input type="hidden" name="CPlanCPlantId" value="@Planta()"/>
@@ -34,7 +43,8 @@
             <td>  Nif:</td>
             <td>@(((TCustomer)ViewBag.Customer).CustNif)</td>
         </tr>
-        <table>
+        *@
+    <table>
         <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
             <td>@Html.LabelFor(p => p.CplanCplantId,new { @class = "norm-text",})</td>
@@ -58,8 +68,8 @@
             </td>
             <td>@Html.ValidationMessageFor(p => p.CplanCprodId)</td>  
           </tr>
-        </table>
-        <table>
+    </table>
+    <table>
         <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
             <td>@Html.LabelFor(p => p.CplanDateFrom,new { @class = "norm-text",})</td>
@@ -85,7 +95,11 @@
             <td>@Html.LabelFor(p => p.CplanFirmSt,new { @class = "norm-text",})</td>
             <td>@Html.EditorFor(p => p.CplanFirmSt, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CplanFirmSt)</td>
-        </tr>        
+             <input type="hidden" name="CPlanCustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
+            <input type="hidden" name="CPlanCPlantId" value="@Planta()"/>
+            <input type="hidden" name="CPlanCProdId" value="@Produc()"/>
+            <input type="hidden" name="CPlanTruckId" value="@Truck()"/>
+       </tr>        
         <tr>
             <td></td>
             <td><input type="submit" value="Add"  name="actionType"/></td>

@@ -174,3 +174,25 @@ UserStatus=Estado
 Reset_Pw=Restablecer la contraseña
 UsrRolData=Roles asignados a este usuario
 SelectEmployee=Seleccione un empleado
+----------------S=-----------------------------SUPLIERS
+SupList=Supplier Relationship
+NIF=Identification document
+SupCode=Suplier Code
+SupRaSoc=Company Name of the Provider
+SupCity=City
+SupCountry=Country
+SuplierData=Data of the Suppliers
+SupCrDate=Creation Date
+SupAccount=Account
+SupAdress=Address
+SupAdressA=Address
+SupPhonePhone number
+SupemailFIN=email Finances
+SupemailLOG=email Logistic
+SupWebSite=Web Site
+SupEDIFIN=EDI address Finances
+SupEDILOG=EDI address Logistic
+SupBankAcc=Bank account
+SupStatus=Status
+SupStatusDate=Status Date
+

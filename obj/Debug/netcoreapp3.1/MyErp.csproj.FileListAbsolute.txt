@@ -435,3 +435,7 @@ C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Home\_ViewSt
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TPerson\_ViewStart.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TPerson\_xLayout.cshtml.g.cs
 C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ViewStart.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\Account\_Forbidden.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TSuplier\_LaySup.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TSuplier\_xViewStart.cshtml.g.cs
+C:\Users\mgdel\VSProjects\MyErp\obj\Debug\netcoreapp3.1\Razor\Views\TCustomer\_LayCus.cshtml.g.cs

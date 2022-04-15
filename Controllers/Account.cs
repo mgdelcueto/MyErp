@@ -30,13 +30,19 @@ namespace MyErp.Controllers
             ViewData["Name"]="NA";
             return View();
         }
-
-        public IActionResult  Forbidden(string ReturnUrl)
+        [HttpGet]
+        public IActionResult  Forbidden()
         {
-            ViewData["link"]=ReturnUrl;
-            //ViewData["Name"]="FO";
-            return View();
+            ViewData["Name"]="NM";
+            return View(new{mensaje="NM"});
         }
+        [HttpPost]
+        public IActionResult Forbidden(string actionType)
+        {
+            ViewData["Name"]="LO";//"Modulo"]=99;//88;
+            return RedirectToAction("Index", "Home",new{mensaje="LO"});
+        }
+
         public IActionResult  Languages()
         {
             ViewData["Name"]="NM"; //"Modulo"=99;
@@ -140,6 +146,7 @@ namespace MyErp.Controllers
             ViewData["Name"]="LO";
             return RedirectToAction("Index", "Home",new{mensaje="LO"});
         }
+        
         [HttpGet]
         public async Task<IActionResult> LogOut()
         //reemplazamos esto y ahora no solicita confirmacion de logout

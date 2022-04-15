@@ -2,14 +2,18 @@
 @model TSProduct
 @using MyErp.Resources
 @inject LocService SharedLocalizer
+@{
+    Layout = "_LaySup";
+}
 <div class="cont-titles">
-<h2>@SharedLocalizer.GetLocalizedHtmlString("EditProdRecord")</h2>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("EditProdRecord")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
     @Html.HiddenFor(p => p.ProdId)
     @Html.HiddenFor(p => p.ProdSupId)
     @Html.ValidationSummary(true)
+    @*
     <table class="table-norm" border ="1">
         <tr>
             <input type="hidden" name="ProdSupId" value="@(((TSuplier)ViewBag.Suplier).SupId)"/>
@@ -21,42 +25,44 @@
             <td>@(((TSuplier)ViewBag.Suplier).SupNif)</td>
         </tr>
     </table>
+    *@
     <table class="table-norm" border ="1">
         <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
             <td>@Html.LabelFor(p => p.ProdRefer,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.ProdRefer, new { htmlAttributes = new { @class = "norm-num", @style = "width:220px" } })</td>
+            <td>@Html.EditorFor(p => p.ProdRefer, new { htmlAttributes = new { @class = "norm-text", @style = "width:220px" } })</td>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ProdRefer)</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(p => p.ProdDescr,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.ProdDescr, new { htmlAttributes = new { @class = "norm-num", @style = "width:420px" } })</td>
+            <td>@Html.EditorFor(p => p.ProdDescr, new { htmlAttributes = new { @class = "norm-text", @style = "width:420px" } })</td>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ProdDescr)</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(p => p.ProdCrDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.ProdCrDate, new { htmlAttributes = new { @class = "norm-num" } })</td>
+            <td>@Html.EditorFor(p => p.ProdCrDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ProdCrDate)</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(p => p.ProdStatus,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.ProdStatus, new { htmlAttributes = new { @class = "norm-num", @style = "width:120px" } })</td>
+            <td>@Html.EditorFor(p => p.ProdStatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:120px" } })</td>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ProdStatus)</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(p => p.ProdStDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.ProdStDate, new { htmlAttributes = new { @class = "norm-num"} })</td>
+            <td>@Html.EditorFor(p => p.ProdStDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ProdStDate)</td>
+            <input type="hidden" name="ProdSupId" value="@(((TSuplier)ViewBag.Suplier).SupId)"/>
         </tr>
          <tr>
             <td></td>

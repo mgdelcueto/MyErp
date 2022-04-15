@@ -2,8 +2,12 @@
 @model TSuplier
 @using MyErp.Resources
 @inject LocService SharedLocalizer
+@{
+    Layout = null;  
+    Layout = "_LaySup.cshtml";
+}
 <div class="cont-titles">
-<h2>@SharedLocalizer.GetLocalizedHtmlString("AddSuplier")</h2>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("AddSuplier")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
@@ -14,7 +18,7 @@
         </div>
         <tr>
             <td>@Html.LabelFor(p => p.SupRasoc,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupRasoc, new { htmlAttributes = new { @class = "norm-num", @style = "width:320" } })</td>
+            <td>@Html.EditorFor(p => p.SupRasoc, new { htmlAttributes = new { @class = "norm-text", @style = "width:320" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -22,7 +26,7 @@
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.SupNif,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupNif, new { htmlAttributes = new { @class = "norm-num", @style = "width:90" } })</td>
+            <td>@Html.EditorFor(p => p.SupNif, new { htmlAttributes = new { @class = "norm-text", @style = "width:90" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -30,7 +34,7 @@
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.SupCrDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCrDate, new { htmlAttributes = new { @class = "norm-num"} })</td>
+            <td>@Html.EditorFor(p => p.SupCrDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
         </tr>
         <tr>
             <td></td>
@@ -38,7 +42,7 @@
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.SupCode,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCode, new { htmlAttributes = new { @class = "norm-num", @style = "width:150" } })</td>
+            <td>@Html.EditorFor(p => p.SupCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:150" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -46,9 +50,9 @@
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.SupAdStrt,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupAdStrt, new { htmlAttributes = new { @class = "norm-num", @style = "width:350" } })</td>
+            <td>@Html.EditorFor(p => p.SupAdStrt, new { htmlAttributes = new { @class = "norm-text", @style = "width:350" } })</td>
             <td>@Html.LabelFor(p => p.SupAdCity,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupAdCity, new { htmlAttributes = new { @class = "norm-num", @style = "width:150" } })</td>
+            <td>@Html.EditorFor(p => p.SupAdCity, new { htmlAttributes = new { @class = "norm-text", @style = "width:150" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -63,7 +67,7 @@
                new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
             </td>
             <td>@Html.LabelFor(p => p.SupCtPhone,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCtPhone, new { htmlAttributes = new { @class = "norm-num", @style = "width:150" } })</td>
+            <td>@Html.EditorFor(p => p.SupCtPhone, new { htmlAttributes = new { @class = "norm-text", @style = "width:150" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -73,9 +77,9 @@
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.SupCtEmailLog,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCtEmailLog, new { htmlAttributes = new { @class = "norm-num", @style = "width:250" } })</td>
+            <td>@Html.EditorFor(p => p.SupCtEmailLog, new { htmlAttributes = new { @class = "norm-text", @style = "width:250" } })</td>
             <td>@Html.LabelFor(p => p.SupCtEdilog,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCtEdilog, new { htmlAttributes = new { @class = "norm-num", @style = "width:250" } })</td>
+            <td>@Html.EditorFor(p => p.SupCtEdilog, new { htmlAttributes = new { @class = "norm-text", @style = "width:250" } })</td>
         </tr>
         <tr>
             <td></td>

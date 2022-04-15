@@ -10,75 +10,75 @@ namespace MyErp.Models
     {
         public int SupId { get; set; }
 
-        [Display(Name="My Razon Social")]
+        [Display(Name="SupRaSoc")]
         [Required,StringLength(125)]
         public string SupRasoc { get; set; }
 
-        [Display(Name="My NIF")]
+        [Display(Name="NIF")]
         [Required,StringLength(10)]
         public string SupNif { get; set; }
 
-        [Display(Name="Creation Date")]
+        [Display(Name="SupCrDate")]
         [Required,DataType(DataType.Date)]         
         public DateTime? SupCrDate { get; set; }
 
-        [Display(Name="My Sup Code")]
+        [Display(Name="SupCode")]
         [Required,StringLength(225)]
         public string SupCode { get; set; }
 
-        [Display(Name="My Account")]
+        [Display(Name="SupAccount")]
         [StringLength(225)]
         public string SupAcct { get; set; }
 
-        [Display(Name="My Adress")]
+        [Display(Name="SupAdress")]
         [Required,StringLength(225)]
         public string SupAdStrt { get; set; }
 
-        [Display(Name="My Adress")]
+        [Display(Name="SupAdressA")]
         [StringLength(225)]
         public string SupAdAdit { get; set; }
 
-        [Display(Name="My City")]
+        [Display(Name="SupCity")]
         [Required,StringLength(225)]
         public string SupAdCity { get; set; }
 
-        [Display(Name="My Country")]
+        [Display(Name="SupCountry")]
         [Required,StringLength(4)]
         public string SupAdCtry { get; set; }
 
-        [Display(Name="My Phone")]
+        [Display(Name="SupPhone")]
         [Required,StringLength(55)]
         public string SupCtPhone { get; set; }
 
-        [Display(Name="My email (LOG)")]
+        [Display(Name="SupemailLOG")]
         [Required,StringLength(125)]
         public string SupCtEmailLog { get; set; }
 
-        [Display(Name="My email (FIN)")]
+        [Display(Name="SupemailFIN")]
         [StringLength(125)]
         public string SupCtEmailFin { get; set; }
 
-        [Display(Name="My web site")]
+        [Display(Name="SupWebSite")]
         [StringLength(225)]
         public string SupCtWeb { get; set; }
 
-        [Display(Name="My EDI LOG")]
+        [Display(Name="SupEDILOG")]
         [Required,StringLength(100)]
         public string SupCtEdilog { get; set; }
 
-        [Display(Name="My EDI FIN")]
+        [Display(Name="SupEDIFIN")]
         [StringLength(100)]
         public string SupCtEdifin { get; set; }
 
-        [Display(Name="My Bank Acxcount")]
+        [Display(Name="SupBankAcc")]
         [StringLength(225)]
         public string SupCtBankAcc { get; set; }
 
-        [Display(Name="My Status")]
+        [Display(Name="SupStatus")]
         [StringLength(25)]
         public string SupStatus { get; set; }
 
-        [Display(Name="St Date")]
+        [Display(Name="SupStatusDate")]
         [DataType(DataType.Date)]         
         public DateTime? SupStDate { get; set; }
     }

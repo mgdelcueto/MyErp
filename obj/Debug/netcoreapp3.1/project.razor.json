@@ -14412,6 +14412,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\_LayCus.cshtml",
+      "TargetPath": "Views\\TCustomer\\_LayCus.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\_xViewStart.cshtml",
+      "TargetPath": "Views\\TSuplier\\_xViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\MatEdit.cshtml",
       "TargetPath": "Views\\TEngine\\MatEdit.cshtml",
       "FileKind": "mvc"
@@ -14544,6 +14554,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\TrSCreate.cshtml",
       "TargetPath": "Views\\TEngine\\TrSCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\_LaySup.cshtml",
+      "TargetPath": "Views\\TSuplier\\_LaySup.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14999,6 +15014,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaStorages_all.cshtml",
       "TargetPath": "Views\\TEngine\\_pListaStorages_all.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Account\\_Forbidden.cshtml",
+      "TargetPath": "Views\\Account\\_Forbidden.cshtml",
       "FileKind": "mvc"
     },
     {

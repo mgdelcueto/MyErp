@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+
+@functions {
+    string Enlace(){
+        string retcol="";
+        try{
+        retcol = (string)ViewData["link"];
+        }catch{}
+        return retcol;
+    }
+    string Errores()
+    {
+        string mensaje ="";
+        try{mensaje =(string)ViewData["Error"];
+        }catch{}
+        return mensaje;
+    }
+}
+<div class="text-center">
+    <h1 class="display-4">@SharedLocalizer.GetLocalizedHtmlString("Forbidden")</h1>
+</div>
+<div>
+    @Errores()
+</div>

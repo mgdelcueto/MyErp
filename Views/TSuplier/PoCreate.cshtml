@@ -8,8 +8,11 @@
         return retcol;
     }
 }
+@{
+    Layout = "_LaySup";
+}
 <div class="cont-titles">
-<h2>@SharedLocalizer.GetLocalizedHtmlString("AddPORecord")</h2>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("AddPORecord")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
@@ -21,6 +24,7 @@
             <td>@(((TSuplier)ViewBag.Suplier).SupRasoc)</td>
         </tr>
     </div>
+    @*
     <div class ="visible">
         <tr>
             <td>@SharedLocalizer.GetLocalizedHtmlString("Suplier"):</td>
@@ -29,6 +33,7 @@
             <td>@(((TSuplier)ViewBag.Suplier).SupNif)</td>
         </tr>
     </div>
+    *@
 
 
     <table class="table-norm" border ="1">
@@ -63,7 +68,7 @@
         </tr>
         <tr>
             <td>@Html.LabelFor(p => p.Spoprice,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.Spoprice, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
+            <td>@Html.EditorFor(p => p.Spoprice, new { htmlAttributes = new { @class = "norm-num", @style = "width:90px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.Spoprice)</td>
         </tr>        
         <tr>        

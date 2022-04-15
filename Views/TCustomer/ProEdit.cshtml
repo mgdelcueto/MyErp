@@ -1,14 +1,19 @@
 @using MyErp.Models
 @model TCCproduct
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = "_LayCus";
+}
 <div class="cont-titles">
-<h1>Edit a Product record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("EditProdRecord")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
     @Html.HiddenFor(p => p.CprodId)
     @Html.HiddenFor(p => p.CprodCustId)
     @Html.ValidationSummary(true)
-
+    @*
     <div class ="visible">
         <tr>
             <td>Custome:</td>
@@ -17,6 +22,7 @@
             <td>@(((TCustomer)ViewBag.Customer).CustNif)</td>
         </tr>
     </div>
+    *@
 @*
     <div class ="div-bold">
         <tr>

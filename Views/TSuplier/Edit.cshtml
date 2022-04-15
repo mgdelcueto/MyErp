@@ -3,6 +3,11 @@
 @model TSuplier
 @using MyErp.Resources
 @inject LocService SharedLocalizer
+@{
+    Layout = null;  
+    Layout = "_LaySup.cshtml";
+}
+
 @using (Html.BeginForm()) {
     @Html.HiddenFor(p => p.SupId)
 @functions {
@@ -27,6 +32,8 @@
          return opanel;
     }
 }
+
+@*
 @section Styles
 {
 
@@ -72,14 +79,15 @@
         </nav>
          </table>
     </table>
+    *@
     <div class=@isVisible(1)>
     <table>
         <div class="cont-titles">
-        <h3>@SharedLocalizer.GetLocalizedHtmlString("SuplierData")</h3>
+        <h4>@SharedLocalizer.GetLocalizedHtmlString("SuplierData")</h4>
         </div>
         <tr>
             <td>@Html.LabelFor(p => p.SupRasoc,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupRasoc, new { htmlAttributes = new { @class = "norm-num", @style = "width:320" } })</td>
+            <td>@Html.EditorFor(p => p.SupRasoc, new { htmlAttributes = new { @class = "norm-text", @style = "width:320" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -87,7 +95,7 @@
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.SupNif,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupNif, new { htmlAttributes = new { @class = "norm-num", @style = "width:90" } })</td>
+            <td>@Html.EditorFor(p => p.SupNif, new { htmlAttributes = new { @class = "norm-text", @style = "width:90" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -95,7 +103,7 @@
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.SupCrDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCrDate, new { htmlAttributes = new { @class = "norm-num"} })</td>
+            <td>@Html.EditorFor(p => p.SupCrDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
         </tr>
         <tr>
             <td></td>
@@ -103,7 +111,7 @@
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.SupCode,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCode, new { htmlAttributes = new { @class = "norm-num", @style = "width:150" } })</td>
+            <td>@Html.EditorFor(p => p.SupCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:150" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -111,9 +119,9 @@
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.SupAdStrt,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupAdStrt, new { htmlAttributes = new { @class = "norm-num", @style = "width:350" } })</td>
+            <td>@Html.EditorFor(p => p.SupAdStrt, new { htmlAttributes = new { @class = "norm-text", @style = "width:350" } })</td>
             <td>@Html.LabelFor(p => p.SupAdCity,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupAdCity, new { htmlAttributes = new { @class = "norm-num", @style = "width:150" } })</td>
+            <td>@Html.EditorFor(p => p.SupAdCity, new { htmlAttributes = new { @class = "norm-text", @style = "width:150" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -128,7 +136,7 @@
                new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
             </td>
             <td>@Html.LabelFor(p => p.SupCtPhone,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCtPhone, new { htmlAttributes = new { @class = "norm-num", @style = "width:150" } })</td>
+            <td>@Html.EditorFor(p => p.SupCtPhone, new { htmlAttributes = new { @class = "norm-text", @style = "width:150" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -138,9 +146,9 @@
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.SupCtEmailLog,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCtEmailLog, new { htmlAttributes = new { @class = "norm-num", @style = "width:250" } })</td>
+            <td>@Html.EditorFor(p => p.SupCtEmailLog, new { htmlAttributes = new { @class = "norm-text", @style = "width:250" } })</td>
             <td>@Html.LabelFor(p => p.SupCtEdilog,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCtEdilog, new { htmlAttributes = new { @class = "norm-num", @style = "width:250" } })</td>
+            <td>@Html.EditorFor(p => p.SupCtEdilog, new { htmlAttributes = new { @class = "norm-text", @style = "width:250" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -178,8 +186,8 @@
             @{ string DateSt = string.Format("{0:dd-MM-yyyy}", c.ProdStDate); }
             <td class ="col-text">@DateSt</td>
             <td class="col-text">@Html.ActionLink("Delete", "ProDelete", new { id = c.ProdId,Pid = c.ProdSupId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "ProEdit", new { id = c.ProdId ,panel=2,skip =0})</td>
-            <td class="col-text">@Html.ActionLink("Plan", "Edit", new { id = c.ProdSupId ,panel=3,skip =0,prod=c.ProdId})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "ProEdit", new { id = c.ProdId ,panel=2,skip =0,suid = c.ProdSupId})</td>
+            <td class="col-text">@Html.ActionLink("Plan", "Edit", new { id = c.ProdSupId ,panel=3,skip =0,prod=c.ProdId,suid = c.ProdSupId})</td>
             
         </tr>
     }
@@ -223,7 +231,7 @@
             <td class ="col-num">@c.PlanQty</td>
             <td class ="col-text">@c.PlanFirmSt</td>
             <td class="col-text">@Html.ActionLink("Delete", "PlanDelete", new { id = c.PlanId,Pid = c.PlanSupId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "PlanEdit", new { id = c.PlanId ,panel=3,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PlanEdit", new { id = c.PlanId ,panel=3,skip =0,suid = c.PlanSupId})</td>
             
         </tr>
     }
@@ -264,7 +272,7 @@
             <td class ="col-num">@c.Spoprice</td>
             <td class ="col-text">@c.Spocurcy</td>
             <td class="col-text">@Html.ActionLink("Delete", "PoDelete", new { id = c.Spoid,Pid = c.SposupId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "PoEdit", new { id = c.Spoid ,panel=4,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PoEdit", new { id = c.Spoid ,panel=4,skip =0,suid = c.SposupId})</td>
         </tr>
     }
 </table>
@@ -272,9 +280,8 @@
 </div>    
 <!--end PO-->
 
+}
 
-}
-}
 
 
 

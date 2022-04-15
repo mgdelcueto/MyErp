@@ -1,5 +1,12 @@
+
 @using MyErp.Models
 @model TCustomer
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = null;  
+    Layout = "_LayCus.cshtml";
+}
 @using (Html.BeginForm()) {
     @Html.HiddenFor(p => p.CustId)
     @Html.ValidationSummary(true)
@@ -26,6 +33,8 @@
          return opanel;
     }
 }
+
+@*
 @section Styles
 {
 
@@ -73,11 +82,11 @@
         </nav>
         </table>
     </table>
+    *@
     <div class=@isVisible(1)>
     <table>
         <div class="cont-titles">
-        <h2>Customer Data</h2>
-        </div>
+        <h4>@SharedLocalizer.GetLocalizedHtmlString("CustomerData")</h4>        </div>
         <tr>
             <td>@Html.LabelFor(p => p.CustRasoc,new { @class = "norm-text",})</td>
             <td>@Html.EditorFor(p => p.CustRasoc, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px"} })</td>
@@ -171,13 +180,13 @@
     *@
     <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>Product Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("ProductData")</h3>
     </div>
     <tr>
-        <th class="head-text">Referencia</th> 
-        <th class="head-text">Descripcion</th>                
-        <th class="head-text">Fecha Creacion</th>                
-        <th class="head-text">Status</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProRefer")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProDescr")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProDateCrea")</th>                
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Status")</th>        
     </tr>
    
     @foreach (var c in ViewBag.ListProd) {
@@ -188,8 +197,8 @@
             <td class ="col-text">@DateProd</td>
             <td class ="col-text">@c.CprodStatus</td>
             <td class="col-text">@Html.ActionLink("Delete", "ProDelete", new { id = c.CprodId,Pid = c.CprodCustId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "ProEdit", new { id = c.CprodId ,panel=2,skip =0})</td>
-            <td class="col-text">@Html.ActionLink("Plan", "Edit", new { id = c.CprodCustId ,panel=4,skip =0,plant =c.CprodCplantId, prod=c.CprodId})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "ProEdit", new { id = c.CprodId ,panel=2,skip =0,cuid = c.CprodCustId})</td>
+            <td class="col-text">@Html.ActionLink("Plan", "Edit", new { id = c.CprodCustId ,panel=4,skip =0,plant =c.CprodCplantId, prod=c.CprodId,cuid = c.CprodCustId})</td>
             
         </tr>
     }
@@ -200,15 +209,15 @@
 <!--Plant Data -->
 <div class=@isVisible(3)>
     <div class="cont-titles">
-    <h2>Plant Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("PlantData")</h3>
     </div>
     <table class="table-norm" border ="1" >
     <tr>
-        <th class="head-text">Plant Code</th> 
-        <th class="head-text">Denominacion</th>        
-        <th class="head-text">Direccion</th>        
-        <th class="head-text">Ciudad</th>        
-        <th class="head-text">Pais</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PlantCode")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PlantDeno")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PlantAdr")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PlantCity")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PlantCountry")</th> 
     </tr>
    
     @foreach (var c in ViewBag.ListPlant) {
@@ -219,7 +228,7 @@
             <td class ="col-text">@c.CplantAdCity</td>
             <td class ="col-text">@c.CplantAdCtry</td>
             <td class="col-text">@Html.ActionLink("Delete", "PlantDelete", new { id = c.CplantId,Pid = c.CplantCustId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "PlantEdit", new { id = c.CplantId ,panel=3,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PlantEdit", new { id = c.CplantId ,panel=3,skip =0,cuid = c.CplantCustId})</td>
             
         </tr>
     }
@@ -229,19 +238,19 @@
 <!-- End Plant Data-->  
 <div class=@isVisible(4)>
     <div class="cont-titles">
-    <h2>Planning Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>
     </div>
     @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
     <table>
         <tr>
-            <td class="medium-text">Planta<input type="hidden" name="CustId" value="@(Model.CustId)"/></td>
+            <td class="medium-text">>@SharedLocalizer.GetLocalizedHtmlString("Plant")<input type="hidden" name="CustId" value="@(Model.CustId)"/></td>
             <td class="norm-text">
                 <!--@ViewData["Plant"]-->
                 @Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
             </td>
         </tr>
         <tr>
-            <td class="medium-text">Referencia :</td>
+            <td class="medium-text">>@SharedLocalizer.GetLocalizedHtmlString("Reference") :</td>
             <td class="norm-text">
                 <!--@ViewData["Plant"]-->
                 @Html.DropDownList("CprodId",  (SelectList)ViewBag.ddlReferVO, new { @class = "medium-text", onchange = "this.form.submit();" })
@@ -255,12 +264,12 @@
     <table class="table-norm" border ="1" >
     <hr style="width:100%;text-align:left;margin-left:0">
     <tr>
-        <th class="head-text">Producto[RI]</th> 
-        <th class="head-text">Producto[Desc]</th> 
-        <th class="head-text">Desde Fecha</th>        
-        <th class="head-text">Hasta Fecha</th>        
-        <th class="head-text">Env.Cantidad</th>        
-        <th class="head-text">Firme</th>        
+        <th class="head-text">>@SharedLocalizer.GetLocalizedHtmlString("ProRefint")</th> 
+        <th class="head-text">>@SharedLocalizer.GetLocalizedHtmlString("ProDescr")</th> 
+        <th class="head-text">>@SharedLocalizer.GetLocalizedHtmlString("FromDate")</th>        
+        <th class="head-text">>@SharedLocalizer.GetLocalizedHtmlString("ToDate")</th>        
+        <th class="head-text">>@SharedLocalizer.GetLocalizedHtmlString("SendQty")</th>        
+        <th class="head-text">>@SharedLocalizer.GetLocalizedHtmlString("PlanFirm")</th>        
     </tr>
    
     @foreach ( VTCCplanning  c in (List<VTCCplanning>)ViewBag.ListPlan) {
@@ -274,7 +283,7 @@
             <td class ="col-num">@c.CplanQty</td>
             <td class ="col-text">@c.CplanFirmSt</td>
             <td class="col-text">@Html.ActionLink("Delete", "PlanDelete", new { id = c.CplanId,Pid = c.CplanCustId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "PlanEdit", new { id = c.CplanId ,panel=4,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PlanEdit", new { id = c.CplanId ,panel=4,skip =0,cuid = c.CplanCustId})</td>
             
         </tr>
     }
@@ -290,7 +299,7 @@
                 <input type="hidden" name="panel" value="@thisPanel()"/>
             </td>
 
-            <td class="medium-text">Planta</td>
+            <td class="medium-text">@SharedLocalizer.GetLocalizedHtmlString("Plant")</td>
             <td class="norm-text">
                 <!--@ViewData["Plant"]-->
                 @Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
@@ -299,15 +308,15 @@
     }
     <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>PO Data</h2>
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("POData")</h3>
     </div>
     <tr>
-        <th class="head-text">Pedido</th> 
-        <th class="head-text">Referencia Cli.</th>        
-        <th class="head-text">Referencia Int.</th>        
-        <th class="head-text">Descripcion Cli.</th>        
-        <th class="head-text">Precio</th>        
-        <th class="head-text">Divisa</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PO")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProReferExt")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProReferInt")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProDescrExt")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProPrice")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProCurrency")</th>        
     </tr>
    
     @foreach (VTCPorder c in (List<VTCPorder>) ViewBag.listpo) {
@@ -319,7 +328,7 @@
             <td class ="col-num">@c.Cpoprice</td>
             <td class ="col-text">@c.Cpocurcy</td>
             <td class="col-text">@Html.ActionLink("Delete", "PoDelete", new { id = c.Cpoid,Pid = c.CpocustId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "PoEdit", new { id = c.Cpoid ,panel=5,skip =0})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PoEdit", new { id = c.Cpoid ,panel=5,skip =0,cuid = c.CpocustId})</td>
         </tr>
     }
 </table>
@@ -327,8 +336,3 @@
 </div>    
 <!--end PO-->
 }
-}
-
-
-
-

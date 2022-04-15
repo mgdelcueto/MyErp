@@ -351,11 +351,22 @@ namespace MyErp.Controllers {
             var qList=queryc.ToList();
             ViewBag.Customer=qList[0];
             CreateViewBags(Pid,0,plant);
+
+             var model = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
+
+            ViewData["panel"]=2;
+
             return View();      
         }
 
         [HttpPost]
         public IActionResult ProCreate(TCCproduct product,int Pid, int plant ,  string actionType) {
+            ViewData["panel"]=2;
             if(actionType=="Add"){
              if (ModelState.IsValid){
                     try{
@@ -374,6 +385,9 @@ namespace MyErp.Controllers {
                 .SingleOrDefault(u => u.CustId.Equals(Pid));
 
             CreateViewBags(Pid,0,product.CprodCplantId);    
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
             ViewData["panel"]=2;
 
             return RedirectToAction("Edit",new{id=Pid,panel=2,move=0,plant=product.CprodCplantId});
@@ -388,6 +402,14 @@ namespace MyErp.Controllers {
                         select p).FirstOrDefault();
             ViewBag.Customer=queryc;
             CreateViewBags(Pid,0,0,Pid);  //Carag ddlTruck para el cliente indicado
+             var model = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
+
+            ViewData["panel"]=3;
             return View();      
         }
 
@@ -410,6 +432,9 @@ namespace MyErp.Controllers {
                 .SingleOrDefault(u => u.CustId.Equals(Pid));
 
             CreateViewBags(Pid,0,plant.CplantId,Pid);    
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
             ViewData["panel"]=3;
             return RedirectToAction("Edit",new{id=Pid,panel=3,move=0,prod=0,plant =plant.CplantId});
         }
@@ -442,11 +467,25 @@ namespace MyErp.Controllers {
                 model.CplanCplantId=plant;
                 model.CplanCustId=Pid;
             }
+             var cmodel = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
+
+            string cName = cmodel.CustRasoc+" " +cmodel.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
+
+            ViewData["panel"]=4;
             return View(model);      
         }
 
         [HttpPost]
         public IActionResult PlanCreate(TCCplanning planning,int Pid, int prod,int? plant, string actionType,int? CplantId,int? CprodId,int? CPlanTruckId) {
+            var model = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
             ViewData["panel"]=4;
             if (actionType=="Add"){
             if (ModelState.IsValid){
@@ -484,11 +523,26 @@ namespace MyErp.Controllers {
             var qList=queryc.ToList();
             ViewBag.Customer=qList[0];
             CreateViewBags(Pid,prod,plant);
+
+             var model = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
+
+            ViewData["panel"]=5;
             return View();      
         }
 
         [HttpPost]
         public IActionResult PoCreate(TCPorder porder,int Pid, int prod,int? plant, string actionType) {
+            var model = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
             if (actionType=="Add"){
                 if (ModelState.IsValid){
                     try{
@@ -511,6 +565,7 @@ namespace MyErp.Controllers {
         }
 
         public IActionResult Delete(int id) {
+            ViewData["CusId"]=id;
             var model = _dbContext.TCustomers
                 .SingleOrDefault(u => u.CustId.Equals(id));
             try{
@@ -531,6 +586,11 @@ namespace MyErp.Controllers {
             var model = _dbContext.TCustomers
                 .SingleOrDefault(u => u.CustId.Equals(Pid));
             CreateViewBags(Pid,0,0);                
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
+
             ViewData["panel"]=4;
             //return View("Edit",model);
             return RedirectToAction("Edit",new{id=Pid,panel=2,move=0});
@@ -550,6 +610,10 @@ namespace MyErp.Controllers {
             var model = _dbContext.TCustomers
                 .SingleOrDefault(u => u.CustId.Equals(Pid));
             CreateViewBags(Pid,0,0);                
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
             ViewData["panel"]=3;
             return View("Edit",model);
 
@@ -568,6 +632,14 @@ namespace MyErp.Controllers {
             catch{}    
 
             CreateViewBags(Pid,pro,plan);                
+
+            var model = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
+            CreateViewBags(Pid,0,0);                
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
             ViewData["panel"]=4;
             //return View("Edit",model);
             return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=pro,plant=plan});
@@ -588,6 +660,14 @@ namespace MyErp.Controllers {
             catch{}    
 
             CreateViewBags(Pid,pro,plan);                
+
+            var model = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
+            CreateViewBags(Pid,0,0);                
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
             ViewData["panel"]=5;
             //return View("Edit",model);
             return RedirectToAction("Edit",new{id=Pid,panel=5,move=0,prod=pro,plant=plan});
@@ -597,7 +677,7 @@ namespace MyErp.Controllers {
 
 
         [HttpGet]
-        public IActionResult ProEdit(int id) {
+        public IActionResult ProEdit(int id,int cuid) {
             try{
             var model = _dbContext.TCCproducts
                 .SingleOrDefault(u => u.CprodId.Equals(id));
@@ -609,6 +689,16 @@ namespace MyErp.Controllers {
             var qList=queryc.ToList();
             ViewBag.Customer=qList[0];
             CreateViewBags(Pid,id,model.CprodCplantId);  
+
+            var pmodel = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(cuid));
+
+            string cName = pmodel.CustRasoc+" " +pmodel.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=cuid;
+
+            ViewData["panel"]=2;
+
             return View(model);
             }
             catch{return View("Error");}            
@@ -634,6 +724,11 @@ namespace MyErp.Controllers {
             var model = _dbContext.TCustomers
                 .SingleOrDefault(u => u.CustId.Equals(Pid));
             CreateViewBags(Pid,product.CprodId,product.CprodCplantId);                
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
+
             ViewData["panel"]=2;
             //return View("Edit",model);
             return RedirectToAction("Edit",new{id=Pid,panel=2,move=0,prod=product.CprodId,plant=product.CprodCplantId});
@@ -642,7 +737,7 @@ namespace MyErp.Controllers {
         } 
 
         [HttpGet]
-        public IActionResult PlantEdit(int id) {
+        public IActionResult PlantEdit(int id,int cuid) {
             try{
             var model = _dbContext.TCCplants
                 .SingleOrDefault(u => u.CplantId.Equals(id));
@@ -653,6 +748,16 @@ namespace MyErp.Controllers {
                         select p).SingleOrDefault();
             ViewBag.Customer=queryc;
             CreateViewBags(Pid,0,id,Pid);                
+
+            var pmodel = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(cuid));
+
+            string cName = pmodel.CustRasoc+" " +pmodel.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=cuid;
+
+            ViewData["panel"]=3;
+
             return View(model);
             }
             catch{return View("Error");}            
@@ -686,18 +791,33 @@ namespace MyErp.Controllers {
             var model = _dbContext.TCustomers
                 .SingleOrDefault(u => u.CustId.Equals(Pid));
             CreateViewBags(Pid,0,planta.CplantId);                
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
+
+
             ViewData["panel"]=3;
             return RedirectToAction("Edit",new{id=Pid,panel=3,move=0,prod=0,plant=planta.CplantId});
         } 
 
         [HttpGet]
-        public IActionResult PlanEdit(int id) {
+        public IActionResult PlanEdit(int id,int cuid) {
             try{
             var model = _dbContext.TCCplannings
                 .SingleOrDefault(u => u.CplanId.Equals(id));
             int?Pid=model.CplanCustId;
 
             CreateViewBags(Pid,model.CplanCprodId,model.CplanCplantId);    
+
+            var pmodel = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(cuid));
+
+            string cName = pmodel.CustRasoc+" " +pmodel.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=cuid;
+
+            ViewData["panel"]=4;
 
             return View(model);
             }
@@ -724,6 +844,13 @@ namespace MyErp.Controllers {
             }
             }
 
+            var model = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
+
             ViewData["panel"]=4;
             if (actionType=="Cancel"||actionType=="Update"){
              CreateViewBags(Pid,planning.CplanCprodId,planning.CplanCplantId);
@@ -738,13 +865,23 @@ namespace MyErp.Controllers {
         }     
 
         [HttpGet]
-        public IActionResult PoEdit(int id) {
+        public IActionResult PoEdit(int id,int cuid) {
             try{
             var model = _dbContext.TCPorders
                 .SingleOrDefault(u => u.Cpoid.Equals(id));
             int?Pid=model.CpocustId;
 
             CreateViewBags(Pid,model.CpocprodId,model.CpocplantId);    
+
+            var pmodel = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(cuid));
+
+            string cName = pmodel.CustRasoc+" " +pmodel.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=cuid;
+
+            ViewData["panel"]=5;
+
 
             return View(model);
             }
@@ -768,6 +905,15 @@ namespace MyErp.Controllers {
             }
             }
             CreateViewBags(Pid,porder.CpocprodId,porder.CpocplantId);    
+
+            var model = _dbContext.TCustomers
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=Pid;
+
+
             ViewData["panel"]=5;
             return RedirectToAction("Edit",new{id=Pid,panel=5,move=0,prod=porder.CpocprodId,plant=porder.CpocplantId});
         }     
@@ -847,6 +993,11 @@ namespace MyErp.Controllers {
             var model = _dbContext.TCustomers
                 .SingleOrDefault(u => u.CustId.Equals(id));
 
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=id;
+
+
             CreateViewBags(id,prod,plant);
             return View("Edit",model);
             }
@@ -873,9 +1024,14 @@ namespace MyErp.Controllers {
             if (id==0){try{id=Customer.CustId; }catch{}}
             var model = _dbContext.TCustomers
                 .SingleOrDefault(u => u.CustId.Equals(id));
-            CreateViewBags(model.CustId,CprodId,CplantId);
+
+            string cName = model.CustRasoc+" " +model.CustNif;
+            ViewData["cName"]=cName;
+            ViewData["CusId"]=id;
+
 
             ViewData["panel"]=panel;
+            CreateViewBags(model.CustId,CprodId,CplantId);
             return View("Edit",model);
             //return RedirectToAction("Index");
         }        

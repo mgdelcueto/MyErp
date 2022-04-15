@@ -1,5 +1,10 @@
 @using MyErp.Models
 @model TCCproduct
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = "_LayCus";
+}
 @functions {
     int? Planta(){
         int? retcol = (int?)ViewData["Plant"];
@@ -7,11 +12,12 @@
     }
 }
 <div class="cont-titles">
-<h1>Add a New Product record</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("AddProdRecord")</h3>
 </div>
 @using (Html.BeginForm()) {
    <div class="visible">
     @Html.ValidationSummary(true)
+    @*
     <div class ="invisible">
     <tr>
             <input type="hidden" name="CProdCustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
@@ -28,6 +34,7 @@
             <td>@(((TCustomer)ViewBag.Customer).CustNif)</td>
         </tr>
     </div>
+    *@
 @*
     <div class ="div-bold">
         <tr>
@@ -75,6 +82,8 @@
             <td>@Html.LabelFor(p => p.CprodStatus,new { @class = "norm-text" })</td>
             <td>@Html.EditorFor(p => p.CprodStatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CprodStatus)</td>
+            <input type="hidden" name="CProdCustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
+            <input type="hidden" name="CProdCPlantId" value="@Planta()"/>
         </tr>        
           <tr>
             <td><input type="submit" value="Add"  name="actionType"/></td>

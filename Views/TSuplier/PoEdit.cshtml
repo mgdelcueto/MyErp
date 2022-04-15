@@ -2,15 +2,18 @@
 @model TSPorder
 @using MyErp.Resources
 @inject LocService SharedLocalizer
+@{
+    Layout = "_LaySup";
+}
 <div class="cont-titles">
-<h2>@SharedLocalizer.GetLocalizedHtmlString("EditPORecord")</h2>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("EditPORecord")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
     @Html.HiddenFor(p => p.Spoid)
     @Html.HiddenFor(p => p.SposupId)
     @Html.ValidationSummary(true)
-
+    @*
     <div class ="visible">
         <tr>
             <td>@SharedLocalizer.GetLocalizedHtmlString("Suplier")</td>
@@ -19,7 +22,7 @@
             <td>@(((TSuplier)ViewBag.Suplier).SupNif)</td>
         </tr>
     </div>
-
+    *@
     <table class="table-norm" border ="1">
 
         <tr>
@@ -52,7 +55,7 @@
         </tr>
         <tr>
             <td>@Html.LabelFor(p => p.Spoprice,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.Spoprice, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
+            <td>@Html.EditorFor(p => p.Spoprice, new { htmlAttributes = new { @class = "norm-num", @style = "width:90px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.Spoprice)</td>
         </tr>        
         <tr>        

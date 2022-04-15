@@ -1,7 +1,13 @@
 @using MyErp.Models
 @model TCustomer
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = null;  
+    Layout = "_LayCus.cshtml";
+}
 <div class="cont-titles">
-<h1>Add a New Customer</h1>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("AddCustomer")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">

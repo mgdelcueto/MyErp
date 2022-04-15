@@ -1,13 +1,19 @@
 @using MyErp.Models
 @model TCCplant
 <div class="cont-titles">
-<h1>Add a New Plant record</h1>
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = "_LayCus";
+}
+<h3>@SharedLocalizer.GetLocalizedHtmlString("AddPlantRecord")</h3>
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
     @Html.ValidationSummary(true)
 
     <table class="table-norm" border ="1">
+        @*
         <tr>
             <input type="hidden" name="CplantCustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
             <td>Customer:</td>
@@ -17,6 +23,7 @@
             <td> </td>
             <td>@(((TCustomer)ViewBag.Customer).CustNif)</td>
         </tr>
+        *@
         <tr>
             <td>@Html.LabelFor(p => p.CplantCode,new { @class = "norm-text",})</td>
             <td>@Html.EditorFor(p => p.CplantCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:120px" } })</td>
@@ -50,7 +57,8 @@
                 @Html.DropDownListFor(p => p.CplantTruckId,(SelectList)ViewBag.ddlTruckX,"",new { @class = "norm-text" })
             </td>
             <td>@Html.ValidationMessageFor(p => p.CplantTruckId)</td>
-        </tr>
+             <input type="hidden" name="CplantCustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
+       </tr>
         <tr>
             <td></td>
             <td><input type="submit" value="Add"  name="actionType"/></td>
