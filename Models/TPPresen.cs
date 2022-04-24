@@ -11,15 +11,15 @@ namespace MyErp.Models
         public int PresId { get; set; }
         public int? PresPerId { get; set; }
 
-       [Display(Name="My Local Event")]
+       [Display(Name="Location")]
        [Required,StringLength(10)]
         public string PresLocal { get; set; }
 
-       [Display(Name="My Event Date")]
+       [Display(Name="Date")]
        [Required,DataType(DataType.Date)]         
         public DateTime? PresDateEvent { get; set; }
 
-       [Display(Name="My Event Time")]
+       [Display(Name="Time")]
        [Required,DataType(DataType.Time)]         
         public DateTime? PresTimeEvent { get; set; }
     }

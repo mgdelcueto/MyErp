@@ -9,6 +9,12 @@
         else{retcol="invisible";}
         return retcol;
     }
+    string errmsg()
+    {
+        string ret = (string)ViewData["ErrorMs"];
+        return ret;
+    }
+
 }
 
     <!--Facilities-->
@@ -45,5 +51,13 @@
     <div class=@isVisible(7)>
     @Html.Partial("_pListaTrucks_all",(List<TCTruck>)ViewBag.ListTruck)
     </div>
+
+    <!--Error-->
+    <div class=@isVisible(999)>
+        <p>
+            ERROR:@errmsg()
+        </p>
+    </div>
+
 
 </div>

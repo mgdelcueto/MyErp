@@ -11,12 +11,12 @@ namespace MyErp.Models
         public int ConId { get; set; }
         public int? ConPerId { get; set; }
 
-       [Display(Name="My Revision Date")]
+       [Display(Name="RevisionDate")]
        [Required,DataType(DataType.Date)]         
        public DateTime? ConRevDate { get; set; }
 
         [DataType(DataType.MultilineText)]
-       [Display(Name="My Observations")]
+       [Display(Name="Observations")]
        [Required,StringLength(1250)]
        public string ConObs { get; set; }
     }

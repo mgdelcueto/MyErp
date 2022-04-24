@@ -337,7 +337,7 @@ namespace MyErp.Controllers {
             try{
             var model = _dbContext.TWorkCenters
                 .SingleOrDefault(u => u.WcdId.Equals(id));
-                model.WcfaId=null;
+                model.WcfaId=0;
                _dbContext.TWorkCenters.Update(model);
                _dbContext.SaveChanges();
             }
@@ -359,7 +359,7 @@ namespace MyErp.Controllers {
             try{
             var model = _dbContext.TLocations
                 .SingleOrDefault(u => u.LocId.Equals(id));
-                model.LocFaId=null;
+                model.LocFaId=0;
                _dbContext.TLocations.Update(model);
                _dbContext.SaveChanges();
             }
@@ -446,7 +446,11 @@ namespace MyErp.Controllers {
             }
             catch(Exception Ex){
                 string mensaje = Ex.Message;
-                return View("Error");}
+                ViewData["ErrorMs"]=mensaje;
+                ViewData["panel"]=999;
+                //return View('Error',new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                return View();
+            }
             
         }
 
@@ -1056,6 +1060,17 @@ namespace MyErp.Controllers {
 
         [HttpPost]
         public IActionResult FacEdit(TFacility facility,int id ,int WcdId , int LocId,int wass,int wasl, string actionType) {
+           /*
+            if (WcdId!=0){
+                wass=1;
+                wasl=0;
+            }
+            if (LocId!=0)
+            {
+                wass=0;
+                wasl=1;
+            }
+            */
             ViewData["panel"]=1;
             if (actionType=="Cancel"){}
             else{
@@ -1077,6 +1092,7 @@ namespace MyErp.Controllers {
             }
             }
             if (actionType=="Update"){
+                ViewData["vpanel"]=1;
             if (ModelState.IsValid){
                 try{
                     _dbContext.TFacilities.Update(facility);

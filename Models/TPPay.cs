@@ -11,19 +11,19 @@ namespace MyErp.Models
         public int PayId { get; set; }
         public int? PayPerId { get; set; }
 
-       [Display(Name="My Status Date")]
+       [Display(Name="StatusDate")]
        [Required,DataType(DataType.Date)]         
         public DateTime? PayStDate { get; set; }
 
-       [Display(Name="My Type")]
+       [Display(Name="ConceptType")]
        [Required,StringLength(10)]
         public string PayType { get; set; }
 
-       [Display(Name="My Retention code")]
+       [Display(Name="Retention")]
        [Required,StringLength(10)]
         public string PayRet { get; set; }
 
-       [Display(Name="My Account")]
+       [Display(Name="Account")]
        [Required,StringLength(25)]
         public string PayAccount { get; set; }
     }

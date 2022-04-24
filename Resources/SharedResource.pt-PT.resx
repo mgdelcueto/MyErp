@@ -535,7 +535,7 @@
     <value>Locais a atribuir</value>
   </data>
   <data name="FStAss" xml:space="preserve">
-    <value>Armazenamentos a atribuir</value>
+    <value>Armazenamentos atribuidos</value>
   </data>
   <data name="FEdit" xml:space="preserve">
     <value>Editar um registro de instalação</value>
@@ -647,5 +647,236 @@
   </data>
   <data name="SelectEmployee" xml:space="preserve">
     <value>Escolha um funcionário</value>
+  </data>
+  <data name="----------------S" xml:space="preserve">
+    <value>-----------------------------SUPLIERS</value>
+  </data>
+  <data name="SupList" xml:space="preserve">
+    <value>Supplier Relationship</value>
+  </data>
+  <data name="NIF" xml:space="preserve">
+    <value>Identification document</value>
+  </data>
+  <data name="SupCode" xml:space="preserve">
+    <value>Suplier Code</value>
+  </data>
+  <data name="SupRaSoc" xml:space="preserve">
+    <value>Company Name of the Provider</value>
+  </data>
+  <data name="SupCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="SupCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="SuplierData" xml:space="preserve">
+    <value>Data of the Suppliers</value>
+  </data>
+  <data name="SupCrDate" xml:space="preserve">
+    <value>Creation Date</value>
+  </data>
+  <data name="SupAccount" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="SupAdress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="SupAdressA" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="SupPhone" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="SupemailFIN" xml:space="preserve">
+    <value>email Finances</value>
+  </data>
+  <data name="SupemailLOG" xml:space="preserve">
+    <value>email Logistic</value>
+  </data>
+  <data name="SupWebSite" xml:space="preserve">
+    <value>Web Site</value>
+  </data>
+  <data name="SupEDIFIN" xml:space="preserve">
+    <value>EDI address Finances</value>
+  </data>
+  <data name="SupEDILOG" xml:space="preserve">
+    <value>EDI address Logistic</value>
+  </data>
+  <data name="SupBankAcc" xml:space="preserve">
+    <value>Bank account</value>
+  </data>
+  <data name="SupStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="SupStatusDate" xml:space="preserve">
+    <value>Status Date</value>
+  </data>
+  <data name="ProductData" xml:space="preserve">
+    <value>Product Data</value>
+  </data>
+  <data name="AddProdRecord" xml:space="preserve">
+    <value>Add Product Record</value>
+  </data>
+  <data name="EditProdRecord" xml:space="preserve">
+    <value>Edit Product Record</value>
+  </data>
+  <data name="ProRefer" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="ProDescr" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ProDateCrea" xml:space="preserve">
+    <value>Date creation</value>
+  </data>
+  <data name="StatusDate" xml:space="preserve">
+    <value>Status Date</value>
+  </data>
+  <data name="SupPlanningData" xml:space="preserve">
+    <value>Planning Data</value>
+  </data>
+  <data name="AddPlanningRecord" xml:space="preserve">
+    <value>Append Planning Record</value>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>To Date</value>
+  </data>
+  <data name="SendQty" xml:space="preserve">
+    <value>Quantity to send</value>
+  </data>
+  <data name="PlanFirm" xml:space="preserve">
+    <value>Plan Status</value>
+  </data>
+  <data name="-------------E" xml:space="preserve">
+    <value>-----------------------------EMPLOYEE</value>
+  </data>
+  <data name="CareerData" xml:space="preserve">
+    <value>Career Data</value>
+  </data>
+  <data name="CereerDateData" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="CareerCreate" xml:space="preserve">
+    <value>Create Career Record</value>
+  </data>
+  <data name="CareerEdit" xml:space="preserve">
+    <value>Edit Career Record</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Observations" xml:space="preserve">
+    <value>Observations</value>
+  </data>
+  <data name="ContractData" xml:space="preserve">
+    <value>Contract Data</value>
+  </data>
+  <data name="ContractCreate" xml:space="preserve">
+    <value>Create Contract Record</value>
+  </data>
+  <data name="ContractEdit" xml:space="preserve">
+    <value>Edit Contract Data</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="RevisionDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="CurriculumData" xml:space="preserve">
+    <value>Curriculum Data</value>
+  </data>
+  <data name="KnowledgeArea" xml:space="preserve">
+    <value>Area Of Knowledge</value>
+  </data>
+  <data name="KAreaDescr" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="CurrRevDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="CurraArea" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="CurrAreaDesc" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="CurrObs" xml:space="preserve">
+    <value>Observations</value>
+  </data>
+  <data name="CurriculumEdit" xml:space="preserve">
+    <value>Edit Curriculum Data</value>
+  </data>
+  <data name="CurriculumCreate" xml:space="preserve">
+    <value>Create Curriculum Record</value>
+  </data>
+  <data name="PayrollData" xml:space="preserve">
+    <value>Data Of Payroll</value>
+  </data>
+  <data name="PayrollEdit" xml:space="preserve">
+    <value>Edit Payroll Data</value>
+  </data>
+  <data name="PayrollCreate" xml:space="preserve">
+    <value>Create Payroll Record</value>
+  </data>
+  <data name="ConceptType" xml:space="preserve">
+    <value>Concept</value>
+  </data>
+  <data name="Retention" xml:space="preserve">
+    <value>Retention Rate</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="PresenceData" xml:space="preserve">
+    <value>Presence Data</value>
+  </data>
+  <data name="PresenceEdit" xml:space="preserve">
+    <value>Edit Presence Data</value>
+  </data>
+  <data name="PresenceCreate" xml:space="preserve">
+    <value>Create Presence Record</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="ObjectiveReviewmData" xml:space="preserve">
+    <value>Objective Review Data</value>
+  </data>
+  <data name="ObjectiveReviewEdit" xml:space="preserve">
+    <value>Edit Objective Review Data</value>
+  </data>
+  <data name="ObjectiveReviewCreate" xml:space="preserve">
+    <value>Create Objective Review Record</value>
+  </data>
+  <data name="Objective" xml:space="preserve">
+    <value>Objective</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="TrainingData" xml:space="preserve">
+    <value>Training Data</value>
+  </data>
+  <data name="TrainingCreate" xml:space="preserve">
+    <value>Create Training Record</value>
+  </data>
+  <data name="CurriculumArea" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="TrainingCourse" xml:space="preserve">
+    <value>Course</value>
+  </data>
+  <data name="TrainingEdit" xml:space="preserve">
+    <value>Edit Training Data</value>
   </data>
 </root>

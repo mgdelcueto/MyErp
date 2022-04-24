@@ -32,6 +32,7 @@ string aslVisible()
     catch{}
     return retcol;
  }
+
 private int VAssign(){
     int resul = 1;
     try{
@@ -71,52 +72,56 @@ private int LAssign(){
 
 <!--Locations-->
 <div class=@isVisible(2)>
+    <table class="table-norm" border="1">
+        <div class="cont-titles">
+            <h4>@SharedLocalizer.GetLocalizedHtmlString("FStAss")</h4>
+        </div>
+        @Html.Partial("_pListaStorages",(List<TLocation>)ViewBag.ListStorAs)
+    </table>
+    @Html.ActionLink("Assign a new Location", "FacEdit", new { id= @Model.FaId, wrel = 0,vpanel=2, wasl=0,assigl=@LAssign()})
 <!--</div>-->
     <div class=@aslVisible()>
         <table>
             <tr>
+                @using (Html.BeginForm("FacEdit","TEngine", new { id= @Model.FaId, wrel = 0,vpanel=2, wasl=1},FormMethod.Post)) {        
                 <td>@SharedLocalizer.GetLocalizedHtmlString("FLotoAss")
+                    <input type="hidden" name="wasl" value="1"/>
                 </td>
                 <td class="norm-text">
                     <!--@ViewData["Plant"]-->
                     @Html.DropDownList("LocId", (SelectList)ViewBag.ddlLocNAS, new { @class ="medium-text" , onchange = "this.form.submit();" })
                 </td>
+                }
             </tr>
         </table>
     </div>
-    <table class="table-norm" border="1">
-        <div class="cont-titles">
-            <h4>@SharedLocalizer.GetLocalizedHtmlString("FStAss")</h4>
-        </div>
-        @Html.ActionLink("Assign a new Location", "FacEdit", new { id= @Model.FaId, wrel = 0,vpanel=2, wasl=1,assigl=@LAssign()})
-        @Html.Partial("_pListaStorages",(List<TLocation>)ViewBag.ListStorAs)
-    </table>
-
 </div>
 
 <!--Work Centers-->
 <div class=@isVisible(1)>
-        <div class=@assVisible()>   
-            <table>
-                <tr>
-                    <td>@SharedLocalizer.GetLocalizedHtmlString("FWCtoAss")
-                    </td>
-                    <td class="norm-text">
-                        <!--@ViewData["Plant"]-->
-                        @Html.DropDownList("WcdId", (SelectList)ViewBag.ddlProdNAS, new { @class ="medium-text" , onchange = "this.form.submit();" })
-                    </td>
-                </tr>
-            </table>
-        </div>
-
     <table class="table-norm" border="1">
         <div class="cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("FWCAss")</h3>
         </div>
-        @Html.ActionLink("Assign a new work Center", "FacEdit", new { id= @Model.FaId,vpanel=1, wrem = 0, wass=1,assign=@VAssign()})
         @Html.Partial("_pListaWorkCenters",(List<TWorkCenter>)ViewBag.ListProdAs)
     </table>
-
+    @Html.ActionLink("Assign a new work Center", "FacEdit", new { id= @Model.FaId,vpanel=1, wrem = 0, wass=0,assign=@VAssign()})
+<!--</div>-->
+    <div class=@assVisible()>
+        <table>
+            <tr>
+                @using (Html.BeginForm("FacEdit","TEngine", new { id= @Model.FaId,vpanel=1, wrem = 0, wass=1},FormMethod.Post)) {        
+                <td>@SharedLocalizer.GetLocalizedHtmlString("FWCtoAss")
+                    <input type="hidden" name="wass" value="1"/>
+                </td>
+                <td class="norm-text">
+                    <!--@ViewData["Plant"]-->
+                    @Html.DropDownList("WcdId", (SelectList)ViewBag.ddlProdNAS, new { @class ="medium-text" , onchange = "this.form.submit();" })
+                </td>
+                }
+            </tr>
+        </table>
+    </div>
 </div>
     </div>
 }

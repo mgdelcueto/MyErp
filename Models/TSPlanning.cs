@@ -13,18 +13,18 @@ namespace MyErp.Models
         public int? PlanProdId { get; set; }
 
         [Required,DataType(DataType.Date)]         
-        [Display(Name="My Date From:")]         
+        [Display(Name="DateFrom")]         
         public DateTime? PlanDateFrom { get; set; }
 
         [Required,DataType(DataType.Date)]         
-        [Display(Name="My Date To:")]         
+        [Display(Name="DateTo")]         
         public DateTime? PlanDateTo { get; set; }
 
-        [Display(Name = "My Quantity")]
+        [Display(Name = "SendQty")]
         [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid Quantity (>0)")]
         public double? PlanQty { get; set; }
 
-        [Display(Name = "My Status (Firm)")]
+        [Display(Name = "PlanFirm")]
         [StringLength(55)]
         public string PlanFirmSt { get; set; }
     }

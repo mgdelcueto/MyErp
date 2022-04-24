@@ -322,12 +322,13 @@ namespace MyErp.Controllers {
 
         [HttpGet]
         public IActionResult Create() {
-
+            ViewData["panel"]=1;
             return View();      
         }
 
         [HttpPost]
         public IActionResult Create(TCustomer Customer, string actionType) {
+            ViewData["panel"]=1;            
             if(actionType=="Add"){
             if (ModelState.IsValid){
             try{

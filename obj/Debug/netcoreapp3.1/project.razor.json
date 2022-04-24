@@ -14532,6 +14532,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\FacEdit copy.cshtml",
+      "TargetPath": "Views\\TEngine\\FacEdit copy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\PlantEdit.cshtml",
       "TargetPath": "Views\\TCustomer\\PlantEdit.cshtml",
       "FileKind": "mvc"
@@ -14884,6 +14889,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Shared\\_Privacy.cshtml",
       "TargetPath": "Views\\Shared\\_Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Home\\Error.cshtml",
+      "TargetPath": "Views\\Home\\Error.cshtml",
       "FileKind": "mvc"
     },
     {

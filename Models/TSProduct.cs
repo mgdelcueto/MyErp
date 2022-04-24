@@ -11,24 +11,24 @@ namespace MyErp.Models
         public int ProdId { get; set; }
         public int? ProdSupId { get; set; }
 
-        [Display(Name="My Cr Date")]
+        [Display(Name="ProDateCrea")]
         [Required,DataType(DataType.Date)]         
         public DateTime? ProdCrDate { get; set; }
 
         [Required,StringLength(125)]
-        [Display(Name="My Status")]
+        [Display(Name="Status")]
         public string ProdStatus { get; set; }
 
-        [Display(Name="My Stat Date")]
+        [Display(Name="StatusDate")]
         [Required,DataType(DataType.Date)]         
         public DateTime? ProdStDate { get; set; }
 
         [Required,StringLength(125)]
-        [Display(Name="My Product Refer")]
+        [Display(Name="ProRefer")]
         public string ProdRefer { get; set; }
 
         [Required,StringLength(225)]
-        [Display(Name="My Description")]
+        [Display(Name="ProDescr")]
         public string ProdDescr { get; set; }
     }
     public partial class Referencia
