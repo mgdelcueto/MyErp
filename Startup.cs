@@ -43,13 +43,13 @@ namespace MyErp
                 .AddViewLocalization()
                 .AddDataAnnotationsLocalization();                        
             */
-
+            
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => {
                     options.LoginPath = "/Account/Noauthorized/";
                     options.AccessDeniedPath = "/Account/Forbidden/";
                 });
-
+            
             services.AddControllersWithViews();
             services.AddDbContext<MyErpDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MyProjectConnectionString")));
@@ -96,6 +96,7 @@ namespace MyErp
                     };
                 });
 
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,742 @@
+@using MyErp.Models
+@using System.Linq;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using MyErp.Extensions;
+
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@model TPerson
+
+@{
+    Layout = null;  
+    Layout = "_LayPer.cshtml";
+}
+@functions {
+
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "Career":
+                retur[0]="TPerson";
+                retur[1]="CarEdit";
+                retur[2]="CarCreate";
+                retur[3]="CarDelete";
+                break;
+        case "Contract":
+                retur[0]="TPerson";
+                retur[1]="ConEdit";
+                retur[2]="ConCreate";
+                retur[3]="ConDelete";
+                break;
+        case "Curriculum":
+                retur[0]="TPerson";
+                retur[1]="CurEdit";
+                retur[2]="CurCreate";
+                retur[3]="CurDelete";
+                break;
+        case "Pay":
+                retur[0]="TPerson";
+                retur[1]="PayEdit";
+                retur[2]="PayCreate";
+                retur[3]="PayDelete";
+                break;
+        case "Presence":
+                retur[0]="TPerson";
+                retur[1]="PreEdit";
+                retur[2]="PreCreate";
+                retur[3]="PreDelete";
+                break;
+        case "Review":
+                retur[0]="TPerson";
+                retur[1]="RevEdit";
+                retur[2]="RevCreate";
+                retur[3]="RevDelete";
+                break;
+        case "Training":
+                retur[0]="TPerson";
+                retur[1]="TraEdit";
+                retur[2]="TraCreate";
+                retur[3]="TraDelete";
+                break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "Career":
+                retur.Add("Career");
+                    retur.Add("Fecha");
+                    retur.Add("Posicion");
+                    retur.Add("Observaciones");
+                break;
+            case "Contract":
+                retur.Add("Contract");
+                    retur.Add("Fecha");
+                    retur.Add("Observaciones");
+                break;
+            case "Curriculum":
+                retur.Add("Curriculum");
+                    retur.Add("Fecha");
+                    retur.Add("Area");
+                    retur.Add("Descripcion");
+                    retur.Add("Nivel");
+                    retur.Add("Observaciones");
+                break;
+            case "Pay":
+                retur.Add("Pay");
+                    retur.Add("Fecha");
+                    retur.Add("Tipo");
+                    retur.Add("Retencion");
+                    retur.Add("Cuenta");
+                break;
+            case "Presence":
+                retur.Add("Presence");
+                    retur.Add("Location");
+                    retur.Add("Date");
+                    retur.Add("Time");
+                break;
+            case "Review":
+                retur.Add("Review");
+                    retur.Add("Fecha");
+                    retur.Add("Objetivo");
+                    retur.Add("Rating");
+                break;
+            case "Training":
+                retur.Add("Training");
+                    retur.Add("Fecha");
+                    retur.Add("Area");
+                    retur.Add("Curso");
+                    retur.Add("Calificacion");
+                    retur.Add("Observaciones");
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    public IEnumerable<Container> getData_Career(dynamic oTMaterial)
+        {
+            List<string> Column =Columns ("Career");
+            IEnumerable<TPCareer> fTPersonal = (List<TPCareer>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.CareId,
+                        Campo01 = f.CareDate.ToString(),
+                        Campo02 = f.CarePosit.ToString(),
+                        Campo03 = f.CareObser.ToString(),
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+    public IEnumerable<Container> getData_Contract(dynamic oTMaterial)
+        {
+            List<string> Column =Columns ("Career");
+            IEnumerable<TPContract> fTPersonal = (List<TPContract>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.ConId,
+                        Campo01 = f.ConRevDate.ToString(),
+                        Campo02 = f.ConObs.ToString(),
+                        Campo03 = "",
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+   public IEnumerable<Container> getData_Curriculum(dynamic oTMaterial)
+        {
+            List<string> Column =Columns ("Curriculum");
+            IEnumerable<TPCurric> fTPersonal = (List<TPCurric>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.CurrId,
+                        Campo01 = f.CurrRevDate.ToString(),
+                        Campo02 = f.CurrArea.ToString(),
+                        Campo03 = f.CurrAreaDesc.ToString(),
+                        Campo04 = f.CurrAreaLevel.ToString(),
+                        Campo05 = f.CurrObs.ToString(),
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+    public IEnumerable<Container> getData_Pay(dynamic oTMaterial)
+        {
+            List<string> Column =Columns ("Pay");
+            IEnumerable<TPPay> fTPersonal = (List<TPPay>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.PayId,
+                        Campo01 = f.PayStDate.ToString(),
+                        Campo02 = f.PayType.ToString(),
+                        Campo03 = f.PayRet.ToString(),
+                        Campo04 = f.PayAccount.ToString(),
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+    public IEnumerable<Container> getData_Presence(dynamic oTMaterial)
+        {
+            List<string> Column =Columns ("Presen");
+            IEnumerable<TPPresen> fTPersonal = (List<TPPresen>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.PresId,
+                        Campo01 = f.PresLocal.ToString(),
+                        Campo02 = f.PresDateEvent.ToString(),
+                        Campo03 = f.PresTimeEvent.ToString(),
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+    public IEnumerable<Container> getData_Review(dynamic oTMaterial)
+        {
+            List<string> Column =Columns ("Review");
+            IEnumerable<TPReview> fTPersonal = (List<TPReview>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.RevId,
+                        Campo01 = f.RevDate.ToString(),
+                        Campo02 = f.RevObj.ToString(),
+                        Campo03 = f.RevObRat.ToString(),
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+    public IEnumerable<Container> getData_Train(dynamic oTMaterial)
+        {
+            List<string> Column =Columns ("Review");
+            IEnumerable<TPTrain> fTPersonal = (List<TPTrain>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.TrainId,
+                        Campo01 = f.TrainDate.ToString(),
+                        Campo02 = f.TrainArea.ToString(),
+                        Campo03 = f.TrainCourse.ToString(),
+                        Campo04 = f.TrainCalif.ToString(),
+                        Campo05 = f.TrainObser.ToString(),
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+    string panelBold(int panel)
+    {            
+        int tpan = (int)ViewData["panel"];
+        string cstyle ="";
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+        return cstyle;
+    }
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){
+            if (opanel==1){retcol="edit-visible";}
+            else{retcol="visible";}
+        }
+        else{retcol="invisible";}
+        return retcol;
+    }
+    int thisPanel(){
+         int opanel = (int)ViewData["panel"];
+         return opanel;
+    }
+        string ThisPerId()
+    {
+        int pid= (int)ViewData["PerId"];//0;//@Model.PerId;
+        return pid.ToString();
+    }
+}
+@using (Html.BeginForm()) {
+    @Html.HiddenFor(p => p.PerId)
+    @Html.ValidationSummary(true)
+
+
+@*
+@using (Html.BeginForm()) {
+    @Html.HiddenFor(p => p.PerId)
+    @Html.ValidationSummary(true)
+@functions {
+    string panelBold(int panel)
+    {            
+        int tpan = (int)ViewData["panel"];
+        string cstyle ="";
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+        return cstyle;
+    }
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+    int thisPanel(){
+         int opanel = (int)ViewData["panel"];
+         return opanel;
+    }
+}
+@section Styles
+{
+
+}
+<h3>@SharedLocalizer.GetLocalizedHtmlString("EditPerson")</h3>
+@using (Html.BeginForm()) {
+    
+    <table>
+        <div class="cont-titles-l">
+        <h4>@Html.DisplayFor(p => p.PerName)  @Html.DisplayFor(p => p.PerName1)</h4>
+        </div>
+        <table>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="@thisPanel()" asp-route-move="1">@SharedLocalizer.GetLocalizedHtmlString("<<Prev")</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(1)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Person")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(2)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="2" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Career")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(3)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="3" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Contract")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(4)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="4" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Curriculum")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(5)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="5" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Pay")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(6)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="6" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Presence")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(7)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="7" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("ObjReview")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(8)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="8" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Training")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(0)" asp-area="" asp-controller="TPerson" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Home")</a>
+                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"  style="@panelBold(0)" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@Model.PerId" asp-route-panel="@thisPanel()" asp-route-move="2">@SharedLocalizer.GetLocalizedHtmlString("Next>>")</a>
+                        </li>                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+         </table>
+    </table>
+*@
+
+<div class=@isVisible(1)>
+    <div class="cont-titles">
+        <h3>@SharedLocalizer.GetLocalizedHtmlString("PersonData")
+        </h3>
+    </div>
+    <div class="div-edit">
+    <table class="table-edit">
+        <tr>
+            <td>
+                <input type="submit" text="Save"    class="dropbtn" value="Update"  name="actionType"/>
+                <input type="submit" text="Discard" class="dropbtn" value="Cancel"  name="actionType"/>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerName,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PerName, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:300px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerName1,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PerName1, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:300px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerName1)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerDni,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PerDni, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:120px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerDni)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerBird,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PerBird, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerBird)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerBiCity,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PerBiCity, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerBiCity)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerBiCtry,new { @class = "norm-lab-text",})</td>
+            <td class="norm-text">
+                @Html.DropDownListFor(p => p.PerBiCtry,
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-tb-text" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerAddr,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PerAddr, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:300px"} })</td>
+            <td>@Html.LabelFor(p => p.PerContDate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PerContDate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerAddr)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerContDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerAddr1,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PerAddr1, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:300px"} })</td>
+            <td>@Html.LabelFor(p => p.PerEntDate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PerEntDate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerAddr1)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerContDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PerAddCtry,new { @class = "norm-lab-text",})</td>
+            <td class="norm-text">
+                @Html.DropDownListFor(p => p.PerAddCtry,
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-tb-text" })
+            </td>
+            <td>@Html.LabelFor(p => p.PerExiDate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PerExiDate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerAddCtry)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PerExiDate)</td>
+        </tr>
+        @*
+        <tr>
+            <td></td>
+            <td><input type="submit" text="Save"    class="dropbtn" value="Update"  name="actionType"/></td>
+            <td><input type="submit" text="Discard" class="dropbtn" value="Cancel"  name="actionType"/></td>
+        </tr>
+        *@
+    </table>
+    </div>
+</div>
+<div class=@isVisible(2)>
+    <table class="table-edit" border="1">
+    <div class="cont-titles">
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("CareerData")</h3>
+    </div>
+    @Html.dataGrid(3,6,@Columns("Career"),@getData_Career((List<TPCareer>)ViewBag.ListCareer),@Controller("Career"))
+@*
+    <tr>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("CareerDateData")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Position")</th>                
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Observations")</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListCareer) {
+        <tr>
+            @{ string CareDate = string.Format("{0:dd-MM-yyyy}", c.CareDate); }
+            <td class ="col-text">@CareDate</td>            
+            <td class ="norm-text">@c.CarePosit</td>
+            <td class ="big-text">@c.CareObser</td>
+            <td class="col-text">@Html.ActionLink("Delete", "CarDelete", new { id = c.CareId,pid = c.CarePerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "CarEdit", new { id = c.CareId ,panel=2,skip =0,peid= c.CarePerId })</td>
+            
+        </tr>
+    }
+    @Html.ActionLink("Add a New Item", "CarCreate",new {Pid=@Model.PerId})
+*@
+</table>
+</div>
+<div class=@isVisible(3)>
+    <table class="table-edit" border ="1" >
+    <div class="cont-titles">
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("ContractData")</h3>
+    </div>
+    @Html.dataGrid(4,6,@Columns("Contract"),@getData_Contract((List<TPContract>)ViewBag.ListContract),@Controller("Contract"))
+@*
+    <tr>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Date")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Observations")</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListContract) {
+        <tr>
+            @{ string ConRevDate = string.Format("{0:dd-MM-yyyy}", c.ConRevDate); }
+            <td class ="col-text">@ConRevDate</td>            
+            <td class ="big-text">@c.ConObs</td>
+            <td class="col-text">@Html.ActionLink("Delete", "ConDelete", new { id = c.ConId,Pid = c.ConPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "ConEdit", new { id = c.ConId ,panel=3,peid = c.ConPerId,skip =0})</td>
+            
+        </tr>
+    }
+    @Html.ActionLink("Add a New Item", "ConCreate",new {Pid=@Model.PerId})
+ *@
+</table>
+</div>    
+
+    <div class=@isVisible(4)>
+    <table class="table-edit" border ="1" >
+    <div class="cont-titles">
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("CurriculumData")</h3>
+    </div>
+    @Html.dataGrid(5,6,@Columns("Curriculum"),@getData_Curriculum((List<TPCurric>)ViewBag.ListCurric),@Controller("Curriculum"))
+
+@*
+    <tr>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Date")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("KnowledgeArea")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("KAreaDescr")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Level")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Observations")</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListCurric) {
+        <tr>
+            @{ string DateRev = string.Format("{0:dd-MM-yyyy}", c.CurrRevDate); }
+            <td class ="norm-text">@DateRev</td>
+            <td class ="norm-text">@c.CurrArea</td>
+            <td class ="norm-text">@c.CurrAreaDesc</td>
+            <td class ="norm-text">@c.CurrAreaLevel</td>
+            <td class ="big-text">@c.CurrObs</td>
+            <td class="col-text">@Html.ActionLink("Delete", "CurDelete", new { id = c.CurrId,Pid = c.CurrPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "CurEdit", new { id = c.CurrId ,panel=4,peid = c.CurrPerId,skip =0})</td>
+            
+        </tr>
+    }
+@Html.ActionLink("Add a New Item", "CurCreate",new {Pid=@Model.PerId})
+*@
+</table>
+
+</div>    
+
+    <div class=@isVisible(5)>
+    <table class="table-edit" border ="1" >
+    <div class="cont-titles">
+    <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PayrollData")</h3>
+    </div>
+    @Html.dataGrid(6,6,@Columns("Pay"),@getData_Pay((List<TPPay>)ViewBag.ListPay),@Controller("Pay"))
+    @*
+    <tr>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("StatusDate")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ConceptType")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Retention")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Account")</th>
+    </tr>
+   
+    @foreach (var c in ViewBag.ListPay) {
+        <tr>
+            @{ string PayStDate = string.Format("{0:dd-MM-yyyy}", c.PayStDate); }
+            <td class ="col-text">@PayStDate</td>            
+            <td class ="norm-text">@c.PayType</td>
+            <td class ="norm-text">@c.PayRet</td>
+            <td class ="norm-text">@c.PayAccount</td>
+            <td class="col-text">@Html.ActionLink("Delete", "PayDelete", new { id = c.PayId,Pid = c.PayPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PayEdit", new { id = c.PayId ,panel=5,peid = c.PayPerId,skip =0})</td>
+            
+        </tr>
+    }
+    @Html.ActionLink("Add a New Item", "PayCreate",new {Pid=@Model.PerId})
+    *@
+</table>
+</div>    
+    <div class=@isVisible(6)>
+    <table class="table-edit" border ="1" >
+    <div class="cont-titles">
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("PresenceData")</h3>
+    </div>
+    @Html.dataGrid(7,6,@Columns("Presence"),@getData_Presence((List<TPPresen>)ViewBag.ListPre),@Controller("Presence"))
+    @*
+    <tr>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Location")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Date")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Time")</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListPre) {
+        <tr>
+            @{ string PresDateEvent = string.Format("{0:dd-MM-yyyy}", c.PresDateEvent); }
+            @{ string PresTimeEvent = string.Format("{0:hh:mm:ss}", c.PresTimeEvent); }
+            <td class ="col-text">@c.PresLocal</td>            
+            <td class ="norm-text">@PresDateEvent</td>
+            <td class ="norm-text">@PresTimeEvent</td>
+            <td class="col-text">@Html.ActionLink("Delete", "PreDelete", new { id = c.PresId,Pid = c.PresPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "PreEdit", new { id = c.PresId ,panel=6,peid = c.PresPerId,skip =0})</td>
+            
+        </tr>
+    }
+    @Html.ActionLink("Add a New Item", "PreCreate",new {Pid=@Model.PerId})
+*@
+</table>
+</div>    
+    <div class=@isVisible(7)>
+    <table class="table-edit" border ="1" >
+    <div class="cont-titles">
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("ObjectiveReviewmData")</h3>
+    </div>
+    @Html.dataGrid(8,6,@Columns("Review"),@getData_Review((List<TPReview>)ViewBag.ListRev),@Controller("Review"))
+    @*
+    <tr>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Date")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Objective")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Rating")</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListRev) {
+        <tr>
+            @{ string RevDate = string.Format("{0:dd-MM-yyyy}", c.RevDate); }
+            <td class ="col-text">@RevDate</td>            
+            <td class ="big-text">@c.RevObj</td>
+            <td class ="norm-num">@c.RevObRat</td>
+            <td class="col-text">@Html.ActionLink("Delete", "RevDelete", new { id = c.RevId,Pid = c.RevPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "RevEdit", new { id = c.RevId ,panel=7,peid = c.RevPerId,skip =0})</td>
+            
+        </tr>
+    }
+    @Html.ActionLink("Add a New Item", "RevCreate",new {Pid=@Model.PerId})
+*@
+</table>
+</div>    
+    <div class=@isVisible(8)>
+    <table class="table-edit" border ="1" >
+    <div class="cont-titles">
+    <h3>@SharedLocalizer.GetLocalizedHtmlString("TrainingData")</h3>
+    </div>
+    @Html.dataGrid(9,6,@Columns("Training"),@getData_Train((List<TPTrain>)ViewBag.ListTra),@Controller("Training"))
+    @*
+    <tr>
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Date")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("CurriculumArea")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("TrainingCourse")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Grade")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Observations")</th>        
+    </tr>
+   
+    @foreach (var c in ViewBag.ListTra) {
+        <tr>
+            @{ string TrainDate = string.Format("{0:dd-MM-yyyy}", c.TrainDate); }
+            <td class ="col-text">@TrainDate</td>            
+            <td class ="norm-text">@c.TrainArea</td>
+            <td class ="norm-text">@c.TrainCourse</td>
+            <td class ="norm-text">@c.TrainCalif</td>
+            <td class ="big-text">@c.TrainObser</td>
+            <td class="col-text">@Html.ActionLink("Delete", "TraDelete", new { id = c.TrainId,Pid = c.TrainPerId }, new { onclick="return confirm('Are you sure?');"})</td>
+            <td class="col-text">@Html.ActionLink("Edit", "TraEdit", new { id = c.TrainId ,panel=8,peid = c.TrainPerId,skip =0})</td>
+            
+        </tr>
+    }
+    @Html.ActionLink("Add a New Item", "TraCreate",new {Pid=@Model.PerId})
+*@
+</table>
+</div>    
+}
+
+

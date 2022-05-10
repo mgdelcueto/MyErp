@@ -1,7 +1,10 @@
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+
 @{Layout = "_Layout";}
 
 @{
-    ViewData["Title"] = "Engineering Area";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("EngineeringArea");
 }
 @functions {
     string panelBold(int panel)
@@ -83,25 +86,25 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="1" asp-route-move="0">Facilities</a>
+                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Facilities")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(2)"asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="2" asp-route-move="0">Work Centers</a>
+                           <a class="nav-link text-dark" style="@panelBold(2)"asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="2" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("WorkCenters")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(3)"asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="3" asp-route-move="0">W-C Components</a>
+                           <a class="nav-link text-dark" style="@panelBold(3)"asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="3" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("WCComponents")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(4)" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="4" asp-route-move="0">Materials</a>
+                           <a class="nav-link text-dark" style="@panelBold(4)" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="4" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Materials")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(5)" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="5" asp-route-move="0">Locations</a>
+                           <a class="nav-link text-dark" style="@panelBold(5)" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="5" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Locations")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(6)" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="6" asp-route-move="0">Operator Roles</a>
+                           <a class="nav-link text-dark" style="@panelBold(6)" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="6" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("OperatorRoles")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(7)" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="7" asp-route-move="0">Trucks</a>
+                           <a class="nav-link text-dark" style="@panelBold(7)" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="7" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Trucks")</a>
                          </li>
                     </ul>
                 </div>

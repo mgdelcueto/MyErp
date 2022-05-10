@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.AspNetCore.Http;
 
 #nullable disable
 
@@ -1215,5 +1216,6 @@ namespace MyErp.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-    }
+
+   }
 }

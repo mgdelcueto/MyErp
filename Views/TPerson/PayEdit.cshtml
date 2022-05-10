@@ -24,46 +24,45 @@
         </tr>
     </table>
     *@
-    <table class="table-norm" border="1">
+    <table class="table-edit" border="0">
         <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
-            <td>@Html.LabelFor(p => p.PayStDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.PayStDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>
+            <input type="submit" value="Update" class="dropbtn"  name="actionType"/>
+            <input type="submit" value="Cancel" class="dropbtn" name="actionType"/>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PayStDate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PayStDate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PayStDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.PayType,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.PayType, new { htmlAttributes = new { @class = "norm-text", @style = "width:175px"} })</td>
+            <td>@Html.LabelFor(p => p.PayType,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PayType, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:175px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PayType)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.PayRet,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.PayRet, new { htmlAttributes = new { @class = "norm-text", @style = "width:175px"} })</td>
+            <td>@Html.LabelFor(p => p.PayRet,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PayRet, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:175px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PayRet)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.PayAccount,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.PayAccount, new { htmlAttributes = new { @class = "norm-text", @style = "width:225px"} })</td>
+            <td>@Html.LabelFor(p => p.PayAccount,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PayAccount, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:225px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PayAccount)</td>
-        </tr>
-        <tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
-
         </tr>
     </table>
     </div>

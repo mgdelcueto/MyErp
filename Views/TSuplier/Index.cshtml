@@ -1,11 +1,69 @@
 @model IEnumerable<MyErp.Models.TSuplier>
 @using MyErp.Resources
+@using MyErp.Extensions
 @inject LocService SharedLocalizer
 
 @{
     ViewData["Title"] = "Purchasing Area";
 }
 @functions {
+@*
+            <td class ="col-text">@p.SupNif</td>            
+            <td class ="norm-text">@p.SupCode</td>
+            <td class ="norm-text">@p.SupRasoc</td>
+            <td class ="norm-text">@p.SupAdCity</td>
+            <td class ="norm-text">@p.SupAdCtry</td>
+
+*@
+
+    string [] Controller(){
+        string [] retur = new string [4];
+                retur[0]="TSuplier";
+                retur[1]="Edit";
+                retur[2]="Create";
+                retur[3]="Delete";
+        return retur;
+    }
+
+    List<string> Columns(){
+        List<string> retur = new List<string>();
+        retur.Add("Suplier");
+                    retur.Add("DNI");
+                    retur.Add("Codigo");
+                    retur.Add("Razon Social");
+                    retur.Add("Ciudad");
+                    retur.Add("Pais");
+        return retur;
+    }
+
+    public IEnumerable<Container> getData(dynamic oTMaterial)
+        {
+            List<string> Column =Columns ();
+                    IEnumerable<TSuplier> fTPersonal = (List<TSuplier>)oTMaterial;
+                    IEnumerable<Container> TPersonal = fTPersonal.Select(
+                        f => new Container() 
+                    {
+                        CampoId = f.SupId,
+                        Campo01 = f.SupNif.ToString(),
+                        Campo02 = f.SupCode.ToString(),
+                        Campo03 = f.SupRasoc.ToString(),
+                        Campo04 = f.SupAdCity.ToString(),
+                        Campo05 = f.SupAdCtry.ToString(),
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                    });
+                    return TPersonal;
+        }
+
+
     string myformat(double? value){
     string ret =string.Format("{0:C2}", value);
     //string rets = value.ToString("N", CultureInfo.InvariantCulture);
@@ -61,6 +119,8 @@
 <div class = "cont-titles">
  <h3>@SharedLocalizer.GetLocalizedHtmlString("SupList")</h3>   
 </div>
+@Html.dataGrid(2,6,Columns(),@getData((List<TSuplier>)Model),@Controller())
+@*
 <td><a class="nav-link text-dark" asp-area="" asp-controller="TSuplier" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Filter")</a></td>
 <div class="@isVisible()">
     @using (Html.BeginForm()) {
@@ -101,3 +161,4 @@
 </table>
 @Html.ActionLink("Add a New Item", "Create")
 </div>
+*@

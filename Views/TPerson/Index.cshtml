@@ -1,6 +1,8 @@
 @model IEnumerable<MyErp.Models.TPerson>
 @using Microsoft.AspNetCore.Mvc.Localization
-
+@using MyErp.Extensions;
+@using System
+@using System.Collections.Generic
 @using MyErp.Resources
 @inject LocService SharedLocalizer
 @{
@@ -8,11 +10,63 @@
 
 }
 @functions {
+
+    string [] Controller(){
+        string [] retur = new string [4];
+                retur[0]="TPerson";
+                retur[1]="Edit";
+                retur[2]="Create";
+                retur[3]="Delete";
+        return retur;
+    }
+    List<string> Columns(){
+        List<string> retur = new List<string>();
+        retur.Add("Personal");
+                    retur.Add("DNI");
+                    retur.Add("Nombre");
+                    retur.Add("Apellido");
+                    retur.Add("Dirección");
+                    retur.Add("Pais");
+        return retur;
+    }
+    public IEnumerable<Container> getData(dynamic oTMaterial)
+        {
+            List<string> Column =Columns ();
+                    IEnumerable<TPerson> fTPersonal = (List<TPerson>)oTMaterial;
+                    IEnumerable<Container> TPersonal = fTPersonal.Select(
+                        f => new Container() 
+                    {
+                        CampoId = f.PerId,
+                        Campo01 = f.PerDni.ToString(),
+                        Campo02 = f.PerName.ToString(),
+                        Campo03 = f.PerName1.ToString(),
+                        Campo04 = f.PerAddr.ToString(),
+                        Campo05 = f.PerAddCtry.ToString(),
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                    });
+                    return TPersonal;
+        }
+
+
+
+
+    
+
+
     string myformat(double? value){
     string ret =string.Format("{0:C2}", value);
     //string rets = value.ToString("N", CultureInfo.InvariantCulture);
     return ret;
-}
+    }
     string mycolor(double? value){
     string retcol="red-number";
     if (value >=0 ){
@@ -63,41 +117,6 @@
 <div class = "cont-titles">
  <h3>@SharedLocalizer.GetLocalizedHtmlString("PersonTable")</h3>   
 </div>
-<td><a class="nav-link text-dark" asp-area="" asp-controller="TPerson" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Filter")</a></td>
-<div class="@isVisible()">
-    @using (Html.BeginForm()) {
-        <tr>
-            <input type="hidden" name="Filter" value="2"/>
-            <td>@SharedLocalizer.GetLocalizedHtmlString("FilterByName")</td>
-            <td class ="norm-text"><input value ="@fValue(1)" class="norm-text" id="pNam" name="pNam" type="text"></input></td>
-            <td> @SharedLocalizer.GetLocalizedHtmlString("Surname")</td>
-            <td class ="norm-text"><input value="@fValue(2)" class ="norm-text" id="pNam1" name="pNam1" type="text"></input></td>
-            <td><input type="submit" value="Filter" /></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
-        </tr>
-    }
-</div>
-<div class="visible">
-<table class="table-norm" border="1">
-    <tr>
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Name")</th> 
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Surname")</th>                
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("DNI")</th>        
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Adress")</th>
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Country")</th>
-    </tr>
-    @foreach (var p in Model) {
-        <tr>
-            <td class ="col-text">@p.PerName</td>            
-            <td class ="norm-text">@p.PerName1</td>
-            <td class ="norm-text">@p.PerDni</td>
-            <td class ="norm-text">@p.PerAddr</td>
-            <td class ="norm-text">@p.PerAddCtry</td>
-            <td class="col-text">@Html.ActionLink("Delete", "Delete", new { id = p.PerId,perid = p.PerId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "Edit", new { id = p.PerId ,panel=1,skip =0,perid = p.PerId})</td>
-            
-        </tr>
-    }
-</table>
-@Html.ActionLink("Add a New Item", "Create")
+<div  name="aqui-el-control-grid-1">
+    @Html.dataGrid(1,6,Columns(),@getData((List<TPerson>)Model),@Controller())
 </div>

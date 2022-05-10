@@ -24,51 +24,52 @@
         </tr>
     </table>
     *@
-    <table class="table-norm" border="1">
+    <table class="table-edit" border="0">
+       <tr>
+            <td>
+            <input type="submit" value="Update"  class="dropbtn" name="actionType"/>
+            <input type="submit" value="Cancel" class="dropbtn" name="actionType"/>
+            </td>
+        </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.TrainDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.TrainDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.LabelFor(p => p.TrainDate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.TrainDate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.TrainDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.TrainArea,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.TrainArea, new { htmlAttributes = new { @class = "norm-text", @style = "width:125px"} })</td>
+            <td>@Html.LabelFor(p => p.TrainArea,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.TrainArea, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:125px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.TrainArea)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.TrainCourse,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.TrainCourse, new { htmlAttributes = new { @class = "norm-text", @style = "width:125px"} })</td>
+            <td>@Html.LabelFor(p => p.TrainCourse,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.TrainCourse, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:125px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.TrainCourse)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.TrainCalif,new { @class = "norm-num",})</td>
-            <td>@Html.EditorFor(p => p.TrainCalif, new { htmlAttributes = new { @class = "norm-text", @style = "width:175px"} })</td>
+            <td>@Html.LabelFor(p => p.TrainCalif,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.TrainCalif, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:175px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.TrainCalif)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.TrainObser,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.TrainObser, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px"} })</td>
+            <td>@Html.LabelFor(p => p.TrainObser,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.TrainObser, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:450px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.TrainObser)</td>
-        </tr>
-       <tr>
-            <td></td>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
         </tr>
     </table>
     </div>

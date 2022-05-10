@@ -1,21 +1,68 @@
 @model IEnumerable<MyErp.Models.TCustomer>
 @using MyErp.Resources
+@using MyErp.Extensions;
+@using System.Collections.Generic
 @inject LocService SharedLocalizer
 @{
     ViewData["Title"] = "Sales Area";
 }
 @functions {
-    string myformat(double? value){
+    string [] Controller(){
+        string [] retur = new string [4];
+                retur[0]="TCustomer";
+                retur[1]="Edit";
+                retur[2]="Create";
+                retur[3]="Delete";
+        return retur;
+    }
+    List<string> Columns(){
+        List<string> retur = new List<string>();
+        retur.Add("Personal");
+                    retur.Add("NIF");
+                    retur.Add("Codigo");
+                    retur.Add("Razon Social");
+                    retur.Add("Ciudad");
+                    retur.Add("Pais");
+        return retur;
+    }
+    public IEnumerable<Container> getData(dynamic oTMaterial)
+        {
+            List<string> Column =Columns ();
+                    IEnumerable<TCustomer> fTPersonal = (List<TCustomer>)oTMaterial;
+                    IEnumerable<Container> TPersonal = fTPersonal.Select(
+                        f => new Container() 
+                    {
+                        CampoId = f.CustId,
+                        Campo01 = f.CustNif.ToString(),
+                        Campo02 = f.CustCode.ToString(),
+                        Campo03 = f.CustRasoc.ToString(),
+                        Campo04 = f.CustAdCity.ToString(),
+                        Campo05 = f.CustAdCtry.ToString(),
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                    });
+                    return TPersonal;
+        }
+
+string myformat(double? value){
     string ret =string.Format("{0:C2}", value);
     return ret;
 }
-    string mycolor(double? value){
+string mycolor(double? value){
     string retcol="red-number";
     if (value >=0 ){
         retcol="blue-number";}
     return retcol;
     }
-    string colcolor(int item){
+string colcolor(int item){
     string retcol="col-text";
     if (item==0)
     {
@@ -23,7 +70,7 @@
     }
     return retcol;
     }
-    string isVisible(){
+string isVisible(){
         int filter =0;
         try{
         filter = (int) ViewData["Filter"];}
@@ -33,7 +80,7 @@
         else{retcol="visible";}
         return retcol;
     }
-    string fValue (int valor){
+string fValue (int valor){
         string ret1="";
         if (valor ==1){
         try{
@@ -59,6 +106,9 @@
 <div class = "cont-titles">
  <h3>@SharedLocalizer.GetLocalizedHtmlString("CustomerList")</h3>   
 </div>
+@Html.dataGrid(3,6,Columns(),@getData((List<TCustomer>)Model),@Controller())
+
+@*
 <td><a class="nav-link text-dark" asp-area="" asp-controller="TCustomer" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">Filter</a></td>
 <div class="@isVisible()">
     @using (Html.BeginForm()) {
@@ -99,3 +149,4 @@
 </table>
 @Html.ActionLink("Add a New Item", "Create")
 </div>
+*@

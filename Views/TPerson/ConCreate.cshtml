@@ -25,29 +25,30 @@
         </tr>
     </table>
     *@
-    <table class="table-norm" border="1">
+    <table class="table-edit" >
         <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
-            <td>@Html.LabelFor(p => p.ConRevDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.ConRevDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>
+            <input type="submit" value="Add" class="dropbtn" name="actionType"/>
+            <input type="submit" value="Cancel" class="dropbtn" name="actionType"/>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.ConRevDate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.ConRevDate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ConRevDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.ConObs,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.ConObs, new { htmlAttributes = new { @class = "norm-text", @style = "width:455px"} })</td>
+            <td>@Html.LabelFor(p => p.ConObs,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.ConObs, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:455px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ConObs)</td>
             <input type="hidden" name="ConPerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Add"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
         </tr>
     </table>
     </div>

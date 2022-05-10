@@ -25,36 +25,37 @@
         </tr>
     </table>
     *@
-    <table class="table-norm" border ="1">
+    <table class="table-edit" >
         <hr style="width:100%;text-align:left;margin-left:0">
+       <tr>
+            <td>
+            <input type="submit" value="Update" class="dropbtn" name="actionType"/>
+            <input type="submit" value="Cancel" class="dropbtn" name="actionType"/>
+            </td>
+        </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CareDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CareDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.LabelFor(p => p.CareDate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CareDate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.CareDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CarePosit,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CarePosit, new { htmlAttributes = new { @class = "norm-text", @style = "width:125px"} })</td>
+            <td>@Html.LabelFor(p => p.CarePosit,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CarePosit, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:125px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.CarePosit)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CareObser,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CareObser, new { htmlAttributes = new { @class = "norm-text", @style = "width:425px"} })</td>
+            <td>@Html.LabelFor(p => p.CareObser,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CareObser, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:425px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.CareObser)</td>
-        </tr>
-       <tr>
-            <td></td>
-            <td><input type="submit" value="Update" name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
         </tr>
     </table>
     </div>

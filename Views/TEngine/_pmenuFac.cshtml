@@ -1,3 +1,6 @@
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+
 @model TFacility
 
 @functions {
@@ -31,10 +34,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TEngine" asp-action="FacEdit" asp-route-id="@Model.FaId" asp-route-vpanel="1" asp-route-move="0">WorkCenters</a>
+                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TEngine" asp-action="FacEdit" asp-route-id="@Model.FaId" asp-route-vpanel="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("WorkCenters")</a>
                          </li>
                         <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(2)"asp-area="" asp-controller="TEngine" asp-action="FacEdit" asp-route-id="@Model.FaId" asp-route-vpanel="2" asp-route-move="0">Storages</a>
+                           <a class="nav-link text-dark" style="@panelBold(2)"asp-area="" asp-controller="TEngine" asp-action="FacEdit" asp-route-id="@Model.FaId" asp-route-vpanel="2" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Locations")</a>
                          </li>
                     </ul>
                 </div>

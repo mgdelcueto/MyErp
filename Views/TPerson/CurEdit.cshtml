@@ -24,40 +24,40 @@
         </tr>    
     </div>
     *@
-    <table class="table-norm" border ="1">
+    <table class="table-edit" border ="0">
         <tr>
-            <td>@Html.LabelFor(p => p.CurrRevDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
-            <td>@Html.EditorFor(p => p.CurrRevDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>
+            <input type="submit" value="Update"  class="dropbtn" name="actionType"/>
+            <input type="submit" value="Cancel" class="dropbtn" name="actionType"/>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CurrRevDate, new { htmlAttributes = new { @class = "norm-lab-text"} })</td>
+            <td>@Html.EditorFor(p => p.CurrRevDate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
             <td>@Html.ValidationMessageFor(p => p.CurrRevDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CurrArea, new { htmlAttributes = new { @class = "norm-text", @style = "width:110px" } })</td>
-            <td>@Html.EditorFor(p => p.CurrArea, new { htmlAttributes = new { @class = "norm-text", @style = "width:110px" } })</td>
+            <td>@Html.LabelFor(p => p.CurrArea, new { htmlAttributes = new { @class = "norm-lab-text", @style = "width:110px" } })</td>
+            <td>@Html.EditorFor(p => p.CurrArea, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:110px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CurrArea)</td>
         </tr>        
         <tr>
-            <td>@Html.LabelFor(p => p.CurrAreaDesc, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px" } })</td>
-            <td>@Html.EditorFor(p => p.CurrAreaDesc, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px" } })</td>
+            <td>@Html.LabelFor(p => p.CurrAreaDesc, new { htmlAttributes = new { @class = "norm-lab-text", @style = "width:300px" } })</td>
+            <td>@Html.EditorFor(p => p.CurrAreaDesc, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:300px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CurrAreaDesc)</td>
 
         </tr>        
         <tr>
             <!--string DisplayName = test.GetDisplayName(t => t.Name);-->
-            <td>@Html.LabelFor(p=> p.CurrAreaLevel, new { htmlAttributes = new { @class = "norm-level"} })</td>
-            <td>@Html.EditorFor(p => p.CurrAreaLevel, new { htmlAttributes = new { @class = "norm-text", @style = "width:50px" } })</td>
+            <td>@Html.LabelFor(p=> p.CurrAreaLevel, new { htmlAttributes = new { @class = "norm-lab-level"} })</td>
+            <td>@Html.EditorFor(p => p.CurrAreaLevel, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:50px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CurrAreaLevel)</td>
         </tr>        
         <tr>
-            <td>@Html.LabelFor(p => p.CurrObs, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px" } })</td>
-            <td>@Html.EditorFor(p => p.CurrObs, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px" } })</td>
+            <td>@Html.LabelFor(p => p.CurrObs, new { htmlAttributes = new { @class = "norm-lab-text", @style = "width:300px" } })</td>
+            <td>@Html.EditorFor(p => p.CurrObs, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:300px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CurrObs)</td>
         </tr>        
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
-
-        </tr>
     </table>
     </div>
 }

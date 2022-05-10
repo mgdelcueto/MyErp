@@ -23,37 +23,37 @@
         </tr>
     </table>
     *@
-    <table class="table-norm" border="1">
+    <table class="table-edit" border="0">
         <tr>
-            <td>@Html.LabelFor(p => p.PresLocal,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.PresLocal, new { htmlAttributes = new { @class = "norm-text", @style = "width:225px"} })</td>
+            <td>
+            <input type="submit" value="Add" class="dropbtn" name="actionType"/>
+            <input type="submit" value="Cancel" class="dropbtn" name="actionType"/>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.PresLocal,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PresLocal, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:225px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PresLocal)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.PresDateEvent,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.PresDateEvent, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.LabelFor(p => p.PresDateEvent,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PresDateEvent, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PresDateEvent)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.PresTimeEvent,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.PresTimeEvent, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.LabelFor(p => p.PresTimeEvent,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PresTimeEvent, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PresTimeEvent)</td>
             <input type="hidden" name="PresPerId" value="@(((TPerson)ViewBag.Person).PerId)"/>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Add" name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
-
         </tr>
     </table>
     </div>

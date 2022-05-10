@@ -36,6 +36,7 @@ namespace MyErp.Controllers {
         }    
 
         private void CreateViewBags(int? id)
+
         {
             var querype = from p in _dbContext.TPersons 
                         orderby p.PerName,p.PerName1
@@ -101,6 +102,13 @@ namespace MyErp.Controllers {
             ViewBag.Person=qList[0];
 
         }
+        /*
+        private Microsoft.AspNetCore.Http.IRequestCookieCollection getCookies()
+        {
+            Microsoft.AspNetCore.Http.IRequestCookieCollection ret =Request.Cookies;
+            return ret;
+        }
+        */
         public IActionResult Index(int filter,string pNam, string pNam1,string actionType) {
             if (actionType=="Cancel"){filter=0;}
             //string variable =_localizer["Indexmessage"];
@@ -119,6 +127,7 @@ namespace MyErp.Controllers {
                 var qList=queryc.ToList();
                 model = qList;
              }
+             //ViewData["CookiesGrid"]=getCookies();
              return View(model);
             }
             catch(Exception ex)
@@ -484,6 +493,9 @@ namespace MyErp.Controllers {
             return RedirectToAction("Index");
         }
         public IActionResult CarDelete(int id,int Pid) {
+            var mod = _dbContext.TPCareers
+                .SingleOrDefault(u => u.CareId.Equals(id));
+            int?pid=mod.CarePerId;
             ViewData["PerId"]=id;
             var mode = _dbContext.TPCareers
                 .SingleOrDefault(u => u.CareId.Equals(id));
@@ -493,13 +505,13 @@ namespace MyErp.Controllers {
             }  
             catch{}          
             var model = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(Pid));
+                .SingleOrDefault(u => u.PerId.Equals(pid));
 
             string dName = model.PerName1+" " +model.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=Pid;
+            ViewData["PerId"]=pid;
 
-            CreateViewBags(Pid);                
+            CreateViewBags(pid);                
             ViewData["panel"]=2;
             return View("Edit",model);
 
@@ -507,6 +519,9 @@ namespace MyErp.Controllers {
         }
 
         public IActionResult ConDelete(int id,int Pid) {
+            var mod = _dbContext.TPContracts
+                .SingleOrDefault(u => u.ConId.Equals(id));
+            int?pid=mod.ConPerId;
             var mode = _dbContext.TPContracts
                 .SingleOrDefault(u => u.ConId.Equals(id));
             try{
@@ -515,13 +530,13 @@ namespace MyErp.Controllers {
             }  
             catch{}          
             var model = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(Pid));
+                .SingleOrDefault(u => u.PerId.Equals(pid));
 
             string dName = model.PerName1+" " +model.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=Pid;
+            ViewData["PerId"]=pid;
 
-            CreateViewBags(Pid);                
+            CreateViewBags(pid);                
             ViewData["panel"]=3;
             return View("Edit",model);
 
@@ -529,6 +544,9 @@ namespace MyErp.Controllers {
         }
 
         public IActionResult CurDelete(int id,int Pid) {
+            var mod = _dbContext.TPCurrics
+                .SingleOrDefault(u => u.CurrId.Equals(id));
+            int?pid=mod.CurrPerId;
             var mode = _dbContext.TPCurrics
                 .SingleOrDefault(u => u.CurrId.Equals(id));
             try{
@@ -537,13 +555,13 @@ namespace MyErp.Controllers {
             }  
             catch{}          
             var model = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(Pid));
+                .SingleOrDefault(u => u.PerId.Equals(pid));
 
             string dName = model.PerName1+" " +model.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=Pid;
+            ViewData["PerId"]=pid;
 
-            CreateViewBags(Pid);                
+            CreateViewBags(pid);                
             ViewData["panel"]=4;
             return View("Edit",model);
 
@@ -551,6 +569,9 @@ namespace MyErp.Controllers {
         }
 
         public IActionResult PayDelete(int id,int Pid) {
+            var mod = _dbContext.TPPays
+                .SingleOrDefault(u => u.PayId.Equals(id));
+            int?pid=mod.PayPerId;
             var mode = _dbContext.TPPays
                 .SingleOrDefault(u => u.PayId.Equals(id));
             try{
@@ -559,13 +580,13 @@ namespace MyErp.Controllers {
             }  
             catch{}          
             var model = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(Pid));
+                .SingleOrDefault(u => u.PerId.Equals(pid));
 
             string dName = model.PerName1+" " +model.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=Pid;
+            ViewData["PerId"]=pid;
 
-            CreateViewBags(Pid);                
+            CreateViewBags(pid);                
             ViewData["panel"]=5;
             return View("Edit",model);
 
@@ -573,6 +594,9 @@ namespace MyErp.Controllers {
         }
 
         public IActionResult PreDelete(int id,int Pid) {
+            var mod = _dbContext.TPPresens
+                .SingleOrDefault(u => u.PresId.Equals(id));
+            int?pid=mod.PresPerId;
             var mode = _dbContext.TPPresens
                 .SingleOrDefault(u => u.PresId.Equals(id));
             try{
@@ -581,13 +605,13 @@ namespace MyErp.Controllers {
             }  
             catch{}          
             var model = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(Pid));
+                .SingleOrDefault(u => u.PerId.Equals(pid));
 
             string dName = model.PerName1+" " +model.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=Pid;
+            ViewData["PerId"]=pid;
 
-            CreateViewBags(Pid);                
+            CreateViewBags(pid);                
             ViewData["panel"]=6;
             return View("Edit",model);
 
@@ -595,6 +619,9 @@ namespace MyErp.Controllers {
         }
 
         public IActionResult RevDelete(int id,int Pid) {
+            var mod = _dbContext.TPReviews
+                .SingleOrDefault(u => u.RevId.Equals(id));
+            int?pid=mod.RevPerId;
             var mode = _dbContext.TPReviews
                 .SingleOrDefault(u => u.RevId.Equals(id));
             try{
@@ -603,13 +630,13 @@ namespace MyErp.Controllers {
             }  
             catch{}          
             var model = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(Pid));
+                .SingleOrDefault(u => u.PerId.Equals(pid));
 
             string dName = model.PerName1+" " +model.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=Pid;
+            ViewData["PerId"]=id;
 
-            CreateViewBags(Pid);                
+            CreateViewBags(pid);                
             ViewData["panel"]=7;
             return View("Edit",model);
 
@@ -618,6 +645,10 @@ namespace MyErp.Controllers {
 
 
         public IActionResult TraDelete(int id,int Pid) {
+            var mod = _dbContext.TPTrains
+                .SingleOrDefault(u => u.TrainId.Equals(id));
+            int?pid=mod.TrainPerId;
+
             var mode = _dbContext.TPTrains
                 .SingleOrDefault(u => u.TrainId.Equals(id));
             try{
@@ -626,13 +657,13 @@ namespace MyErp.Controllers {
             }  
             catch{}          
             var model = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(Pid));
+                .SingleOrDefault(u => u.PerId.Equals(pid));
 
             string dName = model.PerName1+" " +model.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=Pid;
+            ViewData["PerId"]=pid;
 
-            CreateViewBags(Pid);                
+            CreateViewBags(pid);                
             ViewData["panel"]=8;
             return View("Edit",model);
 
@@ -653,11 +684,11 @@ namespace MyErp.Controllers {
             var qList=queryc.ToList();
 
             var pmodel = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(peid));
+                .SingleOrDefault(u => u.PerId.Equals(Pid));  //peid
 
             string dName = pmodel.PerName1+" " +pmodel.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=peid;
+            ViewData["PerId"]=Pid;//peid;
 
             ViewBag.Person=qList[0];
             ViewData["panel"]=2;
@@ -710,11 +741,11 @@ namespace MyErp.Controllers {
             var qList=queryc.ToList();
 
             var pmodel = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(peid));
+                .SingleOrDefault(u => u.PerId.Equals(Pid));
 
             string dName = pmodel.PerName1+" " +pmodel.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=peid;
+            ViewData["PerId"]=Pid;//peid;
 
 
             ViewBag.Person=qList[0];
@@ -767,11 +798,11 @@ namespace MyErp.Controllers {
             var qList=queryc.ToList();
 
             var pmodel = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(peid));
+                .SingleOrDefault(u => u.PerId.Equals(Pid));
 
             string dName = pmodel.PerName1+" " +pmodel.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=peid;
+            ViewData["PerId"]=Pid;//peid;
 
 
             ViewBag.Person=qList[0];
@@ -821,11 +852,11 @@ namespace MyErp.Controllers {
             var qList=queryc.ToList();
 
             var pmodel = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(peid));
+                .SingleOrDefault(u => u.PerId.Equals(Pid));
 
             string dName = pmodel.PerName1+" " +pmodel.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=peid;
+            ViewData["PerId"]=Pid;//peid;
 
 
             ViewBag.Person=qList[0];
@@ -878,11 +909,11 @@ namespace MyErp.Controllers {
             var qList=queryc.ToList();
 
             var pmodel = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(peid));
+                .SingleOrDefault(u => u.PerId.Equals(Pid));
 
             string dName = pmodel.PerName1+" " +pmodel.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=peid;
+            ViewData["PerId"]=Pid;
 
 
             ViewBag.Person=qList[0];
@@ -935,11 +966,11 @@ namespace MyErp.Controllers {
             var qList=queryc.ToList();
 
             var pmodel = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(peid));
+                .SingleOrDefault(u => u.PerId.Equals(Pid));
 
             string dName = pmodel.PerName1+" " +pmodel.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=peid;
+            ViewData["PerId"]=Pid;
 
 
             ViewBag.Person=qList[0];
@@ -992,11 +1023,11 @@ namespace MyErp.Controllers {
             var qList=queryc.ToList();
 
             var pmodel = _dbContext.TPersons
-                .SingleOrDefault(u => u.PerId.Equals(peid));
+                .SingleOrDefault(u => u.PerId.Equals(Pid));
 
             string dName = pmodel.PerName1+" " +pmodel.PerName;
             ViewData["dName"]=dName;
-            ViewData["PerId"]=peid;
+            ViewData["PerId"]=Pid;
 
 
             ViewBag.Person=qList[0];

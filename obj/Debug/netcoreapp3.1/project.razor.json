@@ -14472,6 +14472,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\Edit copy.cshtml",
+      "TargetPath": "Views\\TPerson\\Edit copy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListaWCComponents_all.cshtml",
       "TargetPath": "Views\\TEngine\\_pListaWCComponents_all.cshtml",
       "FileKind": "mvc"
