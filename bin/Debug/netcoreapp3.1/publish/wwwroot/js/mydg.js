@@ -6,9 +6,9 @@ function funcDropDown(_gridId)
     document.getElementById(nameOf("myDropdown",_gridId)).classList.toggle("show");
 
 }
-function addRecord(controller,action)
+function addRecord(controller,action,_Id=0)
 {
-    var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action;
+    var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"?Pid="+_Id.toString();
     window.location.href = url2;
 }
 function rowSelected(_mxrow,_gridId)

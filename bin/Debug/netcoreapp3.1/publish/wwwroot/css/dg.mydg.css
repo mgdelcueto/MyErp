@@ -34,12 +34,19 @@
 .foot-pager {
         text-align: right;
 }
-
+.edit-visible {
+        visibility: visible;
+        display:block;
+        color: #222222;
+        background-color: #FFFFFF;
+        border-color: #888888;
+        text-align: left;
+}
 .visible {
             visibility: visible;
             display:block;
             color: #222222;
-            background-color: #EEEEEE;
+            background-color: #FFFFFF;
             border-color: #888888;
             text-align: left;
 }
@@ -53,10 +60,13 @@
             display:none;
             text-align: left;
 }
-.cont-titles {color: #666666;
-        background-color: #CCCCCC;
+.cont-titles {color: #222222;
+        font-family: Verdana;
+        font-size: 10pt;
+        background-color: #bdbbbb;
         border-color: #888888;
         text-align: center;
+        height: 35px;
 }
 .cont-titles-l {color: #222222;
         background-color: #CCCCCC;
@@ -68,8 +78,28 @@
         border-color: #888888;
         text-align: left;
         }
+.div-edit {
+        width: 100%;
+        /*
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        */
+        align-items: center;
+        }
+.table-edit {
+        border: 1px solid #79797b;
+        width: 100%;
+        /*
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        */
+}
 .table-norm {
-        border: 1px solid white;
+        border: 1px solid #fffdfd;
         width : 100%;
         }
 .table-bold {
@@ -90,17 +120,16 @@
 .head-text {color: #FFFFFF;
         font-family: Verdana;
         font-size: 10pt;
-        background-color: #9370D8;
+        background-color: #bbbbbb;
         border-color: #000000;
         border-top-color : #000000;
         text-align: left;
         height: 35px;
         }
-
 .head-text:hover {color: #FFFFFF;
         font-family: Verdana;
         font-size: 10pt;
-        background-color: #8057D5;
+        background-color: #999999;
         border-color: #000000;
         border-top-color : #000000;
         text-align: left;
@@ -154,29 +183,52 @@
         border-color: #FFFFFF;
         text-align: right;
         }
-.norm-text {color: #222222;
-        background-color: #DDDDDD;
+.norm-lab-text {color: #222222;
+        background-color: #FFFFFF;
         border-color: #FFFFFF;
         text-align: left;
         }
+.style-h4 {color: #777777;
+        background-color: #ffffff;
+        border-color: #e8edf9;
+        text-align: left;
+        }
+.style-h3 {color: #777777;
+        background-color: #ffffff;
+        border-color: #e8edf9;
+        text-align: left;
+        }
+.style-data {color: #FFFFFF;
+        text-align: center;
+        }
+                
+.norm-tb-text {color: #999999;
+        background-color: #eaebee;
+        border-color: #e8edf9;
+        text-align: left;
+        }
+.text-box{
+        border:none;
+        border-color: #e8edf9;        
+        }
 .norm-num {color: #222222;
-        background-color: #DDDDDD;
+        background-color: #FFFFFF;
         border-color: #FFFFFF;
         text-align: right;
         }
 .col-num {color: #222222;
-        background-color: #DDDDDD;
+        background-color: #FFFFFF;
         border-color: #FFFFFF;
         text-align: right;
         }
 .medium-text {color: #222222;
-        background-color: #DDDDDD;
+        background-color: #FFFFFF;
         border-color: #FFFFFF;
         text-align: left;
         font-size: large;
         }
 .big-text {color: #222222;
-        background-color: #DDDDDD;
+        background-color: #FFFFFF;
         border-color: #FFFFFF;
         text-align: left;
         width: 270px;
@@ -239,3 +291,24 @@
 #div_btn {
         text-align: center;
 }
+.tab-content {
+        border: 7px solid rgb(239, 18, 18);
+        /*border-width: 2 3px 3px;*/
+        padding: 3px;
+    }
+.nav-tab > li > a.active {
+        color: #222222;
+        border: 1px solid #222222;
+        /*background-color: #8057D5 !important;*/
+    }
+.nav-tab > li > a {
+        color :#999999;
+        border: 0px solid #999999;
+        /*background-color: #8057D5 !important;*/
+    }
+/*
+.nav-tab > li > a.active {
+        border: 1px solid #8057D5;
+        background-color: #8057D5 !important;
+    }
+*/
