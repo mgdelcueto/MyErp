@@ -1081,8 +1081,14 @@ namespace MyErp.Controllers {
         }     
 
         [HttpGet]
-        public IActionResult Edit(int id, int panel, int move, int perid,string sortExpression, string filterExpression) {
+        public IActionResult Edit(int id, int panel, int move, int perid)//,string _sortExpression, string _filterExpression,int IdGrid) 
+        {
             ViewData["panel"]=panel;
+            string uniqueId=Request.Cookies["Grid-Personal"].ToString().TrimStart().TrimEnd();
+            string sortExpression=Request.Cookies["Grid-"+uniqueId+"-sortExpression"];
+            string filterExpression=Request.Cookies["Grid-"+uniqueId+"-filterExpression"];
+            ////ViewData["IdGrid"]=uniqueId;
+            
             //ViewData["PerId"]=perid;
             //id = perid;
             //string sortExpression="PerName,PerName1";

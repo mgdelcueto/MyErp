@@ -27,7 +27,7 @@ function rowSelected(_mxrow,_gridId)
     }
     return _nrsel;
 }
-function actionClick(controller,action,_maxrow,_gridId,filterExpression,sortExpression)
+function actionClick(controller,action,_maxrow,_gridId)//,filterExpression,sortExpression)
 {
     //alert("action");
     var _nrsel=0;
@@ -36,16 +36,16 @@ function actionClick(controller,action,_maxrow,_gridId,filterExpression,sortExpr
     {
         var checkbox = document.getElementById(nameOf(_nrsel.toString(),_gridId));
         _id = checkbox.value.toString();
-        var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?panel=&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString();
+        var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
         window.location.href = url2;
     }
 }
-function rowClick(_nr,controller,action,_gridId,filterExpression,sortExpression)
+function rowClick(_nr,controller,action,_gridId)//,filterExpression,sortExpression)
 {
     var _nrow = parseInt(_nr);
     var checkbox = document.getElementById(nameOf(_nr.toString(),_gridId));
     _id = checkbox.value.toString();
-    var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?panel=1&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString();
+    var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
     window.location.href = url2;
 }
 function sortTable(_ncol,_gridId )

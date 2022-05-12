@@ -10,6 +10,16 @@
     Layout="~/Views/Shared/_Layout.cshtml";
 }
 @functions {
+    @*
+    string isGrid()
+    {
+        string ret="Nada";
+        try{
+            ret = ViewData["IdGrid"].ToString();
+        }
+        catch{}
+        return ret;
+    }
     string isFilter()
     {
         string ret="";
@@ -31,7 +41,7 @@
         return ret;
 
     }
-
+    *@
     string panelBold(int panel)
     {      
         int tpan=0;  
@@ -117,41 +127,42 @@
             <h4 class = "style-h4">@dName()</h4>
     	    <ul class="nav nav-tab">
 	    	    <li class="nav-item">
-                    <a class="nav-link"  role="tab" disable_anchor="true" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="@thisPanel()" asp-route-move="1"asp-route-sortExpression="@isSort()" asp-route-filterExpression="@isFilter()">@SharedLocalizer.GetLocalizedHtmlString("<<Prev")</a>
+                    <a class="nav-link"  role="tab" disable_anchor="true" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="@thisPanel()" asp-route-move="1">@SharedLocalizer.GetLocalizedHtmlString("<<Prev")</a>
 		        </li>
 		        <li class="nav-item">
-                    <a class="nav-link"  role="tab" disable_anchor="true" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="@thisPanel()" asp-route-move="2" asp-route-sortExpression="@isSort()" asp-route-filterExpression="@isFilter()">@SharedLocalizer.GetLocalizedHtmlString("Next>>")</a>
+                    <a class="nav-link"  role="tab" disable_anchor="true" asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="@thisPanel()" asp-route-move="2" >@SharedLocalizer.GetLocalizedHtmlString("Next>>")</a>
 		        </li>
 		        <li class="nav-item">
                     <a class="nav-link"  role="tab" disable_anchor="true" asp-area="" asp-controller="TPerson" asp-action="" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="@thisPanel()" asp-route-move="2" >@SharedLocalizer.GetLocalizedHtmlString("Home")</a>
 		        </li>
             </ul>
         </div>
+        @*asp-route-sortExpression="@isSort()" asp-route-filterExpression="@isFilter()"  asp-route-idgrid ="@isGrid()"*@
         <div>
 	        <ul class="nav nav-tab">
 		        <li class="nav-item">
-                    <a class="@navClass(1)" role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="1" asp-route-move="0" asp-route-sortExpression="@isSort()" asp-route-filterExpression="@isFilter()">@SharedLocalizer.GetLocalizedHtmlString("Person")</a>
+                    <a class="@navClass(1)" role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="1" asp-route-move="0" >@SharedLocalizer.GetLocalizedHtmlString("Person")</a>
 		        </li>
 		        <li class="nav-item">
-                    <a class="@navClass(2)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="2" asp-route-move="0" asp-route-sortExpression="@isSort()" asp-route-filterExpression="@isFilter()">@SharedLocalizer.GetLocalizedHtmlString("Career")</a>
+                    <a class="@navClass(2)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="2" asp-route-move="0" >@SharedLocalizer.GetLocalizedHtmlString("Career")</a>
 		        </li>
 		        <li class="nav-item">
-                    <a class="@navClass(3)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="3" asp-route-move="0" asp-route-sortExpression="@isSort()" asp-route-filterExpression="@isFilter()">@SharedLocalizer.GetLocalizedHtmlString("Contract")</a>
+                    <a class="@navClass(3)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="3" asp-route-move="0" >@SharedLocalizer.GetLocalizedHtmlString("Contract")</a>
 		        </li>
 		        <li class="nav-item">
-                    <a class="@navClass(4)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="4" asp-route-move="0" asp-route-sortExpression="@isSort()" asp-route-filterExpression="@isFilter()">@SharedLocalizer.GetLocalizedHtmlString("Curriculum")</a>
+                    <a class="@navClass(4)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="4" asp-route-move="0" >@SharedLocalizer.GetLocalizedHtmlString("Curriculum")</a>
 		        </li>
 		        <li class="nav-item">
-                    <a class="@navClass(5)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="5" asp-route-move="0" asp-route-sortExpression="@isSort()" asp-route-filterExpression="@isFilter()">@SharedLocalizer.GetLocalizedHtmlString("Pay")</a>
+                    <a class="@navClass(5)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="5" asp-route-move="0" >@SharedLocalizer.GetLocalizedHtmlString("Pay")</a>
 		        </li>
 		        <li class="nav-item">
-                    <a class="@navClass(6)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="6" asp-route-move="0" asp-route-sortExpression="@isSort()" asp-route-filterExpression="@isFilter()">@SharedLocalizer.GetLocalizedHtmlString("Presence")</a>
+                    <a class="@navClass(6)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="6" asp-route-move="0" >@SharedLocalizer.GetLocalizedHtmlString("Presence")</a>
 		        </li>
 		        <li class="nav-item">
-                    <a class="@navClass(7)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="7" asp-route-move="0" asp-route-sortExpression="@isSort()" asp-route-filterExpression="@isFilter()">@SharedLocalizer.GetLocalizedHtmlString("ObjReview")</a>
+                    <a class="@navClass(7)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="7" asp-route-move="0" >@SharedLocalizer.GetLocalizedHtmlString("ObjReview")</a>
 		        </li>
 		        <li class="nav-item">
-                    <a class="@navClass(8)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="8" asp-route-move="0" asp-route-sortExpression="@isSort()" asp-route-filterExpression="@isFilter()">@SharedLocalizer.GetLocalizedHtmlString("Training")</a>
+                    <a class="@navClass(8)"  role="tab" disable_anchor="true"  asp-area="" asp-controller="TPerson" asp-action="Edit" asp-route-id="@ModelPerId()" asp-route-perid="@ModelPerId()" asp-route-panel="8" asp-route-move="0" >@SharedLocalizer.GetLocalizedHtmlString("Training")</a>
 		        </li>
 	        </ul>
         </div>
