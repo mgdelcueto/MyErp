@@ -15,19 +15,28 @@
                 retur[3]="Delete";
         return retur;
     }
-    List<string> Columns(){
+    List<string> Columns(int type){
         List<string> retur = new List<string>();
-        retur.Add("Personal");
-                    retur.Add("NIF");
-                    retur.Add("Codigo");
-                    retur.Add("Razon Social");
-                    retur.Add("Ciudad");
-                    retur.Add("Pais");
+        if (type==0){
+            retur.Add("Personal");
+            retur.Add("NIF");
+            retur.Add("Codigo");
+            retur.Add("Razon Social");
+            retur.Add("Ciudad");
+            retur.Add("Pais");
+        }
+        else{
+            retur.Add("CustId");
+            retur.Add("CustNif");
+            retur.Add("CustCode");
+            retur.Add("CustRasoc");
+            retur.Add("CustAdCity");
+            retur.Add("CustAdCtry");
+        }
         return retur;
     }
     public IEnumerable<Container> getData(dynamic oTMaterial)
         {
-            List<string> Column =Columns ();
                     IEnumerable<TCustomer> fTPersonal = (List<TCustomer>)oTMaterial;
                     IEnumerable<Container> TPersonal = fTPersonal.Select(
                         f => new Container() 
@@ -106,7 +115,7 @@ string fValue (int valor){
 <div class = "cont-titles">
  <h3>@SharedLocalizer.GetLocalizedHtmlString("CustomerList")</h3>   
 </div>
-@Html.dataGrid(3,6,Columns(),@getData((List<TCustomer>)Model),@Controller())
+@Html.dataGrid(3,6,Columns(0),@getData((List<TCustomer>)Model),@Controller(),Columns(1))
 
 @*
 <td><a class="nav-link text-dark" asp-area="" asp-controller="TCustomer" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">Filter</a></td>

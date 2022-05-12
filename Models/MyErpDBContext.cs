@@ -54,6 +54,7 @@ namespace MyErp.Models
         public virtual DbSet<TPReview> TPReviews { get; set; }
         public virtual DbSet<TPTrain> TPTrains { get; set; }
         public virtual DbSet<TPerson> TPersons { get; set; }
+        public virtual DbSet<TNexPrev> TNexPrevs { get; set; }
         public virtual DbSet<TSPlanning> TSPlannings { get; set; }
         public virtual DbSet<TSPorder> TSPorders { get; set; }
         public virtual DbSet<TSProduct> TSProducts { get; set; }
@@ -915,6 +916,19 @@ namespace MyErp.Models
                 entity.Property(e => e.PerName).HasMaxLength(100);
 
                 entity.Property(e => e.PerName1).HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<TNexPrev>(entity =>
+            {
+                entity.HasKey(e => e._Id)
+                    .HasName("PK__T_NexPrev__496D3DD0FE8E8B1D");
+
+                entity.ToTable("T_NexPrev");
+
+                entity.Property(e => e._Idnext).HasMaxLength(4);
+
+                entity.Property(e => e._idprev).HasMaxLength(255);
+
             });
 
             modelBuilder.Entity<TSPlanning>(entity =>

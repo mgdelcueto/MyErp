@@ -6,6 +6,20 @@ using MyErp.Models;
 using System;
 using System.Linq;
 
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MyErp.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Protocols;
+using Microsoft.Extensions.Configuration;
+using System.Data;
+
 namespace MyErp.Controllers {
     [Authorize(Roles="Administrator,HR")]
     public class TPersonController : Controller {
@@ -1067,7 +1081,77 @@ namespace MyErp.Controllers {
         }     
 
         [HttpGet]
-        public IActionResult Edit(int id, int panel, int move, int perid) {
+        public IActionResult Edit(int id, int panel, int move, int perid,string sortExpression, string filterExpression) {
+            ViewData["panel"]=panel;
+            //ViewData["PerId"]=perid;
+            //id = perid;
+            //string sortExpression="PerName,PerName1";
+            //string filterExpression="Pername like '%Ju%'";
+            try{
+            //string pna1=model.PerName1;
+            var mode = _dbContext.TPersons
+                .SingleOrDefault(u => u.PerId.Equals(id));
+            //SELECT lag(PerId)OVER (ORDER BY PerId) as _ID FROM T_Person
+            //var sqlp= "SELECT res._ID as _idprev, PerId as _Id, 0 as _Idnext FROM (SELECT *,lag(PerId)   OVER (ORDER BY "+sortExpression+") as _ID FROM T_Person where "+filterExpression+") as res where res.PerId="+id.ToString();
+            //var sqln= "SELECT res._ID as _Idnext, PerId as _Id, 0 as _idprev  FROM (SELECT *,lead(PerId) OVER (ORDER BY "+sortExpression+") as _ID FROM T_Person where "+filterExpression+") as res where res.PerId="+id.ToString();
+            //var ListpId = _dbContext.TNexPrevs.FromSqlRaw(sqlp).ToList();
+            var sqln="SELECT case when res._pID is null then 0 else res._pID  end as _idprev, PerId as _Id, case when res._nID is null then 0 else res._nID end as _Idnext FROM (SELECT *,lead(PerId) OVER (ORDER BY " + sortExpression + " ) as _nID, lag(PerId) OVER (ORDER BY "+ sortExpression+") as _pID FROM T_Person where "+filterExpression+") as res where res.PerId="+id.ToString();
+            var ListnId = _dbContext.TNexPrevs.FromSqlRaw(sqln).ToList();
+            int nId=id;
+            int pId=id;
+            try{ nId=ListnId[0]._Idnext;}
+            catch{}
+            try{ pId=ListnId[0]._idprev;}
+            catch{}
+            if (pId==0){pId=id;}
+            if (nId==0){nId=id;}
+            switch (move){
+                case 0:
+                    break;
+                case 1:
+                    id =pId;
+                    break;
+                case 2:
+                    id =nId;
+                    break;
+                default:
+                    break;
+            }
+            var model = _dbContext.TPersons
+                .SingleOrDefault(u => u.PerId.Equals(id));
+
+            string dName = model.PerName1+" " +model.PerName;
+            ViewData["dName"]=dName;
+            ViewData["PerId"]=id;
+            ViewData["Sort"]=sortExpression;
+            ViewData["Filter"]=filterExpression;
+                
+            CreateViewBags(id);
+            return View("Edit",model);
+            }
+            catch(Exception ex){
+                string mensaje = ex.Message;
+                return View("Error");}    
+        }    
+        [HttpPost]
+        public IActionResult Edit(TPerson person, string actionType) {
+            if (actionType=="Update"){
+            if (ModelState.IsValid){
+            try{
+                _dbContext.TPersons.Update(person);
+                _dbContext.SaveChanges();
+            }
+            catch{}
+            }else{
+                CreateViewBags(0);    
+                ViewData["panel"]=1;
+                return View(person);
+            }
+            }
+            return RedirectToAction("Index");
+        }        
+
+        public IActionResult _Edit(int id, int panel, int move, int perid) {
             ViewData["panel"]=panel;
             //ViewData["PerId"]=perid;
             //id = perid;
@@ -1124,22 +1208,6 @@ namespace MyErp.Controllers {
             }
             catch{return View("Error");}    
         }    
-        [HttpPost]
-        public IActionResult Edit(TPerson person, string actionType) {
-            if (actionType=="Update"){
-            if (ModelState.IsValid){
-            try{
-                _dbContext.TPersons.Update(person);
-                _dbContext.SaveChanges();
-            }
-            catch{}
-            }else{
-                CreateViewBags(0);    
-                ViewData["panel"]=1;
-                return View(person);
-            }
-            }
-            return RedirectToAction("Index");
-        }        
+
     }
 }

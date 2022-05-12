@@ -25,20 +25,30 @@
         return retur;
     }
 
-    List<string> Columns(){
+    List<string> Columns(int type ){
         List<string> retur = new List<string>();
-        retur.Add("Suplier");
-                    retur.Add("DNI");
-                    retur.Add("Codigo");
-                    retur.Add("Razon Social");
-                    retur.Add("Ciudad");
-                    retur.Add("Pais");
+        if (type==0)
+        {
+            retur.Add("Suplier");
+            retur.Add("DNI");
+            retur.Add("Codigo");
+            retur.Add("Razon Social");
+            retur.Add("Ciudad");
+            retur.Add("Pais");
+        }
+        else{
+            retur.Add("SupId");
+            retur.Add("SupNif");
+            retur.Add("SupCode");
+            retur.Add("SupRasoc");
+            retur.Add("SupAdCity");
+            retur.Add("SupAdCtry");
+        }
         return retur;
     }
 
     public IEnumerable<Container> getData(dynamic oTMaterial)
         {
-            List<string> Column =Columns ();
                     IEnumerable<TSuplier> fTPersonal = (List<TSuplier>)oTMaterial;
                     IEnumerable<Container> TPersonal = fTPersonal.Select(
                         f => new Container() 
@@ -119,7 +129,7 @@
 <div class = "cont-titles">
  <h3>@SharedLocalizer.GetLocalizedHtmlString("SupList")</h3>   
 </div>
-@Html.dataGrid(2,6,Columns(),@getData((List<TSuplier>)Model),@Controller())
+@Html.dataGrid(2,6,Columns(0),@getData((List<TSuplier>)Model),@Controller(),Columns(1),0)
 @*
 <td><a class="nav-link text-dark" asp-area="" asp-controller="TSuplier" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Filter")</a></td>
 <div class="@isVisible()">

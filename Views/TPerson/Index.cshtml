@@ -19,19 +19,29 @@
                 retur[3]="Delete";
         return retur;
     }
-    List<string> Columns(){
+    List<string> Columns(int type ){
         List<string> retur = new List<string>();
-        retur.Add("Personal");
-                    retur.Add("DNI");
-                    retur.Add("Nombre");
-                    retur.Add("Apellido");
-                    retur.Add("Dirección");
-                    retur.Add("Pais");
+        if (type==0)
+        {
+            retur.Add("Personal");
+            retur.Add("DNI");
+            retur.Add("Nombre");
+            retur.Add("Apellido");
+            retur.Add("Dirección");
+            retur.Add("Pais");
+        }
+        else{
+            retur.Add("PerId");
+            retur.Add("PerDni");
+            retur.Add("PerName");
+            retur.Add("PerName1");
+            retur.Add("PerAddr");
+            retur.Add("PerAddCtry");
+        }
         return retur;
     }
     public IEnumerable<Container> getData(dynamic oTMaterial)
         {
-            List<string> Column =Columns ();
                     IEnumerable<TPerson> fTPersonal = (List<TPerson>)oTMaterial;
                     IEnumerable<Container> TPersonal = fTPersonal.Select(
                         f => new Container() 
@@ -118,5 +128,5 @@
  <h3>@SharedLocalizer.GetLocalizedHtmlString("PersonTable")</h3>   
 </div>
 <div  name="aqui-el-control-grid-1">
-    @Html.dataGrid(1,6,Columns(),@getData((List<TPerson>)Model),@Controller())
+    @Html.dataGrid(1,6,Columns(0),@getData((List<TPerson>)Model),@Controller(),Columns(1),0)
 </div>

@@ -6,7 +6,7 @@
 @using MyErp.Resources
 @inject LocService SharedLocalizer
 @model TPerson
-
+@*
 @{
     Layout = null;  
     Layout = "_LayPer.cshtml";
@@ -418,7 +418,7 @@
          </table>
     </table>
 *@
-
+@*
 <div class=@isVisible(1)>
     <div class="cont-titles">
         <h3>@SharedLocalizer.GetLocalizedHtmlString("PersonData")
@@ -525,6 +525,7 @@
             <td><input type="submit" text="Discard" class="dropbtn" value="Cancel"  name="actionType"/></td>
         </tr>
         *@
+        @*
     </table>
     </div>
 </div>
@@ -533,7 +534,7 @@
     <div class="cont-titles">
     <h3>@SharedLocalizer.GetLocalizedHtmlString("CareerData")</h3>
     </div>
-    @Html.dataGrid(3,6,@Columns("Career"),@getData_Career((List<TPCareer>)ViewBag.ListCareer),@Controller("Career"))
+    @Html.dataGrid(3,6,@Columns("Career"),@getData_Career((List<TPCareer>)ViewBag.ListCareer),@Controller("Career"),0)
 @*
     <tr>
         <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("CareerDateData")</th> 
@@ -554,6 +555,7 @@
     }
     @Html.ActionLink("Add a New Item", "CarCreate",new {Pid=@Model.PerId})
 *@
+@*
 </table>
 </div>
 <div class=@isVisible(3)>
@@ -561,7 +563,7 @@
     <div class="cont-titles">
     <h3>@SharedLocalizer.GetLocalizedHtmlString("ContractData")</h3>
     </div>
-    @Html.dataGrid(4,6,@Columns("Contract"),@getData_Contract((List<TPContract>)ViewBag.ListContract),@Controller("Contract"))
+    @Html.dataGrid(4,6,@Columns("Contract"),@getData_Contract((List<TPContract>)ViewBag.ListContract),@Controller("Contract"),0)
 @*
     <tr>
         <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Date")</th> 
@@ -580,6 +582,7 @@
     }
     @Html.ActionLink("Add a New Item", "ConCreate",new {Pid=@Model.PerId})
  *@
+ @*
 </table>
 </div>    
 
@@ -588,7 +591,7 @@
     <div class="cont-titles">
     <h3>@SharedLocalizer.GetLocalizedHtmlString("CurriculumData")</h3>
     </div>
-    @Html.dataGrid(5,6,@Columns("Curriculum"),@getData_Curriculum((List<TPCurric>)ViewBag.ListCurric),@Controller("Curriculum"))
+    @Html.dataGrid(5,6,@Columns("Curriculum"),@getData_Curriculum((List<TPCurric>)ViewBag.ListCurric),@Controller("Curriculum"),0)
 
 @*
     <tr>
@@ -614,6 +617,7 @@
     }
 @Html.ActionLink("Add a New Item", "CurCreate",new {Pid=@Model.PerId})
 *@
+@*
 </table>
 
 </div>    
@@ -646,6 +650,7 @@
     }
     @Html.ActionLink("Add a New Item", "PayCreate",new {Pid=@Model.PerId})
     *@
+    @*
 </table>
 </div>    
     <div class=@isVisible(6)>
@@ -675,6 +680,7 @@
     }
     @Html.ActionLink("Add a New Item", "PreCreate",new {Pid=@Model.PerId})
 *@
+@*
 </table>
 </div>    
     <div class=@isVisible(7)>
@@ -703,6 +709,7 @@
     }
     @Html.ActionLink("Add a New Item", "RevCreate",new {Pid=@Model.PerId})
 *@
+@*
 </table>
 </div>    
     <div class=@isVisible(8)>
@@ -735,8 +742,9 @@
     }
     @Html.ActionLink("Add a New Item", "TraCreate",new {Pid=@Model.PerId})
 *@
+@*
 </table>
 </div>    
 }
 
-
+*@

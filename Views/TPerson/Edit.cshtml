@@ -14,6 +14,27 @@
 
 @functions {
 
+    string isFilter()
+    {
+        string ret="";
+        try{
+            ret = ViewData["Filter"].ToString();
+        }
+        catch{}
+        return ret;
+
+    }
+
+    string isSort()
+    {
+        string ret="";
+        try{
+            ret = ViewData["Sort"].ToString();
+        }
+        catch{}
+        return ret;
+
+    }
     string [] Controller(string table){
         string [] retur = new string [4];
         switch (table)
@@ -65,55 +86,122 @@
         }
         return retur;
     }
-    List<string> Columns(string table){
+    List<string> Columns(string table,int type){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "Career":
-                retur.Add("Career");
+                if (type==0)
+                {
+                    retur.Add("Career");
                     retur.Add("Fecha");
                     retur.Add("Posicion");
                     retur.Add("Observaciones");
+                }
+                else{
+                    retur.Add("CareId");
+                    retur.Add("CareDate");
+                    retur.Add("CarePosit");
+                    retur.Add("CareObser");
+                }
                 break;
             case "Contract":
-                retur.Add("Contract");
+                if (type==0)
+                {
+                    retur.Add("Contract");
                     retur.Add("Fecha");
                     retur.Add("Observaciones");
+                }
+                else{
+                    retur.Add("ConId");
+                    retur.Add("ConRevDate");
+                    retur.Add("ConObs");
+                }
                 break;
             case "Curriculum":
-                retur.Add("Curriculum");
+                if (type==0)
+                {
+                    retur.Add("Curriculum");
                     retur.Add("Fecha");
                     retur.Add("Area");
                     retur.Add("Descripcion");
                     retur.Add("Nivel");
                     retur.Add("Observaciones");
+                }
+                else{
+                    retur.Add("CurrId");
+                    retur.Add("CurrRevDate");
+                    retur.Add("CurrArea");
+                    retur.Add("CurrAreaDesc");
+                    retur.Add("CurrAreaLevel");
+                    retur.Add("CurrObs");
+                }    
                 break;
             case "Pay":
-                retur.Add("Pay");
+                if (type==0)
+                {
+                    retur.Add("Pay");
                     retur.Add("Fecha");
                     retur.Add("Tipo");
                     retur.Add("Retencion");
                     retur.Add("Cuenta");
+                }
+                else{
+                    retur.Add("PayId");
+                    retur.Add("PayStDate");
+                    retur.Add("PayType");
+                    retur.Add("PayRet");
+                    retur.Add("PayAccount");
+                }
                 break;
             case "Presence":
-                retur.Add("Presence");
+                if (type==0)
+                {
+                    retur.Add("Presence");
                     retur.Add("Location");
                     retur.Add("Date");
                     retur.Add("Time");
+                }
+                else{
+                    retur.Add("PresId");
+                    retur.Add("PresLocal");
+                    retur.Add("PresDateEvent");
+                    retur.Add("PresTimeEvent");
+                }
                 break;
             case "Review":
-                retur.Add("Review");
+                if (type==0)
+                {
+                    retur.Add("Review");
                     retur.Add("Fecha");
                     retur.Add("Objetivo");
                     retur.Add("Rating");
+                }
+                else{
+                    retur.Add("RevId");
+                    retur.Add("RevDate");
+                    retur.Add("RevObj");
+                    retur.Add("RevObRat");
+                }
                 break;
             case "Training":
-                retur.Add("Training");
+                if (type==0)
+                {
+                    retur.Add("Training");
                     retur.Add("Fecha");
                     retur.Add("Area");
                     retur.Add("Curso");
                     retur.Add("Calificacion");
                     retur.Add("Observaciones");
+                }
+                else{
+                    retur.Add("TrainId");
+                    retur.Add("TrainDate");
+                    retur.Add("TrainArea");
+                    retur.Add("TrainCourse");
+                    retur.Add("TrainCalif");
+                    retur.Add("TrainObser");
+                }
                 break;
             default:
                 break;
@@ -122,7 +210,6 @@
     }
     IEnumerable<Container> getData_Career(dynamic oTMaterial)
         {
-            List<string> Column =Columns ("Career");
             IEnumerable<TPCareer> fTPersonal = (List<TPCareer>)oTMaterial;
             IEnumerable<Container> TPersonal = fTPersonal.Select(
                 f => new Container() 
@@ -148,7 +235,6 @@
         }
     IEnumerable<Container> getData_Contract(dynamic oTMaterial)
         {
-            List<string> Column =Columns ("Career");
             IEnumerable<TPContract> fTPersonal = (List<TPContract>)oTMaterial;
             IEnumerable<Container> TPersonal = fTPersonal.Select(
                 f => new Container() 
@@ -174,7 +260,6 @@
         }
    IEnumerable<Container> getData_Curriculum(dynamic oTMaterial)
         {
-            List<string> Column =Columns ("Curriculum");
             IEnumerable<TPCurric> fTPersonal = (List<TPCurric>)oTMaterial;
             IEnumerable<Container> TPersonal = fTPersonal.Select(
                 f => new Container() 
@@ -200,7 +285,6 @@
         }
     IEnumerable<Container> getData_Pay(dynamic oTMaterial)
         {
-            List<string> Column =Columns ("Pay");
             IEnumerable<TPPay> fTPersonal = (List<TPPay>)oTMaterial;
             IEnumerable<Container> TPersonal = fTPersonal.Select(
                 f => new Container() 
@@ -226,7 +310,6 @@
         }
     IEnumerable<Container> getData_Presence(dynamic oTMaterial)
         {
-            List<string> Column =Columns ("Presen");
             IEnumerable<TPPresen> fTPersonal = (List<TPPresen>)oTMaterial;
             IEnumerable<Container> TPersonal = fTPersonal.Select(
                 f => new Container() 
@@ -253,7 +336,6 @@
 
     IEnumerable<Container> getData_Review(dynamic oTMaterial)
         {
-            List<string> Column =Columns ("Review");
             IEnumerable<TPReview> fTPersonal = (List<TPReview>)oTMaterial;
             IEnumerable<Container> TPersonal = fTPersonal.Select(
                 f => new Container() 
@@ -280,7 +362,6 @@
 
     IEnumerable<Container> getData_Train(dynamic oTMaterial)
         {
-            List<string> Column =Columns ("Review");
             IEnumerable<TPTrain> fTPersonal = (List<TPTrain>)oTMaterial;
             IEnumerable<Container> TPersonal = fTPersonal.Select(
                 f => new Container() 
@@ -445,7 +526,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("CareerData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(3,6,@Columns("Career"),@getData_Career((List<TPCareer>)ViewBag.ListCareer),@Controller("Career"),Model.PerId)
+                @Html.dataGrid(3,6,@Columns("Career",0),@getData_Career((List<TPCareer>)ViewBag.ListCareer),@Controller("Career"),@Columns("Career",1),Model.PerId)
             </div>
         </table>
     </div>
@@ -455,7 +536,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ContractData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-4">
-                @Html.dataGrid(4,6,@Columns("Contract"),@getData_Contract((List<TPContract>)ViewBag.ListContract),@Controller("Contract"),Model.PerId)
+                @Html.dataGrid(4,6,@Columns("Contract",0),@getData_Contract((List<TPContract>)ViewBag.ListContract),@Controller("Contract"),@Columns("Contract",1),Model.PerId)
             </div>
         </table>
     </div>    
@@ -466,7 +547,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("CurriculumData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-5">
-                @Html.dataGrid(5,6,@Columns("Curriculum"),@getData_Curriculum((List<TPCurric>)ViewBag.ListCurric),@Controller("Curriculum"),Model.PerId)
+                @Html.dataGrid(5,6,@Columns("Curriculum",0),@getData_Curriculum((List<TPCurric>)ViewBag.ListCurric),@Controller("Curriculum"),@Columns("Curriculum",1),Model.PerId)
             </div>
         </table>
     </div>    
@@ -476,7 +557,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PayrollData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-6">
-                @Html.dataGrid(6,6,@Columns("Pay"),@getData_Pay((List<TPPay>)ViewBag.ListPay),@Controller("Pay"),Model.PerId)
+                @Html.dataGrid(6,6,@Columns("Pay",0),@getData_Pay((List<TPPay>)ViewBag.ListPay),@Controller("Pay"),@Columns("Pay",1),Model.PerId)
             </div>
         </table>
     </div>    
@@ -486,7 +567,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PresenceData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-7">
-                @Html.dataGrid(7,6,@Columns("Presence"),@getData_Presence((List<TPPresen>)ViewBag.ListPre),@Controller("Presence"),Model.PerId)
+                @Html.dataGrid(7,6,@Columns("Presence",0),@getData_Presence((List<TPPresen>)ViewBag.ListPre),@Controller("Presence"),@Columns("Presence",1),Model.PerId)
             </div>
         </table>
     </div>    
@@ -496,7 +577,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ObjectiveReviewmData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-8">
-                @Html.dataGrid(8,6,@Columns("Review"),@getData_Review((List<TPReview>)ViewBag.ListRev),@Controller("Review"),Model.PerId)
+                @Html.dataGrid(8,6,@Columns("Review",0),@getData_Review((List<TPReview>)ViewBag.ListRev),@Controller("Review"),@Columns("Review",1),Model.PerId)
             </div>
         </table>
     </div>    
@@ -506,7 +587,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("TrainingData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-9">
-                @Html.dataGrid(9,6,@Columns("Training"),@getData_Train((List<TPTrain>)ViewBag.ListTra),@Controller("Training"),Model.PerId)
+                @Html.dataGrid(9,6,@Columns("Training",0),@getData_Train((List<TPTrain>)ViewBag.ListTra),@Controller("Training"),@Columns("Training",1),Model.PerId)
             </div>
         </table>
     </div>    
