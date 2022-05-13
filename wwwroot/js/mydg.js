@@ -50,16 +50,17 @@ function rowClick(_nr,controller,action,_gridId)//,filterExpression,sortExpressi
 }
 function sortTable(_ncol,_gridId )
 {
+    //document.cookie="name=value;path=/";
     var sortorder = getCookie(cookieName("sortorder",_gridId))
     var _sortorder = parseInt(sortorder);
     if (_sortorder ==0){sortorder=1;}
     else{sortorder =0;}
-    document.cookie = cookieName("sortorder",_gridId)+"="+sortorder.toString();
+    document.cookie = cookieName("sortorder",_gridId)+"="+sortorder.toString()+";path=/";
     var _mcolumn = parseInt(_ncol);
     //alert(_mcolumn);
-    document.cookie = cookieName("colorderton",_gridId)+"="+_mcolumn.toString();
-    document.cookie = cookieName("rowselected",_gridId)+"=0";
-    document.cookie = cookieName("currentpage",_gridId)+"=0";
+    document.cookie = cookieName("colorderton",_gridId)+"="+_mcolumn.toString()+";path=/";
+    document.cookie = cookieName("rowselected",_gridId)+"=0"+";path=/";
+    document.cookie = cookieName("currentpage",_gridId)+"=0"+";path=/";
     var url=window.location = window.location.href;//.split("?")[0];
     window.location.href = url;
 
@@ -67,10 +68,10 @@ function sortTable(_ncol,_gridId )
 function filterTable(_ncol,_gridId )
 {
     var _texttofilter = document.getElementById(nameOf('filter-'+_ncol.toString(),_gridId)).value;
-    document.cookie = cookieName("filterby-"+_ncol.toString(),_gridId)+"="+_texttofilter.toString();
+    document.cookie = cookieName("filterby-"+_ncol.toString(),_gridId)+"="+_texttofilter.toString()+";path=/";
     //alert(cookieName("filterby-"+_ncol.toString(),_gridId)+"="+_texttofilter.toString());
     var current_page=1;   //cuando inicia o resetea un filtro pasa a la primera pagina del resultado
-    document.cookie = cookieName("currentpage",_gridId)+"="+current_page.toString();
+    document.cookie = cookieName("currentpage",_gridId)+"="+current_page.toString()+";path=/";
 
 
     //alert(getCookie(cookieName("filterby-"+_ncol.toString(),_gridId)));
@@ -78,8 +79,8 @@ function filterTable(_ncol,_gridId )
 
     //elimina los seleccionados 
     ////uncheck_all_except(0,_mxrow,_gridId)
-    document.cookie = cookieName("rowselected",_gridId)+"=0";
-    document.cookie = cookieName("proselected",_gridId)+"=0";
+    document.cookie = cookieName("rowselected",_gridId)+"=0"+";path=/";
+    document.cookie = cookieName("proselected",_gridId)+"=0"+";path=/";
 
     var url=window.location = window.location.href;//.split("?")[0];
     window.location.href = url;
@@ -124,8 +125,8 @@ function selectionchange(_nr,_mxrow,_gridId)
         div.style.visibility = 'visible';
         //uncheck_all_except(_nr,_mxrow);
         document.getElementById(nameOf('trRow'+_nrow.toString().trim(),_gridId)).className = 'line-text-sel';
-        document.cookie = cookieName("rowselected",_gridId)+"="+_nrow.toString();
-        document.cookie = cookieName("proselected",_gridId)+"="+_npag.toString();
+        document.cookie = cookieName("rowselected",_gridId)+"="+_nrow.toString()+";path=/";
+        document.cookie = cookieName("proselected",_gridId)+"="+_npag.toString()+";path=/";
         //document.cookie = "ridselected="+_id.toString();
         //////btnact.value=_id.toString();
     }
@@ -136,8 +137,8 @@ function selectionchange(_nr,_mxrow,_gridId)
         {trRow.className = "line-text-pri";}
         else{trRow.className ="line-text-alt";}
 
-        document.cookie = cookieName("rowselected",_gridId)+"=0";
-        document.cookie = cookieName("proselected",_gridId)+"=0";
+        document.cookie = cookieName("rowselected",_gridId)+"=0"+";path=/";
+        document.cookie = cookieName("proselected",_gridId)+"=0"+";path=/";
         //document.cookie = "ridselected=0";
         ////////btnact.value="0";
     }
@@ -158,7 +159,7 @@ function prevPage(_current_page,_gridId)
 
     //var _tcur_page = document.getElementById('curpage');
     //_tcur_page.value=current_page.toString();
-    document.cookie = cookieName("currentpage",_gridId)+"="+current_page.toString();
+    document.cookie = cookieName("currentpage",_gridId)+"="+current_page.toString()+";path=/";
     //alert(current_page);
     window.location.href = url;
     
@@ -175,11 +176,10 @@ function nextPage(_current_page,_num_pages,_gridId)
 
     var url=window.location = window.location.href;//.split("?")[0];
     //alert(cookieName("currentpage",_gridId)+"="+current_page.toString());
-    document.cookie = cookieName("currentpage",_gridId)+"="+current_page.toString();
+    document.cookie = cookieName("currentpage",_gridId)+"="+current_page.toString()+";path=/";
     //alert(getCookie( "_"+_gridId+"-"+"currentpage"));
     //alert(getCookie(cookieName("currentpage",_gridId)));
     //alert(current_page);
-
     window.location.href = url;
     
 }
@@ -206,7 +206,7 @@ function gotoPage(_current_page,_num_pages,_gridId)
     //url += ret ; //'?param=1'
     //alert("_nex:"+url.toString());
 
-    document.cookie = cookieName("currentpage",_gridId)+"="+new_page.toString();
+    document.cookie = cookieName("currentpage",_gridId)+"="+new_page.toString()+";path=/";
     //alert(new_page);
 
     window.location.href = url;

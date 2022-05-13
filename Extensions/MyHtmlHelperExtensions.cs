@@ -232,7 +232,8 @@ public static class MyHtmlHelperExtensions {
                 //string cookievalue ="";
                 try{
                 IHttpContextAccessor _httpContextAccessor=new HttpContextAccessor(); 
-                _httpContextAccessor.HttpContext.Response.Cookies.Append(cookiename,cookievalue); 
+                Microsoft.AspNetCore.Http.CookieOptions options = new CookieOptions(); //default path /
+                _httpContextAccessor.HttpContext.Response.Cookies.Append(cookiename,cookievalue,options); 
                 }
                 catch(Exception ex){
                     string mensaje = ex.Message;
@@ -268,6 +269,9 @@ public static class MyHtmlHelperExtensions {
             string Tablemod=cabText[0];
             string uniqueId = Idgrid.ToString();//  getUid();
             int gridCount = Convert.ToInt32(CookiesReturn( "gridcount"));
+
+            int curpag = Convert.ToInt32(CookiesReturn( "_"+uniqueId+"-"+"currentpage"));    
+
 
             string quehayaqui=CookiesReturn("_1-filterby-2",false);
 

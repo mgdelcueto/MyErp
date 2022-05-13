@@ -124,6 +124,11 @@ namespace MyErp.Controllers {
         }
         */
         public IActionResult Index(int filter,string pNam, string pNam1,string actionType) {
+            string curpag="";
+            try{
+            curpag=Request.Cookies["_1-currentpage"].ToString().TrimStart().TrimEnd();
+            }
+            catch{}
             if (actionType=="Cancel"){filter=0;}
             //string variable =_localizer["Indexmessage"];
             //ViewData["Title"] = _localizer["Indexmessage"];
@@ -132,6 +137,8 @@ namespace MyErp.Controllers {
             ViewData["Fil2"]=pNam1;
             var dbContext = new MyErpDBContext();
             try{
+             var model = _dbContext.TPersons.OrderBy(p => p.PerId).ToList();
+            /*
              var model = _dbContext.TPersons.OrderBy(p => p.PerName1).ThenBy(p=> p.PerName).ToList();
              if (filter ==2){
                 var queryc = from p in _dbContext.TPersons 
@@ -140,7 +147,9 @@ namespace MyErp.Controllers {
                         select p;
                 var qList=queryc.ToList();
                 model = qList;
+             
              }
+             */
              //ViewData["CookiesGrid"]=getCookies();
              return View(model);
             }
