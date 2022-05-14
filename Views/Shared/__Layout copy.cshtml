@@ -1,0 +1,402 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+
+@functions {
+    string Errores()
+    {
+        string mensaje ="";
+        try{mensaje =(string)ViewData["Error"];
+        }catch{}
+        return mensaje;
+    }
+    string Visible(int modulo)
+    {  
+        int tmod =0;
+        string cstyle ="invisible";
+        try{tmod = (int)ViewData["modulo"];}
+        catch{}
+        if (modulo==tmod)
+        {cstyle="visible";}
+        return cstyle;
+    }
+    string getName()
+    {
+        var name = Context.User.Claims.FirstOrDefault(
+                x => x.Type == "FullName")?.Value; //FullName
+        string typename ="NM";
+        try{typename =(string)ViewData["Name"];
+        }catch{}
+        if (name==null){typename ="NA";}
+        switch (typename)
+        {
+            case "NA":
+                name =@SharedLocalizer.GetLocalizedHtmlString("Unauthorized");
+                break;
+            default:
+                break;
+        }
+        return name;
+    }
+    string getUName()
+    {
+        var name = Context.User.Claims.FirstOrDefault(
+                x => x.Type == "UserName")?.Value; //FullName
+        return name;
+    }
+    string visChange()
+    {
+        string typename ="";
+        try{typename =(string)ViewData["Name"];
+        }catch (Exception exc) {
+            string mensaje = exc.Message;
+        }
+        if (typename==null){typename ="LO";}
+
+        string ret ="xvisible";
+        if (typename=="NA"||typename =="FO"||typename =="NM") {ret="invisible";}
+        return ret;  
+    }
+    string xvisChange()
+    {
+        string typename ="";
+        try{typename =(string)ViewData["Name"];
+        }catch{}
+        if (typename==null){typename ="LO";}
+        return typename;  
+    }
+    string getLink(string ltype)
+    {
+        var link = "";
+        string typename ="NM";
+        try{typename =(string)ViewData["Name"];
+        }catch{}
+        if (typename==null){typename ="LO";}
+        switch (ltype)
+        {
+            case "Text":
+                if (typename=="NA")
+                    {link =@SharedLocalizer.GetLocalizedHtmlString("PleaseLogin");}
+                else 
+                    {
+                        if (typename=="FO")
+                            {
+                                link ="";
+                            }
+                        else 
+                            {
+                                if (typename=="LO" )
+                                {
+                                    {link =@SharedLocalizer.GetLocalizedHtmlString("Logout");}
+                                }
+                            }
+                    }
+                break;
+            case "Action":
+                if (typename=="NA")
+                    {link =@SharedLocalizer.GetLocalizedHtmlString("_Login");}
+                else 
+                    {
+                        if (typename=="FO")
+                            {
+                                link ="";
+                            }
+                        else 
+                            {
+                                {link =@SharedLocalizer.GetLocalizedHtmlString("_Logout");}
+                            }
+                    }
+                break;
+            default:
+                break;
+        }
+        return link;
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+@*Esto a continuacion para el control data Grid*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.1.1/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+
+
+    <link rel="stylesheet" href="~/css/Site.css" />
+    <link rel="stylesheet" href="~/css/style.css"  />
+    <link rel="stylesheet" href="~/css/dg.mydg.css"  />
+
+    <script src="~/js/mydg.js"></script>
+   
+    <script type="text/javascript">
+        window.onload = myFunc;
+
+    </script>
+@*Lo anterior  para el control data Grid*@
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MyErp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+@*
+    <style>
+        .menu-hor {color: #222222;
+        background-color: #CCCCCC;
+        border-color: #888888;
+        text-align: center;
+        }
+         .row-full{
+            width: 100vw;
+            position: relative;
+            }
+        </style>
+        <style>
+        .visible {
+            visibility: visible;
+            display:block;
+            color: #222222;
+            background-color: #EEEEEE;
+            border-color: #888888;
+            text-align: left;
+            }
+
+    </style>
+    <style>
+        .xvisible {
+            visibility: visible;
+            display:block;
+            text-align: left;
+            }
+
+    </style>
+    <style>
+        .invisible {
+            visibility: hidden;
+            display:none;
+            text-align: left;
+            }
+    </style>
+    <style>       
+        .cont-titles {color: #666666;
+        background-color: #CCCCCC;
+        border-color: #888888;
+        text-align: center;
+        }
+        .cont-titles-l {color: #222222;
+        background-color: #CCCCCC;
+        border-color: #888888;
+        text-align: left;
+        }
+    </style>
+    <style>
+        .cont-body {color: #222222;
+        background-color: #CCCCCC;
+        border-color: #888888;
+        text-align: left;
+        }
+    </style>
+    <style>
+        .table-norm {
+        border: 1px solid white;
+        }
+        .table-bold {
+        border: 1px solid white;
+        background-color: #CCCCCC;
+        }
+        .div-bold {
+        visibility: visible;
+        display:block;
+        color: #222222;
+        font-weight: bold;
+        background-color: #CCCCCC;
+        border-color: #888888;
+        text-align: center;
+
+        }
+    </style>
+    <style>
+        .head-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        border-top-color : #FFFFFF
+        text-align: center;
+        }
+    </style>
+    <style>
+        .col-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: right;
+        }
+    </style>
+    <style>
+        .norm-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: left;
+        }
+        .norm-num {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: right;
+        }
+        .col-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: left;
+        }
+        .col-num {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: right;
+        }
+        .medium-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: left;
+        font-size: large;
+        }
+        .big-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: left;
+        width: 270px;
+        }
+    </style>
+    <style>
+        .botcol-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+    </style>    
+    <style>
+        .red-number {color: #222222;        
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+
+    </style>    <style>
+       .blue-number {color: #222222;        
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+    </style>
+    <style>
+        .botred-number {color: #222222;        
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+
+    </style>
+    <style>
+       .botblue-number {color: #222222;        
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+    </style>
+    <style>
+        .centerul {
+        display: flex;
+        justify-content: center;
+        }
+    </style>
+*@
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <!--<img src="/MyERP_Logo.jpg" alt="My ERP Logo" style="width:60px;height:60px;" align="bottom"/>
+                -->
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/MyERP_Logo.jpg" alt="My ERP Logo" style="width:60px;height:60px;" align="bottom"/></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse centerul">
+                    <ul class="navbar-nav flex-grow-1 centerul">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TOrganiza" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Org")</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TPerson" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("HRArea")</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TSuplier" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Purchasing")</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TCustomer" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Sales")</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Engineering")</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="" asp-route-panel="1" asp-route-panel1="1">@SharedLocalizer.GetLocalizedHtmlString("MRPPLanning")</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Languages" >@SharedLocalizer.GetLocalizedHtmlString("Languages")</a>
+                        </li>      
+                        <!--                  
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut" >@SharedLocalizer.GetLocalizedHtmlString("Logout")</a>
+                            </li>
+                        -->                        
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <table>
+                        <tr>
+                            <td>@getName()</td>
+                            <td>
+                        </tr>
+                        <tr>
+                            <td>@Html.ActionLink(@getLink("Text"), @getLink("Action"), "Account")</td>
+                        </tr>
+                        <tr>
+                            <td class=@visChange()>
+                                @Html.ActionLink(@SharedLocalizer.GetLocalizedHtmlString("ChangePassword"), "ChLogin","Account")
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!--
+        <div class="container">
+            <div class=@Visible(99)>
+                @await Html.PartialAsync("_SelectLanguagePartial")    
+            </div>
+        </div>
+    -->
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - MyErp - <a asp-area="" asp-controller="Account" asp-action="Privacy">@SharedLocalizer.GetLocalizedHtmlString("About")</a>
+        </div>
+        <div>
+            @Errores()
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

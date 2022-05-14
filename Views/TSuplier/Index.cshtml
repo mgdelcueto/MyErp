@@ -129,7 +129,7 @@
 <div class = "cont-titles">
  <h3>@SharedLocalizer.GetLocalizedHtmlString("SupList")</h3>   
 </div>
-@Html.dataGrid(2,6,Columns(0),@getData((List<TSuplier>)Model),@Controller(),Columns(1),0)
+@Html.dataGrid(2,16,Columns(0),@getData((List<TSuplier>)Model),@Controller(),Columns(1),0)
 @*
 <td><a class="nav-link text-dark" asp-area="" asp-controller="TSuplier" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Filter")</a></td>
 <div class="@isVisible()">

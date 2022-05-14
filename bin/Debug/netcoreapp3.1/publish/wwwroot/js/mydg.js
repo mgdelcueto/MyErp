@@ -25,6 +25,7 @@ function rowSelected(_mxrow,_gridId)
             }
             catch{break;}
     }
+    alert(_nrsel);
     return _nrsel;
 }
 function actionClick(controller,action,_maxrow,_gridId)//,filterExpression,sortExpression)
@@ -120,7 +121,6 @@ function selectionchange(_nr,_mxrow,_gridId)
     var btnact = document.getElementById(nameOf("btn_dropdn",_gridId));
     var _id = checkbox.value.toString();  //no usado de momento
     var div = document.getElementById(nameOf('dd_div_btn',_gridId));
-
 
     if (checkbox.checked){
         div.style.visibility = 'visible';

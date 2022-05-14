@@ -233,7 +233,9 @@ namespace MyErp.Controllers {
 
             CreateViewBags(Pid);    
             ViewData["panel"]=2;
-            return View("Edit",model);
+            //return View("Edit",model);
+            return RedirectToAction("Edit", new { id = Pid,panel =2,move=0 });
+
         }
 
         [HttpGet]
@@ -278,7 +280,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(Pid);
             ViewData["panel"]=3;
-            return View("Edit",model);
+            return RedirectToAction("Edit", new { id = Pid,panel =3,move=0 });
         }
 
         [HttpGet]
@@ -319,7 +321,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(Pid);
             ViewData["panel"]=4;
-            return View("Edit",model);
+            return RedirectToAction("Edit", new { id = Pid,panel =4,move=0 });
         }
 
 
@@ -365,7 +367,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(Pid);
             ViewData["panel"]=5;
-            return View("Edit",model);
+            return RedirectToAction("Edit", new { id = Pid,panel =5,move=0 });
         }
 
 
@@ -411,7 +413,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(Pid);
             ViewData["panel"]=6;
-            return View("Edit",model);
+            return RedirectToAction("Edit", new { id = Pid,panel =6,move=0 });
         }
 
         [HttpGet]
@@ -456,7 +458,7 @@ namespace MyErp.Controllers {
                
             CreateViewBags(Pid);
             ViewData["panel"]=7;
-            return View("Edit",model);
+            return RedirectToAction("Edit", new { id = Pid,panel =7,move=0 });
         }
 
         [HttpGet]
@@ -501,7 +503,7 @@ namespace MyErp.Controllers {
                 
             CreateViewBags(Pid);
             ViewData["panel"]=8;
-            return View("Edit",model);
+            return RedirectToAction("Edit", new { id = Pid,panel =8,move=0 });
         }
 
         public IActionResult Delete(int id) {
@@ -536,7 +538,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(pid);                
             ViewData["panel"]=2;
-            return View("Edit",model);
+            return RedirectToAction("Edit", new { id = pid,panel =2,move=0 });
 
             //return RedirectToAction("Edit");
         }
@@ -561,7 +563,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(pid);                
             ViewData["panel"]=3;
-            return View("Edit",model);
+            return RedirectToAction("Edit", new { id = pid,panel =3,move=0 });
 
             //return RedirectToAction("Edit");
         }
@@ -586,9 +588,8 @@ namespace MyErp.Controllers {
 
             CreateViewBags(pid);                
             ViewData["panel"]=4;
-            return View("Edit",model);
+            return RedirectToAction("Edit", new { id = pid,panel =4,move=0 });
 
-            //return RedirectToAction("Edit");
         }
 
         public IActionResult PayDelete(int id,int Pid) {
@@ -611,9 +612,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(pid);                
             ViewData["panel"]=5;
-            return View("Edit",model);
-
-            //return RedirectToAction("Edit");
+            return RedirectToAction("Edit", new { id = pid,panel =5,move=0 });
         }
 
         public IActionResult PreDelete(int id,int Pid) {
@@ -636,9 +635,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(pid);                
             ViewData["panel"]=6;
-            return View("Edit",model);
-
-            //return RedirectToAction("Edit");
+            return RedirectToAction("Edit", new { id = pid,panel =6,move=0 });
         }
 
         public IActionResult RevDelete(int id,int Pid) {
@@ -661,9 +658,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(pid);                
             ViewData["panel"]=7;
-            return View("Edit",model);
-
-            //return RedirectToAction("Edit");
+            return RedirectToAction("Edit", new { id = pid,panel =7,move=0 });
         }
 
 
@@ -688,9 +683,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(pid);                
             ViewData["panel"]=8;
-            return View("Edit",model);
-
-            //return RedirectToAction("Edit");
+            return RedirectToAction("Edit", new { id = pid,panel =8,move=0 });
         }
 
 
@@ -748,7 +741,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(Pid);                
             ViewData["panel"]=2;
-            return View("Edit",model);
+            return RedirectToAction("Edit", new { id = Pid,panel =2,move=0 });
         } 
 
         [HttpGet]
@@ -802,9 +795,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(Pid);    
             ViewData["panel"]=3;
-            return View("Edit",model);
-
-            //return RedirectToAction("Index");
+            return RedirectToAction("Edit", new { id = Pid,panel =3,move=0 });
         }     
 
 
@@ -858,9 +849,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(Pid);    
             ViewData["panel"]=4;
-            return View("Edit",model);
-
-            //return RedirectToAction("Index");
+            return RedirectToAction("Edit", new { id = Pid,panel =4,move=0 });
         }     
         [HttpGet]
         public IActionResult PayEdit(int id,int peid) {
@@ -913,9 +902,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(Pid);    
             ViewData["panel"]=5;
-            return View("Edit",model);
-
-            //return RedirectToAction("Index");
+            return RedirectToAction("Edit", new { id = Pid,panel =5,move=0 });
         }     
 
 
@@ -970,9 +957,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(Pid);    
             ViewData["panel"]=6;
-            return View("Edit",model);
-
-            //return RedirectToAction("Index");
+            return RedirectToAction("Edit", new { id = Pid,panel =6,move=0 });
         }     
 
 
@@ -1027,9 +1012,9 @@ namespace MyErp.Controllers {
 
             CreateViewBags(Pid);    
             ViewData["panel"]=7;
-            return View("Edit",model);
+            //return View("Edit",model);
 
-            //return RedirectToAction("Index");
+            return RedirectToAction("Edit", new { id = Pid,panel =7,move=0 });
         }     
 
         [HttpGet]
@@ -1084,9 +1069,7 @@ namespace MyErp.Controllers {
 
             CreateViewBags(Pid);    
             ViewData["panel"]=8;
-            return View("Edit",model);
-
-            //return RedirectToAction("Index");
+            return RedirectToAction("Edit", new { id = Pid,panel =8,move=0 });
         }     
 
         [HttpGet]

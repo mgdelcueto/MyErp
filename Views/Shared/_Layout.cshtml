@@ -127,6 +127,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
 
 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
     <link rel="stylesheet" href="~/css/Site.css" />
     <link rel="stylesheet" href="~/css/style.css"  />
     <link rel="stylesheet" href="~/css/dg.mydg.css"  />
@@ -315,16 +318,32 @@
     @RenderSection("Styles", required: false)
 </head>
 <body>
+    <script>
+    function openMnu() {
+        if (document.getElementById("oMenu").style.display!= "block"){
+        document.getElementById("oMenu").style.display= "block" ;}
+        else {
+        document.getElementById("oMenu").style.display= "none" ;}
+    }
+    </script>
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
+            <div class="container-fluid">
                 <!--<img src="/MyERP_Logo.jpg" alt="My ERP Logo" style="width:60px;height:60px;" align="bottom"/>
                 -->
+                <img id="image" src="/MyERP_Logo.jpg" onclick="openMnu()"width="30pt" height="30pt">
+                <h3>@ViewData["Title"]</h3>
+                <td>@getName()</td>
+                @*
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/MyERP_Logo.jpg" alt="My ERP Logo" style="width:60px;height:60px;" align="bottom"/></a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                *@
+                @*
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse centerul">
                     <ul class="navbar-nav flex-grow-1 centerul">
                         <li class="nav-item">
@@ -355,6 +374,43 @@
                         -->                        
                     </ul>
                 </div>
+                
+                *@
+                <div id ="oMenu" name="MyOwnMenu" class="o-dropdown--menu dropdown-menu dx-none o-popper-position o-popper-position--bs" style="top: 46px; left: 0px;">
+                    <a class="dropdown-item o_app" asp-area="" asp-controller="TOrganiza" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Org")</a>
+                    <a class="dropdown-item o_app" asp-area="" asp-controller="TPerson" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("HRArea")</a>
+                    <a class="dropdown-item o_app" asp-area="" asp-controller="TSuplier" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Purchasing")</a>
+                    <a class="dropdown-item o_app" asp-area="" asp-controller="TCustomer" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Sales")</a>
+                    <a class="dropdown-item o_app" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Engineering")</a>
+                    <a class="dropdown-item o_app" asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="" asp-route-panel="1" asp-route-panel1="1">@SharedLocalizer.GetLocalizedHtmlString("MRPPLanning")</a>
+                    <a class="dropdown-item o_app" asp-area="" asp-controller="Account" asp-action="Languages" >@SharedLocalizer.GetLocalizedHtmlString("Languages")</a>
+
+                    <a class="dropdown-item o_app" asp-area="" asp-controller="Account" asp-action="@getLink("Action")" >@getLink("Text")</a>
+                    <a class="dropdown-item o_app" asp-area="" asp-controller="Account" asp-action="ChLogin" >@SharedLocalizer.GetLocalizedHtmlString("ChangePassword")</a>
+
+                    @*
+	                <a href="#menu_id=84&amp;action=118" class="dropdown-item o_app" data-section="84" data-menu-xmlid="mail.menu_root_discuss">Discuss</a>
+	                <a href="#menu_id=331&amp;action=518" class="dropdown-item o_app" data-section="331" data-menu-xmlid="calendar.mail_menu_calendar">Calendar</a>
+	                <a href="#menu_id=182&amp;action=295" class="dropdown-item o_app" data-section="182" data-menu-xmlid="sale.sale_menu_root">Sales</a>
+	                <a href="#menu_id=114&amp;action=224" class="dropdown-item o_app" data-section="114" data-menu-xmlid="account.menu_finance">Invoicing</a>
+	                <a href="#menu_id=211&amp;action=327" class="dropdown-item o_app" data-section="211" data-menu-xmlid="project.menu_main_pm">Project</a>
+	                <a href="#menu_id=226&amp;action=350" class="dropdown-item o_app" data-section="226" data-menu-xmlid="purchase.menu_purchase_root">Purchase</a>
+	                <a href="#menu_id=245&amp;action=418" class="dropdown-item o_app focus" data-section="245" data-menu-xmlid="stock.menu_stock_root">Inventory</a>
+	                <a href="#menu_id=403&amp;action=646" class="dropdown-item o_app" data-section="403" data-menu-xmlid="mrp.menu_mrp_root">Manufacturing</a>
+	                <a href="#menu_id=354&amp;action=550" class="dropdown-item o_app" data-section="354" data-menu-xmlid="maintenance.menu_maintenance_title">Maintenance</a>
+	                <a href="#menu_id=310&amp;action=499" class="dropdown-item o_app" data-section="310" data-menu-xmlid="hr.menu_hr_root">Employees</a>
+	                <a href="#menu_id=396&amp;action=610" class="dropdown-item o_app" data-section="396" data-menu-xmlid="hr_attendance.menu_hr_attendance_root">Attendances</a>
+	                <a href="#menu_id=337&amp;action=523" class="dropdown-item o_app" data-section="337" data-menu-xmlid="hr_expense.menu_hr_expense_root">Expenses</a>
+	                <a href="#menu_id=1&amp;action=665" class="dropdown-item o_app" data-section="1" data-menu-xmlid="base.menu_board_root">Dashboards</a>
+	                <a href="#menu_id=5&amp;action=37" class="dropdown-item o_app" data-section="5" data-menu-xmlid="base.menu_management">Apps</a>
+	                <a href="#menu_id=4&amp;action=89" class="dropdown-item o_app" data-section="4" data-menu-xmlid="base.menu_administration">Settings</a>
+                    *@
+                </div>
+                
+
+
+
+                @*
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <table>
                         <tr>
@@ -371,10 +427,11 @@
                         </tr>
                     </table>
                 </div>
+                *@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="w3-container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

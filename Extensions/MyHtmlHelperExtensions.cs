@@ -670,6 +670,7 @@ public static class MyHtmlHelperExtensions {
     public static void insert_row(int pri,  Container c,TagBuilder tagtab,int nrow,string uniqueId,int row_selected,int pro_selected,int current_page,int rowspage,string _controller, string _actionEdit)
     {
                     var tagtr = new TagBuilder($"tr"); //<tr>
+                    if (pri==1){
                     tagtr.MergeAttribute("id","_"+uniqueId+"-"+"trRow"+nrow.ToString().Trim());
                     if (nrow ==row_selected && pro_selected==current_page)
                         {tagtr.Attributes.Add("class", $"line-text-sel");}
@@ -678,6 +679,7 @@ public static class MyHtmlHelperExtensions {
                         {   tagtr.Attributes.Add("class", $"line-text-pri");}
                         else{
                             tagtr.Attributes.Add("class", $"line-text-alt");}
+                    }
                     }
                     if (pri==1){
                     var tagtd0 = new TagBuilder($"td"); //<tr>

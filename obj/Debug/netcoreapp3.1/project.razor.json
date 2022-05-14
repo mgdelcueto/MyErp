@@ -15117,6 +15117,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Shared\\__Layout copy.cshtml",
+      "TargetPath": "Views\\Shared\\__Layout copy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\WCeEdit.cshtml",
       "TargetPath": "Views\\TEngine\\WCeEdit.cshtml",
       "FileKind": "mvc"

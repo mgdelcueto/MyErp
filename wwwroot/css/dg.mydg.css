@@ -291,6 +291,9 @@
 #div_btn {
         text-align: center;
 }
+.dx-none {
+        display: none;
+}
 .tab-content {
         border: 7px solid rgb(239, 18, 18);
         /*border-width: 2 3px 3px;*/

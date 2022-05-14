@@ -123,10 +123,10 @@
 
 }
 
-<h3>@ViewData["Title"]</h3>
+@*<h3>@ViewData["Title"]</h3>*@
 <div class = "cont-titles">
  <h3>@SharedLocalizer.GetLocalizedHtmlString("PersonTable")</h3>   
 </div>
 <div  name="aqui-el-control-grid-1">
-    @Html.dataGrid(1,6,Columns(0),@getData((List<TPerson>)Model),@Controller(),Columns(1),0)
+    @Html.dataGrid(1,16,Columns(0),@getData((List<TPerson>)Model),@Controller(),Columns(1),0)
 </div>
