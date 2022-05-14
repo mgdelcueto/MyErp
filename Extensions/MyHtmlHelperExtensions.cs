@@ -315,7 +315,12 @@ public static class MyHtmlHelperExtensions {
             var tagret = new TagBuilder ($"div");
             tagret.MergeAttribute("name","div-grid-return");
 
+            var htagtab = new TagBuilder($"table"); //<able>
+            htagtab.MergeAttribute("id","h-data-table");
+            htagtab.MergeAttribute("hidden","hidden");
+
             var tagtab = new TagBuilder($"table"); //<able>
+            tagtab.MergeAttribute("id","data-table");
             tagtab.MergeAttribute("name","div-grid-table");
             tagtab.MergeAttribute("style","width:100%");
             var tagtbtr = new TagBuilder($"tr"); //<able>
@@ -360,6 +365,7 @@ public static class MyHtmlHelperExtensions {
             tagtexp.MergeAttribute("name","curpage");
             //tagtexp.MergeAttribute("value",current_page.ToString());
             */
+            //button Create Record
             var tagbac = new TagBuilder ($"button");
             tagbac.Attributes.Add("class", $"dropbtn");
             tagbac.MergeAttribute("type","button");
@@ -368,6 +374,18 @@ public static class MyHtmlHelperExtensions {
             tagbac.MergeAttribute("onclick","addRecord('"+_controller+"','"+_actionCreate+"',"+_Id.ToString()+")");
             tagbac.InnerHtml.Append("Create Record");
             tagdivx.InnerHtml.AppendHtml(tagbac);
+
+
+            //button Export
+            var tagbae = new TagBuilder ($"button");
+            tagbae.Attributes.Add("class", $"dropbtn");
+            tagbae.MergeAttribute("type","button");
+            tagbae.MergeAttribute("name","btn_export");
+            //tagbac.MergeAttribute("page",npage.ToString());
+            tagbae.MergeAttribute("onclick","exportData("+_ncols.ToString()+")");
+            tagbae.InnerHtml.Append("Export Data");
+            tagdivx.InnerHtml.AppendHtml(tagbae);
+
 
             var tagdivb1 = new TagBuilder ($"div");
             tagdivb1.Attributes.Add("class", $"dropdown");
@@ -413,9 +431,11 @@ public static class MyHtmlHelperExtensions {
             tagdivx.InnerHtml.AppendHtml(tagdivb1);
 
             tagtab.InnerHtml.AppendHtml(tagdivx);
+            //htagtab.InnerHtml.AppendHtml(tagdivx);
 
 
             var tagtrc = new TagBuilder($"tr"); 
+            var tagtrhc = new TagBuilder($"tr"); 
             
             var tagthc0 = new TagBuilder($"th"); 
             tagthc0.Attributes.Add("class", $"head-text");
@@ -428,6 +448,7 @@ public static class MyHtmlHelperExtensions {
                 tagthc1.MergeAttribute("onclick","sortTable(1,'"+uniqueId+"')");
                 tagthc1.InnerHtml.Append(cabText[1]);
                 tagtrc.InnerHtml.AppendHtml(tagthc1);
+                tagtrhc.InnerHtml.AppendHtml(tagthc1);
             }
             if (_ncols>=2){
                 var tagthc2 = new TagBuilder($"th"); 
@@ -435,6 +456,7 @@ public static class MyHtmlHelperExtensions {
                 tagthc2.MergeAttribute("onclick","sortTable(2,'"+uniqueId+"')");
                 tagthc2.InnerHtml.Append(cabText[2]);
                 tagtrc.InnerHtml.AppendHtml(tagthc2);
+                tagtrhc.InnerHtml.AppendHtml(tagthc2);
             }
             if (_ncols>=3){
                 var tagthc3 = new TagBuilder($"th"); 
@@ -442,6 +464,7 @@ public static class MyHtmlHelperExtensions {
                 tagthc3.MergeAttribute("onclick","sortTable(3,'"+uniqueId+"')");
                 tagthc3.InnerHtml.Append(cabText[3]);
                 tagtrc.InnerHtml.AppendHtml(tagthc3);
+                tagtrhc.InnerHtml.AppendHtml(tagthc3);
             }
             if (_ncols >= 4){
                 var tagthc4 = new TagBuilder($"th"); 
@@ -449,6 +472,7 @@ public static class MyHtmlHelperExtensions {
                 tagthc4.MergeAttribute("onclick","sortTable(4,'"+uniqueId+"')");
                 tagthc4.InnerHtml.Append(cabText[4]);
                 tagtrc.InnerHtml.AppendHtml(tagthc4);
+                tagtrhc.InnerHtml.AppendHtml(tagthc4);
             }
             if (_ncols>=5){
                 var tagthc5 = new TagBuilder($"th"); 
@@ -456,9 +480,11 @@ public static class MyHtmlHelperExtensions {
                 tagthc5.MergeAttribute("onclick","sortTable(5,'"+uniqueId+"')");
                 tagthc5.InnerHtml.Append(cabText[5]);
                 tagtrc.InnerHtml.AppendHtml(tagthc5);
+                tagtrhc.InnerHtml.AppendHtml(tagthc5);
             }
 
             tagtab.InnerHtml.AppendHtml(tagtrc);
+            htagtab.InnerHtml.AppendHtml(tagtrhc);
 
             /*Encabezado para buscar y filtrar
             
@@ -533,6 +559,7 @@ public static class MyHtmlHelperExtensions {
 
             //tagtrf.InnerHtml.AppendHtml(tagdivf);
             tagtab.InnerHtml.AppendHtml(tagtrf);
+            //htagtab.InnerHtml.AppendHtml(tagtrf);
 
             /*
             <table class="table-norm" border="1">
@@ -548,6 +575,7 @@ public static class MyHtmlHelperExtensions {
             </tr>
 
             */
+            bool hiddenphase =false;
             int tcount=1;
             int nrow=1;
             //int rowspage=7;
@@ -558,64 +586,20 @@ public static class MyHtmlHelperExtensions {
             foreach (var c in TMaterial) {
                 if (npage ==current_page)
                 {
-                    var tagtr = new TagBuilder($"tr"); //<tr>
-                    tagtr.MergeAttribute("id","_"+uniqueId+"-"+"trRow"+nrow.ToString().Trim());
-                    if (nrow ==row_selected && pro_selected==current_page)
-                        {tagtr.Attributes.Add("class", $"line-text-sel");}
-                    else{
-                        if (nrow%2==0 )
-                        {   tagtr.Attributes.Add("class", $"line-text-pri");}
-                        else{
-                            tagtr.Attributes.Add("class", $"line-text-alt");}
-                    }
-                    var tagtd0 = new TagBuilder($"td"); //<tr>
-                    var tagcbx = new TagBuilder($"input"); //<tr>
-                    tagcbx.MergeAttribute("type","checkbox");
-                    tagcbx.MergeAttribute("id","_"+uniqueId+ "-"+nrow.ToString());
-                    tagcbx.MergeAttribute("value",c.CampoId.ToString());
-                    tagcbx.MergeAttribute("onclick","selectionchange("+nrow.ToString()+","+rowspage.ToString()+",'"+uniqueId+"')");
-                    tagtd0.InnerHtml.AppendHtml(tagcbx);
-                    tagtr.InnerHtml.AppendHtml(tagtd0);
-
-                    //tagtdx.MergeAttribute("onclick","rowClick()");
-
-                    var tagtd1 = new TagBuilder($"td"); //<tr>
-                    tagtd1.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote +",'"+sortExpression+"')");
-                    tagtd1.InnerHtml.Append(c.Campo01 );
-                    tagtr.InnerHtml.AppendHtml(tagtd1);
-
-                    var tagtd2 = new TagBuilder($"td"); //<tr>
-                    tagtd2.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote+",'"+sortExpression+"')");
-                    tagtd2.InnerHtml.Append(c.Campo02);
-                    tagtr.InnerHtml.AppendHtml(tagtd2);
-            
-                    var tagtd3 = new TagBuilder($"td"); //<tr>
-                    tagtd3.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote+",'"+sortExpression+"')");
-                    tagtd3.InnerHtml.Append(c.Campo03);
-                    tagtr.InnerHtml.AppendHtml(tagtd3);
-
-                    var tagtd4 = new TagBuilder($"td"); //<tr>
-                    tagtd4.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote+",'"+sortExpression+"')");
-                    tagtd4.InnerHtml.Append(c.Campo04);
-                    tagtr.InnerHtml.AppendHtml(tagtd4);
-
-                    var tagtd5 = new TagBuilder($"td"); //<tr>
-                    tagtd5.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote+",'"+sortExpression+"')");
-                    tagtd5.InnerHtml.Append(c.Campo05);
-                    tagtr.InnerHtml.AppendHtml(tagtd5);
-
-
-                    tagtab.InnerHtml.AppendHtml(tagtr);  
+                    insert_row( 1,c,tagtab,nrow,uniqueId, row_selected,pro_selected,current_page,rowspage,_controller, _actionEdit);
+                    insert_row( 0,c,htagtab,nrow,uniqueId, row_selected,pro_selected,current_page,rowspage,_controller, _actionEdit);
                     nrow++;   
                     if (nrow>rowspage)
                     {
+                        hiddenphase=true;
                         addBtnFoot(tagdfo,npage,numpages,uniqueId);
                         //nrow=1;
                         npage ++;
-                        break;
+                        //break;
                     }      
                 }
                 else{
+                    insert_row( 0,c,htagtab,nrow,uniqueId, row_selected,pro_selected,current_page,rowspage,_controller, _actionEdit);
                     tcount++;
                     nrow++;   
                     if (nrow>rowspage)
@@ -625,10 +609,32 @@ public static class MyHtmlHelperExtensions {
                     }
                 }    
             }
-            bool addfoot=false;
-            while  (nrow<=rowspage)
+            if (!hiddenphase)
+            {
+                bool addfoot=false;
+                while  (nrow<=rowspage)
+                    {
+                        addfoot =true;
+                        insert_row_void(nrow,tagtab);
+                        nrow ++;
+                    }
+                if (addfoot)
                 {
-                    addfoot =true;
+                
+                    addBtnFoot(tagdfo,npage,numpages,uniqueId);
+                }
+            }
+            tagtbtd.InnerHtml.AppendHtml(htagtab);
+            tagtbtd.InnerHtml.AppendHtml(tagtab);
+            tagtbtd.InnerHtml.AppendHtml(tagdfo);
+            tagtbtr.InnerHtml.AppendHtml(tagtbtd);
+
+            tagret.InnerHtml.AppendHtml(tagtbtr);
+
+            return tagret;
+        }
+    public static void insert_row_void(int nrow, TagBuilder tagtab)
+    {
                     var tagtr = new TagBuilder($"tr"); //<tr>
                     if (nrow%2==0 )
                     {   tagtr.Attributes.Add("class", $"line-text-pri");}
@@ -660,20 +666,60 @@ public static class MyHtmlHelperExtensions {
 
                     tagtab.InnerHtml.AppendHtml(tagtr);  
 
-                    nrow ++;
-                }
-            if (addfoot)
-            {
-                addBtnFoot(tagdfo,npage,numpages,uniqueId);
-            }
-            tagtbtd.InnerHtml.AppendHtml(tagtab);
-            tagtbtd.InnerHtml.AppendHtml(tagdfo);
-            tagtbtr.InnerHtml.AppendHtml(tagtbtd);
+    }
+    public static void insert_row(int pri,  Container c,TagBuilder tagtab,int nrow,string uniqueId,int row_selected,int pro_selected,int current_page,int rowspage,string _controller, string _actionEdit)
+    {
+                    var tagtr = new TagBuilder($"tr"); //<tr>
+                    tagtr.MergeAttribute("id","_"+uniqueId+"-"+"trRow"+nrow.ToString().Trim());
+                    if (nrow ==row_selected && pro_selected==current_page)
+                        {tagtr.Attributes.Add("class", $"line-text-sel");}
+                    else{
+                        if (nrow%2==0 )
+                        {   tagtr.Attributes.Add("class", $"line-text-pri");}
+                        else{
+                            tagtr.Attributes.Add("class", $"line-text-alt");}
+                    }
+                    if (pri==1){
+                    var tagtd0 = new TagBuilder($"td"); //<tr>
+                    var tagcbx = new TagBuilder($"input"); //<tr>
+                    tagcbx.MergeAttribute("type","checkbox");
+                    tagcbx.MergeAttribute("id","_"+uniqueId+ "-"+nrow.ToString());
+                    tagcbx.MergeAttribute("value",c.CampoId.ToString());
+                    tagcbx.MergeAttribute("onclick","selectionchange("+nrow.ToString()+","+rowspage.ToString()+",'"+uniqueId+"')");
+                    tagtd0.InnerHtml.AppendHtml(tagcbx);
+                    tagtr.InnerHtml.AppendHtml(tagtd0);
+                    }
+                    //tagtdx.MergeAttribute("onclick","rowClick()");
 
-            tagret.InnerHtml.AppendHtml(tagtbtr);
+                    var tagtd1 = new TagBuilder($"td"); //<tr>
+                    tagtd1.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote +",'"+sortExpression+"')");
+                    tagtd1.InnerHtml.Append(c.Campo01 );
+                    tagtr.InnerHtml.AppendHtml(tagtd1);
 
-            return tagret;
-        }
+                    var tagtd2 = new TagBuilder($"td"); //<tr>
+                    tagtd2.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote+",'"+sortExpression+"')");
+                    tagtd2.InnerHtml.Append(c.Campo02);
+                    tagtr.InnerHtml.AppendHtml(tagtd2);
+            
+                    var tagtd3 = new TagBuilder($"td"); //<tr>
+                    tagtd3.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote+",'"+sortExpression+"')");
+                    tagtd3.InnerHtml.Append(c.Campo03);
+                    tagtr.InnerHtml.AppendHtml(tagtd3);
+
+                    var tagtd4 = new TagBuilder($"td"); //<tr>
+                    tagtd4.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote+",'"+sortExpression+"')");
+                    tagtd4.InnerHtml.Append(c.Campo04);
+                    tagtr.InnerHtml.AppendHtml(tagtd4);
+
+                    var tagtd5 = new TagBuilder($"td"); //<tr>
+                    tagtd5.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote+",'"+sortExpression+"')");
+                    tagtd5.InnerHtml.Append(c.Campo05);
+                    tagtr.InnerHtml.AppendHtml(tagtd5);
+
+
+                    tagtab.InnerHtml.AppendHtml(tagtr);  
+
+    }
     public static void addBtnFoot (TagBuilder tagdfo, int npage, int numpages,string uniqueId)
         {
                         var taglfo = new TagBuilder ($"label");

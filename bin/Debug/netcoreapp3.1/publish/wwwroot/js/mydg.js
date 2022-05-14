@@ -68,6 +68,7 @@ function sortTable(_ncol,_gridId )
 function filterTable(_ncol,_gridId )
 {
     var _texttofilter = document.getElementById(nameOf('filter-'+_ncol.toString(),_gridId)).value;
+
     document.cookie = cookieName("filterby-"+_ncol.toString(),_gridId)+"="+_texttofilter.toString()+";path=/";
     //alert(cookieName("filterby-"+_ncol.toString(),_gridId)+"="+_texttofilter.toString());
     var current_page=1;   //cuando inicia o resetea un filtro pasa a la primera pagina del resultado
@@ -293,4 +294,63 @@ function cookieNameS(_cookie)
 function nameOf(_control,_gridId)
 {
     return "_"+_gridId+"-"+_control;
+}
+function exportData(_ncols){
+    /* Get the HTML data using Element by Id */
+    var table = document.getElementById("h-data-table");
+    
+    _ncols = _ncols-1  //hidden table not include first (select) column
+    var start_col=0;  //start with 0 or 1 to permit or avoid first column (select)
+
+    /* Declaring array variable */
+    var rows =[];
+    var colm =[];
+      //iterate through rows of table
+    for(var i=0,row; row = table.rows[i];i++){
+        //rows would be accessed using the "row" variable assigned in the for loop
+        //Get each cell value/column from the row
+        var scolm="";
+        for (var c=start_col;c<_ncols;c++)  
+        {
+            colm[c]=row.cells[c].innerText;
+            scolm+=row.cells[c].innerText.replace(/,/g, '-');
+            if (c<_ncols-1){scolm+=",";}
+        }
+        /*
+        column1 = row.cells[0].innerText;
+        column2 = row.cells[1].innerText;
+        column3 = row.cells[2].innerText;
+        column4 = row.cells[3].innerText;
+        column5 = row.cells[4].innerText;
+        */
+    /* add a new records in the array */
+        rows.push([scolm]);
+        /*
+        rows.push(
+            [
+                column1,
+                column2,
+                column3,
+                column4,
+                column5
+            ]
+        );
+        */
+ 
+        }
+        csvContent = "data:text/csv;charset=utf-8,";
+         /* add the column delimiter as comma(,) and each row splitted by new line character (\n) */
+        rows.forEach(function(rowArray){
+            row = rowArray.join(",");
+            csvContent += row + "\r\n";
+        });
+ 
+        /* create a hidden <a> DOM node and set its download attribute */
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "Data_Table.csv");
+        document.body.appendChild(link);
+         /* download the data file named "Stock_Price_Report.csv" */
+        link.click();
 }

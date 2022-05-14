@@ -95,9 +95,9 @@
                 if (type==0)
                 {
                     retur.Add("Career");
-                    retur.Add("Fecha");
-                    retur.Add("Posicion");
-                    retur.Add("Observaciones");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Position"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Observations"));
                 }
                 else{
                     retur.Add("CareId");
@@ -110,8 +110,8 @@
                 if (type==0)
                 {
                     retur.Add("Contract");
-                    retur.Add("Fecha");
-                    retur.Add("Observaciones");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Observations"));
                 }
                 else{
                     retur.Add("ConId");
@@ -123,11 +123,11 @@
                 if (type==0)
                 {
                     retur.Add("Curriculum");
-                    retur.Add("Fecha");
-                    retur.Add("Area");
-                    retur.Add("Descripcion");
-                    retur.Add("Nivel");
-                    retur.Add("Observaciones");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Area"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Description"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Level"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Observations"));
                 }
                 else{
                     retur.Add("CurrId");
@@ -142,10 +142,10 @@
                 if (type==0)
                 {
                     retur.Add("Pay");
-                    retur.Add("Fecha");
-                    retur.Add("Tipo");
-                    retur.Add("Retencion");
-                    retur.Add("Cuenta");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Type"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Retention"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Account"));
                 }
                 else{
                     retur.Add("PayId");
@@ -159,9 +159,9 @@
                 if (type==0)
                 {
                     retur.Add("Presence");
-                    retur.Add("Location");
-                    retur.Add("Date");
-                    retur.Add("Time");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Location"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Time"));
                 }
                 else{
                     retur.Add("PresId");
@@ -174,9 +174,9 @@
                 if (type==0)
                 {
                     retur.Add("Review");
-                    retur.Add("Fecha");
-                    retur.Add("Objetivo");
-                    retur.Add("Rating");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Objetive"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Rating"));
                 }
                 else{
                     retur.Add("RevId");
@@ -189,11 +189,11 @@
                 if (type==0)
                 {
                     retur.Add("Training");
-                    retur.Add("Fecha");
-                    retur.Add("Area");
-                    retur.Add("Curso");
-                    retur.Add("Calificacion");
-                    retur.Add("Observaciones");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Area"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Course"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Grade"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Observations"));
                 }
                 else{
                     retur.Add("TrainId");

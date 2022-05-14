@@ -24,11 +24,11 @@
         if (type==0)
         {
             retur.Add("Personal");
-            retur.Add("DNI");
-            retur.Add("Nombre");
-            retur.Add("Apellido");
-            retur.Add("Dirección");
-            retur.Add("Pais");
+            retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DNI"));
+            retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Name"));
+            retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Surname"));
+            retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Address"));
+            retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Country"));
         }
         else{
             retur.Add("PerId");
