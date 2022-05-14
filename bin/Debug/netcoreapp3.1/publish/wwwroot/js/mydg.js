@@ -295,10 +295,9 @@ function nameOf(_control,_gridId)
 {
     return "_"+_gridId+"-"+_control;
 }
-function exportData(_ncols){
+function exportData(_ncols,_gridId){
     /* Get the HTML data using Element by Id */
-    var table = document.getElementById("h-data-table");
-    
+    var table = document.getElementById(nameOf("h-data-table",_gridId));
     _ncols = _ncols-1  //hidden table not include first (select) column
     var start_col=0;  //start with 0 or 1 to permit or avoid first column (select)
 

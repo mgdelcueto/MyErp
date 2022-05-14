@@ -316,7 +316,7 @@ public static class MyHtmlHelperExtensions {
             tagret.MergeAttribute("name","div-grid-return");
 
             var htagtab = new TagBuilder($"table"); //<able>
-            htagtab.MergeAttribute("id","h-data-table");
+            htagtab.MergeAttribute("id","_"+uniqueId+"-"+"h-data-table");
             htagtab.MergeAttribute("hidden","hidden");
 
             var tagtab = new TagBuilder($"table"); //<able>
@@ -382,7 +382,7 @@ public static class MyHtmlHelperExtensions {
             tagbae.MergeAttribute("type","button");
             tagbae.MergeAttribute("name","btn_export");
             //tagbac.MergeAttribute("page",npage.ToString());
-            tagbae.MergeAttribute("onclick","exportData("+_ncols.ToString()+")");
+            tagbae.MergeAttribute("onclick","exportData("+_ncols.ToString()+",'"+uniqueId+"')");
             tagbae.InnerHtml.Append("Export Data");
             tagdivx.InnerHtml.AppendHtml(tagbae);
 
