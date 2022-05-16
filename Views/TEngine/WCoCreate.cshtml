@@ -1,4 +1,4 @@
-@{Layout = "_LyIndex";}
+@*@{Layout = "_LyIndex";}*@
 @using MyErp.Models
 @model TWccomponent
 @using MyErp.Resources
@@ -13,14 +13,14 @@
 <h3>@SharedLocalizer.GetLocalizedHtmlString("WCCompoCreate")</h3>
 </div>
 @using (Html.BeginForm()) {
-   <div class="visible">
+   <div class="div-edit">
     @Html.ValidationSummary(true)
-    <table class="table-norm" border ="1">
-        @Html.Partial("_pshowWCComponents",Model)
+    <table class="table-edit" >
          <tr>
-            <td><input type="submit" value="Add"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Add"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
         </tr>
+        @Html.Partial("_pshowWCComponents",Model)
     </table>
     </div>
 }

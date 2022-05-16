@@ -124,11 +124,13 @@ namespace MyErp.Controllers {
         }
         */
         public IActionResult Index(int filter,string pNam, string pNam1,string actionType) {
+            //esto solo testimonial  -------------------------------
             string curpag="";
             try{
             curpag=Request.Cookies["_1-currentpage"].ToString().TrimStart().TrimEnd();
             }
             catch{}
+            //lo anterior solo testimonial --------------------------
             if (actionType=="Cancel"){filter=0;}
             //string variable =_localizer["Indexmessage"];
             //ViewData["Title"] = _localizer["Indexmessage"];
@@ -1076,9 +1078,6 @@ namespace MyErp.Controllers {
         public IActionResult Edit(int id, int panel, int move, int perid)//,string _sortExpression, string _filterExpression,int IdGrid) 
         {
             ViewData["panel"]=panel;
-            string uniqueId=Request.Cookies["Grid-Personal"].ToString().TrimStart().TrimEnd();
-            string sortExpression=Request.Cookies["Grid-"+uniqueId+"-sortExpression"];
-            string filterExpression=Request.Cookies["Grid-"+uniqueId+"-filterExpression"];
             ////ViewData["IdGrid"]=uniqueId;
             
             //ViewData["PerId"]=perid;
@@ -1093,6 +1092,9 @@ namespace MyErp.Controllers {
             //var sqlp= "SELECT res._ID as _idprev, PerId as _Id, 0 as _Idnext FROM (SELECT *,lag(PerId)   OVER (ORDER BY "+sortExpression+") as _ID FROM T_Person where "+filterExpression+") as res where res.PerId="+id.ToString();
             //var sqln= "SELECT res._ID as _Idnext, PerId as _Id, 0 as _idprev  FROM (SELECT *,lead(PerId) OVER (ORDER BY "+sortExpression+") as _ID FROM T_Person where "+filterExpression+") as res where res.PerId="+id.ToString();
             //var ListpId = _dbContext.TNexPrevs.FromSqlRaw(sqlp).ToList();
+            string uniqueId=Request.Cookies["Grid-Personal"].ToString().TrimStart().TrimEnd();
+            string sortExpression=Request.Cookies["Grid-"+uniqueId+"-sortExpression"];
+            string filterExpression=Request.Cookies["Grid-"+uniqueId+"-filterExpression"];
             var sqln="SELECT case when res._pID is null then 0 else res._pID  end as _idprev, PerId as _Id, case when res._nID is null then 0 else res._nID end as _Idnext FROM (SELECT *,lead(PerId) OVER (ORDER BY " + sortExpression + " ) as _nID, lag(PerId) OVER (ORDER BY "+ sortExpression+") as _pID FROM T_Person where "+filterExpression+") as res where res.PerId="+id.ToString();
             var ListnId = _dbContext.TNexPrevs.FromSqlRaw(sqln).ToList();
             int nId=id;

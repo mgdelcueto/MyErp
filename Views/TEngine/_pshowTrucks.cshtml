@@ -1,22 +1,22 @@
 @model TCTruck
         <tr>
-            <td>@Html.LabelFor(p => p.TruckCustId,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.TruckCustId,new { @class = "norm-lab-text",})</td>
             <td class="norm-text">
-                @Html.DropDownListFor(p => p.TruckCustId,(SelectList)ViewBag.ddlCustoX,"",new { @class = "norm-text" , onchange = "this.form.submit();" })
+                @Html.DropDownListFor(p => p.TruckCustId,(SelectList)ViewBag.ddlCustoX,"",new { @class = "norm-tb-text" , onchange = "this.form.submit();" })
             </td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.TruckPlantId,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.TruckPlantId,new { @class = "norm-lab-text",})</td>
             <td class="norm-text">
-                @Html.DropDownListFor(p => p.TruckPlantId,(SelectList)ViewBag.ddlPlantX,"",new { @class = "norm-text" , onchange = "this.form.submit();" })
+                @Html.DropDownListFor(p => p.TruckPlantId,(SelectList)ViewBag.ddlPlantX,"",new { @class = "norm-tb-text" , onchange = "this.form.submit();" })
             </td>
         </tr>
 
         <tr>
-            <td>@Html.LabelFor(p => p.TruckCode,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.TruckCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
-            <td>@Html.LabelFor(p => p.TruckCrDate,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.TruckCrDate, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.TruckCode,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.TruckCode, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.TruckCrDate,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.TruckCrDate, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
         </tr>        
         <tr>
             <td>@Html.ValidationMessageFor(p => p.TruckCode)</td>
@@ -24,8 +24,8 @@
             <td>@Html.ValidationMessageFor(p => p.TruckCrDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.TruckDeno,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.TruckDeno, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.TruckDeno,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.TruckDeno, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px" } })</td>
         </tr>
         <tr>
             <td></td>

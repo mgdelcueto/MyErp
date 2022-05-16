@@ -207,6 +207,11 @@
         border-color: #e8edf9;
         text-align: left;
         }
+.norm-tb-num {color: #999999;
+        background-color: #eaebee;
+        border-color: #e8edf9;
+        text-align: right;
+        }
 .text-box{
         border:none;
         border-color: #e8edf9;        

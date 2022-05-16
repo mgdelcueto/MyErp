@@ -1,7 +1,420 @@
-@{Layout = "_LyIndex";}
+@*@{Layout = "_LyIndex";}*@
 @using MyErp.Models
 @using System.Linq;
+@using MyErp.Extensions;
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+
 @functions {
+    string isCode(){
+        string  code ="";
+        try{
+        code = (string)ViewData["Code"];}
+        catch{}
+        return code;
+    }
+
+
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "Facility":
+                retur[0]="TEngine";
+                retur[1]="FacEdit";
+                retur[2]="FacCreate";
+                retur[3]="FacDelete";
+                break;
+        case "WCenter":
+                retur[0]="TEngine";
+                retur[1]="WCeEdit";
+                retur[2]="WCeCreate";
+                retur[3]="WCeDelete";
+                break;
+        case "WCenterC":
+                retur[0]="TEngine";
+                retur[1]="WCoEdit";
+                retur[2]="WCoCreate";
+                retur[3]="WCoDelete";
+                break;
+        case "Materials":
+                retur[0]="TEngine";
+                retur[1]="MatEdit";
+                retur[2]="MatCreate";
+                retur[3]="MatDelete";
+                break;
+        case "SLocation":
+                retur[0]="TEngine";
+                retur[1]="LoEdit";
+                retur[2]="LoCreate";
+                retur[3]="LoDelete";
+                break;
+        case "Operators":
+                retur[0]="TEngine";
+                retur[1]="OphEdit";
+                retur[2]="OphCreate";
+                retur[3]="OphDelete";
+                break;
+        case "Trucks":
+                retur[0]="TEngine";
+                retur[1]="TrEdit";
+                retur[2]="TrCreate";
+                retur[3]="TrDelete";
+                break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table,int type){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "Facility":
+                if (type==0)
+                {
+                    retur.Add("Facility");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("FcCode"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("FcDescr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("FcType"));
+                }
+                else{
+                    retur.Add("FaId");
+                    retur.Add("FaCode");
+                    retur.Add("FaDescr");
+                    retur.Add("FaType");
+                }
+                break;
+            case "WCenter":
+                if (type==0)
+                {
+                    retur.Add("WCenter");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCCode"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCDesc"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCType"));
+                }
+                else{
+                    retur.Add("WcdId");
+                    retur.Add("Wccode");
+                    retur.Add("Wcdescr");
+                    retur.Add("Wctype");
+                }
+                break;
+            case "WCenterC":
+                if (type==0)
+                {
+                    retur.Add("WCenterCo");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Description"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Type"));
+                }
+                else{
+                    retur.Add("WcoId");
+                    retur.Add("WcoCode");
+                    retur.Add("WcoDescr");
+                    retur.Add("WcoType");
+                }    
+                break;
+            case "Materials":
+                if (type==0)
+                {
+                    retur.Add("Materials");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatRefer"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatDescr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatClass"));
+                }
+                else{
+                    retur.Add("MatId");
+                    retur.Add("MatRefer");
+                    retur.Add("MatDescr");
+                    retur.Add("MatClass");
+                }
+                break;
+            case "SLocation":
+                if (type==0)
+                {
+                    retur.Add("SLocation");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("LocCode"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("LocDescr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("LocType"));
+                }
+                else{
+                    retur.Add("LocId");
+                    retur.Add("LocCode");
+                    retur.Add("LocDescr");
+                    retur.Add("LocType");
+                }
+                break;
+            case "Operators":
+                if (type==0)
+                {
+                    retur.Add("Review");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Costh"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Curcy"));
+                }
+                else{
+                    retur.Add("OpeId");
+                    retur.Add("OpeCode");
+                    retur.Add("OpeDesc");
+                    retur.Add("OpeCosth");
+                    retur.Add("OpeCurcy");
+                }
+                break;
+            case "Trucks":
+                if (type==0)
+                {
+                    retur.Add("Trucks");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Deno"));
+                }
+                else{
+                    retur.Add("TruckId");
+                    retur.Add("TruckCode");
+                    retur.Add("TruckDeno");
+                }
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    IEnumerable<Container> getData_Facility(dynamic oTMaterial)
+        {
+            IEnumerable<TFacility> fTPersonal = (List<TFacility>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.FaId,
+                        Campo01 = f.FaCode.ToString(),
+                        Campo02 = f.FaDescr.ToString(),
+                        Campo03 = f.FaType.ToString(),
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
+
+
+
+
+
+
+
+
+
+    IEnumerable<Container> getData_WCenter(dynamic oTMaterial)
+        {
+            IEnumerable<TWorkCenter> fTPersonal = (List<TWorkCenter>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.WcdId,
+                        Campo01 = f.Wccode.ToString(),
+                        Campo02 = f.Wcdescr.ToString(),
+                        Campo03 = f.Wctype.ToString(),
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
+
+
+
+
+
+
+    IEnumerable<Container> getData_WCenterC(dynamic oTMaterial)
+        {
+            IEnumerable<TWccomponent> fTPersonal = (List<TWccomponent>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.WcoId,
+                        Campo01 = f.WcoCode.ToString(),
+                        Campo02 = f.WcoDescr.ToString(),
+                        Campo03 = f.WcoType.ToString(),
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
+
+
+
+
+
+
+
+    IEnumerable<Container> getData_Materials(dynamic oTMaterial)
+        {
+            IEnumerable<TMaterial> fTPersonal = (List<TMaterial>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.MatId,
+                        Campo01 = f.MatRefer.ToString(),
+                        Campo02 = f.MatDescr.ToString(),
+                        Campo03 = f.MatClass.ToString(),
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
+
+
+
+
+
+
+    IEnumerable<Container> getData_SLocation(dynamic oTMaterial)
+        {
+            IEnumerable<TLocation> fTPersonal = (List<TLocation>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.LocId,
+                        Campo01 = f.LocCode.ToString(),
+                        Campo02 = f.LocDescr.ToString(),
+                        Campo03 = f.LocType.ToString(),
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
+
+
+
+
+
+
+    IEnumerable<Container> getData_Operators(dynamic oTMaterial)
+        {
+            IEnumerable<TOperator> fTPersonal = (List<TOperator>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.OpeId,
+                        Campo01 = f.OpeCode.ToString(),
+                        Campo02 = f.OpeDesc.ToString(),
+                        Campo03 = f.OpeCosth.ToString(),
+                        Campo04 = f.OpeCurcy.ToString(),
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
+
+
+
+
+
+
+    IEnumerable<Container> getData_Trucks(dynamic oTMaterial)
+        {
+            IEnumerable<TCTruck> fTPersonal = (List<TCTruck>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.TruckId,
+                        Campo01 = f.TruckCode.ToString(),
+                        Campo02 = f.TruckDeno.ToString(),
+                        Campo03 = "",
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
+
+
+
+
+
+
     string isVisible(int panel){
         string retcol="";
         int opanel = (int)ViewData["panel"];
@@ -16,40 +429,116 @@
     }
 
 }
-
     <!--Facilities-->
     <div class=@isVisible(1)>
-    @Html.Partial("_pListaFacilities_all",(List<TFacility>)ViewBag.ListFA)
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("FacilitiesList")</h3>   
+        </div>
+        @Html.dataGrid(10,16,@Columns("Facility",0),@getData_Facility((List<TFacility>)ViewBag.ListFA),@Controller("Facility"),@Columns("Facility",1),0)
+    @*@Html.Partial("_pListaFacilities_all",(List<TFacility>)ViewBag.ListFA)*@
     </div>
 
     <!--Work Centers-->
     <div class=@isVisible(2)>
-    @Html.Partial("_pListaWorkCenters_all",(List<TWorkCenter>)ViewBag.ListProd)
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("WorkCenterList")</h3>   
+        </div>
+        @Html.dataGrid(11,16,@Columns("WCenter",0),@getData_WCenter((List<TWorkCenter>)ViewBag.ListProd),@Controller("WCenter"),@Columns("WCenter",1),0)
+    @*@Html.Partial("_pListaWorkCenters_all",(List<TWorkCenter>)ViewBag.ListProd)*@
     </div>
 
     <!--Work Centers Components-->
+
     <div class=@isVisible(3)>
-    @Html.Partial("_pListaWCComponents_all",(List<TWccomponent>)ViewBag.ListPO)
+    @*
+    @using (Html.BeginForm("Index","TEngine",FormMethod.Post)) {        
+    @_
+    <table>
+            <td>
+                <input type="hidden" name="panel" value="3"/>
+            </td>
+
+            <td class="medium-text">@SharedLocalizer.GetLocalizedHtmlString("SelectWorkCenter")</td>
+            <td class="norm-text">
+                @Html.DropDownList("WcdId", (SelectList)ViewBag.ddlReferVD, new { @class ="medium-text" , onchange = "ddlfunc(3,'WcdId',this.value)"})
+            </td>
+    </table>
+    _@
+    }
+    *@
+    <table>
+            <td class="medium-text">@SharedLocalizer.GetLocalizedHtmlString("SelectWorkCenter")</td>
+            <td class="norm-text">
+                @Html.DropDownList("WcdId", (SelectList)ViewBag.ddlReferVD, new { @class ="medium-text" , onchange = "ddlfunc(3,'WcdId',this.value)"})
+            </td>
+    </table>
+ 
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("WorkCenterCompList")</h3>   
+        </div>
+        @Html.dataGrid(12,16,@Columns("WCenterC",0),@getData_WCenterC((List<TWccomponent>)ViewBag.ListPO),@Controller("WCenterC"),@Columns("WCenterC",1),0)
+    @*@Html.Partial("_pListaWCComponents_all",(List<TWccomponent>)ViewBag.ListPO)*@
     </div>
 
     <!--Materials-->
     <div class=@isVisible(4)>
-    @Html.Partial("_pListaMaterials_all",(List<TMaterial>)ViewBag.ListMA)
+    
+
+    @*
+    @using (Html.BeginForm("Index","TEngine", new { panel = 4 ,code = @isCode()},FormMethod.Post)){   
+    <table>
+            @_
+            <td>
+                <input type="hidden" name="panel" value="4"/>
+            </td>
+            _@
+            <td class="medium-text">@SharedLocalizer.GetLocalizedHtmlString("MaterialClass")</td>
+            <td class="norm-text">
+                @Html.DropDownList("Code",
+               new SelectList(DataSource.GetMCatlassL(), "Code", "Name",@isCode()),new { @class = "norm-text", onchange = "this.form.submit();" })
+            </td>
+    </table>
+    }
+    *@
+    <table>
+            <td class="medium-text">@SharedLocalizer.GetLocalizedHtmlString("MaterialClass")</td>
+            <td class="norm-text">
+                @Html.DropDownList("Code",
+               new SelectList(DataSource.GetMCatlassL(), "Code", "Name",@isCode()),new { @class = "norm-text", onchange = "ddlfunc(4,'code',this.value)" })
+            </td>
+    </table>
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("MaterialsList")</h3>   
+        </div>
+        @Html.dataGrid(13,16,@Columns("Materials",0),@getData_Materials((List<TMaterial>)ViewBag.ListMA),@Controller("Materials"),@Columns("Materials",1),0)
+    @*@Html.Partial("_pListaMaterials_all",(List<TMaterial>)ViewBag.ListMA)*@
     </div>
 
     <!--Storages-->
     <div class=@isVisible(5)>
-    @Html.Partial("_pListaStorages_all",(List<TLocation>)ViewBag.ListLO)
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("StorageLocList")</h3>   
+        </div>
+        @Html.dataGrid(14,16,@Columns("SLocation",0),@getData_SLocation((List<TLocation>)ViewBag.ListLO),@Controller("SLocation"),@Columns("SLocation",1),0)
+    @*@Html.Partial("_pListaStorages_all",(List<TLocation>)ViewBag.ListLO)*@
     </div>
 
     <!--Roles-->
     <div class=@isVisible(6)>
-    @Html.Partial("_pListaOperators_all",(List<TOperator>)ViewBag.ListOP)
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("OperatorList")</h3>   
+        </div>
+        @Html.dataGrid(15,16,@Columns("Operators",0),@getData_Operators((List<TOperator>)ViewBag.ListOP),@Controller("Operators"),@Columns("Operators",1),0)
+    @*@Html.Partial("_pListaOperators_all",(List<TOperator>)ViewBag.ListOP)*@
     </div>
 
     <!--Trucks-->
     <div class=@isVisible(7)>
-    @Html.Partial("_pListaTrucks_all",(List<TCTruck>)ViewBag.ListTruck)
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("OperatorList")</h3>   
+        </div>
+        @Html.dataGrid(16,16,@Columns("Trucks",0),@getData_Trucks((List<TCTruck>)ViewBag.ListTruck),@Controller("Trucks"),@Columns("Trucks",1),0)
+    @*@Html.Partial("_pListaTrucks_all",(List<TCTruck>)ViewBag.ListTruck)*@
     </div>
 
     <!--Error-->

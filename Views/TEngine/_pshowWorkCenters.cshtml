@@ -1,9 +1,9 @@
 @model TWorkCenter
         <tr>
-            <td>@Html.LabelFor(p => p.Wccode,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.Wccode, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
-            <td>@Html.LabelFor(p => p.Wctype,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.Wctype, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.Wccode,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.Wccode, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.Wctype,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.Wctype, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -12,12 +12,12 @@
             <td>@Html.ValidationMessageFor(p => p.Wctype)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.Wcdescr,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.Wcdescr, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
-            <td>@Html.LabelFor(p => p.WcfaId,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.Wcdescr,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.Wcdescr, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:450px" } })</td>
+            <td>@Html.LabelFor(p => p.WcfaId,new { @class = "norm-lab-text",})</td>
             <td class="norm-text">
                 <!--@ViewData["Plant"]-->
-                @Html.DropDownListFor(p => p.WcfaId,(SelectList)ViewBag.ddlPlantVB,"",new { @class = "norm-text" })
+                @Html.DropDownListFor(p => p.WcfaId,(SelectList)ViewBag.ddlPlantVB,"",new { @class = "norm-tb-text" })
            
             </td>
         </tr>
@@ -28,10 +28,10 @@
             <td>@Html.ValidationMessageFor(p => p.WcfaId)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.Wcacct,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.Wcacct, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
-            <td>@Html.LabelFor(p => p.WccrDate,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.WccrDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.Wcacct,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.Wcacct, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.WccrDate,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.WccrDate, new { htmlAttributes = new { @class = "norm-tb-text" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -40,10 +40,10 @@
             <td>@Html.ValidationMessageFor(p => p.WccrDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.Wcstatus,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.Wcstatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
-            <td>@Html.LabelFor(p => p.WcstDate,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.WcstDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.Wcstatus,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.Wcstatus, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:90px" } })</td>
+            <td>@Html.LabelFor(p => p.WcstDate,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.WcstDate, new { htmlAttributes = new { @class = "norm-tb-text" } })</td>
         </tr>        
         <tr>
             <td></td>
@@ -52,10 +52,10 @@
             <td>@Html.ValidationMessageFor(p => p.WcstDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.Wcsupm2,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.Wcsupm2, new { htmlAttributes = new { @class = "norm-num", @style = "width:150px" } })</td>
-            <td>@Html.LabelFor(p => p.WccostMin,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.WccostMin, new { htmlAttributes = new { @class = "norm-num", @style = "width:150px," } })</td>
+            <td>@Html.LabelFor(p => p.Wcsupm2,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.Wcsupm2, new { htmlAttributes = new { @class = "norm-tb-num", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.WccostMin,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.WccostMin, new { htmlAttributes = new { @class = "norm-tb-num", @style = "width:150px," } })</td>
         </tr>        
         <tr>
             <td></td>

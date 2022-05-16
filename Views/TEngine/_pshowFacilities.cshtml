@@ -1,17 +1,17 @@
 @model TFacility
         <tr>
-            <td>@Html.LabelFor(p => p.FaCode,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.FaCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.FaCode,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.FaCode, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.FaCode)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.FaType,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.FaType, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
-            <td>@Html.LabelFor(p => p.FaDescr,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.FaDescr, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
+            <td>@Html.LabelFor(p => p.FaType,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.FaType, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.FaDescr,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.FaDescr, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:450px" } })</td>
         </tr>        
         <tr>
             <td></td>
@@ -20,10 +20,10 @@
             <td>@Html.ValidationMessageFor(p => p.FaDescr)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.FaAcct,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.FaAcct, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
-            <td>@Html.LabelFor(p => p.FaCrDate,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.FaCrDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.FaAcct,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.FaAcct, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.FaCrDate,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.FaCrDate, new { htmlAttributes = new { @class = "norm-tb-text" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -32,10 +32,10 @@
             <td>@Html.ValidationMessageFor(p => p.FaCrDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.FaStatus,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.FaStatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
-            <td>@Html.LabelFor(p => p.FaStDate,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.FaStDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.FaStatus,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.FaStatus, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:90px" } })</td>
+            <td>@Html.LabelFor(p => p.FaStDate,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.FaStDate, new { htmlAttributes = new { @class = "norm-tb-text" } })</td>
         </tr>        
         <tr>
             <td></td>
@@ -44,10 +44,10 @@
             <td>@Html.ValidationMessageFor(p => p.FaStDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.FaSupm2,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.FaSupm2, new { htmlAttributes = new { @class = "norm-num", @style = "width:150px" } })</td>
-            <td>@Html.LabelFor(p => p.FaCostMin,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.FaCostMin, new { htmlAttributes = new { @class = "norm-num", @style = "width:150px," } })</td>
+            <td>@Html.LabelFor(p => p.FaSupm2,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.FaSupm2, new { htmlAttributes = new { @class = "norm-tb-num", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.FaCostMin,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.FaCostMin, new { htmlAttributes = new { @class = "norm-tb-num", @style = "width:150px," } })</td>
         </tr>        
         <tr>
             <td></td>

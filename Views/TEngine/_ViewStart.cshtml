@@ -1,3 +1,9 @@
-﻿@{
-    Layout = "_Layout";
+﻿@using MyErp.Resources
+@inject LocService SharedLocalizer
+
+@{
+
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("EngineeringArea");
+
+    Layout = "_LayoutEng";
 }

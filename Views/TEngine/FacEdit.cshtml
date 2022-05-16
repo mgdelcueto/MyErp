@@ -1,4 +1,4 @@
-@{Layout = "_LyIndex";}
+@*@{Layout = "_LyIndex";}*@
 @using MyErp.Models
 @model TFacility
 @using MyErp.Resources
@@ -60,11 +60,11 @@ private int LAssign(){
         @Html.HiddenFor(p => p.FaId)
         @Html.ValidationSummary(true)
         <table class="table-norm" border ="1">
-        @Html.Partial("_pshowFacilities",Model)
         <tr>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
         </tr>
+        @Html.Partial("_pshowFacilities",Model)
         </table>
 
 @Html.Partial("_pmenuFac",Model)

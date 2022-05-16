@@ -14457,6 +14457,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Shared\\_LayoutEng.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutEng.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListMatComponents.cshtml",
       "TargetPath": "Views\\TEngine\\_pListMatComponents.cshtml",
       "FileKind": "mvc"
@@ -14639,6 +14644,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\OphEdit.cshtml",
       "TargetPath": "Views\\TEngine\\OphEdit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\___LyIndex copy.cshtml",
+      "TargetPath": "Views\\TEngine\\___LyIndex copy.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14969,6 +14979,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pListMatLocations.cshtml",
       "TargetPath": "Views\\TEngine\\_pListMatLocations.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\__z_LyIndex.cshtml",
+      "TargetPath": "Views\\TEngine\\__z_LyIndex.cshtml",
       "FileKind": "mvc"
     },
     {

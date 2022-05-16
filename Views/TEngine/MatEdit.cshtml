@@ -1,4 +1,4 @@
-@{Layout = "_LyIndex";}
+@*@{Layout = "_LyIndex";}*@
 @using MyErp.Models
 @model TMaterial
 @using MyErp.Resources
@@ -41,15 +41,15 @@ private int VAssign(int mPanel){
 <h3>@SharedLocalizer.GetLocalizedHtmlString("MatEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
-    <div class="visible">
+    <div class="div-edit">
     @Html.HiddenFor(p => p.MatId)
     @Html.ValidationSummary(true)
-    <table class="table-norm" border ="1">
-        @Html.Partial("_pshowMaterials",Model)
+    <table class="table-edit">
         <tr>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
         </tr>
+        @Html.Partial("_pshowMaterials",Model)
     </table>
     </div>
 }

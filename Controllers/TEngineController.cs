@@ -16,6 +16,34 @@ namespace MyErp.Controllers {
         public TEngineController(MyErpDBContext dbContext) {
             _dbContext = dbContext;
         }
+        private string engTit(int panel)
+        {
+            string ret = "Facilities";
+            switch (panel)
+            {
+                case 2:
+                    ret="WorCenters";
+                    break;
+                case 3:
+                    ret="WorCentComp";
+                    break;
+                case 4:
+                    ret="Materials";
+                    break;
+                case 5:
+                    ret="Locations";
+                    break;
+                case 6:
+                    ret="OperatorRoles";
+                    break;
+                case 7:
+                    ret="Trucks";
+                    break;
+                default:
+                    break;
+            }
+            return ret;
+        }
         private void CreateViewBags(int? prod, int? plant,string Code="",int Coid=0,int? CustId=0,int? TruckId=0,int? filter=0,string pNam="", string pNam1="")
         {
             var queryfa = (from fa in _dbContext.TFacilities
@@ -439,19 +467,19 @@ namespace MyErp.Controllers {
             ViewData["panel"]=panel;
             ViewData["Title"] = "Engineer Data";
             ViewData["Code"]=Code;
+
+            ViewData["EngTittle"]=engTit(panel);
             //var dbContext = new MyErpDBContext();
             try{
                 CreateViewBags(WcdId,FaId,Code,0,0,0,filter,pNam,pNam1);
-             return View();
             }
             catch(Exception Ex){
                 string mensaje = Ex.Message;
                 ViewData["ErrorMs"]=mensaje;
                 ViewData["panel"]=999;
                 //return View('Error',new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-                return View();
             }
-            
+            return View();
         }
 
         [HttpGet]
@@ -1053,6 +1081,9 @@ namespace MyErp.Controllers {
             var model = _dbContext.TFacilities
                 .SingleOrDefault(u => u.FaId.Equals(id));
             CreateViewBags(0,model.FaId);  
+
+            ViewData["EngTittle"]=engTit(panel);
+
             return View(model);
             }
             catch{return View("Error");}            

@@ -1,9 +1,9 @@
 @model TLocation
         <tr>
-            <td>@Html.LabelFor(p => p.LocCode,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.LocCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
-            <td>@Html.LabelFor(p => p.LocType,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.LocType, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.LocCode,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.LocCode, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.LocType,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.LocType, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -12,12 +12,12 @@
             <td>@Html.ValidationMessageFor(p => p.LocType)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.LocDescr,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.LocDescr, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
-            <td>@Html.LabelFor(p => p.LocFaId,new { @class = "norm-text",})</td>
-            <td class="norm-text">
+            <td>@Html.LabelFor(p => p.LocDescr,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.LocDescr, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:450px" } })</td>
+            <td>@Html.LabelFor(p => p.LocFaId,new { @class = "norm-lab-text",})</td>
+            <td class="norm-tb-text">
                 <!--@ViewData["Plant"]-->
-                @Html.DropDownListFor(p => p.LocFaId,(SelectList)ViewBag.ddlPlantVB,"",new { @class = "norm-text" })
+                @Html.DropDownListFor(p => p.LocFaId,(SelectList)ViewBag.ddlPlantVB,"",new { @class = "norm-tb-text" })
            
             </td>
         </tr>
@@ -28,10 +28,10 @@
             <td>@Html.ValidationMessageFor(p => p.LocFaId)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.LocAcct,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.LocAcct, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
-            <td>@Html.LabelFor(p => p.LocCrDate,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.LocCrDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.LocAcct,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.LocAcct, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.LocCrDate,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.LocCrDate, new { htmlAttributes = new { @class = "norm-tb-text" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -40,10 +40,10 @@
             <td>@Html.ValidationMessageFor(p => p.LocCrDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.LocStatus,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.LocStatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
-            <td>@Html.LabelFor(p => p.LocStDate,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.LocStDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.LocStatus,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.LocStatus, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:90px" } })</td>
+            <td>@Html.LabelFor(p => p.LocStDate,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.LocStDate, new { htmlAttributes = new { @class = "norm-tb-text" } })</td>
         </tr>        
         <tr>
             <td></td>
@@ -52,10 +52,10 @@
             <td>@Html.ValidationMessageFor(p => p.LocStDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.LocSupm2,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.LocSupm2, new { htmlAttributes = new { @class = "norm-num", @style = "width:150px" } })</td>
-            <td>@Html.LabelFor(p => p.LocCost,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.LocCost, new { htmlAttributes = new { @class = "norm-num", @style = "width:150px," } })</td>
+            <td>@Html.LabelFor(p => p.LocSupm2,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.LocSupm2, new { htmlAttributes = new { @class = "norm-tb-num", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.LocCost,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.LocCost, new { htmlAttributes = new { @class = "norm-tb-num", @style = "width:150px," } })</td>
         </tr>        
         <tr>
             <td></td>

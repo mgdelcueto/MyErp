@@ -1,14 +1,14 @@
 @model TMaterial
         <tr>
-            <td>@Html.LabelFor(p => p.MatRefer,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.MatRefer, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
-            <td>@Html.LabelFor(p => p.MatClass,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.MatRefer,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.MatRefer, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.MatClass,new { @class = "norm-lab-text",})</td>
             <td class="norm-text">
                 @*
                 @Html.DropDownListFor(p => p.MatClass,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-text" })
                 *@
                 @Html.DropDownListFor(p => p.MatClass,
-               new SelectList(DataSource.GetMCatlass(), "Code", "Name"),new { @class = "norm-text" })
+               new SelectList(DataSource.GetMCatlass(), "Code", "Name"),new { @class = "norm-tb-text" })
             </td>
         </tr>
         <tr>
@@ -18,16 +18,16 @@
             <td>@Html.ValidationMessageFor(p => p.MatClass)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.MatType,new { @class = "norm-text" })</td>
-            <td class="norm-text">
+            <td>@Html.LabelFor(p => p.MatType,new { @class = "norm-lab-text" })</td>
+            <td class="norm-tb-text">
                 @*
                 @Html.DropDownListFor(p => p.MatClass,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-text" })
                 *@
                 @Html.DropDownListFor(p => p.MatType,
-               new SelectList(DataSource.GetMatType(), "Code", "Name"),new { @class = "norm-text" })
+               new SelectList(DataSource.GetMatType(), "Code", "Name"),new { @class = "norm-tb-text" })
             </td>
-            <td>@Html.LabelFor(p => p.MatDescr,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.MatDescr, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
+            <td>@Html.LabelFor(p => p.MatDescr,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.MatDescr, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:450px" } })</td>
         </tr>        
         <tr>
             <td></td>
@@ -36,13 +36,13 @@
             <td>@Html.ValidationMessageFor(p => p.MatDescr)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.MatUnMed,new { @class = "norm-text" })</td>
-            <td class="norm-text">
+            <td>@Html.LabelFor(p => p.MatUnMed,new { @class = "norm-lab-text" })</td>
+            <td class="norm-tb-text">
                 @*
                 @Html.DropDownListFor(p => p.MatClass,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-text" })
                 *@
                 @Html.DropDownListFor(p => p.MatUnMed,
-               new SelectList(DataSource.GetMatUnits(), "Code", "Name"),new { @class = "norm-text" })
+               new SelectList(DataSource.GetMatUnits(), "Code", "Name"),new { @class = "norm-tb-text" })
             </td>
         </tr>
         <tr>
@@ -50,10 +50,10 @@
             <td>@Html.ValidationMessageFor(p => p.MatUnMed)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.MatDim1,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.MatDim1, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
-            <td>@Html.LabelFor(p => p.MatDim2,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.MatDim2, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.MatDim1,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.MatDim1, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.MatDim2,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.MatDim2, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -62,10 +62,10 @@
             <td>@Html.ValidationMessageFor(p => p.MatDim2)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.MatDim3,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.MatDim3, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
-            <td>@Html.LabelFor(p => p.MatWeight,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.MatWeight, new { htmlAttributes = new { @class = "norm-num", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.MatDim3,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.MatDim3, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.MatWeight,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.MatWeight, new { htmlAttributes = new { @class = "norm-tb-num", @style = "width:150px" } })</td>
         </tr>        
         <tr>
             <td></td>
@@ -74,10 +74,10 @@
             <td>@Html.ValidationMessageFor(p => p.MatWeight)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.MatStatus,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.MatStatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
-            <td>@Html.LabelFor(p => p.MatStDate,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.MatStDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.MatStatus,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.MatStatus, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:90px" } })</td>
+            <td>@Html.LabelFor(p => p.MatStDate,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.MatStDate, new { htmlAttributes = new { @class = "norm-tb-text" } })</td>
         </tr>        
         <tr>
             <td></td>

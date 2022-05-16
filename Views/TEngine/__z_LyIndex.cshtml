@@ -1,11 +1,6 @@
 @using MyErp.Resources
 @inject LocService SharedLocalizer
 
-@*@{Layout = "_Layout";}*@
-
-@{
-    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("EngineeringArea");
-}
 @functions {
     string panelBold(int panel)
     {          
@@ -66,7 +61,17 @@
 {
 
 }
-@*<h3>@ViewData["EngTittle"]</h3>*@
+@*
+    <script>
+    function opengMnu() {
+        if (document.getElementById("engMenu").style.display!= "block"){
+        document.getElementById("engMenu").style.display= "block" ;}
+        else {
+        document.getElementById("engMenu").style.display= "none" ;}
+    }
+    </script>
+*@
+<h3>@ViewData["Title"]</h3>
 <!--
 <div class = "cont-titles">
 <h2>X Customers Table</h2>   
@@ -82,12 +87,8 @@
         <table>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <label  onclick="opengMnu();">@ViewData["Title"]</label>
-                <h3>@ViewData["EngTittle"]</h3>
-            </div>
-            <div class="container-fluid">
-                @*<img id="image" src="/MyERP_Logo.jpg" onclick="opengMnu()"width="30pt" height="30pt">*@
-                <div id ="engMenu" name="MyEngMenu" class="o-dropdown--menu dropdown-menu dx-none o-popper-position o-popper-position--bs" style="top: 46px; left: 0px;">
+                <img id="image" src="/MyERP_Logo.jpg" onclick="opengMnu()"width="30pt" height="30pt">
+                <div id ="engMenu" name="MyOwnMenu" class="o-dropdown--menu dropdown-menu dx-none o-popper-position o-popper-position--bs" style="top: 46px; left: 0px;">
                     <a class="dropdown-item o_app" style="@panelBold(1)" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Facilities")</a>
                     <a class="dropdown-item o_app" style="@panelBold(2)"asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="2" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("WorkCenters")</a>
                     <a class="dropdown-item o_app" style="@panelBold(3)"asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-id="" asp-route-panel="3" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("WCComponents")</a>
