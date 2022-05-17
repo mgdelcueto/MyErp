@@ -11,18 +11,20 @@
         </tr>
 *@
         <tr>
-            <td>@Html.LabelFor(p => p.TrScCode,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.TrScCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.TrScCode,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.TrScCode, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.TrScCode)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.TrScCrLoadStart,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.TrScCrLoadStart, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
-            <td>@Html.LabelFor(p => p.TrScCrDeparture,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.TrScCrDeparture, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.TrScCrLoadStart,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.TrScCrLoadStart, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px" } })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.TrScCrDeparture,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.TrScCrDeparture, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px" } })</td>
         </tr>        
         <tr>
             <td></td>
@@ -31,10 +33,10 @@
             <td>@Html.ValidationMessageFor(p => p.TrScCrDeparture)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.TrScDayOfWeek,new { @class = "norm-text",})</td>
-            <td class="norm-text">
+            <td>@Html.LabelFor(p => p.TrScDayOfWeek,new { @class = "norm-lab-text",})</td>
+            <td>
                 @Html.DropDownListFor(p => p.TrScDayOfWeek,
-               new SelectList(DataSource.GetWDays(), "Code", "Name"),new { @class = "norm-text" })
+               new SelectList(DataSource.GetWDays(), "Code", "Name"),new { @class = "norm-tb-text" , @style = "width:250px"})
             </td>
         </tr>
         <tr>
@@ -42,8 +44,8 @@
             <td>@Html.ValidationMessageFor(p => p.TrScDayOfWeek)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.TrScDeno,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.TrScDeno, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.TrScDeno,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.TrScDeno, new { htmlAttributes = new { @class = "norm-tb-text" , @style = "width:450px"} })</td>
         </tr>
         <tr>
             <td></td>

@@ -1,4 +1,4 @@
-@{Layout = "_LyIndex";}
+@*@{Layout = "_LyIndex";}*@
 @using MyErp.Models
 @using System.Linq;
 @using Microsoft.AspNetCore.Mvc.Localization
@@ -11,63 +11,69 @@
     @Html.HiddenFor(p => p.OrgId)
     @Html.ValidationSummary(true)
 
-    <div class="visible">
-    <table>
+
+    <div class="div-edit">
+    <table class="table-edit">
         <div class="cont-titles">
-        <h2>@SharedLocalizer.GetLocalizedHtmlString("OrgData")</h2>
+        <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("OrgData")</h3>
         </div>
         <tr>
-            <td>@Html.LabelFor(p => p.OrgCode,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.OrgCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+            <td></td>
+            <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel"  name="actionType"/></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.OrgCode,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.OrgCode, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:300px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.OrgCode)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.OrgName,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.OrgName, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+            <td>@Html.LabelFor(p => p.OrgName,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.OrgName, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:300px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.OrgName)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.OrgNif,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.OrgNif, new { htmlAttributes = new { @class = "norm-text", @style = "width:120px"} })</td>
+            <td>@Html.LabelFor(p => p.OrgNif,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.OrgNif, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:120px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.OrgNif)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.OrgDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.OrgDate,new { htmlAttributes = new { @class = "norm-text"}})</td>
+            <td>@Html.LabelFor(p => p.OrgDate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.OrgDate,new { htmlAttributes = new { @class = "norm-tb-text"}})</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.OrgDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.OrgCity,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.OrgCity, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px"} })</td>
+            <td>@Html.LabelFor(p => p.OrgCity,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.OrgCity, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.OrgCity)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.OrgCtry,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.OrgCtry,new { @class = "norm-lab-text",})</td>
             <td class="norm-text">
                 @Html.DropDownListFor(p => p.OrgCtry,
-               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-tb-text" })
             </td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.OrgAdress,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.OrgAdress, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
-            <td>@Html.LabelFor(p => p.OrgEmail,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.OrgEmail, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.LabelFor(p => p.OrgAdress,new { @class = "norm-lb-text",})</td>
+            <td>@Html.EditorFor(p => p.OrgAdress, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:300px"} })</td>
+            <td>@Html.LabelFor(p => p.OrgEmail,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.OrgEmail, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
         </tr>
         <tr>
             <td></td>
@@ -76,10 +82,10 @@
             <td>@Html.ValidationMessageFor(p => p.OrgEmail)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.OrgAdressad,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.OrgAdressad, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
-            <td>@Html.LabelFor(p => p.OrgTel,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.OrgTel, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.LabelFor(p => p.OrgAdressad,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.OrgAdressad, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:300px"} })</td>
+            <td>@Html.LabelFor(p => p.OrgTel,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.OrgTel, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
         </tr>
         <tr>
             <td></td>
@@ -88,18 +94,12 @@
             <td>@Html.ValidationMessageFor(p => p.OrgTel)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.OrgWeb,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.OrgWeb, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+            <td>@Html.LabelFor(p => p.OrgWeb,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.OrgWeb, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:300px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.OrgWeb)</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel"  name="actionType"/></td>
-        </tr>
     </table>
     </div>
 }

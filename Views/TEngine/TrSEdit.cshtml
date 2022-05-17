@@ -31,17 +31,17 @@ string assVisible()
 <h3>@SharedLocalizer.GetLocalizedHtmlString("TruckScheduleEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
-    <div class="visible">
+    <div class="div-edit">
     @Html.HiddenFor(p => p.TrScId)
     @Html.HiddenFor(p => p.TrScTruckId)
     @Html.ValidationSummary(true)
-    <table class="table-norm" border ="1">
+    <table class="table-edit">
         <input type="hidden" id = "TrScTruck" name = "TrScTruck" value ="@Truck()">
-        @Html.Partial("_pshowSTrucks",Model)
         <tr>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
         </tr>
+        @Html.Partial("_pshowSTrucks",Model)
     </table>
     </div>
 

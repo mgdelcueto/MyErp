@@ -64,6 +64,7 @@ namespace MyErp.Models {
             TimeUs.Add(new TimeU("Y", "Year"));        
 
             AppRols = new List<AppRol>();
+            AppRols.Add(new AppRol("Select_Role", "Select_Role"));
             AppRols.Add(new AppRol("Administrator", "Administrator"));
             AppRols.Add(new AppRol("Customer", "Customer"));            
             AppRols.Add(new AppRol("Engineer", "Engineer"));

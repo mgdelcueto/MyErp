@@ -14432,6 +14432,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Shared\\_LayoutOrg.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutOrg.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowWCenters_parc.cshtml",
       "TargetPath": "Views\\TEngine\\_pshowWCenters_parc.cshtml",
       "FileKind": "mvc"

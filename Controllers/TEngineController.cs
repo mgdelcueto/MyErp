@@ -450,6 +450,31 @@ namespace MyErp.Controllers {
                     }
         }
 
+        public IActionResult WceRemove(int id, int  WceId, int panel, int vpanel) {
+            WCeRemove(WceId);
+            ViewData["panel"]=panel;
+            ViewData["vpanel"]=vpanel;
+            var model = _dbContext.TFacilities
+                .SingleOrDefault(u => u.FaId.Equals(id));
+            CreateViewBags(0,model.FaId);  
+
+            ViewData["EngTittle"]=engTit(panel);
+
+            return View(model);
+        }
+        public IActionResult WceAssign(int id, int  WceId, int panel, int vpanel) {
+            WCeAssign(id,WceId);
+            ViewData["panel"]=panel;
+            ViewData["vpanel"]=vpanel;
+            var model = _dbContext.TFacilities
+                .SingleOrDefault(u => u.FaId.Equals(id));
+            CreateViewBags(0,model.FaId);  
+
+            ViewData["EngTittle"]=engTit(panel);
+
+            return View(model);
+        }
+
         public IActionResult Index(int panel, int? FaId, int? WcdId, string Code, string actionType,int filter,string pNam, string pNam1,string actiontypef) {
             if(panel ==0 ){panel=1;}
             if(FaId ==null ){FaId=int.Parse("0");}
@@ -1063,6 +1088,34 @@ namespace MyErp.Controllers {
         }
 
 
+        /*
+        [HttpGet]
+        public IActionResult FacEdit(int id)//estaaccion exclusivamente para remover VCenter
+        {
+            int panel =1;
+            int vpanel =1;
+            ViewData["panel"]=panel;
+            ViewData["vpanel"]=vpanel;
+            int? FaId=0;
+            try{
+            var mode = _dbContext.TWorkCenters
+                .SingleOrDefault(u => u.WcdId.Equals(id));
+                FaId=mode.WcfaId;
+                mode.WcfaId=0;
+               _dbContext.TWorkCenters.Update(mode);
+               _dbContext.SaveChanges();
+
+                var model = _dbContext.TFacilities
+                    .SingleOrDefault(u => u.FaId.Equals(id));
+                CreateViewBags(0,model.FaId);  
+
+                ViewData["EngTittle"]=engTit(panel);
+
+                return View(model);
+            }
+            catch{return View("Error");}            
+        }
+        */
         [HttpGet]
         public IActionResult FacEdit(int id, int wrem,int wrel, int wass,int wasl, int assign,int assigl,int panel,int vpanel, int WcdId, int LocId) {
             ViewData["panel"]=panel;

@@ -45,10 +45,10 @@ private int VAssign(){
 <h3>@SharedLocalizer.GetLocalizedHtmlString("WCEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
-    <div class="visible">
+    <div class="div-edit">
     @Html.HiddenFor(p => p.WcdId)
     @Html.ValidationSummary(true)
-    <table class="table-norm" border ="1">
+    <table class="table-edit">
          <tr>
             <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
             <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>

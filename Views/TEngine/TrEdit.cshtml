@@ -1,12 +1,112 @@
 @*@{Layout = "_LyIndex";}*@
 @using MyErp.Models
 @model TCTruck
+@using MyErp.Extensions;
 @using MyErp.Resources
 @inject LocService SharedLocalizer
-@{
-    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("HRAreaIndexPage");
-}
 @functions {
+
+    string sDayofWeek(int? ndow){
+        string retcol="";
+        switch(ndow)
+        {
+            case 1:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Sunday"); 
+             break;
+            case 2:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Monday"); 
+             break;
+            case 3:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Tuesday"); 
+             break;
+            case 4:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Wednesday"); 
+             break;
+            case 5:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Tursday"); 
+             break;
+            case 6:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Friday"); 
+             break;
+            case 7:
+                 retcol = @SharedLocalizer.GetLocalizedHtmlString("Saturday"); 
+             break;
+             default:
+                 retcol="NA";
+             break;
+        }
+        return retcol;
+    }
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "TruckSc":
+                retur[0]="TEngine";
+                retur[1]="TrSEdit";           
+                retur[2]="TrSCreate";         
+                retur[3]="TrSDelete";    
+                break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table,int type){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "TruckSc":
+                if (type==0)
+                {
+                    retur.Add("TruckSc");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DayOfWeek"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("LoadStart"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Departure"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SchDescr"));
+                }
+                else{
+                    retur.Add("TrScId");
+                    retur.Add("TrScDayOfWeek");
+                    retur.Add("TrScCrLoadStart");
+                    retur.Add("TrScCrDeparture");
+                    retur.Add("TrScDeno");
+                }
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    IEnumerable<Container> getData_TruckSc(dynamic oTMaterial)
+        {
+            IEnumerable<TCTrSched> fTPersonal = (List<TCTrSched>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.TrScId,
+                        Campo01 = @sDayofWeek(f.TrScDayOfWeek).ToString(),
+                        Campo02 = string.Format("{0:HH:mm}",f.TrScCrLoadStart).ToString(),
+                        Campo03 = string.Format("{0:HH:mm}",f.TrScCrDeparture).ToString(),
+                        Campo04 = f.TrScDeno,
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
+
+
     string isVisible(int panel){
         string retcol="";
         try{
@@ -31,27 +131,25 @@ string assVisible()
 <h3>@SharedLocalizer.GetLocalizedHtmlString("TruckEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
-    <div class="visible">
+    <div class="div-edit">
     @Html.HiddenFor(p => p.TruckId)
     @Html.ValidationSummary(true)
-    <table class="table-norm" border ="1">
-        @Html.Partial("_pshowTrucks",Model)
+    <table class="table-edit">
         <tr>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
         </tr>
+        @Html.Partial("_pshowTrucks",Model)
     </table>
     </div>
-
-@*@Html.Partial("_pmenuTr",Model)*@
-
-<!--Work Centers-->
 <div class=@isVisible(1)>
 <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h3>@SharedLocalizer.GetLocalizedHtmlString("TruckSchedules")</h3>
+        <h4>@SharedLocalizer.GetLocalizedHtmlString("TruckSchedules")</h4>
     </div>
-    @Html.Partial("_pListaTruckSchedules",(List<TCTrSched>)ViewBag.ListSTrucks)
+    @Html.dataGrid(19,7,@Columns("TruckSc",0),@getData_TruckSc((List<TCTrSched>)ViewBag.ListSTrucks),@Controller("TruckSc"),@Columns("TruckSc",1))
+    @*@Html.Partial("_pListaTruckSchedules",(List<TCTrSched>)ViewBag.ListSTrucks)*@
 </table>
-@Html.ActionLink("Assign a new Schedule", "TrSCreate", new { tid= @Model.TruckId,vpanel=1})</div>
+@*@Html.ActionLink("Assign a new Schedule", "TrSCreate", new { tid= @Model.TruckId,vpanel=1})</div>*@
+</div>
 }

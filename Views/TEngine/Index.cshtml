@@ -535,7 +535,7 @@
     <!--Trucks-->
     <div class=@isVisible(7)>
         <div class = "cont-titles">
-            <h3>@SharedLocalizer.GetLocalizedHtmlString("OperatorList")</h3>   
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("TrucksList")</h3>   
         </div>
         @Html.dataGrid(16,16,@Columns("Trucks",0),@getData_Trucks((List<TCTruck>)ViewBag.ListTruck),@Controller("Trucks"),@Columns("Trucks",1),0)
     @*@Html.Partial("_pListaTrucks_all",(List<TCTruck>)ViewBag.ListTruck)*@

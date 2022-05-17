@@ -2,14 +2,20 @@ const { hasUncaughtExceptionCaptureCallback } = require("process");
 
 function funcDropDown(_gridId)
 {
-    //alert("dropdown");
     document.getElementById(nameOf("myDropdown",_gridId)).classList.toggle("show");
 
 }
 function addRecord(controller,action,_Id=0)
 {
+    if (action!=""){
     var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"?Pid="+_Id.toString();
     window.location.href = url2;
+    }
+    else{
+        var url=window.location.href;
+        window.location.href = url;
+    }
+
 }
 function rowSelected(_mxrow,_gridId)
 {
@@ -25,29 +31,46 @@ function rowSelected(_mxrow,_gridId)
             }
             catch{break;}
     }
-    alert(_nrsel);
     return _nrsel;
 }
-function actionClick(controller,action,_maxrow,_gridId)//,filterExpression,sortExpression)
+function actionClick(controller,action,_maxrow,_gridId, _parqs="")//,filterExpression,sortExpression)
 {
-    //alert("action");
+    if (action!=""){
     var _nrsel=0;
     _nrsel = parseInt(rowSelected(_maxrow,_gridId));
     if (_nrsel>0)
     {
         var checkbox = document.getElementById(nameOf(_nrsel.toString(),_gridId));
         _id = checkbox.value.toString();
-        var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
-        window.location.href = url2;
+        if (_parqs==""){
+            var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
+            window.location.href = url2;
+        }
+        else{
+            var url3=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+_parqs+_id;
+            window.location.href = url3;
+        }
+    }
+    }
+    else{
+        var url=window.location.href;
+        window.location.href = url;
     }
 }
 function rowClick(_nr,controller,action,_gridId)//,filterExpression,sortExpression)
 {
+    if (action!=""){
     var _nrow = parseInt(_nr);
     var checkbox = document.getElementById(nameOf(_nr.toString(),_gridId));
     _id = checkbox.value.toString();
     var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
     window.location.href = url2;
+    }
+    else{
+        var url=window.location.href;
+        window.location.href = url;
+    }
+
 }
 function sortTable(_ncol,_gridId )
 {
@@ -58,7 +81,7 @@ function sortTable(_ncol,_gridId )
     else{sortorder =0;}
     document.cookie = cookieName("sortorder",_gridId)+"="+sortorder.toString()+";path=/";
     var _mcolumn = parseInt(_ncol);
-    //alert(_mcolumn);
+
     document.cookie = cookieName("colorderton",_gridId)+"="+_mcolumn.toString()+";path=/";
     document.cookie = cookieName("rowselected",_gridId)+"=0"+";path=/";
     document.cookie = cookieName("currentpage",_gridId)+"=0"+";path=/";
@@ -71,16 +94,10 @@ function filterTable(_ncol,_gridId )
     var _texttofilter = document.getElementById(nameOf('filter-'+_ncol.toString(),_gridId)).value;
 
     document.cookie = cookieName("filterby-"+_ncol.toString(),_gridId)+"="+_texttofilter.toString()+";path=/";
-    //alert(cookieName("filterby-"+_ncol.toString(),_gridId)+"="+_texttofilter.toString());
+
     var current_page=1;   //cuando inicia o resetea un filtro pasa a la primera pagina del resultado
     document.cookie = cookieName("currentpage",_gridId)+"="+current_page.toString()+";path=/";
 
-
-    //alert(getCookie(cookieName("filterby-"+_ncol.toString(),_gridId)));
-
-
-    //elimina los seleccionados 
-    ////uncheck_all_except(0,_mxrow,_gridId)
     document.cookie = cookieName("rowselected",_gridId)+"=0"+";path=/";
     document.cookie = cookieName("proselected",_gridId)+"=0"+";path=/";
 
@@ -156,12 +173,10 @@ function prevPage(_current_page,_gridId)
     }
     var url=window.location = window.location.href;//.split("?")[0];
     //url +=  "?current_page=" + current_page.toString() ; //'?param=1'
-    //alert("_pre:"+url.toString());
 
     //var _tcur_page = document.getElementById('curpage');
     //_tcur_page.value=current_page.toString();
     document.cookie = cookieName("currentpage",_gridId)+"="+current_page.toString()+";path=/";
-    //alert(current_page);
     window.location.href = url;
     
 }
@@ -176,11 +191,7 @@ function nextPage(_current_page,_num_pages,_gridId)
     //ret.push(encodeURIComponent("current_page") + '=' + encodeURIComponent(current_page));
 
     var url=window.location = window.location.href;//.split("?")[0];
-    //alert(cookieName("currentpage",_gridId)+"="+current_page.toString());
     document.cookie = cookieName("currentpage",_gridId)+"="+current_page.toString()+";path=/";
-    //alert(getCookie( "_"+_gridId+"-"+"currentpage"));
-    //alert(getCookie(cookieName("currentpage",_gridId)));
-    //alert(current_page);
     window.location.href = url;
     
 }
@@ -205,10 +216,8 @@ function gotoPage(_current_page,_num_pages,_gridId)
     var url=window.location = window.location.href;//.split("?")[0];
     //url +=  "?current_page=" + new_page.toString() ; //'?param=1'
     //url += ret ; //'?param=1'
-    //alert("_nex:"+url.toString());
 
     document.cookie = cookieName("currentpage",_gridId)+"="+new_page.toString()+";path=/";
-    //alert(new_page);
 
     window.location.href = url;
     
@@ -225,15 +234,12 @@ function myFunc() {
     //debemos disponer de una coleccion de los controles grid que hay en la pagina 
     //tal vez pueden estar en una cookie
     //y hacer esto para cada uno de ellos
-    //alert("MyFunc");
     var cookinam = cookieNameS("gridcount");
     var gridcount = getCookie(cookinam);//100;//----numero de controles grid en la misma pagina getCookie(cookinam);
-    //alert("MyFunc gridcount:"+gridcount)
     for (i=1;i<=gridcount;i++)
     {   
         var _gridId = i.toString();
         var div = document.getElementById(nameOf('dd_div_btn',_gridId));
-        //alert("div:"+nameOf('dd_div_btn',_gridId));
         //var _tcur_page = document.getElementById('curpage').value;
         let x = parsenum(getCookie(cookieName("currentpage",_gridId)));
         try{
@@ -242,26 +248,20 @@ function myFunc() {
     
         let n = getCookie(cookieName("rowselected",_gridId));
         let p = getCookie(cookieName("proselected",_gridId));
-        //alert ("MyFunc control: "+_gridId.toString()+" curpage:"+x.toString()+" prosel: " + p.toString()+" rowsel: "+ n.toString());
             if (p==x && p>0){
-                //alert("check");
                 try{document.getElementById(nameOf(n,_gridId)).checked=true;}
                 catch(error){
                     try{div.style.visibility = 'hidden';}
                     catch{}
                 }
-                //alert("check bye");
                 if (n>0){try{div.style.visibility = 'visible';}catch{}}
                 else{try{div.style.visibility = 'hidden';}catch{}}
-                //alert("check bye bye");
             }
             else{
-                //alert("notequal");
                 try{div.style.visibility = 'hidden';}
                 catch{}
             }
         
-        //alert(i);
         }
 }
 function getCookie(cname) {

@@ -265,7 +265,7 @@ public static class MyHtmlHelperExtensions {
         return ret;
         
     }
-    public static IHtmlContent dataGrid(this IHtmlHelper htmlHelper,int Idgrid, int rowspage,List<string> cabText,IEnumerable<Container> _TMaterial,string [] contAction,List<string> fields, int _Id=0) {
+    public static IHtmlContent dataGrid(this IHtmlHelper htmlHelper,int Idgrid, int rowspage,List<string> cabText,IEnumerable<Container> _TMaterial,string [] contAction,List<string> fields, int _Id=0,string _parqs="") {
             string Tablemod=cabText[0];
             string uniqueId = Idgrid.ToString();//  getUid();
             int gridCount = Convert.ToInt32(CookiesReturn( "gridcount"));
@@ -415,13 +415,13 @@ public static class MyHtmlHelperExtensions {
 
             var tagac1 = new TagBuilder ($"a");
             //<a href=”javascript:JavaScript_Function()”>Click</a>
-            tagac1.MergeAttribute("href","javascript:actionClick('"+_controller+"','"+_actionDelete+"','"+rowspage.ToString()+"','"+uniqueId+"')");//+filterExpression+"','"+sortExpression+"')");
+            tagac1.MergeAttribute("href","javascript:actionClick('"+_controller+"','"+_actionDelete+"','"+rowspage.ToString()+"','"+uniqueId+"','"+_parqs+"')");//+filterExpression+"','"+sortExpression+"')");
             tagac1.Attributes.Add("class", $"elements");
             tagac1.InnerHtml.Append("Delete");
             tagdivb2.InnerHtml.AppendHtml(tagac1);
 
             var tagac2 = new TagBuilder ($"a");
-            tagac2.MergeAttribute("href","javascript:actionClick('"+_controller+"','"+_actionEdit+"','"+rowspage.ToString()+"','"+uniqueId+"')");//+filterExpression+"','"+sortExpression+"')");
+            tagac2.MergeAttribute("href","javascript:actionClick('"+_controller+"','"+_actionEdit+"','"+rowspage.ToString()+"','"+uniqueId+"','"+_parqs+"')");//+filterExpression+"','"+sortExpression+"')");
             //tagac2.MergeAttribute("href",_controller+"/"+_actionEdit+"/"+rid_selected.ToString());
             tagac2.Attributes.Add("class", $"elements");
             tagac2.InnerHtml.Append("Edit");

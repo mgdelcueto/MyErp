@@ -1,10 +1,83 @@
-@{Layout = "_LyIndex";}
+@*@{Layout = "_LyIndex";}*@
 @using MyErp.Models
 @model TUser
+@using MyErp.Extensions;
 @using MyErp.Resources
  
 @inject LocService SharedLocalizer
 @functions {
+
+    string parqsaction()
+    {
+        //deja el ultimo parametroa rellenar con el Id de la tabla en el javascript del control grid
+        string ret="";
+        try{
+        ret ="/"+Model.UserId.ToString()+"?wrem=";}
+        catch{}
+        return ret;
+    }
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "RolUsers":
+                retur[0]="TOrganiza";
+                retur[1]="";            //Edit not enabled
+                retur[2]="";            //Create not enabled
+                retur[3]="UserEdit";     //delete is remove
+                break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table,int type){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "RolUsers":
+                if (type==0)
+                {
+                    retur.Add("RolUsers");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Name"));
+                }
+                else{
+                    retur.Add("UsRolId");
+                    retur.Add("UsRolName");
+                }
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    IEnumerable<Container> getData_RolUsers(dynamic oTMaterial)
+        {
+            IEnumerable<TUsRol> fTPersonal = (List<TUsRol>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.UsRolId,
+                        Campo01 = f.UsRolName.ToString(),
+                        Campo02 = "",
+                        Campo03 = "",
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
     string Coment(){
         string coment="";
         try{
@@ -24,6 +97,10 @@
     @Html.ValidationSummary(true)
     <table class="table-norm" border ="1">
         @*@Html.Partial("_pshowUser",Model)*@
+        <tr>
+            <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+        </tr>
         @await Html.PartialAsync("_pshowUser",Model)
         <tr>
             <td><label for="resetpw">@SharedLocalizer.GetLocalizedHtmlString("Reset_Pw")</label></td>
@@ -32,17 +109,36 @@
         <tr>
             @Coment()
         </tr>
-        <tr>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
-        </tr>
     </table>
     </div>
-}
+
 @*@Html.Partial("_pmenuChart",Model)*@
 
 <div class="visible">
-@await Html.PartialAsync("_pListaUserRol",(List<TUsRol>)ViewBag.ListUserRol)
+
+        <div class="visible">@*@assVisible()>*@   
+            <table>
+                <tr>
+                    <td>@SharedLocalizer.GetLocalizedHtmlString("SelRoletoUser")
+                    </td>
+                    <td class="norm-text">
+                        <!--@ViewData["Plant"]-->
+                        @Html.DropDownList("Code", (SelectList)ViewBag.ddlRole, new { @class ="medium-text" , onchange = "this.form.submit();" })
+                   
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    <table class="table-norm" border="1">
+        <div class="cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("RolUsers")</h3>
+        </div>
+        @*@Html.ActionLink("Assign a new work Center", "FacEdit", new { id= @Model.CharId,vpanel=1, wrem = 0, wass=1,assign=@VAssign()})*@
+        @Html.dataGrid(23,9,@Columns("RolUsers",0),@getData_RolUsers((List<TUsRol>)ViewBag.ListUserRol),@Controller("RolUsers"),@Columns("RolUsers",1),0,@parqsaction())
+    </table>
+@*@await Html.PartialAsync("_pListaUserRol",(List<TUsRol>)ViewBag.ListUserRol)*@
 </div>
 
 
+}

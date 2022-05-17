@@ -72,6 +72,20 @@ namespace MyErp.Controllers {
             select new TPerson{PerId=0,PerName="--Select Employee"}).Distinct().ToList();
             var resuld = resuld0.Concat(resuld1);
             ViewBag.ddlPerso = new SelectList(resuld.ToList(), "PerId", "PerName"); 
+
+
+            var resuld2 = from p in _dbContext.TUsRols 
+                        orderby p.UsRolName
+                        select new TUsRol{UsRolId=p.UsRolId ,UsRolName=p.UsRolName};
+            var resuld3 = ( from p in _dbContext.TUsRols  
+            select new TUsRol{UsRolId=0,UsRolName="--Select Rol"}).Distinct().ToList();
+            var resuldx = resuld3.Concat(resuld2);
+            ViewBag.ddlRoles = new SelectList(resuldx.ToList(), "UsRolId", "UsRolName"); 
+
+            SelectList rolesSelectList = new SelectList(DataSource.GetAppRols(), "Code", "Name"); 
+            ViewBag.ddlRole =rolesSelectList;
+
+
         }
         public TOrganizaController(MyErpDBContext dbContext,ILogger<TPersonController> logger)
         {
@@ -318,6 +332,36 @@ namespace MyErp.Controllers {
                 string mensaje = ex.Message;
                 return RedirectToAction("Index");}    
         }    
+        
+        private void managePerChart(int id, int wrem,int PerId,int assign=0)
+        {
+            try{
+                    if (assign==1){ViewData["Assign"]=1;}
+                    if (wrem!=0){
+                        var mode = _dbContext.TChartRols
+                            .SingleOrDefault(u => u.RcharId.Equals(wrem));
+                        try{
+                        _dbContext.TChartRols.Remove(mode);
+                        _dbContext.SaveChanges();
+                        }  
+                        catch(Exception ex){
+                            string mensaje = ex.Message;}          
+                        }
+                    if (PerId!=0){
+                        try{
+                         TChartRol author = new TChartRol{ 
+                            RcharCharId = id, RcharRolId = PerId };
+                        _dbContext.TChartRols.Add(author);
+                        _dbContext.SaveChanges();
+                        }
+                        catch{}
+                    }
+                }
+            catch(Exception ex){
+                string mensaje = ex.Message;
+            }
+
+        }
         [HttpPost]
         public IActionResult Edit(TOrganizacion organiza, string actionType) {
              ViewData["panel"]=1;
@@ -338,9 +382,13 @@ namespace MyErp.Controllers {
         }        
 
         [HttpGet]
-        public IActionResult CharEdit(int id, int wrem, int wass,int assign, int WcoId) {
+        public IActionResult CharEdit(int id, int wrem, int wass,int assign, int PerId) {
             ViewData["panel"]=2;
             ViewData["ChartId"]=id;
+            if (wrem!=0)
+            {
+                managePerChart(id,wrem,PerId,assign);  //for remove roles from chart
+            }
             try{
             var model = _dbContext.TCharts
                 .SingleOrDefault(u => u.CharId.Equals(id));
@@ -351,7 +399,15 @@ namespace MyErp.Controllers {
         }
 
         [HttpPost]
-        public IActionResult CharEdit(TChart chart,int id ,int WcoId , int wass, string actionType) {
+        public IActionResult CharEdit(TChart chart,int id ,int PerId , int wrem, string actionType) {
+            if (PerId!=0)
+            {
+                managePerChart(id,wrem,PerId);     //for assign roles to chart
+                CreateViewBags(id);    
+                ViewData["panel"]=2;
+                return View(chart);
+            }
+
             if (actionType=="Cancel"){}
             if (actionType=="Update"){
             if (ModelState.IsValid){
@@ -372,10 +428,49 @@ namespace MyErp.Controllers {
 
             return RedirectToAction("Index",new{panel=2, FaId=0});
         } 
+
+        private void manageRolUser(int id, int wrem,string RolCode,int assign=0)
+        {
+            try{
+                    if (assign==1){ViewData["Assign"]=1;}
+                    if (wrem!=0){
+                        var mode = _dbContext.TUsRols
+                            .SingleOrDefault(u => u.UsRolId.Equals(wrem));
+                        try{
+                        _dbContext.TUsRols.Remove(mode);
+                        _dbContext.SaveChanges();
+                        }  
+                        catch(Exception ex){
+                            string mensaje = ex.Message;}          
+                        }
+                    if (RolCode!=null){
+                        try{
+                         TUsRol author = new TUsRol{ 
+                            UsRolUsId = id, UsRolName = RolCode, UsRolDateEnd=System.DateTime.Now };
+                        _dbContext.TUsRols.Add(author);
+                        _dbContext.SaveChanges();
+                        }
+                        catch(Exception ex){
+                            string mensaje = ex.Message;
+                        }
+                    }
+                }
+            catch(Exception ex){
+                string mensaje = ex.Message;
+            }
+
+        }
+
+        
         [HttpGet]
-        public IActionResult UserEdit(int id, string npassw=null) {
+        public IActionResult UserEdit(int id, int wrem,string Code,string npassw=null) {
             ViewData["panel"]=5;
             ViewData["UserId"]=id;
+
+            if (wrem!=0)
+            {
+                manageRolUser(id,wrem,null);  //for remove roles from user
+            }
             try{
             var model = _dbContext.TUsers
                 .SingleOrDefault(u => u.UserId.Equals(id));
@@ -392,7 +487,14 @@ namespace MyErp.Controllers {
         }
 
         [HttpPost]
-        public IActionResult UserEdit(TUser user,int id , string actionType,string npassw=null, string nresetpw=null ) {
+        public IActionResult UserEdit(TUser user,int id ,int wrem,string Code, string actionType,string npassw=null, string nresetpw=null ) {
+            if (Code!=null && Code!="Select_Role")
+            {
+                manageRolUser(id,0,Code);     //for assign roles to user
+                CreateViewBags(0,id);    
+                ViewData["panel"]=5;
+                return View(user);
+            }
             if (actionType=="Cancel"){}
             if (actionType=="Update"){
             if (ModelState.IsValid){

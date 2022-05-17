@@ -1,9 +1,128 @@
 @*@{Layout = "_LyIndex";}*@
 @using MyErp.Models
 @model TFacility
+@using MyErp.Extensions;
 @using MyErp.Resources
 @inject LocService SharedLocalizer
 @functions {
+    string parqsaction(int vpanel, string toremove)
+    {
+        //deja el ultimo parametroa rellenar con el Id de la tabla en el javascript del control grid
+        string ret ="/"+Model.FaId.ToString()+"?panel=1&vpanel="+vpanel.ToString()+"&"+toremove+"=";
+        return ret;
+    }
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "AsWCenter":
+                retur[0]="TEngine";
+                retur[1]="";            //Edit not enabled
+                retur[2]="";            //Create not enabled
+                retur[3]="FacEdit";     //delete is remove
+                break;
+        case "AsStorage":
+                retur[0]="TEngine";
+                retur[1]="";
+                retur[2]="";
+                retur[3]="FacEdit";
+                break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table,int type){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "AsWCenter":
+                if (type==0)
+                {
+                    retur.Add("WCenter");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCCode"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCDesc"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCType"));
+                }
+                else{
+                    retur.Add("WcdId");
+                    retur.Add("Wccode");
+                    retur.Add("Wcdescr");
+                    retur.Add("Wctype");
+                }
+                break;
+            case "AsStorage":
+                if (type==0)
+                {
+                    retur.Add("AsStorage");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Description"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Type"));
+                }
+                else{
+                    retur.Add("LocId");
+                    retur.Add("LocCode");
+                    retur.Add("LocDescr");
+                    retur.Add("LocType");
+                }    
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    IEnumerable<Container> getData_AsWCenter(dynamic oTMaterial)
+        {
+            IEnumerable<TWorkCenter> fTPersonal = (List<TWorkCenter>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.WcdId,
+                        Campo01 = f.Wccode.ToString(),
+                        Campo02 = f.Wcdescr.ToString(),
+                        Campo03 = f.Wctype.ToString(),
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+    IEnumerable<Container> getData_AsStorage(dynamic oTMaterial)
+        {
+            IEnumerable<TLocation> fTPersonal = (List<TLocation>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.LocId,
+                        Campo01 = f.LocCode.ToString(),
+                        Campo02 = f.LocDescr.ToString(),
+                        Campo03 = f.LocType.ToString(),
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
     string isVisible(int panel){
         string retcol="";
         int opanel = (int)ViewData["vpanel"];
@@ -78,7 +197,6 @@ private int LAssign(){
                 <td>@SharedLocalizer.GetLocalizedHtmlString("FLotoAss")
                 </td>
                 <td class="norm-text">
-                    <!--@ViewData["Plant"]-->
                     @Html.DropDownList("LocId", (SelectList)ViewBag.ddlLocNAS, new { @class ="medium-text" , onchange = "this.form.submit();" })
                 </td>
             </tr>
@@ -89,7 +207,8 @@ private int LAssign(){
             <h4>@SharedLocalizer.GetLocalizedHtmlString("FStAss")</h4>
         </div>
         @Html.ActionLink("Assign a new Location", "FacEdit", new { id= @Model.FaId, wrel = 0,vpanel=2, wasl=1,assigl=@LAssign()})
-        @Html.Partial("_pListaStorages",(List<TLocation>)ViewBag.ListStorAs)
+        @Html.dataGrid(17,7,@Columns("AsStorage",0),@getData_AsStorage((List<TLocation>)ViewBag.ListStorAs),@Controller("AsStorage"),@Columns("AsStorage",1),0,@parqsaction(2,"wrel"))
+        @*@Html.Partial("_pListaStorages",(List<TLocation>)ViewBag.ListStorAs)*@
     </table>
 
 </div>
@@ -114,7 +233,9 @@ private int LAssign(){
             <h3>@SharedLocalizer.GetLocalizedHtmlString("FWCAss")</h3>
         </div>
         @Html.ActionLink("Assign a new work Center", "FacEdit", new { id= @Model.FaId,vpanel=1, wrem = 0, wass=1,assign=@VAssign()})
-        @Html.Partial("_pListaWorkCenters",(List<TWorkCenter>)ViewBag.ListProdAs)
+
+        @Html.dataGrid(18,7,@Columns("AsWCenter",0),@getData_AsWCenter((List<TWorkCenter>)ViewBag.ListProdAs),@Controller("AsWCenter"),@Columns("AsWCenter",1),0,@parqsaction(1,"wrem"))
+        @*@Html.Partial("_pListaWorkCenters",(List<TWorkCenter>)ViewBag.ListProdAs)*@
     </table>
 
 </div>

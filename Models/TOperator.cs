@@ -22,7 +22,7 @@ namespace MyErp.Models
         [Required,StringLength(125)]
         public string OpeAcct { get; set; }
 
-        [Display(Name = "My Level")]
+        [Display(Name = "Costhour")]
         [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid Cost (>0)")]
         public double? OpeCosth { get; set; }
 

@@ -13,5 +13,12 @@ function ddlfunc(panel, svalue,value){
     url=url.split("?")[0];
     url = url+"?panel="+panel.toString()+"&"+svalue+"=" + value.toString();
     window.location.href = url
+
 }
+function ddlsel( controller,  action, _Id, _parqs){
+    var url=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?"+_parqs;//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
+    window.location.href = url2;
+
+}
+
 
