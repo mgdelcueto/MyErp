@@ -14572,6 +14572,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\PoCreate copy.cshtml",
+      "TargetPath": "Views\\TSuplier\\PoCreate copy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\TrSCreate.cshtml",
       "TargetPath": "Views\\TEngine\\TrSCreate.cshtml",
       "FileKind": "mvc"
@@ -14937,6 +14942,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\__LaySup.cshtml",
+      "TargetPath": "Views\\TSuplier\\__LaySup.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\WCoEdit.cshtml",
       "TargetPath": "Views\\TEngine\\WCoEdit.cshtml",
       "FileKind": "mvc"
@@ -15194,6 +15204,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TMRP\\ScView.cshtml",
       "TargetPath": "Views\\TMRP\\ScView.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\PoEdit copy.cshtml",
+      "TargetPath": "Views\\TSuplier\\PoEdit copy.cshtml",
       "FileKind": "mvc"
     },
     {

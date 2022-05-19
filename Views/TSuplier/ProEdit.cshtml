@@ -13,62 +13,48 @@
     @Html.HiddenFor(p => p.ProdId)
     @Html.HiddenFor(p => p.ProdSupId)
     @Html.ValidationSummary(true)
-    @*
-    <table class="table-norm" border ="1">
-        <tr>
-            <input type="hidden" name="ProdSupId" value="@(((TSuplier)ViewBag.Suplier).SupId)"/>
-            <td>@SharedLocalizer.GetLocalizedHtmlString("Suplier")</td>
-            <td>@(((TSuplier)ViewBag.Suplier).SupRasoc)</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td>@(((TSuplier)ViewBag.Suplier).SupNif)</td>
-        </tr>
-    </table>
-    *@
     <table class="table-norm" border ="1">
         <hr style="width:100%;text-align:left;margin-left:0">
+         <tr>
+            <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+
+        </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.ProdRefer,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.ProdRefer, new { htmlAttributes = new { @class = "norm-text", @style = "width:220px" } })</td>
+            <td>@Html.LabelFor(p => p.ProdRefer,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.ProdRefer, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:220px" } })</td>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ProdRefer)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.ProdDescr,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.ProdDescr, new { htmlAttributes = new { @class = "norm-text", @style = "width:420px" } })</td>
+            <td>@Html.LabelFor(p => p.ProdDescr,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.ProdDescr, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:420px" } })</td>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ProdDescr)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.ProdCrDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.ProdCrDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.ProdCrDate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.ProdCrDate, new { htmlAttributes = new { @class = "norm-tb-text" } })</td>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ProdCrDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.ProdStatus,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.ProdStatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:120px" } })</td>
+            <td>@Html.LabelFor(p => p.ProdStatus,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.ProdStatus, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:120px" } })</td>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ProdStatus)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.ProdStDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.ProdStDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.LabelFor(p => p.ProdStDate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.ProdStDate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.ProdStDate)</td>
             <input type="hidden" name="ProdSupId" value="@(((TSuplier)ViewBag.Suplier).SupId)"/>
-        </tr>
-         <tr>
-            <td></td>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
-
         </tr>
     </table>
     </div>

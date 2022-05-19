@@ -1,3 +1,11 @@
-﻿@{
+﻿@using MyErp.Resources
+@inject LocService SharedLocalizer
+
+@{
+
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("SuppilerAreaIndexPage");
+
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+

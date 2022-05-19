@@ -2,80 +2,65 @@
 @model TSPlanning
 @using MyErp.Resources
 @inject LocService SharedLocalizer
-@{
-    Layout = "_LaySup";
-}
 <div class="visicont-titlesble">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("EditPlanningRecord")</h3>
 </div>
 @using (Html.BeginForm()) {
-    <div class="visible">
+    <div class="div-edit">
     @Html.HiddenFor(p => p.PlanId)
     @Html.HiddenFor(p => p.PlanSupId)
     @Html.ValidationSummary(true)
-    @*
-    <table class="table-norm" border="1">
+    <table class="table-edit">
         <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
-            <td>@SharedLocalizer.GetLocalizedHtmlString("Suplier") :</td>
-            <td>@(((TSuplier)ViewBag.Suplier).SupRasoc)</td>
-            <td>@SharedLocalizer.GetLocalizedHtmlString("SupNIF")</td>
-            <td>@(((TSuplier)ViewBag.Suplier).SupNif)</td>
+            <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
         </tr>
-    </table>
-    *@
-    <table class="table-norm" border="1">
-        <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
-            <td>@Html.LabelFor(p => p.PlanProdId,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.PlanProdId,new { @class = "norm-lab-text",})</td>
             <td>
-                @Html.DropDownListFor(p=> p.PlanProdId,ViewBag.ddlReferVB as SelectList ,null,new { @class = "norm-text" })
+                @Html.DropDownListFor(p=> p.PlanProdId,ViewBag.ddlReferVB as SelectList ,null,new { @class = "norm-tb-text" })
             </td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PlanProdId)</td>
         </tr>
-        <table class="table-norm" border="1">
+        <table class="table-edit">
         <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
-            <td>@Html.LabelFor(p => p.PlanDateFrom,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.PlanDateFrom, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.LabelFor(p => p.PlanDateFrom,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PlanDateFrom, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PlanDateFrom)</td>
         </tr>
         </tr>        
         <tr>
-            <td>@Html.LabelFor(p => p.PlanDateTo,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.PlanDateTo, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.PlanDateTo,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PlanDateTo, new { htmlAttributes = new { @class = "norm-tb-text" } })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PlanDateTo)</td>
         </tr>        
         <tr>
-            <td>@Html.LabelFor(p => p.PlanQty,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.PlanQty, new { htmlAttributes = new { @class = "norm-num", @style = "width:170px" } })</td>
+            <td>@Html.LabelFor(p => p.PlanQty,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PlanQty, new { htmlAttributes = new { @class = "norm-tb-num", @style = "width:170px" } })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PlanQty)</td>
         </tr>        
         <tr>
-            <td>@Html.LabelFor(p => p.PlanFirmSt,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.PlanFirmSt, new { htmlAttributes = new { @class = "norm-text", @style = "width:120px" } })</td>
+            <td>@Html.LabelFor(p => p.PlanFirmSt,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PlanFirmSt, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:120px" } })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.PlanFirmSt)</td>
         </tr>        
         </table>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
-        </tr>
     </table>
     </div>
 }

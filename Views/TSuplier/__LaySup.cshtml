@@ -1,0 +1,100 @@
+@using MyErp.Models
+@using System.Linq;
+@*@model TSuplier*@
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout=null;
+    Layout="~/Views/Shared/_Layout.cshtml";
+}
+@functions {
+    string panelBold(int panel)
+    {            
+        int tpan = (int)ViewData["panel"];
+        string cstyle ="";
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+        return cstyle;
+    }
+
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+    int thisPanel(){
+         int opanel = (int)ViewData["panel"];
+         return opanel;
+    }
+    int ModelSupId()
+    {
+        int pid =0;
+        try{
+        pid= (int)ViewData["SupId"];//0;//@Model.PerId;
+        }
+        catch{}
+        return pid;
+    }
+
+    string sName()
+    {
+        string dname= (string)ViewData["sName"];//0;//@Model.PerId;
+        return dname;
+    }
+
+}
+
+
+@section Styles
+{
+
+}
+
+<h3>@SharedLocalizer.GetLocalizedHtmlString("EditSuplier")</h3>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <table>
+        <div class="cont-titles-l">
+        @*<h3>@Html.DisplayFor(p => p.SupRasoc)  @Html.DisplayFor(p => p.SupNif)</h3>*@
+        @*<h4>@SharedLocalizer.GetLocalizedHtmlString("Name")  @sName()</h4>*@
+        <h4>@sName()</h4>
+        </div>
+        <table>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@ModelSupId()" asp-route-supid="@ModelSupId()" asp-route-panel="@thisPanel()" asp-route-move="1">&lt&ltPrev</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@ModelSupId()" asp-route-supid="@ModelSupId()" asp-route-panel="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Suplier")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark"  style="@panelBold(2)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@ModelSupId()" asp-route-supid="@ModelSupId()" asp-route-panel="2" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Products")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(3)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@ModelSupId()" asp-route-supid="@ModelSupId()" asp-route-panel="3" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Planning")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(4)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@ModelSupId()" asp-route-supid="@ModelSupId()" asp-route-panel="4" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Orders")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TSuplier" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Home")</a>
+                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TSuplier" asp-action="Edit" asp-route-id="@ModelSupId()" asp-route-supid="@ModelSupId()" asp-route-panel="@thisPanel()" asp-route-move="2">Next&gt&gt</a>
+                        </li>                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+         </table>
+    </table>
+    @RenderBody()
+}
+
+

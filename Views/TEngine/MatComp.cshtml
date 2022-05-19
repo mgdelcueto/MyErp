@@ -3,26 +3,112 @@
 @using MyErp.Models
 @model TMaterial
 @using MyErp.Resources
+@using MyErp.Extensions;
 @inject LocService SharedLocalizer
 
 @functions {
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "MatComp":
+                retur[0]="TEngine";
+                retur[1]="CMatEdit";
+                retur[2]="CMatCreate";
+                retur[3]="CMatDelete";
+                break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table,int type){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "MatComp":
+                if (type==0)
+                {
+                    retur.Add("MatComp");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Component"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Description"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefQty<"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefUM"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("CompQty"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("CompUM"));
+                }
+                else{
+                    retur.Add("CoCoId");
+                    retur.Add("CoComRe");
+                    retur.Add("CoComDes");
+                    retur.Add("CoRefQt");
+                    retur.Add("CoRefUM");
+                    retur.Add("CoComQt");
+                    retur.Add("CoComUM");
+                }
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    IEnumerable<Container> getData_MatComp(dynamic oTMaterial)
+        {
+            IEnumerable<VTMComponent> fTPersonal = (List<VTMComponent>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.CoCoId,
+                        Campo01 = f.CoComRe.ToString(),
+                        Campo02 = f.CoComDes.ToString(),
+                        Campo03 = f.CoRefQt.ToString(),
+                        Campo04 = f.CoRefUM.ToString(),
+                        Campo05 = f.CoComQt.ToString(),
+                        Campo06 = f.CoComUM.ToString(),
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
 }
 <div class="cont-titles">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("MatEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
-    <div class="visible">
+    <div class="div-edit">
+    @Html.HiddenFor(p => p.MatId)
     @*@Html.HiddenFor(p => p.MatId)*@
     @Html.ValidationSummary(true)
-    <table class="table-norm" border ="1">
+    <table class="table-edit">
+        <tr>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+            <td></td>
+        </tr>
         @Html.Partial("_pshowMaterials_parc",(TMaterial)ViewBag.Material)
     </table>
     </div>
-    <div class="cont-titles">
-    <h3>@SharedLocalizer.GetLocalizedHtmlString("ComponentsOf") @Model.MatDescr</h3>
-    <table class="table-norm" border ="1">
-        @Html.Partial("_pListMatComponents",(List<VTMComponent>)ViewBag.ListMatComp)
-    </table>
+    <div class="Visible">
+    @*<h3>@SharedLocalizer.GetLocalizedHtmlString("ComponentsOf") @Model.MatDescr</h3>*@
+    @*<table class="table-norm" border ="1">*@
+
+        <table class="table-edit" border="1">
+            <div class="cont-titles">
+                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ComponentsOf") @Model.MatDescr</h3>
+            </div>
+            <div  class="_container" name="aqui-el-control-grid-3">
+                @Html.dataGrid(27,9,@Columns("MatComp",0),@getData_MatComp((List<VTMComponent>)ViewBag.ListMatComp),@Controller("MatComp"),@Columns("MatComp",1),Model.MatId)
+            </div>
+        </table>
+        @*@Html.Partial("_pListMatComponents",(List<VTMComponent>)ViewBag.ListMatComp)*@
+    @*</table>*@
     </div>
-    @Html.Partial("_pmenuMatCo",Model)
+    @*@Html.Partial("_pmenuMatCo",Model)*@
 }

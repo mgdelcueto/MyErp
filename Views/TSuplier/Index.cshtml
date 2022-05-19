@@ -7,14 +7,6 @@
     ViewData["Title"] = "Purchasing Area";
 }
 @functions {
-@*
-            <td class ="col-text">@p.SupNif</td>            
-            <td class ="norm-text">@p.SupCode</td>
-            <td class ="norm-text">@p.SupRasoc</td>
-            <td class ="norm-text">@p.SupAdCity</td>
-            <td class ="norm-text">@p.SupAdCtry</td>
-
-*@
 
     string [] Controller(){
         string [] retur = new string [4];
@@ -78,7 +70,7 @@
     string ret =string.Format("{0:C2}", value);
     //string rets = value.ToString("N", CultureInfo.InvariantCulture);
     return ret;
-}
+    }
     string mycolor(double? value){
     string retcol="red-number";
     if (value >=0 ){
@@ -124,8 +116,6 @@
 {
 
 }
-
-<h3>@ViewData["Title"]</h3>
 <div class = "cont-titles">
  <h3>@SharedLocalizer.GetLocalizedHtmlString("SupList")</h3>   
 </div>

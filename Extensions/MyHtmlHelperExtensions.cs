@@ -265,7 +265,7 @@ public static class MyHtmlHelperExtensions {
         return ret;
         
     }
-    public static IHtmlContent dataGrid(this IHtmlHelper htmlHelper,int Idgrid, int rowspage,List<string> cabText,IEnumerable<Container> _TMaterial,string [] contAction,List<string> fields, int _Id=0,string _parqs="") {
+    public static IHtmlContent dataGrid(this IHtmlHelper htmlHelper,int Idgrid, int rowspage,List<string> cabText,IEnumerable<Container> _TMaterial,string [] contAction,List<string> fields, int _Id=0,string _parqs="",bool Senable=true,bool Fenable=true) {
             string Tablemod=cabText[0];
             string uniqueId = Idgrid.ToString();//  getUid();
             int gridCount = Convert.ToInt32(CookiesReturn( "gridcount"));
@@ -437,11 +437,30 @@ public static class MyHtmlHelperExtensions {
             var tagtrc = new TagBuilder($"tr"); 
             var tagtrhc = new TagBuilder($"tr"); 
             
+
+            int pcsel=6; //porcentaje ancho columna select
+            string Pcsel=pcsel.ToString()+"%";
+            int pct=Convert.ToInt32(Decimal.Truncate((100-pcsel)/(_ncols)));
+            string Pct =pct.ToString()+"%";
+
+
             var tagthc0 = new TagBuilder($"th"); 
             tagthc0.Attributes.Add("class", $"head-text");
             tagthc0.InnerHtml.Append("Select");
+            tagthc0.Attributes.Add("width", Pcsel);
             tagtrc.InnerHtml.AppendHtml(tagthc0);
+            for (int i=1;i<=_ncols;i++)
+            {
+                var tagthc_ = new TagBuilder($"th"); 
+                tagthc_.Attributes.Add("class", $"head-text");
+                tagthc_.Attributes.Add("width", Pct);
+                if (Senable){tagthc_.MergeAttribute("onclick","sortTable("+i.ToString().Trim()+",'"+uniqueId+"')");}
+                tagthc_.InnerHtml.Append(cabText[i]);
+                tagtrc.InnerHtml.AppendHtml(tagthc_);
+                tagtrhc.InnerHtml.AppendHtml(tagthc_);
 
+            }
+/*
             if (_ncols>=1){
                 var tagthc1 = new TagBuilder($"th"); 
                 tagthc1.Attributes.Add("class", $"head-text");
@@ -482,7 +501,7 @@ public static class MyHtmlHelperExtensions {
                 tagtrc.InnerHtml.AppendHtml(tagthc5);
                 tagtrhc.InnerHtml.AppendHtml(tagthc5);
             }
-
+*/
             tagtab.InnerHtml.AppendHtml(tagtrc);
             htagtab.InnerHtml.AppendHtml(tagtrhc);
 
@@ -497,10 +516,27 @@ public static class MyHtmlHelperExtensions {
             
             //<input type="text" id="fname" name="fname">
             var tagtf0 = new TagBuilder($"th"); 
+            tagtf0.Attributes.Add("width", Pcsel);
             tagtf0.Attributes.Add("class", $"head-text");
             tagtf0.InnerHtml.Append("Filter ");
             tagtrf.InnerHtml.AppendHtml(tagtf0);
 
+            for (int i=1;i<=_ncols;i++)
+            {
+                var tagtf_ = new TagBuilder($"th"); 
+                tagtf_.Attributes.Add("width", Pct);
+                var tagtexf_ = new TagBuilder($"input"); 
+                tagtexf_.MergeAttribute("type", $"text");
+                tagtexf_.MergeAttribute("id","_"+uniqueId+"-"+"filter-"+i.ToString().Trim());
+                tagtexf_.MergeAttribute("name","_"+uniqueId+"-"+"filter-"+i.ToString().Trim());
+                tagtexf_.MergeAttribute("onchange","filterTable("+i.ToString().Trim()+",'"+uniqueId+"')");
+                tagtexf_.MergeAttribute("value", filterData[i]);
+                tagtf_.InnerHtml.AppendHtml(tagtexf_);
+                tagtrf.InnerHtml.AppendHtml(tagtf_);
+
+            }
+
+/*
             if (_ncols>=1){
                 var tagtf1 = new TagBuilder($"th"); 
                 var tagtexf1 = new TagBuilder($"input"); 
@@ -556,9 +592,9 @@ public static class MyHtmlHelperExtensions {
                 tagtf5.InnerHtml.AppendHtml(tagtexf5);
                 tagtrf.InnerHtml.AppendHtml(tagtf5);
             }
-
+*/
             //tagtrf.InnerHtml.AppendHtml(tagdivf);
-            tagtab.InnerHtml.AppendHtml(tagtrf);
+            if (Fenable){tagtab.InnerHtml.AppendHtml(tagtrf);}
             //htagtab.InnerHtml.AppendHtml(tagtrf);
 
             /*
@@ -586,8 +622,8 @@ public static class MyHtmlHelperExtensions {
             foreach (var c in TMaterial) {
                 if (npage ==current_page)
                 {
-                    insert_row( 1,c,tagtab,nrow,uniqueId, row_selected,pro_selected,current_page,rowspage,_controller, _actionEdit);
-                    insert_row( 0,c,htagtab,nrow,uniqueId, row_selected,pro_selected,current_page,rowspage,_controller, _actionEdit);
+                    insert_row( 1,_ncols,Pct,c,tagtab,nrow,uniqueId, row_selected,pro_selected,current_page,rowspage,_controller, _actionEdit);
+                    insert_row( 0,_ncols,Pct,c,htagtab,nrow,uniqueId, row_selected,pro_selected,current_page,rowspage,_controller, _actionEdit);
                     nrow++;   
                     if (nrow>rowspage)
                     {
@@ -599,7 +635,7 @@ public static class MyHtmlHelperExtensions {
                     }      
                 }
                 else{
-                    insert_row( 0,c,htagtab,nrow,uniqueId, row_selected,pro_selected,current_page,rowspage,_controller, _actionEdit);
+                    insert_row( 0,_ncols,Pct,c,htagtab,nrow,uniqueId, row_selected,pro_selected,current_page,rowspage,_controller, _actionEdit);
                     tcount++;
                     nrow++;   
                     if (nrow>rowspage)
@@ -615,7 +651,7 @@ public static class MyHtmlHelperExtensions {
                 while  (nrow<=rowspage)
                     {
                         addfoot =true;
-                        insert_row_void(nrow,tagtab);
+                        insert_row_void(nrow,_ncols,Pct,tagtab);
                         nrow ++;
                     }
                 if (addfoot)
@@ -633,13 +669,21 @@ public static class MyHtmlHelperExtensions {
 
             return tagret;
         }
-    public static void insert_row_void(int nrow, TagBuilder tagtab)
+    public static void insert_row_void(int nrow, int _ncols, string Pct,TagBuilder tagtab)
     {
                     var tagtr = new TagBuilder($"tr"); //<tr>
                     if (nrow%2==0 )
                     {   tagtr.Attributes.Add("class", $"line-text-pri");}
                     else{tagtr.Attributes.Add("class", $"line-text-alt");}
 
+                    for (int i=0;i<=_ncols;i++)  //starts with 0 to include check column
+                    {
+                        var tagtd_ = new TagBuilder($"td"); //<tr>
+                        if (i!=0){tagtd_.Attributes.Add("width", Pct);}
+                        tagtd_.InnerHtml.Append("" );
+                        tagtr.InnerHtml.AppendHtml(tagtd_);
+                    }
+/*
                     var tagtd0 = new TagBuilder($"td"); //<tr>
                     tagtd0.InnerHtml.Append("" );
                     tagtr.InnerHtml.AppendHtml(tagtd0);
@@ -663,11 +707,11 @@ public static class MyHtmlHelperExtensions {
                     var tagtd5 = new TagBuilder($"td"); //<tr>
                     tagtd5.InnerHtml.Append("");
                     tagtr.InnerHtml.AppendHtml(tagtd5);
-
+*/
                     tagtab.InnerHtml.AppendHtml(tagtr);  
 
     }
-    public static void insert_row(int pri,  Container c,TagBuilder tagtab,int nrow,string uniqueId,int row_selected,int pro_selected,int current_page,int rowspage,string _controller, string _actionEdit)
+    public static void insert_row(int pri,int _ncols, string Pct, Container c,TagBuilder tagtab,int nrow,string uniqueId,int row_selected,int pro_selected,int current_page,int rowspage,string _controller, string _actionEdit)
     {
                     var tagtr = new TagBuilder($"tr"); //<tr>
                     if (pri==1){
@@ -681,6 +725,7 @@ public static class MyHtmlHelperExtensions {
                             tagtr.Attributes.Add("class", $"line-text-alt");}
                     }
                     }
+
                     if (pri==1){
                     var tagtd0 = new TagBuilder($"td"); //<tr>
                     var tagcbx = new TagBuilder($"input"); //<tr>
@@ -693,6 +738,67 @@ public static class MyHtmlHelperExtensions {
                     }
                     //tagtdx.MergeAttribute("onclick","rowClick()");
 
+
+                    for (int i=1;i<=_ncols;i++)
+                    {
+                        var tagtd_ = new TagBuilder($"td"); //<tr>
+                        //tagtd_.Attributes.Add("class", $"with_auto");
+                        tagtd_.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote +",'"+sortExpression+"')");
+                        tagtd_.Attributes.Add("width", Pct);
+                        switch(i)
+                        {
+                            case 1:
+                                tagtd_.InnerHtml.Append(c.Campo01 );
+                                break;
+                            case 2:
+                                tagtd_.InnerHtml.Append(c.Campo02 );
+                                break;
+                            case 3:
+                                tagtd_.InnerHtml.Append(c.Campo03 );
+                                break;
+                            case 4:
+                                tagtd_.InnerHtml.Append(c.Campo04 );
+                                break;
+                            case 5:
+                                tagtd_.InnerHtml.Append(c.Campo05 );
+                                break;
+                            case 6:
+                                tagtd_.InnerHtml.Append(c.Campo06 );
+                                break;
+                            case 7:
+                                tagtd_.InnerHtml.Append(c.Campo07 );
+                                break;
+                            case 8:
+                                tagtd_.InnerHtml.Append(c.Campo08 );
+                                break;
+                            case 9:
+                                tagtd_.InnerHtml.Append(c.Campo09 );
+                                break;
+                            case 10:
+                                tagtd_.InnerHtml.Append(c.Campo10 );
+                                break;
+                            case 11:
+                                tagtd_.InnerHtml.Append(c.Campo11 );
+                                break;
+                            case 12:
+                                tagtd_.InnerHtml.Append(c.Campo12 );
+                                break;
+                            case 13:
+                                tagtd_.InnerHtml.Append(c.Campo13 );
+                                break;
+                            case 14:
+                                tagtd_.InnerHtml.Append(c.Campo14 );
+                                break;
+                            case 15:
+                                tagtd_.InnerHtml.Append(c.Campo15 );
+                                break;
+                            default:
+                                tagtd_.InnerHtml.Append("" );
+                                break;
+                        }
+                        tagtr.InnerHtml.AppendHtml(tagtd_);
+                    }
+/*
                     var tagtd1 = new TagBuilder($"td"); //<tr>
                     tagtd1.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote +",'"+sortExpression+"')");
                     tagtd1.InnerHtml.Append(c.Campo01 );
@@ -717,7 +823,7 @@ public static class MyHtmlHelperExtensions {
                     tagtd5.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote+",'"+sortExpression+"')");
                     tagtd5.InnerHtml.Append(c.Campo05);
                     tagtr.InnerHtml.AppendHtml(tagtd5);
-
+*/
 
                     tagtab.InnerHtml.AppendHtml(tagtr);  
 
@@ -773,8 +879,6 @@ public static class MyHtmlHelperExtensions {
                             //var tagden = new TagBuilder ($"p");
                             //tagden.MergeAttribute("id","demo");
                             //tagdfo.InnerHtml.AppendHtml(tagden);
-
-
         }
     }
 }

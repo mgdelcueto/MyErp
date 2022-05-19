@@ -964,10 +964,6 @@ namespace MyErp.Models
                     .HasColumnType("datetime")
                     .HasColumnName("SPODate");
 
-                entity.Property(e => e.SpodescEx)
-                    .HasMaxLength(225)
-                    .HasColumnName("SPODescEx");
-
                 entity.Property(e => e.Spopo)
                     .HasMaxLength(125)
                     .HasColumnName("SPOPO");
@@ -975,7 +971,6 @@ namespace MyErp.Models
                 entity.Property(e => e.Spoprice).HasColumnName("SPOPrice");
 
                 entity.Property(e => e.SporeferEx)
-                    .HasMaxLength(125)
                     .HasColumnName("SPOReferEx");
 
                 entity.Property(e => e.Spostatus)

@@ -10,49 +10,50 @@
 <h3>@SharedLocalizer.GetLocalizedHtmlString("AddSuplier")</h3>
 </div>
 @using (Html.BeginForm()) {
-    <div class="visible">
+    <div class="div-edit">
     @Html.ValidationSummary(true)
-    <table class="table-norm" border="1">
-        <div class="cont-titles">
-        <h3>@SharedLocalizer.GetLocalizedHtmlString("SuplierData")</h3>
-        </div>
+    <table class="table-edit">
+       <tr>
+            <td><input type="submit" class="dropbtn" value="Add"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+        </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.SupRasoc,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupRasoc, new { htmlAttributes = new { @class = "norm-text", @style = "width:320" } })</td>
+            <td>@Html.LabelFor(p => p.SupRasoc,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.SupRasoc, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:320" } })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.SupRasoc)</td>
         </tr>        
         <tr>
-            <td>@Html.LabelFor(p => p.SupNif,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupNif, new { htmlAttributes = new { @class = "norm-text", @style = "width:90" } })</td>
+            <td>@Html.LabelFor(p => p.SupNif,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.SupNif, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:90" } })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.SupNif)</td>
         </tr>        
         <tr>
-            <td>@Html.LabelFor(p => p.SupCrDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCrDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.LabelFor(p => p.SupCrDate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.SupCrDate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.SupCrDate)</td>
         </tr>        
         <tr>
-            <td>@Html.LabelFor(p => p.SupCode,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:150" } })</td>
+            <td>@Html.LabelFor(p => p.SupCode,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.SupCode, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150" } })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.SupCode)</td>
         </tr>        
         <tr>
-            <td>@Html.LabelFor(p => p.SupAdStrt,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupAdStrt, new { htmlAttributes = new { @class = "norm-text", @style = "width:350" } })</td>
-            <td>@Html.LabelFor(p => p.SupAdCity,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupAdCity, new { htmlAttributes = new { @class = "norm-text", @style = "width:150" } })</td>
+            <td>@Html.LabelFor(p => p.SupAdStrt,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.SupAdStrt, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:350" } })</td>
+            <td>@Html.LabelFor(p => p.SupAdCity,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.SupAdCity, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -61,13 +62,13 @@
             <td>@Html.ValidationMessageFor(p => p.SupAdCity)</td>
         </tr>        
         <tr>
-            <td>@Html.LabelFor(p => p.SupAdCtry,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.SupAdCtry,new { @class = "norm-lab-text",})</td>
             <td>
                 @Html.DropDownListFor(p => p.SupAdCtry,
-               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-tb-text" })
             </td>
-            <td>@Html.LabelFor(p => p.SupCtPhone,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCtPhone, new { htmlAttributes = new { @class = "norm-text", @style = "width:150" } })</td>
+            <td>@Html.LabelFor(p => p.SupCtPhone,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.SupCtPhone, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -76,10 +77,10 @@
             <td>@Html.ValidationMessageFor(p => p.SupCtPhone)</td>
         </tr>        
         <tr>
-            <td>@Html.LabelFor(p => p.SupCtEmailLog,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCtEmailLog, new { htmlAttributes = new { @class = "norm-text", @style = "width:250" } })</td>
-            <td>@Html.LabelFor(p => p.SupCtEdilog,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.SupCtEdilog, new { htmlAttributes = new { @class = "norm-text", @style = "width:250" } })</td>
+            <td>@Html.LabelFor(p => p.SupCtEmailLog,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.SupCtEmailLog, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:250" } })</td>
+            <td>@Html.LabelFor(p => p.SupCtEdilog,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.SupCtEdilog, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:250" } })</td>
         </tr>
         <tr>
             <td></td>
@@ -87,11 +88,6 @@
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.SupCtEdilog)</td>
         </tr>        
-       <tr>
-            <td></td>
-            <td><input type="submit" value="Add"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
-        </tr>
     </table>
     </div>
 }

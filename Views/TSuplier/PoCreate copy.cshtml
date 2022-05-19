@@ -38,17 +38,15 @@
             <td>@Html.ValidationMessageFor(p => p.Spodate)</td>
         </tr>
         <tr>
+            <td>@Html.LabelFor(p => p.SporeferEx,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.SporeferEx, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:170px" } })</td>
+            <td>@Html.ValidationMessageFor(p => p.SporeferEx)</td>
+        </tr>
+        <tr>
             <td>@Html.LabelFor(p => p.SpocprodId,new { @class = "norm-lab-text",})</td>
             <td class="norm-text">
                 @Html.DropDownListFor(p => p.SpocprodId,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-tb-text" })
                 <td>@Html.ValidationMessageFor(p => p.SpocprodId)</td>
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(p => p.SporeferEx,new { @class = "norm-lab-text",})</td>
-            <td class="norm-text">
-                @Html.DropDownListFor(p => p.SporeferEx,(SelectList)ViewBag.ddlReferEX,"",new { @class = "norm-tb-text" })
-            <td>@Html.ValidationMessageFor(p => p.SporeferEx)</td>
             </td>
         </tr>
         <tr>

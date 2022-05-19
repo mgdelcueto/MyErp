@@ -18,13 +18,9 @@ namespace MyErp.Models
         [Display(Name="Status")]
         public string Spostatus { get; set; }
 
-        [Required,StringLength(125)]
+         [Required,Range(0, int.MaxValue, ErrorMessage = "Enter External Reference")]
         [Display(Name="Reference Ext")]
-        public string SporeferEx { get; set; }
-
-        [Required,StringLength(225)]
-        [Display(Name="Description Ext")]
-        public string SpodescEx { get; set; }
+        public int? SporeferEx { get; set; }
 
         [Display(Name="Product")]
         public int? SpocprodId { get; set; }

@@ -295,7 +295,8 @@ namespace MyErp.Controllers {
             var explo = new SqlParameter("@p5",int.Parse("1"));
             _dbContext.Database.ExecuteSqlRaw("bCExplosion {0}, {1}, {2}, {3},{4},{5}", conjunto,level,order,coef,table,explo);
             //var sql = "SELECT ExpId,ExpOrder,ExpLevel,ExpComp,m.MatRefer as ExpRefer,m.MatDescr as ExpDescr,ExpsLevel,ExpCoef,ExpAcCoef,m.MatUnMed as ExpUM FROM ["+Table+"] as t LEFT JOIN T_Material as m ON  t.ExpComp = m.MatId";
-            var sqle = "SELECT ExpId,ExpComp,ExpsLevel,ExpRefer,ExpDescr,ExpCoef,ExpUM,WCCode,ExpRouFase,ExpRouOper,ExpRouTime,ExpRouTUnit FROM ["+Table+"] ORDER BY  ExpId";
+            var sqle = "SELECT ExpId,ExpComp,ExpsLevel,case when ExpRefer is null then '' else ExpRefer end as ExpRefer ,case when ExpDescr is null then '' else ExpDescr end as ExpDescr ,ExpCoef, case when ExpUM is null then '' else ExpUM end as ExpUM ,case when WCCode is null then '' else WCCode end as WCCode,ExpRouFase,ExpRouOper,ExpRouTime,ExpRouTUnit  FROM ["+Table+"] ORDER BY  ExpId";
+            //var sqle = "SELECT ExpId,ExpComp,ExpsLevel,ExpRefer,ExpDescr,ExpCoef,ExpUM,WCCode,ExpRouFase,ExpRouOper,ExpRouTime,ExpRouTUnit FROM ["+Table+"] ORDER BY  ExpId";
             var explosio = _dbContext.TExplosionBs.FromSqlRaw(sqle).ToList();
             _dbContext.Database.ExecuteSqlRaw("Xx_Explosion {0}", table);
             ViewBag.ListMatBom=explosio; //querybo;
@@ -679,18 +680,18 @@ namespace MyErp.Controllers {
         }
 
         [HttpGet]
-        public IActionResult CMatCreate(int id,string actionType) {
+        public IActionResult CMatCreate(int id,int Pid, string actionType) {
             CreateViewBags(0,0);
             TMaterial mat=(from  ma in _dbContext.TMaterials
-            where ma.MatId==id select ma).SingleOrDefault();
+            where ma.MatId==Pid select ma).SingleOrDefault();
             ViewData["panel"]=4;
             VTMComponent queryco=(from  ma in _dbContext.TMaterials
             join co in _dbContext.TMComponents on ma.MatId equals co.CoRefId
             into RefComp
             from pco in RefComp.DefaultIfEmpty()
-            where ma.MatId==id
+            where ma.MatId==Pid
             select new VTMComponent { 
-                CoRefId=id,
+                CoRefId=Pid,
                 CoRefRe =mat.MatRefer,
                 CoRefDes=mat.MatDescr,
                 CoRefUM = mat.MatUnMed, 
@@ -1718,6 +1719,7 @@ namespace MyErp.Controllers {
             return RedirectToAction("TrEdit",new{id=TrScTruck});
         } 
 
+        [HttpGet]
         public IActionResult MatComp(int id) {
             var mode = _dbContext.TMaterials
                 .SingleOrDefault(u => u.MatId.Equals(id));
@@ -1726,6 +1728,19 @@ namespace MyErp.Controllers {
             ViewBag.Material=mode;   
 
             return View(mode);
+            //return RedirectToAction("MatEdit",new{id=id});
+
+        }
+        [HttpPost]
+        public IActionResult MatComp(int id,int panel) {
+            var mode = _dbContext.TMaterials
+                .SingleOrDefault(u => u.MatId.Equals(id));
+            CreateViewBags(0,0,"",id);    
+            ViewData["panel"]=4;
+            ViewBag.Material=mode;   
+
+            //return View(mode);
+            return RedirectToAction("MatEdit",new{id=id});
 
         }
         
@@ -1771,7 +1786,8 @@ namespace MyErp.Controllers {
             return View(mode);
 
         }
-
+        
+        [HttpGet]
         public IActionResult MatBom(int id) {
             var mode = _dbContext.TMaterials
                 .SingleOrDefault(u => u.MatId.Equals(id));
@@ -1780,6 +1796,19 @@ namespace MyErp.Controllers {
             ViewBag.Material=mode;   
 
             return View(mode);
+            //return RedirectToAction("MatEdit",new{id=id});
+
+        }
+        [HttpPost]
+        public IActionResult MatBom(int id, int panel) {
+            var mode = _dbContext.TMaterials
+                .SingleOrDefault(u => u.MatId.Equals(id));
+            CreateViewBags(0,0,"",id);    
+            ViewData["panel"]=4;
+            ViewBag.Material=mode;   
+
+            //return View(mode);
+            return RedirectToAction("MatEdit",new{id=id});
 
         }
 

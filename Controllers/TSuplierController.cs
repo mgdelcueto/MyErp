@@ -4,6 +4,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MyErp.Models;
 using System.Linq;
 
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MyErp.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Protocols;
+using Microsoft.Extensions.Configuration;
+using System.Data;
+
 namespace MyErp.Controllers {
     [Authorize(Roles="Supplier,Administrator")]
     public class TSuplierController : Controller {
@@ -45,6 +60,11 @@ namespace MyErp.Controllers {
                         select new {mat.MatId ,mat.MatDescr};
             ViewBag.ddlReferVD = new SelectList(resuld.ToList(), "MatId", "MatDescr",prod); 
 
+            var querycx = from p in _dbContext.TSProducts 
+                        orderby p.ProdDescr
+                        where p.ProdSupId==id
+                        select p;
+            ViewBag.ddlReferEX = new SelectList(querycx.ToList(), "ProdId", "ProdDescr",prod); 
 
             var queryc = from p in _dbContext.TSupliers 
                         where p.SupId==id
@@ -60,6 +80,7 @@ namespace MyErp.Controllers {
             catch{ViewData["Prod"]="No Filter <<<";
             ViewData["cProd"]=0;}
 
+            /*
             var querypo_0 =(from po in _dbContext.TSPorders
                             join mat in _dbContext.TMaterials on po.SpocprodId equals mat.MatId 
                         orderby po.Spopo
@@ -74,6 +95,22 @@ namespace MyErp.Controllers {
                                     Spoprice=po.Spoprice,Spocurcy=po.Spocurcy}).ToList();
             var querypo = querypo_0.Concat(querypo_1);
             var qListpo = querypo.ToList();
+
+--------
+            var qListpo =(from mat in _dbContext.TMaterials 
+                            join po in _dbContext.TSPorders on mat.MatId equals  po.SpocprodId
+                            join spr in _dbContext.TSProducts on po.SporeferEx equals spr.ProdId
+---------
+
+            */
+            var qListpo =(from po in _dbContext.TSPorders
+                            join mat in _dbContext.TMaterials on po.SpocprodId equals mat.MatId 
+                            join spr in _dbContext.TSProducts on po.SporeferEx equals spr.ProdId
+                        orderby po.Spopo
+                        where po.SposupId==id 
+                        select new VTSPorder {Spoid=po.Spoid,SposupId=po.SposupId,Spopo=po.Spopo,SporeferEx=spr.ProdRefer,
+                                    SprodRefInt=mat.MatRefer,SpodescEx=spr.ProdDescr,SprodDescInt=mat.MatDescr,
+                                    Spoprice=po.Spoprice,Spocurcy=po.Spocurcy}).ToList();
             ViewBag.ListSpo=qListpo;
 
         }
@@ -260,10 +297,10 @@ namespace MyErp.Controllers {
                     }
                     catch{return View("Error");}
                 }
-            else {
-                 CreateViewBags(Pid,porder.SpocprodId);
-                 return View(porder);
-                }
+                else {
+                     CreateViewBags(Pid,porder.SpocprodId);
+                     return View(porder);
+                    }
             }
              CreateViewBags(Pid,porder.SpocprodId);
             ViewData["panel"]=4;
@@ -307,19 +344,20 @@ namespace MyErp.Controllers {
         public IActionResult PlanDelete(int id,int Pid) {
             var mode = _dbContext.TSPlannings
                 .SingleOrDefault(u => u.PlanId.Equals(id));
+            int? pid = mode.PlanSupId;
             try{
             _dbContext.TSPlannings.Remove(mode);
             _dbContext.SaveChanges();
             }  
             catch{}          
             var model = _dbContext.TSupliers
-                .SingleOrDefault(u => u.SupId.Equals(Pid));
-            CreateViewBags(Pid,mode.PlanProdId);                
+                .SingleOrDefault(u => u.SupId.Equals(pid));
+            CreateViewBags(pid,mode.PlanProdId);                
             ViewData["panel"]=3;
 
             string sName = model.SupRasoc+" " +model.SupNif;
             ViewData["sName"]=sName;
-            ViewData["SupId"]=Pid;
+            ViewData["SupId"]=pid;
 
             return View("Edit",model);
 
@@ -330,6 +368,7 @@ namespace MyErp.Controllers {
             var mode = _dbContext.TSPorders
                 .SingleOrDefault(u => u.Spoid.Equals(id));
             int? pro =mode.SpocprodId;
+            int? pid =mode.SposupId;
             try{
             _dbContext.TSPorders.Remove(mode);
             _dbContext.SaveChanges();
@@ -337,16 +376,16 @@ namespace MyErp.Controllers {
             catch{}    
 
             var model = _dbContext.TSupliers
-                .SingleOrDefault(u => u.SupId.Equals(Pid));
+                .SingleOrDefault(u => u.SupId.Equals(pid));
 
             string sName = model.SupRasoc+" " +model.SupNif;
             ViewData["sName"]=sName;
-            ViewData["SupId"]=Pid;
+            ViewData["SupId"]=pid;
 
 
-            CreateViewBags(Pid,pro);                
+            CreateViewBags(pid,pro);                
             ViewData["panel"]=4;
-            return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=pro});
+            return RedirectToAction("Edit",new{id=pid,panel=4,move=0,prod=pro});
         }
 
 
@@ -364,11 +403,11 @@ namespace MyErp.Controllers {
             ViewBag.Suplier=qList[0];
 
             var pmodel = _dbContext.TSupliers
-                .SingleOrDefault(u => u.SupId.Equals(suid));
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
 
             string sName = pmodel.SupRasoc+" " +pmodel.SupNif;
             ViewData["sName"]=sName;
-            ViewData["SupId"]=suid;
+            ViewData["SupId"]=Pid;//suid;
 
             ViewData["panel"]=2;
 
@@ -417,11 +456,11 @@ namespace MyErp.Controllers {
             CreateViewBags(Pid,model.PlanProdId);    
 
             var pmodel = _dbContext.TSupliers
-                .SingleOrDefault(u => u.SupId.Equals(suid));
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
 
             string sName = pmodel.SupRasoc+" " +pmodel.SupNif;
             ViewData["sName"]=sName;
-            ViewData["SupId"]=suid;
+            ViewData["SupId"]=Pid;
 
             ViewData["panel"]=3;
 
@@ -469,17 +508,19 @@ namespace MyErp.Controllers {
 
 
             var pmodel = _dbContext.TSupliers
-                .SingleOrDefault(u => u.SupId.Equals(suid));
+                .SingleOrDefault(u => u.SupId.Equals(Pid));
 
             string sName = pmodel.SupRasoc+" " +pmodel.SupNif;
             ViewData["sName"]=sName;
-            ViewData["SupId"]=suid;
+            ViewData["SupId"]=Pid;
 
             ViewData["panel"]=4;
 
             return View(model);
             }
-            catch{return View("Error");}            
+            catch(Exception ex){
+                string mensaje = ex.Message;
+                return View("Error");}            
         }
 
         [HttpPost]
@@ -516,7 +557,7 @@ namespace MyErp.Controllers {
             if(prod==null){prod=0;}
             ViewData["panel"]=panel;
             try{
-
+            /*
             var mode = _dbContext.TSupliers
                 .SingleOrDefault(u => u.SupId.Equals(id));
             string cName = mode.SupRasoc+mode.SupNif;
@@ -541,6 +582,29 @@ namespace MyErp.Controllers {
                 pId=qList[0].SupId;
             }
             catch{}
+            */
+
+            var mode = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(id));
+            string uniqueId=Request.Cookies["Grid-Suplier"].ToString().TrimStart().TrimEnd();
+            string sortExpression=Request.Cookies["Grid-"+uniqueId+"-sortExpression"];
+            string filterExpression=Request.Cookies["Grid-"+uniqueId+"-filterExpression"];
+            var sqln="SELECT case when res._pID is null then 0 else res._pID  end as _idprev, SupId as _Id, case when res._nID is null then 0 else res._nID end as _Idnext FROM (SELECT *,lead(SupId) OVER (ORDER BY " + sortExpression + " ) as _nID, lag(SupId) OVER (ORDER BY "+ sortExpression+") as _pID FROM T_Suplier where "+filterExpression+") as res where res.SupId="+id.ToString();
+            var ListnId = _dbContext.TNexPrevs.FromSqlRaw(sqln).ToList();
+            int nId=id;
+            int pId=id;
+            try{ nId=ListnId[0]._Idnext;}
+            catch{}
+            try{ pId=ListnId[0]._idprev;}
+            catch{}
+            if (pId==0){pId=id;}
+            if (nId==0){nId=id;}
+
+
+
+
+
+
 
             switch (move){
                 case 0:
@@ -560,6 +624,8 @@ namespace MyErp.Controllers {
             string sName = model.SupRasoc+" " +model.SupNif;
             ViewData["sName"]=sName;
             ViewData["SupId"]=id;
+            ViewData["Sort"]=sortExpression;
+            ViewData["Filter"]=filterExpression;
 
             CreateViewBags(id,prod);
             return View("Edit",model);
@@ -568,6 +634,9 @@ namespace MyErp.Controllers {
         }    
         [HttpPost]
         public IActionResult Edit(TSuplier suplier, string actionType,int? ProdId, int panel) {
+            if (actionType=="Cancel"){
+                return RedirectToAction("Index");
+            }
             if (actionType=="Update"){
             if (ModelState.IsValid){
             try{

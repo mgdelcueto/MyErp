@@ -7,6 +7,9 @@
 * Copyright (c)
 * Read about 
 */
+.with_auto{
+        border: 1px;
+}
 .dropbtn {
         background-color: #dde0e0;
         color: rgb(25, 24, 24);
