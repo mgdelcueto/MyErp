@@ -32,26 +32,33 @@ private int VAssign(int mPanel){
 
 }
 
+    string panelBold(int panel)
+    {   
+    string cstyle ="";
+    int tpan =0;
+    try{
+        tpan = (int)ViewData["pamen"];
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+    }
+    catch{}
+    return cstyle;
+    }
+
+
 
 }
-
-
-
-<div class="cont-titles">
-<h3>@SharedLocalizer.GetLocalizedHtmlString("MatEdit")</h3>
-</div>
-@using (Html.BeginForm()) {
+@Html.Partial("_pmenuMat_com")
+    @using (Html.BeginForm()) {
     <div class="div-edit">
-    @Html.HiddenFor(p => p.MatId)
-    @Html.ValidationSummary(true)
-    <table class="table-edit">
-        <tr>
-            <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
-            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
-        </tr>
-        @Html.Partial("_pshowMaterials",Model)
-    </table>
+        @Html.HiddenFor(p => p.MatId)
+        @Html.ValidationSummary(true)
+        <table class="table-edit">
+            <tr>
+                <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
+                <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+            </tr>
+            @Html.Partial("_pshowMaterials",Model)
+        </table>
     </div>
-}
-@Html.Partial("_pmenuMat",Model)
-
+    }

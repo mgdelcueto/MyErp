@@ -79,22 +79,9 @@
         }
 
 }
-<div class="cont-titles">
-<h3>@SharedLocalizer.GetLocalizedHtmlString("MatEdit")</h3>
-</div>
+@Html.Partial("_pmenuMat_com")
 @using (Html.BeginForm()) {
-    <div class="div-edit">
-    @Html.HiddenFor(p => p.MatId)
-    @*@Html.HiddenFor(p => p.MatId)*@
-    @Html.ValidationSummary(true)
-    <table class="table-edit">
-        <tr>
-            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
-            <td></td>
-        </tr>
-        @Html.Partial("_pshowMaterials_parc",(TMaterial)ViewBag.Material)
-    </table>
-    </div>
+    @Html.Partial("_pshowMaterials_parc_com",(TMaterial)ViewBag.Material)
     <div class="Visible">
     @*<h3>@SharedLocalizer.GetLocalizedHtmlString("ComponentsOf") @Model.MatDescr</h3>*@
     @*<table class="table-norm" border ="1">*@

@@ -14782,6 +14782,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pshowMaterials_parc_com.cshtml",
+      "TargetPath": "Views\\TEngine\\_pshowMaterials_parc_com.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\Index.cshtml",
       "TargetPath": "Views\\TSuplier\\Index.cshtml",
       "FileKind": "mvc"
@@ -15089,6 +15094,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\WCEComp.cshtml",
       "TargetPath": "Views\\TEngine\\WCEComp.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pmenuMat_com.cshtml",
+      "TargetPath": "Views\\TEngine\\_pmenuMat_com.cshtml",
       "FileKind": "mvc"
     },
     {

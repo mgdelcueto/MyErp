@@ -69,3 +69,74 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+.heigh16{
+  height: 32px;
+}
+.navbar {
+  padding: 0 0px;
+  height: 30px;
+  line-height: 30px;
+
+  min-height: 10px;
+}
+.navbar-expand-sm{
+  padding: 0 0px;
+  height: 30px;
+  line-height: 30px;
+}
+.navbar-toggleable-sm{
+  padding: 0 0px;
+  height: 30px;
+  line-height: 30px;
+}
+.navbar-light{
+  padding: 0 0px;
+  height: 30px;
+  line-height: 30px;
+}
+.navbar-brand {
+  /*padding: 0 0px;*/
+  padding: 0 0px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.navbar-toggle {
+  padding: 0 0px;
+  /* (80px - button height 34px) / 2 = 23px */
+  margin-top: 2px;
+  /*padding: 0px 0px !important;*/
+}
+
+.myDiv {
+  background-color: #ffffff;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+}
+.mih3{
+  /*text-align: center;*/
+  width: 100%;
+  
+
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.posabs {
+  position: absolute;
+  left: 0;
+}
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    /* (80px - line-height of 27px) / 2 = 26.5px */
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+    line-height: 2px;
+  }
+}

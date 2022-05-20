@@ -23,15 +23,12 @@
 
 }
 
-<div class="visible">
-    <table>
-        <div class="cont-titles-l">
-        @*<h2>>>@Html.DisplayFor(p => p.CustRaSoc)  @Html.DisplayFor(p => p.CustNif)</h2> *@
-        </div>
-        <table>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+@*<div class="visible">*@
+    @*<table>*@
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">*@
+            @*<div class="container">*@
+                @*<div id ="matMenu" name="MyMatMenu" class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse dx-none ">*@
+                <div id ="matMenu" name="MyMatMenu" class="o-dropdown--menu dropdown-menu dx-none o-popper-position o-popper-position--bs" style="top: 46px; left: 0px;">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                            <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TEngine" asp-action="MatComp" asp-route-id="@Model.MatId" asp-route-pamen="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Components")</a>
@@ -50,8 +47,15 @@
                          </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-        </table>
-    </table>
-</div>
+                <div id ="matMenu" name="MyMatMenu" class="o-dropdown--menu dropdown-menu dx-none o-popper-position o-popper-position--bs" style="top: 46px; left: 0px;">
+                    <a class="dropdown-item o_app" style="@panelBold(1)" asp-area="" asp-controller="TEngine" asp-action="MatComp" asp-route-id="" asp-route-panel="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Components")</a>
+                    <a class="dropdown-item o_app" style="@panelBold(2)"asp-area="" asp-controller="TEngine" asp-action="MatBom" asp-route-id="" asp-route-panel="2" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("BOM")</a>
+                    <a class="dropdown-item o_app" style="@panelBold(3)"asp-area="" asp-controller="TEngine" asp-action="MatImp" asp-route-id="" asp-route-panel="3" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Implosio")</a>
+                    <a class="dropdown-item o_app"  style="@panelBold(4)" asp-area="" asp-controller="TEngine" asp-action="MatRoute" asp-route-id="" asp-route-panel="4" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Routing")</a>
+                    <a class="dropdown-item o_app"  style="@panelBold(5)" asp-area="" asp-controller="TEngine" asp-action="MatLocal" asp-route-id="" asp-route-panel="5" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Locations")</a>
+                    <hr>
+                    <a class="dropdown-item o_app"  style="@panelBold(8)" asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="" asp-route-panel="7" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Home")</a>
+            @*</div>*@
+        @*</nav>*@
+    @*</table>*@
+@*</div>*@

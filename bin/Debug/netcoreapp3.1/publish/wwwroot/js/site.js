@@ -21,4 +21,11 @@ function ddlsel( controller,  action, _Id, _parqs){
 
 }
 
+function openmMnu() {
+    if (document.getElementById("matMenu").style.display!= "block"){
+        document.getElementById("matMenu").style.display= "block" ;}
+    else {
+        document.getElementById("matMenu").style.display= "none" ;}
+}
+
 

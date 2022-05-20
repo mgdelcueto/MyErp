@@ -82,26 +82,10 @@
                 });
             return TPersonal;
         }
-
-
-
 }
-<div class="cont-titles">
-<h3>@SharedLocalizer.GetLocalizedHtmlString("MatEdit")</h3>
-</div>
+@Html.Partial("_pmenuMat_com")
 @using (Html.BeginForm()) {
-    <div class="div-edit">
-    @*@Html.HiddenFor(p => p.MatId)*@
-    @Html.ValidationSummary(true)
-    @Html.HiddenFor(p => p.MatId)
-    <table class="table-edit" border ="1">
-        <tr>
-            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
-            <td></td>
-        </tr>
-        @Html.Partial("_pshowMaterials_parc",(TMaterial)ViewBag.Material)
-    </table>
-    </div>
+    @Html.Partial("_pshowMaterials_parc_com",(TMaterial)ViewBag.Material)
     <div class="Visible">
     @*<h2>B.O.M. of @Model.MatDescr</h2>*@
     @*<table class="table-norm" border ="1">*@

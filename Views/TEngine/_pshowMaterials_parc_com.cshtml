@@ -1,0 +1,46 @@
+@model TMaterial
+    <div class="div-edit">
+    @*@Html.HiddenFor(p => p.MatId)*@
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(p => p.MatId)
+    <table class="table-edit" >
+        <tr>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.MatRefer,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.MatRefer, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.MatClass,new { @class = "norm-lab-text",})</td>
+            <td class="norm-text">
+                @*
+                @Html.DropDownListFor(p => p.MatClass,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-text" })
+                *@
+                @Html.DropDownListFor(p => p.MatClass,
+               new SelectList(DataSource.GetMCatlass(), "Code", "Name"),new { @class = "norm-tb-text" })
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.MatRefer)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.MatClass)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.MatType,new { @class = "norm-lab-text" })</td>
+            <td class="norm-text">
+                @Html.DropDownListFor(p => p.MatType,
+               new SelectList(DataSource.GetMatType(), "Code", "Name"),new { @class = "norm-tb-text" })
+            </td>
+            <td>@Html.LabelFor(p => p.MatDescr,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.MatDescr, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:450px" } })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.MatType)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.MatDescr)</td>
+        </tr>
+
+    </table>
+    </div>

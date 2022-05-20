@@ -1,0 +1,43 @@
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@functions {
+    string panelBold(int panel)
+    {   
+    string cstyle ="";
+    int tpan =0;
+    try{
+        tpan = (int)ViewData["pamen"];
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+    }
+    catch{}
+    return cstyle;
+    }
+
+
+
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
+@*navbar-light bg-white border-bottom box-shadow mb-3">*@
+<div class="myDiv">
+                <h3 class="wrapper mih3 style-data">
+                    <img id="image" class="posabs" src="/GridMenu.jpg" onclick="openmMnu()"width="25pt" height="25pt">
+                    @SharedLocalizer.GetLocalizedHtmlString("MatEdit")
+                </h3>
+</div>
+    <div class="container-fluid ">
+@*
+                <img id="image" src="/GridMenu.jpg" onclick="openmMnu()"width="25pt" height="25pt">
+                <h3>@SharedLocalizer.GetLocalizedHtmlString("MatEdit")</h3>
+*@
+                <div id ="matMenu" name="MyMatMenu" class="o-dropdown--menu dropdown-menu dx-none o-popper-position o-popper-position--bs" style="top: 46px; left: 0px;">
+                    <a class="dropdown-item o_app" style="@panelBold(1)" asp-area="" asp-controller="TEngine" asp-action="MatComp" asp-route-id="@Model.MatId" asp-route-panel="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Components")</a>
+                    <a class="dropdown-item o_app" style="@panelBold(2)"asp-area="" asp-controller="TEngine" asp-action="MatBom" asp-route-id="@Model.MatId" asp-route-panel="2" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("BOM")</a>
+                    <a class="dropdown-item o_app" style="@panelBold(3)"asp-area="" asp-controller="TEngine" asp-action="MatImp" asp-route-id="@Model.MatId" asp-route-panel="3" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Implosio")</a>
+                    <a class="dropdown-item o_app"  style="@panelBold(4)" asp-area="" asp-controller="TEngine" asp-action="MatRoute" asp-route-id="@Model.MatId" asp-route-panel="4" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Routing")</a>
+                    <a class="dropdown-item o_app"  style="@panelBold(5)" asp-area="" asp-controller="TEngine" asp-action="MatLocal" asp-route-id="@Model.MatId" asp-route-panel="5" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Locations")</a>
+                    <hr>
+                    <a class="dropdown-item o_app"  style="@panelBold(8)" asp-area="" asp-controller="TEngine" asp-action="MatEdit" asp-route-id="@Model.MatId" asp-route-panel="4" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Home")</a>
+                </div>
+    </div>
+</nav>
