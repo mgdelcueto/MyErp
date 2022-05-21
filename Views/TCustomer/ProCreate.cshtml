@@ -11,84 +11,38 @@
         return retcol;
     }
 }
-<div class="cont-titles">
+<div class="style-data">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("AddProdRecord")</h3>
 </div>
 @using (Html.BeginForm()) {
-   <div class="visible">
+   <div class="div-edit">
     @Html.ValidationSummary(true)
-    @*
-    <div class ="invisible">
-    <tr>
-            <input type="hidden" name="CProdCustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
-            <input type="hidden" name="CProdCPlantId" value="@Planta()"/>
-            <td>Customer:</td>
-            <td>@(((TCustomer)ViewBag.Customer).CustRasoc)</td>
-    </tr>
-    </div>
-    <div class ="visible">
+    <table class="table-edit">
+        <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
-            <td>Customer:</td>
-            <td>@(((TCustomer)ViewBag.Customer).CustRasoc)</td>
-            <td> </td>
-            <td>@(((TCustomer)ViewBag.Customer).CustNif)</td>
+            <td><input type="submit" class="dropbtn" value="Add"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
         </tr>
-    </div>
-    *@
-@*
-    <div class ="div-bold">
         <tr>
-            @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
-            <div class ="visible">
-            <td>@Html.LabelFor(p => p.CprodCplantId,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.CprodMatInt,new { @class = "norm-lab-text",})</td>
             <td class="norm-text">
-                <!--@ViewData["Plant"]-->
-                @Html.DropDownListFor(p => p.CprodCplantId,(SelectList)ViewBag.ddlPlantVB,"",new { @class = "norm-text" })
-           
-            </td>
-            </div>
-            }
-        </tr>
-    </div>
-*@
-    <table class="table-norm" border ="1">
-        <tr>
-            <td>@Html.LabelFor(p => p.CprodMatInt,new { @class = "norm-text",})</td>
-            <td class="norm-text">
-                <!--@ViewData["Plant"]-->
-                @Html.DropDownListFor(p => p.CprodMatInt,(SelectList)ViewBag.ddlMatCOM,"",new { @class = "norm-text" })
+                @Html.DropDownListFor(p => p.CprodMatInt,(SelectList)ViewBag.ddlMatCOM,"",new { @class = "norm-tb-text" })
                 <td>@Html.ValidationMessageFor(p => p.CprodMatInt)</td>
             </td>
 
         </tr>
-@*
         <tr>
-            <td>@Html.LabelFor(p => p.CprodRefInt,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CprodRefInt, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
-            <td>@Html.ValidationMessageFor(p => p.CprodRefInt)</td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(p => p.CprodDescInt,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CprodDescInt, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px" } })</td>
-            <td>@Html.ValidationMessageFor(p => p.CprodDescInt)</td>
-        </tr>
-*@
-        <tr>
-            <td>@Html.LabelFor(p => p.CprodCrDate,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.CprodCrDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.CprodCrDate,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.CprodCrDate, new { htmlAttributes = new { @class = "norm-tb-text" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CprodCrDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CprodStatus,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.CprodStatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
+            <td>@Html.LabelFor(p => p.CprodStatus,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.CprodStatus, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:90px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CprodStatus)</td>
             <input type="hidden" name="CProdCustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
             <input type="hidden" name="CProdCPlantId" value="@Planta()"/>
         </tr>        
-          <tr>
-            <td><input type="submit" value="Add"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
-        </tr>
     </table>
     </div>
 }

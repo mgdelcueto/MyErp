@@ -100,6 +100,7 @@ namespace MyErp.Controllers {
             {
             try{
                 var qry=(from or in _dbContext.TOrganizacions
+                orderby or.OrgId
                  select or).FirstOrDefault();
                  return RedirectToAction("Edit");    
                  //return View("Edit",qry);

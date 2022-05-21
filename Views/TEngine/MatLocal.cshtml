@@ -1,4 +1,104 @@
-@*@{Layout = "_LyIndex";}*@
+@using MyErp.Models
+@model TMaterial
+@using MyErp.Resources
+@using MyErp.Extensions;
+@inject LocService SharedLocalizer
+
+@functions {
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "MatLocal":
+                retur[0]="TEngine";
+                retur[1]="LMatEdit";
+                retur[2]="LMatCreate";
+                retur[3]="LMatDelete";
+                break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table,int type){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "MatLocal":
+                if (type==0)
+                {
+
+                    retur.Add("MatRoute");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Stock"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UMed"));
+                }
+                else{
+                    retur.Add("LoLoId");
+                    retur.Add("LoLocCode");
+                    retur.Add("LoLocDescr");
+                    retur.Add("LoRefSt");
+                    retur.Add("LoRefUM");
+                }
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    IEnumerable<Container> getData_MatLocal(dynamic oTMaterial)
+        {
+            IEnumerable<VTMLocation> fTPersonal = (List<VTMLocation>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.LoLoId,
+                        Campo01 = f.LoLocCode.ToString(),
+                        Campo02 = f.LoLocDescr.ToString(),
+                        Campo03 = f.LoRefSt.ToString(),
+                        Campo04 = f.LoRefUM.ToString(),
+                        Campo05 = "",
+                        Campo06 = "",
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+}
+@Html.Partial("_pmenuMat_com")
+@using (Html.BeginForm()) {
+    @Html.Partial("_pshowMaterials_parc_com",(TMaterial)ViewBag.Material)
+    <div class="Visible">
+    @*<h3>@SharedLocalizer.GetLocalizedHtmlString("ComponentsOf") @Model.MatDescr</h3>*@
+    @*<table class="table-norm" border ="1">*@
+
+        <table class="table-edit" border="1">
+            <div class="cont-titles">
+                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ComponentsOf") @Model.MatDescr</h3>
+            </div>
+            <div  class="_container" name="aqui-el-control-grid-3">
+                @Html.dataGrid(31,9,@Columns("MatLocal",0),@getData_MatLocal((List<VTMLocation>)ViewBag.ListMatLoca),@Controller("MatLocal"),@Columns("MatLocal",1),Model.MatId)
+            </div>
+        </table>
+        @*@Html.Partial("_pListMatComponents",(List<VTMComponent>)ViewBag.ListMatComp)*@
+    @*</table>*@
+    </div>
+    @*@Html.Partial("_pmenuMatCo",Model)*@
+}
+
+
+
+@*
+@_@{Layout = "_LyIndex";}_@
 
 @using MyErp.Models
 @model TMaterial
@@ -12,7 +112,7 @@
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
-    @*@Html.HiddenFor(p => p.MatId)*@
+    @_@Html.HiddenFor(p => p.MatId)_@
     @Html.ValidationSummary(true)
     <table class="table-norm" border ="1">
         @Html.Partial("_pshowMaterials_parc",(TMaterial)ViewBag.Material)
@@ -26,3 +126,4 @@
     </div>
     @Html.Partial("_pmenuMatLo",Model)
 }
+*@

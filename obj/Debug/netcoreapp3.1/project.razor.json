@@ -14522,6 +14522,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TCustomer\\_LayCus copy.cshtml",
+      "TargetPath": "Views\\TCustomer\\_LayCus copy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\_ViewStart.cshtml",
       "TargetPath": "Views\\TSuplier\\_ViewStart.cshtml",
       "FileKind": "mvc"
@@ -14774,6 +14779,11 @@
     {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TPerson\\ConCreate.cshtml",
       "TargetPath": "Views\\TPerson\\ConCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pmenuWCe_com.cshtml",
+      "TargetPath": "Views\\TEngine\\_pmenuWCe_com.cshtml",
       "FileKind": "mvc"
     },
     {

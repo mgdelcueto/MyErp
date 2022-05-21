@@ -4,17 +4,17 @@
             @Html.HiddenFor(p => p.LoRefRe)
             @Html.HiddenFor(p => p.LoRefDes)
             @Html.HiddenFor(p => p.LoRefUM)
-            <td>@Html.LabelFor(p => p.LoRefRe,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.LoRefRe,new { @class = "norm-lab-text",})</td>
             <td>@Model.LoRefRe</td>
-            <td>@Html.LabelFor(p => p.LoRefDes,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.LoRefDes,new { @class = "norm-lab-text",})</td>
             <td>@Model.LoRefDes</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.LoLoId,new { @class = "norm-text" })</td>
+            <td>@Html.LabelFor(p => p.LoLoId,new { @class = "norm-lab-text" })</td>
             @using (Html.BeginForm()) {
             <input type="hidden" name="Filter" value="2"/>
             <td class="norm-text">
-                @Html.DropDownListFor(p => p.LoLoId,(SelectList)ViewBag.ddlLocNAX,"",new { @class = "norm-text" , onchange = "this.form.submit();" })
+                @Html.DropDownListFor(p => p.LoLoId,(SelectList)ViewBag.ddlLocNAX,"",new { @class = "norm-tb-text" , onchange = "this.form.submit();" })
             </td>
             }
         </tr>
@@ -23,8 +23,8 @@
             <td>@Html.ValidationMessageFor(p => p.LoLoId)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.LoRefSt,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.LoRefSt, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.LoRefSt,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.LoRefSt, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px" } })</td>
             <td>@Model.LoRefUM</td>
         </tr>
         <tr>

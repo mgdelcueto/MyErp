@@ -1,0 +1,98 @@
+@using MyErp.Models
+@using System.Linq
+@*@model TCustomer*@
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout = null;  
+    Layout="~/Views/Shared/_Layout.cshtml";
+}
+@functions {
+        string panelBold(int panel)
+    {            
+        int tpan = (int)ViewData["panel"];
+        string cstyle ="";
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+        return cstyle;
+    }
+
+    string isVisible(int panel){
+        string retcol="";
+        int opanel = (int)ViewData["panel"];
+        if (opanel==panel){retcol="visible";}
+        else{retcol="invisible";}
+        return retcol;
+    }
+    int thisPanel(){
+         int opanel = (int)ViewData["panel"];
+         return opanel;
+    }
+    int ModelCusId()
+    {
+        int pid =0;
+        try{
+        pid= (int)ViewData["CusId"];//0;//@Model.PerId;
+        }
+        catch{}
+        return pid;
+    }
+
+    string cName()
+    {
+        string dname= (string)ViewData["cName"];//0;//@Model.PerId;
+        return dname;
+    }
+
+}
+
+
+<h3>@SharedLocalizer.GetLocalizedHtmlString("EditCustomer")</h3>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    
+    <table>
+        <div class="cont-titles-l">
+        <h4>@cName()</h4>
+        @*<h2>>>@Html.DisplayFor(p => p.CustRasoc)  @Html.DisplayFor(p => p.CustNif)</h2>*@
+        </div>
+        <table>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TCustomer" asp-action="Prev" asp-route-id="@ModelCusId()" asp-route-supid="@ModelCusId()" asp-route-panel="@thisPanel()" asp-route-move="1">&lt&ltPrev</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TCustomer" asp-action="Edit"  asp-route-id="@ModelCusId()" asp-route-supid="@ModelCusId()"  asp-route-panel="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Customer")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(2)"asp-area="" asp-controller="TCustomer" asp-action="Edit"  asp-route-id="@ModelCusId()" asp-route-supid="@ModelCusId()"  asp-route-panel="2" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Products")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(3)" asp-area="" asp-controller="TCustomer" asp-action="Edit"  asp-route-id="@ModelCusId()" asp-route-supid="@ModelCusId()"  asp-route-panel="3" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Plants")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(4)" asp-area="" asp-controller="TCustomer" asp-action="Edit"  asp-route-id="@ModelCusId()" asp-route-supid="@ModelCusId()"  asp-route-panel="4" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Planning")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(5)" asp-area="" asp-controller="TCustomer" asp-action="Edit"  asp-route-id="@ModelCusId()" asp-route-supid="@ModelCusId()"  asp-route-panel="5" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Orders")</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TCustomer" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Home")</a>
+                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TCustomer" asp-action="Next"  asp-route-id="@ModelCusId()" asp-route-supid="@ModelCusId()"  asp-route-panel="@thisPanel()" asp-route-move="2">Next&gt&gt</a>
+                        </li>                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        </table>
+    </table>
+    @RenderBody()
+}
+
+
+

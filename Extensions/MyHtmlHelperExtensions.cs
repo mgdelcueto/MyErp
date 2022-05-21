@@ -446,7 +446,7 @@ public static class MyHtmlHelperExtensions {
 
             var tagthc0 = new TagBuilder($"th"); 
             tagthc0.Attributes.Add("class", $"head-text");
-            tagthc0.InnerHtml.Append("Select");
+            tagthc0.InnerHtml.Append("Select "+uniqueId);
             tagthc0.Attributes.Add("width", Pcsel);
             tagtrc.InnerHtml.AppendHtml(tagthc0);
             for (int i=1;i<=_ncols;i++)

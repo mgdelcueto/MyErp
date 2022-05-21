@@ -576,10 +576,11 @@ namespace MyErp.Controllers {
             catch{}          
             return RedirectToAction("Index");
         }
-        public IActionResult ProDelete(int id,int Pid) {
+        public IActionResult ProDelete(int id,int? Pid) {
             var mode = _dbContext.TCCproducts
                 .SingleOrDefault(u => u.CprodId.Equals(id));
             try{
+            Pid=mode.CprodCustId;
             _dbContext.TCCproducts.Remove(mode);
             _dbContext.SaveChanges();
             }  
@@ -692,11 +693,11 @@ namespace MyErp.Controllers {
             CreateViewBags(Pid,id,model.CprodCplantId);  
 
             var pmodel = _dbContext.TCustomers
-                .SingleOrDefault(u => u.CustId.Equals(cuid));
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
 
             string cName = pmodel.CustRasoc+" " +pmodel.CustNif;
             ViewData["cName"]=cName;
-            ViewData["CusId"]=cuid;
+            ViewData["CusId"]=Pid;
 
             ViewData["panel"]=2;
 
@@ -751,11 +752,11 @@ namespace MyErp.Controllers {
             CreateViewBags(Pid,0,id,Pid);                
 
             var pmodel = _dbContext.TCustomers
-                .SingleOrDefault(u => u.CustId.Equals(cuid));
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
 
             string cName = pmodel.CustRasoc+" " +pmodel.CustNif;
             ViewData["cName"]=cName;
-            ViewData["CusId"]=cuid;
+            ViewData["CusId"]=Pid;
 
             ViewData["panel"]=3;
 
@@ -812,11 +813,11 @@ namespace MyErp.Controllers {
             CreateViewBags(Pid,model.CplanCprodId,model.CplanCplantId);    
 
             var pmodel = _dbContext.TCustomers
-                .SingleOrDefault(u => u.CustId.Equals(cuid));
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
 
             string cName = pmodel.CustRasoc+" " +pmodel.CustNif;
             ViewData["cName"]=cName;
-            ViewData["CusId"]=cuid;
+            ViewData["CusId"]=Pid;
 
             ViewData["panel"]=4;
 
@@ -875,11 +876,11 @@ namespace MyErp.Controllers {
             CreateViewBags(Pid,model.CpocprodId,model.CpocplantId);    
 
             var pmodel = _dbContext.TCustomers
-                .SingleOrDefault(u => u.CustId.Equals(cuid));
+                .SingleOrDefault(u => u.CustId.Equals(Pid));
 
             string cName = pmodel.CustRasoc+" " +pmodel.CustNif;
             ViewData["cName"]=cName;
-            ViewData["CusId"]=cuid;
+            ViewData["CusId"]=Pid;
 
             ViewData["panel"]=5;
 
@@ -988,6 +989,7 @@ namespace MyErp.Controllers {
         public IActionResult Edit(int id, int panel, int move,int? prod,int? plant,string actionType) {
             if(prod==null){prod=0;} 
             if(plant==null){plant=0;}
+            if (panel==0){panel=1;}
             ViewData["panel"]=panel;
             try{
 

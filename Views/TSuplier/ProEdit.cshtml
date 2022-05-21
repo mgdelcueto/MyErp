@@ -5,15 +5,15 @@
 @{
     Layout = "_LaySup";
 }
-<div class="cont-titles">
+<div class="style-data">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("EditProdRecord")</h3>
 </div>
 @using (Html.BeginForm()) {
-    <div class="visible">
+    <div class="div-edit">
     @Html.HiddenFor(p => p.ProdId)
     @Html.HiddenFor(p => p.ProdSupId)
     @Html.ValidationSummary(true)
-    <table class="table-norm" border ="1">
+    <table class="table-edit" >
         <hr style="width:100%;text-align:left;margin-left:0">
          <tr>
             <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>

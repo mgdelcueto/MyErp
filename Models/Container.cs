@@ -7,7 +7,7 @@ namespace MyErp.Models
 {
     public partial class Container
     {
-        public int CampoId { get; set; }
+        public int? CampoId { get; set; }
         public string Campo01 { get; set; }
         public string Campo02 { get; set; }
         public string Campo03 { get; set; }

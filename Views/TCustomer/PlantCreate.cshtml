@@ -1,18 +1,18 @@
 @using MyErp.Models
 @model TCCplant
-<div class="cont-titles">
 @using MyErp.Resources
 @inject LocService SharedLocalizer
 @{
     Layout = "_LayCus";
 }
+<div class="style-data">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("AddPlantRecord")</h3>
 </div>
 @using (Html.BeginForm()) {
-    <div class="visible">
+    <div class="div-edit">
     @Html.ValidationSummary(true)
-
-    <table class="table-norm" border ="1">
+    <table class="table-edit">
+        <hr style="width:100%;text-align:left;margin-left:0">
         @*
         <tr>
             <input type="hidden" name="CplantCustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
@@ -25,45 +25,44 @@
         </tr>
         *@
         <tr>
-            <td>@Html.LabelFor(p => p.CplantCode,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CplantCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:120px" } })</td>
+            <td><input type="submit" class="dropbtn" value="Add"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CplantCode,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CplantCode, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:120px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CplantCode)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CplantDeno,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CplantDeno, new { htmlAttributes = new { @class = "norm-text", @style = "width:420px" } })</td>
+            <td>@Html.LabelFor(p => p.CplantDeno,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CplantDeno, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:420px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CplantDeno)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CplantAdStrt,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CplantAdStrt, new { htmlAttributes = new { @class = "norm-text", @style = "width:420px" } })</td>
+            <td>@Html.LabelFor(p => p.CplantAdStrt,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CplantAdStrt, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:420px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CplantAdStrt)</td>
         </tr>        
         <tr>
-            <td>@Html.LabelFor(p => p.CplantAdCity,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CplantAdCity, new { htmlAttributes = new { @class = "norm-text", @style = "width:220px" } })</td>
+            <td>@Html.LabelFor(p => p.CplantAdCity,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CplantAdCity, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:220px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CplantAdCity)</td>
         </tr>        
         <tr>
-            <td>Pais</td>
+            <td>@Html.LabelFor(p => p.CplantAdCtry,new { @class = "norm-lab-text",})</td>
             <td>
                 @Html.DropDownListFor(p => p.CplantAdCtry,
-               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-tb-text" })
             </td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CplantTruckId,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.CplantTruckId,new { @class = "norm-lab-text",})</td>
             <td class="norm-text">
-                @Html.DropDownListFor(p => p.CplantTruckId,(SelectList)ViewBag.ddlTruckX,"",new { @class = "norm-text" })
+                @Html.DropDownListFor(p => p.CplantTruckId,(SelectList)ViewBag.ddlTruckX,"",new { @class = "norm-tb-text" })
             </td>
             <td>@Html.ValidationMessageFor(p => p.CplantTruckId)</td>
              <input type="hidden" name="CplantCustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Add"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
-        </tr>
     </table>
     </div>
 }

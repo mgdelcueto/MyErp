@@ -1,0 +1,40 @@
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@functions {
+    string panelBold(int panel)
+    {   
+    string cstyle ="";
+    int tpan =0;
+    try{
+        tpan = (int)ViewData["pamen"];
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+    }
+    catch{}
+    return cstyle;
+    }
+
+
+
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
+@*navbar-light bg-white border-bottom box-shadow mb-3">*@
+<div class="myDiv">
+                <h3 class="wrapper mih3 style-data">
+                    <img id="image" class="posabs" src="/GridMenu.jpg" onclick="openmMnu()"width="25pt" height="25pt">
+                    @SharedLocalizer.GetLocalizedHtmlString("WCenterEdit")
+                </h3>
+</div>
+    <div class="container-fluid ">
+@*
+                <img id="image" src="/GridMenu.jpg" onclick="openmMnu()"width="25pt" height="25pt">
+                <h3>@SharedLocalizer.GetLocalizedHtmlString("MatEdit")</h3>
+*@
+                <div id ="matMenu" name="MyMatMenu" class="o-dropdown--menu dropdown-menu dx-none o-popper-position o-popper-position--bs" style="top: 46px; left: 0px;">
+                    <a class="dropdown-item o_app pad0"style="@panelBold(1)" asp-area="" asp-controller="TEngine" asp-action="WCeEdit" asp-route-id="@Model.WcdId" asp-route-panem="2" asp-route-panel="2">@SharedLocalizer.GetLocalizedHtmlString("WCComponents")</a>
+                    <a class="dropdown-item o_app pad0" style="@panelBold(2)"asp-area="" asp-controller="TEngine" asp-action="WCeEdit" asp-route-id="@Model.WcdId" asp-route-panem="1"  asp-route-panel="2" >@SharedLocalizer.GetLocalizedHtmlString("Operators")</a>
+                    <hr>
+                    <a class="dropdown-item o_app pad0"  style="@panelBold(8)" asp-area="" asp-controller="TEngine" asp-action="WCeEdit" asp-route-id="@Model.WcdId" asp-route-panel="2" >@SharedLocalizer.GetLocalizedHtmlString("WCenterEdit")</a>
+                </div>
+    </div>
+</nav>

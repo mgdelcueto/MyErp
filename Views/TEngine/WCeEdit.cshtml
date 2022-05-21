@@ -2,9 +2,135 @@
 @using MyErp.Models
 @model TWorkCenter
 @using MyErp.Resources
+@using MyErp.Extensions
 @inject LocService SharedLocalizer
 
 @functions {
+
+    string parqsaction(int panem , int vassign, string toremove)
+    {
+        //deja el ultimo parametroa rellenar con el Id de la tabla en el javascript del control grid
+        string ret ="/"+Model.WcdId.ToString()+"?panem="+panem.ToString()+"&assign="+vassign.ToString()+"&wass=0&"+toremove+"=";
+        //{ id= @Model.WcdId, wrem = 0, panem=1,wass=1,assign =1}
+        //new { id= c.WcoWcid, assign =1,wrem = c.WcoId, wass=0,panem=1}
+        return ret;
+    }
+
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "WCComp":
+                retur[0]="TEngine";
+                retur[1]="";
+                retur[2]="";
+                retur[3]="WCeEdit"; //elimina la asignacion por metodo Delete en el la accion edit del controllardor
+                break;
+        case "WCOper":
+                retur[0]="TEngine";
+                retur[1]="";
+                retur[2]="";
+                retur[3]="WCeEdit"; //elimina la asignacion por metodo Delete en el la accion edit del controllardor
+                break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table,int type){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "WCComp":
+                if (type==0)
+                {
+
+                    retur.Add("WCComp");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Type"));
+                }
+                else{
+                    retur.Add("WcoId");
+                    retur.Add("WcoCode");
+                    retur.Add("WcoDescr");
+                    retur.Add("WcoType");
+                }
+                break;
+            case "WCOper":
+                if (type==0)
+                {
+                    retur.Add("WCOper");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Cost"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Curcy"));
+                }
+                else{
+                    retur.Add("OpOpId");
+                    retur.Add("OpOpCode");
+                    retur.Add("OpOpDes");
+                    retur.Add("OpOpCost");
+                    retur.Add("OpOPCurcy");
+                }
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    IEnumerable<Container> getData_WCComp(dynamic oTMaterial)
+        {
+            IEnumerable<TWccomponent> fTPersonal = (List<TWccomponent>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.WcoId,
+                        Campo01 = f.WcoCode.ToString(),
+                        Campo02 = f.WcoDescr.ToString(),
+                        Campo03 = f.WcoType.ToString(),
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "",
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+    IEnumerable<Container> getData_WCOper(dynamic oTMaterial)
+        {
+            IEnumerable<VTWOperator> fTPersonal = (List<VTWOperator>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.OpOpId,
+                        Campo01 = f.OpOpCode.ToString(),
+                        Campo02 = f.OpOpDes.ToString(),
+                        Campo03 = f.OpOpCost.ToString(),
+                        Campo04 = f.OpOPCurcy.ToString(),
+                        Campo05 = "",
+                        Campo06 = "",
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
     string isVisible(int panel){
         string retcol="";
         int opanel = (int)ViewData["panel"];
@@ -12,41 +138,61 @@
         else{retcol="invisible";}
         return retcol;
     }
-    string isVisibleM(int panel){
+    string isVisibleM(int panem){
         string retcol="";
-        int opanel = (int)ViewData["panem"];
-        if (opanel==panel){retcol="visible";}
+        int opanem =0;
+        try{
+        opanem = (int)ViewData["panem"];
+        }
+        catch{}
+        if (opanem==panem){retcol="visible";}
         else{retcol="invisible";}
         return retcol;
     }
-
-string assVisible(int panel)
-{
-    string retcol="invisible";
-    try{
-    if ((int)ViewData["Assign"]==panel)
-    {retcol="visible";}
+    private int VPanem(){
+        int opanem =0;
+        try{
+        opanem = (int)ViewData["panem"];
+        }
+        catch{}
+        return opanem;
     }
-    catch{}
-    return retcol;
- }
-private int VAssign(){
-    int resul = 0;
-    try{
-    resul=(int)ViewData["Assign"];
+
+    string assVisible(int panem)
+    {
+        string retcol="invisible";
+        try{
+        if ((int)ViewData["panem"]==panem)  //Assign
+        {retcol="visible";}
+        }
+        catch{}
+        return retcol;
     }
-    catch{}
-    return resul;
-
+    private int VAssign(){
+        int resul = 0;
+        try{
+        resul=(int)ViewData["panem"];       //Assign
+        }
+        catch{}
+        return resul;
+    }
 }
-}
+<script>
+    function AddWCcompo(modulo,assign)
+    {
+        //asigna nuevo componente (panem)
+        var e = document.getElementById(modulo);
+        var value = e.options[e.selectedIndex].WcoId;
+        var url=window.location.href.split("?")[0];
+        url=url+"?"+e.name+"="+e.value.toString()+"&wass=1&wrem=0&assign="+assign.toString()+"&panem="+assign.toString();
+        window.location.href = url;
 
-<div class="cont-titles">
-<h3>@SharedLocalizer.GetLocalizedHtmlString("WCEdit")</h3>
-</div>
-@using (Html.BeginForm()) {
+    }
+</script>
+@Html.Partial("_pmenuWCe_com")
+@using (Html.BeginForm("WCeEdit","TEngine", new { id= @Model.WcdId, wrem = 0,panem=@VPanem(), wass=0,assign=@VAssign()})) {
     <div class="div-edit">
-    @Html.HiddenFor(p => p.WcdId)
+    @*@Html.HiddenFor(p => p.WcdId)*@
     @Html.ValidationSummary(true)
     <table class="table-edit">
          <tr>
@@ -56,76 +202,41 @@ private int VAssign(){
         @Html.Partial("_pshowWorkCenters",Model)
     </table>
     </div>
-@Html.Partial("_pmenuWCe",Model)
 
 
 <div class=@isVisibleM(1)>
-<!--Work Center's components-->
-<div class=visible>
     <table class="table-norm" border="1">
         <div class="cont-titles">
-        <h3>@SharedLocalizer.GetLocalizedHtmlString("WCCoAssigned")</h3>
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("WcRolesToAss")</h3>
         </div>
-   '     @Html.Partial("_pListaWCComponents",(List<TWccomponent>)ViewBag.ListPodAs)'
+        <table>
+            <tr>
+                <td>@SharedLocalizer.GetLocalizedHtmlString("WCRolesToAss")</td>
+                <td class="norm-text">
+                    @Html.DropDownList("OpeId", (SelectList)ViewBag.ddlPodOPS, new {@id ="myselectop", @class ="medium-text" , onchange ="AddWCcompo('myselectop',1);" })
+                </td>
+            </tr>
+        </table>
+        @Html.dataGrid(33,7,@Columns("WCOper",0),@getData_WCOper((List<VTWOperator>)ViewBag.ListOpdAs),@Controller("WCOper"),@Columns("WCOper",1),0,@parqsaction(1,1,"wrem"))
     </table>
-    @Html.ActionLink("Assig a new Component", "WCeEdit", new { id= @Model.WcdId, wrem = 0,panem=1, wass=0,assign=1})
-</div>
-<div class=@assVisible(1)>
-    <table>
-        <tr>
-            @using (Html.BeginForm("WCeEdit","TEngine", new { id= @Model.WcdId, wrem = 0, panem=1,wass=1,assign =1},FormMethod.Post)) {        
-            <td>@SharedLocalizer.GetLocalizedHtmlString("WCToAssign")
-            <input type="hidden" name="wass" value="1"/>
-            </td>
-            <td class="norm-text">
-                <!--@ViewData["Plant"]-->
-                @Html.DropDownList("WcoId", (SelectList)ViewBag.ddlPodNAS, new { @class ="medium-text" , onchange = "this.form.submit();" })
-            </td>
-            }
-        </tr>
-    </table>
-</div>
 </div>
 
+
 <div class=@isVisibleM(2)>
-<!--Operators-->
-<div class=visible>
     <table class="table-norm" border="1">
         <div class="cont-titles">
-        <h3>>@SharedLocalizer.GetLocalizedHtmlString("WCOperAssined")</h3>
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("WcCompToAss")</h3>
         </div>
-        @Html.Partial("_pListaWCOperators",(List<VTWOperator>)ViewBag.ListOpdAs)
+        <table>
+            <tr>
+                <td>@SharedLocalizer.GetLocalizedHtmlString("WCToAssign")</td>
+                <td class="norm-text">
+                    @Html.DropDownList("WcoId", (SelectList)ViewBag.ddlPodNAS, new {@id ="myselect", @class ="medium-text" , onchange ="AddWCcompo('myselect',2);" })
+                </td>
+            </tr>
+        </table>
+        @Html.dataGrid(34,7,@Columns("WCComp",0),@getData_WCComp((List<TWccomponent>)ViewBag.ListPodAs),@Controller("WCComp"),@Columns("WCComp",1),0,@parqsaction(2,2,"wrem"))
     </table>
-    @Html.ActionLink("Assig a new Component", "WCeEdit", new { id= @Model.WcdId, wrem = 0,panem=2, wass=0,assign=2})
-</div>
-<div class=@assVisible(2)>
-    <table>
-        @*@using (Html.BeginForm("WCeEdit","TEngine", new { id= @Model.WcdId, wrem = 0, panem=2,wass=1,assign =2},FormMethod.Post)) {        
-            *@
-        <tr>
-            <td>@SharedLocalizer.GetLocalizedHtmlString("WCOperToAssign")
-            <input type="hidden" name="wass" value="1"/>
-            </td>
-            <td class="norm-text">
-                <!--@ViewData["Plant"]-->
-                @Html.DropDownList("OpeId", (SelectList)ViewBag.ddlPodOPS, new { @class ="medium-text" })
-            </td>
-        </tr>
-        <tr>
-            <td>@SharedLocalizer.GetLocalizedHtmlString("WCNumberOperators")</td>
-            <td>            
-                <input type="text" name="opnum" value="1"/>
-            </td>
-         <tr>
-            
-            <td><input type="submit" value="OK"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel_" name="actionType"/></td>
-            
-        </tr>
-        </tr>
-        @*}*@
-    </table>
-</div>
 </div>
 
 }

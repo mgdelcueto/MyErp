@@ -4,25 +4,25 @@
             @Html.HiddenFor(p => p.RoRoMatRe)
             @Html.HiddenFor(p => p.RoRoMatDe)
             
-            <td>@Html.LabelFor(p => p.RoRoMatRe,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.RoRoMatRe,new { @class = "norm-lab-text",})</td>
             <td>@Model.RoRoMatRe</td>
-            <td>@Html.LabelFor(p => p.RoRoMatDe,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.RoRoMatDe,new { @class = "norm-lab-text",})</td>
             <td>@Model.RoRoMatDe</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.RoRoFase,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.RoRoFase, new { htmlAttributes = new { @class = "norm-text", @style = "width:400px" } })</td>
+            <td>@Html.LabelFor(p => p.RoRoFase,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.RoRoFase, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:400px" } })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.RoRoFase)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.RoRoWCId,new { @class = "norm-text" })</td>
+            <td>@Html.LabelFor(p => p.RoRoWCId,new { @class = "norm-lab-text" })</td>
             @using (Html.BeginForm()) {
             <input type="hidden" name="Filter" value="2"/>
             <td class="norm-text">
-                @Html.DropDownListFor(p => p.RoRoWCId,(SelectList)ViewBag.ddlWCenter,"",new { @class = "norm-text" , onchange = "this.form.submit();" })
+                @Html.DropDownListFor(p => p.RoRoWCId,(SelectList)ViewBag.ddlWCenter,"",new { @class = "norm-tb-text" , onchange = "this.form.submit();" })
             </td>
             }
         </tr>
@@ -31,28 +31,28 @@
             <td>@Html.ValidationMessageFor(p => p.RoRoWCId)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.RoRoOper,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.RoRoOper, new { htmlAttributes = new { @class = "norm-text", @style = "width:400px" } })</td>
+            <td>@Html.LabelFor(p => p.RoRoOper,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.RoRoOper, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:400px" } })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.RoRoOper)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.RoRoWunit,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.RoRoWunit, new { htmlAttributes = new { @class = "norm-text", @style = "width:400px" } })</td>
+            <td>@Html.LabelFor(p => p.RoRoWunit,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.RoRoWunit, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:400px" } })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.RoRoWunit)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.RoRoWtime,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.RoRoWtime,new { @class = "norm-lab-text",})</td>
             <td>@Html.EditorFor(p => p.RoRoWtime, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
-            <td>@Html.LabelFor(p => p.RoRoTunit,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.RoRoTunit,new { @class = "norm-lab-text",})</td>
             <td>
                 @Html.DropDownListFor(p => p.RoRoTunit,
-               new SelectList(DataSource.GetTimeUnits(), "Code", "Name"),new { @class = "norm-text" })
+               new SelectList(DataSource.GetTimeUnits(), "Code", "Name"),new { @class = "norm-tb-text" })
             </td>
         </tr>
         <tr>
@@ -62,10 +62,10 @@
             <td>@Html.ValidationMessageFor(p => p.RoRoTunit)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.RoRoMinLot,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.RoRoMinLot, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
-            <td>@Html.LabelFor(p => p.RoRoUEmb,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.RoRoUEmb, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.RoRoMinLot,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.RoRoMinLot, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.RoRoUEmb,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.RoRoUEmb, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px" } })</td>
         </tr>
         <tr>
             <td></td>

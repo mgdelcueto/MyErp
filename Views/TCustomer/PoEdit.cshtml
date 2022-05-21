@@ -5,7 +5,7 @@
 @{
     Layout = "_LayCus";
 }
-<div class="cont-titles">
+<div class="style-data">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("EditPORecord")</h3>
 </div>
 @using (Html.BeginForm()) {
@@ -23,13 +23,12 @@
         </tr>
     </div>
     *@
-    <div class ="div-bold">
+    <div class ="div-edit">
         <tr>
             @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
             <div class ="visible">
             <td>@Html.LabelFor(p => p.CpocplantId,new { @class = "norm-text",})</td>
             <td class="norm-text">
-                <!--@ViewData["Plant"]-->
                 @Html.DropDownListFor(p => p.CpocplantId,(SelectList)ViewBag.ddlPlantVB,"",new { @class = "norm-text" })
            
             </td>
@@ -38,56 +37,55 @@
         </tr>
     </div>
 
-    <table class="table-norm" border ="1">
-
+    <table class="table-edit">
+        <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
-            <td>@Html.LabelFor(p => p.Cpopo,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.Cpopo, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px" } })</td>
+            <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Cpopo,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.Cpopo, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.Cpopo)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.Cpodate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.Cpodate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.LabelFor(p => p.Cpodate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.Cpodate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
             <td>@Html.ValidationMessageFor(p => p.Cpodate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CporeferEx,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CporeferEx, new { htmlAttributes = new { @class = "norm-text", @style = "width:170px" } })</td>
+            <td>@Html.LabelFor(p => p.CporeferEx,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CporeferEx, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:170px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CporeferEx)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CpodescEx,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.CpodescEx, new { htmlAttributes = new { @class = "norm-text" , @style = "width:450px" } })</td>
+            <td>@Html.LabelFor(p => p.CpodescEx,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.CpodescEx, new { htmlAttributes = new { @class = "norm-tb-text" , @style = "width:450px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CpodescEx)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CpocprodId,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.CpocprodId,new { @class = "norm-lab-text",})</td>
             <td class="norm-text">
-                <!--@ViewData["Plant"]-->
-                @Html.DropDownListFor(p => p.CpocprodId,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-text" })
+                @Html.DropDownListFor(p => p.CpocprodId,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-tb-text" })
                 <td>@Html.ValidationMessageFor(p => p.CpocprodId)</td>
             </td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.Cpoprice,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.Cpoprice, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
+            <td>@Html.LabelFor(p => p.Cpoprice,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.Cpoprice, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:90px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.Cpoprice)</td>
         </tr>        
         <tr>        
-            <td>Divisa:</td>
+            <td>@Html.LabelFor(p => p.Cpocurcy,new { @class = "norm-lab-text" })</td>
             <td>
                 @Html.DropDownListFor(p => p.Cpocurcy,
-               new SelectList(DataSource.GetCurrency(), "Code", "Name"),new { @class = "norm-text" })
+               new SelectList(DataSource.GetCurrency(), "Code", "Name"),new { @class = "norm-tb-text" })
             </td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.Cpostatus,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.Cpostatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:170px" } })</td>
+            <td>@Html.LabelFor(p => p.Cpostatus,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.Cpostatus, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:170px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.Cpostatus)</td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
         </tr>
     </table>
     </div>

@@ -555,6 +555,7 @@ namespace MyErp.Controllers {
         [HttpGet]
         public IActionResult Edit(int id, int panel, int move,int? prod, int supid) {
             if(prod==null){prod=0;}
+            if(panel==0){panel=1;}
             ViewData["panel"]=panel;
             try{
             /*

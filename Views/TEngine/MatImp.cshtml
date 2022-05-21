@@ -3,6 +3,116 @@
 @using MyErp.Models
 @model TMaterial
 @using MyErp.Resources
+@using MyErp.Extensions;
+@inject LocService SharedLocalizer
+@functions {
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "MatImp":
+                retur[0]="TEngine";
+                retur[1]="";        //No edit MatEdit
+                retur[2]="";        //No create
+                retur[3]="";        //no delete
+                break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table,int type){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "MatImp":
+                if (type==0)
+                {
+                    retur.Add("MatImp");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Level"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Refer"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Decsr<"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Coef"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UM"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Fase"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Oper"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Time"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UnitT"));
+                }
+                else{
+                    retur.Add("ExpId");
+                    retur.Add("ExpsLevel");
+                    retur.Add("ExpRefer");
+                    retur.Add("ExpDescr");
+                    retur.Add("ExpCoef");
+                    retur.Add("ExpUm");
+                    retur.Add("ExpRouFase");
+                    retur.Add("ExpRouOper");
+                    retur.Add("ExpRouTime");
+                    retur.Add("ExpRouTunit");
+                }
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    IEnumerable<Container> getData_MatImp(dynamic oTMaterial)
+        {
+            IEnumerable<TExplosionB> fTPersonal = (List<TExplosionB>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.ExpId,
+                        Campo01 = f.ExpsLevel.ToString(),
+                        Campo02 = f.ExpRefer.ToString(),
+                        Campo03 = f.ExpDescr.ToString(),
+                        Campo04 = f.ExpCoef.ToString(),
+                        Campo05 = f.ExpUm.ToString(),
+                        Campo06 = f.ExpRouFase.ToString(),
+                        Campo07 = f.ExpRouOper.ToString(),
+                        Campo08 = f.ExpRouTime.ToString(),
+                        Campo09 = f.ExpRouTunit.ToString(),
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+}
+@Html.Partial("_pmenuMat_com")
+@using (Html.BeginForm()) {
+    @Html.Partial("_pshowMaterials_parc_com",(TMaterial)ViewBag.Material)
+    <div class="Visible">
+    @*<h2>B.O.M. of @Model.MatDescr</h2>*@
+    @*<table class="table-norm" border ="1">*@
+
+        <table class="table-edit" border="1">
+            <div class="cont-titles">
+                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("Implosio_BOM") @Model.MatDescr</h3>
+            </div>
+            <div  class="_container" name="aqui-el-control-grid-3">
+                @Html.dataGrid(29,9,@Columns("MatImp",0),@getData_MatImp((List<TExplosionB>)ViewBag.ListMatImp),@Controller("MatImp"),@Columns("MatImp",1),Model.MatId,"",false,false)
+            </div>
+        </table>
+
+
+        @*@Html.Partial("_pListMatBom",(List<TExplosionB>)ViewBag.ListMatBom)*@
+    @*</table>*@
+    </div>
+    @*@Html.Partial("_pmenuMatCo",Model)*@
+}
+
+
+@*
+@_@{Layout = "_LyIndex";}_@
+
+@using MyErp.Models
+@model TMaterial
+@using MyErp.Resources
 @inject LocService SharedLocalizer
 
 @functions {
@@ -12,7 +122,7 @@
 </div>
 @using (Html.BeginForm()) {
     <div class="visible">
-    @*@Html.HiddenFor(p => p.MatId)*@
+    @_Html.HiddenFor(p => p.MatId)_@
     @Html.ValidationSummary(true)
     <table class="table-norm" border ="1">
         @Html.Partial("_pshowMaterials_parc",(TMaterial)ViewBag.Material)
@@ -26,3 +136,4 @@
     </div>
     @Html.Partial("_pmenuMatCo",Model)
 }
+*@

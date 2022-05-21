@@ -1077,6 +1077,7 @@ namespace MyErp.Controllers {
         [HttpGet]
         public IActionResult Edit(int id, int panel, int move, int perid)//,string _sortExpression, string _filterExpression,int IdGrid) 
         {
+            if (panel==0 ){panel=1;}
             ViewData["panel"]=panel;
             ////ViewData["IdGrid"]=uniqueId;
             

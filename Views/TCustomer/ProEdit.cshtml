@@ -5,11 +5,11 @@
 @{
     Layout = "_LayCus";
 }
-<div class="cont-titles">
+<div class="style-data">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("EditProdRecord")</h3>
 </div>
 @using (Html.BeginForm()) {
-    <div class="visible">
+    <div class="div-edit">
     @Html.HiddenFor(p => p.CprodId)
     @Html.HiddenFor(p => p.CprodCustId)
     @Html.ValidationSummary(true)
@@ -39,12 +39,17 @@
         </tr>
     </div>
 *@
-    <table class="table-norm" border ="1">
+    <table class="table-edit">
+        <hr style="width:100%;text-align:left;margin-left:0">
         <tr>
-            <td>@Html.LabelFor(p => p.CprodMatInt,new { @class = "norm-text",})</td>
+            <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CprodMatInt,new { @class = "norm-lab-text",})</td>
             <td class="norm-text">
                 <!--@ViewData["Plant"]-->
-                @Html.DropDownListFor(p => p.CprodMatInt,(SelectList)ViewBag.ddlMatCOM,"",new { @class = "norm-text" })
+                @Html.DropDownListFor(p => p.CprodMatInt,(SelectList)ViewBag.ddlMatCOM,"",new { @class = "norm-tb-text" })
                 <td>@Html.ValidationMessageFor(p => p.CprodMatInt)</td>
             </td>
 
@@ -62,19 +67,15 @@
         </tr>
 *@
         <tr>
-            <td>@Html.LabelFor(p => p.CprodCrDate,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.CprodCrDate, new { htmlAttributes = new { @class = "norm-text" } })</td>
+            <td>@Html.LabelFor(p => p.CprodCrDate,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.CprodCrDate, new { htmlAttributes = new { @class = "norm-tb-text" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CprodCrDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CprodStatus,new { @class = "norm-text" })</td>
-            <td>@Html.EditorFor(p => p.CprodStatus, new { htmlAttributes = new { @class = "norm-text", @style = "width:90px" } })</td>
+            <td>@Html.LabelFor(p => p.CprodStatus,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.CprodStatus, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:90px" } })</td>
             <td>@Html.ValidationMessageFor(p => p.CprodStatus)</td>
         </tr>        
-          <tr>
-            <td><input type="submit" value="Update"  name="actionType"/></td>
-            <td><input type="submit" value="Cancel" name="actionType"/></td>
-        </tr>
     </table>
     </div>
 }

@@ -2,7 +2,10 @@
 @model TSPorder
 @using MyErp.Resources
 @inject LocService SharedLocalizer
-<div class="cont-titles">
+@{
+    Layout = "_LaySup";
+}
+<div class="style-data">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("EditPORecord")</h3>
 </div>
 @using (Html.BeginForm()) {
@@ -11,6 +14,7 @@
     @Html.HiddenFor(p => p.SposupId)
     @Html.ValidationSummary(true)
     <table class="table-edit">
+        <hr style="width:100%;text-align:left;margin-left:0">        
         <tr>
             <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
             <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>

@@ -115,7 +115,7 @@ string fValue (int valor){
 <div class = "cont-titles">
  <h3>@SharedLocalizer.GetLocalizedHtmlString("CustomerList")</h3>   
 </div>
-@Html.dataGrid(3,6,Columns(0),@getData((List<TCustomer>)Model),@Controller(),Columns(1))
+@Html.dataGrid(3,16,Columns(0),@getData((List<TCustomer>)Model),@Controller(),Columns(1))
 
 @*
 <td><a class="nav-link text-dark" asp-area="" asp-controller="TCustomer" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">Filter</a></td>

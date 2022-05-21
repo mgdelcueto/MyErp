@@ -2,16 +2,242 @@
 @using MyErp.Models
 @model TCustomer
 @using MyErp.Resources
+@using MyErp.Extensions;
 @inject LocService SharedLocalizer
 @{
     Layout = null;  
     Layout = "_LayCus.cshtml";
 }
-@using (Html.BeginForm()) {
-    @Html.HiddenFor(p => p.CustId)
-    @Html.ValidationSummary(true)
+
+
 
 @functions {
+
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "Product":
+                retur[0]="TCustomer";
+                retur[1]="ProEdit";
+                retur[2]="ProCreate";
+                retur[3]="ProDelete";
+                break;
+        case "CPlant":
+                retur[0]="TCustomer";
+                retur[1]="PlantEdit";
+                retur[2]="PlantCreate";
+                retur[3]="PlantDelete";
+                break;
+        case "CPlann":
+                retur[0]="TCustomer";
+                retur[1]="PlanEdit";
+                retur[2]="PlanCreate";
+                retur[3]="PlanDelete";
+                break;
+        case "CPO":
+                retur[0]="TCustomer";
+                retur[1]="PoEdit";
+                retur[2]="PoCreate";
+                retur[3]="PoDelete";
+                break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table,int type){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "Product":
+                if (type==0)
+                {
+                    retur.Add("Product");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Reference"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descriptio"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date Creation"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Status"));
+                }
+                else{
+                    retur.Add("CprodId");
+                    retur.Add("CprodRefInt");
+                    retur.Add("CprodDescInt");
+                    retur.Add("CprodCrDate");
+                    retur.Add("CprodStatus");
+                }
+                break;
+            case "CPlant":
+                if (type==0)
+                {
+                    retur.Add("CPlant");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Deno"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Address"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("City"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Ctry"));
+                }
+                else{
+                    retur.Add("CplantId");
+                    retur.Add("CplantCode");
+                    retur.Add("CplantDeno");
+                    retur.Add("CplantAdStrt");
+                    retur.Add("CplantAdCity");
+                    retur.Add("CplantAdCtry");
+                }
+                break;
+            case "CPlann":
+                if (type==0)
+                {
+                    retur.Add("CPlann");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefInt"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DescInt"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DateFRom"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DateTo"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Qty"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("FirmSt"));
+                }
+                else{
+                    retur.Add("CplanId");
+                    retur.Add("CprodRefInt");
+                    retur.Add("CprodDescInt");
+                    retur.Add("CplanDateFrom");
+                    retur.Add("CplanDateTo");
+                    retur.Add("CplanQty");
+                    retur.Add("CplanFirmSt");
+                }    
+                break;
+            case "CPO":
+                if (type==0)
+                {
+                    retur.Add("CPO");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("PO"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefEx"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefInt"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DescEx"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Price"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Curcy"));
+                }
+                else{
+                    retur.Add("Cpoid");
+                    retur.Add("Cpopo");
+                    retur.Add("CporeferEx");
+                    retur.Add("CprodRefInt");
+                    retur.Add("CpodescEx");
+                    retur.Add("Cpoprice");
+                    retur.Add("Cpocurcy");
+                }    
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    IEnumerable<Container> getData_Product(dynamic oTMaterial)
+        {
+            IEnumerable<TCCproduct> fTPersonal = (List<TCCproduct>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.CprodId,
+                        Campo01 = f.CprodRefInt.ToString(),
+                        Campo02 = f.CprodDescInt.ToString(),
+                        Campo03 = string.Format("{0:dd-MM-yyyy}", f.CprodCrDate),
+                        Campo04 = f.CprodStatus.ToString(),
+                        Campo05 = "",
+                        Campo06 = "",
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+    IEnumerable<Container> getData_CPlant(dynamic oTMaterial)
+        {
+            IEnumerable<TCCplant> fTPersonal = (List<TCCplant>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.CplantId,
+                        Campo01 = f.CplantCode.ToString(),
+                        Campo02 = f.CplantDeno.ToString(),
+                        Campo03 = f.CplantAdStrt.ToString(),
+                        Campo04 = f.CplantAdCity.ToString(),
+                        Campo05 = f.CplantAdCtry.ToString(),
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+    IEnumerable<Container> getData_CPlann(dynamic oTMaterial)
+        {
+            IEnumerable<VTCCplanning> fTPersonal = (List<VTCCplanning>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.CplanId,
+                        Campo01 = f.CprodRefInt.ToString(),
+                        Campo02 = f.CprodDescInt.ToString(),
+                        Campo03 = string.Format("{0:dd-MM-yyyy}", f.CplanDateFrom),
+                        Campo04 = string.Format("{0:dd-MM-yyyy}", f.CplanDateTo),
+                        Campo05 = f.CplanQty.ToString(),
+                        Campo06 = f.CplanFirmSt.ToString(),
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+    IEnumerable<Container> getData_CPO(dynamic oTMaterial)
+        {
+            IEnumerable<VTCPorder> fTPersonal = (List<VTCPorder>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.Cpoid,
+                        Campo01 = f.Cpopo.ToString(),
+                        Campo02 = f.CporeferEx.ToString(),
+                        Campo03 = f.CprodRefInt.ToString(),
+                        Campo04 = f.CpodescEx.ToString(),
+                        Campo05 = f.Cpoprice.ToString(),
+                        Campo06 = f.Cpocurcy.ToString(), 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
+
         string panelBold(int panel)
     {            
         int tpan = (int)ViewData["panel"];
@@ -33,97 +259,56 @@
          return opanel;
     }
 }
-
-@*
-@section Styles
-{
-
-}
-
-<h1>Edit a Customer</h1>
 @using (Html.BeginForm()) {
-    
-    <table>
-        <div class="cont-titles-l">
-        <h2>>>@Html.DisplayFor(p => p.CustRasoc)  @Html.DisplayFor(p => p.CustNif)</h2>
-        </div>
-        <table>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TCustomer" asp-action="Prev" asp-route-id="@Model.CustId" asp-route-panel="@thisPanel()" asp-route-move="1">&lt&ltPrev</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TCustomer" asp-action="Edit" asp-route-id="@Model.CustId" asp-route-panel="1" asp-route-move="0">Customer</a>
-                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(2)"asp-area="" asp-controller="TCustomer" asp-action="Edit" asp-route-id="@Model.CustId" asp-route-panel="2" asp-route-move="0">Products</a>
-                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(3)" asp-area="" asp-controller="TCustomer" asp-action="Edit" asp-route-id="@Model.CustId" asp-route-panel="3" asp-route-move="0">Plants</a>
-                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(4)" asp-area="" asp-controller="TCustomer" asp-action="Edit" asp-route-id="@Model.CustId" asp-route-panel="4" asp-route-move="0">Planning</a>
-                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(5)" asp-area="" asp-controller="TCustomer" asp-action="Edit" asp-route-id="@Model.CustId" asp-route-panel="5" asp-route-move="0">Orders</a>
-                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TCustomer" asp-action="Index">Home</a>
-                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" style="@panelBold(0)" asp-area="" asp-controller="TCustomer" asp-action="Next" asp-route-id="@Model.CustId" asp-route-panel="@thisPanel()" asp-route-move="2">Next&gt&gt</a>
-                        </li>                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        </table>
-    </table>
-    *@
+    @Html.HiddenFor(p => p.CustId)
+    @Html.ValidationSummary(true)
     <div class=@isVisible(1)>
-    <table>
-        <div class="cont-titles">
-        <h4>@SharedLocalizer.GetLocalizedHtmlString("CustomerData")</h4>        </div>
+    <div class="div-edit">
+    <table class="table-edit">
+        <div class="style-data">
+        <h3>@SharedLocalizer.GetLocalizedHtmlString("CustomerData")</h3>        
+        </div>
         <tr>
-            <td>@Html.LabelFor(p => p.CustRasoc,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CustRasoc, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px"} })</td>
+            <td><input type="submit" class="dropbtn" value="Update"name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel"  name="actionType"/></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.CustRasoc,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CustRasoc, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:450px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.CustRasoc)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CustNif,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CustNif, new { htmlAttributes = new { @class = "norm-text", @style = "width:150px"} })</td>
+            <td>@Html.LabelFor(p => p.CustNif,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CustNif, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.CustNif)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CustCrDate,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CustCrDate, new { htmlAttributes = new { @class = "norm-text"} })</td>
+            <td>@Html.LabelFor(p => p.CustCrDate,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCrDate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.CustCrDate)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CustCode,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CustCode, new { htmlAttributes = new { @class = "norm-text", @style = "width:250px"} })</td>
+            <td>@Html.LabelFor(p => p.CustCode,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCode, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:250px"} })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.CustCode)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CustAdStrt,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CustAdStrt, new { htmlAttributes = new { @class = "norm-text", @style = "width:450px"} })</td>
-            <td>@Html.LabelFor(p => p.CustAdCity,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CustAdCity, new { htmlAttributes = new { @class = "norm-text", @style = "width:300px"} })</td>
+            <td>@Html.LabelFor(p => p.CustAdStrt,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CustAdStrt, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:450px"} })</td>
+            <td>@Html.LabelFor(p => p.CustAdCity,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CustAdCity, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:300px"} })</td>
         </tr>
         <tr>
             <td></td>
@@ -132,13 +317,13 @@
             <td>@Html.ValidationMessageFor(p => p.CustAdCity)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CustAdCtry,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.CustAdCtry,new { @class = "norm-lab-text",})</td>
             <td>
                 @Html.DropDownListFor(p => p.CustAdCtry,
-               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-text" })
+               new SelectList(DataSource.GetCountry(), "Code", "Name"),new { @class = "norm-tb-text" })
             </td>
-            <td>@Html.LabelFor(p => p.CustCtPhone,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CustCtPhone, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px"} })</td>
+            <td>@Html.LabelFor(p => p.CustCtPhone,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCtPhone, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:200px"} })</td>
         </tr>
         <tr>
             <td></td>
@@ -147,10 +332,10 @@
             <td>@Html.ValidationMessageFor(p => p.CustCtPhone)</td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(p => p.CustCtEmailLog,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CustCtEmailLog, new { htmlAttributes = new { @class = "norm-text", @style = "width:250px"} })</td>
-            <td>@Html.LabelFor(p => p.CustCtEdilog,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CustCtEdilog, new { htmlAttributes = new { @class = "norm-text", @style = "width:250px"} })</td>
+            <td>@Html.LabelFor(p => p.CustCtEmailLog,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCtEmailLog, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:250px"} })</td>
+            <td>@Html.LabelFor(p => p.CustCtEdilog,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CustCtEdilog, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:250px"} })</td>
         </tr>
         <tr>
             <td></td>
@@ -158,15 +343,24 @@
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.CustCtEdilog)</td>
         </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Update"name="actionType"/></td>
-            <td><input type="submit" value="Cancel"  name="actionType"/></td>
-        </tr>
     </table>
+    </div>
     </div>
     <!-- Prod Data -->
     <div class=@isVisible(2)>
+
+        <table class="table-edit" border="1">
+            <div class="cont-titles">
+                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ProductData")</h3>
+            </div>
+            <div  class="_container" name="aqui-el-control-grid-3">
+                @Html.dataGrid(35,9,@Columns("Product",0),@getData_Product((List<TCCproduct>)ViewBag.ListProd),@Controller("Product"),@Columns("Product",1),Model.CustId)
+            </div>
+        </table>
+
+
+
+
     @*
     @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
     <table>
@@ -178,6 +372,7 @@
     </table>
     }
     *@
+    @*
     <table class="table-norm" border="1">
     <div class="cont-titles">
     <h3>@SharedLocalizer.GetLocalizedHtmlString("ProductData")</h3>
@@ -204,10 +399,23 @@
     }
 </table>
 @Html.ActionLink("Add a New Item", "ProCreate",new {Pid=@Model.CustId,plant=@ViewData["Plant"]})
+*@
 </div>
 <!-- En Prod Data -->
 <!--Plant Data -->
 <div class=@isVisible(3)>
+
+        <table class="table-edit" border="1">
+            <div class="cont-titles">
+                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ProductData")</h3>
+            </div>
+            <div  class="_container" name="aqui-el-control-grid-3">
+                @Html.dataGrid(36,9,@Columns("CPlant",0),@getData_CPlant((List<TCCplant>)ViewBag.ListPlant),@Controller("CPlant"),@Columns("CPlant",1),Model.CustId)
+            </div>
+        </table>
+
+
+    @*
     <div class="cont-titles">
     <h3>@SharedLocalizer.GetLocalizedHtmlString("PlantData")</h3>
     </div>
@@ -234,25 +442,26 @@
     }
 </table>
 @Html.ActionLink("Add a New Item", "PlantCreate",new {Pid=@Model.CustId})
+*@
 </div>  
 <!-- End Plant Data-->  
 <div class=@isVisible(4)>
+    @*
     <div class="cont-titles">
     <h3>@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>
     </div>
+    *@
     @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
     <table>
         <tr>
             <td class="medium-text">>@SharedLocalizer.GetLocalizedHtmlString("Plant")<input type="hidden" name="CustId" value="@(Model.CustId)"/></td>
             <td class="norm-text">
-                <!--@ViewData["Plant"]-->
                 @Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
             </td>
         </tr>
         <tr>
             <td class="medium-text">>@SharedLocalizer.GetLocalizedHtmlString("Reference") :</td>
             <td class="norm-text">
-                <!--@ViewData["Plant"]-->
                 @Html.DropDownList("CprodId",  (SelectList)ViewBag.ddlReferVO, new { @class = "medium-text", onchange = "this.form.submit();" })
             </td>            
             <td>
@@ -261,6 +470,19 @@
         </tr>
     </table>
     }
+
+        <table class="table-edit" border="1">
+            <div class="cont-titles">
+                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>
+            </div>
+            <div  class="_container" name="aqui-el-control-grid-3">
+                @Html.dataGrid(37,9,@Columns("CPlann",0),@getData_CPlann((List<VTCCplanning>)ViewBag.ListPlan),@Controller("CPlann"),@Columns("CPlann",1),Model.CustId)
+            </div>
+        </table>
+
+
+
+    @*
     <table class="table-norm" border ="1" >
     <hr style="width:100%;text-align:left;margin-left:0">
     <tr>
@@ -289,6 +511,8 @@
     }
 </table>
 @Html.ActionLink("Add a New Item", "PlanCreate",new {Pid=@Model.CustId,plant=@ViewData["Plant"],prod=@ViewData["cProd"]})
+*@
+
 </div>    
 <!--PO Data -->
     <div class=@isVisible(5)>
@@ -301,11 +525,22 @@
 
             <td class="medium-text">@SharedLocalizer.GetLocalizedHtmlString("Plant")</td>
             <td class="norm-text">
-                <!--@ViewData["Plant"]-->
                 @Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
             </td>
     </table>
     }
+
+        <table class="table-edit" border="1">
+            <div class="cont-titles">
+                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>
+            </div>
+            <div  class="_container" name="aqui-el-control-grid-3">
+                @Html.dataGrid(38,9,@Columns("CPO",0),@getData_CPO((List<VTCPorder>)ViewBag.listpo),@Controller("CPO"),@Columns("CPO",1),Model.CustId)
+            </div>
+        </table>
+
+
+    @*
     <table class="table-norm" border="1">
     <div class="cont-titles">
     <h3>@SharedLocalizer.GetLocalizedHtmlString("POData")</h3>
@@ -333,6 +568,7 @@
     }
 </table>
 @Html.ActionLink("Add a New Item", "PoCreate",new {Pid=@Model.CustId,plant=@ViewData["Plant"]})
+*@
 </div>    
 <!--end PO-->
 }

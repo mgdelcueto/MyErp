@@ -749,18 +749,18 @@ namespace MyErp.Controllers {
 
 
         [HttpGet]
-        public IActionResult LMatCreate(int id,string actionType) {
+        public IActionResult LMatCreate(int id,int Pid, string actionType) {
             CreateViewBags(0,0);
             TMaterial mat=(from  ma in _dbContext.TMaterials
-            where ma.MatId==id select ma).SingleOrDefault();
+            where ma.MatId==Pid select ma).SingleOrDefault();
             ViewData["panel"]=4;
             VTMLocation queryco=(from  ma in _dbContext.TMaterials
             join co in _dbContext.TMLocations on ma.MatId equals co.MLocMatId
             into RefComp
             from pco in RefComp.DefaultIfEmpty()
-            where ma.MatId==id
+            where ma.MatId==Pid
             select new VTMLocation { 
-                LoRefId=id,
+                LoRefId=Pid,
                 LoRefRe =mat.MatRefer,
                 LoRefDes=mat.MatDescr,
                 LoRefUM = mat.MatUnMed, 
@@ -806,19 +806,19 @@ namespace MyErp.Controllers {
 
 
         [HttpGet]
-        public IActionResult RMatCreate(int id,string actionType) {
+        public IActionResult RMatCreate(int id,int Pid, string actionType) {
             CreateViewBags(0,0);
             TMaterial mat=(from  ma in _dbContext.TMaterials
-            where ma.MatId==id select ma).SingleOrDefault();
+            where ma.MatId==Pid select ma).SingleOrDefault();
             ViewData["panel"]=4;
             VTMRouting queryco=(from  ma in _dbContext.TMaterials
             join co in _dbContext.TMRoutings on ma.MatId equals co.RouRefId
             into RefComp
             from pco in RefComp.DefaultIfEmpty()
-            where ma.MatId==id
+            where ma.MatId==Pid
             select new VTMRouting { 
                 RoRoId=0,
-                RoRoMatId=id,
+                RoRoMatId=Pid,
                 RoRoMatRe =mat.MatRefer,
                 RoRoMatDe=mat.MatDescr,
                 RoRoFase="",
@@ -1119,6 +1119,7 @@ namespace MyErp.Controllers {
         */
         [HttpGet]
         public IActionResult FacEdit(int id, int wrem,int wrel, int wass,int wasl, int assign,int assigl,int panel,int vpanel, int WcdId, int LocId) {
+            if (panel==0){panel=1;}
             ViewData["panel"]=panel;
             ViewData["vpanel"]=vpanel;
             try{
@@ -1202,24 +1203,16 @@ namespace MyErp.Controllers {
             ViewData["panel"]=2;
             ViewData["panem"]=panem;
             try{
-            ViewData["Assign"]=assign;
-            //if (assign==1){ViewData["Assign"]=1;}
-            if (assign==1){
-                if (wrem!=0){
-                    ViewData["Assign"]=0;
-                    WCoRemove(wrem);}
-                if (wass!=0){
-                    ViewData["Assign"]=0;
-                    WCoAssign(id,WcoId);}
-            }
-            if (assign==2){
-                if (wrem!=0){
-                    ViewData["Assign"]=0;
-                    WOpRemove(id,wrem);}
-                if (wass!=0){
-                    ViewData["Assign"]=0;
-                    WOpAssign(id,OpeId,opnum);}
-            }
+                if (assign==2){
+                    ViewData["Assign"]=2;
+                    if (wrem!=0){WCoRemove(wrem);}
+                    if (wass!=0){WCoAssign(id,WcoId);}  //esto no va a suceder 
+                }
+                if (assign==1){
+                    ViewData["Assign"]=1;
+                    if (wrem!=0){WOpRemove(id,wrem);}
+                    if (wass!=0){WOpAssign(id,OpeId,opnum);} //esto no va a suceder 
+                }
             var model = _dbContext.TWorkCenters
                 .SingleOrDefault(u => u.WcdId.Equals(id));
             CreateViewBags(id,model.WcfaId);  
@@ -1231,10 +1224,16 @@ namespace MyErp.Controllers {
         [HttpPost]
         public IActionResult WCeEdit(TWorkCenter wcenter,int id ,int WcoId ,int OpeId, float opnum, int wass, int assign,int panem,string actionType) {
             ViewData["panem"]=panem;
-            if (actionType=="Cancel"){}
+            if (actionType=="Cancel"){
+                            return RedirectToAction("Index",new{panel=2, FaId=wcenter.WcfaId});
+            }
+
+
+            /*
             else{
-                if (assign ==1){
-                    if (wass!=0 && WcoId!=0){
+                if (assign ==2){
+                    //if (wass!=0 && WcoId!=0){
+                    if (WcoId!=0){
                         WCoAssign(id,WcoId);
                         var model = _dbContext.TWorkCenters
                             .SingleOrDefault(u => u.WcdId.Equals(id));
@@ -1243,8 +1242,9 @@ namespace MyErp.Controllers {
                         return View(model);
                     }
                 }
-                if (assign ==2){
-                    if (wass!=0 && OpeId!=0){
+                if (assign ==1){
+                    //if (wass!=0 && OpeId!=0){
+                    if (OpeId!=0){
                         WOpAssign(id,OpeId,opnum);
                         var model = _dbContext.TWorkCenters
                             .SingleOrDefault(u => u.WcdId.Equals(id));
@@ -1254,6 +1254,9 @@ namespace MyErp.Controllers {
                       }
                 }
             }
+            */
+            
+            
             if (actionType=="Update"){
             if (ModelState.IsValid){
                 try{
@@ -1267,10 +1270,11 @@ namespace MyErp.Controllers {
                     ViewData["panel"]=2;
                  return View(wcenter);
                 }
+            return RedirectToAction("Index",new{panel=2, FaId=wcenter.WcfaId});
             }
             CreateViewBags(0,wcenter.WcfaId);    
             ViewData["panel"]=2;
-            if (actionType=="Cancel_")
+            //if (actionType=="Cancel_")
             {
                 ViewData["Assign"]=0;
                 var model = _dbContext.TWorkCenters
@@ -1281,7 +1285,7 @@ namespace MyErp.Controllers {
 
             }
 
-            return RedirectToAction("Index",new{panel=2, FaId=wcenter.WcfaId});
+            //return RedirectToAction("Index",new{panel=2, FaId=wcenter.WcfaId});
         } 
 
 
