@@ -430,11 +430,13 @@ namespace MyErp.Controllers {
         private void  WOpRemove(int wcid,int opid) {
             try{
                 var model = _dbContext.TWcoperators
-                    .SingleOrDefault(u => u.WcopWcid.Equals(wcid)&& u.WcopOpId.Equals(opid));
+                    .FirstOrDefault(u => u.WcopWcid.Equals(wcid)&& u.WcopOpId.Equals(opid));
                 _dbContext.TWcoperators.Remove(model);
                 _dbContext.SaveChanges();
                 }  
-            catch{}                  
+            catch(Exception ex){
+                string mensaje = ex.Message;
+            }                  
         }
 
         private void  WOpAssign(int wcid,int opid,float opnum) {
