@@ -65,6 +65,7 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Cost"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Curcy"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("NOper"));
                 }
                 else{
                     retur.Add("OpOpId");
@@ -72,6 +73,7 @@
                     retur.Add("OpOpDes");
                     retur.Add("OpOpCost");
                     retur.Add("OpOPCurcy");
+                    retur.Add("OpOpNum");
                 }
                 break;
             default:
@@ -116,7 +118,7 @@
                         Campo02 = f.OpOpDes.ToString(),
                         Campo03 = f.OpOpCost.ToString(),
                         Campo04 = f.OpOPCurcy.ToString(),
-                        Campo05 = "",
+                        Campo05 = f.OpOpNum.ToString(),
                         Campo06 = "",
                         Campo07 = "",
                         Campo08 = "",
@@ -181,10 +183,11 @@
     function AddWCcompo(modulo,assign)
     {
         //asigna nuevo componente (panem)
+        var nv = document.getElementById("_noper").value;
         var e = document.getElementById(modulo);
         var value = e.options[e.selectedIndex].WcoId;
         var url=window.location.href.split("?")[0];
-        url=url+"?"+e.name+"="+e.value.toString()+"&wass=1&wrem=0&assign="+assign.toString()+"&panem="+assign.toString();
+        url=url+"?"+e.name+"="+e.value.toString()+"&wass=1&wrem=0&assign="+assign.toString()+"&panem="+assign.toString()+"&opnum="+nv.toString();
         window.location.href = url;
 
     }
@@ -211,9 +214,13 @@
         </div>
         <table>
             <tr>
-                <td>@SharedLocalizer.GetLocalizedHtmlString("WCRolesToAss")</td>
+                <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("NumOperators")</td>
                 <td class="norm-text">
-                    @Html.DropDownList("OpeId", (SelectList)ViewBag.ddlPodOPS, new {@id ="myselectop", @class ="medium-text" , onchange ="AddWCcompo('myselectop',1);" })
+                    <input type="text" class="norm-tb-text" id="_noper" name="noper" value ="" size ="4">              
+                </td>
+                <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("WCRolesToAss")</td>
+                <td class="norm-text">
+                    @Html.DropDownList("OpeId", (SelectList)ViewBag.ddlPodOPS, new {@id ="myselectop", @class ="norm-tb-text" , onchange ="AddWCcompo('myselectop',1);" })
                 </td>
             </tr>
         </table>
@@ -229,9 +236,9 @@
         </div>
         <table>
             <tr>
-                <td>@SharedLocalizer.GetLocalizedHtmlString("WCToAssign")</td>
+                <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("WCToAssign")</td>
                 <td class="norm-text">
-                    @Html.DropDownList("WcoId", (SelectList)ViewBag.ddlPodNAS, new {@id ="myselect", @class ="medium-text" , onchange ="AddWCcompo('myselect',2);" })
+                    @Html.DropDownList("WcoId", (SelectList)ViewBag.ddlPodNAS, new {@id ="myselect", @class ="norm-tb-text" , onchange ="AddWCcompo('myselect',2);" })
                 </td>
             </tr>
         </table>

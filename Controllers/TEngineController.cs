@@ -159,7 +159,8 @@ namespace MyErp.Controllers {
                 select new VTWOperator {OpWcId=p.WcopWcid, OpOpId=p.WcopOpId,
                                        OpOpCode=o.OpeCode,OpOpDes=o.OpeDesc,
                                        OpOPAcct=o.OpeAcct,OpOpCost=o.OpeCosth,
-                                       OpOPCurcy=o.OpeCurcy, OpWcCode=w.Wccode,OpWcDes=w.Wcdescr}).ToList();
+                                       OpOPCurcy=o.OpeCurcy, OpWcCode=w.Wccode,
+                                       OpWcDes=w.Wcdescr,OpOpNum=p.WcopNum}).ToList();
 
             ViewBag.ListOpdAs=queryopas;
 
@@ -440,6 +441,14 @@ namespace MyErp.Controllers {
         }
 
         private void  WOpAssign(int wcid,int opid,float opnum) {
+            try{
+            var model = _dbContext.TWcoperators
+                .SingleOrDefault(u => u.WcopWcid.Equals(wcid)&&u.WcopOpId.Equals(opid));
+                model.WcopNum=opnum;
+               _dbContext.TWcoperators.Update(model);
+               _dbContext.SaveChanges();
+            }
+            catch{  
                     try{
                         TWcoperator nmod = new TWcoperator();
                             nmod.WcopWcid=wcid; 
@@ -451,6 +460,7 @@ namespace MyErp.Controllers {
                     catch(Exception ex){
                         string mensaje =ex.Message;
                     }
+            }
         }
 
         public IActionResult WceRemove(int id, int  WceId, int panel, int vpanel) {
@@ -1208,12 +1218,12 @@ namespace MyErp.Controllers {
                 if (assign==2){
                     ViewData["Assign"]=2;
                     if (wrem!=0){WCoRemove(wrem);}
-                    if (wass!=0){WCoAssign(id,WcoId);}  //esto no va a suceder 
+                    if (wass!=0){WCoAssign(id,WcoId);}  
                 }
                 if (assign==1){
                     ViewData["Assign"]=1;
                     if (wrem!=0){WOpRemove(id,wrem);}
-                    if (wass!=0){WOpAssign(id,OpeId,opnum);} //esto no va a suceder 
+                    if (wass!=0){WOpAssign(id,OpeId,opnum);}  
                 }
             var model = _dbContext.TWorkCenters
                 .SingleOrDefault(u => u.WcdId.Equals(id));

@@ -44,5 +44,9 @@ namespace MyErp.Models
         [StringLength(225)]
         public string OpWcDes { get; set; }
 
+        [Display(Name = "Num Operators")]
+        [Range(0, double.MaxValue, ErrorMessage = "Enter valid Num (>0)")]
+        public double? OpOpNum { get; set; }
+
     }
 }
