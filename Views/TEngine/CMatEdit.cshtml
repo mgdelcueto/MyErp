@@ -3,9 +3,11 @@
 @model VTMComponent
 @using MyErp.Resources
 @inject LocService SharedLocalizer
-
 @functions {
 }
+@{ViewData["MatId"]=@Model.CoRefId;}
+@Html.Partial("_pmenuMat_com")
+@Html.Partial("_pshowMaterials_parc_com",(TMaterial)ViewBag.Material)
 <div class="cont-titles">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("MatCompEdit")</h3>
 </div>

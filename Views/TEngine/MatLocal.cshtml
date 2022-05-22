@@ -75,8 +75,8 @@
 
 }
 @Html.Partial("_pmenuMat_com")
+@Html.Partial("_pshowMaterials_parc_com",(TMaterial)ViewBag.Material)
 @using (Html.BeginForm()) {
-    @Html.Partial("_pshowMaterials_parc_com",(TMaterial)ViewBag.Material)
     <div class="Visible">
     @*<h3>@SharedLocalizer.GetLocalizedHtmlString("ComponentsOf") @Model.MatDescr</h3>*@
     @*<table class="table-norm" border ="1">*@

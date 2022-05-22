@@ -694,6 +694,12 @@ namespace MyErp.Controllers {
         [HttpGet]
         public IActionResult CMatCreate(int id,int Pid, string actionType) {
             CreateViewBags(0,0);
+
+            var mode = _dbContext.TMaterials
+                .SingleOrDefault(u => u.MatId.Equals(Pid));
+            ViewBag.Material=mode;   
+
+
             TMaterial mat=(from  ma in _dbContext.TMaterials
             where ma.MatId==Pid select ma).SingleOrDefault();
             ViewData["panel"]=4;
@@ -763,6 +769,12 @@ namespace MyErp.Controllers {
         [HttpGet]
         public IActionResult LMatCreate(int id,int Pid, string actionType) {
             CreateViewBags(0,0);
+
+            var mode = _dbContext.TMaterials
+                .SingleOrDefault(u => u.MatId.Equals(Pid));
+            ViewBag.Material=mode;   
+
+
             TMaterial mat=(from  ma in _dbContext.TMaterials
             where ma.MatId==Pid select ma).SingleOrDefault();
             ViewData["panel"]=4;
@@ -820,6 +832,12 @@ namespace MyErp.Controllers {
         [HttpGet]
         public IActionResult RMatCreate(int id,int Pid, string actionType) {
             CreateViewBags(0,0);
+
+            var mode = _dbContext.TMaterials
+                .SingleOrDefault(u => u.MatId.Equals(Pid));
+            ViewBag.Material=mode;   
+
+
             TMaterial mat=(from  ma in _dbContext.TMaterials
             where ma.MatId==Pid select ma).SingleOrDefault();
             ViewData["panel"]=4;
@@ -1465,6 +1483,9 @@ namespace MyErp.Controllers {
         [HttpGet]
         public IActionResult CMatEdit(int id, int MId ,int pamen){
             CreateViewBags(0,0);
+
+
+
             ViewData["pamen"]=pamen;
             ViewData["panel"]=4;
             try{
@@ -1478,6 +1499,14 @@ namespace MyErp.Controllers {
             CoComDes=p.MatDescr ,CoRefUM = q.MatUnMed, CoComUM = p.MatUnMed,
             CoRefQt=pl.CoQtyRe,CoComQt=pl.CoQtyCo,
             CoRefId=q.MatId,CoComId=p.MatId}).SingleOrDefault();
+
+            MId=model.CoRefId;
+            var mode = _dbContext.TMaterials
+                .SingleOrDefault(u => u.MatId.Equals(MId));
+            ViewBag.Material=mode;   
+
+
+
             return View(model);
             }
             catch{return View("Error");}  
@@ -1546,6 +1575,13 @@ namespace MyErp.Controllers {
                 LoLoId=pl.MLocLodId  ,LoRefRe = p.MatRefer ,
                 LoRefDes=p.MatDescr ,LoRefUM = p.MatUnMed,
                 LoRefSt=pl.MLocStock,LoRefId=p.MatId}).SingleOrDefault();
+
+            MId=model.LoRefId;
+            var mode = _dbContext.TMaterials
+                .SingleOrDefault(u => u.MatId.Equals(MId));
+            ViewBag.Material=mode;   
+
+
             return View(model);
             }
             catch{return View("Error");}  
@@ -1618,6 +1654,13 @@ namespace MyErp.Controllers {
                 RoRoMinLot=pl.RouMinLot,
                 RoRoUEmb=pl.RouUEmb
                 }).SingleOrDefault();
+
+            MId=model.RoRoMatId;
+            var mode = _dbContext.TMaterials
+                .SingleOrDefault(u => u.MatId.Equals(MId));
+            ViewBag.Material=mode;   
+
+
             return View(model);
             }
             catch{return View("Error");}  

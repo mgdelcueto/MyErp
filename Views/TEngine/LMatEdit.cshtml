@@ -5,6 +5,9 @@
 @inject LocService SharedLocalizer
 @functions {
 }
+@{ViewData["MatId"]=@Model.LoRefId;}
+@Html.Partial("_pmenuMat_com")
+@Html.Partial("_pshowMaterials_parc_com",(TMaterial)ViewBag.Material)
 <div class="cont-titles">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("MatLocEdit")</h3>
 </div>
