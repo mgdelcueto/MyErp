@@ -1135,16 +1135,31 @@ namespace MyErp.Controllers {
             ViewData["panel"]=panel;
             ViewData["vpanel"]=vpanel;
             try{
+                /*
                 if (vpanel==1){
                     if (assign==1){ViewData["Assign"]=1;}
                     if (wrem!=0){WCeRemove(wrem);}
                     if (wass!=0){WCeAssign(id,WcdId);}
                 }
                 else{
-                    if (assigl==1){ViewData["LAssign"]=1;}
+                    if (assigl==1){ViewData["Assign"]=2;}  //"LAssign"=1
                     if (wrel!=0){LoRemove(wrel);}
                     if (wasl!=0){LoAssign(id,LocId);}
                 }
+                */
+                if (assign==2){
+                    ViewData["Assign"]=2;
+                    if (wrem!=0){LoRemove(wrem);}
+                    if (wass!=0){LoAssign(id,LocId);}  
+                }
+                if (assign==1){
+                    ViewData["Assign"]=1;
+                    if (wrem!=0){WCeRemove(wrem);}
+                    if (wass!=0){WCeAssign(id,WcdId);}  
+                }
+
+
+
             var model = _dbContext.TFacilities
                 .SingleOrDefault(u => u.FaId.Equals(id));
             CreateViewBags(0,model.FaId);  
@@ -1170,8 +1185,11 @@ namespace MyErp.Controllers {
             }
             */
             ViewData["panel"]=1;
+            /*
             if (actionType=="Cancel"){}
             else{
+
+            
             if (wass!=0 && WcdId!=0){
                 WCeAssign(id,WcdId);
                 var model = _dbContext.TFacilities
@@ -1189,6 +1207,7 @@ namespace MyErp.Controllers {
                 return View(model);
             }
             }
+            */
             if (actionType=="Update"){
                 ViewData["vpanel"]=1;
             if (ModelState.IsValid){

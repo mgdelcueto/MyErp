@@ -6,11 +6,12 @@
 @inject LocService SharedLocalizer
 @functions {
     string parqsaction(int vpanel, string toremove)
-    {
+        {
         //deja el ultimo parametroa rellenar con el Id de la tabla en el javascript del control grid
-        string ret ="/"+Model.FaId.ToString()+"?panel=1&vpanel="+vpanel.ToString()+"&"+toremove+"=";
+        string ret ="/"+Model.FaId.ToString()+"?panel=1&vpanel="+vpanel.ToString()+"&assign="+vpanel.ToString()+"&wass=0&"+toremove+"=";
         return ret;
-    }
+        }
+
     string [] Controller(string table){
         string [] retur = new string [4];
         switch (table)
@@ -130,47 +131,62 @@
         else{retcol="invisible";}
         return retcol;
     }
-string assVisible()
-{
-    string retcol="invisible";
-    try{
-    if ((int)ViewData["Assign"]==1)
-    {retcol="visible";}
+    string assVisible()
+    {
+        string retcol="invisible";
+        try{
+        if ((int)ViewData["Assign"]==1)
+        {retcol="visible";}
+        }
+        catch{}
+        return retcol;
     }
-    catch{}
-    return retcol;
- }
 
-string aslVisible()
-{
-    string retcol="invisible";
-    try{
-    if ((int)ViewData["LAssign"]==1)
-    {retcol="visible";}
+    string aslVisible()
+    {
+        string retcol="invisible";
+        try{
+        if ((int)ViewData["LAssign"]==1)
+        {retcol="visible";}
+        }
+        catch{}
+        return retcol;
     }
-    catch{}
-    return retcol;
- }
-private int VAssign(){
-    int resul = 1;
-    try{
-    if ((int)ViewData["Assign"]==1)
-    {resul=0;}
+    private int VAssign(){
+        int resul = 1;
+        try{
+        if ((int)ViewData["Assign"]==1)
+        {resul=0;}
+        }
+        catch{}
+        return resul;
     }
-    catch{}
-    return resul;
-}
-private int LAssign(){
-    int resul = 1;
-    try{
-    if ((int)ViewData["LAssign"]==1)
-    {resul=0;}
+    private int LAssign(){
+        int resul = 1;
+        try{
+        if ((int)ViewData["LAssign"]==1)
+        {resul=0;}
+        }
+        catch{}
+        return resul;
     }
-    catch{}
-    return resul;
-}
 
 }
+
+<script>
+    function AddFaComp(modulo,assign)
+    {
+        //asigna nuevo componente
+        var e = document.getElementById(modulo);
+        var value = e.options[e.selectedIndex].WcoId;  //me extraña WcoId para los dos ???
+        var url=window.location.href.split("?")[0];
+        url=url+"?"+e.name+"="+e.value.toString()+"&wass=1&wrem=0&assign="+assign.toString()+"&vpanel="+assign.toString();
+        window.location.href = url;
+
+    }
+</script>
+
+
 <div class="cont-titles">
     <h3>@SharedLocalizer.GetLocalizedHtmlString("FEdit")</h3>
 </div>
@@ -188,51 +204,33 @@ private int LAssign(){
 
 @Html.Partial("_pmenuFac",Model)
 
-<!--Locations-->
 <div class=@isVisible(2)>
-<!--</div>-->
-    <div class=@aslVisible()>
-        <table>
-            <tr>
-                <td>@SharedLocalizer.GetLocalizedHtmlString("FLotoAss")
-                </td>
-                <td class="norm-text">
-                    @Html.DropDownList("LocId", (SelectList)ViewBag.ddlLocNAS, new { @class ="medium-text" , onchange = "this.form.submit();" })
-                </td>
-            </tr>
-        </table>
-    </div>
     <table class="table-norm" border="1">
         <div class="cont-titles">
             <h4>@SharedLocalizer.GetLocalizedHtmlString("FStAss")</h4>
         </div>
-        @Html.ActionLink("Assign a new Location", "FacEdit", new { id= @Model.FaId, wrel = 0,vpanel=2, wasl=1,assigl=@LAssign()})
-        @Html.dataGrid(17,7,@Columns("AsStorage",0),@getData_AsStorage((List<TLocation>)ViewBag.ListStorAs),@Controller("AsStorage"),@Columns("AsStorage",1),0,@parqsaction(2,"wrel"))
+        @*@Html.ActionLink("Assign a new Location", "FacEdit", new { id= @Model.FaId, wrel = 0,vpanel=2, wasl=1,assigl=@LAssign()})*@
+        <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("FLotoAss")
+             @Html.DropDownList("LocId", (SelectList)ViewBag.ddlLocNAS, new { @id ="myLocation", @class ="norm-tb-text" , onchange ="AddFaComp('myLocation',2);"  })
+         </td>
+
+
+        @Html.dataGrid(17,7,@Columns("AsStorage",0),@getData_AsStorage((List<TLocation>)ViewBag.ListStorAs),@Controller("AsStorage"),@Columns("AsStorage",1),0,@parqsaction(2,"wrem"))
         @*@Html.Partial("_pListaStorages",(List<TLocation>)ViewBag.ListStorAs)*@
     </table>
 
 </div>
 
-<!--Work Centers-->
 <div class=@isVisible(1)>
-        <div class=@assVisible()>   
-            <table>
-                <tr>
-                    <td>@SharedLocalizer.GetLocalizedHtmlString("FWCtoAss")
-                    </td>
-                    <td class="norm-text">
-                        <!--@ViewData["Plant"]-->
-                        @Html.DropDownList("WcdId", (SelectList)ViewBag.ddlProdNAS, new { @class ="medium-text" , onchange = "this.form.submit();" })
-                    </td>
-                </tr>
-            </table>
-        </div>
 
     <table class="table-norm" border="1">
         <div class="cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("FWCAss")</h3>
         </div>
-        @Html.ActionLink("Assign a new work Center", "FacEdit", new { id= @Model.FaId,vpanel=1, wrem = 0, wass=1,assign=@VAssign()})
+        @*@Html.ActionLink("Assign a new work Center", "FacEdit", new { id= @Model.FaId,vpanel=1, wrem = 0, wass=1,assign=@VAssign()})*@
+            <td class ="norm-lab-text" >@SharedLocalizer.GetLocalizedHtmlString("FWCtoAss")
+                @Html.DropDownList("WcdId", (SelectList)ViewBag.ddlProdNAS, new { @id ="myWorkcenter",@class ="norm-tb-text" , onchange ="AddFaComp('myWorkcenter',1);" })
+            </td>
 
         @Html.dataGrid(18,7,@Columns("AsWCenter",0),@getData_AsWCenter((List<TWorkCenter>)ViewBag.ListProdAs),@Controller("AsWCenter"),@Columns("AsWCenter",1),0,@parqsaction(1,"wrem"))
         @*@Html.Partial("_pListaWorkCenters",(List<TWorkCenter>)ViewBag.ListProdAs)*@
