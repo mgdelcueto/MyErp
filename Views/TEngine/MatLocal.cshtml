@@ -83,7 +83,7 @@
 
         <table class="table-edit" border="1">
             <div class="cont-titles">
-                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ComponentsOf") @Model.MatDescr</h3>
+                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("StorageLocOf") @Model.MatDescr</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
                 @Html.dataGrid(31,9,@Columns("MatLocal",0),@getData_MatLocal((List<VTMLocation>)ViewBag.ListMatLoca),@Controller("MatLocal"),@Columns("MatLocal",1),Model.MatId)

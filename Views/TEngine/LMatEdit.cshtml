@@ -8,7 +8,8 @@
 @{ViewData["MatId"]=@Model.LoRefId;}
 @Html.Partial("_pmenuMat_com")
 @Html.Partial("_pshowMaterials_parc_com",(TMaterial)ViewBag.Material)
-<div class="cont-titles">
+
+<div class="style-data">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("MatLocEdit")</h3>
 </div>
 @using (Html.BeginForm(new{Mid = Model.LoRefId})) {
