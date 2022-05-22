@@ -186,10 +186,12 @@
     }
 </script>
 
-
+@*
 <div class="cont-titles">
     <h3>@SharedLocalizer.GetLocalizedHtmlString("FEdit")</h3>
 </div>
+*@
+@Html.Partial("_pmenuFac_com",Model)
 @using (Html.BeginForm()) {
     <div class="visible">
         @Html.HiddenFor(p => p.FaId)
@@ -202,7 +204,7 @@
         @Html.Partial("_pshowFacilities",Model)
         </table>
 
-@Html.Partial("_pmenuFac",Model)
+@*@Html.Partial("_pmenuFac",Model)*@
 
 <div class=@isVisible(2)>
     <table class="table-norm" border="1">

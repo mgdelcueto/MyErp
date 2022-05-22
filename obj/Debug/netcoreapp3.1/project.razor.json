@@ -15202,6 +15202,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\_pmenuFac_com.cshtml",
+      "TargetPath": "Views\\TEngine\\_pmenuFac_com.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TEngine\\MatImp.cshtml",
       "TargetPath": "Views\\TEngine\\MatImp.cshtml",
       "FileKind": "mvc"
