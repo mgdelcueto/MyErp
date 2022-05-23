@@ -1,4 +1,9 @@
-@{Layout = "_Layout";}
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@{
+    Layout=null;
+    Layout="~/Views/Shared/_Layout.cshtml";
+}
 
 @{
     ViewData["Title"] = "MRP Area Index Page";
@@ -58,49 +63,71 @@
         }
         return ret1;
     }
-}
+    string navClass(int panel)
+    {
+        int tpan=0;
+        try{
+            tpan=(int)ViewData["panel"];
+        }
+        catch{}
+        string navcl="nav-link";
+        if (panel==tpan)
+        {navcl="nav-link active"; }
+        return navcl;
+        
+    }
+    DateTime getDate(int date)
+    {
+        System.DateTime ret = System.DateTime.Now;
+        if (date==1){
+            try{
+                ret = Convert.ToDateTime(ViewData["F1"].ToString());
+            }
+            catch{}
+        }
+        if (date==2){
+            try{
+                ret = Convert.ToDateTime(ViewData["F2"].ToString());
+            }
+            catch{}
+        }
+        return ret;
+        }
+
+    }
+
 @section Styles
 {
 
 }
 
-<h2>@ViewData["Title"]</h2>
 
 <div class="visible">
+@*<h3 class ="style-h3">@SharedLocalizer.GetLocalizedHtmlString("MRPAreaIndexPage")</h3>*@
+
     @using (Html.BeginForm()) {
     <table>
         <div class="cont-titles-l">
+        @*<h2>>>@Html.DisplayFor(p => p.CustRaSoc)  @Html.DisplayFor(p => p.CustNif)</h2> *@
         </div>
-        <table>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(1)" asp-area="" asp-controller="TMRP" asp-action="Capacity" asp-route-id="" asp-route-panel="1" asp-route-panel1="1">Capacity</a>
-                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(2)"asp-area="" asp-controller="TMRP" asp-action="MRP" asp-route-id="" asp-route-panel="2" asp-route-panel1="2" asp-route-move="0">MRP</a>
-                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(3)"asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-id="" asp-route-panel="3" asp-route-move="0">Production Orders</a>
-                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(4)" asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-id="" asp-route-panel="4" asp-route-move="0">Supliers Planning</a>
-                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(5)" asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-id="" asp-route-panel="5" asp-route-move="0">------</a>
-                         </li>
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" style="@panelBold(6)" asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-id="" asp-route-panel="6" asp-route-move="0">------</a>
-                         </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        </table>
+
+
+        <div>
+	        <ul class="nav nav-tab">
+		        <li class="nav-item">
+                    <a class="@navClass(1)" role="tab" disable_anchor="true"  asp-area="" asp-controller="TMRP" asp-action="Capacity" asp-route-F1=@getDate(1) asp-route-F2=@getDate(2) asp-route-panel="1" asp-route-panel1="1">@SharedLocalizer.GetLocalizedHtmlString("CustPlan")</a>
+		        </li>
+		        <li class="nav-item">
+                    <a class="@navClass(2)" role="tab" disable_anchor="true"  asp-area="" asp-controller="TMRP" asp-action="Capacity" asp-route-F1=@getDate(1)  asp-route-F2=@getDate(2) asp-route-panel="2" asp-route-panel1="1">@SharedLocalizer.GetLocalizedHtmlString("MatReq")</a>
+		        </li>
+		        <li class="nav-item">
+                    <a class="@navClass(3)" role="tab" disable_anchor="true"  asp-area="" asp-controller="TMRP" asp-action="Capacity" asp-route-F1=@getDate(1)  asp-route-F2=@getDate(2) asp-route-panel="3" asp-route-panel1="1">@SharedLocalizer.GetLocalizedHtmlString("WCLoad")</a>
+		        </li>
+	        </ul>
+        </div>
     </table>
     
 @RenderBody()
 }
 </div>
+

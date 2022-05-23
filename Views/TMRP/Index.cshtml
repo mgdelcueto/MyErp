@@ -1,4 +1,4 @@
-@{Layout = "_LyIndex";}
+@*@{Layout = "_LyIndex";}*@
 @using MyErp.Models
 @using System.Linq;
 @functions {
@@ -10,35 +10,8 @@
         return retcol;
     }
 }
-@*
-    <!--Facilities-->
-    <div class="visible">
-    @Html.Partial("_pListaCustPlan")
+    <!--Capacity-->
+    <div class=@isVisible(1)>
+    @Html.Partial("_pListaCustPlan")@*,(List<VCCplanning>)ViewBag.ListCustPlan)*@
     </div>
-
-    <!--Work Centers-->
-    <div class="visible">
-    @Html.Partial("_pListaScShop_all",(List<TCScShop>)ViewBag.ListScShop)
-    </div>
-
-    <!--Work Centers Components-->
-    <div class=@isVisible(3)>
-    @Html.Partial("_pListaWCComponents_all",(List<TWccomponent>)ViewBag.ListPO)
-    </div>
-
-    <!--Materials-->
-    <div class=@isVisible(4)>
-    @Html.Partial("_pListaMaterials_all",(List<TMaterial>)ViewBag.ListMA)
-    </div>
-
-    <!--Storages-->
-    <div class=@isVisible(5)>
-    @Html.Partial("_pListaStorages_all",(List<TLocation>)ViewBag.ListLO)
-    </div>
-
-    <!--Roles-->
-    <div class=@isVisible(6)>
-    @Html.Partial("_pListaOperators_all",(List<TOperator>)ViewBag.ListOP)
-    </div>
-*@
 </div>

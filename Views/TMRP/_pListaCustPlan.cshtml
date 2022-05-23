@@ -1,24 +1,229 @@
+@using MyErp.Extensions;
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+
 @model VCCplanning
 @functions {
+
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "CustPlan":
+                retur[0]="TMRP";
+                retur[1]="";
+                retur[2]="";
+                retur[3]="";
+                break;
+        case "MatReq":
+                retur[0]="TMRP";
+                retur[1]="";
+                retur[2]="";
+                retur[3]="";
+                break;
+        case "WCCap":
+                retur[0]="TMRP";
+                retur[1]="";
+                retur[2]="";
+                retur[3]="";
+                break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table,int type){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "CustPlan":
+                if (type==0)
+                {
+                    retur.Add("CustPlan");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("CustCode"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("PlantCode"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefInt"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DescInt"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DateFrom"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DateTo"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Qty"));
+                }
+                else{
+                    retur.Add("CplanId");
+                    retur.Add("CplanCustCode");
+                    retur.Add("CplanCplantCode");
+                    retur.Add("CplanCprodRefInt");
+                    retur.Add("CplanCprodDescInt");
+                    retur.Add("CplanDateFrom");
+                    retur.Add("CplanDateTo");
+                    retur.Add("CplanQty");
+                }
+                break;
+            case "MatReq":
+                if (type==0)
+                {
+                    retur.Add("MatReq");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatRefer"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatDescr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("TcomQty"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatUnMed"));
+                }
+                else{
+                    retur.Add("WcdId");
+                    retur.Add("MatRefer");
+                    retur.Add("MatDescr");
+                    retur.Add("TcomQty");
+                    retur.Add("MatUnMed");
+                }
+                break;
+            case "WCCap":
+                if (type==0)
+                {
+                    retur.Add("WCCap");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCCode"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCDesc"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("OperTime"));
+                }
+                else{
+                    retur.Add("RouWcId");
+                    retur.Add("Wccode");
+                    retur.Add("Wcdescr");
+                    retur.Add("OperTime");
+                }
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    IEnumerable<Container> getData_CustPlan(dynamic oTMaterial)
+        {
+            IEnumerable<VCCplanning> fTPersonal = (List<VCCplanning>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.CplanId,
+                        Campo01 = f.CplanCustCode.ToString(),
+                        Campo02 = f.CplanCplantCode.ToString(),
+                        Campo03 = f.CplanCprodRefInt.ToString(),
+                        Campo04 = f.CplanCprodDescInt.ToString(),
+                        Campo05 = f.CplanDateFrom.ToString(),
+                        Campo06 = f.CplanDateTo.ToString(), 
+                        Campo07 = f.CplanQty.ToString(),
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+    IEnumerable<Container> getData_MatReq(dynamic oTMaterial)
+        {
+            IEnumerable<TExpMater> fTPersonal = (List<TExpMater>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = 0,
+                        Campo01 = f.MatRefer.ToString(),
+                        Campo02 = f.MatDescr.ToString(),
+                        Campo03 = f.TcomQty.ToString(),
+                        Campo04 = f.MatUnMed.ToString(),
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+    IEnumerable<Container> getData_WCCap(dynamic oTMaterial)
+        {
+            IEnumerable<TExpOper> fTPersonal = (List<TExpOper>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.RouWcId,
+                        Campo01 = f.Wccode.ToString(),
+                        Campo02 = f.Wcdescr.ToString(),
+                        Campo03 = f.OperTime.ToString(),
+                        Campo04 = "",
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
+
+
+
     string isVisible(int panel){
         string retcol="";
-        int opanel = (int)ViewData["panel1"];
+        int opanel = (int)ViewData["panel"];
         if (opanel==panel){retcol="visible";}
         else{retcol="invisible";}
         return retcol;
     }
+    DateTime getDate(int date)
+    {
+        System.DateTime ret = System.DateTime.Now;
+        if (date==1){
+            try{
+                ret = Convert.ToDateTime(ViewData["F1"].ToString());
+            }
+            catch{}
+        }
+        if (date==2){
+            try{
+                ret = Convert.ToDateTime(ViewData["F2"].ToString());
+            }
+            catch{}
+        }
+        return ret;
+        }
+
+
 }
 <!-- Show planing records -->
 @using (Html.BeginForm()) {
-   <div class="visible">
+   <div class="div-edit">
     @Html.ValidationSummary(true)
-    <table>
+    
+    @{
+        try{
+        Model.CplanDateFrom=getDate(1);
+        Model.CplanDateTo=getDate(2);}
+        catch{}
+    }
+    
+    <table class="table-edit">
         <tr>
-            <td>@Html.LabelFor(p => p.CplanDateFrom,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CplanDateFrom, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
-            <td>@Html.LabelFor(p => p.CplanDateTo,new { @class = "norm-text",})</td>
-            <td>@Html.EditorFor(p => p.CplanDateTo, new { htmlAttributes = new { @class = "norm-text", @style = "width:200px" } })</td>
-            <td><input type="submit" value="Go"  name="actionType"/></td>
+            <td>@Html.LabelFor(p => p.CplanDateFrom,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CplanDateFrom, new { htmlAttributes = new {  @class = "norm-tb-text", @style = "width:200px" } })</td>
+            <td>@Html.LabelFor(p => p.CplanDateTo,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.CplanDateTo, new { htmlAttributes = new {  @class = "norm-tb-text", @style = "width:200px" } })</td>
+            <td><input type="submit" class="dropbtn" value="Go"  name="actionType"/></td>
         </tr>
         <tr>
             <td>
@@ -33,18 +238,26 @@
     </div>
 }
 <div class=@isVisible(1)>
+
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>   
+        </div>
+        @Html.dataGrid(35,12,@Columns("CustPlan",0),@getData_CustPlan((List<VCCplanning>)ViewBag.ListCustPlan),@Controller("CustPlan"),@Columns("CustPlan",1),0)
+
+
+    @*
     <table class="table-norm" border="1">
     <div class="cont-titles">
-    <h2>>Planning Data</h2>
+    <h2>>@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h2>
     </div>
     <tr>
-        <th class="head-text">Cust.Code</th> 
-        <th class="head-text">Plant.Code</th>                
-        <th class="head-text">Reference</th>        
-        <th class="head-text">Description</th>        
-        <th class="head-text">From</th>        
-        <th class="head-text">To</th>        
-        <th class="head-text">Qty</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("CustCode")</th> 
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PlantCode")</th>                
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Refer")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Descr")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("DateFrom")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("DateTo")</th>        
+        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Qty")</th>        
     </tr>
     @foreach ( VCCplanning  c in (List<VCCplanning>)ViewBag.ListCustPlan) {
         <tr>
@@ -55,23 +268,27 @@
             <td class ="norm-text">@c.CplanDateFrom</td>
             <td class ="norm-text">@c.CplanDateTo</td>
             <td class ="norm-text">@c.CplanQty</td>
-            @*
+            @_
             <td class="col-text">@Html.ActionLink("Delete", "FacDelete", new { id = c.FaId}, new { onclick="return confirm('Are you sure?');"})</td>
             <td class="col-text">@Html.ActionLink("Edit", "FacEdit", new { id = c.FaId ,panel=1,vpanel=1})</td>
-            *@            
+            _@            
         </tr>
     }
     </table>
-    @*
-    @Html.ActionLink("Add a New Item", "FacCreate")
-    
-    @Html.ActionLink("Perform Capacity Analysis", "MRPcGo")
-    *@
+   *@
 </div>
 
 <!--Show Capacity results-->
 
 <div class=@isVisible(2)>
+
+
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("MaterialRequirement")</h3>   
+        </div>
+        @*@Html.ActionLink("Return to Capacity Analysis", "Capacity",new{panel =1,panel1=1})*@
+        @Html.dataGrid(36,12,@Columns("MatReq",0),@getData_MatReq((List<TExpMater>)ViewBag.ListMatExp),@Controller("MatReq"),@Columns("MatReq",1),0)
+    @*
     <table class="table-norm" border="1">
     <div class="cont-titles">
     <h2>>Requirements of Materials</h2>
@@ -108,4 +325,52 @@
     }
     </table>
     @Html.ActionLink("Return to Capacity Analysis", "Capacity",new{panel =1,panel1=1})
+    *@
+</div>
+<div class=@isVisible(3)>
+
+
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("MaterialRequirement")</h3>   
+        </div>
+        @*@Html.ActionLink("Return to Capacity Analysis", "Capacity",new{panel =1,panel1=1})*@
+        @Html.dataGrid(37,12,@Columns("WCCap",0),@getData_WCCap((List<TExpOper>)ViewBag.ListOpeExp),@Controller("WCCap"),@Columns("WCCap",1),0)
+    @*
+    <table class="table-norm" border="1">
+    <div class="cont-titles">
+    <h2>>Requirements of Materials</h2>
+    </div>
+    <tr>
+        <th class="head-text">Material</th> 
+        <th class="head-text">Description</th>                
+        <th class="head-text">Quantity</th>        
+        <th class="head-text">U.M.</th>        
+    </tr>
+   
+    @foreach ( TExpMater  c in (List<TExpMater>)ViewBag.ListMatExp) {
+        <tr>
+            <td class ="col-text">@c.MatRefer</td>            
+            <td class ="big-text">@c.MatDescr</td>
+            <td class ="norm-text">@c.TcomQty</td>
+            <td class ="norm-text">@c.MatUnMed</td>
+       
+        </tr>
+    }
+
+    <tr>
+        <th class="head-text">WorkCenter</th> 
+        <th class="head-text">Description</th>                
+        <th class="head-text">Occupation</th>        
+    </tr>
+   
+    @foreach ( TExpOper  c in (List<TExpOper>)ViewBag.ListOpeExp) {
+        <tr>
+            <td class ="col-text">@c.Wccode</td>            
+            <td class ="big-text">@c.Wcdescr</td>
+            <td class ="norm-text">@c.OperTime</td>
+        </tr>
+    }
+    </table>
+    @Html.ActionLink("Return to Capacity Analysis", "Capacity",new{panel =1,panel1=1})
+    *@
 </div>

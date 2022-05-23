@@ -20,8 +20,8 @@
     <div class ="invisible">
         <tr>
             <input type="hidden" name="CpocustId" value="@(((TCustomer)ViewBag.Customer).CustId)"/>
-            <input type="hidden" name="CpocplantId" value="@Planta()"/>
-            <td>Customer:</td>
+            @*<input type="hidden" name="CpocplantId" value="@Planta()"/>*@
+            <td>@SharedLocalizer.GetLocalizedHtmlString("Customer"):</td>
             <td>@(((TCustomer)ViewBag.Customer).CustRasoc)</td>
         </tr>
     </div>

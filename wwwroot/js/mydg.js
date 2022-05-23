@@ -1,3 +1,4 @@
+const { format } = require("path");
 const { hasUncaughtExceptionCaptureCallback } = require("process");
 
 function funcDropDown(_gridId)
@@ -5,17 +6,24 @@ function funcDropDown(_gridId)
     document.getElementById(nameOf("myDropdown",_gridId)).classList.toggle("show");
 
 }
-function addRecord(controller,action,_Id=0)
+function addRecord(controller,action,_Id=0,formid="")
 {
+    /*
+    alert(formid);
+    if (formid !=""){
+        const myForm = document.getElementById(formid); 
+        alert (myForm.action);
+    }
+    */
     if (action!=""){
-    var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"?Pid="+_Id.toString();
-    window.location.href = url2;
+        var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"?Pid="+_Id.toString();
+        window.location.href = url2;
     }
     else{
         var url=window.location.href;
         window.location.href = url;
     }
-
+    
 }
 function rowSelected(_mxrow,_gridId)
 {

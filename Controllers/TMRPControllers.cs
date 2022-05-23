@@ -211,16 +211,22 @@ namespace MyErp.Controllers {
         [HttpGet]
         public IActionResult Capacity(DateTime? F1, DateTime? F2,int panel, int panel1,string actionType) {
             if(panel ==0 ){panel=1;}
-            if (F1==null){F1=System.DateTime.Now;}
-            if (F2==null){F2=System.DateTime.Now;}
             ViewData["panel"]=panel;
             ViewData["panel1"]=panel1;
-            ViewData["Title"] = "MRP Data";
+            if (F1==null){F1=System.DateTime.Now;}
+            if (F2==null){F2=System.DateTime.Now;}
             var dbContext = new MyErpDBContext();
+             ViewData["F1"]=F1;
+             ViewData["F2"]=F2;
             try{
                     CreateVB_LCP();
                     CreateVB_cMRP(F1,F2);  //ListCustPlan
-             return View();
+
+            List<VCCplanning> _mode = (List<VCCplanning>)ViewBag.ListCustPlan;
+            var model = _mode[0];
+            model.CplanDateFrom=F1;
+            model.CplanDateTo=F2;
+             return View(model);
             }
             catch(Exception Ex){
                 string mensaje = Ex.Message;
@@ -239,6 +245,8 @@ namespace MyErp.Controllers {
             try{
              F1 = model.CplanDateFrom;
              F2 = model.CplanDateTo;
+             ViewData["F1"]=F1;
+             ViewData["F2"]=F2;
             }
             catch{}
             }
@@ -248,7 +256,7 @@ namespace MyErp.Controllers {
             try{
                 CreateVB_LCP();
                 CreateVB_cMRP(F1,F2);  //ListCustPlan
-             return View();
+             return View(model);
             }
             catch(Exception Ex){
                 string mensaje = Ex.Message;

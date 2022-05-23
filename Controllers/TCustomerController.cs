@@ -32,7 +32,19 @@ namespace MyErp.Controllers {
                 }
                 catch{plant =0;}
             }
-            ViewBag.ddlPlantVB = new SelectList(resulp.ToList(), "CplantId", "CplantDeno",plant); 
+            //ViewBag.ddlPlantVB = new SelectList(resulp.ToList(), "CplantId", "CplantDeno",plant); 
+            //
+            var _queryplan = (from p in _dbContext.TCCplants 
+                        orderby p.CplantDeno
+                        where p.CplantCustId==Pid
+                        select new TCCplant {CplantId=p.CplantId ,CplantDeno=p.CplantDeno}).ToList();
+            var _querypla0 = ( from p in _dbContext.TCCplants  
+            select new TCCplant{CplantId=0,CplantDeno="Select a Plant"}).Distinct().ToList();
+            var _queryplans = _querypla0.Concat(_queryplan);
+            ViewBag.ddlPlantVB = new SelectList(_queryplans.ToList(), "CplantId", "CplantDeno",plant); 
+
+
+
 
             ViewData["Plant"]=plant;
 
@@ -76,7 +88,19 @@ namespace MyErp.Controllers {
                 }
                 catch{plant =0;}
             }
-            ViewBag.ddlPlantVB = new SelectList(resulp.ToList(), "CplantId", "CplantDeno",plant); 
+            //ViewBag.ddlPlantVB = new SelectList(resulp.ToList(), "CplantId", "CplantDeno",plant); 
+
+
+            var _queryplan = (from p in _dbContext.TCCplants 
+                        orderby p.CplantDeno
+                        where p.CplantCustId==id
+                        select new TCCplant {CplantId=p.CplantId ,CplantDeno=p.CplantDeno}).ToList();
+            var _querypla0 = ( from p in _dbContext.TCCplants  
+            select new TCCplant{CplantId=0,CplantDeno="Select a Plant"}).Distinct().ToList();
+            var _queryplans = _querypla0.Concat(_queryplan);
+            ViewBag.ddlPlantVB = new SelectList(_queryplans.ToList(), "CplantId", "CplantDeno",plant); 
+
+
 
             ViewData["Plant"]=plant;
 
@@ -448,27 +472,35 @@ namespace MyErp.Controllers {
             ViewBag.Customer=queryc;
             CreateViewBags(Pid,prod,plant,Pid);
 
+            try{
             var query = (from p in _dbContext.TCCplants 
             where p.CplantId==plant
             select p).FirstOrDefault();
             ViewData["truck"]=query.CplantTruckId;
-
-            TCCplanning model = (TCCplanning) (from p in _dbContext.TCCplannings 
-                        where p.CplanCustId==Pid && p.CplanCplantId==plant
-                        select p).FirstOrDefault();
+            }
+            catch{}
+            object xmodel = null;
             try{
-                model.CplanCprodId=prod;
-                model.CplanDateFrom=System.DateTime.Now;
-                model.CplanDateTo=System.DateTime.Now;
-                model.CplanFirmSt="";
-                model.CplanQty=0;
+                TCCplanning model = (TCCplanning) (from p in _dbContext.TCCplannings 
+                where p.CplanCustId==Pid && p.CplanCplantId==plant
+                select p).FirstOrDefault();
+                try{
+                    model.CplanCprodId=prod;
+                    model.CplanDateFrom=System.DateTime.Now;
+                    model.CplanDateTo=System.DateTime.Now;
+                    model.CplanFirmSt="";
+                    model.CplanQty=0;
+                }
+                catch{
+                    model = new TCCplanning();
+                    model.CplanCustId=Pid;
+                    model.CplanCplantId=plant;
+                    model.CplanCprodId=prod;
+                }
+                xmodel=model;
             }
-            catch{
-                model = new TCCplanning();
-                model.CplanCplantId=plant;
-                model.CplanCustId=Pid;
-            }
-             var cmodel = _dbContext.TCustomers
+            catch{}
+            var cmodel = _dbContext.TCustomers
                 .SingleOrDefault(u => u.CustId.Equals(Pid));
 
             string cName = cmodel.CustRasoc+" " +cmodel.CustNif;
@@ -476,7 +508,7 @@ namespace MyErp.Controllers {
             ViewData["CusId"]=Pid;
 
             ViewData["panel"]=4;
-            return View(model);      
+            return View(xmodel);      
         }
 
         [HttpPost]
@@ -622,11 +654,12 @@ namespace MyErp.Controllers {
             //return RedirectToAction("Edit");
         }
 
-        public IActionResult PlanDelete(int id,int Pid) {
+        public IActionResult PlanDelete(int id,int? Pid) {
             var mode = _dbContext.TCCplannings
                 .SingleOrDefault(u => u.CplanId.Equals(id));
             int? plan = mode.CplanCplantId;
             int? pro =mode.CplanCprodId;
+            Pid=mode.CplanCustId;
             try{
             _dbContext.TCCplannings.Remove(mode);
             _dbContext.SaveChanges();
@@ -650,11 +683,12 @@ namespace MyErp.Controllers {
         }
 
 
-        public IActionResult PoDelete(int id,int Pid) {
+        public IActionResult PoDelete(int id,int? Pid) {
             var mode = _dbContext.TCPorders
                 .SingleOrDefault(u => u.Cpoid.Equals(id));
             int? plan = mode.CpocplantId;
             int? pro =mode.CpocprodId;
+            Pid=mode.CpocustId;
             try{
             _dbContext.TCPorders.Remove(mode);
             _dbContext.SaveChanges();
@@ -828,12 +862,13 @@ namespace MyErp.Controllers {
 
         [HttpPost]
         public IActionResult PlanEdit(TCCplanning planning, string actionType,int? CplantId, int? CprodId) {
+            ViewData["panel"]=4;
             int? Pid=planning.CplanCustId;
             if (actionType=="Update"){
             if (ModelState.IsValid){
             try{
-                planning.CplanCplantId=CplantId;
-                planning.CplanCprodId=CprodId;
+                //planning.CplanCplantId=CplantId;
+                //planning.CplanCprodId=CprodId;
                 _dbContext.TCCplannings.Update(planning);
                 _dbContext.SaveChanges();
             }
@@ -853,7 +888,6 @@ namespace MyErp.Controllers {
             ViewData["cName"]=cName;
             ViewData["CusId"]=Pid;
 
-            ViewData["panel"]=4;
             if (actionType=="Cancel"||actionType=="Update"){
              CreateViewBags(Pid,planning.CplanCprodId,planning.CplanCplantId);
             return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=planning.CplanCprodId,plant =planning.CplanCplantId});
@@ -1009,7 +1043,7 @@ namespace MyErp.Controllers {
                 return View("Error");}    
         }    
         [HttpPost]
-        public IActionResult Edit(TCustomer Customer, int id, int panel,int move,int? CprodId, int? CplantId,string actionType) {
+        public IActionResult Edit(TCustomer Customer, int id, int panel,int move,int? prod, int? plant,string actionType) {
             if (actionType=="Add"||actionType=="Update"){
             if (ModelState.IsValid){
             try{               
@@ -1020,7 +1054,7 @@ namespace MyErp.Controllers {
             }
             else{
                  ViewData["panel"]=1;
-                 CreateViewBags(id,CprodId,CplantId);    
+                 CreateViewBags(id,prod,plant);    
                  return View(Customer);
             }
             }
@@ -1034,7 +1068,7 @@ namespace MyErp.Controllers {
 
 
             ViewData["panel"]=panel;
-            CreateViewBags(model.CustId,CprodId,CplantId);
+            CreateViewBags(model.CustId,prod,plant);
             return View("Edit",model);
             //return RedirectToAction("Index");
         }        

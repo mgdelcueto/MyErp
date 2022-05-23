@@ -27,9 +27,9 @@
         <tr>
             @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
             <div class ="visible">
-            <td>@Html.LabelFor(p => p.CpocplantId,new { @class = "norm-text",})</td>
+            <td>@Html.LabelFor(p => p.CpocplantId,new { @class = "norm-lab-text",})</td>
             <td class="norm-text">
-                @Html.DropDownListFor(p => p.CpocplantId,(SelectList)ViewBag.ddlPlantVB,"",new { @class = "norm-text" })
+                @Html.DropDownListFor(p => p.CpocplantId,(SelectList)ViewBag.ddlPlantVB,"",new { @class = "norm-tb-text" })
            
             </td>
             </div>

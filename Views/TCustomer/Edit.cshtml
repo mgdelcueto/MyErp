@@ -13,6 +13,13 @@
 
 @functions {
 
+@*
+    string aparqsaction(int plant , int prod)
+    {
+        string ret ="&plant="+plant.ToString()+"&prod="+prod.ToString();
+        return ret;
+    }
+*@
     string [] Controller(string table){
         string [] retur = new string [4];
         switch (table)
@@ -259,6 +266,21 @@
          return opanel;
     }
 }
+
+<script>
+    function selectPlant(modulo,panel)
+    {
+        //asigna nuevo componente (panem)
+        var e = document.getElementById(modulo);
+        var value = e.options[e.selectedIndex].WcoId;
+        var url=window.location.href.split("?")[0];
+        url=url+"?"+e.name+"="+e.value.toString()+"&panel="+panel.toString();
+        window.location.href = url;
+
+    }
+</script>
+
+
 @using (Html.BeginForm()) {
     @Html.HiddenFor(p => p.CustId)
     @Html.ValidationSummary(true)
@@ -451,18 +473,20 @@
     <h3>@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>
     </div>
     *@
-    @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
+    @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post,new{@id="EditPlann"})) {        
     <table>
         <tr>
-            <td class="medium-text">>@SharedLocalizer.GetLocalizedHtmlString("Plant")<input type="hidden" name="CustId" value="@(Model.CustId)"/></td>
+            <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("Plant")<input type="hidden" name="CustId" value="@(Model.CustId)"/></td>
             <td class="norm-text">
-                @Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
+                @Html.DropDownList("plant", (SelectList)ViewBag.ddlPlantVB, new { @class ="norm-tb-text" , onchange = "this.form.submit();" })
+                                    @*CplantId*@
             </td>
         </tr>
         <tr>
-            <td class="medium-text">>@SharedLocalizer.GetLocalizedHtmlString("Reference") :</td>
+            <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("Reference") :</td>
             <td class="norm-text">
-                @Html.DropDownList("CprodId",  (SelectList)ViewBag.ddlReferVO, new { @class = "medium-text", onchange = "this.form.submit();" })
+                @Html.DropDownList("prod",  (SelectList)ViewBag.ddlReferVO, new { @class = "norm-tb-text", onchange = "this.form.submit();" })
+                                    @*CprodId*@
             </td>            
             <td>
                 <input type="hidden" name="panel" value="@thisPanel()"/>
@@ -476,7 +500,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(37,9,@Columns("CPlann",0),@getData_CPlann((List<VTCCplanning>)ViewBag.ListPlan),@Controller("CPlann"),@Columns("CPlann",1),Model.CustId)
+                @Html.dataGrid(37,9,@Columns("CPlann",0),@getData_CPlann((List<VTCCplanning>)ViewBag.ListPlan),@Controller("CPlann"),@Columns("CPlann",1),Model.CustId,"",true,true,"EditPlann")
             </div>
         </table>
 
@@ -523,9 +547,10 @@
                 <input type="hidden" name="panel" value="@thisPanel()"/>
             </td>
 
-            <td class="medium-text">@SharedLocalizer.GetLocalizedHtmlString("Plant")</td>
+            <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("Plant")</td>
             <td class="norm-text">
-                @Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="medium-text" , onchange = "this.form.submit();" })
+                @Html.DropDownList("plant", (SelectList)ViewBag.ddlPlantVB, new { @id="_plant", @class ="norm-tb-text" , onchange = "selectPlant('_plant',5)" })
+                                    @*CPlantId*@
             </td>
     </table>
     }

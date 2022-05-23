@@ -45,7 +45,8 @@
                 @*
                 @Html.DropDownListFor(p=> p.CplanCplantId, (SelectList)ViewBag.ddlPlantVB, new { @class ="norm-text" , onchange = "this.form.submit();" })
                 *@
-                @Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="norm-tb-text" , onchange = "this.form.submit();" })
+                @*@Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="norm-tb-text" , onchange = "this.form.submit();" })*@
+                @Html.DropDownListFor( p => p.CplanCplantId, (SelectList)ViewBag.ddlPlantVB, new { @class ="norm-tb-text" , onchange = "this.form.submit();" })
             </td>
         </tr>
         <tr>
@@ -54,7 +55,8 @@
                 @*
                 @Html.DropDownListFor(p=> p.CplanCprodId, (SelectList)ViewBag.ddlReferVO, new { @class ="norm-text"  , onchange = "this.form.submit();"  })
                 *@
-                @Html.DropDownList("CprodId", (SelectList)ViewBag.ddlReferVO, new { @class ="norm-tb-text"  , onchange = "this.form.submit();"  })
+                @*@Html.DropDownList("CprodId", (SelectList)ViewBag.ddlReferVO, new { @class ="norm-tb-text"  , onchange = "this.form.submit();"  })*@
+                @Html.DropDownListFor(p => p.CplanCprodId, (SelectList)ViewBag.ddlReferVO, new { @class ="norm-tb-text"  , onchange = "this.form.submit();"  })
             </td>
         </tr>
         </table>

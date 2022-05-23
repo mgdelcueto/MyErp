@@ -15,7 +15,7 @@ using System.Web;
 
 namespace MyErp.Extensions{
     
-public static class MyHtmlHelperExtensions {
+public static class MyHtmlHelperExtensions_copy {
     public static string[] getFilter(int _gridId)
         {
             string [] filter_column = new string [16];
@@ -265,7 +265,7 @@ public static class MyHtmlHelperExtensions {
         return ret;
         
     }
-    public static IHtmlContent dataGrid(this IHtmlHelper htmlHelper,int Idgrid, int rowspage,List<string> cabText,IEnumerable<Container> _TMaterial,string [] contAction,List<string> fields, int _Id=0,string _parqs="",bool Senable=true,bool Fenable=true,string formid="") {
+    public static IHtmlContent _dataGrid(this IHtmlHelper htmlHelper,int Idgrid, int rowspage,List<string> cabText,IEnumerable<Container> _TMaterial,string [] contAction,List<string> fields, int _Id=0,string _parqs="",bool Senable=true,bool Fenable=true,string _aparqs="") {
             string Tablemod=cabText[0];
             string uniqueId = Idgrid.ToString();//  getUid();
             int gridCount = Convert.ToInt32(CookiesReturn( "gridcount"));
@@ -371,7 +371,7 @@ public static class MyHtmlHelperExtensions {
             tagbac.MergeAttribute("type","button");
             tagbac.MergeAttribute("name","btn_create");
             //tagbac.MergeAttribute("page",npage.ToString());
-            tagbac.MergeAttribute("onclick","addRecord('"+_controller+"','"+_actionCreate+"',"+_Id.ToString()+",'"+formid+"')");
+            tagbac.MergeAttribute("onclick","addRecord('"+_controller+"','"+_actionCreate+"',"+_Id.ToString()+",'"+_aparqs+"')");
             tagbac.InnerHtml.Append("Create Record");
             tagdivx.InnerHtml.AppendHtml(tagbac);
 

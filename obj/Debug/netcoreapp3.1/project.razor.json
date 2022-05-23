@@ -14932,6 +14932,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Shared\\_LayoutMRP.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutMRP.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\Home\\Error.cshtml",
       "TargetPath": "Views\\Home\\Error.cshtml",
       "FileKind": "mvc"
