@@ -53,6 +53,8 @@ private int LAssign(){
 }
 
 }
+<div class=" clearfix position-relative o_form_sheet center">
+
 <div class="cont-titles">
     <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("FEdit")</h3>
 </div>
@@ -70,7 +72,6 @@ private int LAssign(){
 
 @Html.Partial("_pmenuFac",Model)
 
-<!--Locations-->
 <div class=@isVisible(2)>
     <table class="table-norm" border="1">
         <div class="cont-titles">
@@ -79,7 +80,6 @@ private int LAssign(){
         @Html.Partial("_pListaStorages",(List<TLocation>)ViewBag.ListStorAs)
     </table>
     @Html.ActionLink("Assign a new Location", "FacEdit", new { id= @Model.FaId, wrel = 0,vpanel=2, wasl=0,assigl=@LAssign()})
-<!--</div>-->
     <div class=@aslVisible()>
         <table>
             <tr>
@@ -88,7 +88,6 @@ private int LAssign(){
                     <input type="hidden" name="wasl" value="1"/>
                 </td>
                 <td class="norm-text">
-                    <!--@ViewData["Plant"]-->
                     @Html.DropDownList("LocId", (SelectList)ViewBag.ddlLocNAS, new { @class ="medium-text" , onchange = "this.form.submit();" })
                 </td>
                 }
@@ -97,7 +96,6 @@ private int LAssign(){
     </div>
 </div>
 
-<!--Work Centers-->
 <div class=@isVisible(1)>
     <table class="table-norm" border="1">
         <div class="cont-titles">
@@ -106,7 +104,6 @@ private int LAssign(){
         @Html.Partial("_pListaWorkCenters",(List<TWorkCenter>)ViewBag.ListProdAs)
     </table>
     @Html.ActionLink("Assign a new work Center", "FacEdit", new { id= @Model.FaId,vpanel=1, wrem = 0, wass=0,assign=@VAssign()})
-<!--</div>-->
     <div class=@assVisible()>
         <table>
             <tr>
@@ -115,7 +112,6 @@ private int LAssign(){
                     <input type="hidden" name="wass" value="1"/>
                 </td>
                 <td class="norm-text">
-                    <!--@ViewData["Plant"]-->
                     @Html.DropDownList("WcdId", (SelectList)ViewBag.ddlProdNAS, new { @class ="medium-text" , onchange = "this.form.submit();" })
                 </td>
                 }
@@ -125,3 +121,4 @@ private int LAssign(){
 </div>
     </div>
 }
+</div>

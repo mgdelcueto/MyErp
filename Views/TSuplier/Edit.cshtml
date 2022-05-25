@@ -205,11 +205,10 @@
          return opanel;
     }
 }
-
 @using (Html.BeginForm()) {
     @Html.HiddenFor(p => p.SupId)
 
-    <div class=@isVisible(1)>
+    <div class="@isVisible(1)">
     <div class="cont-titles">
         <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("SuplierData")</h3>
     </div>
@@ -328,7 +327,6 @@
 
     </div>    
 }
-
 
 
 

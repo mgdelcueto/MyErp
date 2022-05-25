@@ -919,6 +919,9 @@ namespace MyErp.Controllers {
 
         [HttpPost]
         public IActionResult TrCreate(TCTruck truck,string actionType) {
+            if(actionType=="Cancel"){
+                return RedirectToAction("Index",new{panel=7});
+            }
             ViewData["panel"]=7;
             if(actionType=="Add"){
              if (ModelState.IsValid){
@@ -951,12 +954,12 @@ namespace MyErp.Controllers {
         }
 
         [HttpPost]
-        public IActionResult TrSCreate(TCTrSched struck,int TrScTruck,string actionType) {
+        public IActionResult TrSCreate(TCTrSched struck,int Pid,string actionType) {
             ViewData["panel"]=7;
             if(actionType=="Add"){
              if (ModelState.IsValid){
                     try{
-                        struck.TrScTruckId=TrScTruck;
+                        struck.TrScTruckId=Pid;//TrScTruck;
                         _dbContext.TCTrScheds.Add(struck); 
                         _dbContext.SaveChanges();
                    }
@@ -968,7 +971,7 @@ namespace MyErp.Controllers {
             }
             CreateViewBags(0,0);    
 
-            return RedirectToAction("TrEdit",new{id=TrScTruck});
+            return RedirectToAction("TrEdit",new{id=Pid});
         }
 
         public IActionResult FacDelete(int id) {
@@ -1758,8 +1761,9 @@ namespace MyErp.Controllers {
             }
             CreateViewBags(0,0,"",0,truck.TruckCustId);    
             ViewData["panel"]=7;
+            return RedirectToAction("Index",new{panel=7,WcdId=truck.TruckId});
 
-            return RedirectToAction("TrEdit",new{panel=7,WcdId=truck.TruckId});
+            //return RedirectToAction("TrEdit",new{panel=7,WcdId=truck.TruckId});
         } 
 
         [HttpGet]

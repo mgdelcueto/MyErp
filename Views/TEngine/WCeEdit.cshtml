@@ -192,6 +192,8 @@
 
     }
 </script>
+<div class=" clearfix position-relative o_form_sheet center">
+
 @Html.Partial("_pmenuWCe_com")
 @using (Html.BeginForm("WCeEdit","TEngine", new { id= @Model.WcdId, wrem = 0,panem=@VPanem(), wass=0,assign=@VAssign()})) {
     <div class="div-edit">
@@ -247,3 +249,4 @@
 </div>
 
 }
+</div>

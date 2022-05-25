@@ -292,7 +292,39 @@
         padding: 1px 2px;
         text-decoration: none;
         display: block;
-        }      
+        }   
+.center {
+        /*  style for container of a grid 
+        when we get the form with the grid centered
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        */
+        position:relative;
+        width:80%;
+        height:100%;
+        transform: translate(10%, 0%);
+        padding: 10px;
+        }
+              
+.absolute{/* the grid should have this style in order to get centered on the container*/
+        /*
+        position:absolute;
+        width:100%;
+        */
+}   
+
+.linetr {
+        position: relative;
+      }
+.searchtb {
+        /*
+          position: absolute;
+          left: 0;
+          right: 0;
+        */  
+          max-width: 9ch;
+      }
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #ddd}              
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */

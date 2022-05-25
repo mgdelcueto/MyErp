@@ -7,6 +7,7 @@
  
 @inject LocService SharedLocalizer
 @model TOrganizacion
+<div class=" clearfix position-relative o_form_sheet center">
 @using (Html.BeginForm()) {
     @Html.HiddenFor(p => p.OrgId)
     @Html.ValidationSummary(true)
@@ -100,6 +101,8 @@
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.OrgWeb)</td>
+        </tr>
     </table>
     </div>
 }
+</div>

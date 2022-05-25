@@ -429,6 +429,7 @@
     }
 
 }
+
     <!--Facilities-->
     <div class=@isVisible(1)>
         <div class = "cont-titles">
@@ -466,16 +467,16 @@
     _@
     }
     *@
-    <table>
-            <td class="medium-text">@SharedLocalizer.GetLocalizedHtmlString("SelectWorkCenter")</td>
-            <td class="norm-text">
-                @Html.DropDownList("WcdId", (SelectList)ViewBag.ddlReferVD, new { @class ="medium-text" , onchange = "ddlfunc(3,'WcdId',this.value)"})
-            </td>
-    </table>
- 
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("WorkCenterCompList")</h3>   
         </div>
+    <table>
+            <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("SelectWorkCenter")</td>
+            <td class="norm-text">
+                @Html.DropDownList("WcdId", (SelectList)ViewBag.ddlReferVD, new { @class ="norm-tb-text" , onchange = "ddlfunc(3,'WcdId',this.value)"})
+            </td>
+    </table>
+ 
         @Html.dataGrid(12,16,@Columns("WCenterC",0),@getData_WCenterC((List<TWccomponent>)ViewBag.ListPO),@Controller("WCenterC"),@Columns("WCenterC",1),0)
     @*@Html.Partial("_pListaWCComponents_all",(List<TWccomponent>)ViewBag.ListPO)*@
     </div>
@@ -500,16 +501,16 @@
     </table>
     }
     *@
-    <table>
-            <td class="medium-text">@SharedLocalizer.GetLocalizedHtmlString("MaterialClass")</td>
-            <td class="norm-text">
-                @Html.DropDownList("Code",
-               new SelectList(DataSource.GetMCatlassL(), "Code", "Name",@isCode()),new { @class = "norm-text", onchange = "ddlfunc(4,'code',this.value)" })
-            </td>
-    </table>
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("MaterialsList")</h3>   
         </div>
+    <table>
+            <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("MaterialClass")</td>
+            <td class="norm-text">
+                @Html.DropDownList("Code",
+               new SelectList(DataSource.GetMCatlassL(), "Code", "Name",@isCode()),new { @class = "norm-tb-text", onchange = "ddlfunc(4,'code',this.value)" })
+            </td>
+    </table>
         @Html.dataGrid(13,16,@Columns("Materials",0),@getData_Materials((List<TMaterial>)ViewBag.ListMA),@Controller("Materials"),@Columns("Materials",1),0)
     @*@Html.Partial("_pListaMaterials_all",(List<TMaterial>)ViewBag.ListMA)*@
     </div>

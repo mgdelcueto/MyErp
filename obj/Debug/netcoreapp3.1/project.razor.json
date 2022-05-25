@@ -14577,6 +14577,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\_LaySup copy.cshtml",
+      "TargetPath": "Views\\TSuplier\\_LaySup copy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mgdel\\VSProjects\\MyErp\\Views\\TSuplier\\PoCreate copy.cshtml",
       "TargetPath": "Views\\TSuplier\\PoCreate copy.cshtml",
       "FileKind": "mvc"

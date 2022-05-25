@@ -110,6 +110,7 @@ private int VAssign(int mPanel){
 }
 
 
+<div class=" clearfix position-relative o_form_sheet center">
 
 <div class="style-data">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("EdChart")</h3>
@@ -130,27 +131,27 @@ private int VAssign(int mPanel){
 @*@Html.Partial("_pmenuChart",Model)*@
 <div class="visible">
 
+    <table class="table-norm" border="1">
+        <div class="style-data">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("ChartUsers")</h3>
+        </div>
         <div class="visible">@*@assVisible()>*@   
             <table>
                 <tr>
-                    <td>@SharedLocalizer.GetLocalizedHtmlString("SelEmploytoChart")
+                    <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("SelEmploytoChart")
                     </td>
                     <td class="norm-text">
-                        <!--@ViewData["Plant"]-->
-                        @Html.DropDownList("PerId", (SelectList)ViewBag.ddlPerso, new { @class ="medium-text" , onchange = "this.form.submit();" })
+                        @Html.DropDownList("PerId", (SelectList)ViewBag.ddlPerso, new { @class ="norm-tb-text" , onchange = "this.form.submit();" })
                     </td>
                 </tr>
             </table>
         </div>
 
-    <table class="table-norm" border="1">
-        <div class="style-data">
-            <h3>@SharedLocalizer.GetLocalizedHtmlString("ChartUsers")</h3>
-        </div>
         @*@Html.ActionLink("Assign a new work Center", "FacEdit", new { id= @Model.CharId,vpanel=1, wrem = 0, wass=1,assign=@VAssign()})*@
         @Html.dataGrid(22,9,@Columns("UserChar",0),@getData_UserChar((List<VTChartRol>)ViewBag.ListCharRol),@Controller("UserChar"),@Columns("UserChar",1),0,@parqsaction())
     </table>
 @*@await Html.PartialAsync("_pListaChartRol",(List<VTChartRol>)ViewBag.ListCharRol)*@
 </div>
 }
+</div>
 

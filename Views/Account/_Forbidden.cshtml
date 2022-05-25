@@ -1,5 +1,8 @@
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("HomePage");
 }
 @using MyErp.Resources
  

@@ -314,6 +314,7 @@ public static class MyHtmlHelperExtensions {
 
             var tagret = new TagBuilder ($"div");
             tagret.MergeAttribute("name","div-grid-return");
+            tagret.Attributes.Add("class", $"absolute");
 
             var htagtab = new TagBuilder($"table"); //<able>
             htagtab.MergeAttribute("id","_"+uniqueId+"-"+"h-data-table");
@@ -524,8 +525,11 @@ public static class MyHtmlHelperExtensions {
             for (int i=1;i<=_ncols;i++)
             {
                 var tagtf_ = new TagBuilder($"th"); 
-                tagtf_.Attributes.Add("width", Pct);
+                //tagtf_.Attributes.Add("width", Pct);
                 var tagtexf_ = new TagBuilder($"input"); 
+                tagtexf_.Attributes.Add("class", $"searchtb");
+                //tagtexf_.Attributes.Add("style", "width:"+Pct.ToString()+"%");
+
                 tagtexf_.MergeAttribute("type", $"text");
                 tagtexf_.MergeAttribute("id","_"+uniqueId+"-"+"filter-"+i.ToString().Trim());
                 tagtexf_.MergeAttribute("name","_"+uniqueId+"-"+"filter-"+i.ToString().Trim());
@@ -733,6 +737,7 @@ public static class MyHtmlHelperExtensions {
                     tagcbx.MergeAttribute("id","_"+uniqueId+ "-"+nrow.ToString());
                     tagcbx.MergeAttribute("value",c.CampoId.ToString());
                     tagcbx.MergeAttribute("onclick","selectionchange("+nrow.ToString()+","+rowspage.ToString()+",'"+uniqueId+"')");
+                    tagcbx.Attributes.Add("width", Pct);
                     tagtd0.InnerHtml.AppendHtml(tagcbx);
                     tagtr.InnerHtml.AppendHtml(tagtd0);
                     }
