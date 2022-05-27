@@ -1,0 +1,9 @@
+﻿@using MyErp.Resources
+@inject LocService SharedLocalizer
+
+@{
+
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("LogisticArea");
+
+    Layout = "_LayoutLog";
+}

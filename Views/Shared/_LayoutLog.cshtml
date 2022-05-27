@@ -1,0 +1,205 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@using MyErp.Resources
+ 
+@inject LocService SharedLocalizer
+
+@functions {
+    string panelBold(int panel)
+    {          
+        int tpan = (int)ViewData["panel"];
+        string cstyle ="";
+        if (panel==tpan)
+        {cstyle="font-weight:bold";}
+        return cstyle;
+    }
+
+    string Errores()
+    {
+        string mensaje ="";
+        try{mensaje =(string)ViewData["Error"];
+        }catch{}
+        return mensaje;
+    }
+    string Visible(int modulo)
+    {  
+        int tmod =0;
+        string cstyle ="invisible";
+        try{tmod = (int)ViewData["modulo"];}
+        catch{}
+        if (modulo==tmod)
+        {cstyle="visible";}
+        return cstyle;
+    }
+    string getName()
+    {
+        var name = Context.User.Claims.FirstOrDefault(
+                x => x.Type == "FullName")?.Value; //FullName
+        string typename ="NM";
+        try{typename =(string)ViewData["Name"];
+        }catch{}
+        if (name==null){typename ="NA";}
+        switch (typename)
+        {
+            case "NA":
+                name =@SharedLocalizer.GetLocalizedHtmlString("Unauthorized");
+                break;
+            default:
+                break;
+        }
+        return name;
+    }
+    string getUName()
+    {
+        var name = Context.User.Claims.FirstOrDefault(
+                x => x.Type == "UserName")?.Value; //FullName
+        return name;
+    }
+    string visChange()
+    {
+        string typename ="";
+        try{typename =(string)ViewData["Name"];
+        }catch (Exception exc) {
+            string mensaje = exc.Message;
+        }
+        if (typename==null){typename ="LO";}
+
+        string ret ="xvisible";
+        if (typename=="NA"||typename =="FO"||typename =="NM") {ret="invisible";}
+        return ret;  
+    }
+    string xvisChange()
+    {
+        string typename ="";
+        try{typename =(string)ViewData["Name"];
+        }catch{}
+        if (typename==null){typename ="LO";}
+        return typename;  
+    }
+    string getLink(string ltype)
+    {
+        var link = "";
+        string typename ="NM";
+        try{typename =(string)ViewData["Name"];
+        }catch{}
+        if (typename==null){typename ="LO";}
+        switch (ltype)
+        {
+            case "Text":
+                if (typename=="NA")
+                    {link =@SharedLocalizer.GetLocalizedHtmlString("PleaseLogin");}
+                else 
+                    {
+                        if (typename=="FO")
+                            {
+                                link ="";
+                            }
+                        else 
+                            {
+                                if (typename=="LO" )
+                                {
+                                    {link =@SharedLocalizer.GetLocalizedHtmlString("Logout");}
+                                }
+                            }
+                    }
+                break;
+            case "Action":
+                if (typename=="NA")
+                    {link =@SharedLocalizer.GetLocalizedHtmlString("Login");}
+                else 
+                    {
+                        if (typename=="FO")
+                            {
+                                link ="";
+                            }
+                        else 
+                            {
+                                {link =@SharedLocalizer.GetLocalizedHtmlString("Logout");}
+                            }
+                    }
+                break;
+            default:
+                break;
+        }
+        return link;
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+@*Esto a continuacion para el control data Grid*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.1.1/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    <link rel="stylesheet" href="~/css/Site.css" />
+    <link rel="stylesheet" href="~/css/style.css"  />
+    <link rel="stylesheet" href="~/css/dg.mydg.css"  />
+
+    <script src="~/js/mydg.js"></script>
+   
+    <script type="text/javascript">
+        window.onload = myFunc;
+
+    </script>
+@*Lo anterior  para el control data Grid*@
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MyErp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <script>
+    function openlMnu() {
+        if (document.getElementById("logMenu").style.display!= "block"){
+        document.getElementById("logMenu").style.display= "block" ;}
+        else {
+        document.getElementById("logMenu").style.display= "none" ;}
+    }
+    </script>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <img id="image" src="/GridMenu.jpg" onclick="openlMnu()"width="25pt" height="25pt">
+                <h3>@ViewData["Title"]</h3>
+                <td>@getName()</td>
+                <div id ="logMenu" name="MyLogMenu" class="o-dropdown--menu dropdown-menu dx-none o-popper-position o-popper-position--bs" style="top: 46px; left: 0px;">
+                    <a class="dropdown-item o_app pad0" style="@panelBold(1)" asp-area="" asp-controller="TLog" asp-action="Index" asp-route-id="" asp-route-panel="1" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Reception")</a>
+                    <a class="dropdown-item o_app pad0" style="@panelBold(2)"asp-area="" asp-controller="TLog" asp-action="Index" asp-route-id="" asp-route-panel="2" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("StocksMgmt")</a>
+                    <a class="dropdown-item o_app pad0" style="@panelBold(3)"asp-area="" asp-controller="TLog" asp-action="Index" asp-route-id="" asp-route-panel="3" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Expedition")</a>
+                    <hr>
+                    <a class="dropdown-item o_app pad0"  style="@panelBold(8)" asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="" asp-route-panel="7" asp-route-move="0">@SharedLocalizer.GetLocalizedHtmlString("Home")</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="w3-container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - MyErp - <a asp-area="" asp-controller="Account" asp-action="Privacy">@SharedLocalizer.GetLocalizedHtmlString("About")</a>
+        </div>
+        <div>
+            @Errores()
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,41 @@
+@model VTBLDet
+        <tr>
+            @using (Html.BeginForm("BLDCreate","TLog",FormMethod.Post)) {        
+            <div class ="div-edit">
+                <td>@Html.LabelFor(p => p.InBLDProdId,new { @class = "norm-lab-text",})</td>
+                <td class="norm-text">
+                    @Html.DropDownListFor(p => p.InBLDProdId,(SelectList)ViewBag.ddlProd,"",new { @class = "norm-tb-text" })
+                </td>
+                <td>@Html.LabelFor(p => p.InBLDQty,new { @class = "norm-lab-text",})</td>
+                <td>@Html.EditorFor(p => p.InBLDQty, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
+            </div>
+            }
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.InBLDProdId)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.InBLDQty)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.InBLDUM,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.InBLDUM, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
+            <td>@Html.LabelFor(p => p.InBLDUMRef,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.InBLDUMRef, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.InBLDUM)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.InBLDUMRef)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.InBLDStat,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.InBLDStat, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:450px" } })</td>
+        </tr>        
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.InBLDStat)</td>
+            <td></td>
+            <td></td>
+        </tr>

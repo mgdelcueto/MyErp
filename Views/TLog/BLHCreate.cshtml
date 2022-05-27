@@ -1,0 +1,25 @@
+@using MyErp.Models
+@model TInputBLH
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@functions {
+}
+<div class=" clearfix position-relative o_form_sheet center">
+
+<div class="style-data">
+<h3>@SharedLocalizer.GetLocalizedHtmlString("MatLocCreate")</h3>
+</div>
+
+@using (Html.BeginForm()) {
+   <div class="div-edit">
+    @Html.ValidationSummary(true)
+    <table class="table-edit">
+         <tr>
+            <td><input type="submit" class="dropbtn" value="Add"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+        </tr>
+        @Html.Partial("_pshowBLH",Model)
+    </table>
+    </div>
+}
+</div>

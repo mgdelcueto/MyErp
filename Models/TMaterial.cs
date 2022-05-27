@@ -25,6 +25,7 @@ namespace MyErp.Models
         [Display(Name="MStatus")]
         [Required(ErrorMessage="mReq"),StringLength(125)]
         public string MatStatus { get; set; }
+
         [Display(Name="MStatusDate")]
         [Required(ErrorMessage="mReq"),DataType(DataType.Date)]         
         public DateTime? MatStDate { get; set; }

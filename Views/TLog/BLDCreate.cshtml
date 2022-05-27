@@ -1,0 +1,25 @@
+@using MyErp.Models
+@model VTBLDet
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@functions {
+}
+<div class=" clearfix position-relative o_form_sheet center">
+
+<div class="style-data">
+<h3>@SharedLocalizer.GetLocalizedHtmlString("BLDetCreate")</h3>
+</div>
+
+@using (Html.BeginForm(new{id = Model.InBLId})) {
+   <div class="div-edit">
+    @Html.ValidationSummary(true)
+    <table class="table-edit">
+         <tr>
+            <td><input type="submit" class="dropbtn" value="Add"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+        </tr>
+        @Html.Partial("_pshowBLD",Model)
+    </table>
+    </div>
+}
+</div>

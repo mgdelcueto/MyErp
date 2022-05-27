@@ -1,9 +1,82 @@
 @*@{Layout = "_LyIndex";}*@
 @using MyErp.Models
 @model TLocation
+@using MyErp.Extensions;
 @using MyErp.Resources
 @inject LocService SharedLocalizer
 @functions {
+
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "MatLocal":
+                retur[0]="TEngine";
+                retur[1]="";  //LMatEdit
+                retur[2]="";//LMatCreate
+                retur[3]="";//LMatDelete
+                break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table,int type){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "MatLocal":
+                if (type==0)
+                {
+
+                    retur.Add("MatRoute");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Refer"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Stock"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UMed"));
+                }
+                else{
+                    retur.Add("LoLoId");
+                    retur.Add("LoRefRe");
+                    retur.Add("LoRefDes");
+                    retur.Add("LoRefSt");
+                    retur.Add("LoRefUM");
+                }
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    IEnumerable<Container> getData_MatLocal(dynamic oTMaterial)
+        {
+            IEnumerable<VTMLocation> fTPersonal = (List<VTMLocation>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.LoLoId,
+                        Campo01 = f.LoRefRe.ToString(),
+                        Campo02 = f.LoRefDes.ToString(),
+                        Campo03 = f.LoRefSt.ToString(),
+                        Campo04 = f.LoRefUM.ToString(),
+                        Campo05 = "",
+                        Campo06 = "",
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
+
+
     string isVisible(int panel){
         string retcol="";
         int opanel = (int)ViewData["panel"];
@@ -51,6 +124,21 @@ private int VAssign(){
         @Html.Partial("_pshowLocations",Model)
     </table>
     </div>
+
+    <div class="Visible">
+        <table class="table-edit" border="1">
+            <div class="cont-titles">
+                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("MatInStorLoc") @Model.LocDescr</h3>
+            </div>
+            <div  class="_container" name="aqui-el-control-grid-3">
+                @Html.dataGrid(38,9,@Columns("MatLocal",0),@getData_MatLocal((List<VTMLocation>)ViewBag.ListLocMate),@Controller("MatLocal"),@Columns("MatLocal",1),Model.LocId)
+            </div>
+        </table>
+    </div>
+
+
+
+
 
 }
 </div>

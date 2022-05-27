@@ -18,6 +18,8 @@ namespace MyErp.Models
         {
         }
 
+        public virtual DbSet<TInputBLH> TInputBLHs { get; set; }
+        public virtual DbSet<TInputBLD> TInputBLDs { get; set; }
         public virtual DbSet<TCCplanning> TCCplannings { get; set; }
         public virtual DbSet<TCCplant> TCCplants { get; set; }
         public virtual DbSet<TCCplantPort> TCCplantPorts { get; set; }
@@ -80,6 +82,48 @@ namespace MyErp.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
+            modelBuilder.Entity<TInputBLH>(entity =>
+            {
+                entity.HasKey(e => e.InBLId)
+                    .HasName("PK__T_InputBLH_InBLId");
+
+                entity.ToTable("T_InputBLH");
+
+                entity.Property(e => e.InBLId).HasColumnName("InBLId");
+
+                entity.Property(e => e.InBLSupId).HasColumnName("InBLSupId");
+
+                entity.Property(e => e.InBLDateRec)
+                    .HasColumnType("datetime")
+                    .HasColumnName("InBLDateRec");
+
+                entity.Property(e => e.InBLStatus).HasColumnName("InBLStatus");
+
+                entity.Property(e => e.InBLObser).HasColumnName("InBLObser");
+
+            });
+
+            modelBuilder.Entity<TInputBLD>(entity =>
+            {
+                entity.HasKey(e => e.InBLDId)
+                    .HasName("PK__T_InputBLD_InBLDId");
+
+                entity.ToTable("T_InputBLD");
+
+                entity.Property(e => e.InBLDId).HasColumnName("InBLDId");
+
+                entity.Property(e => e.InBLDProdId).HasColumnName("InBLDProdId");
+
+                entity.Property(e => e.InBLDQty).HasColumnName("InBLDQty");
+
+                entity.Property(e => e.InBLDUM).HasColumnName("InBLDUM");
+
+                entity.Property(e => e.InBLDUMRef).HasColumnName("InBLDUMRef");
+
+                entity.Property(e => e.InBLDStat).HasColumnName("InBLDStat");
+
+            });
+
             modelBuilder.Entity<TCCplanning>(entity =>
             {
                 entity.HasKey(e => e.CplanId)
@@ -115,6 +159,8 @@ namespace MyErp.Models
 
                 entity.Property(e => e.CplanUemb).HasColumnName("CPlanUEmb");
             });
+
+
 
             modelBuilder.Entity<TCCplant>(entity =>
             {

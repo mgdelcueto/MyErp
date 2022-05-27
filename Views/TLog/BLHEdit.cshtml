@@ -1,0 +1,101 @@
+@using MyErp.Models
+@model TInputBLH
+@using MyErp.Extensions;
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+@functions {
+
+    string [] Controller(string table){
+        string [] retur = new string [4];
+        switch (table)
+        {
+        case "InputBLD":
+            retur[0]="TLog";
+            retur[1]="BLDEdit";
+            retur[2]="BLDCreate";
+            retur[3]="BLDDelete";
+            break;
+        default:
+            break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table,int type){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "InputBLD":
+                if (type==0)
+                {
+                    retur.Add("InputBLD");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Refer"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Qty"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UM"));
+                }
+                else{
+                    retur.Add("bldId");
+                    retur.Add("blRef");
+                    retur.Add("blDesc");
+                    retur.Add("blQty");
+                    retur.Add("blUM");
+                }
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+
+    IEnumerable<Container> getData_InputBLD(dynamic oTMaterial)
+        {
+            IEnumerable<VTBLDet> fTPersonal = (List<VTBLDet>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.InBLDId,
+                        Campo01 = f.InBLDMRefer.ToString(),
+                        Campo02 = f.InBLDMDescr.ToString(),
+                        Campo03 = f.InBLDQty.ToString(),
+                        Campo04 = f.InBLDUMRef.ToString(),
+                        Campo05 = "",
+                        Campo06 = "", 
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+
+}
+<div class=" clearfix position-relative o_form_sheet center">
+
+<div class="style-data">
+<h3>@SharedLocalizer.GetLocalizedHtmlString("MatLocEdit")</h3>
+</div>
+@using (Html.BeginForm()) {
+   <div class="div-edit">
+    @Html.ValidationSummary(true)
+    <table class="table-edit">
+         <tr>
+            <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
+            <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+        </tr>
+        @Html.Partial("_pshowBLH",Model)
+    </table>
+    </div>
+}
+    <table class="table-norm" border="1">
+        <div class="cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("BLDetail")</h3>
+        </div>
+        @Html.dataGrid(41,9,@Columns("InputBLD",0),@getData_InputBLD((List<VTBLDet>)ViewBag.ListBLDet),@Controller("InputBLD"),@Columns("InputBLD",1),Model.InBLId)
+    </table>
+</div>

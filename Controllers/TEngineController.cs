@@ -201,7 +201,7 @@ namespace MyErp.Controllers {
             ViewBag.ListMA=queryma;
             }
 
-
+            /*
             if (filter ==2){
             var querylo = (from po in _dbContext.TLocations
                         orderby po.LocDescr
@@ -218,7 +218,11 @@ namespace MyErp.Controllers {
                         select po).ToList();
             ViewBag.ListLO=querylo;
             }
-
+            */
+            var querylo =(from po in _dbContext.TLocations
+                        orderby po.LocDescr
+                        select po).ToList();
+            ViewBag.ListLO=querylo;
 
             var querylop =(from po in _dbContext.TOperators
                         orderby po.OpeDesc
@@ -281,6 +285,19 @@ namespace MyErp.Controllers {
             LoLocCode=q.LocCode,LoLocDescr=q.LocDescr
             }).ToList();
             ViewBag.ListMatLoca=querylom;
+
+            var querylomx =(from pl in _dbContext.TMLocations 
+            join p in _dbContext.TMaterials on pl.MLocMatId equals p.MatId
+            join q in _dbContext.TLocations on pl.MLocLodId equals q.LocId
+            orderby p.MatDescr 
+            where pl.MLocLodId ==Coid 
+            select new VTMLocation { LoLoId=pl.MLocId ,LoRefRe = p.MatRefer ,
+            LoRefDes=p.MatDescr ,LoRefUM = p.MatUnMed,
+            LoRefSt=pl.MLocStock ,   LoRefId=p.MatId,
+            LoLocCode=q.LocCode,LoLocDescr=q.LocDescr
+            }).ToList();
+            ViewBag.ListLocMate=querylomx;
+
 
 
             Guid g = Guid.NewGuid();
@@ -1347,7 +1364,7 @@ namespace MyErp.Controllers {
             try{
             var model = _dbContext.TLocations
                 .SingleOrDefault(u => u.LocId.Equals(id));
-            CreateViewBags(id,model.LocFaId);  
+            CreateViewBags(id,model.LocFaId,"",id);  
             return View(model);
             }
             catch{return View("Error");}            
@@ -1365,7 +1382,7 @@ namespace MyErp.Controllers {
                 catch{}
                 }
                 else {
-                    CreateViewBags(0,location.LocFaId);    
+                    CreateViewBags(0,location.LocFaId,"",id);    
                     ViewData["panel"]=5;
                  return View(location);
                 }
