@@ -5,6 +5,8 @@
 @inject LocService SharedLocalizer
 @functions {
 }
+<div class=" clearfix position-relative o_form_sheet center">
+
 @{ViewData["MatId"]=@Model.LoRefId;}
 @Html.Partial("_pmenuMat_com")
 @Html.Partial("_pshowMaterials_parc_com",(TMaterial)ViewBag.Material)
@@ -25,3 +27,4 @@
     </table>
     </div>
 }
+</div>

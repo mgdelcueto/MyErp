@@ -96,18 +96,11 @@
                     }
                 break;
             case "Action":
-                if (typename=="NA")
-                    {link =@SharedLocalizer.GetLocalizedHtmlString("Login");}
+                if (typename=="NA"){link ="Login";}
                 else 
                     {
-                        if (typename=="FO")
-                            {
-                                link ="";
-                            }
-                        else 
-                            {
-                                {link =@SharedLocalizer.GetLocalizedHtmlString("Logout");}
-                            }
+                        if (typename=="FO"){link ="";}
+                        else {link ="Logout";}
                     }
                 break;
             default:

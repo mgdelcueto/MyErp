@@ -331,7 +331,7 @@
 
 
         <div class = "cont-titles">
-            <h3>@SharedLocalizer.GetLocalizedHtmlString("MaterialRequirement")</h3>   
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("WorkCenterLoad")</h3>   
         </div>
         @*@Html.ActionLink("Return to Capacity Analysis", "Capacity",new{panel =1,panel1=1})*@
         @Html.dataGrid(37,12,@Columns("WCCap",0),@getData_WCCap((List<TExpOper>)ViewBag.ListOpeExp),@Controller("WCCap"),@Columns("WCCap",1),0)
