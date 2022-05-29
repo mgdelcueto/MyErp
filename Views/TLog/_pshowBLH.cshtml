@@ -1,4 +1,8 @@
+@using MyErp.Resources
+@inject LocService SharedLocalizer
+
 @model TInputBLH
+        @Html.HiddenFor(p => p.InBLStatus)
         <tr>
             <td>@Html.LabelFor(p => p.InBLDateRec,new { @class = "norm-lab-text",})</td>
             <td>@Html.EditorFor(p => p.InBLDateRec, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
@@ -18,8 +22,12 @@
                 <td class="norm-text">
                     @Html.DropDownListFor(p => p.InBLSupId,(SelectList)ViewBag.ddlSU,"",new { @class = "norm-tb-text" })
                 </td>
+                @*
                 <td>@Html.LabelFor(p => p.InBLStatus,new { @class = "norm-lab-text",})</td>
                 <td>@Html.EditorFor(p => p.InBLStatus, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
+                *@
+                <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("InBLStatus")</td>
+                <td class="norm-tb-text"  style = "width:50px">@Model.InBLStatus</td>
             </div>
             }
         </tr>
@@ -27,7 +35,7 @@
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.InBLSupId)</td>
             <td></td>
-            <td>@Html.ValidationMessageFor(p => p.InBLStatus)</td>
+            <td>@*@Html.ValidationMessageFor(p => p.InBLStatus)*@</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(p => p.InBLObser,new { @class = "norm-lab-text" })</td>

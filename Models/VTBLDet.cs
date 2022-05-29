@@ -14,19 +14,19 @@ namespace MyErp.Models
         public int? InBLId { get; set; }
 
         [Display(Name="InBLDProdId")]
-        [Required,Range(0, int.MaxValue, ErrorMessage = "mReq")]
+        [Required,Range(1, int.MaxValue, ErrorMessage = "mReq")]
         public int? InBLDProdId { get; set; }
 
         [Display(Name="InBLDMRefer")]
-        [Required(ErrorMessage="mReq"),StringLength(125)]
+        [StringLength(125)]
         public string InBLDMRefer { get; set; }
 
         [Display(Name="InBLDMDescr")]
-        [Required(ErrorMessage="mReq"),StringLength(225)]
+        [StringLength(225)]
         public string InBLDMDescr { get; set; }
 
         [Display(Name="InBLDMatUnMed")]
-        [Required(ErrorMessage="mReq"),StringLength(25)]
+        [StringLength(25)]
         public string InBLDMatUnMed { get; set; }
 
         [Display(Name="InBLDQty")]

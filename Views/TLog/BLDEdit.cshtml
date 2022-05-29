@@ -57,7 +57,7 @@
                         Campo01 = f.InBLDMRefer.ToString(),
                         Campo02 = f.InBLDMDescr.ToString(),
                         Campo03 = f.InBLDQty.ToString(),
-                        Campo04 = f.InBLDUMRef.ToString(),
+                        Campo04 = (f.InBLDUMRef ??"").ToString(),
                         Campo05 = "",
                         Campo06 = "", 
                         Campo07 = "",
@@ -78,7 +78,7 @@
 <div class=" clearfix position-relative o_form_sheet center">
 
 <div class="style-data">
-<h3>@SharedLocalizer.GetLocalizedHtmlString("MatLocEdit")</h3>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("IBLDetEdit")</h3>
 </div>
 @using (Html.BeginForm(new{Hid = Model.InBLId})) {
    <div class="div-edit">

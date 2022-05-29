@@ -19,9 +19,48 @@ namespace MyErp.Controllers {
         private void CreateViewBags(int? Hid)
         {
             var querybl = (from bl in _dbContext.TInputBLHs
+                            join p in _dbContext.TSupliers on bl.InBLSupId equals p.SupId
                             orderby bl.InBLnum 
-                            select bl).ToList();
+                            select new VTBLHead
+                            {InBLId=bl.InBLId,
+                            InBLnum=bl.InBLnum,
+                            InBLSupId=bl.InBLSupId,
+                            SupRasoc=p.SupRasoc,
+                            InBLDateRec=bl.InBLDateRec,
+                            InBLStatus=bl.InBLStatus,
+                            InBLObser=bl.InBLObser
+                            }).ToList();
             ViewBag.ListBL=querybl;
+
+/*
+        public int InBLId { get; set; }
+
+        [Display(Name="InBLnum")]
+        [Required(ErrorMessage="mReq"),StringLength(50)]
+        public string InBLnum { get; set; }
+
+        [Display(Name="InBLSupId")]
+        [Required,Range(1, int.MaxValue, ErrorMessage = "mReq")]
+        public int? InBLSupId { get; set; }
+
+        [Display(Name="SupRaSoc")]
+        [StringLength(125)]
+        public string SupRasoc { get; set; }
+
+        [Display(Name="InBLDateRec")]
+        [Required(ErrorMessage="mReq"),DataType(DataType.Date)]         
+        public DateTime? InBLDateRec { get; set; }
+
+        [Display(Name="InBLStatus")]
+        [Required(ErrorMessage="mReq"),StringLength(50)]
+        public string InBLStatus { get; set; }
+
+        [Display(Name="InBLObser")]
+        [StringLength(250)]
+        public string  InBLObser { get; set; }
+
+*/
+
 
             var querysup1 = (from p in _dbContext.TSupliers 
                         orderby p.SupRasoc
@@ -79,6 +118,11 @@ namespace MyErp.Controllers {
 
             ViewBag.ddlProd = new SelectList(result.ToList(), "MatId", "MatDescr",0); 
 
+            var resulm = (from mat in _dbContext.TMaterials 
+                        where mat.MatClass=="RM"  //&& p.MatClass =="RM"
+                        select mat).ToList();
+
+            ViewBag.Materials = resulm; 
 
         }
         public IActionResult Index(int panel, int? BlId) {
@@ -98,10 +142,19 @@ namespace MyErp.Controllers {
         }
 
         [HttpGet]
-        public IActionResult BLHCreate(string actionType) {
+        public IActionResult BLHCreate() {
             CreateViewBags(0);
             ViewData["panel"]=1;
-            return View();      
+            TInputBLH model =(from pl in _dbContext.TInputBLHs 
+            select new TInputBLH { 
+                InBLDateRec=System.DateTime.Now,
+                InBLId=0,
+                InBLnum="",
+                InBLObser="",
+                InBLStatus="PR",
+                InBLSupId=0
+                }).FirstOrDefault();
+            return View(model);      
         }
 
         [HttpPost]
@@ -159,9 +212,10 @@ namespace MyErp.Controllers {
 
         [HttpPost]
         public IActionResult BLDCreate(VTBLDet routing,int id,string actionType) {
+            routing.InBLId=id;
             ViewData["panel"]=1;
             if(actionType=="Add"){
-             //if (ModelState.IsValid){
+             if (ModelState.IsValid){
                     try{
                         TInputBLD nmod = new TInputBLD();
                         //nmod.InBLDId=routing.InBLDId,
@@ -183,13 +237,11 @@ namespace MyErp.Controllers {
                  catch(Exception ex){
                      string mensaje = ex.Message;
                      return View("Error");}
-/*
                  } 
             else {
-                CreateViewBags(0);    
+                CreateViewBags(id);    
                 return View(routing);
                 }
-*/
             }
             else{
             if (actionType=="Cancel"){}
@@ -197,7 +249,7 @@ namespace MyErp.Controllers {
                try{
                 //cambia el material componente idicar la unidad de medida
                 }catch{}                
-                CreateViewBags(0);    
+                CreateViewBags(id);    
                 return View(routing);
                 }
             }
@@ -240,6 +292,17 @@ namespace MyErp.Controllers {
                     CreateViewBags(id);    
                     ViewData["panel"]=1;
                  return View(material);
+                }
+            }
+            if (actionType=="PostBL"){
+                try{
+                    material.InBLId=id;
+                    material.InBLStatus="CR";
+                    _dbContext.TInputBLHs.Update(material);
+                    _dbContext.SaveChanges();
+                }
+                catch(Exception ex){
+                    string mensaje = ex.Message;
                 }
             }
             CreateViewBags(id);    
@@ -291,8 +354,9 @@ namespace MyErp.Controllers {
         [HttpPost]
         public IActionResult BLDEdit(VTBLDet routing,int id ,int Hid, string actionType) {
             if(Hid==null){Hid=0;}
+            routing.InBLId=Hid;
             if (actionType=="Update"){
-            //if (ModelState.IsValid){
+            if (ModelState.IsValid){
                 try{
                     TInputBLD nmod = new TInputBLD();
                             nmod.InBLDId=id;
@@ -314,14 +378,12 @@ namespace MyErp.Controllers {
                  catch(Exception ex){
                      string mensaje = ex.Message;
                      return View("Error");}
-/*
                  } 
             else {
-                CreateViewBags(0);    
+                CreateViewBags(Hid);    
                 ViewData["panel"]=1;
                 return View(routing);
                 }
-*/
             }
             else{
                 if (actionType=="Cancel"){}
@@ -335,6 +397,7 @@ namespace MyErp.Controllers {
                 }
             }
             //CreateViewBags(0,0);    
+            //CreateViewBags(Hid);    
             ViewData["panel"]=1;
 
             return RedirectToAction("BLHEdit",new{id=Hid});

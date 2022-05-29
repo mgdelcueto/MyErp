@@ -4,16 +4,35 @@
 @using MyErp.Resources
 @inject LocService SharedLocalizer
 @functions {
+    string Visible(string Status)
+    {
+        string ret = "invisible";
+        if (Status=="PR"){ret="visible";}
+        return ret;
+    }
+    string hVisible(string Status)
+    {
+        string ret = "visibility:hidden;";
+        if (Status=="PR"){ret="visibility:visible;";}
+        return ret;    }
 
-    string [] Controller(string table){
+    string [] Controller(string table, string Status){
         string [] retur = new string [4];
         switch (table)
         {
         case "InputBLD":
-            retur[0]="TLog";
-            retur[1]="BLDEdit";
-            retur[2]="BLDCreate";
-            retur[3]="BLDDelete";
+            if (Status=="PR"){
+                retur[0]="TLog";
+                retur[1]="BLDEdit";
+                retur[2]="BLDCreate";
+                retur[3]="BLDDelete";
+            }
+            else{
+                retur[0]="TLog";
+                retur[1]="";
+                retur[2]="";
+                retur[3]="";
+            }
             break;
         default:
             break;
@@ -31,14 +50,16 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Refer"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Qty"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UMed"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UM"));
                 }
                 else{
-                    retur.Add("bldId");
-                    retur.Add("blRef");
-                    retur.Add("blDesc");
-                    retur.Add("blQty");
-                    retur.Add("blUM");
+                    retur.Add("InBLDId");
+                    retur.Add("InBLDMRefer");
+                    retur.Add("InBLDMDescr");
+                    retur.Add("InBLDQty");
+                    retur.Add("InBLDMatUnMed");
+                    retur.Add("InBLDUMRef");
                 }
                 break;
             default:
@@ -57,8 +78,8 @@
                         Campo01 = f.InBLDMRefer.ToString(),
                         Campo02 = f.InBLDMDescr.ToString(),
                         Campo03 = f.InBLDQty.ToString(),
-                        Campo04 = f.InBLDUMRef.ToString(),
-                        Campo05 = "",
+                        Campo04 = f.InBLDMatUnMed.ToString(),
+                        Campo05 = (f.InBLDUMRef ??"").ToString(),
                         Campo06 = "", 
                         Campo07 = "",
                         Campo08 = "",
@@ -78,7 +99,7 @@
 <div class=" clearfix position-relative o_form_sheet center">
 
 <div class="style-data">
-<h3>@SharedLocalizer.GetLocalizedHtmlString("MatLocEdit")</h3>
+<h3>@SharedLocalizer.GetLocalizedHtmlString("IBLHeadEdit")</h3>
 </div>
 @using (Html.BeginForm()) {
    <div class="div-edit">
@@ -87,15 +108,16 @@
          <tr>
             <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
             <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
+            <td style="@hVisible(Model.InBLStatus)"><input type="submit" class="dropbtn" value="PostBL"  name="actionType"/></td>
         </tr>
         @Html.Partial("_pshowBLH",Model)
     </table>
     </div>
-}
     <table class="table-norm" border="1">
         <div class="cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("BLDetail")</h3>
         </div>
-        @Html.dataGrid(41,9,@Columns("InputBLD",0),@getData_InputBLD((List<VTBLDet>)ViewBag.ListBLDet),@Controller("InputBLD"),@Columns("InputBLD",1),Model.InBLId)
+        @Html.dataGrid(41,9,@Columns("InputBLD",0),@getData_InputBLD((List<VTBLDet>)ViewBag.ListBLDet),@Controller("InputBLD",Model.InBLStatus),@Columns("InputBLD",1),Model.InBLId)
     </table>
+}
 </div>

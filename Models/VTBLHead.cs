@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyErp.Models
 {
-    public partial class TInputBLH
+    public partial class VTBLHead
     {
         public int InBLId { get; set; }
 
@@ -17,6 +17,10 @@ namespace MyErp.Models
         [Display(Name="InBLSupId")]
         [Required,Range(1, int.MaxValue, ErrorMessage = "mReq")]
         public int? InBLSupId { get; set; }
+
+        [Display(Name="SupRaSoc")]
+        [StringLength(125)]
+        public string SupRasoc { get; set; }
 
         [Display(Name="InBLDateRec")]
         [Required(ErrorMessage="mReq"),DataType(DataType.Date)]         

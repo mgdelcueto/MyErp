@@ -1,15 +1,29 @@
 @model VTBLDet
+@functions{
+    string UnMed(int? Pid)
+    {
+        string ret ="XX";
+        try{
+        List<TMaterial> mod = (List<TMaterial>)ViewBag.Materials;
+        var modx = mod
+                .SingleOrDefault(u => u.MatId.Equals(Pid));
+        ret=modx.MatUnMed;}
+        catch{}
+        return ret;
+    }
+}
+        @using (Html.BeginForm("BLDCreate","TLog",FormMethod.Post)) {        
         <tr>
-            @using (Html.BeginForm("BLDCreate","TLog",FormMethod.Post)) {        
+            @Html.HiddenFor(p => p.InBLId)
             <div class ="div-edit">
                 <td>@Html.LabelFor(p => p.InBLDProdId,new { @class = "norm-lab-text",})</td>
                 <td class="norm-text">
-                    @Html.DropDownListFor(p => p.InBLDProdId,(SelectList)ViewBag.ddlProd,"",new { @class = "norm-tb-text" })
+                    @Html.DropDownListFor(p => p.InBLDProdId,(SelectList)ViewBag.ddlProd,"",new { @class = "norm-tb-text", onchange ="this.form.submit();" })
                 </td>
                 <td>@Html.LabelFor(p => p.InBLDQty,new { @class = "norm-lab-text",})</td>
                 <td>@Html.EditorFor(p => p.InBLDQty, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
+                <td class="norm-tb-text">@UnMed(Model.InBLDProdId)</td>
             </div>
-            }
         </tr>
         <tr>
             <td></td>
@@ -39,3 +53,4 @@
             <td></td>
             <td></td>
         </tr>
+    }

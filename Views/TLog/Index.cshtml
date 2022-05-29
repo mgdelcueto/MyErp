@@ -74,17 +74,19 @@
                 if (type==0)
                 {
                     retur.Add("InputBLH");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("InBLStatus"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SupRasoc"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("InBLnum"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("InBLDateRec"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("InBLObser"));
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("InBLStatus"));
                 }
                 else{
                     retur.Add("InBLDId");
+                    retur.Add("InBLStatus");
+                    retur.Add("SupRasoc");
                     retur.Add("InBLnum");
                     retur.Add("InBLDateRec");
                     retur.Add("InBLObser");
-                    retur.Add("InBLStatus");
                 }
                 break;
             case "WCenter":
@@ -184,16 +186,16 @@
     }
     IEnumerable<Container> getData_InputBLH(dynamic oTMaterial)
         {
-            IEnumerable<TInputBLH> fTPersonal = (List<TInputBLH>)oTMaterial;
+            IEnumerable<VTBLHead> fTPersonal = (List<VTBLHead>)oTMaterial;
             IEnumerable<Container> TPersonal = fTPersonal.Select(
                 f => new Container() 
                 {
                         CampoId = f.InBLId,
-                        Campo01 = f.InBLnum.ToString(),
-                        Campo02 = f.InBLDateRec.ToString(),
-                        Campo03 = f.InBLObser.ToString(),
-                        Campo04 = f.InBLStatus.ToString(),
-                        Campo05 = "",
+                        Campo01 = f.InBLStatus.ToString(),
+                        Campo02 = (f.SupRasoc ??"").ToString(),
+                        Campo03 = f.InBLnum.ToString(),
+                        Campo04 = f.InBLDateRec.ToString(),
+                        Campo05 = (f.InBLObser ?? "").ToString(),
                         Campo06 = "", 
                         Campo07 = "",
                         Campo08 = "",
@@ -434,9 +436,9 @@
 
     <div class=@isVisible(1)>
         <div class = "cont-titles">
-            <h3>@SharedLocalizer.GetLocalizedHtmlString("DeliveryNotesList")</h3>   
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("GoodsReceiptNoteList")</h3>   
         </div>
-        @Html.dataGrid(40,16,@Columns("InputBLH",0),@getData_InputBLH((List<TInputBLH>)ViewBag.ListBL),@Controller("InputBLH"),@Columns("InputBLH",1),0)
+        @Html.dataGrid(40,16,@Columns("InputBLH",0),@getData_InputBLH((List<VTBLHead>)ViewBag.ListBL),@Controller("InputBLH"),@Columns("InputBLH",1),0)
     </div>
 
     @*
