@@ -10,7 +10,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Authorization;
 
 namespace MyErp.Controllers {
-    [Authorize(Roles="Engineer,Administrator")]
+    [Authorize(Roles="Logistic,Administrator")]
     public class TLogController : Controller {
         private readonly MyErpDBContext _dbContext;
         public TLogController(MyErpDBContext dbContext) {

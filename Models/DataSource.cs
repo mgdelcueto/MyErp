@@ -72,6 +72,7 @@ namespace MyErp.Models {
             AppRols.Add(new AppRol("Organization", "Organization"));        
             AppRols.Add(new AppRol("HR", "HR"));        
             AppRols.Add(new AppRol("Supplier", "Supplier"));        
+            AppRols.Add(new AppRol("Logistic", "Logistic"));        
 
             WDays = new List<WDay>();
             WDays.Add(new WDay(1, "Sunday"));
