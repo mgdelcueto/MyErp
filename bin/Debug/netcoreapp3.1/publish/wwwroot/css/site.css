@@ -72,32 +72,47 @@ body {
 .heigh16{
   height: 32px;
 }
+.container-fluid{
+  height:45px;
+}
+.contain-img:hover{
+  background-color :#ffffff;
+}
+.contain-name{
+  text-align: right;
+}
+.contain-col{
+  background-color:#71639E;
+  color : #FFFFFF;
+  height: 45px;
+}
 .navbar {
   padding: 0 0px;
-  height: 30px;
-  line-height: 30px;
-
+  height: 45px;
+  line-height: 45px;
+  
   min-height: 10px;
+
 }
 .navbar-expand-sm{
   padding: 0 0px;
-  height: 30px;
+  /*height: 30px;*/
   line-height: 30px;
 }
 .navbar-toggleable-sm{
   padding: 0 0px;
-  height: 30px;
+  /*height: 30px;*/
   line-height: 30px;
 }
 .navbar-light{
   padding: 0 0px;
-  height: 30px;
+  /*height: 30px;*/
   line-height: 30px;
 }
 .navbar-brand {
   /*padding: 0 0px;*/
   padding: 0 0px;
-  height: 30px;
+  /*height: 30px;*/
   line-height: 30px;
 }
 
@@ -145,4 +160,13 @@ body {
     padding-bottom: 0.5px;
     line-height: 2px;
   }
+}
+.imcard {
+  width: 20px;
+  height: 20px;
+  background: url("/GridMenu0.jpg") no-repeat;
+  display: inline-block;
+}
+.imcard:hover {
+  background: url("/GridMenu1.jpg") no-repeat;
 }
