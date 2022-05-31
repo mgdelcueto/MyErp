@@ -329,7 +329,8 @@
                 <!--<img src="/MyERP_Logo.jpg" alt="My ERP Logo" style="width:60px;height:60px;" align="bottom"/>
                 -->
                 @*<img id="image" src="/GridMenu.jpg" class="card" onclick="openMnu()"width="25pt" height="25pt">*@
-                <img id="image" class="imcard" onclick="openMnu()">
+                @*<img id="image" class="imcard" onclick="openMnu()">*@
+                <img src='/GridMenu0.jpg' class="imcard" onclick="openMnu()" onmouseover="this.src='/GridMenu1.jpg';" onmouseout="this.src='/GridMenu0.jpg';" />
                 <h3>@ViewData["Title"]</h3>
                 <td class="contain-name">@getName()</td>
                 <div id ="oMenu" name="MyOwnMenu" class="o-dropdown--menu dropdown-menu dx-none o-popper-position o-popper-position--bs" style="top: 46px; left: 0px;">

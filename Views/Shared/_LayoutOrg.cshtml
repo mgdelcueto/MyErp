@@ -125,7 +125,8 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid contain-col">
                 @*<img id="image" src="/GridMenu.jpg" onclick="openoMnu()"width="25pt" height="25pt">*@
-                <img id="image" class="imcard" onclick="openoMnu()">
+                @*<img id="image" class="imcard" onclick="openoMnu()">*@
+                <img src='/GridMenu0.jpg' class="imcard" onclick="openoMnu()" onmouseover="this.src='/GridMenu1.jpg';" onmouseout="this.src='/GridMenu0.jpg';" />
                 <h3>@ViewData["Title"]</h3>
                 <td>@getName()</td>
                 <div id ="engMenu" name="MyEngMenu" class="o-dropdown--menu dropdown-menu dx-none o-popper-position o-popper-position--bs" style="top: 46px; left: 0px;">

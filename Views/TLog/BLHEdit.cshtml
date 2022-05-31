@@ -7,13 +7,31 @@
     string Visible(string Status)
     {
         string ret = "invisible";
-        if (Status=="PR"){ret="visible";}
+        if (Status=="PR" || Status=="QA"|| Status=="IN"){ret="visible";}
+        return ret;
+    }
+    string PostAction(string Status){
+        string ret = "";
+        switch(Status)
+        {
+            case "PR":
+                ret ="PostBL";
+                break;
+            case "QA":
+                ret ="Accept";
+                break;
+            case "IN":
+                ret="Invoice";
+                break;
+            default:
+                break;
+        }
         return ret;
     }
     string hVisible(string Status)
     {
         string ret = "visibility:hidden;";
-        if (Status=="PR"){ret="visibility:visible;";}
+        if (Status=="PR" || Status=="QA"|| Status=="IN"){ret="visibility:visible;";}
         return ret;    }
 
     string [] Controller(string table, string Status){
@@ -108,7 +126,7 @@
          <tr>
             <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
             <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
-            <td style="@hVisible(Model.InBLStatus)"><input type="submit" class="dropbtn" value="PostBL"  name="actionType"/></td>
+            <td style="@hVisible(Model.InBLStatus)"><input type="submit" class="dropbtn" value="@PostAction(Model.InBLStatus)"  name="actionType"/></td>
         </tr>
         @Html.Partial("_pshowBLH",Model)
     </table>

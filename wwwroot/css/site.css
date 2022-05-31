@@ -164,9 +164,14 @@ body {
 .imcard {
   width: 20px;
   height: 20px;
-  background: url("/GridMenu0.jpg") no-repeat;
-  display: inline-block;
+  /*background: url("/GridMenu0.jpg") no-repeat;
+
+  display: inline-block;*/
 }
+/*
 .imcard:hover {
-  background: url("/GridMenu1.jpg") no-repeat;
+  width: 20px;
+  height: 20px;
+  background-image: url("/GridMenu1.jpg") no-repeat;
 }
+*/

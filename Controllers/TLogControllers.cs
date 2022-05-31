@@ -298,6 +298,31 @@ namespace MyErp.Controllers {
                 try{
                     material.InBLId=id;
                     material.InBLStatus="CR";
+                    material.InBLDateStat=System.DateTime.Now;
+                    _dbContext.TInputBLHs.Update(material);
+                    _dbContext.SaveChanges();
+                }
+                catch(Exception ex){
+                    string mensaje = ex.Message;
+                }
+            }
+            if (actionType=="Accept"){
+                try{
+                    material.InBLId=id;
+                    material.InBLStatus="AC";
+                    material.InBLDateStat=System.DateTime.Now;
+                    _dbContext.TInputBLHs.Update(material);
+                    _dbContext.SaveChanges();
+                }
+                catch(Exception ex){
+                    string mensaje = ex.Message;
+                }
+            }
+            if (actionType=="Invoice"){
+                try{
+                    material.InBLId=id;
+                    material.InBLStatus="FA";
+                    material.InBLDateStat=System.DateTime.Now;
                     _dbContext.TInputBLHs.Update(material);
                     _dbContext.SaveChanges();
                 }

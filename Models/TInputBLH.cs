@@ -29,5 +29,10 @@ namespace MyErp.Models
         [Display(Name="InBLObser")]
         [StringLength(250)]
         public string  InBLObser { get; set; }
+
+        [Display(Name="InBLDateStat")]
+        [DataType(DataType.Date)]         
+        public DateTime? InBLDateStat { get; set; }
+
     }
 }

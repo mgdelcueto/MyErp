@@ -101,6 +101,10 @@ namespace MyErp.Models
 
                 entity.Property(e => e.InBLObser).HasColumnName("InBLObser");
 
+                entity.Property(e => e.InBLDateStat)
+                    .HasColumnType("datetime")
+                    .HasColumnName("InBLDateStat");
+
             });
 
             modelBuilder.Entity<TInputBLD>(entity =>
