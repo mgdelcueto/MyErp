@@ -38,6 +38,7 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Oper"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Time"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UnitT"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCent"));
                 }
                 else{
                     retur.Add("ExpId");
@@ -50,6 +51,7 @@
                     retur.Add("ExpRouOper");
                     retur.Add("ExpRouTime");
                     retur.Add("ExpRouTunit");
+                    retur.Add("WCCode");
                 }
                 break;
             default:
@@ -73,7 +75,7 @@
                         Campo07 = f.ExpRouOper.ToString(),
                         Campo08 = f.ExpRouTime.ToString(),
                         Campo09 = f.ExpRouTunit.ToString(),
-                        Campo10 = "",
+                        Campo10 = f.WCCode.ToString(),
                         Campo11 = "",
                         Campo12 = "",
                         Campo13 = "",

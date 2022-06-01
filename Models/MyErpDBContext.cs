@@ -35,6 +35,7 @@ namespace MyErp.Models
         public virtual DbSet<TCustomer> TCustomers { get; set; }
         public virtual DbSet<TExpMater> TExpMaters { get; set; }
         public virtual DbSet<TExpOper> TExpOpers { get; set; }
+        public virtual DbSet<TExpOperd> TExpOperds { get; set; }
         public virtual DbSet<TExplosion> TExplosions { get; set; }
         public virtual DbSet<TExplosionB> TExplosionBs { get; set; }
         public virtual DbSet<TFacility> TFacilities { get; set; }
@@ -549,6 +550,55 @@ namespace MyErp.Models
                     .HasColumnName("WCDescr");
             });
 
+            modelBuilder.Entity<TExpOperd>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("T_ExpOperd");
+
+                entity.Property(e => e.expcomp)
+                    .HasMaxLength(125)
+                    .HasColumnName("expcomp");
+
+                entity.Property(e => e.Qty)
+                    .HasMaxLength(125)
+                    .HasColumnName("Qty");
+
+                entity.Property(e => e.matunmed)
+                    .HasMaxLength(25)
+                    .HasColumnName("matunmed");
+
+                entity.Property(e => e.TTime)
+                    .HasMaxLength(125)
+                    .HasColumnName("TTime");
+
+                entity.Property(e => e.rouwcid)
+                    .HasMaxLength(125)
+                    .HasColumnName("rouwcid");
+
+                entity.Property(e => e.matrefer)
+                    .HasMaxLength(125)
+                    .HasColumnName("matrefer");
+
+                entity.Property(e => e.matdescr)
+                    .HasMaxLength(225)
+                    .HasColumnName("matdescr");
+
+                entity.Property(e => e.roufase)
+                    .HasMaxLength(25)
+                    .HasColumnName("roufase");
+
+                entity.Property(e => e.rouoper)
+                    .HasMaxLength(225)
+                    .HasColumnName("rouoper");
+
+                entity.Property(e => e.TTimes)
+                    .HasMaxLength(225)
+                    .HasColumnName("TTimes");
+            });
+
+
+
             modelBuilder.Entity<TExplosion>(entity =>
             {
                 entity.HasKey(e => e.ExpId)
@@ -587,6 +637,7 @@ namespace MyErp.Models
                     .HasColumnName("ExpUM");
 
                 entity.Property(e => e.ExpsLevel).HasMaxLength(25);
+                entity.Property(e => e.WCCode).HasMaxLength(125);
             });
 
      

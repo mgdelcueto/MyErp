@@ -265,7 +265,7 @@ public static class MyHtmlHelperExtensions {
         return ret;
         
     }
-    public static IHtmlContent dataGrid(this IHtmlHelper htmlHelper,int Idgrid, int rowspage,List<string> cabText,IEnumerable<Container> _TMaterial,string [] contAction,List<string> fields, int _Id=0,string _parqs="",bool Senable=true,bool Fenable=true,string formid="") {
+    public static IHtmlContent dataGrid(this IHtmlHelper htmlHelper,int Idgrid, int rowspage,List<string> cabText,IEnumerable<Container> _TMaterial,string [] contAction,List<string> fields, int _Id=0,string _parqs="",bool Senable=true,bool Fenable=true,string formid="",string model="") {
             string Tablemod=cabText[0];
             string uniqueId = Idgrid.ToString();//  getUid();
             int gridCount = Convert.ToInt32(CookiesReturn( "gridcount"));
@@ -626,7 +626,7 @@ public static class MyHtmlHelperExtensions {
             foreach (var c in TMaterial) {
                 if (npage ==current_page)
                 {
-                    insert_row( 1,_ncols,Pct,c,tagtab,nrow,uniqueId, row_selected,pro_selected,current_page,rowspage,_controller, _actionEdit);
+                    insert_row( 1,_ncols,Pct,c,tagtab,nrow,uniqueId, row_selected,pro_selected,current_page,rowspage,_controller, _actionEdit,model);
                     insert_row( 0,_ncols,Pct,c,htagtab,nrow,uniqueId, row_selected,pro_selected,current_page,rowspage,_controller, _actionEdit);
                     nrow++;   
                     if (nrow>rowspage)
@@ -715,7 +715,7 @@ public static class MyHtmlHelperExtensions {
                     tagtab.InnerHtml.AppendHtml(tagtr);  
 
     }
-    public static void insert_row(int pri,int _ncols, string Pct, Container c,TagBuilder tagtab,int nrow,string uniqueId,int row_selected,int pro_selected,int current_page,int rowspage,string _controller, string _actionEdit)
+    public static void insert_row(int pri,int _ncols, string Pct, Container c,TagBuilder tagtab,int nrow,string uniqueId,int row_selected,int pro_selected,int current_page,int rowspage,string _controller, string _actionEdit,string model="")
     {
                     var tagtr = new TagBuilder($"tr"); //<tr>
                     if (pri==1){
@@ -748,7 +748,7 @@ public static class MyHtmlHelperExtensions {
                     {
                         var tagtd_ = new TagBuilder($"td"); //<tr>
                         //tagtd_.Attributes.Add("class", $"with_auto");
-                        tagtd_.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"')");//,"+quote+filterExpression+quote +",'"+sortExpression+"')");
+                        tagtd_.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"','"+model.ToString()+"')");//,"+quote+filterExpression+quote +",'"+sortExpression+"')");
                         tagtd_.Attributes.Add("width", Pct);
                         switch(i)
                         {

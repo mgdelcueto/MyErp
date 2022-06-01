@@ -18,5 +18,6 @@ namespace MyErp.Models
         public string ExpRouOper { get; set; }
         public double? ExpRouTime { get; set; }
         public string ExpRouTunit { get; set; }
+        public string WCCode { get; set; }
     }
 }
