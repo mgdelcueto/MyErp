@@ -67,14 +67,11 @@ function actionClick(controller,action,_maxrow,_gridId, _parqs="")//,filterExpre
 }
 function rowClick(_nr,controller,action,_gridId,model)//,filterExpression,sortExpression)
 {
-    alert("rowclick");
-    alert("rowclick "+controller+" "+action+" "+model);
     if (action!=""){
     var _nrow = parseInt(_nr);
     var checkbox = document.getElementById(nameOf(_nr.toString(),_gridId));
     _id = checkbox.value.toString();
     var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?"+model;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
-    alert(url2);
     window.location.href = url2;
     }
     else{

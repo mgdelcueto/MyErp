@@ -102,29 +102,29 @@
                 if (type==0)
                 {
                     retur.Add("WCCap");
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("expcomp"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ProdId"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Refer"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Fase"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Oper"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Time"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Qty"));
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("matunmed"));
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("TTime"));
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("rouwcid"));
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("matrefer"));
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("matdescr"));
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("roufase"));
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("rouoper"));
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("TTimes"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UM"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("TotTime"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WcId"));
                 }
                 else{
                     retur.Add("RouWcId");
                     retur.Add("expcomp");
-                    retur.Add("Qty");
-                    retur.Add("matunmed");
-                    retur.Add("TTime");
-                    retur.Add("rouwcid");
                     retur.Add("matrefer");
                     retur.Add("matdescr");
                     retur.Add("roufase");
                     retur.Add("rouoper");
                     retur.Add("TTimes");
+                    retur.Add("Qty");
+                    retur.Add("matunmed");
+                    retur.Add("TTime");
+                    retur.Add("rouwcid");
                 }
                 break;
             default:
@@ -218,15 +218,15 @@
                 {
                         CampoId = 0,
                         Campo01 = f.expcomp.ToString(),
-                        Campo02 = f.Qty.ToString(),
-                        Campo03 = f.matunmed.ToString(),
-                        Campo04 = f.TTime.ToString(),
-                        Campo05 = f.rouwcid.ToString(),
-                        Campo06 = f.matrefer.ToString(), 
-                        Campo07 = f.matdescr.ToString(),
-                        Campo08 = f.roufase.ToString(),
-                        Campo09 = f.rouoper.ToString(),
-                        Campo10 = f.TTimes.ToString(),
+                        Campo02 = f.matrefer.ToString(), 
+                        Campo03 = f.matdescr.ToString(),
+                        Campo04 = f.roufase.ToString(),
+                        Campo05 = f.rouoper.ToString(),
+                        Campo06 = f.TTimes.ToString(),
+                        Campo07 = f.Qty.ToString(),
+                        Campo08 = f.matunmed.ToString(),
+                        Campo09 = f.TTime.ToString(),
+                        Campo10 = f.rouwcid.ToString(),
                         Campo11 = "",
                         Campo12 = "",
                         Campo13 = "",
@@ -294,8 +294,8 @@
         return ret;
     }
 
-    }
 }
+
 @using (Html.BeginForm()) {
    <div class="div-edit">
     @Html.ValidationSummary(true)
