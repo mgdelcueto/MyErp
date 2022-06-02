@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Mvc.Localization
+@using System.Security.Claims;
 
 @using MyErp.Resources
  
@@ -41,6 +42,40 @@
         }
         return name;
     }
+    string getRoles()
+    {
+        string ret="";
+        //var claims = ClaimsPrincipal.Current.Identities.First().Claims.ToList();   
+        var roles = Context.User.Claims.FirstOrDefault(
+                x => x.Type == ClaimTypes.Role)?.Value; //FullName
+        return ret;
+    }
+    string getEnabled(int  role)
+    {
+        string [] cRoles= new string [9];
+        cRoles[0]="Administrator";
+        cRoles[1]="Organization";
+        cRoles[2]="HR";
+        cRoles[3]="Supplier";
+        cRoles[4]="Customer";
+        cRoles[5]="Engineer";
+        cRoles[6]="MRP";
+        cRoles[7]="Logistic";
+        cRoles[8]="Any";
+        string cRol =cRoles[role];
+        string ret = "disabled";
+        //var claims = ClaimsPrincipal.Current.Identities.First().Claims.ToList();   
+        var roles = Context.User.Claims
+            .Where(x => x.Type == ClaimTypes.Role)
+            .Select(x => x.Value ).ToList(); //x.Type == ClaimTypes.Role).ToList();//?.Value; //FullName
+        foreach (var rol in roles){
+            if (cRol=="Any" || rol =="Administrator" || rol == cRol){
+                ret="";
+                break;}
+        }
+        return ret;
+    }
+
     string getUName()
     {
         var name = Context.User.Claims.FirstOrDefault(
@@ -334,18 +369,18 @@
                 <h3>@ViewData["Title"]</h3>
                 <td class="contain-name">@getName()</td>
                 <div id ="oMenu" name="MyOwnMenu" class="o-dropdown--menu dropdown-menu dx-none o-popper-position o-popper-position--bs" style="top: 46px; left: 0px;">
-                    <a class="dropdown-item o_app pad0" asp-area="" asp-controller="TOrganiza" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Org")</a>
-                    <a class="dropdown-item o_app pad0" asp-area="" asp-controller="TPerson" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("HRArea")</a>
-                    <a class="dropdown-item o_app pad0" asp-area="" asp-controller="TSuplier" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Purchasing")</a>
-                    <a class="dropdown-item o_app pad0" asp-area="" asp-controller="TCustomer" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Sales")</a>
-                    <a class="dropdown-item o_app pad0" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Engineering")</a>
-                    <a class="dropdown-item o_app pad0" asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="" asp-route-panel="1" asp-route-panel1="1">@SharedLocalizer.GetLocalizedHtmlString("MRPPLanning")</a>
+                    <a class="dropdown-item @getEnabled(1) o_app pad0" asp-area="" asp-controller="TOrganiza" asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Org")</a>
+                    <a class="dropdown-item @getEnabled(2) o_app pad0" asp-area="" asp-controller="TPerson" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("HRArea")</a>
+                    <a class="dropdown-item @getEnabled(3) o_app pad0" asp-area="" asp-controller="TSuplier" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Purchasing")</a>
+                    <a class="dropdown-item @getEnabled(4) o_app pad0" asp-area="" asp-controller="TCustomer" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Sales")</a>
+                    <a class="dropdown-item @getEnabled(5) o_app pad0" asp-area="" asp-controller="TEngine" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="">@SharedLocalizer.GetLocalizedHtmlString("Engineering")</a>
+                    <a class="dropdown-item @getEnabled(6) o_app pad0" asp-area="" asp-controller="TMRP" asp-action="Index" asp-route-filter="0" asp-route-Pnam="" asp-route-pNam1="" asp-route-panel="1" asp-route-panel1="1">@SharedLocalizer.GetLocalizedHtmlString("MRPPLanning")</a>
                     <hr>
-                    <a class="dropdown-item o_app pad0" asp-area="" asp-controller="TLog" asp-action="Index" asp-route-filter="0" asp-route-panel="1" >@SharedLocalizer.GetLocalizedHtmlString("Logistic")</a>
+                    <a class="dropdown-item @getEnabled(7) o_app pad0" asp-area="" asp-controller="TLog" asp-action="Index" asp-route-filter="0" asp-route-panel="1" >@SharedLocalizer.GetLocalizedHtmlString("Logistic")</a>
                     <hr>
                     <a class="dropdown-item o_app pad0" asp-area="" asp-controller="Account" asp-action="Languages" >@SharedLocalizer.GetLocalizedHtmlString("Languages")</a>
                     <a class="dropdown-item o_app pad0" asp-area="" asp-controller="Account" asp-action="@getLink("Action")" >@getLink("Text")</a>
-                    <a class="dropdown-item o_app pad0" asp-area="" asp-controller="Account" asp-action="ChLogin" >@SharedLocalizer.GetLocalizedHtmlString("ChangePassword")</a>
+                    <a class="dropdown-item @getEnabled(8) o_app pad0" asp-area="" asp-controller="Account" asp-action="ChLogin" >@SharedLocalizer.GetLocalizedHtmlString("ChangePassword")</a>
                 </div>
             </div>
         </nav>
