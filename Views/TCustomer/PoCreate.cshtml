@@ -11,6 +11,12 @@
         return retcol;
     }
 }
+@{
+    try{
+        Model.CpocplantId=Convert.ToInt32(ViewData["Plant"].ToString());
+    }
+    catch{}
+}
 <div class="style-data">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("AddPORecord")</h3>
 </div>

@@ -13,13 +13,23 @@
 
 @functions {
 
-@*
-    string aparqsaction(int plant , int prod)
+
+    string aparqsaction( )
     {
-        string ret ="&plant="+plant.ToString()+"&prod="+prod.ToString();
+        int plant=0;
+        int prod =0;
+        try{
+            plant =Convert.ToInt32(ViewData["Plant"].ToString());
+        }
+        catch{}
+        try{
+            prod =Convert.ToInt32(ViewData["Prod"].ToString());
+        }
+        catch{}
+        string ret ="?plant="+plant.ToString()+"&prod="+prod.ToString()+"&id=";
         return ret;
     }
-*@
+
     string [] Controller(string table){
         string [] retur = new string [4];
         switch (table)
@@ -124,6 +134,7 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DescEx"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Price"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Curcy"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Status"));
                 }
                 else{
                     retur.Add("Cpoid");
@@ -133,6 +144,7 @@
                     retur.Add("CpodescEx");
                     retur.Add("Cpoprice");
                     retur.Add("Cpocurcy");
+                    retur.Add("Cpostatus");
                 }    
                 break;
             default:
@@ -230,7 +242,7 @@
                         Campo04 = f.CpodescEx.ToString(),
                         Campo05 = f.Cpoprice.ToString(),
                         Campo06 = f.Cpocurcy.ToString(), 
-                        Campo07 = "",
+                        Campo07 = f.Cpostatus.ToString(),
                         Campo08 = "",
                         Campo09 = "",
                         Campo10 = "",
@@ -270,18 +282,39 @@
 <script>
     function selectPlant(modulo,panel)
     {
-        //asigna nuevo componente (panem)
+        alert(modulo);
+        alert(panel);
+        //hace un httpget en este modulo para cargar el ViweData correspondiente
         var e = document.getElementById(modulo);
         var value = e.options[e.selectedIndex].WcoId;
         var url=window.location.href.split("?")[0];
         url=url+"?"+e.name+"="+e.value.toString()+"&panel="+panel.toString();
+        alert(url);
+        window.location.href = url;
+
+    }
+    function selectPlantProd(planta,produ,panel)
+    {
+        alert(planta);
+        alert(produ);
+        //hace un httpget en este modulo para cargar el ViweData correspondiente
+        var e = document.getElementById(planta);
+        var value = e.options[e.selectedIndex].WcoId;
+
+        var f = document.getElementById(produ);
+        var falue = f.options[f.selectedIndex].WcoId;
+
+        var url=window.location.href.split("?")[0];
+        url=url+"?"+e.name+"="+e.value.toString()+"&"+f.name+"="+f.value.toString()+"&panel="+panel.toString();
+        alert(url);
         window.location.href = url;
 
     }
 </script>
 
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
+@*@using (Html.BeginForm()) {*@
     @Html.HiddenFor(p => p.CustId)
     @Html.ValidationSummary(true)
     <div class=@isVisible(1)>
@@ -368,7 +401,6 @@
     </table>
     </div>
     </div>
-    <!-- Prod Data -->
     <div class=@isVisible(2)>
 
         <table class="table-edit" border="1">
@@ -379,53 +411,8 @@
                 @Html.dataGrid(35,9,@Columns("Product",0),@getData_Product((List<TCCproduct>)ViewBag.ListProd),@Controller("Product"),@Columns("Product",1),Model.CustId)
             </div>
         </table>
-
-
-
-
-    @*
-    @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
-    <table>
-            <td>Planta</td>
-            <td class="norm-text">
-                <!--@ViewData["Plant"]-->
-                @Html.DropDownList("CplantId", (SelectList)ViewBag.ddlPlantVB, new { @class ="norm-text" , onchange = "this.form.submit();" })
-            </td>
-    </table>
-    }
-    *@
-    @*
-    <table class="table-norm" border="1">
-    <div class="cont-titles">
-    <h3>@SharedLocalizer.GetLocalizedHtmlString("ProductData")</h3>
     </div>
-    <tr>
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProRefer")</th> 
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProDescr")</th> 
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProDateCrea")</th>                
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("Status")</th>        
-    </tr>
-   
-    @foreach (var c in ViewBag.ListProd) {
-        <tr>
-            <td class ="col-text">@c.CprodRefInt</td>            
-            @{ string DateProd = string.Format("{0:dd-MM-yyyy}", c.CprodCrDate); }
-            <td class ="col-text">@c.CprodDescInt</td>
-            <td class ="col-text">@DateProd</td>
-            <td class ="col-text">@c.CprodStatus</td>
-            <td class="col-text">@Html.ActionLink("Delete", "ProDelete", new { id = c.CprodId,Pid = c.CprodCustId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "ProEdit", new { id = c.CprodId ,panel=2,skip =0,cuid = c.CprodCustId})</td>
-            <td class="col-text">@Html.ActionLink("Plan", "Edit", new { id = c.CprodCustId ,panel=4,skip =0,plant =c.CprodCplantId, prod=c.CprodId,cuid = c.CprodCustId})</td>
-            
-        </tr>
-    }
-</table>
-@Html.ActionLink("Add a New Item", "ProCreate",new {Pid=@Model.CustId,plant=@ViewData["Plant"]})
-*@
-</div>
-<!-- En Prod Data -->
-<!--Plant Data -->
-<div class=@isVisible(3)>
+    <div class=@isVisible(3)>
 
         <table class="table-edit" border="1">
             <div class="cont-titles">
@@ -435,57 +422,21 @@
                 @Html.dataGrid(36,9,@Columns("CPlant",0),@getData_CPlant((List<TCCplant>)ViewBag.ListPlant),@Controller("CPlant"),@Columns("CPlant",1),Model.CustId)
             </div>
         </table>
-
-
-    @*
-    <div class="cont-titles">
-    <h3>@SharedLocalizer.GetLocalizedHtmlString("PlantData")</h3>
-    </div>
-    <table class="table-norm" border ="1" >
-    <tr>
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PlantCode")</th> 
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PlantDeno")</th> 
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PlantAdr")</th> 
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PlantCity")</th> 
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PlantCountry")</th> 
-    </tr>
-   
-    @foreach (var c in ViewBag.ListPlant) {
-        <tr>
-            <td class ="col-text">@c.CplantCode</td>            
-            <td class ="col-text">@c.CplantDeno</td>
-            <td class ="col-text">@c.CplantAdStrt</td>
-            <td class ="col-text">@c.CplantAdCity</td>
-            <td class ="col-text">@c.CplantAdCtry</td>
-            <td class="col-text">@Html.ActionLink("Delete", "PlantDelete", new { id = c.CplantId,Pid = c.CplantCustId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "PlantEdit", new { id = c.CplantId ,panel=3,skip =0,cuid = c.CplantCustId})</td>
-            
-        </tr>
-    }
-</table>
-@Html.ActionLink("Add a New Item", "PlantCreate",new {Pid=@Model.CustId})
-*@
-</div>  
-<!-- End Plant Data-->  
-<div class=@isVisible(4)>
-    @*
-    <div class="cont-titles">
-    <h3>@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>
-    </div>
-    *@
-    @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post,new{@id="EditPlann"})) {        
+    </div>  
+    <div class=@isVisible(4)>
+    @*@using (Html.BeginForm("Edit","TCustomer",FormMethod.Post,new{@id="EditPlann"})) {*@        
     <table>
         <tr>
             <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("Plant")<input type="hidden" name="CustId" value="@(Model.CustId)"/></td>
             <td class="norm-text">
-                @Html.DropDownList("plant", (SelectList)ViewBag.ddlPlantVB, new { @class ="norm-tb-text" , onchange = "this.form.submit();" })
+                @Html.DropDownList("plant", (SelectList)ViewBag.ddlPlantVB, new { @id="xplant", @class ="norm-tb-text" , onchange = "selectPlantProd('xplant','_prod',4)" })
                                     @*CplantId*@
             </td>
         </tr>
         <tr>
             <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("Reference") :</td>
             <td class="norm-text">
-                @Html.DropDownList("prod",  (SelectList)ViewBag.ddlReferVO, new { @class = "norm-tb-text", onchange = "this.form.submit();" })
+                @Html.DropDownList("prod", (SelectList)ViewBag.ddlReferVO, new { @id="_prod" , @class ="norm-tb-text" , onchange = "selectPlantProd('xplant','_prod',4)"  })
                                     @*CprodId*@
             </td>            
             <td>
@@ -493,54 +444,19 @@
             </td>
         </tr>
     </table>
-    }
+@*    }*@
 
         <table class="table-edit" border="1">
             <div class="cont-titles">
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(37,9,@Columns("CPlann",0),@getData_CPlann((List<VTCCplanning>)ViewBag.ListPlan),@Controller("CPlann"),@Columns("CPlann",1),Model.CustId,"",true,true,"EditPlann")
+                @Html.dataGrid(37,9,@Columns("CPlann",0),@getData_CPlann((List<VTCCplanning>)ViewBag.ListPlan),@Controller("CPlann"),@Columns("CPlann",1),Model.CustId,@aparqsaction(),true,true,"EditPlann")
             </div>
         </table>
-
-
-
-    @*
-    <table class="table-norm" border ="1" >
-    <hr style="width:100%;text-align:left;margin-left:0">
-    <tr>
-        <th class="head-text">>@SharedLocalizer.GetLocalizedHtmlString("ProRefint")</th> 
-        <th class="head-text">>@SharedLocalizer.GetLocalizedHtmlString("ProDescr")</th> 
-        <th class="head-text">>@SharedLocalizer.GetLocalizedHtmlString("FromDate")</th>        
-        <th class="head-text">>@SharedLocalizer.GetLocalizedHtmlString("ToDate")</th>        
-        <th class="head-text">>@SharedLocalizer.GetLocalizedHtmlString("SendQty")</th>        
-        <th class="head-text">>@SharedLocalizer.GetLocalizedHtmlString("PlanFirm")</th>        
-    </tr>
-   
-    @foreach ( VTCCplanning  c in (List<VTCCplanning>)ViewBag.ListPlan) {
-        <tr>
-            <td class ="col-text">@c.CprodRefInt</td>            
-            <td class ="col-text">@c.CprodDescInt</td>            
-            @{ string DateFrom = string.Format("{0:dd-MM-yyyy}", c.CplanDateFrom); }
-            <td class ="col-text">@DateFrom</td>
-            @{ string DateTo = string.Format("{0:dd-MM-yyyy}", c.CplanDateTo); }
-            <td class ="col-text">@DateTo</td>
-            <td class ="col-num">@c.CplanQty</td>
-            <td class ="col-text">@c.CplanFirmSt</td>
-            <td class="col-text">@Html.ActionLink("Delete", "PlanDelete", new { id = c.CplanId,Pid = c.CplanCustId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "PlanEdit", new { id = c.CplanId ,panel=4,skip =0,cuid = c.CplanCustId})</td>
-            
-        </tr>
-    }
-</table>
-@Html.ActionLink("Add a New Item", "PlanCreate",new {Pid=@Model.CustId,plant=@ViewData["Plant"],prod=@ViewData["cProd"]})
-*@
-
-</div>    
-<!--PO Data -->
+    </div>    
     <div class=@isVisible(5)>
-    @using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        
+    @*@using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        *@
     <table>
             <td>
                 <input type="hidden" name="CustId" value="@(Model.CustId)"/>
@@ -553,47 +469,15 @@
                                     @*CPlantId*@
             </td>
     </table>
-    }
+@*    }*@
 
         <table class="table-edit" border="1">
             <div class="cont-titles">
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(38,9,@Columns("CPO",0),@getData_CPO((List<VTCPorder>)ViewBag.listpo),@Controller("CPO"),@Columns("CPO",1),Model.CustId)
+                @Html.dataGrid(38,9,@Columns("CPO",0),@getData_CPO((List<VTCPorder>)ViewBag.listPO),@Controller("CPO"),@Columns("CPO",1),Model.CustId,@aparqsaction())
             </div>
         </table>
-
-
-    @*
-    <table class="table-norm" border="1">
-    <div class="cont-titles">
-    <h3>@SharedLocalizer.GetLocalizedHtmlString("POData")</h3>
-    </div>
-    <tr>
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("PO")</th> 
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProReferExt")</th>        
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProReferInt")</th>        
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProDescrExt")</th>        
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProPrice")</th>        
-        <th class="head-text">@SharedLocalizer.GetLocalizedHtmlString("ProCurrency")</th>        
-    </tr>
-   
-    @foreach (VTCPorder c in (List<VTCPorder>) ViewBag.listpo) {
-        <tr>
-            <td class ="col-text">@c.Cpopo</td>            
-            <td class ="col-text">@c.CporeferEx</td>
-            <td class ="col-text">@c.CprodRefInt</td>
-            <td class ="col-text">@c.CpodescEx</td>
-            <td class ="col-num">@c.Cpoprice</td>
-            <td class ="col-text">@c.Cpocurcy</td>
-            <td class="col-text">@Html.ActionLink("Delete", "PoDelete", new { id = c.Cpoid,Pid = c.CpocustId }, new { onclick="return confirm('Are you sure?');"})</td>
-            <td class="col-text">@Html.ActionLink("Edit", "PoEdit", new { id = c.Cpoid ,panel=5,skip =0,cuid = c.CpocustId})</td>
-        </tr>
-    }
-</table>
-@Html.ActionLink("Add a New Item", "PoCreate",new {Pid=@Model.CustId,plant=@ViewData["Plant"]})
-*@
-</div>    
-<!--end PO-->
+    </div>    
 }

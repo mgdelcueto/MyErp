@@ -6,7 +6,7 @@ function funcDropDown(_gridId)
     document.getElementById(nameOf("myDropdown",_gridId)).classList.toggle("show");
 
 }
-function addRecord(controller,action,_Id=0,formid="")
+function addRecord(controller,action,_Id=0,formid="",_parqs="")
 {
     /*
     alert(formid);
@@ -16,7 +16,7 @@ function addRecord(controller,action,_Id=0,formid="")
     }
     */
     if (action!=""){
-        var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"?Pid="+_Id.toString();
+        var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"?Pid="+_Id.toString()+"&"+_parqs;
         window.location.href = url2;
     }
     else{
@@ -65,14 +65,19 @@ function actionClick(controller,action,_maxrow,_gridId, _parqs="")//,filterExpre
         window.location.href = url;
     }
 }
-function rowClick(_nr,controller,action,_gridId,model)//,filterExpression,sortExpression)
+function rowClick(_nr,controller,action,_gridId,model="")//,filterExpression,sortExpression)
 {
     if (action!=""){
     var _nrow = parseInt(_nr);
     var checkbox = document.getElementById(nameOf(_nr.toString(),_gridId));
     _id = checkbox.value.toString();
-    var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?"+model;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
-    window.location.href = url2;
+    if (model==""){
+        var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
+        window.location.href = url2;
+    }
+    else{
+        var url22=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?"+model;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
+        window.location.href = url22;    }
     }
     else{
         var url=window.location.href;

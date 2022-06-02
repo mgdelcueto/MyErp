@@ -92,6 +92,7 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DescExt"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Price"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Curcy"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Status"));
                 }
                 else{
                     retur.Add("Spoid");
@@ -100,6 +101,7 @@
                     retur.Add("SporeferEx");
                     retur.Add("SpodescEx");
                     retur.Add("Spocurcy");
+                    retur.Add("Spostatus");
                 }    
                 break;
             default:
@@ -171,7 +173,7 @@
                         Campo04 = f.SpodescEx.ToString(),
                         Campo05 = f.Spoprice.ToString(),
                         Campo06 = f.Spocurcy.ToString(), 
-                        Campo07 = "",
+                        Campo07 = f.Spostatus.ToString(),
                         Campo08 = "",
                         Campo09 = "",
                         Campo10 = "",

@@ -110,7 +110,7 @@ namespace MyErp.Controllers {
                         where po.SposupId==id 
                         select new VTSPorder {Spoid=po.Spoid,SposupId=po.SposupId,Spopo=po.Spopo,SporeferEx=spr.ProdRefer,
                                     SprodRefInt=mat.MatRefer,SpodescEx=spr.ProdDescr,SprodDescInt=mat.MatDescr,
-                                    Spoprice=po.Spoprice,Spocurcy=po.Spocurcy}).ToList();
+                                    Spoprice=po.Spoprice,Spocurcy=po.Spocurcy,Spostatus=po.Spostatus}).ToList();
             ViewBag.ListSpo=qListpo;
 
         }

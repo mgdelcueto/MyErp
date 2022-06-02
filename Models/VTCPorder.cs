@@ -39,5 +39,9 @@ namespace MyErp.Models
         [Display(Name = "My Currency")]
         [Required,StringLength(25)]
         public string Cpocurcy { get; set; }
+
+        [Display(Name = "My Status")]
+        [Required,StringLength(25)]
+        public string Cpostatus { get; set; }
     }
 }

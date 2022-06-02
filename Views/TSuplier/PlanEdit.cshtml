@@ -2,7 +2,10 @@
 @model TSPlanning
 @using MyErp.Resources
 @inject LocService SharedLocalizer
-<div class="visicont-titlesble">
+@{
+    Layout = "_LaySup";
+}
+<div class="style-data">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("EditPlanningRecord")</h3>
 </div>
 @using (Html.BeginForm()) {

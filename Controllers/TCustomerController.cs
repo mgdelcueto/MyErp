@@ -103,6 +103,7 @@ namespace MyErp.Controllers {
 
 
             ViewData["Plant"]=plant;
+            ViewData["Prod"]=prod;
 
             var queryplan = (from p in _dbContext.TCCplants 
                         orderby p.CplantDeno
@@ -267,13 +268,13 @@ namespace MyErp.Controllers {
                         where po.CpocustId==id && po.CpocplantId==plant
                         select new VTCPorder {Cpoid=po.Cpoid,CpocustId=po.CpocustId,Cpopo=po.Cpopo,CporeferEx=po.CporeferEx,
                                     CprodRefInt=mat.MatRefer,CpodescEx=po.CpodescEx,CprodDescInt=mat.MatDescr,
-                                    Cpoprice=po.Cpoprice,Cpocurcy=po.Cpocurcy}).ToList();
+                                    Cpoprice=po.Cpoprice,Cpocurcy=po.Cpocurcy,Cpostatus=po.Cpostatus}).ToList();
             var querypo_1=(from po in _dbContext.TCPorders 
                         where  po.CpocustId==id && po.CpocplantId==plant &&
                                     (po.CpocprodId==null ||po.CpocprodId ==0) 
                         select new VTCPorder {Cpoid=po.Cpoid,CpocustId=po.CpocustId,Cpopo=po.Cpopo,CporeferEx=po.CporeferEx,
                                     CprodRefInt="NE",CpodescEx=po.CpodescEx,CprodDescInt="NE",
-                                    Cpoprice=po.Cpoprice,Cpocurcy=po.Cpocurcy}).ToList();
+                                    Cpoprice=po.Cpoprice,Cpocurcy=po.Cpocurcy,Cpostatus=po.Cpostatus}).ToList();
             var querypo = querypo_0.Concat(querypo_1);
 //            querypo = querypo_0;
 /*
@@ -466,6 +467,11 @@ namespace MyErp.Controllers {
 
         [HttpGet]
         public IActionResult PlanCreate(int Pid, int prod,int plant, string actionType) {
+            if (prod==null){prod=0;}
+            if(plant==null){plant=0;}
+            ViewData["Plant"]=plant;
+            ViewData["Prod"]=prod;
+
             var queryc = (from p in _dbContext.TCustomers 
                         where p.CustId==Pid
                         select p).SingleOrDefault();
@@ -565,6 +571,7 @@ namespace MyErp.Controllers {
             ViewData["CusId"]=Pid;
 
             ViewData["panel"]=5;
+            ViewData["Plant"]=plant;
             return View();      
         }
 
@@ -1025,6 +1032,8 @@ namespace MyErp.Controllers {
             if(plant==null){plant=0;}
             if (panel==0){panel=1;}
             ViewData["panel"]=panel;
+            ViewData["Plant"]=plant;
+            ViewData["Prod"]=prod;
             try{
 
             var model = _dbContext.TCustomers

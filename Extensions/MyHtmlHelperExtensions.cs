@@ -372,7 +372,7 @@ public static class MyHtmlHelperExtensions {
             tagbac.MergeAttribute("type","button");
             tagbac.MergeAttribute("name","btn_create");
             //tagbac.MergeAttribute("page",npage.ToString());
-            tagbac.MergeAttribute("onclick","addRecord('"+_controller+"','"+_actionCreate+"',"+_Id.ToString()+",'"+formid+"')");
+            tagbac.MergeAttribute("onclick","addRecord('"+_controller+"','"+_actionCreate+"',"+_Id.ToString()+",'"+formid+"','"+_parqs.ToString()+"')");
             tagbac.InnerHtml.Append("Create Record");
             tagdivx.InnerHtml.AppendHtml(tagbac);
 

@@ -96,13 +96,14 @@ namespace MyErp.Controllers {
                 ViewBag.ListOpeDet=explosiow; //querybo;
                  
         }
-        private void CreateVB_LCP()
+        private void CreateVB_LCP(DateTime? F1, DateTime? F2)
         {  
             var queryco =(from pl in _dbContext.TCCplannings 
             join t in _dbContext.TCCplants on new{C_customer =pl.CplanCustId,     C_plant = pl.CplanCplantId} equals 
                                               new{C_customer = t.CplantCustId,    C_plant =t.CplantId}
             join c in _dbContext.TCustomers on t.CplantCustId equals c.CustId
             join m in _dbContext.TMaterials on pl.CplanCprodId equals m.MatId
+            where pl.CplanDateFrom>=F1 && pl.CplanDateTo<= F2
             select new VCCplanning { 
                 CplanCplantId=pl.CplanCplantId,
                 CplanCprodId=pl.CplanCprodId,
@@ -260,8 +261,9 @@ namespace MyErp.Controllers {
              ViewData["F1"]=F1;
              ViewData["F2"]=F2;
              ViewData["ACSt"]=accStock;
+             ViewData["WCent"]=wcent;
             try{
-                    CreateVB_LCP();
+                    CreateVB_LCP(F1,F2);
                     CreateVB_cMRP(F1,F2,accStock,wcent);  //ListCustPlan
 
             //List<VCCplanning> _mode = (List<VCCplanning>)ViewBag.ListCustPlan;
@@ -304,7 +306,7 @@ namespace MyErp.Controllers {
             ViewData["panel1"]=panel1;
             ////var dbContext = new MyErpDBContext();
             try{
-                CreateVB_LCP();
+                CreateVB_LCP(F1,F2);
                 CreateVB_cMRP(F1,F2,accStock,0);  //ListCustPlan
                 return View(model);
             }
