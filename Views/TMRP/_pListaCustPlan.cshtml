@@ -350,7 +350,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>   
         </div>
-        @Html.dataGrid(35,12,@Columns("CustPlan",0),@getData_CustPlan((List<VCCplanning>)ViewBag.ListCustPlan),@Controller("CustPlan"),@Columns("CustPlan",1),0)
+        @Html.dataGrid(39,12,@Columns("CustPlan",0),@getData_CustPlan((List<VCCplanning>)ViewBag.ListCustPlan),@Controller("CustPlan"),@Columns("CustPlan",1),0)
 </div>
 
 <div class=@isVisible(2)>
@@ -359,7 +359,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("MaterialRequirement")</h3>   
         </div>
-        @Html.dataGrid(36,12,@Columns("MatReq",0),@getData_MatReq((List<TExpMater>)ViewBag.ListMatExp),@Controller("MatReq"),@Columns("MatReq",1),0)
+        @Html.dataGrid(40,12,@Columns("MatReq",0),@getData_MatReq((List<TExpMater>)ViewBag.ListMatExp),@Controller("MatReq"),@Columns("MatReq",1),0)
 </div>
 <div class=@isVisible(3)>
 
@@ -367,7 +367,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("WorkCenterLoad")</h3>   
         </div>
-        @Html.dataGrid(37,12,@Columns("WCCap",0),@getData_WCCap((List<TExpOper>)ViewBag.ListOpeExp),@Controller("WCCap"),@Columns("WCCap",1),0,"",true,true,"",@sModel())
+        @Html.dataGrid(41,12,@Columns("WCCap",0),@getData_WCCap((List<TExpOper>)ViewBag.ListOpeExp),@Controller("WCCap"),@Columns("WCCap",1),0,"",true,true,"",@sModel())
 </div>
 <div class=@isVisible(4)>
 
@@ -376,6 +376,6 @@
             <h3>@SharedLocalizer.GetLocalizedHtmlString("WorkCenterLoad")</h3>   
         </div>
         <h5 class="myh4">@SharedLocalizer.GetLocalizedHtmlString("WCentDetLoad") @WCentName()</h5>
-        @Html.dataGrid(38,12,@Columns("WCDet",0),@getData_WCDet((List<TExpOperd>)ViewBag.ListOpeDet),@Controller("WCDet"),@Columns("WCDet",1),0)
+        @Html.dataGrid(42,12,@Columns("WCDet",0),@getData_WCDet((List<TExpOperd>)ViewBag.ListOpeDet),@Controller("WCDet"),@Columns("WCDet",1),0)
 </div>
 }
