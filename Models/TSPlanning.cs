@@ -73,6 +73,13 @@ namespace MyErp.Models
         [StringLength(125)]
         public string ProdDescr { get; set; }
 
+        [Display(Name="MRefer")]
+        [Required(ErrorMessage="mReq"),StringLength(125)]
+        public string MatRefer { get; set; }
+
+        [Display(Name="MDescr")]
+        [Required(ErrorMessage="mReq"),StringLength(225)]
+        public string MatDescr { get; set; }
     }
 
 }

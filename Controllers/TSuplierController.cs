@@ -34,25 +34,30 @@ namespace MyErp.Controllers {
                         select p;
             var qListca = queryca.ToList();
             ViewBag.ListProd=qListca;
-            var queryco = from plan in _dbContext.TSPlannings  
+            var queryco = from plan in _dbContext.TSPlannings
                         join pro in _dbContext.TSProducts on plan.PlanProdId equals pro.ProdId
+                        join por in _dbContext.TSPorders 
+                        on new {X1=plan.PlanSupId,X2=plan.PlanProdId} equals new {X1=por.SposupId,X2=por.SporeferEx}
+                        join mat in _dbContext.TMaterials on por.SpocprodId equals mat.MatId
                         orderby plan.PlanProdId,plan.PlanDateFrom
-                        where plan.PlanSupId==id && (plan.PlanProdId==prod ||prod==null || prod==0)
+                        where plan.PlanSupId==id //&& (plan.PlanProdId==prod ||prod==null || prod==0)
                         select new TSPlanningV {PlanSupId=plan.PlanSupId,PlanQty=plan.PlanQty,
                         PlanProdId=plan.PlanProdId,PlanId=plan.PlanId,PlanFirmSt=plan.PlanFirmSt,
                         PlanDateTo=plan.PlanDateTo,PlanDateFrom=plan.PlanDateFrom,
                         ProdSupId=pro.ProdSupId,ProdStDate=pro.ProdStDate,
                         ProdStatus=pro.ProdStatus,ProdId=pro.ProdId,ProdRefer=pro.ProdRefer,
-                        ProdDescr=pro.ProdDescr,ProdCrDate=pro.ProdCrDate};
+                        ProdDescr=pro.ProdDescr,ProdCrDate=pro.ProdCrDate,
+                        MatRefer=mat.MatRefer,MatDescr=mat.MatDescr};
             var qListco = queryco.ToList();
             ViewBag.ListPlan=qListco;
 
+            /*2022-06-03 muestra descripcion interna y pasa codigo externo para el planning*/
             var result = from p in _dbContext.TSPorders
                         join  mat in _dbContext.TMaterials on p.SpocprodId equals mat.MatId
                         orderby mat.MatDescr
                         where p.SposupId==id
-                        select new {mat.MatId,mat.MatDescr};
-            ViewBag.ddlReferVB = new SelectList(result.ToList(), "MatId", "MatDescr",prod); 
+                        select new {p.SporeferEx,mat.MatDescr};
+            ViewBag.ddlReferVB = new SelectList(result.ToList(), "SporeferEx", "MatDescr",prod); 
             
             var resuld = from  mat in _dbContext.TMaterials
                         orderby mat.MatDescr

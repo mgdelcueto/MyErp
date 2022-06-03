@@ -70,13 +70,11 @@ function actionClick(controller,action,_maxrow,_gridId, _parqs="")//,filterExpre
         if (_parqs==""){
             var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
             url2=url2+"?"+params.toString();
-            alert(url2)
             window.location.href = url2;
         }
         else{
             var url3=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"?"+_parqs+_id;
             url3=url3+"&"+params.toString();
-            alert(url3)            
             window.location.href = url3;
         }
     }

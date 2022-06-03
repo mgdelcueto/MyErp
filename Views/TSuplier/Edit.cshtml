@@ -65,7 +65,8 @@
                 if (type==0)
                 {
                     retur.Add("SPlan");
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Refer"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefInt"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefExt"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("FromDate"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ToDate"));
@@ -74,6 +75,7 @@
                 }
                 else{
                     retur.Add("PlanId");
+                    retur.Add("MatRefer");
                     retur.Add("ProdRefer");
                     retur.Add("ProdDescr");
                     retur.Add("PlanDateFrom");
@@ -141,13 +143,13 @@
                 f => new Container() 
                 {
                         CampoId = f.PlanId,
-                        Campo01 = f.ProdRefer.ToString(),
-                        Campo02 = f.ProdDescr.ToString(),
-                        Campo03 = f.PlanDateFrom.ToString(),
-                        Campo04 = f.PlanDateTo.ToString(),
-                        Campo05 = f.PlanQty.ToString(),
-                        Campo06 = f.PlanFirmSt.ToString(), 
-                        Campo07 = "",
+                        Campo01 = f.MatRefer.ToString(),
+                        Campo02 = f.ProdRefer.ToString(),
+                        Campo03 = f.ProdDescr.ToString(),
+                        Campo04 = f.PlanDateFrom.ToString(),
+                        Campo05 = f.PlanDateTo.ToString(),
+                        Campo06 = f.PlanQty.ToString(),
+                        Campo07 = f.PlanFirmSt.ToString(), 
                         Campo08 = "",
                         Campo09 = "",
                         Campo10 = "",
