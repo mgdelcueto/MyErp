@@ -15,9 +15,19 @@ function addRecord(controller,action,_Id=0,formid="",_parqs="")
         alert (myForm.action);
     }
     */
+    const querystring = window.location.search;
+    const params = new URLSearchParams(querystring);
     if (action!=""){
-        var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"?Pid="+_Id.toString()+"&"+_parqs;
-        window.location.href = url2;
+        if (_parqs==""){
+            var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"?Pid="+_Id.toString();
+            url2=url2+"&"+params.toString();
+            window.location.href = url2;
+            }
+        else{
+            var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"?Pid="+_Id.toString()+"&"+_parqs;
+            url2=url2+"&"+params.toString();
+            window.location.href = url2;
+        }
     }
     else{
         var url=window.location.href;
@@ -43,19 +53,30 @@ function rowSelected(_mxrow,_gridId)
 }
 function actionClick(controller,action,_maxrow,_gridId, _parqs="")//,filterExpression,sortExpression)
 {
+    const querystring = window.location.search;
+    const params = new URLSearchParams(querystring);
     if (action!=""){
     var _nrsel=0;
     _nrsel = parseInt(rowSelected(_maxrow,_gridId));
     if (_nrsel>0)
     {
         var checkbox = document.getElementById(nameOf(_nrsel.toString(),_gridId));
+        checkbox.checked=false;
+        document.cookie = cookieName("rowselected",_gridId)+"=0"+";path=/";
+        document.cookie = cookieName("proselected",_gridId)+"=0"+";path=/";
+        //var div = document.getElementById(nameOf('dd_div_btn',_gridId));
+        //div.style.visibility = 'hidden';
         _id = checkbox.value.toString();
         if (_parqs==""){
             var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
+            url2=url2+"?"+params.toString();
+            alert(url2)
             window.location.href = url2;
         }
         else{
-            var url3=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+_parqs+_id;
+            var url3=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"?"+_parqs+_id;
+            url3=url3+"&"+params.toString();
+            alert(url3)            
             window.location.href = url3;
         }
     }
@@ -67,16 +88,20 @@ function actionClick(controller,action,_maxrow,_gridId, _parqs="")//,filterExpre
 }
 function rowClick(_nr,controller,action,_gridId,model="")//,filterExpression,sortExpression)
 {
-    if (action!=""){
+    const querystring = window.location.search;
+    const params = new URLSearchParams(querystring);
+   if (action!=""){
     var _nrow = parseInt(_nr);
     var checkbox = document.getElementById(nameOf(_nr.toString(),_gridId));
     _id = checkbox.value.toString();
     if (model==""){
         var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
+        url2=url2+"?"+params.toString();
         window.location.href = url2;
     }
     else{
         var url22=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?"+model;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
+        url22=url22+"&"+params.toString();
         window.location.href = url22;    }
     }
     else{

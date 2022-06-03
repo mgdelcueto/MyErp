@@ -26,7 +26,7 @@
             prod =Convert.ToInt32(ViewData["Prod"].ToString());
         }
         catch{}
-        string ret ="?plant="+plant.ToString()+"&prod="+prod.ToString()+"&id=";
+        string ret ="plant="+plant.ToString()+"&prod="+prod.ToString()+"&id=";
         return ret;
     }
 
@@ -277,26 +277,43 @@
          int opanel = (int)ViewData["panel"];
          return opanel;
     }
+    bool chkAllpp()
+    {
+        bool ret = false;
+        try{
+            ret = Convert.ToBoolean(ViewData["Allpp"].ToString());
+        }
+        catch{}
+        return ret;
+    }
 }
 
 <script>
+    function chkAllsubmit(modulo)
+    {
+        var e = document.getElementById(modulo);
+        var value = e.checked;
+        var urlstr =window.location.href;
+        const pathn = window.location.pathname;
+        const querystring = window.location.search;
+        const params = new URLSearchParams(querystring);
+        params.set(e.name.toString(),value.toString());
+        var new_url=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+pathn.toString()+"?"+params.toString();
+        window.location.href = new_url;
+    }
     function selectPlant(modulo,panel)
     {
-        alert(modulo);
-        alert(panel);
         //hace un httpget en este modulo para cargar el ViweData correspondiente
         var e = document.getElementById(modulo);
         var value = e.options[e.selectedIndex].WcoId;
         var url=window.location.href.split("?")[0];
         url=url+"?"+e.name+"="+e.value.toString()+"&panel="+panel.toString();
-        alert(url);
         window.location.href = url;
 
     }
+
     function selectPlantProd(planta,produ,panel)
     {
-        alert(planta);
-        alert(produ);
         //hace un httpget en este modulo para cargar el ViweData correspondiente
         var e = document.getElementById(planta);
         var value = e.options[e.selectedIndex].WcoId;
@@ -306,7 +323,6 @@
 
         var url=window.location.href.split("?")[0];
         url=url+"?"+e.name+"="+e.value.toString()+"&"+f.name+"="+f.value.toString()+"&panel="+panel.toString();
-        alert(url);
         window.location.href = url;
 
     }
@@ -416,7 +432,7 @@
 
         <table class="table-edit" border="1">
             <div class="cont-titles">
-                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ProductData")</h3>
+                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PlanttData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
                 @Html.dataGrid(36,9,@Columns("CPlant",0),@getData_CPlant((List<TCCplant>)ViewBag.ListPlant),@Controller("CPlant"),@Columns("CPlant",1),Model.CustId)
@@ -424,57 +440,60 @@
         </table>
     </div>  
     <div class=@isVisible(4)>
-    @*@using (Html.BeginForm("Edit","TCustomer",FormMethod.Post,new{@id="EditPlann"})) {*@        
-    <table>
-        <tr>
-            <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("Plant")<input type="hidden" name="CustId" value="@(Model.CustId)"/></td>
-            <td class="norm-text">
-                @Html.DropDownList("plant", (SelectList)ViewBag.ddlPlantVB, new { @id="xplant", @class ="norm-tb-text" , onchange = "selectPlantProd('xplant','_prod',4)" })
-                                    @*CplantId*@
-            </td>
-        </tr>
-        <tr>
-            <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("Reference") :</td>
-            <td class="norm-text">
-                @Html.DropDownList("prod", (SelectList)ViewBag.ddlReferVO, new { @id="_prod" , @class ="norm-tb-text" , onchange = "selectPlantProd('xplant','_prod',4)"  })
-                                    @*CprodId*@
-            </td>            
-            <td>
-                <input type="hidden" name="panel" value="@thisPanel()"/>
-            </td>
-        </tr>
-    </table>
-@*    }*@
-
         <table class="table-edit" border="1">
             <div class="cont-titles">
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>
             </div>
+            @using (Html.BeginForm("Edit","TCustomer",FormMethod.Get)) {
+            <table>
+                <tr>
+                    <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("Plant")<input type="hidden" name="CustId" value="@(Model.CustId)"/></td>
+                    <td class="norm-text">
+                        @Html.DropDownList("plant", (SelectList)ViewBag.ddlPlantVB, new { @id="xplant", @class ="norm-tb-text" , onchange = "selectPlantProd('xplant','_prod',4)" })
+                                            @*CplantId*@
+                    </td>
+@*
+                </tr>
+                <tr>
+*@
+                    <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("Reference") :</td>
+                    <td class="norm-text">
+                        @Html.DropDownList("prod", (SelectList)ViewBag.ddlReferVO, new { @id="_prod" , @class ="norm-tb-text" , onchange = "selectPlantProd('xplant','_prod',4)"  })
+                                            @*CprodId*@
+                    </td>            
+                    <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("AllPlantProds")</td>
+                    <td>@Html.CheckBox( "allpprods",@chkAllpp() , new { @id="_cbapp" , @class ="norm-tb-text" , onchange = "chkAllsubmit('_cbapp')"  })</td>
+                    <td>
+                        <input type="hidden" name="panel" value="@thisPanel()"/>
+                    </td>
+                </tr>
+            </table>
+            
+
             <div  class="_container" name="aqui-el-control-grid-3">
                 @Html.dataGrid(37,9,@Columns("CPlann",0),@getData_CPlann((List<VTCCplanning>)ViewBag.ListPlan),@Controller("CPlann"),@Columns("CPlann",1),Model.CustId,@aparqsaction(),true,true,"EditPlann")
             </div>
+            }
         </table>
     </div>    
     <div class=@isVisible(5)>
-    @*@using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        *@
-    <table>
-            <td>
-                <input type="hidden" name="CustId" value="@(Model.CustId)"/>
-                <input type="hidden" name="panel" value="@thisPanel()"/>
-            </td>
-
-            <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("Plant")</td>
-            <td class="norm-text">
-                @Html.DropDownList("plant", (SelectList)ViewBag.ddlPlantVB, new { @id="_plant", @class ="norm-tb-text" , onchange = "selectPlant('_plant',5)" })
-                                    @*CPlantId*@
-            </td>
-    </table>
-@*    }*@
-
         <table class="table-edit" border="1">
             <div class="cont-titles">
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>
             </div>
+            @*@using (Html.BeginForm("Edit","TCustomer",FormMethod.Post)) {        *@
+            <table>
+                    <td>
+                        <input type="hidden" name="CustId" value="@(Model.CustId)"/>
+                        <input type="hidden" name="panel" value="@thisPanel()"/>
+                    </td>
+                    <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("Plant")</td>
+                    <td class="norm-text">
+                     @Html.DropDownList("plant", (SelectList)ViewBag.ddlPlantVB, new { @id="_plant", @class ="norm-tb-text" , onchange = "selectPlant('_plant',5)" })
+                                            @*CPlantId*@
+                  </td>
+            </table>
+        @*    }*@
             <div  class="_container" name="aqui-el-control-grid-3">
                 @Html.dataGrid(38,9,@Columns("CPO",0),@getData_CPO((List<VTCPorder>)ViewBag.listPO),@Controller("CPO"),@Columns("CPO",1),Model.CustId,@aparqsaction())
             </div>

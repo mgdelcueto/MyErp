@@ -22,6 +22,16 @@
         int? retcol = (int?)ViewData["truck"];
         return retcol;
     }
+    string allPP(){
+        string ret = "false";
+        try{
+            ret = ViewData["Allpp"].ToString();
+        }
+        catch(Exception ex) {
+            string mensaje = ex.Message;
+            }
+        return ret;
+    }
 }
 
 <div class="style-data">
@@ -44,6 +54,7 @@
             <td>@(((TCustomer)ViewBag.Customer).CustNif)</td>
         </tr>
         *@
+    <input id="sallpprods" name ="sallpprods" type="hidden" value=@allPP()>
     <table class="table-edit">
         <hr style="width:100%;text-align:left;margin-left:0">
         <tr>

@@ -75,7 +75,7 @@ namespace MyErp.Controllers {
 
 
         }
-        private void CreateViewBags(int? id, int? prod, int? plant,int? cust =0)
+        private void CreateViewBags(int? id, int? prod, int? plant,int? cust =0,bool allpprods=false)
         {
 
             var resulp = from p in _dbContext.TCCplants 
@@ -148,15 +148,17 @@ namespace MyErp.Controllers {
                         join mat in _dbContext.TMaterials
                         on p.CprodMatInt equals mat.MatId
                         orderby mat.MatDescr
-                        where p.CprodCustId==id //&&p.CprodCplantId==plant
+                        where p.CprodCustId==id //&& p.CprodCplantId==plant
+                        && !_dbContext.TCPorders.Any(x => x.CpocprodId == p.CprodMatInt && x.CpocplantId == plant)
+                        //p.CprodId not in ( from or in _dbContext.TCPorders select CpocprodId)
                         select new {mat.MatId ,mat.MatDescr};
                         
-            var result = from p in _dbContext.TCCproducts 
-                        join mat in _dbContext.TMaterials
-                        on p.CprodMatInt equals mat.MatId
-                        orderby mat.MatRefer
-                        where p.CprodCustId==id //&&p.CprodCplantId==plant
-                        select new {mat.MatId ,mat.MatRefer};
+                var result = from p in _dbContext.TCCproducts 
+                            join mat in _dbContext.TMaterials
+                            on p.CprodMatInt equals mat.MatId
+                            orderby mat.MatRefer
+                            where p.CprodCustId==id //&&p.CprodCplantId==plant
+                            select new {mat.MatId ,mat.MatRefer};
                         
             var resulpo_pr = from or in _dbContext.TCPorders
                             where or.CpocustId==id && or.CpocplantId==plant
@@ -198,7 +200,7 @@ namespace MyErp.Controllers {
             
             var querypa = from p in _dbContext.TCCplants 
                         orderby p.CplantDeno
-                        where p.CplantCustId==id
+                        where p.CplantCustId==id 
                         select p;
             var qListpa = querypa.ToList();
             ViewBag.ListPlant=qListpa;
@@ -220,7 +222,7 @@ namespace MyErp.Controllers {
                             };
             var qListca = queryca.ToList();
             ViewBag.ListProd=qListca;
-
+/*
             var queryran1 = (from p in _dbContext.TMaterials 
                         orderby p.MatRefer
                         where p.MatClass =="FG"
@@ -229,6 +231,20 @@ namespace MyErp.Controllers {
             select new TMaterial{MatId=0,MatDescr="Select a Finish Good"}).Distinct().ToList();
             var queryrans = queryran0.Concat(queryran1);
             ViewBag.ddlMatCOM = new SelectList(queryrans.ToList(), "MatId", "MatDescr",0); 
+*/
+            var queryran1 = (from mat in _dbContext.TMaterials
+                        orderby mat.MatDescr
+                        where mat.MatClass=="FG"
+                        && !_dbContext.TCCproducts.Any(x => x.CprodMatInt == mat.MatId && x.CprodCustId==id)
+                        select new TMaterial{MatId=mat.MatId,MatDescr=mat.MatDescr} ).ToList();
+
+            var queryran0 = ( from p in _dbContext.TMaterials  
+            select new TMaterial{MatId=0,MatDescr="Select a Finish Good"}).Distinct().ToList();
+            var queryrans = queryran0.Concat(queryran1);
+            ViewBag.ddlMatCOM = new SelectList(queryrans.ToList(), "MatId", "MatDescr",0); 
+
+
+
 
 
 /*
@@ -243,8 +259,7 @@ namespace MyErp.Controllers {
                             pl.CplanCprodId equals p.MatId
                             orderby pl.CplanCprodId ,pl.CplanDateFrom 
                         where pl.CplanCustId ==id &&
-                        pl.CplanCplantId==plant &&
-                        (pl.CplanCprodId==prod ||prod==null || prod==0)
+                        ((pl.CplanCplantId==plant && pl.CplanCprodId==prod) || allpprods==true)
                         select new VTCCplanning {CplanCplantId=pl.CplanCplantId,CplanCprodId=pl.CplanCprodId,
                         CplanCustId=pl.CplanCustId, CplanDateFrom=pl.CplanDateFrom,
                         CplanDateTo=pl.CplanDateTo,CplanFirmSt=pl.CplanFirmSt,
@@ -466,7 +481,8 @@ namespace MyErp.Controllers {
         }
 
         [HttpGet]
-        public IActionResult PlanCreate(int Pid, int prod,int plant, string actionType) {
+        public IActionResult PlanCreate(int Pid, int prod,int plant, string actionType, bool allpprods) {
+            ViewData["Allpp"]=allpprods;
             if (prod==null){prod=0;}
             if(plant==null){plant=0;}
             ViewData["Plant"]=plant;
@@ -518,7 +534,9 @@ namespace MyErp.Controllers {
         }
 
         [HttpPost]
-        public IActionResult PlanCreate(TCCplanning planning,int Pid, int prod,int? plant, string actionType,int? CplantId,int? CprodId,int? CPlanTruckId) {
+        public IActionResult PlanCreate(TCCplanning planning,int Pid, int prod,int? plant, string actionType,int? CplantId,int? CprodId,int? CPlanTruckId, string sallpprods) {
+            bool allpprods = Convert.ToBoolean(sallpprods);
+            ViewData["Allpp"]=allpprods;
             var model = _dbContext.TCustomers
                 .SingleOrDefault(u => u.CustId.Equals(Pid));
 
@@ -544,7 +562,7 @@ namespace MyErp.Controllers {
             }
             if (actionType=="Cancel"||actionType=="Add"){
              CreateViewBags(Pid,planning.CplanCprodId,planning.CplanCplantId);
-            return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=planning.CplanCprodId,plant =planning.CplanCplantId});
+            return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=planning.CplanCprodId,plant =planning.CplanCplantId,allpprods=allpprods});
             }
             else{
                 planning.CplanCplantId=CplantId;
@@ -661,7 +679,8 @@ namespace MyErp.Controllers {
             //return RedirectToAction("Edit");
         }
 
-        public IActionResult PlanDelete(int id,int? Pid) {
+        public IActionResult PlanDelete(int id,int? Pid,bool allpprods) {
+            ViewData["Allpp"]=allpprods;
             var mode = _dbContext.TCCplannings
                 .SingleOrDefault(u => u.CplanId.Equals(id));
             int? plan = mode.CplanCplantId;
@@ -684,7 +703,7 @@ namespace MyErp.Controllers {
             ViewData["CusId"]=Pid;
             ViewData["panel"]=4;
             //return View("Edit",model);
-            return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=pro,plant=plan});
+            return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=pro,plant=plan,allpprods=allpprods});
 
             //return RedirectToAction("Edit");
         }
@@ -845,7 +864,8 @@ namespace MyErp.Controllers {
         } 
 
         [HttpGet]
-        public IActionResult PlanEdit(int id,int cuid) {
+        public IActionResult PlanEdit(int id,int cuid,bool allpprods) {
+            ViewData["Allpp"]=allpprods;
             try{
             var model = _dbContext.TCCplannings
                 .SingleOrDefault(u => u.CplanId.Equals(id));
@@ -868,8 +888,10 @@ namespace MyErp.Controllers {
         }
 
         [HttpPost]
-        public IActionResult PlanEdit(TCCplanning planning, string actionType,int? CplantId, int? CprodId) {
+        public IActionResult PlanEdit(TCCplanning planning, string actionType,int? CplantId, int? CprodId,string sallpprods) {
+            bool allpprods = Convert.ToBoolean(sallpprods);
             ViewData["panel"]=4;
+            ViewData["Allpp"]=allpprods;
             int? Pid=planning.CplanCustId;
             if (actionType=="Update"){
             if (ModelState.IsValid){
@@ -897,7 +919,7 @@ namespace MyErp.Controllers {
 
             if (actionType=="Cancel"||actionType=="Update"){
              CreateViewBags(Pid,planning.CplanCprodId,planning.CplanCplantId);
-            return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=planning.CplanCprodId,plant =planning.CplanCplantId});
+            return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=planning.CplanCprodId,plant =planning.CplanCplantId,allpprods=allpprods});
             }
             else{
                 planning.CplanCplantId=CplantId;
@@ -1027,13 +1049,15 @@ namespace MyErp.Controllers {
 
 
         [HttpGet]
-        public IActionResult Edit(int id, int panel, int move,int? prod,int? plant,string actionType) {
+        public IActionResult Edit(int id, int panel, int move,int? prod,int? plant,string actionType,bool allpprods) {
             if(prod==null){prod=0;} 
             if(plant==null){plant=0;}
             if (panel==0){panel=1;}
+            if(allpprods==null){allpprods=false;}
             ViewData["panel"]=panel;
             ViewData["Plant"]=plant;
             ViewData["Prod"]=prod;
+            ViewData["Allpp"]=allpprods;
             try{
 
             var model = _dbContext.TCustomers
@@ -1044,7 +1068,7 @@ namespace MyErp.Controllers {
             ViewData["CusId"]=id;
 
 
-            CreateViewBags(id,prod,plant);
+            CreateViewBags(id,prod,plant,0,allpprods);
             return View("Edit",model);
             }
             catch(Exception ex){
@@ -1052,7 +1076,9 @@ namespace MyErp.Controllers {
                 return View("Error");}    
         }    
         [HttpPost]
-        public IActionResult Edit(TCustomer Customer, int id, int panel,int move,int? prod, int? plant,string actionType) {
+        public IActionResult Edit(TCustomer Customer, int id, int panel,int move,int? prod, int? plant,string actionType,bool allpprods) {
+            if(allpprods==null){allpprods=false;}
+            ViewData["Allpp"]=allpprods;
             if (actionType=="Add"||actionType=="Update"){
             if (ModelState.IsValid){
             try{               
@@ -1077,7 +1103,7 @@ namespace MyErp.Controllers {
 
 
             ViewData["panel"]=panel;
-            CreateViewBags(model.CustId,prod,plant);
+            CreateViewBags(model.CustId,prod,plant,0,allpprods);
             return View("Edit",model);
             //return RedirectToAction("Index");
         }        

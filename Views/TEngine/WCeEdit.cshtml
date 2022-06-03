@@ -10,7 +10,7 @@
     string parqsaction(int panem , int vassign, string toremove)
     {
         //deja el ultimo parametroa rellenar con el Id de la tabla en el javascript del control grid
-        string ret ="/"+Model.WcdId.ToString()+"?panem="+panem.ToString()+"&assign="+vassign.ToString()+"&wass=0&"+toremove+"=";
+        string ret ="id="+Model.WcdId.ToString()+"&panem="+panem.ToString()+"&assign="+vassign.ToString()+"&wass=0&"+toremove+"=";
         //{ id= @Model.WcdId, wrem = 0, panem=1,wass=1,assign =1}
         //new { id= c.WcoWcid, assign =1,wrem = c.WcoId, wass=0,panem=1}
         return ret;
