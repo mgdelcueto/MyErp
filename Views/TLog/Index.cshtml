@@ -66,6 +66,48 @@
         }
         return retur;
     }
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "InputBLH":
+                retur.Add(addLine("InBLDId","false"));
+                retur.Add(addLine("InBLStatus","false"));
+                retur.Add(addLine("SupRasoc","false"));
+                retur.Add(addLine("InBLnum","false"));
+                retur.Add(addLine("InBLDateRec","false"));
+                retur.Add(addLine("InBLObser","true"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
+        List<string> retur = new List<string>();
+        switch (table)
+        {
+            case "InputBLH":
+                    retur.Add("InputBLH");
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("InBLStatus"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SupRasoc"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("InBLnum"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("InBLDateRec"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("InBLObser"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+
+    @*
     List<string> Columns(string table,int type){
         List<string> retur = new List<string>();
         switch (table)
@@ -184,6 +226,7 @@
         }
         return retur;
     }
+    *@
     IEnumerable<Container> getData_InputBLH(dynamic oTMaterial)
         {
             IEnumerable<VTBLHead> fTPersonal = (List<VTBLHead>)oTMaterial;
@@ -217,7 +260,7 @@
 
 
 
-
+@*
 
 
     IEnumerable<Container> getData_WCenter(dynamic oTMaterial)
@@ -412,7 +455,7 @@
             return TPersonal;
         }
 
-
+*@
 
 
 
@@ -438,7 +481,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("GoodsReceiptNoteList")</h3>   
         </div>
-        @Html.dataGrid(44,16,@Columns("InputBLH",0),@getData_InputBLH((List<VTBLHead>)ViewBag.ListBL),@Controller("InputBLH"),@Columns("InputBLH",1),0)
+        @Html.dataGrid(44,16,@Columns("InputBLH"),@getData_InputBLH((List<VTBLHead>)ViewBag.ListBL),@Controller("InputBLH"),@Fields("InputBLH"),0)
     </div>
 
     @*

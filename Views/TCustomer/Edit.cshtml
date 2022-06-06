@@ -63,49 +63,76 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "Product":
+                    retur.Add(addLine("CprodId","false"));
+                    retur.Add(addLine("CprodRefInt","false"));
+                    retur.Add(addLine("CprodDescInt","true"));
+                    retur.Add(addLine("CprodCrDate","false"));
+                    retur.Add(addLine("CprodStatus","false"));
+                break;
+            case "CPlant":
+                    retur.Add(addLine("CplantId","false"));
+                    retur.Add(addLine("CplantCode","false"));
+                    retur.Add(addLine("CplantDeno","true"));
+                    retur.Add(addLine("CplantAdStrt","true"));
+                    retur.Add(addLine("CplantAdCity","true"));
+                    retur.Add(addLine("CplantAdCtry","false"));
+                break;
+            case "CPlann":
+                    retur.Add(addLine("CplanId","false"));
+                    retur.Add(addLine("CprodRefInt","false"));
+                    retur.Add(addLine("CprodDescInt","true"));
+                    retur.Add(addLine("CplanDateFrom","false"));
+                    retur.Add(addLine("CplanDateTo","false"));
+                    retur.Add(addLine("CplanQty","true"));
+                    retur.Add(addLine("CplanFirmSt","false"));
+                break;
+            case "CPO":
+                    retur.Add(addLine("Cpoid","false"));
+                    retur.Add(addLine("Cpopo","false"));
+                    retur.Add(addLine("CporeferEx","false"));
+                    retur.Add(addLine("CprodRefInt","false"));
+                    retur.Add(addLine("CpodescEx","true"));
+                    retur.Add(addLine("Cpoprice","true"));
+                    retur.Add(addLine("Cpocurcy","false"));
+                    retur.Add(addLine("Cpostatus","false"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "Product":
-                if (type==0)
-                {
                     retur.Add("Product");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Reference"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descriptio"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date Creation"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Status"));
-                }
-                else{
-                    retur.Add("CprodId");
-                    retur.Add("CprodRefInt");
-                    retur.Add("CprodDescInt");
-                    retur.Add("CprodCrDate");
-                    retur.Add("CprodStatus");
-                }
                 break;
             case "CPlant":
-                if (type==0)
-                {
                     retur.Add("CPlant");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Deno"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Address"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("City"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Ctry"));
-                }
-                else{
-                    retur.Add("CplantId");
-                    retur.Add("CplantCode");
-                    retur.Add("CplantDeno");
-                    retur.Add("CplantAdStrt");
-                    retur.Add("CplantAdCity");
-                    retur.Add("CplantAdCtry");
-                }
                 break;
             case "CPlann":
-                if (type==0)
-                {
                     retur.Add("CPlann");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefInt"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DescInt"));
@@ -113,20 +140,8 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DateTo"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Qty"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("FirmSt"));
-                }
-                else{
-                    retur.Add("CplanId");
-                    retur.Add("CprodRefInt");
-                    retur.Add("CprodDescInt");
-                    retur.Add("CplanDateFrom");
-                    retur.Add("CplanDateTo");
-                    retur.Add("CplanQty");
-                    retur.Add("CplanFirmSt");
-                }    
                 break;
             case "CPO":
-                if (type==0)
-                {
                     retur.Add("CPO");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("PO"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefEx"));
@@ -135,17 +150,6 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Price"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Curcy"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Status"));
-                }
-                else{
-                    retur.Add("Cpoid");
-                    retur.Add("Cpopo");
-                    retur.Add("CporeferEx");
-                    retur.Add("CprodRefInt");
-                    retur.Add("CpodescEx");
-                    retur.Add("Cpoprice");
-                    retur.Add("Cpocurcy");
-                    retur.Add("Cpostatus");
-                }    
                 break;
             default:
                 break;
@@ -424,7 +428,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ProductData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(35,9,@Columns("Product",0),@getData_Product((List<TCCproduct>)ViewBag.ListProd),@Controller("Product"),@Columns("Product",1),Model.CustId)
+                @Html.dataGrid(35,9,@Columns("Product"),@getData_Product((List<TCCproduct>)ViewBag.ListProd),@Controller("Product"),@Fields("Product"),Model.CustId)
             </div>
         </table>
     </div>
@@ -435,7 +439,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PlanttData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(36,9,@Columns("CPlant",0),@getData_CPlant((List<TCCplant>)ViewBag.ListPlant),@Controller("CPlant"),@Columns("CPlant",1),Model.CustId)
+                @Html.dataGrid(36,9,@Columns("CPlant"),@getData_CPlant((List<TCCplant>)ViewBag.ListPlant),@Controller("CPlant"),@Fields("CPlant"),Model.CustId)
             </div>
         </table>
     </div>  
@@ -471,7 +475,7 @@
             
 
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(37,9,@Columns("CPlann",0),@getData_CPlann((List<VTCCplanning>)ViewBag.ListPlan),@Controller("CPlann"),@Columns("CPlann",1),Model.CustId,@aparqsaction(),true,true,"EditPlann")
+                @Html.dataGrid(37,9,@Columns("CPlann"),@getData_CPlann((List<VTCCplanning>)ViewBag.ListPlan),@Controller("CPlann"),@Fields("CPlann"),Model.CustId,@aparqsaction(),true,true,"EditPlann")
             </div>
             }
         </table>
@@ -495,7 +499,7 @@
             </table>
         @*    }*@
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(38,9,@Columns("CPO",0),@getData_CPO((List<VTCPorder>)ViewBag.listPO),@Controller("CPO"),@Columns("CPO",1),Model.CustId,@aparqsaction())
+                @Html.dataGrid(38,9,@Columns("CPO"),@getData_CPO((List<VTCPorder>)ViewBag.listPO),@Controller("CPO"),@Fields("CPO"),Model.CustId,@aparqsaction())
             </div>
         </table>
     </div>    

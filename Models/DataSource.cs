@@ -16,6 +16,7 @@ namespace MyErp.Models {
         public static IList<TimeU> TimeUs { get; }
         public static IList<AppRol> AppRols { get; }
         public static IList<WDay> WDays { get; }
+        public static IList<SPOStat> SPOStatus { get; }
         static DataSource() {
             Countries = new List<Country>();
             Countries.Add(new Country("ES", "Spain"));
@@ -83,6 +84,10 @@ namespace MyErp.Models {
             WDays.Add(new WDay(6, "Friday"));
             WDays.Add(new WDay(7, "Saturday"));
 
+            SPOStatus = new List<SPOStat>();
+            SPOStatus.Add(new SPOStat(1, "Active"));
+            SPOStatus.Add(new SPOStat(2, "Revised"));
+            SPOStatus.Add(new SPOStat(3, "OnStudy"));
             }
 
 
@@ -137,6 +142,12 @@ namespace MyErp.Models {
 
         public static IList<WDay> GetWDays() {
             var result = WDays;
+            //result.ForEach(p => p.Type = _productTypes[p.TypeID]);
+            return result;
+        }
+
+        public static IList<SPOStat> GetSPOStatus() {
+            var result = SPOStatus;
             //result.ForEach(p => p.Type = _productTypes[p.TypeID]);
             return result;
         }

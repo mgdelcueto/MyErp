@@ -87,122 +87,116 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "Career":
+                retur.Add(addLine("CareId","false"));
+                retur.Add(addLine("CareDate","false"));
+                retur.Add(addLine("CarePosit","false"));
+                retur.Add(addLine("CareObser","true"));
+                break;
+            case "Contract":
+                retur.Add(addLine("ConId","false"));
+                retur.Add(addLine("ConRevDate","false"));
+                retur.Add(addLine("ConObs","true"));
+                break;
+            case "Curriculum":
+                retur.Add(addLine("CurrId","false"));
+                retur.Add(addLine("CurrRevDate","false"));
+                retur.Add(addLine("CurrArea","false"));
+                retur.Add(addLine("CurrAreaDesc","false"));
+                retur.Add(addLine("CurrAreaLevel","false"));
+                retur.Add(addLine("CurrObs","true"));
+                break;
+            case "Pay":
+                retur.Add(addLine("PayId","false"));
+                retur.Add(addLine("PayStDate","false"));
+                retur.Add(addLine("PayType","false"));
+                retur.Add(addLine("PayRet","false"));
+                retur.Add(addLine("PayAccount","false"));
+                break;
+            case "Presence":
+                retur.Add(addLine("PresId","false"));
+                retur.Add(addLine("PresLocal","false"));
+                retur.Add(addLine("PresDateEvent","false"));
+                retur.Add(addLine("PresTimeEvent","false"));
+                break;
+            case "Review":
+                retur.Add(addLine("RevId","false"));
+                retur.Add(addLine("RevDate","false"));
+                retur.Add(addLine("RevObj","false"));
+                retur.Add(addLine("RevObRat","false"));
+                break;
+            case "Training":
+                retur.Add(addLine("TrainId","false"));
+                retur.Add(addLine("TrainDate","false"));
+                retur.Add(addLine("TrainArea","false"));
+                retur.Add(addLine("TrainCourse","false"));
+                retur.Add(addLine("TrainCalif","false"));
+                retur.Add(addLine("TrainObser","false"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "Career":
-                if (type==0)
-                {
                     retur.Add("Career");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Position"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Observations"));
-                }
-                else{
-                    retur.Add("CareId");
-                    retur.Add("CareDate");
-                    retur.Add("CarePosit");
-                    retur.Add("CareObser");
-                }
                 break;
             case "Contract":
-                if (type==0)
-                {
                     retur.Add("Contract");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Observations"));
-                }
-                else{
-                    retur.Add("ConId");
-                    retur.Add("ConRevDate");
-                    retur.Add("ConObs");
-                }
                 break;
             case "Curriculum":
-                if (type==0)
-                {
                     retur.Add("Curriculum");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Area"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Description"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Level"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Observations"));
-                }
-                else{
-                    retur.Add("CurrId");
-                    retur.Add("CurrRevDate");
-                    retur.Add("CurrArea");
-                    retur.Add("CurrAreaDesc");
-                    retur.Add("CurrAreaLevel");
-                    retur.Add("CurrObs");
-                }    
                 break;
             case "Pay":
-                if (type==0)
-                {
                     retur.Add("Pay");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Type"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Retention"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Account"));
-                }
-                else{
-                    retur.Add("PayId");
-                    retur.Add("PayStDate");
-                    retur.Add("PayType");
-                    retur.Add("PayRet");
-                    retur.Add("PayAccount");
-                }
                 break;
             case "Presence":
-                if (type==0)
-                {
                     retur.Add("Presence");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Location"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Time"));
-                }
-                else{
-                    retur.Add("PresId");
-                    retur.Add("PresLocal");
-                    retur.Add("PresDateEvent");
-                    retur.Add("PresTimeEvent");
-                }
                 break;
             case "Review":
-                if (type==0)
-                {
                     retur.Add("Review");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Objetive"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Rating"));
-                }
-                else{
-                    retur.Add("RevId");
-                    retur.Add("RevDate");
-                    retur.Add("RevObj");
-                    retur.Add("RevObRat");
-                }
                 break;
             case "Training":
-                if (type==0)
-                {
                     retur.Add("Training");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Area"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Course"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Grade"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Observations"));
-                }
-                else{
-                    retur.Add("TrainId");
-                    retur.Add("TrainDate");
-                    retur.Add("TrainArea");
-                    retur.Add("TrainCourse");
-                    retur.Add("TrainCalif");
-                    retur.Add("TrainObser");
-                }
                 break;
             default:
                 break;
@@ -527,7 +521,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("CareerData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(3,6,@Columns("Career",0),@getData_Career((List<TPCareer>)ViewBag.ListCareer),@Controller("Career"),@Columns("Career",1),Model.PerId)
+                @Html.dataGrid(3,6,@Columns("Career"),@getData_Career((List<TPCareer>)ViewBag.ListCareer),@Controller("Career"),@Fields("Career"),Model.PerId)
             </div>
         </table>
     </div>
@@ -537,7 +531,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ContractData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-4">
-                @Html.dataGrid(4,6,@Columns("Contract",0),@getData_Contract((List<TPContract>)ViewBag.ListContract),@Controller("Contract"),@Columns("Contract",1),Model.PerId)
+                @Html.dataGrid(4,6,@Columns("Contract"),@getData_Contract((List<TPContract>)ViewBag.ListContract),@Controller("Contract"),@Fields("Contract"),Model.PerId)
             </div>
         </table>
     </div>    
@@ -548,7 +542,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("CurriculumData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-5">
-                @Html.dataGrid(5,6,@Columns("Curriculum",0),@getData_Curriculum((List<TPCurric>)ViewBag.ListCurric),@Controller("Curriculum"),@Columns("Curriculum",1),Model.PerId)
+                @Html.dataGrid(5,6,@Columns("Curriculum"),@getData_Curriculum((List<TPCurric>)ViewBag.ListCurric),@Controller("Curriculum"),@Fields("Curriculum"),Model.PerId)
             </div>
         </table>
     </div>    
@@ -558,7 +552,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PayrollData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-6">
-                @Html.dataGrid(6,6,@Columns("Pay",0),@getData_Pay((List<TPPay>)ViewBag.ListPay),@Controller("Pay"),@Columns("Pay",1),Model.PerId)
+                @Html.dataGrid(6,6,@Columns("Pay"),@getData_Pay((List<TPPay>)ViewBag.ListPay),@Controller("Pay"),@Fields("Pay"),Model.PerId)
             </div>
         </table>
     </div>    
@@ -568,7 +562,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("PresenceData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-7">
-                @Html.dataGrid(7,6,@Columns("Presence",0),@getData_Presence((List<TPPresen>)ViewBag.ListPre),@Controller("Presence"),@Columns("Presence",1),Model.PerId)
+                @Html.dataGrid(7,6,@Columns("Presence"),@getData_Presence((List<TPPresen>)ViewBag.ListPre),@Controller("Presence"),@Fields("Presence"),Model.PerId)
             </div>
         </table>
     </div>    
@@ -578,7 +572,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ObjectiveReviewmData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-8">
-                @Html.dataGrid(8,6,@Columns("Review",0),@getData_Review((List<TPReview>)ViewBag.ListRev),@Controller("Review"),@Columns("Review",1),Model.PerId)
+                @Html.dataGrid(8,6,@Columns("Review"),@getData_Review((List<TPReview>)ViewBag.ListRev),@Controller("Review"),@Fields("Review"),Model.PerId)
             </div>
         </table>
     </div>    
@@ -588,7 +582,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("TrainingData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-9">
-                @Html.dataGrid(9,6,@Columns("Training",0),@getData_Train((List<TPTrain>)ViewBag.ListTra),@Controller("Training"),@Columns("Training",1),Model.PerId)
+                @Html.dataGrid(9,6,@Columns("Training"),@getData_Train((List<TPTrain>)ViewBag.ListTra),@Controller("Training"),@Fields("Training"),Model.PerId)
             </div>
         </table>
     </div>    

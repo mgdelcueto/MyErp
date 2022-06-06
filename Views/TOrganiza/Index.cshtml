@@ -29,37 +29,46 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "Chart":
+                retur.Add(addLine("CharId","false"));
+                retur.Add(addLine("Charode","false"));
+                retur.Add(addLine("CharName","false"));
+                retur.Add(addLine("CharHName","false"));
+                break;
+            case "Users":
+                retur.Add(addLine("UserId","false"));
+                retur.Add(addLine("UserFirsName","false"));
+                retur.Add(addLine("UserLastName","false"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "Chart":
-                if (type==0)
-                {
                     retur.Add("Chart");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ChCode"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ChName"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ChHeadName"));
-                }
-                else{
-                    retur.Add("CharId");
-                    retur.Add("Charode");
-                    retur.Add("CharName");
-                    retur.Add("CharHName");
-                }
                 break;
             case "Users":
-                if (type==0)
-                {
                     retur.Add("Users");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("FirsName"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("LastName"));
-                }
-                else{
-                    retur.Add("UserId");
-                    retur.Add("UserFirsName");
-                    retur.Add("UserLastName");
-                }    
                 break;
             default:
                 break;
@@ -135,7 +144,7 @@
         <div class="cont-titles">
             <h4>@SharedLocalizer.GetLocalizedHtmlString("CharList")</h4>
         </div>
-        @Html.dataGrid(20,16,@Columns("Chart",0),@getData_Chart((List<VTChart>)ViewBag.ListChar),@Controller("Chart"),@Columns("Chart",1))
+        @Html.dataGrid(20,16,@Columns("Chart"),@getData_Chart((List<VTChart>)ViewBag.ListChar),@Controller("Chart"),@Fields("Chart"))
     @*@await Html.PartialAsync("_pListaChart",(List<VTChart>)ViewBag.ListChar)*@
     </div>
 @*
@@ -155,7 +164,7 @@
         <div class="cont-titles">
             <h4>@SharedLocalizer.GetLocalizedHtmlString("CharList")</h4>
         </div>
-        @Html.dataGrid(21,16,@Columns("Users",0),@getData_Users((List<TUser>)ViewBag.ListUS),@Controller("Users"),@Columns("Users",1))
+        @Html.dataGrid(21,16,@Columns("Users"),@getData_Users((List<TUser>)ViewBag.ListUS),@Controller("Users"),@Fields("Users"))
     @*@await Html.PartialAsync("_pListaUsers",(List<TUser>)ViewBag.ListUS)*@
     </div>
 

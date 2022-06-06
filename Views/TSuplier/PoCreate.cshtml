@@ -30,48 +30,7 @@
             <td><input type="submit" class="dropbtn" value="Add"  name="actionType"/></td>
             <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
         </tr>
-
-        <tr>
-            <td>@Html.LabelFor(p => p.Spopo,new { @class = "norm-lab-text",})</td>
-            <td>@Html.EditorFor(p => p.Spopo, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
-            <td>@Html.ValidationMessageFor(p => p.Spopo)</td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(p => p.Spodate,new { @class = "norm-lab-text",})</td>
-            <td>@Html.EditorFor(p => p.Spodate, new { htmlAttributes = new { @class = "norm-tb-text"} })</td>
-            <td>@Html.ValidationMessageFor(p => p.Spodate)</td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(p => p.SpocprodId,new { @class = "norm-lab-text",})</td>
-            <td class="norm-text">
-                @Html.DropDownListFor(p => p.SpocprodId,(SelectList)ViewBag.ddlReferVD,"",new { @class = "norm-tb-text" })
-                <td>@Html.ValidationMessageFor(p => p.SpocprodId)</td>
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(p => p.SporeferEx,new { @class = "norm-lab-text",})</td>
-            <td class="norm-text">
-                @Html.DropDownListFor(p => p.SporeferEx,(SelectList)ViewBag.ddlReferEX,"",new { @class = "norm-tb-text" })
-            <td>@Html.ValidationMessageFor(p => p.SporeferEx)</td>
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(p => p.Spoprice,new { @class = "norm-lab-text" })</td>
-            <td>@Html.EditorFor(p => p.Spoprice, new { htmlAttributes = new { @class = "norm-tb-num", @style = "width:90px" } })</td>
-            <td>@Html.ValidationMessageFor(p => p.Spoprice)</td>
-        </tr>        
-        <tr>        
-            <td>@Html.LabelFor(p => p.Spocurcy,new { @class = "norm-lab-text" })</td>
-            <td>
-                @Html.DropDownListFor(p => p.Spocurcy,
-               new SelectList(DataSource.GetCurrency(), "Code", "Name"),new { @class = "norm-tb-text" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(p => p.Spostatus,new { @class = "norm-lab-text",})</td>
-            <td>@Html.EditorFor(p => p.Spostatus, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:170px" } })</td>
-            <td>@Html.ValidationMessageFor(p => p.Spostatus)</td>
-        </tr>
+        @Html.Partial("_pshowspo",Model)
     </table>
     </div>
 }

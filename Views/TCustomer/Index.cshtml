@@ -15,23 +15,41 @@
                 retur[3]="Delete";
         return retur;
     }
-    List<string> Columns(int type){
-        List<string> retur = new List<string>();
-        if (type==0){
-            retur.Add("Personal");
-            retur.Add("NIF");
-            retur.Add("Codigo");
-            retur.Add("Razon Social");
-            retur.Add("Ciudad");
-            retur.Add("Pais");
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch(table){
+            case "Customer":
+                retur.Add(addLine("CustId","false"));
+                retur.Add(addLine("CustNif","true"));
+                retur.Add(addLine("CustCode","true"));
+                retur.Add(addLine("CustRasoc","true"));
+                retur.Add(addLine("CustAdCity","true"));
+                retur.Add(addLine("CustAdCtry","true"));    
+                break;
+            default:
+                break;
         }
-        else{
-            retur.Add("CustId");
-            retur.Add("CustNif");
-            retur.Add("CustCode");
-            retur.Add("CustRasoc");
-            retur.Add("CustAdCity");
-            retur.Add("CustAdCtry");
+        return retur;
+    }
+    List<string> Columns(string table){
+        List<string> retur = new List<string>();
+        switch(table){
+            case "Customer":
+                retur.Add("Personal");
+                retur.Add("NIF");
+                retur.Add("Codigo");
+                retur.Add("Razon Social");
+                retur.Add("Ciudad");
+                retur.Add("Pais");
+                break;
+            default:
+                break;
         }
         return retur;
     }
@@ -115,7 +133,7 @@ string fValue (int valor){
 <div class = "cont-titles">
  <h3>@SharedLocalizer.GetLocalizedHtmlString("CustomerList")</h3>   
 </div>
-@Html.dataGrid(3,16,Columns(0),@getData((List<TCustomer>)Model),@Controller(),Columns(1))
+@Html.dataGrid(3,16,@Columns("Customer"),@getData((List<TCustomer>)Model),@Controller(),@Fields("Customer"))
 
 @*
 <td><a class="nav-link text-dark" asp-area="" asp-controller="TCustomer" asp-action="Index" asp-route-filter ="1" asp-route-pNam="" asp-route-pNam1="">Filter</a></td>

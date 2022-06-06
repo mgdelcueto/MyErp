@@ -66,114 +66,108 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "Facility":
+                retur.Add(addLine("FaId","false"));
+                retur.Add(addLine("FaCode","false"));
+                retur.Add(addLine("FaDescr","true"));
+                retur.Add(addLine("FaType","false"));
+                break;
+            case "WCenter":
+                retur.Add(addLine("WcdId","false"));
+                retur.Add(addLine("Wccode","false"));
+                retur.Add(addLine("Wcdescr","true"));
+                retur.Add(addLine("Wctype","false"));
+                break;
+            case "WCenterC":
+                retur.Add(addLine("WcoId","false"));
+                retur.Add(addLine("WcoCode","false"));
+                retur.Add(addLine("WcoDescr","true"));
+                retur.Add(addLine("WcoType","false"));
+                break;
+            case "Materials":
+                retur.Add(addLine("MatId","false"));
+                retur.Add(addLine("MatRefer","false"));
+                retur.Add(addLine("MatDescr","true"));
+                retur.Add(addLine("MatClass","false"));
+                break;
+            case "SLocation":
+                retur.Add(addLine("LocId","false"));
+                retur.Add(addLine("LocCode","false"));
+                retur.Add(addLine("LocDescr","true"));
+                retur.Add(addLine("LocType","false"));
+                break;
+            case "Operators":
+                retur.Add(addLine("OpeId","false"));
+                retur.Add(addLine("OpeCode","false"));
+                retur.Add(addLine("OpeDesc","true"));
+                retur.Add(addLine("OpeCosth","true"));
+                retur.Add(addLine("OpeCurcy","false"));
+                break;
+            case "Trucks":
+                retur.Add(addLine("TruckId","false"));
+                retur.Add(addLine("TruckCode","false"));
+                retur.Add(addLine("TruckDeno","true"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "Facility":
-                if (type==0)
-                {
                     retur.Add("Facility");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("FcCode"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("FcDescr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("FcType"));
-                }
-                else{
-                    retur.Add("FaId");
-                    retur.Add("FaCode");
-                    retur.Add("FaDescr");
-                    retur.Add("FaType");
-                }
                 break;
             case "WCenter":
-                if (type==0)
-                {
                     retur.Add("WCenter");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCCode"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCDesc"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCType"));
-                }
-                else{
-                    retur.Add("WcdId");
-                    retur.Add("Wccode");
-                    retur.Add("Wcdescr");
-                    retur.Add("Wctype");
-                }
                 break;
             case "WCenterC":
-                if (type==0)
-                {
                     retur.Add("WCenterCo");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Description"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Type"));
-                }
-                else{
-                    retur.Add("WcoId");
-                    retur.Add("WcoCode");
-                    retur.Add("WcoDescr");
-                    retur.Add("WcoType");
-                }    
                 break;
             case "Materials":
-                if (type==0)
-                {
                     retur.Add("Materials");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatRefer"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatDescr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatClass"));
-                }
-                else{
-                    retur.Add("MatId");
-                    retur.Add("MatRefer");
-                    retur.Add("MatDescr");
-                    retur.Add("MatClass");
-                }
                 break;
             case "SLocation":
-                if (type==0)
-                {
                     retur.Add("SLocation");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("LocCode"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("LocDescr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("LocType"));
-                }
-                else{
-                    retur.Add("LocId");
-                    retur.Add("LocCode");
-                    retur.Add("LocDescr");
-                    retur.Add("LocType");
-                }
                 break;
             case "Operators":
-                if (type==0)
-                {
                     retur.Add("Review");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Costh"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Curcy"));
-                }
-                else{
-                    retur.Add("OpeId");
-                    retur.Add("OpeCode");
-                    retur.Add("OpeDesc");
-                    retur.Add("OpeCosth");
-                    retur.Add("OpeCurcy");
-                }
                 break;
             case "Trucks":
-                if (type==0)
-                {
                     retur.Add("Trucks");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Deno"));
-                }
-                else{
-                    retur.Add("TruckId");
-                    retur.Add("TruckCode");
-                    retur.Add("TruckDeno");
-                }
                 break;
             default:
                 break;
@@ -435,7 +429,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("FacilitiesList")</h3>   
         </div>
-        @Html.dataGrid(10,16,@Columns("Facility",0),@getData_Facility((List<TFacility>)ViewBag.ListFA),@Controller("Facility"),@Columns("Facility",1),0)
+        @Html.dataGrid(10,16,@Columns("Facility"),@getData_Facility((List<TFacility>)ViewBag.ListFA),@Controller("Facility"),@Fields("Facility"),0)
     @*@Html.Partial("_pListaFacilities_all",(List<TFacility>)ViewBag.ListFA)*@
     </div>
 
@@ -444,7 +438,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("WorkCenterList")</h3>   
         </div>
-        @Html.dataGrid(11,16,@Columns("WCenter",0),@getData_WCenter((List<TWorkCenter>)ViewBag.ListProd),@Controller("WCenter"),@Columns("WCenter",1),0)
+        @Html.dataGrid(11,16,@Columns("WCenter"),@getData_WCenter((List<TWorkCenter>)ViewBag.ListProd),@Controller("WCenter"),@Fields("WCenter"),0)
     @*@Html.Partial("_pListaWorkCenters_all",(List<TWorkCenter>)ViewBag.ListProd)*@
     </div>
 
@@ -477,7 +471,7 @@
             </td>
     </table>
  
-        @Html.dataGrid(12,16,@Columns("WCenterC",0),@getData_WCenterC((List<TWccomponent>)ViewBag.ListPO),@Controller("WCenterC"),@Columns("WCenterC",1),0)
+        @Html.dataGrid(12,16,@Columns("WCenterC"),@getData_WCenterC((List<TWccomponent>)ViewBag.ListPO),@Controller("WCenterC"),@Fields("WCenterC"),0)
     @*@Html.Partial("_pListaWCComponents_all",(List<TWccomponent>)ViewBag.ListPO)*@
     </div>
 
@@ -511,7 +505,7 @@
                new SelectList(DataSource.GetMCatlassL(), "Code", "Name",@isCode()),new { @class = "norm-tb-text", onchange = "ddlfunc(4,'code',this.value)" })
             </td>
     </table>
-        @Html.dataGrid(13,16,@Columns("Materials",0),@getData_Materials((List<TMaterial>)ViewBag.ListMA),@Controller("Materials"),@Columns("Materials",1),0)
+        @Html.dataGrid(13,16,@Columns("Materials"),@getData_Materials((List<TMaterial>)ViewBag.ListMA),@Controller("Materials"),@Fields("Materials"),0)
     @*@Html.Partial("_pListaMaterials_all",(List<TMaterial>)ViewBag.ListMA)*@
     </div>
 
@@ -520,7 +514,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("StorageLocList")</h3>   
         </div>
-        @Html.dataGrid(14,16,@Columns("SLocation",0),@getData_SLocation((List<TLocation>)ViewBag.ListLO),@Controller("SLocation"),@Columns("SLocation",1),0)
+        @Html.dataGrid(14,16,@Columns("SLocation"),@getData_SLocation((List<TLocation>)ViewBag.ListLO),@Controller("SLocation"),@Fields("SLocation"),0)
     @*@Html.Partial("_pListaStorages_all",(List<TLocation>)ViewBag.ListLO)*@
     </div>
 
@@ -529,7 +523,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("OperatorList")</h3>   
         </div>
-        @Html.dataGrid(15,16,@Columns("Operators",0),@getData_Operators((List<TOperator>)ViewBag.ListOP),@Controller("Operators"),@Columns("Operators",1),0)
+        @Html.dataGrid(15,16,@Columns("Operators"),@getData_Operators((List<TOperator>)ViewBag.ListOP),@Controller("Operators"),@Fields("Operators"),0)
     @*@Html.Partial("_pListaOperators_all",(List<TOperator>)ViewBag.ListOP)*@
     </div>
 
@@ -538,7 +532,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("TrucksList")</h3>   
         </div>
-        @Html.dataGrid(16,16,@Columns("Trucks",0),@getData_Trucks((List<TCTruck>)ViewBag.ListTruck),@Controller("Trucks"),@Columns("Trucks",1),0)
+        @Html.dataGrid(16,16,@Columns("Trucks"),@getData_Trucks((List<TCTruck>)ViewBag.ListTruck),@Controller("Trucks"),@Fields("Trucks"),0)
     @*@Html.Partial("_pListaTrucks_all",(List<TCTruck>)ViewBag.ListTruck)*@
     </div>
 

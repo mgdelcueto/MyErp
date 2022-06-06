@@ -36,6 +36,7 @@ namespace MyErp.Models
         public virtual DbSet<TExpMater> TExpMaters { get; set; }
         public virtual DbSet<TExpOper> TExpOpers { get; set; }
         public virtual DbSet<TExpOperd> TExpOperds { get; set; }
+        public virtual DbSet<TExpMatd> TExpMatds { get; set; }
         public virtual DbSet<TExplosion> TExplosions { get; set; }
         public virtual DbSet<TExplosionB> TExplosionBs { get; set; }
         public virtual DbSet<TFacility> TFacilities { get; set; }
@@ -597,6 +598,68 @@ namespace MyErp.Models
                     .HasColumnName("TTimes");
             });
 
+            modelBuilder.Entity<TExpMatd>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("T_ExpMatd");
+
+                entity.Property(e => e.expcomp)
+                    .HasMaxLength(125)
+                    .HasColumnName("expcomp");
+
+                entity.Property(e => e.matrefer)
+                    .HasMaxLength(125)
+                    .HasColumnName("matrefer");
+
+                entity.Property(e => e.matdescr)
+                    .HasMaxLength(225)
+                    .HasColumnName("matdescr");
+
+                entity.Property(e => e.TComQty)
+                    .HasMaxLength(125)
+                    .HasColumnName("TComQty");
+
+                entity.Property(e => e.matunmed)
+                    .HasMaxLength(25)
+                    .HasColumnName("matunmed");
+
+                entity.Property(e => e.SPoId)
+                    .HasMaxLength(125)
+                    .HasColumnName("SPoId");
+
+                entity.Property(e => e.SPoSupId)
+                    .HasMaxLength(125)
+                    .HasColumnName("SPoSupId");
+
+                entity.Property(e => e.SPOReferEx)
+                    .HasMaxLength(25)
+                    .HasColumnName("SPOReferEx");
+
+                entity.Property(e => e.SPOPO)
+                    .HasMaxLength(225)
+                    .HasColumnName("SPOPO");
+
+                entity.Property(e => e.SPOPrice)
+                    .HasMaxLength(225)
+                    .HasColumnName("SPOPrice");
+
+                entity.Property(e => e.SPoCurcy)
+                    .HasMaxLength(225)
+                    .HasColumnName("SPoCurcy");
+
+                entity.Property(e => e.SPoPcRep)
+                    .HasMaxLength(225)
+                    .HasColumnName("SPoPcRep");
+
+                entity.Property(e => e.SupId)
+                    .HasMaxLength(225)
+                    .HasColumnName("SupId");
+
+                entity.Property(e => e.SupRaSoc)
+                    .HasMaxLength(225)
+                    .HasColumnName("SupRaSoc");
+            });
 
 
             modelBuilder.Entity<TExplosion>(entity =>
@@ -1075,10 +1138,17 @@ namespace MyErp.Models
                     .HasColumnName("SPOReferEx");
 
                 entity.Property(e => e.Spostatus)
-                    .HasMaxLength(25)
                     .HasColumnName("SPOStatus");
 
+                entity.Property(e => e.SpoDateSt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("SpoDateSt");
+
+                entity.Property(e => e.SpoPcRep)
+                    .HasColumnName("SpoPcRep");
+
                 entity.Property(e => e.SposupId).HasColumnName("SPOSupId");
+
             });
 
             modelBuilder.Entity<TSProduct>(entity =>

@@ -43,5 +43,13 @@ namespace MyErp.Models
         [Required,StringLength(25)]
         [Display(Name="Status")]
         public string Spostatus { get; set; }
+
+        [Required]
+        [Display(Name="SPODateSt")]
+        public DateTime? SpoDateSt { get; set; }
+
+        [Required]
+        [Display(Name="SPOPcRep")]
+        public double? SpoPcRep { get; set; }
     }
 }

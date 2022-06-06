@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.Extensions.Configuration;
 using System.Data;
+using System.Web;
 
 namespace MyErp.Controllers {
     [Authorize(Roles="Planner,Administrator")]
@@ -63,7 +64,10 @@ namespace MyErp.Controllers {
                         ).ToList();
             ViewBag.ListScShop=querysh; 
     }
-        private void CreateVB_cMRP(DateTime? F1, DateTime? F2,bool accStock,int? wcent){
+
+        private void CreateVB_cMRP(DateTime? F1, DateTime? F2,bool accStock,int? wcent=0,int? material=0){
+            if (wcent==null){wcent=0;}
+            if (material==null){material=0;}
             /*
              var qry = 
                 from p in _dbContext.TCCplannings
@@ -87,13 +91,16 @@ namespace MyErp.Controllers {
                 var sqlo = "SELECT * FROM [Operx_"+Table+"] ORDER BY WCDescr";
                 var sqlm = "SELECT * FROM [Matex_"+Table+"] ORDER BY MatDescr";
                 var sqlw = "SELECT * FROM [Operw_"+Table+"] WHERE RouWCId = "+wcent.ToString()+" ORDER BY MatRefer,RouFase";
+                var sqlx ="select expcomp,MatRefer,MatDescr, TComQty,MatUnMed,case when SpoId is null then 0 else spoid end as SpoId,case when SPoSupId is null then 0 else SPOSupId end as SPoSupId,case when SPOReferEx is null then 0 else  SPOReferEx end as SPoReferEx , case when SPOPO is null then 'No_PO' else SPOPO end as SPOPO ,case when SPOPrice is null then 0 else SPOPrice end as SPoPrice ,case when SPoCurcy is null then 'No_Curr' else SpoCurcy end as SPoCurcy ,case when SPoPcRep is null then 0 else SPoPcRep end as SPoPcRep ,case when SupId is null then 0 else SupId end as SupId,case when SupRaSoc is null then 'No_Suplier' else SupRaSoc end as SupRaSoc from [Matex_"+Table+"] as m left join (select * from T_S_POrder where SPOStatus =1) as po on m.expcomp = po.spocprodid left join T_Suplier as s on po.SPOSupId = s.SupId  where expcomp ="+material.ToString();
                 var explosiop = _dbContext.TExpOpers.FromSqlRaw(sqlo).ToList();
                 var explosiom = _dbContext.TExpMaters.FromSqlRaw(sqlm).ToList();
                 var explosiow = _dbContext.TExpOperds.FromSqlRaw(sqlw).ToList();
+                var explosiox = _dbContext.TExpMatds.FromSqlRaw(sqlx).ToList();
                 _dbContext.Database.ExecuteSqlRaw("Xz_Explosion {0}", table);
                 ViewBag.ListMatExp=explosiom; //querybo;
                 ViewBag.ListOpeExp=explosiop; //querybo;
                 ViewBag.ListOpeDet=explosiow; //querybo;
+                ViewBag.ListMatPO=explosiox;
                  
         }
         private void CreateVB_LCP(DateTime? F1, DateTime? F2)
@@ -164,6 +171,36 @@ namespace MyErp.Controllers {
             int ? wcent=id;
             CreateVB_cMRP(_F1, _F2,_accStock, wcent);
             return RedirectToAction("Capacity",new{wcent=id, F1=_F1,F2=_F2,accStock=_accStock,panel=4,panel1=1});
+        }
+
+        public IActionResult CapDetma(int? id,string F1,string F2, string accStock,string _parqs) {
+            F1 = F1.Replace("\"", "");
+            F2 = F2.Replace("\"", "");
+            accStock = accStock.Replace("\"", "");
+
+            DateTime? _F1 = System.DateTime.Now;
+            DateTime? _F2 = System.DateTime.Now;
+            bool _accStock=false;
+            try{
+                if (F1!=null){ _F1 = Convert.ToDateTime(F1);}
+                if (F2!=null){ _F2 = Convert.ToDateTime(F2);}
+                if (accStock!=null) {_accStock=Convert.ToBoolean(accStock);}
+            }
+            catch{}
+            ViewData["panel"]=4;
+            ViewData["panel1"]=1;
+            ViewData["Title"] = "MRP Detal WC Data";
+            ViewData["F1"]=_F1;
+            ViewData["F2"]=_F2;
+            ViewData["ACSt"]=_accStock;
+            /*
+            var xdbContext = new MyErpDBContext();
+            var model = xdbContext.TWorkCenters
+                .SingleOrDefault(u => u.wcid.Equals(id));
+            */
+            int ? material=id;
+            CreateVB_cMRP(_F1, _F2,_accStock, 0,material);
+            return RedirectToAction("Capacity",new{material=id, F1=_F1,F2=_F2,accStock=_accStock,panel=5,panel1=1});
         }
 
 
@@ -249,7 +286,43 @@ namespace MyErp.Controllers {
 
 
         [HttpGet]
-        public IActionResult Capacity(int ? wcent, DateTime? F1, DateTime? F2,bool accStock, int panel, int panel1,string actionType) {
+        public IActionResult Capacity(int ? wcent,int? material, DateTime? F1, DateTime? F2,bool accStock, int panel, int panel1,string actionType,string parqs) {
+            //decodifica _parqs y carga todos los pares key value 
+            try{
+            var _parqs = HttpUtility.ParseQueryString(parqs);
+            foreach (String s in _parqs.AllKeys)
+                {
+                    switch(s)
+                    {
+                        case "F1":
+                            F1=Convert.ToDateTime(_parqs[s]);
+                            break;
+                        case "F2":
+                            F2=Convert.ToDateTime(_parqs[s]);
+                            break;
+                        case "wcent":
+                            wcent=Convert.ToInt32(_parqs[s]);
+                            break;
+                        case "material":
+                            material=Convert.ToInt32(_parqs[s]);
+                            break;
+                        case "accStock":
+                            accStock=Convert.ToBoolean(_parqs[s]);
+                            break;
+                        case "panel":
+                            panel=Convert.ToInt32(_parqs[s]);
+                            break;
+                        case "panel1":
+                            panel1=Convert.ToInt32(_parqs[s]);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch(Exception ex){
+                string mensaje = ex.Message;
+            }
             if(wcent==null){wcent=0;}
             if(panel ==0 ){panel=1;}
             ViewData["panel"]=panel;
@@ -262,15 +335,17 @@ namespace MyErp.Controllers {
              ViewData["F2"]=F2;
              ViewData["ACSt"]=accStock;
              ViewData["WCent"]=wcent;
+             ViewData["MatPO"]=material;
             try{
                     CreateVB_LCP(F1,F2);
-                    CreateVB_cMRP(F1,F2,accStock,wcent);  //ListCustPlan
+                    CreateVB_cMRP(F1,F2,accStock,wcent,material);  //ListCustPlan
 
             //List<VCCplanning> _mode = (List<VCCplanning>)ViewBag.ListCustPlan;
             //var model = _mode[0];
             VCXplanning model = new VCXplanning{
                 CplanDateFrom=F1,
-                CplanDateTo=F2
+                CplanDateTo=F2,
+                CPlancStock=accStock
             };
             //model.CplanDateFrom=F1;
             //model.CplanDateTo=F2;
@@ -307,7 +382,7 @@ namespace MyErp.Controllers {
             ////var dbContext = new MyErpDBContext();
             try{
                 CreateVB_LCP(F1,F2);
-                CreateVB_cMRP(F1,F2,accStock,0);  //ListCustPlan
+                CreateVB_cMRP(F1,F2,accStock);  //ListCustPlan
                 return View(model);
             }
             catch(Exception Ex){
@@ -319,7 +394,7 @@ namespace MyErp.Controllers {
         public IActionResult MRPcGo(DateTime? F1, DateTime? F2, string actionType) {
             if (F1==null){F1=System.DateTime.Now;}
             if (F2==null){F2=System.DateTime.Now;}
-            CreateVB_cMRP(F1,F2,false,0);   //Carga ViewBag con el resultado del analisis de capacidad
+            CreateVB_cMRP(F1,F2,false);   //Carga ViewBag con el resultado del analisis de capacidad
             ViewData["panel"]=1;
             //return View();      
             return RedirectToAction("Index",new{panel=1,panel1=2});

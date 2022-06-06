@@ -33,39 +33,48 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "AsWCenter":
+                retur.Add(addLine("WcdId","false"));
+                retur.Add(addLine("Wccode","false"));
+                retur.Add(addLine("Wcdescr","true"));
+                retur.Add(addLine("Wctype","false"));
+                break;
+            case "AsStorage":
+                retur.Add(addLine("LocId","false"));
+                retur.Add(addLine("LocCode","false"));
+                retur.Add(addLine("LocDescr","true"));
+                retur.Add(addLine("LocType","false"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "AsWCenter":
-                if (type==0)
-                {
                     retur.Add("WCenter");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCCode"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCDesc"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCType"));
-                }
-                else{
-                    retur.Add("WcdId");
-                    retur.Add("Wccode");
-                    retur.Add("Wcdescr");
-                    retur.Add("Wctype");
-                }
                 break;
             case "AsStorage":
-                if (type==0)
-                {
                     retur.Add("AsStorage");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Description"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Type"));
-                }
-                else{
-                    retur.Add("LocId");
-                    retur.Add("LocCode");
-                    retur.Add("LocDescr");
-                    retur.Add("LocType");
-                }    
                 break;
             default:
                 break;
@@ -220,7 +229,7 @@
          </td>
 
 
-        @Html.dataGrid(17,7,@Columns("AsStorage",0),@getData_AsStorage((List<TLocation>)ViewBag.ListStorAs),@Controller("AsStorage"),@Columns("AsStorage",1),0,@parqsaction(2,"wrem"))
+        @Html.dataGrid(17,7,@Columns("AsStorage"),@getData_AsStorage((List<TLocation>)ViewBag.ListStorAs),@Controller("AsStorage"),@Fields("AsStorage"),0,@parqsaction(2,"wrem"))
         @*@Html.Partial("_pListaStorages",(List<TLocation>)ViewBag.ListStorAs)*@
     </table>
 
@@ -237,7 +246,7 @@
                 @Html.DropDownList("WcdId", (SelectList)ViewBag.ddlProdNAS, new { @id ="myWorkcenter",@class ="norm-tb-text" , onchange ="AddFaComp('myWorkcenter',1);" })
             </td>
 
-        @Html.dataGrid(18,7,@Columns("AsWCenter",0),@getData_AsWCenter((List<TWorkCenter>)ViewBag.ListProdAs),@Controller("AsWCenter"),@Columns("AsWCenter",1),0,@parqsaction(1,"wrem"))
+        @Html.dataGrid(18,7,@Columns("AsWCenter"),@getData_AsWCenter((List<TWorkCenter>)ViewBag.ListProdAs),@Controller("AsWCenter"),@Fields("AsWCenter"),0,@parqsaction(1,"wrem"))
         @*@Html.Partial("_pListaWorkCenters",(List<TWorkCenter>)ViewBag.ListProdAs)*@
     </table>
 

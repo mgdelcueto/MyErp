@@ -22,13 +22,35 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "MatRoute":
+                retur.Add(addLine("RoRoId","false"));
+                retur.Add(addLine("RoRoFase","false"));
+                retur.Add(addLine("RoRoOper","true"));
+                retur.Add(addLine("RoRoWCDe","false"));
+                retur.Add(addLine("RoRoWunit","false"));
+                retur.Add(addLine("RoRoWtime","false"));
+                retur.Add(addLine("RoRoTunit","false"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "MatRoute":
-                if (type==0)
-                {
                     retur.Add("MatRoute");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Fase"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Operation"));
@@ -36,16 +58,6 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WUnit"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UnitT"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("TUnit"));
-                }
-                else{
-                    retur.Add("RoRoId");
-                    retur.Add("RoRoFase");
-                    retur.Add("RoRoOper");
-                    retur.Add("RoRoWCDe");
-                    retur.Add("RoRoWunit");
-                    retur.Add("RoRoWtime");
-                    retur.Add("RoRoTunit");
-                }
                 break;
             default:
                 break;
@@ -93,7 +105,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("RouteOf") @Model.MatDescr</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(30,9,@Columns("MatRoute",0),@getData_MatRoute((List<VTMRouting>)ViewBag.ListMatRou),@Controller("MatRoute"),@Columns("MatRoute",1),Model.MatId)
+                @Html.dataGrid(30,9,@Columns("MatRoute"),@getData_MatRoute((List<VTMRouting>)ViewBag.ListMatRou),@Controller("MatRoute"),@Fields("MatRoute"),Model.MatId)
             </div>
         </table>
         @*@Html.Partial("_pListMatComponents",(List<VTMComponent>)ViewBag.ListMatComp)*@

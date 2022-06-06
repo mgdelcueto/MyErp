@@ -12,9 +12,10 @@ namespace MyErp.Models
         public int? SposupId { get; set; }
 
         [Required,DataType(DataType.Date)]         
+        [Display(Name="SPODate")]
         public DateTime? Spodate { get; set; }
 
-        [Required,StringLength(25)]
+        [Required]
         [Display(Name="Status")]
         public string Spostatus { get; set; }
 
@@ -30,10 +31,19 @@ namespace MyErp.Models
         public string Spopo { get; set; }
 
         [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid Proce (>0)")]
-        [Display(Name="Prioce")]
+        [Display(Name="Price")]
         public double? Spoprice { get; set; }
+
         [Required]
         [Display(Name="Currency")]
         public string Spocurcy { get; set; }
+
+        [Required,DataType(DataType.Date)]         
+        [Display(Name="SPODateSt")]
+        public DateTime? SpoDateSt { get; set; }
+
+        [Required,Range(0,1,ErrorMessage="Enter Valid proportion between 0 and 1")]
+        [Display(Name="SPOPcRep")]
+        public double? SpoPcRep { get; set; }
     }
 }

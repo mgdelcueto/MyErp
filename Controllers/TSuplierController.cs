@@ -115,7 +115,8 @@ namespace MyErp.Controllers {
                         where po.SposupId==id 
                         select new VTSPorder {Spoid=po.Spoid,SposupId=po.SposupId,Spopo=po.Spopo,SporeferEx=spr.ProdRefer,
                                     SprodRefInt=mat.MatRefer,SpodescEx=spr.ProdDescr,SprodDescInt=mat.MatDescr,
-                                    Spoprice=po.Spoprice,Spocurcy=po.Spocurcy,Spostatus=po.Spostatus}).ToList();
+                                    Spoprice=po.Spoprice,Spocurcy=po.Spocurcy,Spostatus=po.Spostatus,
+                                    SpoPcRep=po.SpoPcRep,SpoDateSt=po.SpoDateSt}).ToList();
             ViewBag.ListSpo=qListpo;
 
         }
@@ -503,7 +504,32 @@ namespace MyErp.Controllers {
         }     
 
         [HttpGet]
-        public IActionResult PoEdit(int id,int suid) {
+        public IActionResult PoEdit(int id,int suid,string updField,string updValue,string retCont,string retAct,string _parqs) {
+            if (updField!=null){
+                var mode = _dbContext.TSPorders
+                    .SingleOrDefault(u => u.Spoid.Equals(id));
+                try{
+                    bool update =true;
+                    switch (updField)
+                    {
+                        case "SpoPcRep":
+                            mode.SpoPcRep=Convert.ToDouble(updValue);
+                            break;
+                        default:
+                            update = false;
+                            break;
+                    }
+                    if (update){
+                        _dbContext.TSPorders.Update(mode);
+                        _dbContext.SaveChanges();
+                    }
+                    }
+                catch(Exception ex){
+                    string mensaje = ex.Message;
+                }
+                return RedirectToAction(retAct,retCont,new{parqs=_parqs});
+            }
+        else{
             try{
             var model = _dbContext.TSPorders
                 .SingleOrDefault(u => u.Spoid.Equals(id));
@@ -526,6 +552,7 @@ namespace MyErp.Controllers {
             catch(Exception ex){
                 string mensaje = ex.Message;
                 return View("Error");}            
+        }
         }
 
         [HttpPost]
@@ -636,7 +663,9 @@ namespace MyErp.Controllers {
             CreateViewBags(id,prod);
             return View("Edit",model);
             }
-            catch{return View("Error");}    
+            catch(Exception ex){
+                string mensaje = ex.Message;
+                return View("Error");}    
         }    
         [HttpPost]
         public IActionResult Edit(TSuplier suplier, string actionType,int? ProdId, int panel) {

@@ -19,7 +19,7 @@
                 break;
         case "MatReq":
                 retur[0]="TMRP";
-                retur[1]="";
+                retur[1]="CapDetma";
                 retur[2]="";
                 retur[3]="";
                 break;
@@ -35,18 +35,82 @@
                 retur[2]="";  //Create
                 retur[3]="";  //Delete
                 break;
+        case "MatPO":
+                retur[0]="TSuplier";
+                retur[1]="PoEdit";  //Edit
+                retur[2]="";  //Create
+                retur[3]="";  //Delete
+                break;
         default:
             break;
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "CustPlan":
+                retur.Add(addLine("CplanId","false"));
+                retur.Add(addLine("CplanCustCode","false"));
+                retur.Add(addLine("CplanCplantCode","false"));
+                retur.Add(addLine("CplanCprodRefInt","false"));
+                retur.Add(addLine("CplanCprodDescInt","false"));
+                retur.Add(addLine("CplanDateFrom","false"));
+                retur.Add(addLine("CplanDateTo","false"));
+                retur.Add(addLine("CplanQty","false"));
+                break;
+            case "MatReq":
+                retur.Add(addLine("WcdId","false"));
+                retur.Add(addLine("MatRefer","false"));
+                retur.Add(addLine("MatDescr","true"));
+                retur.Add(addLine("TcomQty","false"));
+                retur.Add(addLine("MatUnMed","false"));
+                break;
+            case "WCCap":
+                retur.Add(addLine("RouWcId","false"));
+                retur.Add(addLine("Wccode","false"));
+                retur.Add(addLine("Wcdescr","true"));
+                retur.Add(addLine("OperTime","false"));
+                break;
+            case "WCDet":
+                retur.Add(addLine("RouWcId","false"));
+                retur.Add(addLine("expcomp","false"));
+                retur.Add(addLine("matrefer","false"));
+                retur.Add(addLine("matdescr","false"));
+                retur.Add(addLine("roufase","false"));
+                retur.Add(addLine("rouoper","false"));
+                retur.Add(addLine("TTimes","false"));
+                retur.Add(addLine("Qty","false"));
+                retur.Add(addLine("matunmed","false"));
+                retur.Add(addLine("TTime","false"));
+                retur.Add(addLine("rouwcid","false"));
+                break;
+            case "MatPO":
+                retur.Add(addLine("SPoId","false"));
+                retur.Add(addLine("SupRaSoc","false"));
+                retur.Add(addLine("matrefer","false"));
+                retur.Add(addLine("SPOReferEx","false"));
+                retur.Add(addLine("matdescr","false"));
+                retur.Add(addLine("SPOPO","false"));
+                retur.Add(addLine("SpoPcRep","true"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "CustPlan":
-                if (type==0)
-                {
                     retur.Add("CustPlan");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("CustCode"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("PlantCode"));
@@ -55,55 +119,23 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DateFrom"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DateTo"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Qty"));
-                }
-                else{
-                    retur.Add("CplanId");
-                    retur.Add("CplanCustCode");
-                    retur.Add("CplanCplantCode");
-                    retur.Add("CplanCprodRefInt");
-                    retur.Add("CplanCprodDescInt");
-                    retur.Add("CplanDateFrom");
-                    retur.Add("CplanDateTo");
-                    retur.Add("CplanQty");
-                }
                 break;
             case "MatReq":
-                if (type==0)
-                {
                     retur.Add("MatReq");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatRefer"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatDescr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("TcomQty"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatUnMed"));
-                }
-                else{
-                    retur.Add("WcdId");
-                    retur.Add("MatRefer");
-                    retur.Add("MatDescr");
-                    retur.Add("TcomQty");
-                    retur.Add("MatUnMed");
-                }
                 break;
             case "WCCap":
-                if (type==0)
-                {
                     retur.Add("WCCap");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCCode"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCDesc"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("OperTime"));
-                }
-                else{
-                    retur.Add("RouWcId");
-                    retur.Add("Wccode");
-                    retur.Add("Wcdescr");
-                    retur.Add("OperTime");
-                }
                 break;
             case "WCDet":
-                if (type==0)
-                {
-                    retur.Add("WCCap");
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ProdId"));
+                    retur.Add("WCDet");
+                    //retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ProdId"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Refer"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Fase"));
@@ -113,20 +145,16 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UM"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("TotTime"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WcId"));
-                }
-                else{
-                    retur.Add("RouWcId");
-                    retur.Add("expcomp");
-                    retur.Add("matrefer");
-                    retur.Add("matdescr");
-                    retur.Add("roufase");
-                    retur.Add("rouoper");
-                    retur.Add("TTimes");
-                    retur.Add("Qty");
-                    retur.Add("matunmed");
-                    retur.Add("TTime");
-                    retur.Add("rouwcid");
-                }
+                break;
+            case "MatPO":
+                    retur.Add("MatPO");
+                    //retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SPoId"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SupRaSoc"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("matrefer"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SPOReferEx"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("matdescr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SPOPO"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SPoPcRep"));
                 break;
             default:
                 break;
@@ -165,7 +193,7 @@
             IEnumerable<Container> TPersonal = fTPersonal.Select(
                 f => new Container() 
                 {
-                        CampoId = 0,
+                        CampoId = f.ExpComp,
                         Campo01 = f.MatRefer.ToString(),
                         Campo02 = f.MatDescr.ToString(),
                         Campo03 = f.TcomQty.ToString(),
@@ -217,17 +245,17 @@
             IEnumerable<Container> TPersonal = fTPersonal.Select(
                 f => new Container() 
                 {
-                        CampoId = 0,
-                        Campo01 = f.expcomp.ToString(),
-                        Campo02 = f.matrefer.ToString(), 
-                        Campo03 = f.matdescr.ToString(),
-                        Campo04 = f.roufase.ToString(),
-                        Campo05 = f.rouoper.ToString(),
-                        Campo06 = f.TTimes.ToString(),
-                        Campo07 = f.Qty.ToString(),
-                        Campo08 = f.matunmed.ToString(),
-                        Campo09 = f.TTime.ToString(),
-                        Campo10 = f.rouwcid.ToString(),
+                        CampoId = f.expcomp,
+                        Campo01 = f.matrefer.ToString(), 
+                        Campo02 = f.matdescr.ToString(),
+                        Campo03 = f.roufase.ToString(),
+                        Campo04 = f.rouoper.ToString(),
+                        Campo05 = f.TTimes.ToString(),
+                        Campo06 = f.Qty.ToString(),
+                        Campo07 = f.matunmed.ToString(),
+                        Campo08 = f.TTime.ToString(),
+                        Campo09 = f.rouwcid.ToString(),
+                        Campo10 = "",
                         Campo11 = "",
                         Campo12 = "",
                         Campo13 = "",
@@ -237,6 +265,31 @@
             return TPersonal;
         }
 
+    IEnumerable<Container> getData_MatPO(dynamic oTMaterial)
+        {
+            IEnumerable<TExpMatd> fTPersonal = (List<TExpMatd>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.SPoId,
+                        Campo01 = f.SupRaSoc.ToString(),
+                        Campo02 = f.matrefer.ToString(), 
+                        Campo03 = f.SPOReferEx.ToString(),
+                        Campo04 = f.matdescr.ToString(),
+                        Campo05 = f.SPOPO.ToString(),
+                        Campo06 = f.SPoPcRep.ToString(),
+                        Campo07 = "",
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
 
 
 
@@ -280,6 +333,24 @@
         catch{}
         return ret;
     }
+    string getWCen()
+    {
+        string ret ="0";
+        try{
+            ret=Convert.ToString(ViewData["WCen"]);
+        }
+        catch{}
+        return ret;
+    }
+    string getMat()
+    {
+        string ret ="0";
+        try{
+            ret=Convert.ToString(ViewData["MatPO"]);
+        }
+        catch{}
+        return ret;
+    }
     string sModel()
     {
         string ret ="";
@@ -318,6 +389,7 @@
         Model.CplanDateFrom=getDate(1);
         Model.CplanDateTo=getDate(2);
         Model.CPlancStock=getACSt();}
+        //Model.wcent=getWCent();
         catch{}
     }
     
@@ -335,6 +407,8 @@
         <tr>
             <td>
                 <input type="hidden" value="2"  name="panel1"/>
+                <input type="hidden" value=@getWCen()  name="wcent"/>
+                <input type="hidden" value=@getMat()  name="material"/>
             </td>
             <td>
                 @Html.ValidationMessageFor(p => p.CplanDateFrom)
@@ -350,7 +424,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("PlanningData")</h3>   
         </div>
-        @Html.dataGrid(39,12,@Columns("CustPlan",0),@getData_CustPlan((List<VCCplanning>)ViewBag.ListCustPlan),@Controller("CustPlan"),@Columns("CustPlan",1),0)
+        @Html.dataGrid(39,12,@Columns("CustPlan"),@getData_CustPlan((List<VCCplanning>)ViewBag.ListCustPlan),@Controller("CustPlan"),@Fields("CustPlan"),0)
 </div>
 
 <div class=@isVisible(2)>
@@ -359,7 +433,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("MaterialRequirement")</h3>   
         </div>
-        @Html.dataGrid(40,12,@Columns("MatReq",0),@getData_MatReq((List<TExpMater>)ViewBag.ListMatExp),@Controller("MatReq"),@Columns("MatReq",1),0)
+        @Html.dataGrid(40,12,@Columns("MatReq"),@getData_MatReq((List<TExpMater>)ViewBag.ListMatExp),@Controller("MatReq"),@Fields("MatReq"),0)
 </div>
 <div class=@isVisible(3)>
 
@@ -367,7 +441,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("WorkCenterLoad")</h3>   
         </div>
-        @Html.dataGrid(41,12,@Columns("WCCap",0),@getData_WCCap((List<TExpOper>)ViewBag.ListOpeExp),@Controller("WCCap"),@Columns("WCCap",1),0,"",true,true,"",@sModel())
+        @Html.dataGrid(41,12,@Columns("WCCap"),@getData_WCCap((List<TExpOper>)ViewBag.ListOpeExp),@Controller("WCCap"),@Fields("WCCap"),0,"",true,true,"",@sModel())
 </div>
 <div class=@isVisible(4)>
 
@@ -376,6 +450,17 @@
             <h3>@SharedLocalizer.GetLocalizedHtmlString("WorkCenterLoad")</h3>   
         </div>
         <h5 class="myh4">@SharedLocalizer.GetLocalizedHtmlString("WCentDetLoad") @WCentName()</h5>
-        @Html.dataGrid(42,12,@Columns("WCDet",0),@getData_WCDet((List<TExpOperd>)ViewBag.ListOpeDet),@Controller("WCDet"),@Columns("WCDet",1),0)
+        @Html.dataGrid(42,12,@Columns("WCDet"),@getData_WCDet((List<TExpOperd>)ViewBag.ListOpeDet),@Controller("WCDet"),@Fields("WCDet"),0)
 </div>
+
+<div class=@isVisible(5)>
+
+
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("MatPOrders")</h3>   
+        </div>
+        <h5 class="myh4">@SharedLocalizer.GetLocalizedHtmlString("MaterialPO") @WCentName()</h5>
+        @Html.dataGrid(43,12,@Columns("MatPO"),@getData_MatPO((List<TExpMatd>)ViewBag.ListMatPO),@Controller("MatPO"),@Fields("MatPO"),0,"",true,true,"",@sModel(),true)
+</div>
+
 }

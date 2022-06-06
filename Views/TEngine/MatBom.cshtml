@@ -21,13 +21,39 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "MatBom":
+                retur.Add(addLine("ExpId","false"));
+                retur.Add(addLine("ExpsLevel","false"));
+                retur.Add(addLine("ExpRefer","true"));
+                retur.Add(addLine("ExpDescr","false"));
+                retur.Add(addLine("ExpCoef","false"));
+                retur.Add(addLine("ExpUm","false"));
+                retur.Add(addLine("ExpRouFase","false"));
+                retur.Add(addLine("ExpRouOper","false"));
+                retur.Add(addLine("ExpRouTime","false"));
+                retur.Add(addLine("ExpRouTunit","false"));
+                retur.Add(addLine("WCCode","false"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "MatBom":
-                if (type==0)
-                {
                     retur.Add("MatBom");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Level"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Refer"));
@@ -39,20 +65,6 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Time"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UnitT"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("WCent"));
-                }
-                else{
-                    retur.Add("ExpId");
-                    retur.Add("ExpsLevel");
-                    retur.Add("ExpRefer");
-                    retur.Add("ExpDescr");
-                    retur.Add("ExpCoef");
-                    retur.Add("ExpUm");
-                    retur.Add("ExpRouFase");
-                    retur.Add("ExpRouOper");
-                    retur.Add("ExpRouTime");
-                    retur.Add("ExpRouTunit");
-                    retur.Add("WCCode");
-                }
                 break;
             default:
                 break;
@@ -100,7 +112,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("B.O.M.") @Model.MatDescr</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(28,9,@Columns("MatBom",0),@getData_MatBom((List<TExplosionB>)ViewBag.ListMatBom),@Controller("MatBom"),@Columns("MatBom",1),Model.MatId,"",false,false)
+                @Html.dataGrid(28,9,@Columns("MatBom"),@getData_MatBom((List<TExplosionB>)ViewBag.ListMatBom),@Controller("MatBom"),@Fields("MatBom"),Model.MatId,"",false,false)
             </div>
         </table>
 

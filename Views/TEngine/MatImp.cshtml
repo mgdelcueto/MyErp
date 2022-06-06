@@ -21,13 +21,38 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "MatImp":
+                retur.Add(addLine("ExpId","false"));
+                retur.Add(addLine("ExpsLevel","false"));
+                retur.Add(addLine("ExpRefer","false"));
+                retur.Add(addLine("ExpDescr","true"));
+                retur.Add(addLine("ExpCoef","false"));
+                retur.Add(addLine("ExpUm","false"));
+                retur.Add(addLine("ExpRouFase","false"));
+                retur.Add(addLine("ExpRouOper","false"));
+                retur.Add(addLine("ExpRouTime","false"));
+                retur.Add(addLine("ExpRouTunit","false"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "MatImp":
-                if (type==0)
-                {
                     retur.Add("MatImp");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Level"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Refer"));
@@ -38,19 +63,6 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Oper"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Time"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UnitT"));
-                }
-                else{
-                    retur.Add("ExpId");
-                    retur.Add("ExpsLevel");
-                    retur.Add("ExpRefer");
-                    retur.Add("ExpDescr");
-                    retur.Add("ExpCoef");
-                    retur.Add("ExpUm");
-                    retur.Add("ExpRouFase");
-                    retur.Add("ExpRouOper");
-                    retur.Add("ExpRouTime");
-                    retur.Add("ExpRouTunit");
-                }
                 break;
             default:
                 break;
@@ -97,7 +109,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("Implosio_BOM") @Model.MatDescr</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(29,9,@Columns("MatImp",0),@getData_MatImp((List<TExplosionB>)ViewBag.ListMatImp),@Controller("MatImp"),@Columns("MatImp",1),Model.MatId,"",false,false)
+                @Html.dataGrid(29,9,@Columns("MatImp"),@getData_MatImp((List<TExplosionB>)ViewBag.ListMatImp),@Controller("MatImp"),@Fields("MatImp"),Model.MatId,"",false,false)
             </div>
         </table>
 

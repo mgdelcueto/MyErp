@@ -38,32 +38,63 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "Product":
+                retur.Add(addLine("ProdId","false"));
+                retur.Add(addLine("ProdRefer","false"));
+                retur.Add(addLine("ProdDescr","false"));
+                retur.Add(addLine("ProdCrDate","true"));
+                retur.Add(addLine("ProdStatus","true"));
+                retur.Add(addLine("ProdStDate","true"));
+                break;
+            case "SPlan":
+                retur.Add(addLine("PlanId","false"));
+                retur.Add(addLine("MatRefer","false"));
+                retur.Add(addLine("ProdRefer","false"));
+                retur.Add(addLine("ProdDescr","true"));
+                retur.Add(addLine("PlanDateFrom","true"));
+                retur.Add(addLine("PlanDateTo","true"));
+                retur.Add(addLine("PlanQty","true"));
+                retur.Add(addLine("PlanFirmSt","true"));
+                break;
+            case "SPO":
+                retur.Add(addLine("Spoid","false"));
+                retur.Add(addLine("Spopo","false"));
+                retur.Add(addLine("SprodRefInt","false"));
+                retur.Add(addLine("SporeferEx","true"));
+                retur.Add(addLine("SpodescEx","true"));
+                retur.Add(addLine("Spoprice","true"));
+                retur.Add(addLine("Spocurcy","true"));
+                retur.Add(addLine("Spostatus","true"));
+                retur.Add(addLine("SpoPcREp","true"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "Product":
-                if (type==0)
-                {
                     retur.Add("Product");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Reference"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descriptio"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date Creation"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Status"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date Status"));
-                }
-                else{
-                    retur.Add("ProdId");
-                    retur.Add("ProdRefer");
-                    retur.Add("ProdDescr");
-                    retur.Add("ProdCrDate");
-                    retur.Add("ProdStatus");
-                    retur.Add("ProdStDate");
-                }
                 break;
             case "SPlan":
-                if (type==0)
-                {
                     retur.Add("SPlan");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefInt"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefExt"));
@@ -72,21 +103,8 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ToDate"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Qty"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("FirmStat"));
-                }
-                else{
-                    retur.Add("PlanId");
-                    retur.Add("MatRefer");
-                    retur.Add("ProdRefer");
-                    retur.Add("ProdDescr");
-                    retur.Add("PlanDateFrom");
-                    retur.Add("PlanDateTo");
-                    retur.Add("PlanQty");
-                    retur.Add("PlanFirmSt");
-                }
                 break;
             case "SPO":
-                if (type==0)
-                {
                     retur.Add("SPO");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("PO"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefInt"));
@@ -95,16 +113,7 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Price"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Curcy"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Status"));
-                }
-                else{
-                    retur.Add("Spoid");
-                    retur.Add("Spopo");
-                    retur.Add("SprodRefInt");
-                    retur.Add("SporeferEx");
-                    retur.Add("SpodescEx");
-                    retur.Add("Spocurcy");
-                    retur.Add("Spostatus");
-                }    
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("PcRep"));
                 break;
             default:
                 break;
@@ -176,7 +185,7 @@
                         Campo05 = f.Spoprice.ToString(),
                         Campo06 = f.Spocurcy.ToString(), 
                         Campo07 = f.Spostatus.ToString(),
-                        Campo08 = "",
+                        Campo08 = f.SpoPcRep.ToString(),
                         Campo09 = "",
                         Campo10 = "",
                         Campo11 = "",
@@ -302,7 +311,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ProductData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(24,9,@Columns("Product",0),@getData_Product((List<TSProduct>)ViewBag.ListProd),@Controller("Product"),@Columns("Product",1),Model.SupId)
+                @Html.dataGrid(24,9,@Columns("Product"),@getData_Product((List<TSProduct>)ViewBag.ListProd),@Controller("Product"),@Fields("Product"),Model.SupId)
             </div>
         </table>
     </div>
@@ -313,7 +322,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("SupPlanningData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(25,9,@Columns("SPlan",0),@getData_SPlan((List<TSPlanningV>)ViewBag.ListPlan),@Controller("SPlan"),@Columns("SPlan",1),Model.SupId)
+                @Html.dataGrid(25,9,@Columns("SPlan"),@getData_SPlan((List<TSPlanningV>)ViewBag.ListPlan),@Controller("SPlan"),@Fields("SPlan"),Model.SupId)
             </div>
         </table>
     </div>
@@ -325,7 +334,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("SupPlanningData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(26,9,@Columns("SPO",0),@getData_SPO((List<VTSPorder>)ViewBag.listSpo),@Controller("SPO"),@Columns("SPO",1),Model.SupId)
+                @Html.dataGrid(26,9,@Columns("SPO"),@getData_SPO((List<VTSPorder>)ViewBag.listSpo),@Controller("SPO"),@Fields("SPO"),Model.SupId)
             </div>
         </table>
 

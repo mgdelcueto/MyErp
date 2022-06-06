@@ -19,27 +19,33 @@
                 retur[3]="Delete";
         return retur;
     }
-    List<string> Columns(int type ){
+    List<string> Columns(){
         List<string> retur = new List<string>();
-        if (type==0)
-        {
-            retur.Add("Personal");
-            retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DNI"));
-            retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Name"));
-            retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Surname"));
-            retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Address"));
-            retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Country"));
-        }
-        else{
-            retur.Add("PerId");
-            retur.Add("PerDni");
-            retur.Add("PerName");
-            retur.Add("PerName1");
-            retur.Add("PerAddr");
-            retur.Add("PerAddCtry");
-        }
+        retur.Add("Personal");
+        retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DNI"));
+        retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Name"));
+        retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Surname"));
+        retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Address"));
+        retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Country"));
         return retur;
     }
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(){
+        List<List<string>> retur = new List<List<string>>();
+        retur.Add(addLine("PerId","false"));
+        retur.Add(addLine("PerDni","false"));
+        retur.Add(addLine("PerName","false"));
+        retur.Add(addLine("PerName1","false"));
+        retur.Add(addLine("PerAddr","false"));
+        retur.Add(addLine("PerAddCtry","false"));
+        return retur;
+    }
+
     public IEnumerable<Container> getData(dynamic oTMaterial)
         {
                     IEnumerable<TPerson> fTPersonal = (List<TPerson>)oTMaterial;
@@ -128,5 +134,5 @@
  <h3>@SharedLocalizer.GetLocalizedHtmlString("PersonTable")</h3>   
 </div>
 <div  name="aqui-el-control-grid-1">
-    @Html.dataGrid(1,16,Columns(0),@getData((List<TPerson>)Model),@Controller(),Columns(1),0)
+    @Html.dataGrid(1,16,Columns(),@getData((List<TPerson>)Model),@Controller(),Fields(),0,"",true,true,"","",true)
 </div>

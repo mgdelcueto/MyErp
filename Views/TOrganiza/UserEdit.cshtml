@@ -31,20 +31,33 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "RolUsers":
+                retur.Add(addLine("UsRolId","false"));
+                retur.Add(addLine("UsRolName","false"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "RolUsers":
-                if (type==0)
-                {
                     retur.Add("RolUsers");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Name"));
-                }
-                else{
-                    retur.Add("UsRolId");
-                    retur.Add("UsRolName");
-                }
                 break;
             default:
                 break;
@@ -135,7 +148,7 @@
         </div>
 
         @*@Html.ActionLink("Assign a new work Center", "FacEdit", new { id= @Model.CharId,vpanel=1, wrem = 0, wass=1,assign=@VAssign()})*@
-        @Html.dataGrid(23,9,@Columns("RolUsers",0),@getData_RolUsers((List<TUsRol>)ViewBag.ListUserRol),@Controller("RolUsers"),@Columns("RolUsers",1),0,@parqsaction())
+        @Html.dataGrid(23,9,@Columns("RolUsers"),@getData_RolUsers((List<TUsRol>)ViewBag.ListUserRol),@Controller("RolUsers"),@Fields("RolUsers"),0,@parqsaction())
     </table>
 @*@await Html.PartialAsync("_pListaUserRol",(List<TUsRol>)ViewBag.ListUserRol)*@
 </div>

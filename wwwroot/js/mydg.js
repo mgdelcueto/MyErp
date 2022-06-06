@@ -1,6 +1,3 @@
-const { format } = require("path");
-const { hasUncaughtExceptionCaptureCallback } = require("process");
-
 function funcDropDown(_gridId)
 {
     document.getElementById(nameOf("myDropdown",_gridId)).classList.toggle("show");
@@ -8,13 +5,6 @@ function funcDropDown(_gridId)
 }
 function addRecord(controller,action,_Id=0,formid="",_parqs="")
 {
-    /*
-    alert(formid);
-    if (formid !=""){
-        const myForm = document.getElementById(formid); 
-        alert (myForm.action);
-    }
-    */
     const querystring = window.location.search;
     const params = new URLSearchParams(querystring);
     if (action!=""){
@@ -43,6 +33,22 @@ function rowSelected(_mxrow,_gridId)
     {
             try{
             ckBox=document.getElementById(nameOf(_nri.toString().trim(),_gridId));
+            if (ckBox.checked){
+                _nrsel=_nri;
+                break; }
+            }
+            catch{break;}
+    }
+    return _nrsel;
+}
+function erowSelected(_mxrow,_gridId)
+{
+    var _nrsel=0;
+    var _maxrows = parseInt(_mxrow);
+    for (var _nri=1;_nri<=_maxrows;_nri++)
+    {
+            try{
+            ckBox=document.getElementById(nameOf(_nri.toString().trim(),"e"+_gridId));
             if (ckBox.checked){
                 _nrsel=_nri;
                 break; }
@@ -83,6 +89,100 @@ function actionClick(controller,action,_maxrow,_gridId, _parqs="")//,filterExpre
         var url=window.location.href;
         window.location.href = url;
     }
+}
+function getController(path=window.location.pathname)
+{
+    //var path=window.location.pathname;
+    var abc=path.split("/");
+    var controller=abc[1];
+    var action=abc[2] || "index";
+    var ret = [controller,action];
+    return ret;
+}
+function getParams (url = window.location) {
+
+	// Create a params object
+	let params = {};
+
+	new URL(url).searchParams.forEach(function (val, key) {
+		if (params[key] !== undefined) {
+			if (!Array.isArray(params[key])) {
+				params[key] = [params[key]];
+			}
+			params[key].push(val);
+		} else {
+			params[key] = val;
+		}
+	});
+
+	return params;
+
+}
+function updateTable(controller,action,_maxrow,field,_ncol,_gridId,new_value,_parqs)
+{
+    const querystring = window.location.search;
+    const params = new URLSearchParams(querystring);
+    var purl=window.location.href;
+    var retCont=getController()[0];
+    var retAct=getController()[1];
+    var _parqs=encodeURIComponent(params)
+    var _nrsel=0;
+    _nrsel = parseInt(rowSelected(_maxrow,_gridId));
+    //var _value = document.getElementById(nameOf(_nrsel.toString().trim()+'-value-'+_ncol.toString(),_gridId)).value;
+    //var _texttofilter = document.getElementById(nameOf(_nrsel.toString().trim()+'-value-'+_ncol.toString(),_gridId)).value;
+    //alert(_value);
+    //alert(_texttofilter);
+    editLine(_maxrow,_gridId,0);
+
+    if (action!=""){
+    if (_nrsel>0)
+    {
+        //alert("hace algo");
+        var checkbox = document.getElementById(nameOf(_nrsel.toString(),_gridId));
+        checkbox.checked=false;
+        document.cookie = cookieName("rowselected",_gridId)+"=0"+";path=/";
+        document.cookie = cookieName("proselected",_gridId)+"=0"+";path=/";
+        _id = checkbox.value.toString();
+        if (_parqs==""){
+            //alert("con parametros");
+            var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
+            url2=url2+"?updField="+field+"&updValue="+new_value+"&"+params.toString()+"&retCont="+retCont+"&retAct="+retAct+"&_parqs="+_parqs;
+            //alert(url2);
+            window.location.href = url2;
+        }
+        else{
+            //alert("sin parametros");
+            var url3=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?"+_parqs+_id;
+            url3=url3+"&updField="+field+"&updValue="+new_value+"&"+params.toString()+"&retCont="+retCont+"&retAct="+retAct+"&_parqs="+_parqs;
+            //alert(url3);
+            window.location.href = url3;
+        }
+    }
+    }
+    else{
+        var url=window.location.href;
+        window.location.href = url;
+    }
+}
+function editLine(_maxrow,_gridId,_activate)//,filterExpression,sortExpression)
+{
+    var activate = parseInt(_activate);
+    var _nrsel=0;
+    _nrsel = parseInt(rowSelected(_maxrow,_gridId)); //La selecccion se produce en (f)
+    if (_nrsel>0)
+    {
+        var divf = document.getElementById(nameOf('dd_div_cof',_gridId+"-"+_nrsel.toString().trim()));
+        var dive = document.getElementById(nameOf('dd_div_coe',_gridId+"-"+_nrsel.toString().trim()));
+        if (activate ==1){
+            divf.hidden=true;//.setAttribute("hidden", "hidden");;//divf.style.visibility = 'hidden';
+            dive.hidden=false;//.removeAttribute("hidden"); //dive.style.visibility = 'visible';
+        }
+        else{
+            dive.hidden=true;//.setAttribute("hidden", "hidden");;//divf.style.visibility = 'hidden';
+            divf.hidden=false;//.removeAttribute("hidden"); //dive.style.visibility = 'visible';
+        }
+    }
+    //return;
 }
 function rowClick(_nr,controller,action,_gridId,model="")//,filterExpression,sortExpression)
 {
@@ -151,10 +251,10 @@ function uncheck_all_except(_nr,_mxrow,_gridId)
         }
         else {
             try{
-            ckBox=document.getElementById(nameOf(_nri.toString().trim(),_gridId));
+            var ckBox=document.getElementById(nameOf(_nri.toString().trim(),_gridId));
             if (ckBox.checked){
                 ckBox.checked=false;
-                var trRow=document.getElementById(nameOf('trRow'+(_nri.toString().trim()),_gridId));
+                var trRow = document.getElementById(nameOf('dd_div_cof',_gridId.toString().trim()+"-"+_nri.toString().trim()));
                 if (_nri%2==0 )
                 {trRow.className = "line-text-pri";}
                 else{trRow.className ="line-text-alt";}
@@ -165,40 +265,70 @@ function uncheck_all_except(_nr,_mxrow,_gridId)
         }
     }
 }
+function uncheck_all_editions(_mxrow,_gridId)
+{
+    var _maxrows = parseInt(_mxrow);
+    for (var _nri=1;_nri<=_maxrows;_nri++)
+    {
+            try{
+                ckBox=document.getElementById(nameOf(_nri.toString().trim(),"e"+_gridId));
+                ckBox.checked=false;
+                }
+            catch(error){
+                //alert(error);
+                break;}
+              
+            var divf = document.getElementById(nameOf('dd_div_cof',_gridId+"-"+_nri.toString().trim()));
+            var dive = document.getElementById(nameOf('dd_div_coe',_gridId+"-"+_nri.toString().trim()));
+            dive.hidden=true;//.setAttribute("hidden", "hidden");;//divf.style.visibility = 'hidden';
+            divf.hidden=false;//.removeAttribute("hidden"); //dive.style.visibility = 'visible';
+    }
+}
 function selectionchange(_nr,_mxrow,_gridId)
 {   
+   //hide edition tr and show fixed tr (unchecked)
+    editLine(_mxrow,_gridId,0);
+    uncheck_all_editions(_mxrow,_gridId);
+
     var _npag = parsenum(getCookie(cookieName("currentpage",_gridId)));
     var _maxrows = parseInt(_mxrow);
     var _nrow = parseInt(_nr);
     var checkbox = document.getElementById(nameOf(_nr.toString(),_gridId));
     var btnact = document.getElementById(nameOf("btn_dropdn",_gridId));
-    var _id = checkbox.value.toString();  //no usado de momento
+    var _id = checkbox.value.toString(); 
     var div = document.getElementById(nameOf('dd_div_btn',_gridId));
-
+    //var trRow = document.getElementById(nameOf('dd_div_cof',_gridId.toString().trim()+"-"+_nrow.toString().trim()));
+    var trRow = document.getElementById(nameOf('dd_div_cof',_gridId.toString().trim()+"-"+_nrow.toString().trim()));
     if (checkbox.checked){
         div.style.visibility = 'visible';
-        //uncheck_all_except(_nr,_mxrow);
-        document.getElementById(nameOf('trRow'+_nrow.toString().trim(),_gridId)).className = 'line-text-sel';
+        trRow.className = 'line-text-sel';    
         document.cookie = cookieName("rowselected",_gridId)+"="+_nrow.toString()+";path=/";
         document.cookie = cookieName("proselected",_gridId)+"="+_npag.toString()+";path=/";
-        //document.cookie = "ridselected="+_id.toString();
-        //////btnact.value=_id.toString();
     }
     else{
         div.style.visibility = 'hidden';
-        var trRow=document.getElementById(nameOf('trRow'+_nrow.toString().trim(),_gridId));
         if (_nrow%2==0 )
         {trRow.className = "line-text-pri";}
         else{trRow.className ="line-text-alt";}
-
         document.cookie = cookieName("rowselected",_gridId)+"=0"+";path=/";
         document.cookie = cookieName("proselected",_gridId)+"=0"+";path=/";
-        //document.cookie = "ridselected=0";
-        ////////btnact.value="0";
     }
     uncheck_all_except(_nr,_mxrow,_gridId);
-    //var url=window.location = window.location.href;//.split("?")[0];
-    //window.location.href = url;
+}
+function eselectionchange(_nr,_mxrow,_gridId)
+{   
+    //alert("selectionchanged");
+    //hide edition tr and show fixed tr (unchecked)
+    editLine(_mxrow,_gridId,0);
+    uncheck_all_except(0,_mxrow,_gridId);  //uncheck all
+    var trRow = document.getElementById(nameOf('dd_div_cof',_gridId.toString().trim()+"-"+_nr.toString().trim()));
+    var div = document.getElementById(nameOf('dd_div_btn',_gridId));
+    div.style.visibility = 'hidden';
+    if (_nrow%2==0 )
+    {trRow.className = "line-text-pri";}
+    else{trRow.className ="line-text-alt";}
+    document.cookie = cookieName("rowselected",_gridId)+"=0"+";path=/";
+    document.cookie = cookieName("proselected",_gridId)+"=0"+";path=/";
 
 }
 function prevPage(_current_page,_gridId)
@@ -314,7 +444,7 @@ function getCookie(cname) {
         }
     }
     return "";
-    }
+}
 function cookieName(_cookie,_gridId)
 {
     //var uId = document.getElementById(_gridId+'-'+'cntrl_id').value.Tostr();

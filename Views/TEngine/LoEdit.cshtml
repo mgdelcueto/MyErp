@@ -21,27 +21,39 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "MatLocal":
+                retur.Add(addLine("LoLoId","false"));
+                retur.Add(addLine("LoRefRe","false"));
+                retur.Add(addLine("LoRefDes","true"));
+                retur.Add(addLine("LoRefSt","false"));
+                retur.Add(addLine("LoRefUM","false"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "MatLocal":
-                if (type==0)
-                {
-
                     retur.Add("MatRoute");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Refer"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Stock"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UMed"));
-                }
-                else{
-                    retur.Add("LoLoId");
-                    retur.Add("LoRefRe");
-                    retur.Add("LoRefDes");
-                    retur.Add("LoRefSt");
-                    retur.Add("LoRefUM");
-                }
                 break;
             default:
                 break;
@@ -131,7 +143,7 @@ private int VAssign(){
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("MatInStorLoc") @Model.LocDescr</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(38,9,@Columns("MatLocal",0),@getData_MatLocal((List<VTMLocation>)ViewBag.ListLocMate),@Controller("MatLocal"),@Columns("MatLocal",1),Model.LocId)
+                @Html.dataGrid(38,9,@Columns("MatLocal"),@getData_MatLocal((List<VTMLocation>)ViewBag.ListLocMate),@Controller("MatLocal"),@Fields("MatLocal"),Model.LocId)
             </div>
         </table>
     </div>

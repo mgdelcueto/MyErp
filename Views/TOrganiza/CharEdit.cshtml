@@ -27,23 +27,36 @@
             break;
         }
         return retur;
+    }    
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
     }
-    List<string> Columns(string table,int type){
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "UserChar":
+                retur.Add(addLine("RcharId","false"));
+                retur.Add(addLine("RcharRolId","false"));
+                retur.Add(addLine("RcharPerName","false"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "UserChar":
-                if (type==0)
-                {
                     retur.Add("UserChar");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Id"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Name"));
-                }
-                else{
-                    retur.Add("RcharId");
-                    retur.Add("RcharRolId");
-                    retur.Add("RcharPerName");
-                }
                 break;
             default:
                 break;
@@ -148,7 +161,7 @@ private int VAssign(int mPanel){
         </div>
 
         @*@Html.ActionLink("Assign a new work Center", "FacEdit", new { id= @Model.CharId,vpanel=1, wrem = 0, wass=1,assign=@VAssign()})*@
-        @Html.dataGrid(22,9,@Columns("UserChar",0),@getData_UserChar((List<VTChartRol>)ViewBag.ListCharRol),@Controller("UserChar"),@Columns("UserChar",1),0,@parqsaction())
+        @Html.dataGrid(22,9,@Columns("UserChar"),@getData_UserChar((List<VTChartRol>)ViewBag.ListCharRol),@Controller("UserChar"),@Fields("UserChar"),0,@parqsaction())
     </table>
 @*@await Html.PartialAsync("_pListaChartRol",(List<VTChartRol>)ViewBag.ListCharRol)*@
 </div>

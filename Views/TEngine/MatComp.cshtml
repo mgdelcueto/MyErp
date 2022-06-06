@@ -22,13 +22,35 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "MatComp":
+                retur.Add(addLine("CoCoId","false"));
+                retur.Add(addLine("CoComRe","false"));
+                retur.Add(addLine("CoComDes","true"));
+                retur.Add(addLine("CoRefQt","false"));
+                retur.Add(addLine("CoRefUM","false"));
+                retur.Add(addLine("CoComQt","false"));
+                retur.Add(addLine("CoComUM","false"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "MatComp":
-                if (type==0)
-                {
                     retur.Add("MatComp");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Component"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Description"));
@@ -36,16 +58,6 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RefUM"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("CompQty"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("CompUM"));
-                }
-                else{
-                    retur.Add("CoCoId");
-                    retur.Add("CoComRe");
-                    retur.Add("CoComDes");
-                    retur.Add("CoRefQt");
-                    retur.Add("CoRefUM");
-                    retur.Add("CoComQt");
-                    retur.Add("CoComUM");
-                }
                 break;
             default:
                 break;
@@ -93,7 +105,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("ComponentsOf") @Model.MatDescr</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(27,9,@Columns("MatComp",0),@getData_MatComp((List<VTMComponent>)ViewBag.ListMatComp),@Controller("MatComp"),@Columns("MatComp",1),Model.MatId)
+                @Html.dataGrid(27,9,@Columns("MatComp"),@getData_MatComp((List<VTMComponent>)ViewBag.ListMatComp),@Controller("MatComp"),@Fields("MatComp"),Model.MatId)
             </div>
         </table>
         @*@Html.Partial("_pListMatComponents",(List<VTMComponent>)ViewBag.ListMatComp)*@

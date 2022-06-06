@@ -1075,8 +1075,34 @@ namespace MyErp.Controllers {
         }     
 
         [HttpGet]
-        public IActionResult Edit(int id, int panel, int move, int perid)//,string _sortExpression, string _filterExpression,int IdGrid) 
+        public IActionResult Edit(int id, int panel, int move, int perid,string updField,string updValue)//,string _sortExpression, string _filterExpression,int IdGrid) 
         {
+            if (updField!=null){
+                var mode = _dbContext.TPersons
+                    .SingleOrDefault(u => u.PerId.Equals(id));
+                try{
+                    bool update =true;
+                    switch (updField)
+                    {
+                        case "PerName":
+                            mode.PerName=updValue;
+                            break;
+                        case "PerName1":
+                            mode.PerName1=updValue;
+                            break;
+                        default:
+                            update = false;
+                            break;
+                    }
+                    if (update){
+                        _dbContext.TPersons.Update(mode);
+                        _dbContext.SaveChanges();
+                    }
+                    }
+                catch{}
+                return RedirectToAction("Index");
+            }
+            else{
             if (panel==0 ){panel=1;}
             ViewData["panel"]=panel;
             ////ViewData["IdGrid"]=uniqueId;
@@ -1133,6 +1159,7 @@ namespace MyErp.Controllers {
             catch(Exception ex){
                 string mensaje = ex.Message;
                 return View("Error");}    
+            }
         }    
         [HttpPost]
         public IActionResult Edit(TPerson person, string actionType) {

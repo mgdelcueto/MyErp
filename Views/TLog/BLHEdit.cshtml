@@ -57,28 +57,40 @@
         }
         return retur;
     }
-    List<string> Columns(string table,int type){
+    List<string> addLine(string field, string ledit){
+        List<string> retLin = new List<string>();
+        retLin.Add(field);
+        retLin.Add(ledit);
+        return retLin;
+    }
+    List<List<string>>  Fields(string table){
+        List<List<string>> retur = new List<List<string>>();
+        switch (table)
+        {
+            case "InputBLD":
+                retur.Add(addLine("InBLDId","false"));
+                retur.Add(addLine("InBLDMRefer","false"));
+                retur.Add(addLine("InBLDMDescr","true"));
+                retur.Add(addLine("InBLDQty","false"));
+                retur.Add(addLine("InBLDMatUnMed","false"));
+                retur.Add(addLine("InBLDUMRef","false"));
+                break;
+            default:
+                break;
+        }
+        return retur;
+    }
+    List<string> Columns(string table){
         List<string> retur = new List<string>();
         switch (table)
         {
             case "InputBLD":
-                if (type==0)
-                {
                     retur.Add("InputBLD");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Refer"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Qty"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UMed"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UM"));
-                }
-                else{
-                    retur.Add("InBLDId");
-                    retur.Add("InBLDMRefer");
-                    retur.Add("InBLDMDescr");
-                    retur.Add("InBLDQty");
-                    retur.Add("InBLDMatUnMed");
-                    retur.Add("InBLDUMRef");
-                }
                 break;
             default:
                 break;
@@ -135,7 +147,7 @@
         <div class="cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("BLDetail")</h3>
         </div>
-        @Html.dataGrid(43,9,@Columns("InputBLD",0),@getData_InputBLD((List<VTBLDet>)ViewBag.ListBLDet),@Controller("InputBLD",Model.InBLStatus),@Columns("InputBLD",1),Model.InBLId)
+        @Html.dataGrid(43,9,@Columns("InputBLD"),@getData_InputBLD((List<VTBLDet>)ViewBag.ListBLDet),@Controller("InputBLD",Model.InBLStatus),@Fields("InputBLD"),Model.InBLId)
     </table>
 }
 </div>
