@@ -533,7 +533,7 @@ namespace MyErp.Models
 
                 entity.Property(e => e.MatUnMed).HasMaxLength(25);
 
-                entity.Property(e => e.TcomQty).HasColumnName("TComQty");
+                entity.Property(e => e.TComQty).HasColumnName("TComQty");
             });
 
             modelBuilder.Entity<TExpOper>(entity =>

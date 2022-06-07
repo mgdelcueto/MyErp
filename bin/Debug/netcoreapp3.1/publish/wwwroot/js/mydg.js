@@ -61,6 +61,11 @@ function actionClick(controller,action,_maxrow,_gridId, _parqs="")//,filterExpre
 {
     const querystring = window.location.search;
     const params = new URLSearchParams(querystring);
+    var retCont=getController()[0];
+    var retAct=getController()[1];
+    var _rparqs=encodeURIComponent(params)
+    //alert (retCont+" "+controller);
+    //alert (retAct+" "+action);
     if (action!=""){
     var _nrsel=0;
     _nrsel = parseInt(rowSelected(_maxrow,_gridId));
@@ -75,12 +80,22 @@ function actionClick(controller,action,_maxrow,_gridId, _parqs="")//,filterExpre
         _id = checkbox.value.toString();
         if (_parqs==""){
             var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
-            url2=url2+"?"+params.toString();
+            if (retCont==controller){
+                url2=url2+"?"+params.toString();
+            }
+            else{
+                url2=url2+"?"+params.toString()+"&retCont="+retCont+"&retAct="+retAct+"&_parqs="+_rparqs;
+            }
             window.location.href = url2;
         }
         else{
-            var url3=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"?"+_parqs+_id;
-            url3=url3+"&"+params.toString();
+            var url3=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?"+_parqs+_id;
+            if (retCont==controller){
+                url3=url3+"&"+params.toString();
+            }
+            else{
+                url3=url3+"&"+params.toString()+"&retCont="+retCont+"&retAct="+retAct+"&_parqs="+_rparqs;
+            }
             window.location.href = url3;
         }
     }
@@ -122,7 +137,7 @@ function updateTable(controller,action,_maxrow,field,_ncol,_gridId,new_value,_pa
 {
     const querystring = window.location.search;
     const params = new URLSearchParams(querystring);
-    var purl=window.location.href;
+    //var purl=window.location.href;
     var retCont=getController()[0];
     var retAct=getController()[1];
     var _parqs=encodeURIComponent(params)
@@ -143,10 +158,10 @@ function updateTable(controller,action,_maxrow,field,_ncol,_gridId,new_value,_pa
         document.cookie = cookieName("rowselected",_gridId)+"=0"+";path=/";
         document.cookie = cookieName("proselected",_gridId)+"=0"+";path=/";
         _id = checkbox.value.toString();
-        if (_parqs==""){
+        if (_parqs==""){  //never
             //alert("con parametros");
             var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
-            url2=url2+"?updField="+field+"&updValue="+new_value+"&"+params.toString()+"&retCont="+retCont+"&retAct="+retAct+"&_parqs="+_parqs;
+            url2=url2+"?updField="+field+"&updValue="+new_value+"&"+params.toString()+"&retCont="+retCont+"&retAct="+retAct;
             //alert(url2);
             window.location.href = url2;
         }
@@ -188,18 +203,31 @@ function rowClick(_nr,controller,action,_gridId,model="")//,filterExpression,sor
 {
     const querystring = window.location.search;
     const params = new URLSearchParams(querystring);
+    var retCont=getController()[0];
+    var retAct=getController()[1];
+    var _rparqs=encodeURIComponent(params)
    if (action!=""){
     var _nrow = parseInt(_nr);
     var checkbox = document.getElementById(nameOf(_nr.toString(),_gridId));
     _id = checkbox.value.toString();
     if (model==""){
         var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
-        url2=url2+"?"+params.toString();
+        if (retCont==controller){
+            url2=url2+"?"+params.toString();
+        }
+        else{
+            url2=url2+"?"+params.toString()+"&retCont="+retCont+"&retAct="+retAct+"&_parqs="+_rparqs;
+        }
         window.location.href = url2;
     }
     else{
         var url22=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?"+model;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
-        url22=url22+"&"+params.toString();
+        if (retCont==controller){
+            url22=url22+"?"+params.toString();
+        }
+        else{
+            url22=url22+"?"+params.toString()+"&retCont="+retCont+"&retAct="+retAct+"&_parqs="+_rparqs;
+        }
         window.location.href = url22;    }
     }
     else{

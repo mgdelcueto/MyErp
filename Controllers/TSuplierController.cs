@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.Extensions.Configuration;
 using System.Data;
+using System.Web;
 
 namespace MyErp.Controllers {
     [Authorize(Roles="Supplier,Administrator")]
@@ -502,6 +503,39 @@ namespace MyErp.Controllers {
             return RedirectToAction("Edit",new{id=Pid,panel=3,move=0,prod=planning.PlanProdId});
 
         }     
+        private Dictionary<string, string> newParams(string parqs)
+        {
+            var ret = new Dictionary<string, string>();
+            try{
+            var _parqs = HttpUtility.ParseQueryString(parqs);
+            foreach (String s in _parqs.AllKeys)
+                {
+                    ret.Add(s,_parqs[s]);
+                }
+            }
+            catch(Exception ex){
+                string mensaje = ex.Message;
+            }
+            return ret;
+        }
+        private string _newParams(string parqs)
+        {
+            string ret ="";
+            try{
+            var _parqs = HttpUtility.ParseQueryString(parqs);
+            int cont=1;
+            foreach (String s in _parqs.AllKeys)
+                {
+                    ret+=s+"="+_parqs[s];
+                    if (cont<_parqs.AllKeys.Count()){ret+=",";}
+                    cont++;
+                }
+            }
+            catch(Exception ex){
+                string mensaje = ex.Message;
+            }
+            return ret;
+        }
 
         [HttpGet]
         public IActionResult PoEdit(int id,int suid,string updField,string updValue,string retCont,string retAct,string _parqs) {
@@ -527,9 +561,15 @@ namespace MyErp.Controllers {
                 catch(Exception ex){
                     string mensaje = ex.Message;
                 }
-                return RedirectToAction(retAct,retCont,new{parqs=_parqs});
+                return RedirectToAction(retAct,retCont,newParams(_parqs));//new{newParams(_parqs)});//new{parqs=_parqs});
             }
         else{
+            if (retCont!=null && retCont !="")
+            {
+                ViewData["RetCont"]=retCont;
+                ViewData["RetAct"]=retAct;
+                ViewData["_parqs"]=_parqs;
+            }
             try{
             var model = _dbContext.TSPorders
                 .SingleOrDefault(u => u.Spoid.Equals(id));
@@ -556,7 +596,7 @@ namespace MyErp.Controllers {
         }
 
         [HttpPost]
-        public IActionResult PoEdit(TSPorder porder, string actionType) {
+        public IActionResult PoEdit(TSPorder porder, string actionType,string retCont,string retAct,string _parqs) {
             int? Pid=porder.SposupId;
 
             var model = _dbContext.TSupliers
@@ -574,14 +614,31 @@ namespace MyErp.Controllers {
                     catch{}
                     }
             else {
-                 CreateViewBags(Pid,porder.SpocprodId);    
-                 return View(porder);
+                /*
+                 if (retCont!=null && retCont !="")
+                 {
+                    var xarams = newParams(_parqs);
+                    return RedirectToAction(retAct,retCont,xarams);//new{parqs=_parqs});
+                 }
+                 else
+                 {*/
+                     CreateViewBags(Pid,porder.SpocprodId);  
+                     return View(porder);
+                 //}
             }
             }
 
-            CreateViewBags(Pid,porder.SpocprodId);    
-            ViewData["panel"]=4;
-            return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=porder.SpocprodId});
+            if (retCont!=null && retCont !="")
+                {
+                    var xarams = newParams(_parqs);
+                    return RedirectToAction(retAct,retCont,xarams);//new{parqs=_parqs});
+                }
+            else
+                {
+                    CreateViewBags(Pid,porder.SpocprodId);    
+                ViewData["panel"]=4;
+                return RedirectToAction("Edit",new{id=Pid,panel=4,move=0,prod=porder.SpocprodId});
+                }
         }     
 
         [HttpGet]
@@ -616,7 +673,7 @@ namespace MyErp.Controllers {
             }
             catch{}
             */
-
+            try{
             var mode = _dbContext.TSupliers
                 .SingleOrDefault(u => u.SupId.Equals(id));
             string uniqueId=Request.Cookies["Grid-Suplier"].ToString().TrimStart().TrimEnd();
@@ -651,21 +708,24 @@ namespace MyErp.Controllers {
                 default:
                     break;
             }
-            var model = _dbContext.TSupliers
-                .SingleOrDefault(u => u.SupId.Equals(id));
 
-            string sName = model.SupRasoc+" " +model.SupNif;
-            ViewData["sName"]=sName;
-            ViewData["SupId"]=id;
             ViewData["Sort"]=sortExpression;
             ViewData["Filter"]=filterExpression;
+            }
+            catch{}
+            var model = _dbContext.TSupliers
+                .SingleOrDefault(u => u.SupId.Equals(id));
+            string sName = model.SupRasoc+" " +model.SupNif;
+            ViewData["SupId"]=id;
+            ViewData["sName"]=sName;
 
             CreateViewBags(id,prod);
             return View("Edit",model);
             }
             catch(Exception ex){
                 string mensaje = ex.Message;
-                return View("Error");}    
+                return View("Error");
+            }    
         }    
         [HttpPost]
         public IActionResult Edit(TSuplier suplier, string actionType,int? ProdId, int panel) {

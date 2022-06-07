@@ -2,6 +2,7 @@
 @using MyErp.Extensions;
 @using MyErp.Resources;
 @using MyErp.Models;
+@using System.Data;
 @inject LocService SharedLocalizer
 
 @model VCXplanning
@@ -196,7 +197,7 @@
                         CampoId = f.ExpComp,
                         Campo01 = f.MatRefer.ToString(),
                         Campo02 = f.MatDescr.ToString(),
-                        Campo03 = f.TcomQty.ToString(),
+                        Campo03 = f.TComQty.ToString(),
                         Campo04 = f.MatUnMed.ToString(),
                         Campo05 = "",
                         Campo06 = "", 
@@ -378,6 +379,25 @@
         catch{}
         return ret;
     }
+
+    string MaterData()
+    {
+        string ret = "";
+        try{
+            int id = Convert.ToInt32(ViewData["MatPO"].ToString());
+            var xdbContext = new MyErpDBContext();
+            var model_ = xdbContext.TMaterials
+                .SingleOrDefault(u => u.MatId.Equals(id));
+            List<TExpMater>  mode_=(List<TExpMater>)ViewBag.ListMatExp;
+            var myreg = mode_.Where(p => p.ExpComp.Equals(id)).ElementAt(0);
+            //var myreg=mode_.SingleOrDefault(u => u.ExpComp.Equals(id));
+            ret=model_.MatDescr+" " +@SharedLocalizer.GetLocalizedHtmlString("NeedsQty")+" "+myreg.TComQty.ToString()+" "+myreg.MatUnMed;
+            }
+        catch{}
+        return ret;
+    }
+
+
 }
 
 @using (Html.BeginForm()) {
@@ -459,7 +479,7 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("MatPOrders")</h3>   
         </div>
-        <h5 class="myh4">@SharedLocalizer.GetLocalizedHtmlString("MaterialPO") @WCentName()</h5>
+        <h5 class="myh4">@SharedLocalizer.GetLocalizedHtmlString("MaterialPO") @MaterData()</h5>
         @Html.dataGrid(43,12,@Columns("MatPO"),@getData_MatPO((List<TExpMatd>)ViewBag.ListMatPO),@Controller("MatPO"),@Fields("MatPO"),0,"",true,true,"",@sModel(),true)
 </div>
 

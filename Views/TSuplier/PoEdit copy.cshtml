@@ -5,6 +5,29 @@
 <div class="cont-titles">
 <h3>@SharedLocalizer.GetLocalizedHtmlString("EditPORecord")</h3>
 </div>
+@functions{
+    string getRetPar(int par)
+    {
+        string ret ="";
+        try{
+        switch(par){
+            case 1:
+                ret = Convert.ToString(ViewData["retCont"]);
+                break;
+            case 2:
+                ret = Convert.ToString(ViewData["retAct"]);
+                break;
+            case 3:
+                ret = Convert.ToString(ViewData["_parqs"]);
+                break;
+            default:
+                break;
+        }
+        }
+        catch{}
+        return ret;
+    }
+}
 @using (Html.BeginForm()) {
     <div class="div-edit">
     @Html.HiddenFor(p => p.Spoid)
@@ -13,6 +36,11 @@
     <table class="table-edit">
         <hr style="width:100%;text-align:left;margin-left:0">        
         <tr>
+            <td>
+                <input type="hidden" value=@getRetPar(1) name="retCont"/>
+                <input type="hidden" value=@getRetPar(2) name="retAct"/>
+                <input type="hidden" value=@getRetPar(3) name="_parqs"/>
+            </td>
             <td><input type="submit" class="dropbtn" value="Update"  name="actionType"/></td>
             <td><input type="submit" class="dropbtn" value="Cancel" name="actionType"/></td>
         </tr>

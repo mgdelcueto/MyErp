@@ -288,6 +288,7 @@ namespace MyErp.Controllers {
         [HttpGet]
         public IActionResult Capacity(int ? wcent,int? material, DateTime? F1, DateTime? F2,bool accStock, int panel, int panel1,string actionType,string parqs) {
             //decodifica _parqs y carga todos los pares key value 
+            /*
             try{
             var _parqs = HttpUtility.ParseQueryString(parqs);
             foreach (String s in _parqs.AllKeys)
@@ -323,6 +324,7 @@ namespace MyErp.Controllers {
             catch(Exception ex){
                 string mensaje = ex.Message;
             }
+            */
             if(wcent==null){wcent=0;}
             if(panel ==0 ){panel=1;}
             ViewData["panel"]=panel;

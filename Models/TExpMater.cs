@@ -7,8 +7,8 @@ namespace MyErp.Models
 {
     public partial class TExpMater
     {
-        public double? TcomQty { get; set; }
         public int? ExpComp { get; set; }
+        public double? TComQty { get; set; }
         public string MatRefer { get; set; }
         public string MatDescr { get; set; }
         public string MatUnMed { get; set; }
