@@ -273,7 +273,7 @@ public static class MyHtmlHelperExtensions {
             int curpag = Convert.ToInt32(CookiesReturn( "_"+uniqueId+"-"+"currentpage"));    
 
 
-            string quehayaqui=CookiesReturn("_1-filterby-2",false);
+            //string quehayaqui=CookiesReturn("_1-filterby-2",false);
 
             if (Idgrid>gridCount){
                 CookiesSet("gridcount",uniqueId);
@@ -722,8 +722,9 @@ public static class MyHtmlHelperExtensions {
                     tagtab.InnerHtml.AppendHtml(tagtr);  
 
     }
-    public static void insert_row(int pri,int _ncols, string Pct, Container c,TagBuilder tagtab,int nrow,string uniqueId,int row_selected,int pro_selected,int current_page,int rowspage,string _controller, string _actionEdit,string _parqs, List<List<string>>  fields , string model="")
+    public static void insert_row(int pri,int _ncols, string Pct, Container c,TagBuilder tagtab,int nrow,string uniqueId,int row_selected,int pro_selected,int current_page,int rowspage,string _controller, string _actionEdit,string _parqs, List<List<string>>  fields ,string model="")
     {               
+                    int editionmode=Convert.ToInt32(CookiesReturn("_"+uniqueId.Trim()+"-ineditionmode-"+nrow.ToString().Trim(),true));
                     string trfIdname="-dd_div_cof";
                     string treIdname="-dd_div_coe";
                     if (pri==1){}
@@ -736,7 +737,8 @@ public static class MyHtmlHelperExtensions {
                     //tagtr.MergeAttribute("hidden","hidden");
                     var tagtre = new TagBuilder($"tr"); 
                     tagtre.MergeAttribute("id","_"+uniqueId+"-"+nrow.ToString().Trim()+treIdname);
-                    tagtre.MergeAttribute("hidden","hidden");
+                    if (editionmode==1){tagtrx.MergeAttribute("hidden","hidden");}
+                    else{tagtre.MergeAttribute("hidden","hidden");}
                     if (pri==1){
                     //tagtr.MergeAttribute("id","_"+uniqueId+"-"+"trRow"+nrow.ToString().Trim());
                     if (nrow ==row_selected && pro_selected==current_page)
@@ -761,9 +763,12 @@ public static class MyHtmlHelperExtensions {
 
                     var tagtd0e = new TagBuilder($"td"); //<tr>
                     var tagcbxe = new TagBuilder($"input"); //<tr>
-                    tagcbxe.MergeAttribute("type","checkbox");
+        
+                    tagcbxe.Attributes.Add("class", $"dropbtn");
+        
+                    tagcbxe.MergeAttribute("type","button");//"checkbox");
                     tagcbxe.MergeAttribute("id","_e"+uniqueId+ "-"+nrow.ToString());
-                    tagcbxe.MergeAttribute("value",c.CampoId.ToString());
+                    tagcbxe.MergeAttribute("value","ok");//c.CampoId.ToString());
                     tagcbxe.MergeAttribute("onclick","eselectionchange("+nrow.ToString()+","+rowspage.ToString()+",'"+uniqueId+"')");
                     tagcbxe.Attributes.Add("width", Pct);
                     tagtd0e.InnerHtml.AppendHtml(tagcbxe);
@@ -847,13 +852,15 @@ public static class MyHtmlHelperExtensions {
                         tagtexfe_.MergeAttribute("onchange","updateTable('"+_controller+"','"+_actionEdit+"','"+rowspage.ToString()+"','"+fields[i][0]+"',"+i.ToString().Trim()+",'"+uniqueId+"',this.value,'"+_parqs+"')");
                         tagtexfe_.MergeAttribute("value", value);
                         tagtfe_.InnerHtml.AppendHtml(tagtexfe_);
-                        tagtre.InnerHtml.AppendHtml(tagtfe_);
 
 
                         var tagtd_ = new TagBuilder($"td"); //<tr>
                         tagtd_.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"','"+model.ToString()+"')");//,"+quote+filterExpression+quote +",'"+sortExpression+"')");
                         tagtd_.Attributes.Add("width", Pct);
                         tagtd_.InnerHtml.Append(value );
+
+                        if (fields[i][1]=="true"){tagtre.InnerHtml.AppendHtml(tagtfe_);}
+                        else{tagtre.InnerHtml.AppendHtml(tagtd_);}
                         tagtrx.InnerHtml.AppendHtml(tagtd_);
                     }
                     //tagdivcoe.InnerHtml.AppendHtml(tagtrf);  

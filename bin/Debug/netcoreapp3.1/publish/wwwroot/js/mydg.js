@@ -135,6 +135,7 @@ function getParams (url = window.location) {
 }
 function updateTable(controller,action,_maxrow,field,_ncol,_gridId,new_value,_parqs)
 {
+    //document.cookie = cookieName("proselected",_gridId)+"=0"+";path=/";
     const querystring = window.location.search;
     const params = new URLSearchParams(querystring);
     //var purl=window.location.href;
@@ -143,20 +144,27 @@ function updateTable(controller,action,_maxrow,field,_ncol,_gridId,new_value,_pa
     var _parqs=encodeURIComponent(params)
     var _nrsel=0;
     _nrsel = parseInt(rowSelected(_maxrow,_gridId));
+
+    document.cookie = cookieName("ineditionmode-"+_nrsel.toString().trim(),_gridId)+"=1"+";path=/";
     //var _value = document.getElementById(nameOf(_nrsel.toString().trim()+'-value-'+_ncol.toString(),_gridId)).value;
     //var _texttofilter = document.getElementById(nameOf(_nrsel.toString().trim()+'-value-'+_ncol.toString(),_gridId)).value;
     //alert(_value);
     //alert(_texttofilter);
-    editLine(_maxrow,_gridId,0);
+    
+    //22-06-07 intentamos que  no cierre la edicion al volver de actualizar
+    //desactivamos la linea de abajo
+    //editLine(_maxrow,_gridId,0);
 
     if (action!=""){
     if (_nrsel>0)
     {
-        //alert("hace algo");
+        //22-06-07 intentamos que  no cierre la edicion al volver de actualizar
+        //desactivamos las 4 lineas de abajo
         var checkbox = document.getElementById(nameOf(_nrsel.toString(),_gridId));
-        checkbox.checked=false;
-        document.cookie = cookieName("rowselected",_gridId)+"=0"+";path=/";
-        document.cookie = cookieName("proselected",_gridId)+"=0"+";path=/";
+        //checkbox.checked=false;
+        //document.cookie = cookieName("rowselected",_gridId)+"=0"+";path=/";
+        //document.cookie = cookieName("proselected",_gridId)+"=0"+";path=/";
+        
         _id = checkbox.value.toString();
         if (_parqs==""){  //never
             //alert("con parametros");
@@ -189,10 +197,12 @@ function editLine(_maxrow,_gridId,_activate)//,filterExpression,sortExpression)
         var divf = document.getElementById(nameOf('dd_div_cof',_gridId+"-"+_nrsel.toString().trim()));
         var dive = document.getElementById(nameOf('dd_div_coe',_gridId+"-"+_nrsel.toString().trim()));
         if (activate ==1){
+            document.cookie = cookieName("ineditionmode-"+_nrsel.toString().trim(),_gridId)+"=1"+";path=/";
             divf.hidden=true;//.setAttribute("hidden", "hidden");;//divf.style.visibility = 'hidden';
             dive.hidden=false;//.removeAttribute("hidden"); //dive.style.visibility = 'visible';
         }
         else{
+            document.cookie = cookieName("ineditionmode-"+_nrsel.toString().trim(),_gridId)+"=0"+";path=/";
             dive.hidden=true;//.setAttribute("hidden", "hidden");;//divf.style.visibility = 'hidden';
             divf.hidden=false;//.removeAttribute("hidden"); //dive.style.visibility = 'visible';
         }
@@ -345,6 +355,8 @@ function selectionchange(_nr,_mxrow,_gridId)
 }
 function eselectionchange(_nr,_mxrow,_gridId)
 {   
+    document.cookie = cookieName("ineditionmode-"+_nr.toString().trim(),_gridId)+"=0"+";path=/";
+    //22-06-07 ahora llaga por click en boton ok sobre el checkbox
     //alert("selectionchanged");
     //hide edition tr and show fixed tr (unchecked)
     editLine(_mxrow,_gridId,0);

@@ -738,7 +738,9 @@ namespace MyErp.Controllers {
                 _dbContext.TSupliers.Update(suplier);
                 _dbContext.SaveChanges();
             }
-            catch{}
+            catch(Exception ex){
+                string mensaje = ex.Message;
+            }
             }
             else{
 
