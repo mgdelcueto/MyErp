@@ -12,5 +12,6 @@ namespace MyErp.Models
         public string MatRefer { get; set; }
         public string MatDescr { get; set; }
         public string MatUnMed { get; set; }
+        public double? TCom { get; set; }
     }
 }

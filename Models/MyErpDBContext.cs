@@ -527,6 +527,8 @@ namespace MyErp.Models
 
                 entity.ToTable("T_ExpMater");
 
+                entity.Property(e => e.ExpComp).HasMaxLength(125);
+
                 entity.Property(e => e.MatDescr).HasMaxLength(225);
 
                 entity.Property(e => e.MatRefer).HasMaxLength(125);
@@ -534,6 +536,8 @@ namespace MyErp.Models
                 entity.Property(e => e.MatUnMed).HasMaxLength(25);
 
                 entity.Property(e => e.TComQty).HasColumnName("TComQty");
+
+                entity.Property(e => e.TCom).HasColumnName("TCom");
             });
 
             modelBuilder.Entity<TExpOper>(entity =>
@@ -659,6 +663,10 @@ namespace MyErp.Models
                 entity.Property(e => e.SupRaSoc)
                     .HasMaxLength(225)
                     .HasColumnName("SupRaSoc");
+
+                entity.Property(e => e.SPoPcRequ)
+                    .HasMaxLength(225)
+                    .HasColumnName("SPoPcRequ");
             });
 
 

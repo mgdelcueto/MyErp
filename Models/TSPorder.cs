@@ -21,10 +21,10 @@ namespace MyErp.Models
 
          [Required,Range(0, int.MaxValue, ErrorMessage = "Enter External Reference")]
         [Display(Name="Reference Ext")]
-        public int? SporeferEx { get; set; }
+        public int? SporeferEx  { get; set; }
 
         [Display(Name="Product")]
-        public int? SpocprodId { get; set; }
+        public int? SpocprodId  { get; set; }
 
         [Required,StringLength(125)]
         [Display(Name="Purchase Order")]

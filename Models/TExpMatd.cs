@@ -21,5 +21,6 @@ namespace MyErp.Models
 	    public double? SPoPcRep {get;set;}
 	    public int? SupId {get;set;}
 	    public string SupRaSoc {get;set;}
+	    public double? SPoPcRequ {get;set;}
     }
 }

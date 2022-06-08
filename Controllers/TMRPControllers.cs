@@ -89,18 +89,23 @@ namespace MyErp.Controllers {
                     _dbContext.Database.ExecuteSqlRaw("Xi_Explosion {0},{1},{2}", table,pF1,pF2);
                 }
                 var sqlo = "SELECT * FROM [Operx_"+Table+"] ORDER BY WCDescr";
-                var sqlm = "SELECT * FROM [Matex_"+Table+"] ORDER BY MatDescr";
+                //var sqlm = "SELECT * FROM [Matex_"+Table+"] ORDER BY MatDescr";
+                var sqlm = "SELECT ExpComp,TComQty,MatRefer,MatDescr,MatUnMed,TCom  FROM [Matex_"+Table+"] as m left join (select SPOCProdId, sum(SpoPcRep) as TCom  from T_S_POrder where SPOStatus =1 group by SPOCProdId) as p on m.ExpComp = p.SPOCProdId ORDER BY MatDescr";
                 var sqlw = "SELECT * FROM [Operw_"+Table+"] WHERE RouWCId = "+wcent.ToString()+" ORDER BY MatRefer,RouFase";
-                var sqlx ="select expcomp,MatRefer,MatDescr, TComQty,MatUnMed,case when SpoId is null then 0 else spoid end as SpoId,case when SPoSupId is null then 0 else SPOSupId end as SPoSupId,case when SPOReferEx is null then 0 else  SPOReferEx end as SPoReferEx , case when SPOPO is null then 'No_PO' else SPOPO end as SPOPO ,case when SPOPrice is null then 0 else SPOPrice end as SPoPrice ,case when SPoCurcy is null then 'No_Curr' else SpoCurcy end as SPoCurcy ,case when SPoPcRep is null then 0 else SPoPcRep end as SPoPcRep ,case when SupId is null then 0 else SupId end as SupId,case when SupRaSoc is null then 'No_Suplier' else SupRaSoc end as SupRaSoc from [Matex_"+Table+"] as m left join (select * from T_S_POrder where SPOStatus =1) as po on m.expcomp = po.spocprodid left join T_Suplier as s on po.SPOSupId = s.SupId  where expcomp ="+material.ToString();
+                //var sqlx ="select expcomp,MatRefer,MatDescr, TComQty,MatUnMed,case when SpoId is null then 0 else spoid end as SpoId,case when SPoSupId is null then 0 else SPOSupId end as SPoSupId,case when SPOReferEx is null then 0 else  SPOReferEx end as SPoReferEx , case when SPOPO is null then 'No_PO' else SPOPO end as SPOPO ,case when SPOPrice is null then 0 else SPOPrice end as SPoPrice ,case when SPoCurcy is null then 'No_Curr' else SpoCurcy end as SPoCurcy ,case when SPoPcRep is null then 0 else SPoPcRep end as SPoPcRep ,case when SupId is null then 0 else SupId end as SupId,case when SupRaSoc is null then 'No_Suplier' else SupRaSoc end as SupRaSoc from [Matex_"+Table+"] as m left join (select * from T_S_POrder where SPOStatus =1) as po on m.expcomp = po.spocprodid left join T_Suplier as s on po.SPOSupId = s.SupId  where expcomp ="+material.ToString();
+                var sqlx ="select expcomp,MatRefer,MatDescr, TComQty,MatUnMed,case when SpoId is null then 0 else spoid end as SpoId,case when SPoSupId is null then 0 else SPOSupId end as SPoSupId,case when SPOReferEx is null then 0 else  SPOReferEx end as SPoReferEx , case when SPOPO is null then 'No_PO' else SPOPO end as SPOPO ,case when SPOPrice is null then 0 else SPOPrice end as SPoPrice ,case when SPoCurcy is null then 'No_Curr' else SpoCurcy end as SPoCurcy ,case when SPoPcRep is null then 0 else SPoPcRep end as SPoPcRep ,case when SupId is null then 0 else SupId end as SupId,case when SupRaSoc is null then 'No_Suplier' else SupRaSoc end as SupRaSoc ,case when SPoPcRep is null then 0 else SPoPcRep*TComQty end as SPoPcRequ from [Matex_"+Table+"]  as m left join (select * from T_S_POrder where SPOStatus =1) as po on m.expcomp = po.spocprodid left join T_Suplier as s on po.SPOSupId = s.SupId  where expcomp ="+material.ToString();                
+                var sqlt ="select expcomp,MatRefer,MatDescr, TComQty,MatUnMed,case when SpoId is null then 0 else spoid end as SpoId,case when SPoSupId is null then 0 else SPOSupId end as SPoSupId,case when SPOReferEx is null then 0 else  SPOReferEx end as SPoReferEx , case when SPOPO is null then 'No_PO' else SPOPO end as SPOPO ,case when SPOPrice is null then 0 else SPOPrice end as SPoPrice ,case when SPoCurcy is null then 'No_Curr' else SpoCurcy end as SPoCurcy ,case when SPoPcRep is null then 0 else SPoPcRep end as SPoPcRep ,case when SupId is null then 0 else SupId end as SupId,case when SupRaSoc is null then 'No_Suplier' else SupRaSoc end as SupRaSoc ,case when SPoPcRep is null then 0 else SPoPcRep*TComQty end as SPoPcRequ from [Matex_"+Table+"]  as m left join (select * from T_S_POrder where SPOStatus =1) as po on m.expcomp = po.spocprodid left join T_Suplier as s on po.SPOSupId = s.SupId ";                
                 var explosiop = _dbContext.TExpOpers.FromSqlRaw(sqlo).ToList();
                 var explosiom = _dbContext.TExpMaters.FromSqlRaw(sqlm).ToList();
                 var explosiow = _dbContext.TExpOperds.FromSqlRaw(sqlw).ToList();
                 var explosiox = _dbContext.TExpMatds.FromSqlRaw(sqlx).ToList();
+                var explosiot = _dbContext.TExpMatds.FromSqlRaw(sqlt).ToList();
                 _dbContext.Database.ExecuteSqlRaw("Xz_Explosion {0}", table);
                 ViewBag.ListMatExp=explosiom; //querybo;
                 ViewBag.ListOpeExp=explosiop; //querybo;
                 ViewBag.ListOpeDet=explosiow; //querybo;
                 ViewBag.ListMatPO=explosiox;
+                ViewBag.ListMatPOT=explosiot;
                  
         }
         private void CreateVB_LCP(DateTime? F1, DateTime? F2)
@@ -358,6 +363,51 @@ namespace MyErp.Controllers {
                 return View("Error");}
             
         }
+        private void  ValidateReqs(DateTime? F1,DateTime? F2,bool accStock)
+        {
+                //graba Planning data por proveedor,po, material, cantidad
+                //actualiza material stock Location en transito con lo que lo 
+                //tendra en cuenta en el proximo calculo MRP
+                CreateVB_cMRP(F1,F2,accStock);  
+                List<TExpMatd> mode_ = (List<TExpMatd>) ViewBag.ListMatPOT;
+                foreach (TExpMatd rec in mode_)
+                {
+                    int ? _idmat= rec.expcomp;
+                    double? qtyreq=rec.SPoPcRequ;
+                    int? _idSup = rec.SupId;
+                    int? _idPo=rec.SPoId;
+                    //SpocprodId SporeferEx SposupId 
+                    var qpo = (from po in _dbContext.TSPorders where po.SpocprodId == _idmat 
+                                && po.SposupId==_idSup
+                                select po.SporeferEx).ToList();
+                    int? _IdRe = qpo[0];
+                    try{
+                        TSPlanning modpl = new TSPlanning();
+                            modpl.PlanSupId=_idSup; 
+                            modpl.PlanProdId=_IdRe;
+                            modpl.PlanDateFrom=F1;
+                            modpl.PlanDateTo=F2;
+                            modpl.PlanQty=qtyreq;
+                            modpl.PlanFirmSt="PLAN";
+                        _dbContext.TSPlannings.Add(modpl); 
+                        _dbContext.SaveChanges();
+                    }
+                    catch{}
+                    try{
+                        var query = (from ml in _dbContext.TMLocations
+                            join lo in _dbContext.TLocations on ml.MLocLodId  equals lo.LocId
+                            where lo.LocType=="TRAN" && ml.MLocMatId==_idmat
+                            select ml.MLocId ).ToList();
+                        int _locId=query[0];
+                        var modlo = _dbContext.TMLocations
+                            .SingleOrDefault(u => u.MLocId.Equals(_locId));
+                            modlo.MLocStock+=qtyreq;
+                        _dbContext.TMLocations.Update(modlo);
+                        _dbContext.SaveChanges();
+                    }
+                    catch{}
+                }
+        }
 
         [HttpPost]
         public IActionResult Capacity(VCXplanning model,int panel, int panel1,string actionType) {
@@ -382,6 +432,12 @@ namespace MyErp.Controllers {
             else {panel1=1;} //solo valida en panel 1
             ViewData["panel1"]=panel1;
             ////var dbContext = new MyErpDBContext();
+            if (actionType=="Validate"){
+                //graba Planning data por proveedor,po, material, cantidad
+                //actualiza material stock Location en transito con lo que lo 
+                //tendra en cuenta en el proximo calculo MRP
+                ValidateReqs(F1,F2,accStock);
+            }
             try{
                 CreateVB_LCP(F1,F2);
                 CreateVB_cMRP(F1,F2,accStock);  //ListCustPlan

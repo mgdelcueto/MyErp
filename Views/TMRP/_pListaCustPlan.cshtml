@@ -73,6 +73,7 @@
                 retur.Add(addLine("MatDescr","true"));
                 retur.Add(addLine("TcomQty","false"));
                 retur.Add(addLine("MatUnMed","false"));
+                retur.Add(addLine("TCom","false"));
                 break;
             case "WCCap":
                 retur.Add(addLine("RouWcId","false"));
@@ -101,6 +102,7 @@
                 retur.Add(addLine("matdescr","false"));
                 retur.Add(addLine("SPOPO","false"));
                 retur.Add(addLine("SpoPcRep","true"));
+                retur.Add(addLine("SPoPcRequ","false"));
                 break;
             default:
                 break;
@@ -127,6 +129,7 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatDescr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("TcomQty"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatUnMed"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("TCom"));
                 break;
             case "WCCap":
                     retur.Add("WCCap");
@@ -156,6 +159,7 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("matdescr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SPOPO"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SPoPcRep"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SPoPcRequ"));
                 break;
             default:
                 break;
@@ -199,7 +203,7 @@
                         Campo02 = f.MatDescr.ToString(),
                         Campo03 = f.TComQty.ToString(),
                         Campo04 = f.MatUnMed.ToString(),
-                        Campo05 = "",
+                        Campo05 = f.TCom.ToString(),
                         Campo06 = "", 
                         Campo07 = "",
                         Campo08 = "",
@@ -279,7 +283,7 @@
                         Campo04 = f.matdescr.ToString(),
                         Campo05 = f.SPOPO.ToString(),
                         Campo06 = f.SPoPcRep.ToString(),
-                        Campo07 = "",
+                        Campo07 = f.SPoPcRequ.ToString(),
                         Campo08 = "",
                         Campo09 = "",
                         Campo10 = "",
@@ -293,6 +297,18 @@
         }
 
 
+    string isVisibleReq()
+    {
+        string ret = "invisible";
+        try{
+            List<TExpMater>  mode_=(List<TExpMater>)ViewBag.ListMatExp;
+            var maxTCo = mode_.Max(p => p.TCom);
+            var minTCo = mode_.Min(p => p.TCom);
+            if (maxTCo==1 && minTCo==1){ret="visible";}
+            }
+        catch{}
+        return ret;
+    }
 
     string isVisible(int panel){
         string retcol="";
@@ -452,6 +468,13 @@
 
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("MaterialRequirement")</h3>   
+        </div>
+        <div class = "@isVisibleReq()">
+            <table class="table-edit">
+                 <tr>
+                    <td><input type="submit" class="dropbtn" value="Validate"  name="actionType"/></td>
+                </tr>
+            </table>
         </div>
         @Html.dataGrid(40,12,@Columns("MatReq"),@getData_MatReq((List<TExpMater>)ViewBag.ListMatExp),@Controller("MatReq"),@Fields("MatReq"),0)
 </div>
