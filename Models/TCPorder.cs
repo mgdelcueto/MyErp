@@ -12,34 +12,34 @@ namespace MyErp.Models
         public int? CpocustId { get; set; }
         public int? CpocplantId { get; set; }
 
-        [Display(Name = "My PO Date")]
+        [Display(Name = "PODate")]
         [Required,DataType(DataType.Date)]         
         public DateTime? Cpodate { get; set; }
 
-        [Display(Name = "My Status")]
+        [Display(Name = "Status")]
         [Required,StringLength(25)]
         public string Cpostatus { get; set; }
 
-        [Display(Name = "My Refer Ext")]
+        [Display(Name = "RefExt")]
         [Required,StringLength(125)]
         public string CporeferEx { get; set; }
 
-        [Display(Name = "My Description")]
+        [Display(Name = "Descr")]
         [Required,StringLength(225)]
         public string CpodescEx { get; set; }
 
         [Range(0, int.MaxValue)]
         public int? CpocprodId { get; set; }
 
-        [Display(Name = "My PO")]
+        [Display(Name = "PO")]
         [Required,StringLength(125)]
         public string Cpopo { get; set; }
 
-        [Display(Name = "My Price")]
+        [Display(Name = "Price")]
         [Required,Range(0, Double.MaxValue, ErrorMessage = "Enter valid Price (>0 )")]
         public double? Cpoprice { get; set; }
 
-        [Display(Name = "My Currency")]
+        [Display(Name = "Curcy")]
         [Required,StringLength(25)]
 
         public string Cpocurcy { get; set; }

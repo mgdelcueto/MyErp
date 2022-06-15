@@ -35,6 +35,8 @@
                 retur.Add(addLine("LoLocCode","false"));
                 retur.Add(addLine("LoLocDescr","true"));
                 retur.Add(addLine("LoRefSt","false"));
+                retur.Add(addLine("LoRefStr","false"));
+                retur.Add(addLine("LoRefStx","false"));
                 retur.Add(addLine("LoRefUM","false"));
                 break;
             default:
@@ -51,6 +53,8 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Stock"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("StockR"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("StockX"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("UMed"));
                 break;
             default:
@@ -68,9 +72,9 @@
                         Campo01 = f.LoLocCode.ToString(),
                         Campo02 = f.LoLocDescr.ToString(),
                         Campo03 = f.LoRefSt.ToString(),
-                        Campo04 = f.LoRefUM.ToString(),
-                        Campo05 = "",
-                        Campo06 = "",
+                        Campo04 = f.LoRefStr.ToString(),
+                        Campo05 = f.LoRefStx.ToString(),
+                        Campo06 = f.LoRefUM.ToString(),
                         Campo07 = "",
                         Campo08 = "",
                         Campo09 = "",

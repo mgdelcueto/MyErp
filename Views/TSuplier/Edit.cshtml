@@ -90,9 +90,9 @@
                     retur.Add("Product");
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Reference"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Descriptio"));
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date Creation"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DateCreation"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Status"));
-                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Date Status"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DateStatus"));
                 break;
             case "SPlan":
                     retur.Add("SPlan");
@@ -331,7 +331,7 @@
         <input id="panel" name="panel" type="hidden" value="4">
         <table class="table-edit" border="1">
             <div class="cont-titles">
-                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("SupPlanningData")</h3>
+                <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("SupOrdergData")</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
                 @Html.dataGrid(26,9,@Columns("SPO"),@getData_SPO((List<VTSPorder>)ViewBag.listSpo),@Controller("SPO"),@Fields("SPO"),Model.SupId)

@@ -10,28 +10,28 @@ namespace MyErp.Models
     {
         public int CplanId { get; set; }
 
-        [Display(Name = "My Plant")]
+        [Display(Name = "Plant")]
         public int? CplanCplantId { get; set; }
         public int? CplanCustId { get; set; }
 
-        [Display(Name = "My Product")]
+        [Display(Name = "RefInt")]
         [Required(ErrorMessage="Product is required"),Range(1,int.MaxValue,ErrorMessage="Product is reuqired")]
         public int? CplanCprodId { get; set; }
         public int? CplanCmatId { get; set; }
 
-        [Display(Name = "My Date From")]
+        [Display(Name = "DateFrom")]
         [Required,DataType(DataType.Date)]         
         public DateTime? CplanDateFrom { get; set; }
 
-        [Display(Name = "My Date To")]
+        [Display(Name = "DateTo")]
         [Required,DataType(DataType.Date)]         
         public DateTime? CplanDateTo { get; set; }
 
-        [Display(Name = "My Quantity to send")]
+        [Display(Name = "SendQty")]
         [Required,Range(0, Double.MaxValue, ErrorMessage = "Enter valid Quantity (>0 )")]
         public double? CplanQty { get; set; }
 
-        [Display(Name = "My Firm Status")]
+        [Display(Name = "FirmStat")]
         [Required,StringLength(55)]
         public string CplanFirmSt { get; set; }
 

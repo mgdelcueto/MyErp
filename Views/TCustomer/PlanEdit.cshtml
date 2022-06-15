@@ -98,7 +98,10 @@
         </tr>        
         <tr>
             <td>@Html.LabelFor(p => p.CplanFirmSt,new { @class = "norm-lab-text",})</td>
-            <td>@Html.EditorFor(p => p.CplanFirmSt, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:150px" } })</td>
+            <td class="norm-text">
+               @Html.DropDownListFor(p => p.CplanFirmSt,
+               new SelectList(DataSource.GetCPlanStatus(), "Code", "Name"),new { @class = "norm-tb-text" })
+            </td>
             <td>@Html.ValidationMessageFor(p => p.CplanFirmSt)</td>
         </tr>        
         </table>

@@ -14,6 +14,8 @@ namespace MyErp.Models
         public string LoRefRe { get; set; }
         public string LoRefDes { get; set; }
         public double? LoRefSt { get; set; }
+        public double? LoRefStr { get; set; }
+        public double? LoRefStx { get; set; }
         public string LoRefUM { get; set; }
     }
 }

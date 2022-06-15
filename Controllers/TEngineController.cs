@@ -281,9 +281,8 @@ namespace MyErp.Controllers {
             where pl.MLocMatId ==Coid 
             select new VTMLocation { LoLoId=pl.MLocId ,LoRefRe = p.MatRefer ,
             LoRefDes=p.MatDescr ,LoRefUM = p.MatUnMed,
-            LoRefSt=pl.MLocStock ,   LoRefId=p.MatId,
-            LoLocCode=q.LocCode,LoLocDescr=q.LocDescr
-            }).ToList();
+            LoRefSt=pl.MLocStock , LoRefStr=pl.RLocStock, LoRefStx=pl.XLocStock ,
+            LoRefId=p.MatId, LoLocCode=q.LocCode,LoLocDescr=q.LocDescr}).ToList();
             ViewBag.ListMatLoca=querylom;
 
             var querylomx =(from pl in _dbContext.TMLocations 

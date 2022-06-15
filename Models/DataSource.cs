@@ -8,6 +8,7 @@ namespace MyErp.Models {
     public class DataSource {
         
         public static IList<Country> Countries { get; }
+        public static IList<Incoterm> Incoterms { get; }
         public static IList<Currency> Currencies { get; }
         public static IList<MatClass> MatClasses { get; }
         public static IList<MatClass> MatClassesL { get; }
@@ -17,6 +18,7 @@ namespace MyErp.Models {
         public static IList<AppRol> AppRols { get; }
         public static IList<WDay> WDays { get; }
         public static IList<SPOStat> SPOStatus { get; }
+        public static IList<CPlanStat> CPlanStatus { get; }
         static DataSource() {
             Countries = new List<Country>();
             Countries.Add(new Country("ES", "Spain"));
@@ -25,6 +27,19 @@ namespace MyErp.Models {
             Countries.Add(new Country("CAN", "Canada"));
             Countries.Add(new Country("CHN", "China"));
             Countries.Add(new Country("IND", "India"));
+
+            Incoterms = new List<Incoterm>();
+            Incoterms.Add(new Incoterm("EXW", "Ex Works"));
+            Incoterms.Add(new Incoterm("FAS", "Free alongside ship"));            
+            Incoterms.Add(new Incoterm("FOB", "Free on board"));
+            Incoterms.Add(new Incoterm("FCA", "Free carrier"));
+            Incoterms.Add(new Incoterm("CFR", "Cost and freight"));
+            Incoterms.Add(new Incoterm("CIF", "Cost insurance and freight"));
+            Incoterms.Add(new Incoterm("CPT", "Carriage paid to"));
+            Incoterms.Add(new Incoterm("CIP", "Carriage and insurance paid"));
+            Incoterms.Add(new Incoterm("DPU", "Delivered at Place and Unloaded"));
+            Incoterms.Add(new Incoterm("DAP", "Delivered At Place"));
+            Incoterms.Add(new Incoterm("DDP", "Delivered Duty Paid"));
 
             Currencies = new List<Currency>();
             Currencies.Add(new Currency("EUR", "Euro"));
@@ -88,11 +103,22 @@ namespace MyErp.Models {
             SPOStatus.Add(new SPOStat(1, "Active"));
             SPOStatus.Add(new SPOStat(2, "Revised"));
             SPOStatus.Add(new SPOStat(3, "OnStudy"));
+
+            CPlanStatus = new List<CPlanStat>();
+            CPlanStatus.Add(new CPlanStat("1", "Prevision"));
+            CPlanStatus.Add(new CPlanStat("2", "Firm"));
+            CPlanStatus.Add(new CPlanStat("3", "Updated"));
+
             }
 
 
         public static IList<Country> GetCountry() {
             var result = Countries;
+            //result.ForEach(p => p.Type = _productTypes[p.TypeID]);
+            return result;
+        }
+        public static IList<Incoterm> GetIncoterm() {
+            var result = Incoterms;
             //result.ForEach(p => p.Type = _productTypes[p.TypeID]);
             return result;
         }
@@ -148,6 +174,12 @@ namespace MyErp.Models {
 
         public static IList<SPOStat> GetSPOStatus() {
             var result = SPOStatus;
+            //result.ForEach(p => p.Type = _productTypes[p.TypeID]);
+            return result;
+        }
+
+        public static IList<CPlanStat> GetCPlanStatus() {
+            var result = CPlanStatus;
             //result.ForEach(p => p.Type = _productTypes[p.TypeID]);
             return result;
         }

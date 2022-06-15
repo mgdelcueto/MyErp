@@ -149,7 +149,7 @@ namespace MyErp.Controllers {
                         on p.CprodMatInt equals mat.MatId
                         orderby mat.MatDescr
                         where p.CprodCustId==id //&& p.CprodCplantId==plant
-                        && !_dbContext.TCPorders.Any(x => x.CpocprodId == p.CprodMatInt && x.CpocplantId == plant)
+                        //&& !_dbContext.TCPorders.Any(x => x.CpocprodId == p.CprodMatInt && x.CpocplantId == plant)
                         //p.CprodId not in ( from or in _dbContext.TCPorders select CpocprodId)
                         select new {mat.MatId ,mat.MatDescr};
                         
@@ -235,7 +235,7 @@ namespace MyErp.Controllers {
             var queryran1 = (from mat in _dbContext.TMaterials
                         orderby mat.MatDescr
                         where mat.MatClass=="FG"
-                        && !_dbContext.TCCproducts.Any(x => x.CprodMatInt == mat.MatId && x.CprodCustId==id)
+                        //&& !_dbContext.TCCproducts.Any(x => x.CprodMatInt == mat.MatId && x.CprodCustId==id)
                         select new TMaterial{MatId=mat.MatId,MatDescr=mat.MatDescr} ).ToList();
 
             var queryran0 = ( from p in _dbContext.TMaterials  

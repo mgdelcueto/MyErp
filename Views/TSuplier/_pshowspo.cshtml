@@ -39,6 +39,40 @@
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.Spocurcy)</td>
         <tr>        
+        <tr>
+            <td>@Html.LabelFor(p => p.Spoincoterm,new { @class = "norm-lab-text" })</td>
+            <td>
+               @Html.DropDownListFor(p => p.Spoincoterm,
+               new SelectList(DataSource.GetIncoterm(), "Code", "Name"),new { @class = "norm-tb-text" })
+            </td>
+        </tr>        
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.Spoincoterm)</td>
+            <td></td>
+            <td></td>
+        <tr>        
+
+
+        <tr>
+            <td>@Html.LabelFor(p => p.Spodelay,new { @class = "norm-lab-text" })</td>
+            <td>@Html.EditorFor(p => p.Spodelay, new { htmlAttributes = new { @class = "norm-tb-num", @style = "width:90px" } })</td>
+            <td>@Html.LabelFor(p => p.Spodelayunit,new { @class = "norm-lab-text" })</td>
+            <td>
+               @Html.DropDownListFor(p => p.Spodelayunit,
+               new SelectList(DataSource.GetTimeUnits(), "Code", "Name"),new { @class = "norm-tb-text" })
+            </td>
+        </tr>        
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.Spodelay)</td>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.Spodelayunit)</td>
+        <tr>        
+
+
+
+
+
+
         </tr>
         <tr>
             <td>@Html.LabelFor(p => p.Spostatus,new { @class = "norm-lab-text",})</td>

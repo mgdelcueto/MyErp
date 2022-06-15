@@ -4,7 +4,7 @@
 @using System.Collections.Generic
 @inject LocService SharedLocalizer
 @{
-    ViewData["Title"] = "Sales Area";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("SalesArea");
 }
 @functions {
     string [] Controller(){
@@ -41,12 +41,12 @@
         List<string> retur = new List<string>();
         switch(table){
             case "Customer":
-                retur.Add("Personal");
-                retur.Add("NIF");
-                retur.Add("Codigo");
-                retur.Add("Razon Social");
-                retur.Add("Ciudad");
-                retur.Add("Pais");
+                retur.Add("Customer");
+                retur.Add(@SharedLocalizer.GetLocalizedHtmlString("NIF"));
+                retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
+                retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RaSoc"));
+                retur.Add(@SharedLocalizer.GetLocalizedHtmlString("City"));
+                retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Country"));
                 break;
             default:
                 break;

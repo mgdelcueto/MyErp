@@ -4,7 +4,7 @@
 @inject LocService SharedLocalizer
 
 @{
-    ViewData["Title"] = "Purchasing Area";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("PurchasingArea");
 }
 @functions {
 
@@ -46,11 +46,11 @@
         {
             case "Suplier":
                 retur.Add("Suplier");
-                retur.Add("DNI");
-                retur.Add("Codigo");
-                retur.Add("Razon Social");
-                retur.Add("Ciudad");
-                retur.Add("Pais");
+                retur.Add(@SharedLocalizer.GetLocalizedHtmlString("DNI"));
+                retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Code"));
+                retur.Add(@SharedLocalizer.GetLocalizedHtmlString("RaSoc"));
+                retur.Add(@SharedLocalizer.GetLocalizedHtmlString("City"));
+                retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Country"));
                 break;
             default:
                 break;
