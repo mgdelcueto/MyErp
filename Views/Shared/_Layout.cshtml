@@ -24,9 +24,10 @@
         {cstyle="visible";}
         return cstyle;
     }
+
     string getName()
     {
-        var name = Context.User.Claims.FirstOrDefault(
+        var name =Context.User.Claims.FirstOrDefault(
                 x => x.Type == "FullName")?.Value; //FullName
         string typename ="NM";
         try{typename =(string)ViewData["Name"];

@@ -89,7 +89,9 @@ function actionClick(controller,action,_maxrow,_gridId, _parqs="")//,filterExpre
             window.location.href = url2;
         }
         else{
-            var url3=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?"+_parqs+_id;
+            //25-06-2022 no funciona cuando no actua sobre la tabla por ejemplo remove workcenter from facility
+            //var url3=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id+"?"+_parqs+_id;
+            var url3=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+_parqs+_id;
             if (retCont==controller){
                 url3=url3+"&"+params.toString();
             }

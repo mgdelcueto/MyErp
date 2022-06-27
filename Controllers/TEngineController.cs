@@ -379,7 +379,7 @@ namespace MyErp.Controllers {
 
        }
 
-        private void  WCeRemove(int id) {
+        private void  _WCeRemove(int id) {
             try{
             var model = _dbContext.TWorkCenters
                 .SingleOrDefault(u => u.WcdId.Equals(id));
@@ -390,7 +390,7 @@ namespace MyErp.Controllers {
             catch{}            
         }
 
-        private void  WCeAssign(int id,int wca) {
+        private void  _WCeAssign(int id,int wca) {
             try{
             var model = _dbContext.TWorkCenters
                 .SingleOrDefault(u => u.WcdId.Equals(wca));
@@ -480,7 +480,7 @@ namespace MyErp.Controllers {
         }
 
         public IActionResult WceRemove(int id, int  WceId, int panel, int vpanel) {
-            WCeRemove(WceId);
+            _WCeRemove(WceId);
             ViewData["panel"]=panel;
             ViewData["vpanel"]=vpanel;
             var model = _dbContext.TFacilities
@@ -492,7 +492,7 @@ namespace MyErp.Controllers {
             return View(model);
         }
         public IActionResult WceAssign(int id, int  WceId, int panel, int vpanel) {
-            WCeAssign(id,WceId);
+            _WCeAssign(id,WceId);
             ViewData["panel"]=panel;
             ViewData["vpanel"]=vpanel;
             var model = _dbContext.TFacilities
@@ -1191,8 +1191,8 @@ namespace MyErp.Controllers {
                 }
                 if (assign==1){
                     ViewData["Assign"]=1;
-                    if (wrem!=0){WCeRemove(wrem);}
-                    if (wass!=0){WCeAssign(id,WcdId);}  
+                    if (wrem!=0){_WCeRemove(wrem);}
+                    if (wass!=0){_WCeAssign(id,WcdId);}  
                 }
 
 
@@ -1205,7 +1205,9 @@ namespace MyErp.Controllers {
 
             return View(model);
             }
-            catch{return View("Error");}            
+            catch(Exception ex ){
+                string mensaje = ex.Message;
+                return View("Error");}            
         }
 
         [HttpPost]

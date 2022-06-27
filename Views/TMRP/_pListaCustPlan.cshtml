@@ -3,10 +3,27 @@
 @using MyErp.Resources;
 @using MyErp.Models;
 @using System.Data;
+@using System.IO;
+@using System.Web;
+@using Microsoft.AspNetCore.Http;
+@using System.Security.Claims;
+
 @inject LocService SharedLocalizer
 
 @model VCXplanning
 @functions {
+
+    private string getUserName()
+    {
+        var name = Context.User.Claims.FirstOrDefault(
+                x => x.Type == "UserName")?.Value; //FullName
+        return name;
+    }
+    private string getUserFig()
+    {
+        var ret ="_FiGantt"+getUserName().Trim();
+        return ret;
+    }
 
     string [] Controller(string table){
         string [] retur = new string [4];
@@ -504,6 +521,22 @@
         </div>
         <h5 class="myh4">@SharedLocalizer.GetLocalizedHtmlString("MaterialPO") @MaterData()</h5>
         @Html.dataGrid(43,12,@Columns("MatPO"),@getData_MatPO((List<TExpMatd>)ViewBag.ListMatPO),@Controller("MatPO"),@Fields("MatPO"),0,"",true,true,"",@sModel(),true)
+</div>
+
+<div class=@isVisible(6)>
+        @{
+            var service = Context.RequestServices.GetService(typeof(Microsoft.AspNetCore.Hosting.IHostingEnvironment)) as Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+        }
+
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("GanttChar")</h3>   
+        </div>
+        @*
+        <h5 class="myh4">@SharedLocalizer.GetLocalizedHtmlString("GanttChar") @MaterData()</h5>
+        *@
+       <input type="submit" class="dropbtn" value="Refresh" name="actionType" onclick="location.href='@Url.Action("ExecPythonScript", "TMRP")'" />  
+       @Html.Raw(File.ReadAllText(@service.WebRootPath+"/images/"+getUserFig()))
+        
 </div>
 
 }

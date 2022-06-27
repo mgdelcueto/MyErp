@@ -11,17 +11,35 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.Extensions.Configuration;
 using System.Data;
+using System.IO;
 using System.Web;
+using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
+
+using System.Diagnostics;
+using System.ComponentModel;
+
+using MyErp.Resources;
+ 
 
 namespace MyErp.Controllers {
     [Authorize(Roles="Planner,Administrator")]
     public class TMRPController : Controller {
         private IConfiguration Configuration;
         private readonly MyErpDBContext _dbContext;
-        public TMRPController(MyErpDBContext dbContext,IConfiguration _configuration) {
+        private readonly IWebHostEnvironment _env;
+        public TMRPController(MyErpDBContext dbContext,IConfiguration _configuration,IWebHostEnvironment env) {
             _dbContext = dbContext;
             Configuration = _configuration;            
+            _env = env;
         }
+        //public UserController(IConfiguration iConfig)  
+        //{  
+        //    configuration = iConfig;  
+        //} 
     private void CreateViewBags(int ver=0)
     {
         //CreateVB_LCP();
@@ -64,6 +82,18 @@ namespace MyErp.Controllers {
                         ).ToList();
             ViewBag.ListScShop=querysh; 
     }
+    private string getUserName()
+    {
+        var name = HttpContext.User.Claims.FirstOrDefault(
+                x => x.Type == "UserName")?.Value; //FullName
+        return name;
+    }
+    private string getTableUserOp()
+    {
+        var ret ="_Operw"+getUserName().Trim();
+        return ret;
+    }
+
 
         private void CreateVB_cMRP(DateTime? F1, DateTime? F2,bool accStock,int? wcent=0,int? material=0){
             if (wcent==null){wcent=0;}
@@ -92,6 +122,12 @@ namespace MyErp.Controllers {
                 //var sqlm = "SELECT * FROM [Matex_"+Table+"] ORDER BY MatDescr";
                 var sqlm = "SELECT ExpComp,TComQty,MatRefer,MatDescr,MatUnMed,TCom  FROM [Matex_"+Table+"] as m left join (select SPOCProdId, sum(SpoPcRep) as TCom  from T_S_POrder where SPOStatus =1 group by SPOCProdId) as p on m.ExpComp = p.SPOCProdId ORDER BY MatDescr";
                 var sqlw = "SELECT * FROM [Operw_"+Table+"] WHERE RouWCId = "+wcent.ToString()+" ORDER BY MatRefer,RouFase";
+
+                //Para el grafico Gantt copia sqlw en la tabla user_Operw_table
+                _dbContext.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS "+getTableUserOp().Trim());
+                _dbContext.Database.ExecuteSqlRaw("SELECT * INTO "+getTableUserOp().Trim()+" FROM [Operw_"+Table+"]");
+                //
+
                 //var sqlx ="select expcomp,MatRefer,MatDescr, TComQty,MatUnMed,case when SpoId is null then 0 else spoid end as SpoId,case when SPoSupId is null then 0 else SPOSupId end as SPoSupId,case when SPOReferEx is null then 0 else  SPOReferEx end as SPoReferEx , case when SPOPO is null then 'No_PO' else SPOPO end as SPOPO ,case when SPOPrice is null then 0 else SPOPrice end as SPoPrice ,case when SPoCurcy is null then 'No_Curr' else SpoCurcy end as SPoCurcy ,case when SPoPcRep is null then 0 else SPoPcRep end as SPoPcRep ,case when SupId is null then 0 else SupId end as SupId,case when SupRaSoc is null then 'No_Suplier' else SupRaSoc end as SupRaSoc from [Matex_"+Table+"] as m left join (select * from T_S_POrder where SPOStatus =1) as po on m.expcomp = po.spocprodid left join T_Suplier as s on po.SPOSupId = s.SupId  where expcomp ="+material.ToString();
                 var sqlx ="select expcomp,MatRefer,MatDescr, TComQty,MatUnMed,case when SpoId is null then 0 else spoid end as SpoId,case when SPoSupId is null then 0 else SPOSupId end as SPoSupId,case when SPOReferEx is null then 0 else  SPOReferEx end as SPoReferEx , case when SPOPO is null then 'No_PO' else SPOPO end as SPOPO ,case when SPOPrice is null then 0 else SPOPrice end as SPoPrice ,case when SPoCurcy is null then 'No_Curr' else SpoCurcy end as SPoCurcy ,case when SPoPcRep is null then 0 else SPoPcRep end as SPoPcRep ,case when SupId is null then 0 else SupId end as SupId,case when SupRaSoc is null then 'No_Suplier' else SupRaSoc end as SupRaSoc ,case when SPoPcRep is null then 0 else SPoPcRep*TComQty end as SPoPcRequ from [Matex_"+Table+"]  as m left join (select * from T_S_POrder where SPOStatus =1) as po on m.expcomp = po.spocprodid left join T_Suplier as s on po.SPOSupId = s.SupId  where expcomp ="+material.ToString();                
                 var sqlt ="select expcomp,MatRefer,MatDescr, TComQty,MatUnMed,case when SpoId is null then 0 else spoid end as SpoId,case when SPoSupId is null then 0 else SPOSupId end as SPoSupId,case when SPOReferEx is null then 0 else  SPOReferEx end as SPoReferEx , case when SPOPO is null then 'No_PO' else SPOPO end as SPOPO ,case when SPOPrice is null then 0 else SPOPrice end as SPoPrice ,case when SPoCurcy is null then 'No_Curr' else SpoCurcy end as SPoCurcy ,case when SPoPcRep is null then 0 else SPoPcRep end as SPoPcRep ,case when SupId is null then 0 else SupId end as SupId,case when SupRaSoc is null then 'No_Suplier' else SupRaSoc end as SupRaSoc ,case when SPoPcRep is null then 0 else SPoPcRep*TComQty end as SPoPcRequ from [Matex_"+Table+"]  as m left join (select * from T_S_POrder where SPOStatus =1) as po on m.expcomp = po.spocprodid left join T_Suplier as s on po.SPOSupId = s.SupId ";                
@@ -354,6 +390,7 @@ namespace MyErp.Controllers {
                 CplanDateTo=F2,
                 CPlancStock=accStock
             };
+            ExecPythonScript(F1);
             //model.CplanDateFrom=F1;
             //model.CplanDateTo=F2;
              return View(model);
@@ -438,6 +475,10 @@ namespace MyErp.Controllers {
                 //tendra en cuenta en el proximo calculo MRP
                 ValidateReqs(F1,F2,accStock);
             }
+            //if (actionType=="Refresh")
+            //{
+                ExecPythonScript(F1);
+            //}
             try{
                 CreateVB_LCP(F1,F2);
                 CreateVB_cMRP(F1,F2,accStock);  //ListCustPlan
@@ -503,7 +544,67 @@ namespace MyErp.Controllers {
             CreateViewBags();                
             ViewData["panel"]=2;
             return RedirectToAction("MRP",new{panel=2,panel1=2});   
-        }        
+        }    
+        private string getUserFig()
+        {
+            var ret ="_FiGantt"+getUserName().Trim();
+            return ret;
+        }
+  
+        public void ExecPythonScript(DateTime? xF1)
+        {
+
+            //DateTime? F1 = model.ShopFrom;
+            string com = "From Python";
+
+            Guid g = Guid.NewGuid();
+            string Table = g.ToString();
+
+            var pF1 = new SqlParameter("@p0", xF1);
+            var Com = new SqlParameter("@p1", com);
+            var table = new SqlParameter("@p2", Table);
+            try{
+            _dbContext.Database.ExecuteSqlRaw("Xs_Explosion_Start {0},{1},{2}", pF1,Com,table);
+            }
+            catch{}
+
+            //Provide script and arguments
+ 
+            //var scrip = @"C:\Users\mgdel\OneDrive\Documentos\ERP\RL\Juyp\Gantt.py";
+            var scrip = Configuration.GetSection("MySettings").GetSection("scriptGantt").Value;
+            //var version = 27;   //preparar una query para recuperar la ultima version
+                                //o tal vez cogerla desde Python
+            //var service = Context.RequestServices.GetService(typeof(Microsoft.AspNetCore.Hosting.IHostingEnvironment)) as Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+            //var path =service.WebRootPath+"/images/";
+            //var path =WebRootPath+"/images/";
+            string webRootPath = _env.WebRootPath;
+            var path = webRootPath+"/images/";
+            var img =getUserFig();
+            //Create Process Info
+            var psi = new ProcessStartInfo();
+            //psi.FileName = @"C:\Users\mgdel\AppData\Local\Programs\Python\Python310\python.exe";
+            psi.FileName = Configuration.GetSection("MySettings").GetSection("PythonLoc").Value;
+
+            //psi.Arguments = $"\"{scrip}\"\"{start}\"\"{end}\"";
+            psi.Arguments = string.Format("{0} {1} {2}",scrip,path,img);//{1} {2}",scrip,start,end);
+            //Process configuration
+            psi.UseShellExecute=false;
+            psi.CreateNoWindow=true;
+            psi.RedirectStandardOutput=true;
+            psi.RedirectStandardError=true;
+
+            //Excecute process and get output
+            var errors ="";
+            var results = "";
+
+            using (var process =Process.Start(psi))
+            {
+                errors=process.StandardError.ReadToEnd();
+                results=process.StandardOutput.ReadToEnd();
+            }
+            //Display output
+
+        }
 
     }
 }
