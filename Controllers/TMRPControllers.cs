@@ -390,14 +390,20 @@ namespace MyErp.Controllers {
                 CplanDateTo=F2,
                 CPlancStock=accStock
             };
-            ExecPythonScript(F1);
+            string errors =ExecPythonScript(F1);
+                if (errors !=""){
+                    ViewData["Error"]=errors;
+                return View("~/Views/Errores/Index.cshtml");
+            }
             //model.CplanDateFrom=F1;
             //model.CplanDateTo=F2;
              return View(model);
             }
             catch(Exception Ex){
                 string mensaje = Ex.Message;
-                return View("Error");}
+                    ViewData["Error"]=mensaje;
+                return View("~/Views/Errores/Index.cshtml");
+                }
             
         }
         private void  ValidateReqs(DateTime? F1,DateTime? F2,bool accStock)
@@ -477,7 +483,11 @@ namespace MyErp.Controllers {
             }
             //if (actionType=="Refresh")
             //{
-                ExecPythonScript(F1);
+                string errors =ExecPythonScript(F1);
+                if (errors !=""){
+                    ViewData["Error"]=errors;
+                return View("~/Views/Errores/Index.cshtml");
+            }
             //}
             try{
                 CreateVB_LCP(F1,F2);
@@ -551,7 +561,7 @@ namespace MyErp.Controllers {
             return ret;
         }
   
-        public void ExecPythonScript(DateTime? xF1)
+        public string ExecPythonScript(DateTime? xF1)
         {
 
             //DateTime? F1 = model.ShopFrom;
@@ -603,6 +613,7 @@ namespace MyErp.Controllers {
                 results=process.StandardOutput.ReadToEnd();
             }
             //Display output
+            return errors;
 
         }
 

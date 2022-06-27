@@ -14,6 +14,7 @@ C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\images\D
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\images\Dino_0.jpg
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\images\figure0.html
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\images\figure1
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\images\x_FiGanttmanuel
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\images\_FiGanttmanuel
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\js\mydg.js
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\js\site.js
