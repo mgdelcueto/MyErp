@@ -392,8 +392,8 @@ namespace MyErp.Controllers {
             };
             string errors =ExecPythonScript(F1);
                 if (errors !=""){
-                    ViewData["Error"]=errors;
-                return View("~/Views/Errores/Index.cshtml");
+                    ViewData["Errors"]="Python¨:"+errors;
+                //return View("~/Views/Errores/Index.cshtml");
             }
             //model.CplanDateFrom=F1;
             //model.CplanDateTo=F2;
@@ -485,8 +485,8 @@ namespace MyErp.Controllers {
             //{
                 string errors =ExecPythonScript(F1);
                 if (errors !=""){
-                    ViewData["Error"]=errors;
-                return View("~/Views/Errores/Index.cshtml");
+                    ViewData["Errors"]="Python¨:"+errors;
+                //return View("~/Views/Errores/Index.cshtml");
             }
             //}
             try{
