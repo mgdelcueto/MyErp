@@ -84,7 +84,7 @@ namespace MyErp.Models {
             AppRols.Add(new AppRol("Administrator", "Administrator"));
             AppRols.Add(new AppRol("Customer", "Customer"));            
             AppRols.Add(new AppRol("Engineer", "Engineer"));
-            AppRols.Add(new AppRol("Planner", "Planner"));        
+            AppRols.Add(new AppRol("MRP", "MRP"));        
             AppRols.Add(new AppRol("Organization", "Organization"));        
             AppRols.Add(new AppRol("HR", "HR"));        
             AppRols.Add(new AppRol("Supplier", "Supplier"));        

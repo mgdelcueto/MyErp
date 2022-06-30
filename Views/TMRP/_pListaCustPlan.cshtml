@@ -21,7 +21,12 @@
     }
     private string getUserFig()
     {
+        var service = Context.RequestServices.GetService(typeof(Microsoft.AspNetCore.Hosting.IHostingEnvironment)) as Microsoft.AspNetCore.Hosting.IHostingEnvironment;
         var ret ="_FiGantt"+getUserName().Trim();
+        var file =@service.WebRootPath+"/images/"+ret;
+        if (! File.Exists(file)) {
+           ret="figure0.html";
+        }        
         return ret;
     }
 
@@ -56,6 +61,12 @@
         case "MatPO":
                 retur[0]="TSuplier";
                 retur[1]="PoEdit";  //Edit
+                retur[2]="";  //Create
+                retur[3]="";  //Delete
+                break;
+        case "SchedT":
+                retur[0]="TMRP";
+                retur[1]="";  //Edit
                 retur[2]="";  //Create
                 retur[3]="";  //Delete
                 break;
@@ -121,6 +132,15 @@
                 retur.Add(addLine("SpoPcRep","true"));
                 retur.Add(addLine("SPoPcRequ","false"));
                 break;
+            case "SchedT":
+                retur.Add(addLine("ShopId","false"));
+                retur.Add(addLine("Wccode","false"));
+                retur.Add(addLine("Wcdescr","false"));
+                retur.Add(addLine("MatRefer","false"));
+                retur.Add(addLine("MatDescr","false"));
+                retur.Add(addLine("ShopDate","false"));
+                retur.Add(addLine("ShopTunit","false"));
+                break;
             default:
                 break;
         }
@@ -177,6 +197,16 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SPOPO"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SPoPcRep"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SPoPcRequ"));
+                break;
+            case "SchedT":
+                    retur.Add("SchedT");
+                    //retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SPoId"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Wccode"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Wcdescr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatRefer"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatDescr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ShopDate"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ShopTunit"));
                 break;
             default:
                 break;
@@ -301,6 +331,31 @@
                         Campo05 = f.SPOPO.ToString(),
                         Campo06 = f.SPoPcRep.ToString(),
                         Campo07 = f.SPoPcRequ.ToString(),
+                        Campo08 = "",
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+    IEnumerable<Container> getData_SchedT(dynamic oTMaterial)
+        {
+            IEnumerable<TCTimeRule> fTPersonal = (List<TCTimeRule>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.ShopId,
+                        Campo01 = f.Wccode.ToString(),
+                        Campo02 = f.Wcdescr.ToString(), 
+                        Campo03 = f.MatRefer.ToString(),
+                        Campo04 = f.MatDescr.ToString(),
+                        Campo05 = f.ShopDate.ToString(),
+                        Campo06 = f.ShopTunit.ToString(),
+                        Campo07 = "",
                         Campo08 = "",
                         Campo09 = "",
                         Campo10 = "",
@@ -537,6 +592,15 @@
        <input type="submit" class="dropbtn" value="Refresh" name="actionType" onclick="location.href='@Url.Action("ExecPythonScript", "TMRP")'" />  
        @Html.Raw(File.ReadAllText(@service.WebRootPath+"/images/"+getUserFig()))
         
+</div>
+<div class=@isVisible(7)>
+
+
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("SchedTable")</h3>   
+        </div>
+        <h5 class="myh4">@SharedLocalizer.GetLocalizedHtmlString("MaterialPO") @MaterData()</h5>
+        @Html.dataGrid(44,12,@Columns("SchedT"),@getData_SchedT((List<TCTimeRule>)ViewBag.ListTRul),@Controller("SchedT"),@Fields("SchedT"),0,"",true,true,"",@sModel(),true)
 </div>
 
 }

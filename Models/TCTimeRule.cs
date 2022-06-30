@@ -5,8 +5,13 @@ using System.Collections.Generic;
 
 namespace MyErp.Models
 {
-    public partial class TCScShop
+    public partial class TCTimeRule
     {
+        public string Wccode { get; set; }
+        public string Wcdescr { get; set; }
+        public string MatRefer { get; set; }
+        public string MatDescr { get; set; }
+
         public int ShopId { get; set; }
         public DateTime? ShopFrom { get; set; }
         public DateTime? ShopTo { get; set; }

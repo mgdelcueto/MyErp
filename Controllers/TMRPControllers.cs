@@ -26,7 +26,7 @@ using MyErp.Resources;
  
 
 namespace MyErp.Controllers {
-    [Authorize(Roles="Planner,Administrator")]
+    [Authorize(Roles="MRP,Administrator")]
     public class TMRPController : Controller {
         private IConfiguration Configuration;
         private readonly MyErpDBContext _dbContext;
@@ -144,6 +144,15 @@ namespace MyErp.Controllers {
                 ViewBag.ListMatPOT=explosiot;
                  
         }
+        private int? getLastVersion(string user){
+            var sqlver ="SELECT TOP 1 * FROM T_C_ScShop  WHERE ShopUser='"+user+"' ORDER BY ShopVersion DESC";
+            var listver = _dbContext.TCScShops.FromSqlRaw(sqlver).ToList();
+            int? version =0;
+            if (listver.Count>0){
+                version = Convert.ToInt32(listver[0].ShopVersion.ToString());
+            }
+            return version;
+        }
         private void CreateVB_LCP(DateTime? F1, DateTime? F2)
         {  
             var queryco =(from pl in _dbContext.TCCplannings 
@@ -168,6 +177,28 @@ namespace MyErp.Controllers {
                 CplanCprodDescInt=m.MatDescr,
                 CplanCprodRefInt=m.MatRefer}).ToList();
             ViewBag.ListCustPlan=queryco;
+            
+            var user = getUserName();
+            var ver =getLastVersion(user);
+
+            var querysc = (from tr in _dbContext.TCScShops
+            join m in _dbContext.TMaterials on tr.ShopCprodId equals m.MatId
+            join w in _dbContext.TWorkCenters on tr.ShopWctr equals w.WcdId
+            where tr.Shopuser==user && tr.ShopVersion == ver
+            select new TCTimeRule {
+                ShopId = tr.ShopId,
+                ShopDate = tr.ShopDate,
+                ShopWctr = tr.ShopWctr,
+                Wccode = w.Wccode,
+                Wcdescr = w.Wcdescr,
+                ShopVersion = tr.ShopVersion,
+                ShopFg = tr.ShopFg,
+                ShopCprodId = tr.ShopCprodId,
+                MatRefer = m.MatRefer,
+                MatDescr = m.MatDescr,
+                ShopTunit = tr.ShopTunit}).ToList();
+            ViewBag.ListTRul=querysc;
+            
 
         }
         public IActionResult Index(int panel,int panel1,string actionType) {
@@ -379,6 +410,13 @@ namespace MyErp.Controllers {
              ViewData["ACSt"]=accStock;
              ViewData["WCent"]=wcent;
              ViewData["MatPO"]=material;
+
+            string errors =ExecPythonScript(F1);
+                if (errors !=""){
+                    ViewData["Errors"]="Python¨:"+errors;
+                //return View("~/Views/Errores/Index.cshtml");
+            }
+
             try{
                     CreateVB_LCP(F1,F2);
                     CreateVB_cMRP(F1,F2,accStock,wcent,material);  //ListCustPlan
@@ -390,11 +428,6 @@ namespace MyErp.Controllers {
                 CplanDateTo=F2,
                 CPlancStock=accStock
             };
-            string errors =ExecPythonScript(F1);
-                if (errors !=""){
-                    ViewData["Errors"]="Python¨:"+errors;
-                //return View("~/Views/Errores/Index.cshtml");
-            }
             //model.CplanDateFrom=F1;
             //model.CplanDateTo=F2;
              return View(model);
@@ -529,6 +562,8 @@ namespace MyErp.Controllers {
                 exec Xs_Explosion_Start @ff,@ver,@com
 
             */
+                var User = getUserName();
+    
                 DateTime? F1 = model.ShopFrom;
                 string com = model.ShopComent;
 
@@ -538,8 +573,9 @@ namespace MyErp.Controllers {
                 var pF1 = new SqlParameter("@p0", F1);
                 var Com = new SqlParameter("@p1", com);
                 var table = new SqlParameter("@p2", Table);
+                var user = new SqlParameter("@p3", User);
 
-                _dbContext.Database.ExecuteSqlRaw("Xs_Explosion_Start {0},{1},{2}", pF1,Com,table);
+                _dbContext.Database.ExecuteSqlRaw("Xs_Explosion_Start {0},{1},{2},{3}", pF1,Com,table,user);
                 /*
                 var sqlo = "SELECT * FROM ["+Table+"] ";
                 var explosiop = _dbContext.TExpOpers.FromSqlRaw(sqlo).ToList();
@@ -565,6 +601,8 @@ namespace MyErp.Controllers {
         {
 
             //DateTime? F1 = model.ShopFrom;
+            var User = getUserName();
+
             string com = "From Python";
 
             Guid g = Guid.NewGuid();
@@ -573,8 +611,9 @@ namespace MyErp.Controllers {
             var pF1 = new SqlParameter("@p0", xF1);
             var Com = new SqlParameter("@p1", com);
             var table = new SqlParameter("@p2", Table);
+            var user = new SqlParameter("@p3", User);
             try{
-            _dbContext.Database.ExecuteSqlRaw("Xs_Explosion_Start {0},{1},{2}", pF1,Com,table);
+            _dbContext.Database.ExecuteSqlRaw("Xs_Explosion_Start {0},{1},{2},{3}", pF1,Com,table,user);
             }
             catch{}
 
@@ -596,7 +635,7 @@ namespace MyErp.Controllers {
             psi.FileName = Configuration.GetSection("MySettings").GetSection("PythonLoc").Value;
 
             //psi.Arguments = $"\"{scrip}\"\"{start}\"\"{end}\"";
-            psi.Arguments = string.Format("{0} {1} {2}",scrip,path,img);//{1} {2}",scrip,start,end);
+            psi.Arguments = string.Format("{0} {1} {2} {3}",scrip,path,img,User);//{1} {2}",scrip,start,end);
             //Process configuration
             psi.UseShellExecute=false;
             psi.CreateNoWindow=true;
