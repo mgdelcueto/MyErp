@@ -380,6 +380,8 @@ namespace MyErp.Models
                 entity.Property(e => e.ShopaTunit).HasColumnName("ShopaTUnit");
 
                 entity.Property(e => e.Shopuser).HasColumnName("ShopUser");
+
+                entity.Property(e => e.Roufase).HasColumnName("Roufase");
             });
 
             modelBuilder.Entity<TCTimeRule>(entity =>
@@ -422,6 +424,8 @@ namespace MyErp.Models
                 entity.Property(e => e.ShopaTunit).HasColumnName("ShopaTUnit");
 
                 entity.Property(e => e.Shopuser).HasColumnName("ShopUser");
+
+                entity.Property(e => e.Roufase).HasColumnName("Roufase");
             });
 
 

@@ -31,5 +31,6 @@ namespace MyErp.Models
         public double? ShopTunit { get; set; }
         public double? ShopaTunit { get; set; }
         public string Shopuser {get; set; }
+        public string Roufase {get; set; }
     }
 }

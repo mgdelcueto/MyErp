@@ -140,6 +140,8 @@
                 retur.Add(addLine("MatDescr","false"));
                 retur.Add(addLine("ShopDate","false"));
                 retur.Add(addLine("ShopTunit","false"));
+                retur.Add(addLine("Roufase","false"));
+                retur.Add(addLine("ShopQty","false"));
                 break;
             default:
                 break;
@@ -207,6 +209,8 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatDescr"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ShopDate"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ShopTunit"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Roufase"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ShopQty"));
                 break;
             default:
                 break;
@@ -355,8 +359,8 @@
                         Campo04 = f.MatDescr.ToString(),
                         Campo05 = f.ShopDate.ToString(),
                         Campo06 = f.ShopTunit.ToString(),
-                        Campo07 = "",
-                        Campo08 = "",
+                        Campo07 = f.Roufase.ToString(),
+                        Campo08 = f.ShopQty.ToString(),
                         Campo09 = "",
                         Campo10 = "",
                         Campo11 = "",

@@ -196,7 +196,9 @@ namespace MyErp.Controllers {
                 ShopCprodId = tr.ShopCprodId,
                 MatRefer = m.MatRefer,
                 MatDescr = m.MatDescr,
-                ShopTunit = tr.ShopTunit}).ToList();
+                ShopTunit = tr.ShopTunit,
+                Roufase=tr.Roufase,
+                ShopQty=tr.ShopQty}).ToList();
             ViewBag.ListTRul=querysc;
             
 
