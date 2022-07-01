@@ -357,7 +357,7 @@
                         Campo02 = f.Wcdescr.ToString(), 
                         Campo03 = f.MatRefer.ToString(),
                         Campo04 = f.MatDescr.ToString(),
-                        Campo05 = f.ShopDate.ToString(),
+                        Campo05 = string.Format("{0:yyyy-MM-dd HH:mm:ss}",f.ShopDate).ToString(),
                         Campo06 = f.ShopTunit.ToString(),
                         Campo07 = f.Roufase.ToString(),
                         Campo08 = f.ShopQty.ToString(),

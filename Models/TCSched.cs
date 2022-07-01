@@ -20,5 +20,6 @@ namespace MyErp.Models
         public double? ScConts { get; set; }
         public int? ScVersion { get; set; }
         public string ScComent { get; set; }
+        public string ScUser { get; set; }
     }
 }
