@@ -412,13 +412,13 @@ namespace MyErp.Controllers {
              ViewData["ACSt"]=accStock;
              ViewData["WCent"]=wcent;
              ViewData["MatPO"]=material;
-
+            /*
             string errors =ExecPythonScript(F1);
                 if (errors !=""){
                     ViewData["Errors"]="Python¨:"+errors;
                 //return View("~/Views/Errores/Index.cshtml");
             }
-
+            */
             try{
                     CreateVB_LCP(F1,F2);
                     CreateVB_cMRP(F1,F2,accStock,wcent,material);  //ListCustPlan
