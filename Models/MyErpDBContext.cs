@@ -28,6 +28,7 @@ namespace MyErp.Models
         public virtual DbSet<TChartRol> TChartRols { get; set; }
         public virtual DbSet<TCPorder> TCPorders { get; set; }
         public virtual DbSet<TCScShop> TCScShops { get; set; }
+        public virtual DbSet<TCScCMat> TCScCMats { get; set; }
         public virtual DbSet<TCTimeRule> TCTimeRules { get; set; }
         public virtual DbSet<TCSched> TCScheds { get; set; }
         public virtual DbSet<TCTrSched> TCTrScheds { get; set; }
@@ -383,6 +384,43 @@ namespace MyErp.Models
 
                 entity.Property(e => e.Roufase).HasColumnName("Roufase");
             });
+
+            modelBuilder.Entity<TCScCMat>(entity =>
+            {
+                entity.HasKey(e => e.ShopId)
+                    .HasName("PK__T_C_ScCh__67C557C90C0DCE2A");
+
+                entity.ToTable("T_C_ScCMat");
+
+                entity.Property(e => e.Shopuser).HasColumnName("ShopUser");
+
+                entity.Property(e => e.Shopversion).HasColumnName("ShopVersion");
+
+                entity.Property(e => e.Shopsupid).HasColumnName("ShopSupId");
+
+                entity.Property(e => e.ShopCprodId).HasColumnName("ShopCProdId");
+
+                entity.Property(e => e.reqDate).HasColumnType("datetime");
+
+                entity.Property(e => e.reqQty).HasColumnName("reqQty");
+
+                entity.Property(e => e.Matrefer).HasColumnName("MatRefer");
+
+                entity.Property(e => e.Matdescr).HasColumnName("MatDescr");
+
+                entity.Property(e => e.Suprasoc).HasColumnName("SupRasoc");
+
+                entity.Property(e => e.uemba).HasColumnName("uemba");
+
+                entity.Property(e => e.minlot).HasColumnName("minlot");
+
+                entity.Property(e => e.popo).HasColumnName("popo");
+
+                entity.Property(e => e.ndelay).HasColumnName("ndelay");
+
+                entity.Property(e => e.unitdelay).HasColumnName("unitdelay");
+            });
+
 
             modelBuilder.Entity<TCTimeRule>(entity =>
             {
@@ -1206,6 +1244,10 @@ namespace MyErp.Models
                     .HasColumnName("SpoPcRep");
 
                 entity.Property(e => e.SposupId).HasColumnName("SPOSupId");
+
+                entity.Property(e => e.Spominlot).HasColumnName("SPOMinLot");
+
+                entity.Property(e => e.Spouemba).HasColumnName("SPOUEmba");
 
             });
 

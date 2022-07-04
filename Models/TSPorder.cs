@@ -30,7 +30,7 @@ namespace MyErp.Models
         [Display(Name="SPOrder")]
         public string Spopo { get; set; }
 
-        [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid Proce (>0)")]
+        [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid Price (>0)")]
         [Display(Name="Price")]
         public double? Spoprice { get; set; }
 
@@ -57,5 +57,13 @@ namespace MyErp.Models
         [Required]
         [Display(Name="DelayUnit")]
         public string Spodelayunit { get; set; }
+
+        [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid MinLot (>0)")]
+        [Display(Name="MinLot")]
+        public double? Spominlot { get; set; }
+
+        [Required ,Range(0, int.MaxValue, ErrorMessage = "Enter Valid Unit embal")]
+        [Display(Name="UEmba")]
+        public int? Spouemba { get; set; }
     }
 }

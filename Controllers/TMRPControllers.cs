@@ -200,7 +200,25 @@ namespace MyErp.Controllers {
                 Roufase=tr.Roufase,
                 ShopQty=tr.ShopQty}).ToList();
             ViewBag.ListTRul=querysc;
-            
+
+            var querysm = (from tr in _dbContext.TCScCMats
+            where tr.Shopuser==user && tr.Shopversion == ver
+            select new TCScCMat {
+                ShopId = tr.ShopId,
+                Shopsupid = tr.Shopsupid,
+                ShopCprodId = tr.ShopCprodId,
+                reqDate = tr.reqDate,
+                reqQty = tr.reqQty,
+                Matrefer = tr.Matrefer,
+                Matdescr = tr.Matdescr,
+                Suprasoc = tr.Suprasoc,
+                uemba=tr.uemba,
+                minlot=tr.minlot,
+                popo=tr.popo,
+                ndelay=tr.ndelay,
+                unitdelay=tr.unitdelay}).ToList();
+            ViewBag.ListSCMat=querysm;
+
 
         }
         public IActionResult Index(int panel,int panel1,string actionType) {

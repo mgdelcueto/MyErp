@@ -93,10 +93,24 @@
         <tr>
             <td>@Html.LabelFor(p => p.SpoPcRep,new { @class = "norm-lab-text",})</td>
             <td>@Html.EditorFor(p => p.SpoPcRep, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:170px" } })</td>
+            <td>@Html.LabelFor(p => p.Spominlot,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.Spominlot, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:170px" } })</td>
         </tr>
         <tr>
             <td></td>
             <td>@Html.ValidationMessageFor(p => p.SpoPcRep)</td>
+            <td>@Html.ValidationMessageFor(p => p.Spominlot)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Spouemba,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.Spouemba, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:170px" } })</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.Spouemba)</td>
+            <td></td>
         </tr>
 
 @*

@@ -70,6 +70,12 @@
                 retur[2]="";  //Create
                 retur[3]="";  //Delete
                 break;
+        case "SchedM":
+                retur[0]="TMRP";
+                retur[1]="";  //Edit
+                retur[2]="";  //Create
+                retur[3]="";  //Delete
+                break;
         default:
             break;
         }
@@ -143,6 +149,16 @@
                 retur.Add(addLine("Roufase","false"));
                 retur.Add(addLine("ShopQty","false"));
                 break;
+            case "SchedM":
+                retur.Add(addLine("ShopId","false"));
+                retur.Add(addLine("SupRasoc","false"));
+                retur.Add(addLine("recDate","false"));
+                retur.Add(addLine("MatRefer","false"));
+                retur.Add(addLine("MatDescr","false"));
+                retur.Add(addLine("reqQty","false"));
+                retur.Add(addLine("popo","false"));
+                retur.Add(addLine("uemba","false"));
+                break;
             default:
                 break;
         }
@@ -211,6 +227,17 @@
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ShopTunit"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("Roufase"));
                     retur.Add(@SharedLocalizer.GetLocalizedHtmlString("ShopQty"));
+                break;
+            case "SchedM":
+                    retur.Add("SchedM");
+                    //retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SPoId"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("SupRasoc"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("recDate"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatRefer"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("MatDescr"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("reqQty"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("popo"));
+                    retur.Add(@SharedLocalizer.GetLocalizedHtmlString("uemba"));
                 break;
             default:
                 break;
@@ -361,6 +388,32 @@
                         Campo06 = f.ShopTunit.ToString(),
                         Campo07 = f.Roufase.ToString(),
                         Campo08 = f.ShopQty.ToString(),
+                        Campo09 = "",
+                        Campo10 = "",
+                        Campo11 = "",
+                        Campo12 = "",
+                        Campo13 = "",
+                        Campo14 = "",
+                        Campo15 = ""
+                });
+            return TPersonal;
+        }
+
+    IEnumerable<Container> getData_SchedM(dynamic oTMaterial)
+        {
+            IEnumerable<TCScCMat> fTPersonal = (List<TCScCMat>)oTMaterial;
+            IEnumerable<Container> TPersonal = fTPersonal.Select(
+                f => new Container() 
+                {
+                        CampoId = f.ShopId,
+                        Campo01 = f.Suprasoc.ToString(),
+                        Campo02 =  string.Format("{0:yyyy-MM-dd HH:mm:ss}",f.reqDate).ToString(),
+                        Campo03 = f.Matrefer.ToString(),
+                        Campo04 = f.Matdescr.ToString(),
+                        Campo05 = f.reqQty.ToString(),
+                        Campo06 = f.popo.ToString(),
+                        Campo07 = f.uemba.ToString(),
+                        Campo08 = "",
                         Campo09 = "",
                         Campo10 = "",
                         Campo11 = "",
@@ -603,8 +656,19 @@
         <div class = "cont-titles">
             <h3>@SharedLocalizer.GetLocalizedHtmlString("SchedTable")</h3>   
         </div>
-        <h5 class="myh4">@SharedLocalizer.GetLocalizedHtmlString("MaterialPO") @MaterData()</h5>
+        <h5 class="myh4">@SharedLocalizer.GetLocalizedHtmlString("WCentSched") @MaterData()</h5>
         @Html.dataGrid(44,12,@Columns("SchedT"),@getData_SchedT((List<TCTimeRule>)ViewBag.ListTRul),@Controller("SchedT"),@Fields("SchedT"),0,"",true,true,"",@sModel(),true)
 </div>
+
+<div class=@isVisible(8)>
+
+
+        <div class = "cont-titles">
+            <h3>@SharedLocalizer.GetLocalizedHtmlString("SchedMatTable")</h3>   
+        </div>
+        <h5 class="myh4">@SharedLocalizer.GetLocalizedHtmlString("MaterSched") @MaterData()</h5>
+        @Html.dataGrid(45,12,@Columns("SchedM"),@getData_SchedM((List<TCScCMat>)ViewBag.ListSCMat),@Controller("SchedM"),@Fields("SchedM"),0,"",true,true,"",@sModel(),true)
+</div>
+
 
 }
