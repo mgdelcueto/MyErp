@@ -3,6 +3,7 @@ C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\Course_L
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\css\dg.mydg.css
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\css\site.css
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\css\style.css
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\Dino.jpg
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\favicon.ico
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\favicon_.ico
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\favicon_k.ico
@@ -11,6 +12,7 @@ C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\GridMenu
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\GridMenu0.jpg
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\GridMenu1.jpg
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\images\Dino.jpg
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\images\Dinox.jpg
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\images\Dino_0.jpg
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\images\figure0.html
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\images\figure1

@@ -75,7 +75,7 @@ namespace MyErp.Controllers {
 
 
         }
-        private void CreateViewBags(int? id, int? prod, int? plant,int? cust =0,bool allpprods=false)
+        private void CreateViewBags(int? id, int? prod, int? plant,int? cust =0,bool allpprods=false,DateTime? fHorizont = null)
         {
 
             var resulp = from p in _dbContext.TCCplants 
@@ -254,12 +254,14 @@ namespace MyErp.Controllers {
                         plan.CplanCplantId==plant &&
                         (plan.CplanCprodId==prod ||prod==null || prod==0)
                         select plan;
-*/
+*/          
+            if (fHorizont==null){fHorizont=System.DateTime.Now;}
             var queryco =from pl in _dbContext.TCCplannings join p in _dbContext.TMaterials on  
                             pl.CplanCprodId equals p.MatId
                             orderby pl.CplanCprodId ,pl.CplanDateFrom 
                         where pl.CplanCustId ==id &&
-                        ((pl.CplanCplantId==plant && pl.CplanCprodId==prod) || allpprods==true)
+                        ((pl.CplanCplantId==plant && (pl.CplanCprodId==prod || prod ==0) && 
+                        pl.CplanDateFrom >= fHorizont) || allpprods==true)
                         select new VTCCplanning {CplanCplantId=pl.CplanCplantId,CplanCprodId=pl.CplanCprodId,
                         CplanCustId=pl.CplanCustId, CplanDateFrom=pl.CplanDateFrom,
                         CplanDateTo=pl.CplanDateTo,CplanFirmSt=pl.CplanFirmSt,

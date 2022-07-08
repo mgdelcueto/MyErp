@@ -184,7 +184,7 @@ namespace MyErp.Controllers {
             var querysc = (from tr in _dbContext.TCScShops
             join m in _dbContext.TMaterials on tr.ShopCprodId equals m.MatId
             join w in _dbContext.TWorkCenters on tr.ShopWctr equals w.WcdId
-            where tr.Shopuser==user && tr.ShopVersion == ver
+            where tr.Shopuser==user && tr.ShopVersion == ver 
             select new TCTimeRule {
                 ShopId = tr.ShopId,
                 ShopDate = tr.ShopDate,
@@ -199,7 +199,25 @@ namespace MyErp.Controllers {
                 ShopTunit = tr.ShopTunit,
                 Roufase=tr.Roufase,
                 ShopQty=tr.ShopQty}).ToList();
-            ViewBag.ListTRul=querysc;
+            var queryscm = (from tr in _dbContext.TCScShops
+            join m in _dbContext.TMaterials on tr.ShopCprodId equals m.MatId
+            where tr.Shopuser==user && tr.ShopVersion == ver && tr.ShopWctr==0 && tr.ShopFg !="TP"
+            select new TCTimeRule {
+                ShopId = tr.ShopId,
+                ShopDate = tr.ShopDate,
+                ShopWctr = tr.ShopWctr,
+                Wccode = "RM",
+                Wcdescr = "RM",
+                ShopVersion = tr.ShopVersion,
+                ShopFg = tr.ShopFg,
+                ShopCprodId = tr.ShopCprodId,
+                MatRefer = m.MatRefer,
+                MatDescr = m.MatDescr,
+                ShopTunit = tr.ShopTunit,
+                Roufase=" ",
+                ShopQty=tr.ShopQty}).ToList();
+            var queryscmw = querysc.Concat(queryscm).ToList();
+            ViewBag.ListTRul=queryscmw;
 
             var querysm = (from tr in _dbContext.TCScCMats
             where tr.Shopuser==user && tr.Shopversion == ver

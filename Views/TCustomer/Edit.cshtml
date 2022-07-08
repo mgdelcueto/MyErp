@@ -320,10 +320,10 @@
     {
         //hace un httpget en este modulo para cargar el ViweData correspondiente
         var e = document.getElementById(planta);
-        var value = e.options[e.selectedIndex].WcoId;
+        //var value = e.options[e.selectedIndex].WcoId;
 
         var f = document.getElementById(produ);
-        var falue = f.options[f.selectedIndex].WcoId;
+        //var falue = f.options[f.selectedIndex].WcoId;
 
         var url=window.location.href.split("?")[0];
         url=url+"?"+e.name+"="+e.value.toString()+"&"+f.name+"="+f.value.toString()+"&panel="+panel.toString();
