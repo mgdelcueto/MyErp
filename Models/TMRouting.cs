@@ -9,7 +9,11 @@ namespace MyErp.Models
     public partial class TMRouting
     {
         public int RouId { get; set; }
+
+        [Display(Name = "Refer")]
         public int RouRefId { get; set; }
+
+        [Display(Name = "WCenter")]
         public int RouWcid { get; set; }
 
         [Display(Name = "Fase")]
@@ -21,7 +25,7 @@ namespace MyErp.Models
         [DataType(DataType.MultilineText)]
         public string RouOper { get; set; }
 
-        [Display(Name = "Parts produced")]
+        [Display(Name = "NumParts")]
         [Required,Range(0.001, double.MaxValue, ErrorMessage = "Enter valid Value (>0)")]
         public double RouWunit { get; set; }
 
@@ -29,7 +33,7 @@ namespace MyErp.Models
         [Required,Range(0.001, double.MaxValue, ErrorMessage = "Enter valid Value (>0)")]
         public double RouWtime { get; set; }
 
-        [Display(Name = "Unit Of Time")]
+        [Display(Name = "UTime")]
         [Required,StringLength(25)]
         public string RouTunit { get; set; }
 

@@ -1,0 +1,358 @@
+@charset "UTF-8";
+/**
+* mydataGrid(dg.mydg.css)
+* Version: 1.0.0
+* Build date: Sat Apr 30 2022
+*
+* Copyright (c)
+* Read about 
+*/
+.with_auto{
+        border: 1px;
+}
+.dropbtn {
+        background-color: #dde0e0;
+        color: rgb(25, 24, 24);
+        padding: 9px;
+        font-size: 11px;
+        border: 1px;
+        cursor: pointer;
+      }
+      
+      /* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+        background-color: #c8c6c6;
+      }
+      
+.menu-hor {
+	color: #222222;
+        background-color: #CCCCCC;
+        border-color: #888888;
+        text-align: center;
+}
+.row-full{
+	width: 100vw;
+        position: relative;
+}
+.foot-pager {
+        text-align: right;
+}
+.edit-visible {
+        visibility: visible;
+        display:block;
+        color: #222222;
+        background-color: #FFFFFF;
+        border-color: #888888;
+        text-align: left;
+}
+.visible {
+            visibility: visible;
+            display:block;
+            color: #222222;
+            background-color: #FFFFFF;
+            border-color: #888888;
+            text-align: left;
+}
+.xvisible {
+            visibility: visible;
+            display:block;
+            text-align: left;
+}
+.invisible {
+            visibility: hidden;
+            display:none;
+            text-align: left;
+}
+.cont-titles {color: #222222;
+        font-family: Verdana;
+        font-size: 10pt;
+        background-color: #bdbbbb;
+        border-color: #888888;
+        text-align: center;
+        height: 35px;
+}
+.cont-titles-l {color: #222222;
+        background-color: #CCCCCC;
+        border-color: #888888;
+        text-align: left;
+}
+.cont-body {color: #222222;
+        background-color: #CCCCCC;
+        border-color: #888888;
+        text-align: left;
+        }
+.div-edit {
+        width: 100%;
+        /*
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        */
+        align-items: center;
+        }
+.table-edit {
+        border: 1px solid #79797b;
+        width: 100%;
+        /*
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        */
+}
+.table-norm {
+        border: 1px solid #fffdfd;
+        width : 100%;
+        }
+.table-bold {
+        border: 1px solid white;
+        background-color: #CCCCCC;
+        width:100%;
+        }
+.div-bold {
+        visibility: visible;
+        display:block;
+        color: #222222;
+        font-weight: bold;
+        background-color: #CCCCCC;
+        border-color: #888888;
+        text-align: center;
+
+}
+.head-text {color: #FFFFFF;
+        font-family: Verdana;
+        font-size: 10pt;
+        background-color: #bbbbbb;
+        border-color: #000000;
+        border-top-color : #000000;
+        text-align: left;
+        height: 35px;
+        }
+.head-text:hover {color: #FFFFFF;
+        font-family: Verdana;
+        font-size: 10pt;
+        background-color: #999999;
+        border-color: #000000;
+        border-top-color : #000000;
+        text-align: left;
+        height: 35px;
+        }
+
+.line-text-pri {color: #555555;
+        font-family: Verdana;
+        font-size: 10pt;
+        background-color: #F5F5F5;
+        border-color: #000000;
+        text-align: left;
+        height: 35px;
+        }
+        
+.line-text-pri:hover {color: #555555;
+        font-family: Verdana;
+        font-size: 10pt;
+        background-color: #F5F5F5;
+        border-color: #000000;
+        text-align: left;
+        height: 35px;
+}
+.line-text-alt {color: #555555;
+        font-family: Verdana;
+        font-size: 10pt;
+        background-color: #FFFFFF;
+        border-color: #000000;
+        text-align: left;
+        height: 35px;
+        }
+.line-text-alt:hover {color: #555555;
+        font-family: Verdana;
+        font-size: 10pt;
+        background-color: #F5F5F5;
+        border-color: #000000;
+        text-align: left;
+        height: 35px;
+        }
+.line-text-sel {color: #555555;
+        font-family: Verdana;
+        font-size: 10pt;
+        background-color: #dddddd;
+        border-color: #000000;
+        text-align: left;
+        height: 35px;
+        }
+        
+.col-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #FFFFFF;
+        text-align: right;
+        }
+.norm-lab-text {color: #222222;
+        background-color: #FFFFFF;
+        border-color: #FFFFFF;
+        text-align: left;
+        }
+.style-h4 {color: #777777;
+        background-color: #ffffff;
+        border-color: #e8edf9;
+        text-align: left;
+        }
+.style-h3 {color: #777777;
+        background-color: #ffffff;
+        border-color: #e8edf9;
+        text-align: left;
+        }
+.style-data {color: #FFFFFF;
+        background-color: #bdbbbb;
+        text-align: center;
+        }
+                
+.norm-tb-text {color: #999999;
+        background-color: #eaebee;
+        border-color: #e8edf9;
+        text-align: left;
+        }
+.norm-tb-num {color: #999999;
+        background-color: #eaebee;
+        border-color: #e8edf9;
+        text-align: right;
+        }
+.text-box{
+        border:none;
+        border-color: #e8edf9;        
+        }
+.norm-num {color: #222222;
+        background-color: #FFFFFF;
+        border-color: #FFFFFF;
+        text-align: right;
+        }
+.col-num {color: #222222;
+        background-color: #FFFFFF;
+        border-color: #FFFFFF;
+        text-align: right;
+        }
+.medium-text {color: #222222;
+        background-color: #FFFFFF;
+        border-color: #FFFFFF;
+        text-align: left;
+        font-size: large;
+        }
+.big-text {color: #222222;
+        background-color: #FFFFFF;
+        border-color: #FFFFFF;
+        text-align: left;
+        width: 270px;
+        }
+.botcol-text {color: #222222;
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+.red-number {color: #222222;        
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+.blue-number {color: #222222;        
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+.botred-number {color: #222222;        
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+.botblue-number {color: #222222;        
+        background-color: #DDDDDD;
+        border-color: #888888;
+        text-align: right;
+        }
+.centerul {
+        display: flex;
+        justify-content: center;
+        }
+
+.dropdown {
+        position: relative;
+        display: inline-block;
+        }      
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #ffffff;
+        min-width: 160px;
+        font-size: 11px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }      
+/* Links inside the dropdown */
+.dropdown-content a {
+        color: black;
+        padding: 1px 2px;
+        text-decoration: none;
+        display: block;
+        }   
+.center {
+        /*  style for container of a grid 
+        when we get the form with the grid centered
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        */
+        position:relative;
+        width:80%;
+        height:100%;
+        transform: translate(10%, 0%);
+        padding: 10px;
+        }
+              
+.absolute{/* the grid should have this style in order to get centered on the container*/
+        /*
+        position:absolute;
+        width:100%;
+        */
+}   
+
+.linetr {
+        position: relative;
+      }
+.searchtb {
+        /*
+          position: absolute;
+          left: 0;
+          right: 0;
+        */  
+          max-width: 9ch;
+      }
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}              
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+#div_btn {
+        text-align: center;
+}
+.dx-none {
+        display: none;
+}
+.tab-content {
+        border: 7px solid rgb(239, 18, 18);
+        /*border-width: 2 3px 3px;*/
+        padding: 3px;
+    }
+.nav-tab > li > a.active {
+        color: #222222;
+        border: 1px solid #222222;
+        /*background-color: #8057D5 !important;*/
+    }
+.nav-tab > li > a {
+        color :#999999;
+        border: 0px solid #999999;
+        /*background-color: #8057D5 !important;*/
+    }
+/*
+.nav-tab > li > a.active {
+        border: 1px solid #8057D5;
+        background-color: #8057D5 !important;
+    }
+*/

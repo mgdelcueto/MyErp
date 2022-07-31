@@ -49,6 +49,14 @@
             <td>@Html.ValidationMessageFor(p => p.PayType)</td>
         </tr>
         <tr>
+            <td>@Html.LabelFor(p => p.PayImporte,new { @class = "norm-lab-text",})</td>
+            <td>@Html.EditorFor(p => p.PayImporte, new { htmlAttributes = new { @class = "norm-tb-num", @style = "width:175px"} })</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(p => p.PayImporte)</td>
+        </tr>
+        <tr>
             <td>@Html.LabelFor(p => p.PayRet,new { @class = "norm-lab-text",})</td>
             <td>@Html.EditorFor(p => p.PayRet, new { htmlAttributes = new { @class = "norm-tb-text", @style = "width:175px"} })</td>
         </tr>

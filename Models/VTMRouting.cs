@@ -9,20 +9,20 @@ namespace MyErp.Models
     {
         public int RoRoId { get; set; }
 
-        [Display(Name = "Work Center")]
+        [Display(Name = "WCenter")]
         [Required, Range(1,int.MaxValue,ErrorMessage="Enter a Valid Work Center")]
         public int RoRoWCId { get; set; }
 
-        [Display(Name = "Work Center")]
+        [Display(Name = "WCenterd")]
         [StringLength(225)]
         public string RoRoWCDe { get; set; }
         public int RoRoMatId { get; set; }
 
-        [Display(Name = "Reference")]
+        [Display(Name = "Refer")]
         [StringLength(125)]
         public string RoRoMatRe { get; set; }
 
-        [Display(Name = "Description")]
+        [Display(Name = "RefDescr")]
         [StringLength(125)]
         public string RoRoMatDe { get; set; }
 
@@ -30,27 +30,27 @@ namespace MyErp.Models
         [Required,StringLength(25)]
         public string RoRoFase { get; set; }
 
-        [Display(Name = "Operation")]
+        [Display(Name = "Oper")]
         [Required,StringLength(225)]
         public string RoRoOper { get; set; }
 
-        [Display(Name = "Parts produced")]
+        [Display(Name = "NumParts")]
         [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid number (>0)")]
         public double RoRoWunit { get; set; }
 
-        [Display(Name = "Time to produce")]
+        [Display(Name = "Time")]
         [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid number (>0)")]
         public double RoRoWtime { get; set; }
 
-        [Display(Name = "Unit of time")]
+        [Display(Name = "UTime")]
         [Required,StringLength(25)]
         public string RoRoTunit { get; set; }
 
-        [Display(Name = "Min Lot")]
+        [Display(Name = "MinLot")]
         [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid number (>0)")]
         public double RoRoMinLot { get; set; }
 
-        [Display(Name = "Unit Embal")]
+        [Display(Name = "UEmba")]
         [Required,Range(0, double.MaxValue, ErrorMessage = "Enter valid number (>0)")]
         public double RoRoUEmb { get; set; }
     }

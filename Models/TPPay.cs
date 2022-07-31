@@ -26,5 +26,9 @@ namespace MyErp.Models
        [Display(Name="Account")]
        [Required,StringLength(25)]
         public string PayAccount { get; set; }
+
+       [Display(Name="PayImporte")]
+       [Required,Range(0.001, double.MaxValue, ErrorMessage = "Enter valid Value (>0)")]
+       public double PayImporte { get; set; }
     }
 }

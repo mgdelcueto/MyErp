@@ -1100,6 +1100,8 @@ namespace MyErp.Models
                 entity.Property(e => e.PayStDate).HasColumnType("datetime");
 
                 entity.Property(e => e.PayType).HasMaxLength(10);
+
+                entity.Property(e => e.PayImporte).HasColumnName("PayImporte");
             });
 
             modelBuilder.Entity<TPPresen>(entity =>
