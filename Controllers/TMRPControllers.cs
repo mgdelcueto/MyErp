@@ -23,6 +23,9 @@ using System.Diagnostics;
 using System.ComponentModel;
 
 using MyErp.Resources;
+
+using System.Globalization;
+
  
 
 namespace MyErp.Controllers {
@@ -441,10 +444,16 @@ namespace MyErp.Controllers {
             ViewData["panel1"]=panel1;
             if (F1==null){F1=System.DateTime.Now;}
             if (F2==null){F2=System.DateTime.Now;}
-        
+
+            DateTime _xF1 = (DateTime)F1;
+            DateTime _xF2 = (DateTime)F2;
             //////var dbContext = new MyErpDBContext();
-             ViewData["F1"]=F1;
-             ViewData["F2"]=F2;
+            //DateTime.Today.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture)
+            CultureInfo culture = CultureInfo.GetCultureInfo(CultureInfo.CurrentCulture.Name);
+             string sF1=_xF1.ToString("MM/dd/yyyy",culture);
+             string sF2=_xF2.ToString("MM/dd/yyyy",culture);
+             ViewData["F1"]=sF1;
+             ViewData["F2"]=sF2;
              ViewData["ACSt"]=accStock;
              ViewData["WCent"]=wcent;
              ViewData["MatPO"]=material;
@@ -461,9 +470,12 @@ namespace MyErp.Controllers {
 
             //List<VCCplanning> _mode = (List<VCCplanning>)ViewBag.ListCustPlan;
             //var model = _mode[0];
+            CultureInfo culturedp = CultureInfo.GetCultureInfo("en-US");
+            DateTime rF1 =DateTime.ParseExact(sF1,"MM/dd/yyyy",culture);
+            DateTime rF2 =DateTime.ParseExact(sF2,"MM/dd/yyyy",culture);
             VCXplanning model = new VCXplanning{
-                CplanDateFrom=F1,
-                CplanDateTo=F2,
+                CplanDateFrom=rF1,
+                CplanDateTo=rF2,
                 CPlancStock=accStock
             };
             //model.CplanDateFrom=F1;
@@ -534,11 +546,16 @@ namespace MyErp.Controllers {
             bool accStock=false;
             if (ModelState.IsValid){
             try{
+            CultureInfo culture = CultureInfo.GetCultureInfo(CultureInfo.CurrentCulture.Name);
              F1 = model.CplanDateFrom;
              F2 = model.CplanDateTo;
+             DateTime xF1=(DateTime)F1;
+             DateTime xF2=(DateTime)F2;
+             string sF1=xF1.ToString("MM/dd/yyyy",culture);
+             string sF2=xF2.ToString("MM/dd/yyyy",culture);
              accStock=model.CPlancStock;
-             ViewData["F1"]=F1;
-             ViewData["F2"]=F2;
+             ViewData["F1"]=sF1;
+             ViewData["F2"]=sF2;
              ViewData["ACSt"]=accStock;
             }
             catch{}

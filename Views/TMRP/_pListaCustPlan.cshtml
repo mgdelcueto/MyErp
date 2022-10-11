@@ -13,6 +13,9 @@
 @model VCXplanning
 @functions {
 
+    private void dtpculture()
+    {
+    }
     private string getUserName()
     {
         var name = Context.User.Claims.FirstOrDefault(
@@ -546,7 +549,7 @@
 }
 
 @using (Html.BeginForm()) {
-   <div class="div-edit">
+    <div class="div-edit">
     @Html.ValidationSummary(true)
     
     @{
@@ -562,7 +565,7 @@
 
         <tr>
             <td>@Html.LabelFor(p => p.CplanDateFrom,new { @class = "norm-lab-text",})</td>
-            <td>@Html.EditorFor(p => p.CplanDateFrom, new { htmlAttributes = new {  @class = "norm-tb-text", @style = "width:200px" } })</td>
+            <td>@Html.EditorFor(p => p.CplanDateFrom, new { htmlAttributes = new {  @format="yyyy-MM-dd" , @class = "norm-tb-text", @style = "width:200px" } })</td>
             <td>@Html.LabelFor(p => p.CplanDateTo,new { @class = "norm-lab-text",})</td>
             <td>@Html.EditorFor(p => p.CplanDateTo, new { htmlAttributes = new {  @class = "norm-tb-text", @style = "width:200px" } })</td>
             <td class="norm-lab-text">@SharedLocalizer.GetLocalizedHtmlString("AccountStocks")</td>

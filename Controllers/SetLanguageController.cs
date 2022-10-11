@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Localization;
     using Microsoft.AspNetCore.Mvc;
 
+    using System.Globalization;
     public class SetLanguageController : Controller
     {
         [HttpPost]
@@ -14,7 +15,7 @@
             ViewData["Name"]="LO";//"Modulo"]=99;//88;
             if (actionType=="setdateOK")
             {
-
+            //CultureInfo.DefaultThreadCurrentCulture= CultureInfo.CreateSpecificCulture(culture);
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),

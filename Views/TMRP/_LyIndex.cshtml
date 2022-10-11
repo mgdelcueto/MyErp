@@ -1,4 +1,5 @@
 @using MyErp.Resources
+@using System.Globalization
 @inject LocService SharedLocalizer
 @{
     Layout=null;
@@ -79,15 +80,19 @@
     DateTime getDate(int date)
     {
         System.DateTime ret = System.DateTime.Now;
+        CultureInfo culture = CultureInfo.GetCultureInfo(CultureInfo.CurrentCulture.Name);                
         if (date==1){
             try{
-                ret = Convert.ToDateTime(ViewData["F1"].ToString());
+                string sdate=ViewData["F1"].ToString();
+                ret =DateTime.ParseExact(sdate,"MM/dd/yyyy",culture);
             }
             catch{}
         }
         if (date==2){
             try{
-                ret = Convert.ToDateTime(ViewData["F2"].ToString());
+                string sdate=ViewData["F2"].ToString();
+                //ret = Convert.ToDateTime(sdate,culture);
+                ret =DateTime.ParseExact(sdate,"MM/dd/yyyy",culture);
             }
             catch{}
         }
@@ -115,7 +120,7 @@
         <div>
 	        <ul class="nav nav-tab">
 		        <li class="nav-item">
-                    <a class="@navClass(1)" role="tab" disable_anchor="true"  asp-area="" asp-controller="TMRP" asp-action="Capacity" asp-route-F1=@getDate(1) asp-route-F2=@getDate(2) asp-route-accStock=@Model.CPlancStock asp-route-panel="1" asp-route-panel1="1">@SharedLocalizer.GetLocalizedHtmlString("CustPlan")</a>
+                    <a class="@navClass(1)" role="tab" disable_anchor="true"  asp-area="" asp-controller="TMRP" asp-action="Capacity" asp-route-F1=@getDate(1)  asp-route-F2=@getDate(2) asp-route-accStock=@Model.CPlancStock asp-route-panel="1" asp-route-panel1="1">@SharedLocalizer.GetLocalizedHtmlString("CustPlan")</a>
 		        </li>
 		        <li class="nav-item">
                     <a class="@navClass(2)" role="tab" disable_anchor="true"  asp-area="" asp-controller="TMRP" asp-action="Capacity" asp-route-F1=@getDate(1)  asp-route-F2=@getDate(2) asp-route-accStock=@Model.CPlancStock asp-route-panel="2" asp-route-panel1="1">@SharedLocalizer.GetLocalizedHtmlString("MatReq")</a>

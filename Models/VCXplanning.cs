@@ -9,11 +9,16 @@ namespace MyErp.Models
     public partial class VCXplanning
     {
         [Display(Name="Fecha inicio plan")]
-        [Required,DataType(DataType.Date)]         
+        //[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date), Required]
         public DateTime? CplanDateFrom { get; set; }
+
         [Display(Name="Fecha Fin Plan")]
-        [Required,DataType(DataType.Date)]         
+        //[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date), Required]
         public DateTime? CplanDateTo { get; set; }
+        
         public bool CPlancStock {get;set;}
+
     }
 }
