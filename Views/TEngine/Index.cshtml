@@ -78,36 +78,42 @@
         {
             case "Facility":
                 retur.Add(addLine("FaId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("FaCode","false"));
                 retur.Add(addLine("FaDescr","true"));
                 retur.Add(addLine("FaType","false"));
                 break;
             case "WCenter":
                 retur.Add(addLine("WcdId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("Wccode","false"));
                 retur.Add(addLine("Wcdescr","true"));
                 retur.Add(addLine("Wctype","false"));
                 break;
             case "WCenterC":
                 retur.Add(addLine("WcoId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("WcoCode","false"));
                 retur.Add(addLine("WcoDescr","true"));
                 retur.Add(addLine("WcoType","false"));
                 break;
             case "Materials":
                 retur.Add(addLine("MatId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("MatRefer","false"));
                 retur.Add(addLine("MatDescr","true"));
                 retur.Add(addLine("MatClass","false"));
                 break;
             case "SLocation":
                 retur.Add(addLine("LocId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("LocCode","false"));
                 retur.Add(addLine("LocDescr","true"));
                 retur.Add(addLine("LocType","false"));
                 break;
             case "Operators":
                 retur.Add(addLine("OpeId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("OpeCode","false"));
                 retur.Add(addLine("OpeDesc","true"));
                 retur.Add(addLine("OpeCosth","true"));
@@ -115,6 +121,7 @@
                 break;
             case "Trucks":
                 retur.Add(addLine("TruckId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("TruckCode","false"));
                 retur.Add(addLine("TruckDeno","true"));
                 break;
@@ -181,6 +188,7 @@
                 f => new Container() 
                 {
                         CampoId = f.FaId,
+                        CampoKy = f.FaId,
                         Campo01 = f.FaCode.ToString(),
                         Campo02 = f.FaDescr.ToString(),
                         Campo03 = f.FaType.ToString(),
@@ -217,6 +225,7 @@
                 f => new Container() 
                 {
                         CampoId = f.WcdId,
+                        CampoKy = f.WcdId,
                         Campo01 = f.Wccode.ToString(),
                         Campo02 = f.Wcdescr.ToString(),
                         Campo03 = f.Wctype.ToString(),
@@ -250,6 +259,7 @@
                 f => new Container() 
                 {
                         CampoId = f.WcoId,
+                        CampoKy = f.WcoId,
                         Campo01 = f.WcoCode.ToString(),
                         Campo02 = f.WcoDescr.ToString(),
                         Campo03 = f.WcoType.ToString(),
@@ -284,6 +294,7 @@
                 f => new Container() 
                 {
                         CampoId = f.MatId,
+                        CampoKy = f.MatId,
                         Campo01 = f.MatRefer.ToString(),
                         Campo02 = f.MatDescr.ToString(),
                         Campo03 = f.MatClass.ToString(),
@@ -317,6 +328,7 @@
                 f => new Container() 
                 {
                         CampoId = f.LocId,
+                        CampoKy = f.LocId,
                         Campo01 = f.LocCode.ToString(),
                         Campo02 = f.LocDescr.ToString(),
                         Campo03 = f.LocType.ToString(),
@@ -350,6 +362,7 @@
                 f => new Container() 
                 {
                         CampoId = f.OpeId,
+                        CampoKy = f.OpeId,
                         Campo01 = f.OpeCode.ToString(),
                         Campo02 = f.OpeDesc.ToString(),
                         Campo03 = f.OpeCosth.ToString(),
@@ -383,6 +396,7 @@
                 f => new Container() 
                 {
                         CampoId = f.TruckId,
+                        CampoKy = f.TruckId,
                         Campo01 = f.TruckCode.ToString(),
                         Campo02 = f.TruckDeno.ToString(),
                         Campo03 = "",

@@ -26,6 +26,7 @@
         switch(table){
             case "Customer":
                 retur.Add(addLine("CustId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("CustNif","true"));
                 retur.Add(addLine("CustCode","true"));
                 retur.Add(addLine("CustRasoc","true"));
@@ -60,6 +61,7 @@
                         f => new Container() 
                     {
                         CampoId = f.CustId,
+                        CampoKy = f.CustId,
                         Campo01 = f.CustNif.ToString(),
                         Campo02 = f.CustCode.ToString(),
                         Campo03 = f.CustRasoc.ToString(),

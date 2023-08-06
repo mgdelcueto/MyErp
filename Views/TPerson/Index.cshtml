@@ -38,6 +38,7 @@
     List<List<string>>  Fields(){
         List<List<string>> retur = new List<List<string>>();
         retur.Add(addLine("PerId","false"));
+        retur.Add(addLine("CampoKy","false"));
         retur.Add(addLine("PerDni","true"));
         retur.Add(addLine("PerName","true"));
         retur.Add(addLine("PerName1","true"));
@@ -53,6 +54,7 @@
                         f => new Container() 
                     {
                         CampoId = f.PerId,
+                        CampoKy = f.PerId,
                         Campo01 = f.PerDni.ToString(),
                         Campo02 = f.PerName.ToString(),
                         Campo03 = f.PerName1.ToString(),

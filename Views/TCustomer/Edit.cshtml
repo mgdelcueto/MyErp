@@ -75,6 +75,7 @@
         {
             case "Product":
                     retur.Add(addLine("CprodId","false"));
+                    retur.Add(addLine("CampoKy","false"));
                     retur.Add(addLine("CprodRefInt","false"));
                     retur.Add(addLine("CprodDescInt","true"));
                     retur.Add(addLine("CprodCrDate","false"));
@@ -82,6 +83,7 @@
                 break;
             case "CPlant":
                     retur.Add(addLine("CplantId","false"));
+                    retur.Add(addLine("CampoKy","false"));
                     retur.Add(addLine("CplantCode","false"));
                     retur.Add(addLine("CplantDeno","true"));
                     retur.Add(addLine("CplantAdStrt","true"));
@@ -90,6 +92,7 @@
                 break;
             case "CPlann":
                     retur.Add(addLine("CplanId","false"));
+                    retur.Add(addLine("CampoKy","false"));
                     retur.Add(addLine("CprodRefInt","false"));
                     retur.Add(addLine("CprodDescInt","true"));
                     retur.Add(addLine("CplanDateFrom","false"));
@@ -99,6 +102,7 @@
                 break;
             case "CPO":
                     retur.Add(addLine("Cpoid","false"));
+                    retur.Add(addLine("CampoKy","false"));
                     retur.Add(addLine("Cpopo","false"));
                     retur.Add(addLine("CporeferEx","false"));
                     retur.Add(addLine("CprodRefInt","false"));
@@ -163,6 +167,7 @@
                 f => new Container() 
                 {
                         CampoId = f.CprodId,
+                        CampoKy = f.CprodId,
                         Campo01 = f.CprodRefInt.ToString(),
                         Campo02 = f.CprodDescInt.ToString(),
                         Campo03 = string.Format("{0:dd-MM-yyyy}", f.CprodCrDate),
@@ -188,6 +193,7 @@
                 f => new Container() 
                 {
                         CampoId = f.CplantId,
+                        CampoKy = f.CplantId,
                         Campo01 = f.CplantCode.ToString(),
                         Campo02 = f.CplantDeno.ToString(),
                         Campo03 = f.CplantAdStrt.ToString(),
@@ -214,6 +220,7 @@
                 f => new Container() 
                 {
                         CampoId = f.CplanId,
+                        CampoKy = f.CplanId,
                         Campo01 = f.CprodRefInt.ToString(),
                         Campo02 = f.CprodDescInt.ToString(),
                         Campo03 = string.Format("{0:dd-MM-yyyy}", f.CplanDateFrom),
@@ -240,6 +247,7 @@
                 f => new Container() 
                 {
                         CampoId = f.Cpoid,
+                        CampoKy = f.Cpoid,
                         Campo01 = f.Cpopo.ToString(),
                         Campo02 = f.CporeferEx.ToString(),
                         Campo03 = f.CprodRefInt.ToString(),

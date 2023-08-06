@@ -1,7 +1,7 @@
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\MyErp.exe
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\Course_Log_Icon.jpg
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\css\dg.mydg.css
-C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\css\site.css
+C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\css\siter.css
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\css\style.css
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\Dino.jpg
 C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish\wwwroot\favicon.ico

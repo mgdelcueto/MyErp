@@ -99,17 +99,20 @@
         {
             case "Career":
                 retur.Add(addLine("CareId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("CareDate","false"));
                 retur.Add(addLine("CarePosit","false"));
                 retur.Add(addLine("CareObser","true"));
                 break;
             case "Contract":
                 retur.Add(addLine("ConId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("ConRevDate","false"));
                 retur.Add(addLine("ConObs","true"));
                 break;
             case "Curriculum":
                 retur.Add(addLine("CurrId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("CurrRevDate","false"));
                 retur.Add(addLine("CurrArea","false"));
                 retur.Add(addLine("CurrAreaDesc","false"));
@@ -118,6 +121,7 @@
                 break;
             case "Pay":
                 retur.Add(addLine("PayId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("PayStDate","false"));
                 retur.Add(addLine("PayType","false"));
                 retur.Add(addLine("PayRet","false"));
@@ -125,18 +129,21 @@
                 break;
             case "Presence":
                 retur.Add(addLine("PresId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("PresLocal","false"));
                 retur.Add(addLine("PresDateEvent","false"));
                 retur.Add(addLine("PresTimeEvent","false"));
                 break;
             case "Review":
                 retur.Add(addLine("RevId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("RevDate","false"));
                 retur.Add(addLine("RevObj","false"));
                 retur.Add(addLine("RevObRat","false"));
                 break;
             case "Training":
                 retur.Add(addLine("TrainId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("TrainDate","false"));
                 retur.Add(addLine("TrainArea","false"));
                 retur.Add(addLine("TrainCourse","false"));
@@ -210,6 +217,7 @@
                 f => new Container() 
                 {
                         CampoId = f.CareId,
+                        CampoKy = f.CareId,
                         Campo01 = f.CareDate.ToString(),
                         Campo02 = f.CarePosit.ToString(),
                         Campo03 = f.CareObser.ToString(),
@@ -235,6 +243,7 @@
                 f => new Container() 
                 {
                         CampoId = f.ConId,
+                        CampoKy = f.ConId,
                         Campo01 = f.ConRevDate.ToString(),
                         Campo02 = f.ConObs.ToString(),
                         Campo03 = "",
@@ -260,6 +269,7 @@
                 f => new Container() 
                 {
                         CampoId = f.CurrId,
+                        CampoKy = f.CurrId,
                         Campo01 = f.CurrRevDate.ToString(),
                         Campo02 = f.CurrArea.ToString(),
                         Campo03 = f.CurrAreaDesc.ToString(),
@@ -285,6 +295,7 @@
                 f => new Container() 
                 {
                         CampoId = f.PayId,
+                        CampoKy = f.PayId,
                         Campo01 = f.PayStDate.ToString(),
                         Campo02 = f.PayType.ToString(),
                         Campo03 = f.PayRet.ToString(),
@@ -310,6 +321,7 @@
                 f => new Container() 
                 {
                         CampoId = f.PresId,
+                        CampoKy = f.PresId,
                         Campo01 = f.PresLocal.ToString(),
                         Campo02 = f.PresDateEvent.ToString(),
                         Campo03 = f.PresTimeEvent.ToString(),
@@ -336,6 +348,7 @@
                 f => new Container() 
                 {
                         CampoId = f.RevId,
+                        CampoKy = f.RevId,
                         Campo01 = f.RevDate.ToString(),
                         Campo02 = f.RevObj.ToString(),
                         Campo03 = f.RevObRat.ToString(),
@@ -362,6 +375,7 @@
                 f => new Container() 
                 {
                         CampoId = f.TrainId,
+                        CampoKy = f.TrainId,
                         Campo01 = f.TrainDate.ToString(),
                         Campo02 = f.TrainArea.ToString(),
                         Campo03 = f.TrainCourse.ToString(),

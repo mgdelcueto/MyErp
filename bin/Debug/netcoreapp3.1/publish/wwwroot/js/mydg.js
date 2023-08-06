@@ -211,7 +211,7 @@ function editLine(_maxrow,_gridId,_activate)//,filterExpression,sortExpression)
     }
     //return;
 }
-function rowClick(_nr,controller,action,_gridId,model="")//,filterExpression,sortExpression)
+function rowClick(_nr,controller,action,_gridId,model="",_parqs="")//,filterExpression,sortExpression)
 {
     const querystring = window.location.search;
     const params = new URLSearchParams(querystring);
@@ -222,6 +222,12 @@ function rowClick(_nr,controller,action,_gridId,model="")//,filterExpression,sor
     var _nrow = parseInt(_nr);
     var checkbox = document.getElementById(nameOf(_nr.toString(),_gridId));
     _id = checkbox.value.toString();
+    if (_parqs!=""){
+      var urlx=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+_parqs+_id;
+      window.location.href = urlx;
+    }
+    else
+    {
     if (model==""){
         var url2=window.location.protocol+"//"+window.location.hostname+":"+window.location.port+"/"+controller+"/"+action+"/"+_id;//+"?panel=1";//&sortExpression="+sortExpression.toString()+"&filterExpression="+filterExpression.toString()+"&IdGrid="+_gridId.toString();
         if (retCont==controller){
@@ -241,6 +247,7 @@ function rowClick(_nr,controller,action,_gridId,model="")//,filterExpression,sor
             url22=url22+"?"+params.toString()+"&retCont="+retCont+"&retAct="+retAct+"&_parqs="+_rparqs;
         }
         window.location.href = url22;    }
+    }
     }
     else{
         var url=window.location.href;

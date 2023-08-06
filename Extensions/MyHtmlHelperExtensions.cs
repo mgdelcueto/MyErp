@@ -756,7 +756,7 @@ public static class MyHtmlHelperExtensions {
                     var tagcbx = new TagBuilder($"input"); //<tr>
                     tagcbx.MergeAttribute("type","checkbox");
                     tagcbx.MergeAttribute("id","_"+uniqueId+ "-"+nrow.ToString());
-                    tagcbx.MergeAttribute("value",c.CampoId.ToString());
+                    tagcbx.MergeAttribute("value",c.CampoKy.ToString());
                     tagcbx.MergeAttribute("onclick","selectionchange("+nrow.ToString()+","+rowspage.ToString()+",'"+uniqueId+"')");
                     tagcbx.Attributes.Add("width", Pct);
                     tagtd0.InnerHtml.AppendHtml(tagcbx);
@@ -855,7 +855,7 @@ public static class MyHtmlHelperExtensions {
 
 
                         var tagtd_ = new TagBuilder($"td"); //<tr>
-                        tagtd_.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"','"+model.ToString()+"')");//,"+quote+filterExpression+quote +",'"+sortExpression+"')");
+                        tagtd_.MergeAttribute("onclick","rowClick("+nrow.ToString()+",'"+_controller+"','"+_actionEdit+"','"+uniqueId+"','"+model.ToString()+"','"+_parqs+"')");//,"+quote+filterExpression+quote +",'"+sortExpression+"')");
                         tagtd_.Attributes.Add("width", Pct);
                         tagtd_.InnerHtml.Append(value );
 

@@ -1,0 +1,186 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+.heigh16{
+  height: 32px;
+}
+.container-fluid{
+  height:45px;
+}
+.contain-img:hover{
+  background-color :#ffffff;
+}
+.contain-name{
+  text-align: right;
+}
+.contain-col{
+  background-color:#71639E;
+  color : #FFFFFF;
+  height: 45px;
+}
+.navbar {
+  padding: 0 0px;
+  height: 45px;
+  line-height: 45px;
+  
+  min-height: 10px;
+
+}
+.navbar-expand-sm{
+  padding: 0 0px;
+  /*height: 30px;*/
+  line-height: 30px;
+}
+.navbar-toggleable-sm{
+  padding: 0 0px;
+  /*height: 30px;*/
+  line-height: 30px;
+}
+.navbar-light{
+  padding: 0 0px;
+  /*height: 30px;*/
+  line-height: 30px;
+}
+.navbar-brand {
+  /*padding: 0 0px;*/
+  padding: 0 0px;
+  /*height: 30px;*/
+  line-height: 30px;
+}
+
+.navbar-toggle {
+  padding: 0 0px;
+  /* (80px - button height 34px) / 2 = 23px */
+  margin-top: 2px;
+  /*padding: 0px 0px !important;*/
+}
+.pad0{
+  padding: 0px;
+  margin-top: 0px;
+  margin-left: 9px;
+
+}
+.myDiv {
+  background-color: #ffffff;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+}
+.mih3{
+  /*text-align: center;*/
+  width: 100%;
+  
+
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.posabs {
+  position: absolute;
+  left: 0;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    /* (80px - line-height of 27px) / 2 = 26.5px */
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+    line-height: 2px;
+  }
+}
+.imcard {
+  width: 20px;
+  height: 20px;
+  /*background: url("/GridMenu0.jpg") no-repeat;
+
+  display: inline-block;*/
+}
+.myh4{
+  background-color: #dde0e0;
+  color: #828282;
+  text-align: left;
+}
+/*
+.imcard:hover {
+  width: 20px;
+  height: 20px;
+  background-image: url("/GridMenu1.jpg") no-repeat;
+}
+*/
+#ganttContainer{
+  height: 200px;
+  width: 100%; 
+}

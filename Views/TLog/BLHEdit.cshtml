@@ -69,6 +69,7 @@
         {
             case "InputBLD":
                 retur.Add(addLine("InBLDId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("InBLDMRefer","false"));
                 retur.Add(addLine("InBLDMDescr","true"));
                 retur.Add(addLine("InBLDQty","false"));
@@ -105,6 +106,7 @@
                 f => new Container() 
                 {
                         CampoId = f.InBLDId,
+                        CampoKy = f.InBLDId,
                         Campo01 = f.InBLDMRefer.ToString(),
                         Campo02 = f.InBLDMDescr.ToString(),
                         Campo03 = f.InBLDQty.ToString(),

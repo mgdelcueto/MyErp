@@ -34,6 +34,7 @@
         {
             case "MatRoute":
                 retur.Add(addLine("RoRoId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("RoRoFase","false"));
                 retur.Add(addLine("RoRoOper","true"));
                 retur.Add(addLine("RoRoWCDe","false"));
@@ -71,6 +72,7 @@
                 f => new Container() 
                 {
                         CampoId = f.RoRoId,
+                        CampoKy = f.RoRoId,
                         Campo01 = f.RoRoFase.ToString(),
                         Campo02 = f.RoRoOper.ToString(),
                         Campo03 = f.RoRoWCDe.ToString(),

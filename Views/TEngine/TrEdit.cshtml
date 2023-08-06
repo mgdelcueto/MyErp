@@ -64,6 +64,7 @@
         {
             case "TruckSc":
                 retur.Add(addLine("TrScId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("TrScDayOfWeek","false"));
                 retur.Add(addLine("TrScCrLoadStart","false"));
                 retur.Add(addLine("TrScCrDeparture","false"));
@@ -97,6 +98,7 @@
                 f => new Container() 
                 {
                         CampoId = f.TrScId,
+                        CampoKy = f.TrScId,
                         Campo01 = @sDayofWeek(f.TrScDayOfWeek).ToString(),
                         Campo02 = string.Format("{0:HH:mm}",f.TrScCrLoadStart).ToString(),
                         Campo03 = string.Format("{0:HH:mm}",f.TrScCrDeparture).ToString(),

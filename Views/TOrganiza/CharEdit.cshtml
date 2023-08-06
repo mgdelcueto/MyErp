@@ -40,6 +40,7 @@
         {
             case "UserChar":
                 retur.Add(addLine("RcharId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("RcharRolId","false"));
                 retur.Add(addLine("RcharPerName","false"));
                 break;
@@ -70,6 +71,7 @@
                 f => new Container() 
                 {
                         CampoId = f.RcharId,
+                        CampoKy = f.RcharId,
                         Campo01 = f.RcharRolId.ToString(),
                         Campo02 = f.RcharPerName.ToString(),
                         Campo03 = "",

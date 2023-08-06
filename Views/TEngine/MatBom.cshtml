@@ -12,7 +12,8 @@
         {
         case "MatBom":
                 retur[0]="TEngine";
-                retur[1]="";        //No edit MatEdit
+                retur[1]="MatEdit";        //agoste 2023 --- MatEdit https://localhost:5001/TEngine/MatEdit/2?panel=2&move=0   ------No edit MatEdit
+                                           //https://localhost:5001/TEngine/MatEdit/37?panel=4&move=0
                 retur[2]="";        //No create
                 retur[3]="";        //no delete
                 break;
@@ -33,6 +34,7 @@
         {
             case "MatBom":
                 retur.Add(addLine("ExpId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("ExpsLevel","false"));
                 retur.Add(addLine("ExpRefer","true"));
                 retur.Add(addLine("ExpDescr","false"));
@@ -78,6 +80,7 @@
                 f => new Container() 
                 {
                         CampoId = f.ExpId,
+                        CampoKy = f.ExpComp,
                         Campo01 = f.ExpsLevel.ToString(),
                         Campo02 = f.ExpRefer.ToString(),
                         Campo03 = f.ExpDescr.ToString(),
@@ -112,7 +115,7 @@
                 <h3 class="style-data">@SharedLocalizer.GetLocalizedHtmlString("B.O.M.") @Model.MatDescr</h3>
             </div>
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(28,9,@Columns("MatBom"),@getData_MatBom((List<TExplosionB>)ViewBag.ListMatBom),@Controller("MatBom"),@Fields("MatBom"),Model.MatId,"",false,false)
+                @Html.dataGrid(28,9,@Columns("MatBom"),@getData_MatBom((List<TExplosionB>)ViewBag.ListMatBom),@Controller("MatBom"),@Fields("MatBom"),Model.MatId,"",false,false)  @*"/33?panel=4"*@
             </div>
         </table>
 

@@ -50,6 +50,7 @@
         {
             case "Product":
                 retur.Add(addLine("ProdId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("ProdRefer","false"));
                 retur.Add(addLine("ProdDescr","false"));
                 retur.Add(addLine("ProdCrDate","true"));
@@ -58,6 +59,7 @@
                 break;
             case "SPlan":
                 retur.Add(addLine("PlanId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("MatRefer","false"));
                 retur.Add(addLine("ProdRefer","false"));
                 retur.Add(addLine("ProdDescr","true"));
@@ -68,6 +70,7 @@
                 break;
             case "SPO":
                 retur.Add(addLine("Spoid","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("Spopo","false"));
                 retur.Add(addLine("SprodRefInt","false"));
                 retur.Add(addLine("SporeferEx","true"));
@@ -127,6 +130,7 @@
                 f => new Container() 
                 {
                         CampoId = f.ProdId,
+                        CampoKy = f.ProdId,
                         Campo01 = f.ProdRefer.ToString(),
                         Campo02 = f.ProdDescr.ToString(),
                         Campo03 = f.ProdCrDate.ToString(),
@@ -152,6 +156,7 @@
                 f => new Container() 
                 {
                         CampoId = f.PlanId,
+                        CampoKy = f.PlanId,
                         Campo01 = f.MatRefer.ToString(),
                         Campo02 = f.ProdRefer.ToString(),
                         Campo03 = f.ProdDescr.ToString(),
@@ -178,6 +183,7 @@
                 f => new Container() 
                 {
                         CampoId = f.Spoid,
+                        CampoKy = f.Spoid,
                         Campo01 = f.Spopo.ToString(),
                         Campo02 = f.SprodRefInt.ToString(),
                         Campo03 = f.SporeferEx.ToString(),

@@ -28,6 +28,7 @@
         {
             case "Suplier":
                 retur.Add(addLine("SupId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("SupNif","true"));
                 retur.Add(addLine("SupCode","true"));
                 retur.Add(addLine("SupRasoc","true"));
@@ -65,6 +66,7 @@
                         f => new Container() 
                     {
                         CampoId = f.SupId,
+                        CampoKy = f.SupId,
                         Campo01 = f.SupNif.ToString(),
                         Campo02 = f.SupCode.ToString(),
                         Campo03 = f.SupRasoc.ToString(),

@@ -34,6 +34,7 @@
         {
             case "MatComp":
                 retur.Add(addLine("CoCoId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("CoComRe","false"));
                 retur.Add(addLine("CoComDes","true"));
                 retur.Add(addLine("CoRefQt","false"));
@@ -71,6 +72,7 @@
                 f => new Container() 
                 {
                         CampoId = f.CoCoId,
+                        CampoKy = f.CoCoId,
                         Campo01 = f.CoComRe.ToString(),
                         Campo02 = f.CoComDes.ToString(),
                         Campo03 = f.CoRefQt.ToString(),

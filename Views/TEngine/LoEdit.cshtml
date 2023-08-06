@@ -33,6 +33,7 @@
         {
             case "MatLocal":
                 retur.Add(addLine("LoLoId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("LoRefRe","false"));
                 retur.Add(addLine("LoRefDes","true"));
                 retur.Add(addLine("LoRefSt","false"));
@@ -67,6 +68,7 @@
                 f => new Container() 
                 {
                         CampoId = f.LoLoId,
+                        CampoKy = f.LoLoId,
                         Campo01 = f.LoRefRe.ToString(),
                         Campo02 = f.LoRefDes.ToString(),
                         Campo03 = f.LoRefSt.ToString(),

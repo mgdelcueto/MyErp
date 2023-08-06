@@ -78,6 +78,7 @@
         {
             case "InputBLH":
                 retur.Add(addLine("InBLDId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("InBLStatus","false"));
                 retur.Add(addLine("SupRasoc","false"));
                 retur.Add(addLine("InBLnum","false"));
@@ -234,6 +235,7 @@
                 f => new Container() 
                 {
                         CampoId = f.InBLId,
+                        CampoKy = f.InBLId,
                         Campo01 = f.InBLStatus.ToString(),
                         Campo02 = (f.SupRasoc ??"").ToString(),
                         Campo03 = f.InBLnum.ToString(),

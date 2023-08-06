@@ -49,12 +49,14 @@
         {
             case "WCComp":
                 retur.Add(addLine("WcoId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("WcoCode","false"));
                 retur.Add(addLine("WcoDescr","true"));
                 retur.Add(addLine("WcoType","false"));
                 break;
             case "WCOper":
                 retur.Add(addLine("OpOpId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("OpOpCode","false"));
                 retur.Add(addLine("OpOpDes","true"));
                 retur.Add(addLine("OpOpCost","false"));
@@ -96,6 +98,7 @@
                 f => new Container() 
                 {
                         CampoId = f.WcoId,
+                        CampoKy = f.WcoId,
                         Campo01 = f.WcoCode.ToString(),
                         Campo02 = f.WcoDescr.ToString(),
                         Campo03 = f.WcoType.ToString(),
@@ -122,6 +125,7 @@
                 f => new Container() 
                 {
                         CampoId = f.OpOpId,
+                        CampoKy = f.OpOpId,
                         Campo01 = f.OpOpCode.ToString(),
                         Campo02 = f.OpOpDes.ToString(),
                         Campo03 = f.OpOpCost.ToString(),

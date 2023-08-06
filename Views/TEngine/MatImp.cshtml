@@ -12,7 +12,7 @@
         {
         case "MatImp":
                 retur[0]="TEngine";
-                retur[1]="";        //No edit MatEdit
+                retur[1]="MatEdit";        //No edit MatEdit
                 retur[2]="";        //No create
                 retur[3]="";        //no delete
                 break;
@@ -33,6 +33,7 @@
         {
             case "MatImp":
                 retur.Add(addLine("ExpId","false"));
+                retur.Add(addLine("CampoKy","false"));
                 retur.Add(addLine("ExpsLevel","false"));
                 retur.Add(addLine("ExpRefer","false"));
                 retur.Add(addLine("ExpDescr","true"));
@@ -76,6 +77,7 @@
                 f => new Container() 
                 {
                         CampoId = f.ExpId,
+                        CampoKy = f.ExpComp,
                         Campo01 = f.ExpsLevel.ToString(),
                         Campo02 = f.ExpRefer.ToString(),
                         Campo03 = f.ExpDescr.ToString(),

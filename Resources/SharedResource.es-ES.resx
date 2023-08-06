@@ -117,763 +117,1138 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
+  <data name="HomePage" xml:space="preserve">
+    <value>Pagina de Inicio MyErp</value>
   </data>
-  <data name="Privacy" xml:space="preserve">
-    <value>Privacidad</value>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>No Autorizado</value>
+  </data>
+  <data name="EnterUsername" xml:space="preserve">
+    <value>Intriduzca nombre de Usuario</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Introduzca Contraseña</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Inicio de sesion</value>
+  </data>
+  <data name="Cancell" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Org" xml:space="preserve">
+    <value>Organizacion</value>
   </data>
   <data name="HRArea" xml:space="preserve">
     <value>Area de Recursos Humanos</value>
   </data>
-  <data name="Purchasing" xml:space="preserve">
-    <value>Compras</value>
-  </data>
-  <data name="Sales" xml:space="preserve">
-    <value>Ventas</value>
-  </data>
-  <data name="Engineering" xml:space="preserve">
-    <value>Ingenieria</value>
-  </data>
   <data name="MRPPLanning" xml:space="preserve">
-    <value>Planificación MRP</value>
+    <value>Planificacion MRP</value>
   </data>
-  <data name="HRAreaIndexPage" xml:space="preserve">
-    <value>Área de Recursos Humanos</value>
+  <data name="Languages" xml:space="preserve">
+    <value>Idiomas</value>
   </data>
-  <data name="PersonTable" xml:space="preserve">
-    <value>Listado de empleados</value>
+  <data name="PleaseLogin" xml:space="preserve">
+    <value>Por favor Inicie sesion</value>
   </data>
-  <data name="Filter" xml:space="preserve">
-    <value>Filtrar</value>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Cambiar Contraseña</value>
   </data>
-  <data name="FilterByName" xml:space="preserve">
-    <value>Filtrar por Nombre</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="Surname" xml:space="preserve">
-    <value>Apellidos</value>
-  </data>
-  <data name="DNI" xml:space="preserve">
-    <value>Documento de identidad</value>
-  </data>
-  <data name="Adress" xml:space="preserve">
-    <value>Direccion postal</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>País</value>
-  </data>
-  <data name="&lt;&lt;Prev" xml:space="preserve">
-    <value>&lt;&lt; Anterior</value>
-  </data>
-  <data name="EditPerson" xml:space="preserve">
-    <value>Editar datos del empleado</value>
-  </data>
-  <data name="Person" xml:space="preserve">
-    <value>Empleados</value>
-  </data>
-  <data name="Career" xml:space="preserve">
-    <value>Carrera profesional</value>
-  </data>
-  <data name="Contract" xml:space="preserve">
-    <value>Contrato</value>
-  </data>
-  <data name="Curriculum" xml:space="preserve">
-    <value>Plan de estudios</value>
-  </data>
-  <data name="Pay" xml:space="preserve">
-    <value>Nómina de sueldos</value>
-  </data>
-  <data name="Presence" xml:space="preserve">
-    <value>Presencia</value>
-  </data>
-  <data name="ObjReview" xml:space="preserve">
-    <value>objetivos Rev</value>
-  </data>
-  <data name="Training" xml:space="preserve">
-    <value>Capacitación</value>
-  </data>
-  <data name="Next&gt;&gt;" xml:space="preserve">
-    <value>Siguiente &gt;&gt;</value>
-  </data>
-  <data name="PersonData" xml:space="preserve">
-    <value>Datos del Empleado</value>
-  </data>
-  <data name="BirdDate" xml:space="preserve">
-    <value>Fecha de Nacimiento</value>
-  </data>
-  <data name="CityOrigin" xml:space="preserve">
-    <value>Lugar de nacimiento</value>
-  </data>
-  <data name="CountryOrigin" xml:space="preserve">
-    <value>País de origen</value>
-  </data>
-  <data name="AdressAd" xml:space="preserve">
-    <value>Dirección adicional</value>
-  </data>
-  <data name="CountryRes" xml:space="preserve">
-    <value>País de residencia</value>
-  </data>
-  <data name="ContractDate" xml:space="preserve">
-    <value>Fecha de Contrato</value>
-  </data>
-  <data name="EntryDate" xml:space="preserve">
-    <value>Fecha de entrada</value>
-  </data>
-  <data name="ExitDate" xml:space="preserve">
-    <value>Fecha de salida</value>
+  <data name="Useddltoselect" xml:space="preserve">
+    <value>Seleccione Idioma</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Actualizar</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancelar</value>
+    <value>Cancelar </value>
   </data>
-  <data name="mDNI" xml:space="preserve">
-    <value>se requiere documento de identidad</value>
-  </data>
-  <data name="mBirD" xml:space="preserve">
-    <value>Se requiere Fecha de nacimiento</value>
-  </data>
-  <data name="mCitB" xml:space="preserve">
-    <value>Se requiere Ciudad de origen </value>
-  </data>
-  <data name="mCtrOr" xml:space="preserve">
-    <value>Se requiere país </value>
-  </data>
-  <data name="mName" xml:space="preserve">
-    <value>Se requiere campo de nombre</value>
-  </data>
-  <data name="mSname" xml:space="preserve">
-    <value>Se requiere el apellido </value>
-  </data>
-  <data name="mAdr" xml:space="preserve">
-    <value>Dirección es obligatorio</value>
-  </data>
-  <data name="mConD" xml:space="preserve">
-    <value>Se requiere campo Fecha de contrato</value>
-  </data>
-  <data name="mEntD" xml:space="preserve">
-    <value>se requiere la entrada de campo de fecha</value>
-  </data>
-  <data name="OrgreaIndexPage" xml:space="preserve">
-    <value>Area de organización </value>
-  </data>
-  <data name="Organization" xml:space="preserve">
-    <value>Organizacion</value>
-  </data>
-  <data name="Chart" xml:space="preserve">
-    <value>Organigrama</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Tecnología</value>
-  </data>
-  <data name="Languages" xml:space="preserve">
-    <value>idiomas</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Usuarios</value>
-  </data>
-  <data name="OrgTable" xml:space="preserve">
-    <value>Tabla de organización</value>
+  <data name="OrganizationArea" xml:space="preserve">
+    <value>Gestion de la Organizacion</value>
   </data>
   <data name="OrgData" xml:space="preserve">
-    <value>Datos de la organización</value>
+    <value>Datos de la Organizacion</value>
   </data>
   <data name="OrgCode" xml:space="preserve">
-    <value>Código de Organización</value>
-  </data>
-  <data name="mOrgCode" xml:space="preserve">
-    <value>Código es obligatorio</value>
-  </data>
-  <data name="OrgNif" xml:space="preserve">
-    <value>Id de la organización</value>
-  </data>
-  <data name="mOrgNif" xml:space="preserve">
-    <value>Se requiere el campo ID de la organización</value>
+    <value>Codigo</value>
   </data>
   <data name="OrgName" xml:space="preserve">
-    <value>Nombre de la Organización</value>
+    <value>Nombre</value>
   </data>
-  <data name="mOrgName" xml:space="preserve">
-    <value>El campo nombre es necesario </value>
-  </data>
-  <data name="OrgAdd" xml:space="preserve">
-    <value>Dirección postal</value>
-  </data>
-  <data name="mOrgAdd" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="OrgAdi" xml:space="preserve">
-    <value>Postal Dirección Cont</value>
-  </data>
-  <data name="mOrgAdi" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="Telephone" xml:space="preserve">
-    <value>Teléfono</value>
-  </data>
-  <data name="mTelephone" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="OrgWeb" xml:space="preserve">
-    <value>Página web</value>
-  </data>
-  <data name="mOrgWeb" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="OrgEmail" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="mOrgEmail" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="mOrgCtry" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="mOrgCity" xml:space="preserve">
-    <value>Se requiere campo</value>
+  <data name="OrgNif" xml:space="preserve">
+    <value>Numero de identificacion fiscal</value>
   </data>
   <data name="OrgDate" xml:space="preserve">
-    <value>Fecha de fundación</value>
+    <value>Fecha de fundacion</value>
   </data>
-  <data name="mOrgDate" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="SelectLang" xml:space="preserve">
-    <value>Seleccione el idioma</value>
-  </data>
-  <data name="Useddltoselect" xml:space="preserve">
-    <value>Seleccione el idioma</value>
-  </data>
-  <data name="CharCode" xml:space="preserve">
-    <value>Código del Departamento</value>
-  </data>
-  <data name="mCharCode" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="CharName" xml:space="preserve">
-    <value>Nombre de departamento</value>
-  </data>
-  <data name="mCharName" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="CharDate" xml:space="preserve">
-    <value>Fecha de creación</value>
-  </data>
-  <data name="mCharDate" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="CharAdress" xml:space="preserve">
-    <value>Dirección</value>
-  </data>
-  <data name="mCharAdress" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="CharAdressad" xml:space="preserve">
-    <value>Dirección</value>
-  </data>
-  <data name="mCharAdressad" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="CharTel" xml:space="preserve">
-    <value>Teléfono</value>
-  </data>
-  <data name="mCharTel" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="CharWeb" xml:space="preserve">
-    <value>Sitio web</value>
-  </data>
-  <data name="mCharWeb" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="CharEmail" xml:space="preserve">
-    <value>dirección de correo electrónico</value>
-  </data>
-  <data name="mCharEmail" xml:space="preserve">
-    <value>Se requiere campo</value>
-  </data>
-  <data name="CharCity" xml:space="preserve">
+  <data name="City" xml:space="preserve">
     <value>Ciudad</value>
   </data>
-  <data name="mCharCity" xml:space="preserve">
-    <value>Se requiere campo</value>
+  <data name="Country" xml:space="preserve">
+    <value>Pais</value>
   </data>
-  <data name="CharCtry" xml:space="preserve">
-    <value>País</value>
+  <data name="OrgAdd" xml:space="preserve">
+    <value>Direccion</value>
   </data>
-  <data name="mCharCtry" xml:space="preserve">
-    <value>Se requiere campo</value>
+  <data name="OrgAdi" xml:space="preserve">
+    <value>Direccion (cont)</value>
   </data>
-  <data name="CharHName" xml:space="preserve">
-    <value>Nombre del Director</value>
+  <data name="OrgWeb" xml:space="preserve">
+    <value>Pagina web</value>
   </data>
-  <data name="mCharHName" xml:space="preserve">
-    <value>Se requiere campo</value>
+  <data name="OrgEmail" xml:space="preserve">
+    <value>Contacto Email</value>
   </data>
-  <data name="Code" xml:space="preserve">
-    <value>Código</value>
+  <data name="Telephone" xml:space="preserve">
+    <value>Contacto Telefono</value>
   </data>
-  <data name="Head" xml:space="preserve">
-    <value>Director</value>
+  <data name="Organization" xml:space="preserve">
+    <value>Datos de la Organizacion</value>
   </data>
-  <data name="CharData" xml:space="preserve">
-    <value>Datos del Organigrama</value>
+  <data name="Chart" xml:space="preserve">
+    <value>Datos Organigrama</value>
   </data>
-  <data name="AdChart" xml:space="preserve">
-    <value>Agregar una tabla de registro Organización</value>
+  <data name="Users" xml:space="preserve">
+    <value>Gestion de Usuarios</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Pagina de Inicio </value>
+  </data>
+  <data name="CharList" xml:space="preserve">
+    <value>Lista de unidades organizativas</value>
+  </data>
+  <data name="ChCode" xml:space="preserve">
+    <value>Codigo OU</value>
+  </data>
+  <data name="ChName" xml:space="preserve">
+    <value>Denominacion OU</value>
+  </data>
+  <data name="ChHeadName" xml:space="preserve">
+    <value>Nombre responsable OU</value>
   </data>
   <data name="EdChart" xml:space="preserve">
-    <value>Editar una tabla de registro Organización</value>
+    <value>Editar Organigrama</value>
   </data>
-  <data name="AdRChart" xml:space="preserve">
-    <value>Añadir a Rol departamento ordanization</value>
+  <data name="CharCode" xml:space="preserve">
+    <value>Codigo OU</value>
   </data>
-  <data name="Org" xml:space="preserve">
-    <value>Organización</value>
+  <data name="ChanName" xml:space="preserve">
+    <value>Denominacion OU</value>
   </data>
-  <data name="Unauthorized" xml:space="preserve">
-    <value>Usted no se ha identificado.</value>
+  <data name="CharDate" xml:space="preserve">
+    <value>Fecha creacion OU</value>
   </data>
-  <data name="PleaseLogin" xml:space="preserve">
-    <value>Por favor Inicie sesión</value>
+  <data name="CharHeadId" xml:space="preserve">
+    <value>Responsable OU (Nombre de Usuario)</value>
   </data>
-  <data name="Logoff" xml:space="preserve">
-    <value>Desconectarse</value>
+  <data name="CharAdress" xml:space="preserve">
+    <value>Direccion Postal OU</value>
   </data>
-  <data name="Username" xml:space="preserve">
-    <value>Nombre de usuario</value>
+  <data name="CharAdressad" xml:space="preserve">
+    <value>Direccion Postal (cont ) OU</value>
   </data>
-  <data name="EnterUsername" xml:space="preserve">
-    <value>Introduzca su nombre de usuario</value>
+  <data name="CharCity" xml:space="preserve">
+    <value>Ciudad OU</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>Contraseña</value>
+  <data name="CharCtry" xml:space="preserve">
+    <value>Pais OU</value>
   </data>
-  <data name="EnterPassword" xml:space="preserve">
-    <value>Introducir la contraseña</value>
+  <data name="CharWeb" xml:space="preserve">
+    <value>Pagina Web OU</value>
   </data>
-  <data name="Login" xml:space="preserve">
-    <value>Acceso</value>
+  <data name="CharTel" xml:space="preserve">
+    <value>Telefono de contacto OU</value>
   </data>
-  <data name="_Login" xml:space="preserve">
-    <value>Login</value>
+  <data name="CharEmail" xml:space="preserve">
+    <value>Email contacto OU</value>
   </data>
-  <data name="_Logout" xml:space="preserve">
-    <value>Logout</value>
+  <data name="CharUsrers" xml:space="preserve">
+    <value>Usuarios Miembros de OU</value>
   </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Desconectarse</value>
+  <data name="Id" xml:space="preserve">
+    <value>Identificacion Usuario</value>
   </data>
-  <data name="Forbidden" xml:space="preserve">
-    <value>No autorizado por favor contacte con su administrador</value>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
   </data>
-  <data name="UsrData" xml:space="preserve">
-    <value>Datos del Usuario</value>
+  <data name="SelEmploytoChar" xml:space="preserve">
+    <value>Asignar Empleado a OU</value>
   </data>
-  <data name="UName" xml:space="preserve">
-    <value>Nombre de usuario</value>
+  <data name="Select Employee" xml:space="preserve">
+    <value>Seleccionar Empleado</value>
   </data>
-  <data name="ULastName" xml:space="preserve">
-    <value>del usuario Apellido</value>
+  <data name="UsersList" xml:space="preserve">
+    <value>Listado de Usuarios</value>
   </data>
-  <data name="AddItem" xml:space="preserve">
-    <value>Añadir artículo</value>
+  <data name="FirstName" xml:space="preserve">
+    <value>Nombre de Usuario</value>
   </data>
-  <data name="AdUser" xml:space="preserve">
-    <value>Agregar usuario</value>
+  <data name="LastName" xml:space="preserve">
+    <value>Apellido</value>
   </data>
-  <data name="EdUser" xml:space="preserve">
-    <value>editar usuario</value>
+  <data name="UserLoginName" xml:space="preserve">
+    <value>Nombre inicio sesion Usuario</value>
   </data>
-  <data name="UsRolData" xml:space="preserve">
-    <value>Datos Rol del Usuario</value>
+  <data name="UserFirstName" xml:space="preserve">
+    <value>Nombre Usuario</value>
   </data>
-  <data name="RolName" xml:space="preserve">
-    <value>Nombre de Rol</value>
+  <data name="UserLastName" xml:space="preserve">
+    <value>Apellido</value>
   </data>
-  <data name="AdRol" xml:space="preserve">
-    <value>Añadir Rol</value>
+  <data name="UserStatus" xml:space="preserve">
+    <value>Status Usuario</value>
   </data>
-  <data name="FDescr" xml:space="preserve">
-    <value>Descripcion de la Instalacion</value>
+  <data name="RolUsers" xml:space="preserve">
+    <value>Roles asignados a este Usuario</value>
+  </data>
+  <data name="SelRolUser" xml:space="preserve">
+    <value>Asignar Role a este usuario</value>
+  </data>
+  <data name="Select_Role" xml:space="preserve">
+    <value>Seleccionar Role</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Codigo</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="NIF" xml:space="preserve">
+    <value>NIF</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="RaSoc" xml:space="preserve">
+    <value>Razon Social</value>
+  </data>
+  <data name="CrDate" xml:space="preserve">
+    <value>Fecha de creacion</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Cuenta</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Direccion</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Numero de telefono</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>Sitio Web</value>
+  </data>
+  <data name="Deno" xml:space="preserve">
+    <value>Denominacion</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Tiempo</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Precio</value>
+  </data>
+  <data name="Curcy" xml:space="preserve">
+    <value>Divisa</value>
+  </data>
+  <data name="HRAreaIndexPage" xml:space="preserve">
+    <value>Gestion de Empleados</value>
+  </data>
+  <data name="PersonTable" xml:space="preserve">
+    <value>Listado de Empleados</value>
+  </data>
+  <data name="DNI" xml:space="preserve">
+    <value>DNI/NIF</value>
+  </data>
+  <data name="SurName" xml:space="preserve">
+    <value>Apellidos</value>
+  </data>
+  <data name="EditPerson" xml:space="preserve">
+    <value>Editar Datos empleados</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>Empleado</value>
+  </data>
+  <data name="Career" xml:space="preserve">
+    <value>Carrera</value>
+  </data>
+  <data name="Contract" xml:space="preserve">
+    <value>Contratos</value>
+  </data>
+  <data name="Curriculum" xml:space="preserve">
+    <value>Curriculum</value>
+  </data>
+  <data name="Pay" xml:space="preserve">
+    <value>Paga/Nomina</value>
+  </data>
+  <data name="Presence" xml:space="preserve">
+    <value>Presencia</value>
+  </data>
+  <data name="ObjReview" xml:space="preserve">
+    <value>Revision Obj.</value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>Formacion</value>
+  </data>
+  <data name="PersonData" xml:space="preserve">
+    <value>Datos Empleado</value>
+  </data>
+  <data name="BirdDate" xml:space="preserve">
+    <value>Fecha nacimiento</value>
+  </data>
+  <data name="CityOrigin" xml:space="preserve">
+    <value>Ciudad de origen</value>
+  </data>
+  <data name="CountryOrigin" xml:space="preserve">
+    <value>Pais de origen</value>
+  </data>
+  <data name="Adress" xml:space="preserve">
+    <value>Direccion Postal</value>
+  </data>
+  <data name="AdressAd" xml:space="preserve">
+    <value>Direccion Postal (cont)</value>
+  </data>
+  <data name="CountryRes" xml:space="preserve">
+    <value>Pais</value>
+  </data>
+  <data name="ContractDate" xml:space="preserve">
+    <value>Fecha del contrato</value>
+  </data>
+  <data name="EntryDate" xml:space="preserve">
+    <value>Fecha comienzo</value>
+  </data>
+  <data name="ExitDate" xml:space="preserve">
+    <value>Fecha salida</value>
+  </data>
+  <data name="CareerData" xml:space="preserve">
+    <value>Datos de carrera profesional</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Posicion</value>
+  </data>
+  <data name="Observations" xml:space="preserve">
+    <value>Observaciones</value>
+  </data>
+  <data name="CareerEdit" xml:space="preserve">
+    <value>Editar datos carrera profesional</value>
+  </data>
+  <data name="ContractData" xml:space="preserve">
+    <value>Datos contratos empleado</value>
+  </data>
+  <data name="RevisionDate" xml:space="preserve">
+    <value>Fecha de Revision</value>
+  </data>
+  <data name="CurriculumData" xml:space="preserve">
+    <value>Datos de curriculum empleados</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Nivel</value>
+  </data>
+  <data name="CurrArea" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="KAreaDescr" xml:space="preserve">
+    <value>Descripcion Area conocimiento</value>
+  </data>
+  <data name="CurrObs" xml:space="preserve">
+    <value>Observaciones</value>
+  </data>
+  <data name="CurriculumEdit" xml:space="preserve">
+    <value>Editar Curriculum</value>
+  </data>
+  <data name="PayrollData" xml:space="preserve">
+    <value>Datos de la nomina</value>
+  </data>
+  <data name="PayrollEdit" xml:space="preserve">
+    <value>Editar Datos de la nomina</value>
+  </data>
+  <data name="Retention" xml:space="preserve">
+    <value>Tasa de Retencion</value>
+  </data>
+  <data name="ConceptType" xml:space="preserve">
+    <value>Tipo de concepto</value>
+  </data>
+  <data name="PresenceEdit" xml:space="preserve">
+    <value>Editar Datos de presencia</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="ObjectiveReviewmData" xml:space="preserve">
+    <value>Datosm revision objetivos</value>
+  </data>
+  <data name="ObjectiveReviewEdit" xml:space="preserve">
+    <value>Editar datos de revision de objetivos</value>
+  </data>
+  <data name="Objective" xml:space="preserve">
+    <value>Objetivo</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Porcentaje</value>
+  </data>
+  <data name="TrainingData" xml:space="preserve">
+    <value>Datois de formacion empleados</value>
+  </data>
+  <data name="Srea" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="Course" xml:space="preserve">
+    <value>Curso</value>
+  </data>
+  <data name="Grade" xml:space="preserve">
+    <value>Grado</value>
+  </data>
+  <data name="CurriculumArea" xml:space="preserve">
+    <value>Area de conocimiento</value>
+  </data>
+  <data name="TrainingCourse" xml:space="preserve">
+    <value>Curso</value>
+  </data>
+  <data name="Purchasing" xml:space="preserve">
+    <value>Compras</value>
+  </data>
+  <data name="PurchasingArea" xml:space="preserve">
+    <value>Area de compras</value>
+  </data>
+  <data name="SupList" xml:space="preserve">
+    <value>Listado de Proveedores</value>
+  </data>
+  <data name="SuppilerAreaIndexPage" xml:space="preserve">
+    <value>Area de Proveedores </value>
+  </data>
+  <data name="EditSuplier" xml:space="preserve">
+    <value>Editar Datos de Proveedores</value>
+  </data>
+  <data name="SuplierData" xml:space="preserve">
+    <value>Datos del Proveedor</value>
+  </data>
+  <data name="Suplier" xml:space="preserve">
+    <value>Proveedor</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Productos</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Pedidos de compra</value>
+  </data>
+  <data name="Planning" xml:space="preserve">
+    <value>Plan de Demanda</value>
+  </data>
+  <data name="SupRaSoc" xml:space="preserve">
+    <value>Razon Social Proveedor</value>
+  </data>
+  <data name="SupCrDate" xml:space="preserve">
+    <value>Fecha de creacion</value>
+  </data>
+  <data name="SupCode" xml:space="preserve">
+    <value>Codigo del Proveedor</value>
+  </data>
+  <data name="SupAdress" xml:space="preserve">
+    <value>Direccion</value>
+  </data>
+  <data name="SupCountry" xml:space="preserve">
+    <value>Pais</value>
+  </data>
+  <data name="SupemailLOG" xml:space="preserve">
+    <value>email logistica</value>
+  </data>
+  <data name="SupCity" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="SupPhone" xml:space="preserve">
+    <value>Numero de Telefono</value>
+  </data>
+  <data name="SupEDILOG" xml:space="preserve">
+    <value>Contacto EDI Logistica</value>
+  </data>
+  <data name="ProductData" xml:space="preserve">
+    <value>Fecha del Producto</value>
+  </data>
+  <data name="Reference" xml:space="preserve">
+    <value>Referencia</value>
+  </data>
+  <data name="Descriptio" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="DateCreation" xml:space="preserve">
+    <value>Fecha de creacion</value>
+  </data>
+  <data name="DateStatus" xml:space="preserve">
+    <value>Fecha del Status</value>
+  </data>
+  <data name="EditProdRecord" xml:space="preserve">
+    <value>Editar Datos de productos</value>
+  </data>
+  <data name="ProRefer" xml:space="preserve">
+    <value>Referencia</value>
+  </data>
+  <data name="ProDescr" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="ProDateCrea" xml:space="preserve">
+    <value>Fecha de creacion</value>
+  </data>
+  <data name="StatusDate" xml:space="preserve">
+    <value>Fecha de status</value>
+  </data>
+  <data name="SupOrdergData" xml:space="preserve">
+    <value>Fecha del Pedido de compras</value>
+  </data>
+  <data name="PO" xml:space="preserve">
+    <value>Pedido de compras</value>
+  </data>
+  <data name="RefInt" xml:space="preserve">
+    <value>Referencia Int</value>
+  </data>
+  <data name="RefEx" xml:space="preserve">
+    <value>Referencia Ext</value>
+  </data>
+  <data name="DescExt" xml:space="preserve">
+    <value>Descrip.Ext.</value>
+  </data>
+  <data name="PcRep" xml:space="preserve">
+    <value>Porcentaje Reparto</value>
+  </data>
+  <data name="EditPORecord" xml:space="preserve">
+    <value>Editar Registro Pedido compras</value>
+  </data>
+  <data name="SPOrder" xml:space="preserve">
+    <value>Pedido de compras</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Producto Int.</value>
+  </data>
+  <data name="SPOPcRep" xml:space="preserve">
+    <value>Porcje.Reparto</value>
+  </data>
+  <data name="SPODate" xml:space="preserve">
+    <value>Fecha del Pedido de compras</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Divisa</value>
+  </data>
+  <data name="SPODateSt" xml:space="preserve">
+    <value>Fecha del status</value>
+  </data>
+  <data name="SupPlanningData" xml:space="preserve">
+    <value>Datos del Plan de Demanda</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>Fecha desde</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>Fecha Hasta</value>
+  </data>
+  <data name="Qty" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="FirmStat" xml:space="preserve">
+    <value>Status del plan</value>
+  </data>
+  <data name="PlanProdId" xml:space="preserve">
+    <value>Producto Int</value>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>Fecha desde</value>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>Fecha hasta</value>
+  </data>
+  <data name="SendQty" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="PlanFrim" xml:space="preserve">
+    <value>Status del plan</value>
+  </data>
+  <data name="Sales" xml:space="preserve">
+    <value>Ventas</value>
+  </data>
+  <data name="SalesArea" xml:space="preserve">
+    <value>Area de Ventas</value>
+  </data>
+  <data name="CustomerList" xml:space="preserve">
+    <value>Listado de Clientes</value>
+  </data>
+  <data name="emailLOG" xml:space="preserve">
+    <value>email Logistica</value>
+  </data>
+  <data name="emailFIN" xml:space="preserve">
+    <value>email Finanzas</value>
+  </data>
+  <data name="ContactLOG" xml:space="preserve">
+    <value>Contacto Logistica</value>
+  </data>
+  <data name="ContactFIN" xml:space="preserve">
+    <value>Contacto Finanzas</value>
+  </data>
+  <data name="CBankAccount" xml:space="preserve">
+    <value>Cuenta Bancaria Cliente</value>
+  </data>
+  <data name="Plant" xml:space="preserve">
+    <value>Planta</value>
+  </data>
+  <data name="Plants" xml:space="preserve">
+    <value>Plantas del Cliente</value>
+  </data>
+  <data name="PlanttData" xml:space="preserve">
+    <value>Datos de Plantas del Cliente</value>
+  </data>
+  <data name="EDIAdress" xml:space="preserve">
+    <value>Direccion EDI</value>
+  </data>
+  <data name="Truck" xml:space="preserve">
+    <value>Transporte</value>
+  </data>
+  <data name="Refer" xml:space="preserve">
+    <value>Referencia</value>
+  </data>
+  <data name="Descr" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="PODate" xml:space="preserve">
+    <value>Fecha del Pedido de compras</value>
+  </data>
+  <data name="DescInt" xml:space="preserve">
+    <value>Descripcion Interna</value>
+  </data>
+  <data name="AllPlantProds" xml:space="preserve">
+    <value>Todos los productos del cliente</value>
+  </data>
+  <data name="UnitContainer" xml:space="preserve">
+    <value>Unidad de embalage</value>
+  </data>
+  <data name="Engineering" xml:space="preserve">
+    <value>Ingenieria</value>
+  </data>
+  <data name="EngineeringArea" xml:space="preserve">
+    <value>Area de Ingenieria</value>
+  </data>
+  <data name="Facilities" xml:space="preserve">
+    <value>Instalaciones</value>
+  </data>
+  <data name="FacilitiesList" xml:space="preserve">
+    <value>Listado de Instalaciones</value>
+  </data>
+  <data name="Facility" xml:space="preserve">
+    <value>Instalacion</value>
+  </data>
+  <data name="FcCode" xml:space="preserve">
+    <value>Codigo Instalacion</value>
+  </data>
+  <data name="FcDescr" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="FcType" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="WCenter" xml:space="preserve">
+    <value>Centro de Trabajo</value>
+  </data>
+  <data name="WorkCenters" xml:space="preserve">
+    <value>Centros de Trabajo</value>
+  </data>
+  <data name="WCCode" xml:space="preserve">
+    <value>Codigo</value>
+  </data>
+  <data name="WCDesc" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="WCType" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="WCenterC" xml:space="preserve">
+    <value>Componentes del Centro de Trabajo</value>
+  </data>
+  <data name="WCenterCo" xml:space="preserve">
+    <value>Componentes del Centro de Trabajo</value>
+  </data>
+  <data name="Materials" xml:space="preserve">
+    <value>Materiales</value>
+  </data>
+  <data name="MatRefer" xml:space="preserve">
+    <value>Referencia</value>
+  </data>
+  <data name="MatDescr" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="MatClass" xml:space="preserve">
+    <value>Clase</value>
+  </data>
+  <data name="Locations" xml:space="preserve">
+    <value>Ubicaciones de almacenamiento</value>
+  </data>
+  <data name="SLocation" xml:space="preserve">
+    <value>Ubicaciones de almacenamiento</value>
+  </data>
+  <data name="LocCode" xml:space="preserve">
+    <value>Codigo</value>
+  </data>
+  <data name="LocDescr" xml:space="preserve">
+    <value>Descrpcion</value>
+  </data>
+  <data name="LocType" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="OperatorRoles" xml:space="preserve">
+    <value>Roles de Operadores</value>
+  </data>
+  <data name="Operators" xml:space="preserve">
+    <value>Operadores</value>
+  </data>
+  <data name="Costh" xml:space="preserve">
+    <value>Coste Horario</value>
+  </data>
+  <data name="Trucks" xml:space="preserve">
+    <value>Transportes</value>
+  </data>
+  <data name="WCComponents" xml:space="preserve">
+    <value>Componentes del Centro de Trabajo</value>
+  </data>
+  <data name="FacEdit" xml:space="preserve">
+    <value>Editar Datos de Instalaciomes</value>
   </data>
   <data name="FCode" xml:space="preserve">
-    <value>Codigo de la instalacion</value>
+    <value>Codigo</value>
   </data>
   <data name="FType" xml:space="preserve">
-    <value>Tipo de instalacion</value>
+    <value>Tipo</value>
   </data>
-  <data name="FCrDate" xml:space="preserve">
-    <value>Fecha de creacion </value>
-  </data>
-  <data name="FSuperf" xml:space="preserve">
-    <value>Superficie (m2)</value>
-  </data>
-  <data name="FCostMin" xml:space="preserve">
-    <value>Coste/Minuto</value>
+  <data name="FAcct" xml:space="preserve">
+    <value>Cuenta</value>
   </data>
   <data name="FStatus" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="FSuperf" xml:space="preserve">
+    <value>Superficie</value>
+  </data>
+  <data name="FDescr" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="FCrDate" xml:space="preserve">
+    <value>Fecha de Creacion</value>
+  </data>
   <data name="FStDate" xml:space="preserve">
-    <value>Fecha de Status</value>
+    <value>Fecha del status</value>
   </data>
-  <data name="FAcct" xml:space="preserve">
-    <value>Cuenta </value>
-  </data>
-  <data name="FacilitiesData" xml:space="preserve">
-    <value>Datos de la Instalacion</value>
-  </data>
-  <data name="FLotoAss" xml:space="preserve">
-    <value>Ubicaciones para Asignar</value>
-  </data>
-  <data name="FStAss" xml:space="preserve">
-    <value>Almacenamientos Asignados</value>
-  </data>
-  <data name="FEdit" xml:space="preserve">
-    <value>Editar un registro de instalación</value>
+  <data name="FCostMin" xml:space="preserve">
+    <value>Coste fijo de 1 minuto de operacion </value>
   </data>
   <data name="FWCAss" xml:space="preserve">
-    <value>Centros de trabajo asignados</value>
+    <value>Centros de Trabajo asignados a esta instalacion</value>
   </data>
   <data name="FWCtoAss" xml:space="preserve">
-    <value>Centros de Trabajo a Asignar</value>
+    <value>Asignar un nuevo Centro de Trabajo</value>
   </data>
-  <data name="FCrea" xml:space="preserve">
-    <value>Añadir un nuevo registro de Instalacion</value>
+  <data name="WCCCode" xml:space="preserve">
+    <value>Codigo</value>
   </data>
-  <data name="-----------------M" xml:space="preserve">
-    <value>--------------------------MATERIALS DATA</value>
+  <data name="FStAss" xml:space="preserve">
+    <value>Ubicaciones de almacenamiento asignadas a esta instalacion</value>
   </data>
-  <data name="MData" xml:space="preserve">
-    <value>Datos de Materiales</value>
+  <data name="FLotoAss" xml:space="preserve">
+    <value>Asignar una nueva Ubicacion de almacenamiento</value>
+  </data>
+  <data name="WorkCenterList" xml:space="preserve">
+    <value>Listado de Centros de Trabajo</value>
+  </data>
+  <data name="Wcdescr" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="Wcacct" xml:space="preserve">
+    <value>Cuenta</value>
+  </data>
+  <data name="Wcstatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Wcsupm2" xml:space="preserve">
+    <value>Superficie</value>
+  </data>
+  <data name="WcfaId" xml:space="preserve">
+    <value>Instalacion</value>
+  </data>
+  <data name="WccostMin" xml:space="preserve">
+    <value>Coste minuto de  operacion</value>
+  </data>
+  <data name="WccrDate" xml:space="preserve">
+    <value>Fecha de Creacion</value>
+  </data>
+  <data name="WcstDate" xml:space="preserve">
+    <value>Fecha de Status</value>
+  </data>
+  <data name="WCenterEdit" xml:space="preserve">
+    <value>Editar Datos del Centro de Trabajo</value>
+  </data>
+  <data name="WcCompToAss" xml:space="preserve">
+    <value>Componentes Asignados a este Centro de Trabajo</value>
+  </data>
+  <data name="WCToAssign" xml:space="preserve">
+    <value>Asignar Componentes</value>
+  </data>
+  <data name="WcRolesToAss" xml:space="preserve">
+    <value>Roles de Operador asignados a este centro de trabajo</value>
+  </data>
+  <data name="NumOperators" xml:space="preserve">
+    <value>Numero de operadores necesarios</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Coste</value>
+  </data>
+  <data name="NOper" xml:space="preserve">
+    <value>Num Operadores</value>
+  </data>
+  <data name="WorkCenterCompList" xml:space="preserve">
+    <value>Listado de componentes</value>
+  </data>
+  <data name="WCCompoEdit" xml:space="preserve">
+    <value>Editar Datos de  Componentes</value>
+  </data>
+  <data name="WcoCode" xml:space="preserve">
+    <value>Codigo</value>
+  </data>
+  <data name="WcoType" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="WcoDescr" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="WcoWcId" xml:space="preserve">
+    <value>Centro de Trabajo</value>
+  </data>
+  <data name="WcoAcct" xml:space="preserve">
+    <value>Cuenta</value>
+  </data>
+  <data name="WcoCrDate" xml:space="preserve">
+    <value>Fecha de Creacion</value>
+  </data>
+  <data name="WcoStDate" xml:space="preserve">
+    <value>Fecha de Status</value>
+  </data>
+  <data name="WcoStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="WcoDim1" xml:space="preserve">
+    <value>Dimension 1</value>
+  </data>
+  <data name="WcoDim2" xml:space="preserve">
+    <value>Dimension 2</value>
+  </data>
+  <data name="WcoDim3" xml:space="preserve">
+    <value>Dimension 3</value>
+  </data>
+  <data name="WcoWeight" xml:space="preserve">
+    <value>Peso</value>
+  </data>
+  <data name="WcoCostMin" xml:space="preserve">
+    <value>Coste minuto de operacion</value>
+  </data>
+  <data name="MaterialsList" xml:space="preserve">
+    <value>Listado de Materiales</value>
+  </data>
+  <data name="MaterialClass" xml:space="preserve">
+    <value>Clase de Material</value>
   </data>
   <data name="MRefer" xml:space="preserve">
     <value>Referencia</value>
   </data>
-  <data name="MDescr" xml:space="preserve">
-    <value>Descripcion</value>
-  </data>
-  <data name="MClass" xml:space="preserve">
-    <value>Clase de Material</value>
-  </data>
   <data name="MType" xml:space="preserve">
-    <value>Tipo de Material</value>
-  </data>
-  <data name="MStatus" xml:space="preserve">
-    <value>Status del Material </value>
-  </data>
-  <data name="MStatusDate" xml:space="preserve">
-    <value>Fecha de Status del Material </value>
-  </data>
-  <data name="MDim1" xml:space="preserve">
-    <value>Dimension #1</value>
-  </data>
-  <data name="MDim2" xml:space="preserve">
-    <value>Dimension #2</value>
-  </data>
-  <data name="MDim3" xml:space="preserve">
-    <value>Dimension #3</value>
-  </data>
-  <data name="MWeight" xml:space="preserve">
-    <value>Peso</value>
+    <value>Tipo</value>
   </data>
   <data name="MUN" xml:space="preserve">
     <value>Unida de Medida</value>
   </data>
-  <data name="mValDim" xml:space="preserve">
-    <value>Intrduzca una dimension valida (&gt;0)</value>
+  <data name="MDim1" xml:space="preserve">
+    <value>Dimension 1</value>
   </data>
-  <data name="mValWei" xml:space="preserve">
-    <value>Introduzca un peso valido (&gt;0)</value>
+  <data name="MDim2" xml:space="preserve">
+    <value>Dimension 2</value>
   </data>
-  <data name="mReq" xml:space="preserve">
-    <value>Campo requerido</value>
+  <data name="MDim3" xml:space="preserve">
+    <value>Dimension 3</value>
   </data>
-  <data name="MCrea" xml:space="preserve">
-    <value>Añadir un nuevo registro de Material</value>
-  </data>
-  <data name="MEdit" xml:space="preserve">
-    <value>Editar un registro de Material</value>
-  </data>
-  <data name="------------------A" xml:space="preserve">
-    <value>--------------------------ABOUT</value>
-  </data>
-  <data name="About" xml:space="preserve">
-    <value>Acerca de</value>
-  </data>
-  <data name="AboutT1" xml:space="preserve">
-    <value>myERP es un proyecto de código abierto que intenta crear un sistema MRP dirigido a pequeñas y medianas empresas</value>
-  </data>
-  <data name="AboutT2" xml:space="preserve">
-    <value>Vigo invierno 2021</value>
-  </data>
-  <data name="AboutT3" xml:space="preserve">
-    <value>teléfono de contacto: +34 616454045 </value>
-  </data>
-  <data name="AboutT4" xml:space="preserve">
-    <value>correo de contacto</value>
-  </data>
-  <data name="AboutT5" xml:space="preserve">
-    <value>Visite el curso de formación myERP</value>
-  </data>
-  <data name="-----------------U" xml:space="preserve">
-    <value>----------------------------USUARIOS</value>
-  </data>
-  <data name="UserLoginName" xml:space="preserve">
-    <value>Nombre de inicio de sesión</value>
-  </data>
-  <data name="UserFirstName" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="UserLastName" xml:space="preserve">
-    <value>Apellidos</value>
-  </data>
-  <data name="UserStatus" xml:space="preserve">
-    <value>Estado</value>
-  </data>
-  <data name="Reset_Pw" xml:space="preserve">
-    <value>Restablecer la contraseña</value>
-  </data>
-  <data name="UsrRolData" xml:space="preserve">
-    <value>Roles asignados a este usuario</value>
-  </data>
-  <data name="SelectEmployee" xml:space="preserve">
-    <value>Seleccione un empleado</value>
-  </data>
-  <data name="----------------S" xml:space="preserve">
-    <value>-----------------------------SUPLIERS</value>
-  </data>
-  <data name="SupList" xml:space="preserve">
-    <value>Supplier Relationship</value>
-  </data>
-  <data name="NIF" xml:space="preserve">
-    <value>Identification document</value>
-  </data>
-  <data name="SupCode" xml:space="preserve">
-    <value>Suplier Code</value>
-  </data>
-  <data name="SupRaSoc" xml:space="preserve">
-    <value>Company Name of the Provider</value>
-  </data>
-  <data name="SupCity" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="SupCountry" xml:space="preserve">
-    <value>Country</value>
-  </data>
-  <data name="SuplierData" xml:space="preserve">
-    <value>Data of the Suppliers</value>
-  </data>
-  <data name="SupCrDate" xml:space="preserve">
-    <value>Creation Date</value>
-  </data>
-  <data name="SupAccount" xml:space="preserve">
-    <value>Account</value>
-  </data>
-  <data name="SupAdress" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="SupAdressA" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="SupPhone" xml:space="preserve">
-    <value>Phone number</value>
-  </data>
-  <data name="SupemailFIN" xml:space="preserve">
-    <value>email Finances</value>
-  </data>
-  <data name="SupemailLOG" xml:space="preserve">
-    <value>email Logistic</value>
-  </data>
-  <data name="SupWebSite" xml:space="preserve">
-    <value>Web Site</value>
-  </data>
-  <data name="SupEDIFIN" xml:space="preserve">
-    <value>EDI address Finances</value>
-  </data>
-  <data name="SupEDILOG" xml:space="preserve">
-    <value>EDI address Logistic</value>
-  </data>
-  <data name="SupBankAcc" xml:space="preserve">
-    <value>Bank account</value>
-  </data>
-  <data name="SupStatus" xml:space="preserve">
+  <data name="MStatus" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="SupStatusDate" xml:space="preserve">
-    <value>Status Date</value>
+  <data name="MClass" xml:space="preserve">
+    <value>Clase</value>
   </data>
-  <data name="ProductData" xml:space="preserve">
-    <value>Product Data</value>
+  <data name="MDescr" xml:space="preserve">
+    <value>Descripcion</value>
   </data>
-  <data name="AddProdRecord" xml:space="preserve">
-    <value>Add Product Record</value>
+  <data name="MWeight" xml:space="preserve">
+    <value>Peso</value>
   </data>
-  <data name="EditProdRecord" xml:space="preserve">
-    <value>Edit Product Record</value>
+  <data name="MStatusDate" xml:space="preserve">
+    <value>Fecha del Status</value>
   </data>
-  <data name="ProRefer" xml:space="preserve">
-    <value>Reference</value>
+  <data name="MatEdit" xml:space="preserve">
+    <value>Editar Material</value>
   </data>
-  <data name="ProDescr" xml:space="preserve">
-    <value>Description</value>
+  <data name="MatCreate" xml:space="preserve">
+    <value>Crear Material</value>
   </data>
-  <data name="ProDateCrea" xml:space="preserve">
-    <value>Date creation</value>
+  <data name="Components" xml:space="preserve">
+    <value>Componentes</value>
   </data>
-  <data name="StatusDate" xml:space="preserve">
-    <value>Status Date</value>
+  <data name="BOM" xml:space="preserve">
+    <value>Lista de Materiales (BOM)</value>
   </data>
-  <data name="SupPlanningData" xml:space="preserve">
-    <value>Planning Data</value>
+  <data name="Imposio" xml:space="preserve">
+    <value>Implosion</value>
   </data>
-  <data name="AddPlanningRecord" xml:space="preserve">
-    <value>Append Planning Record</value>
+  <data name="Routing" xml:space="preserve">
+    <value>Operaciones</value>
   </data>
-  <data name="DateFrom" xml:space="preserve">
-    <value>From Date</value>
+  <data name="MaterialEdit" xml:space="preserve">
+    <value>Editar Material</value>
   </data>
-  <data name="DateTo" xml:space="preserve">
-    <value>To Date</value>
+  <data name="ComponentsOf" xml:space="preserve">
+    <value>Componentes de </value>
   </data>
-  <data name="SendQty" xml:space="preserve">
-    <value>Quantity to send</value>
+  <data name="Component" xml:space="preserve">
+    <value>Componente</value>
   </data>
-  <data name="PlanFirm" xml:space="preserve">
-    <value>Plan Status</value>
+  <data name="RefQty&lt;" xml:space="preserve">
+    <value>Cantidad de la Referencia</value>
   </data>
-  <data name="-------------E" xml:space="preserve">
-    <value>-----------------------------EMPLOYEE</value>
+  <data name="RefUM" xml:space="preserve">
+    <value>Unidad de Medida</value>
   </data>
-  <data name="CareerData" xml:space="preserve">
-    <value>Career Data</value>
+  <data name="Compqty" xml:space="preserve">
+    <value>Cantidad del Componente</value>
   </data>
-  <data name="CereerDateData" xml:space="preserve">
-    <value>Date</value>
+  <data name="CompUM" xml:space="preserve">
+    <value>Unidad de Medida</value>
   </data>
-  <data name="CareerCreate" xml:space="preserve">
-    <value>Create Career Record</value>
+  <data name="MatCompEdit" xml:space="preserve">
+    <value>Editar Componentes del material</value>
   </data>
-  <data name="CareerEdit" xml:space="preserve">
-    <value>Edit Career Record</value>
+  <data name="CoRefRe" xml:space="preserve">
+    <value>Referencia</value>
   </data>
-  <data name="Position" xml:space="preserve">
-    <value>Position</value>
+  <data name="CoCommId" xml:space="preserve">
+    <value>Componente</value>
   </data>
-  <data name="Observations" xml:space="preserve">
-    <value>Observations</value>
+  <data name="CoRefQt" xml:space="preserve">
+    <value>Cantidad de Referencia </value>
   </data>
-  <data name="ContractData" xml:space="preserve">
-    <value>Contract Data</value>
+  <data name="CoComQt" xml:space="preserve">
+    <value>Cantidad de componente</value>
   </data>
-  <data name="ContractCreate" xml:space="preserve">
-    <value>Create Contract Record</value>
+  <data name="CoRefDes" xml:space="preserve">
+    <value>Descripcion Referencia</value>
   </data>
-  <data name="ContractEdit" xml:space="preserve">
-    <value>Edit Contract Data</value>
+  <data name="MatCompCreate" xml:space="preserve">
+    <value>Crear componente del material</value>
   </data>
-  <data name="Date" xml:space="preserve">
-    <value>Date</value>
+  <data name="B.O.M." xml:space="preserve">
+    <value>Relacion de materiales (BOM)</value>
   </data>
-  <data name="RevisionDate" xml:space="preserve">
-    <value>Date</value>
+  <data name="Decsr&lt;" xml:space="preserve">
+    <value>Descripcion</value>
   </data>
-  <data name="CurriculumData" xml:space="preserve">
-    <value>Curriculum Data</value>
+  <data name="Coef" xml:space="preserve">
+    <value>Coeficiente</value>
   </data>
-  <data name="KnowledgeArea" xml:space="preserve">
-    <value>Area Of Knowledge</value>
+  <data name="UM" xml:space="preserve">
+    <value>Unida de medida</value>
   </data>
-  <data name="KAreaDescr" xml:space="preserve">
-    <value>Description</value>
+  <data name="Fase" xml:space="preserve">
+    <value>Numero de operacion</value>
   </data>
-  <data name="Level" xml:space="preserve">
-    <value>Level</value>
+  <data name="Oper" xml:space="preserve">
+    <value>OPeracion</value>
   </data>
-  <data name="CurrRevDate" xml:space="preserve">
-    <value>Date</value>
+  <data name="Tipe" xml:space="preserve">
+    <value>Tiempo Operacion</value>
   </data>
-  <data name="CurraArea" xml:space="preserve">
-    <value>Area</value>
+  <data name="UnitT" xml:space="preserve">
+    <value>Unidad de Tiempo</value>
   </data>
-  <data name="CurrAreaDesc" xml:space="preserve">
-    <value>Description</value>
+  <data name="WCent" xml:space="preserve">
+    <value>Centro de Trabajo</value>
   </data>
-  <data name="CurrObs" xml:space="preserve">
-    <value>Observations</value>
+  <data name="Implosio_BOM" xml:space="preserve">
+    <value>Implosion</value>
   </data>
-  <data name="CurriculumEdit" xml:space="preserve">
-    <value>Edit Curriculum Data</value>
+  <data name="RouteOf" xml:space="preserve">
+    <value>Operaciones de </value>
   </data>
-  <data name="CurriculumCreate" xml:space="preserve">
-    <value>Create Curriculum Record</value>
+  <data name="WUnit" xml:space="preserve">
+    <value>Numero de piezas</value>
   </data>
-  <data name="PayrollData" xml:space="preserve">
-    <value>Data Of Payroll</value>
+  <data name="Unit" xml:space="preserve">
+    <value>Tiempo operation</value>
   </data>
-  <data name="PayrollEdit" xml:space="preserve">
-    <value>Edit Payroll Data</value>
+  <data name="TUnit" xml:space="preserve">
+    <value>Unidad de Tiempo</value>
   </data>
-  <data name="PayrollCreate" xml:space="preserve">
-    <value>Create Payroll Record</value>
+  <data name="OperEdit" xml:space="preserve">
+    <value>Editar Operation</value>
   </data>
-  <data name="ConceptType" xml:space="preserve">
-    <value>Concept</value>
+  <data name="NumParts" xml:space="preserve">
+    <value>Numero de Piezas</value>
   </data>
-  <data name="Retention" xml:space="preserve">
-    <value>Retention Rate</value>
+  <data name="UTime" xml:space="preserve">
+    <value>Unidad de Tiempo</value>
   </data>
-  <data name="Account" xml:space="preserve">
-    <value>Account</value>
+  <data name="MinLot" xml:space="preserve">
+    <value>Lote Minimo</value>
   </data>
-  <data name="PresenceData" xml:space="preserve">
-    <value>Presence Data</value>
+  <data name="UEmba" xml:space="preserve">
+    <value>Unidad de embalage</value>
   </data>
-  <data name="PresenceEdit" xml:space="preserve">
-    <value>Edit Presence Data</value>
+  <data name="RefDescr" xml:space="preserve">
+    <value>Description del Producto</value>
   </data>
-  <data name="PresenceCreate" xml:space="preserve">
-    <value>Create Presence Record</value>
+  <data name="OperCreate" xml:space="preserve">
+    <value>Crear Operacion</value>
   </data>
-  <data name="Location" xml:space="preserve">
-    <value>Location</value>
+  <data name="StorageLocOf" xml:space="preserve">
+    <value>Ubicacion de almacenamiento de</value>
   </data>
-  <data name="Time" xml:space="preserve">
-    <value>Time</value>
+  <data name="Stock" xml:space="preserve">
+    <value>Stock</value>
   </data>
-  <data name="ObjectiveReviewmData" xml:space="preserve">
-    <value>Objective Review Data</value>
+  <data name="StocR" xml:space="preserve">
+    <value>Stock Reservado</value>
   </data>
-  <data name="ObjectiveReviewEdit" xml:space="preserve">
-    <value>Edit Objective Review Data</value>
+  <data name="StockX" xml:space="preserve">
+    <value>Stock X</value>
   </data>
-  <data name="ObjectiveReviewCreate" xml:space="preserve">
-    <value>Create Objective Review Record</value>
+  <data name="UMed" xml:space="preserve">
+    <value>Unida de Medida</value>
   </data>
-  <data name="Objective" xml:space="preserve">
-    <value>Objective</value>
+  <data name="MatLocEdit" xml:space="preserve">
+    <value>Editar Ubicacion de almacenamiento del material</value>
   </data>
-  <data name="Rating" xml:space="preserve">
-    <value>Rating</value>
+  <data name="LoRefRe" xml:space="preserve">
+    <value>Referencia</value>
   </data>
-  <data name="TrainingData" xml:space="preserve">
-    <value>Training Data</value>
+  <data name="LoLoId" xml:space="preserve">
+    <value>Ubicacion de Almacenamiento</value>
   </data>
-  <data name="TrainingCreate" xml:space="preserve">
-    <value>Create Training Record</value>
+  <data name="LoRefSt" xml:space="preserve">
+    <value>Stock</value>
   </data>
-  <data name="CurriculumArea" xml:space="preserve">
-    <value>Area</value>
+  <data name="LoRefDes" xml:space="preserve">
+    <value>Descripcion Material</value>
   </data>
-  <data name="TrainingCourse" xml:space="preserve">
-    <value>Course</value>
+  <data name="MatLocCreate" xml:space="preserve">
+    <value>Crear Ubicacion de almacenamiento del material</value>
   </data>
-  <data name="TrainingEdit" xml:space="preserve">
-    <value>Edit Training Data</value>
+  <data name="StorageLocList" xml:space="preserve">
+    <value>Listado de Ubicaciones de almacenamiento</value>
+  </data>
+  <data name="LocEdit" xml:space="preserve">
+    <value>Editar Ubicacion de almacenamiento</value>
+  </data>
+  <data name="LocFaid" xml:space="preserve">
+    <value>Instalacion</value>
+  </data>
+  <data name="LocAcct" xml:space="preserve">
+    <value>Cuenta</value>
+  </data>
+  <data name="LocCrDate" xml:space="preserve">
+    <value>Fecha de Creacion</value>
+  </data>
+  <data name="LocStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="LocStDate" xml:space="preserve">
+    <value>Fecha de Status</value>
+  </data>
+  <data name="LocSupM2" xml:space="preserve">
+    <value>Superficie (m2)</value>
+  </data>
+  <data name="LocCost" xml:space="preserve">
+    <value>Coste Diario</value>
+  </data>
+  <data name="MatInStockLoc" xml:space="preserve">
+    <value>Material en Ubicacion de Almacenamiento:</value>
+  </data>
+  <data name="LocCreate" xml:space="preserve">
+    <value>Crear Ubicacion de Almacenamiento</value>
+  </data>
+  <data name="OperatorList" xml:space="preserve">
+    <value>Listado de Roles de Operador</value>
+  </data>
+  <data name="OperCode" xml:space="preserve">
+    <value>Codigo</value>
+  </data>
+  <data name="OpertDescr" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="OpertEdit" xml:space="preserve">
+    <value>Editar rol de operador</value>
+  </data>
+  <data name="OpertCreate" xml:space="preserve">
+    <value>Crear rol de operador</value>
+  </data>
+  <data name="TrucksList" xml:space="preserve">
+    <value>Listado de Transportes</value>
+  </data>
+  <data name="TruckEdit" xml:space="preserve">
+    <value>Editar Transporte</value>
+  </data>
+  <data name="TruckCustId" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="TruckPlatId" xml:space="preserve">
+    <value>Planta de Cliente</value>
+  </data>
+  <data name="TruckCode" xml:space="preserve">
+    <value>Codigo de Transporte</value>
+  </data>
+  <data name="TruckCrDate" xml:space="preserve">
+    <value>Fecha de Creacion</value>
+  </data>
+  <data name="TruckDeno" xml:space="preserve">
+    <value>Descripcion Transporte</value>
+  </data>
+  <data name="TruckSchedules" xml:space="preserve">
+    <value>Planificar Transportes</value>
+  </data>
+  <data name="DayOfWeek" xml:space="preserve">
+    <value>Dia de la Semana</value>
+  </data>
+  <data name="LoadStart" xml:space="preserve">
+    <value>Hora de comienzo Carga</value>
+  </data>
+  <data name="Departure" xml:space="preserve">
+    <value>Hora de Salida</value>
+  </data>
+  <data name="SchDescr" xml:space="preserve">
+    <value>Denominacion del Plan</value>
+  </data>
+  <data name="TruckScheduleEdit" xml:space="preserve">
+    <value>Editar Plan de Transportes</value>
+  </data>
+  <data name="TrScCode" xml:space="preserve">
+    <value>Codigo Transporte</value>
+  </data>
+  <data name="TrScCrLoadStart" xml:space="preserve">
+    <value>Hora Cominezo Carga</value>
+  </data>
+  <data name="TrScCrDeparture" xml:space="preserve">
+    <value>Hora de Salida</value>
+  </data>
+  <data name="TrScDayOfWeek" xml:space="preserve">
+    <value>Dia de la Semana</value>
+  </data>
+  <data name="TrScDeno" xml:space="preserve">
+    <value>Denominacion del Plan</value>
+  </data>
+  <data name="TruckScheduleCreate" xml:space="preserve">
+    <value>Crear Plan de Transportes</value>
+  </data>
+  <data name="MRPAreaIndexPage" xml:space="preserve">
+    <value>Area MRP</value>
   </data>
 </root>
