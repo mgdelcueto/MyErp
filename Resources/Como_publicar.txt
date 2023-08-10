@@ -1,0 +1,1 @@
+scp -P 24 -r C:\Users\mgdel\VSProjects\MyErp\bin\Debug\netcoreapp3.1\publish manuel-gabriel@alfonsox.ddns.net://home/manuel-gabriel/VSProjects/MyErp
