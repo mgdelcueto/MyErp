@@ -507,7 +507,7 @@
             </table>
         @*    }*@
             <div  class="_container" name="aqui-el-control-grid-3">
-                @Html.dataGrid(38,9,@Columns("CPO"),@getData_CPO((List<VTCPorder>)ViewBag.listPO),@Controller("CPO"),@Fields("CPO"),Model.CustId,@aparqsaction())
+                @Html.dataGrid(38,9,@Columns("CPO"),@getData_CPO((List<VTCPorder>)ViewBag.listPO),@Controller("CPO"),@Fields("CPO"),Model.CustId)@*,@aparqsaction())*@
             </div>
         </table>
     </div>    
