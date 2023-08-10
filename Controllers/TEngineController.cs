@@ -72,7 +72,7 @@ namespace MyErp.Controllers {
             {
             var queryca = (from p in _dbContext.TWorkCenters 
                         orderby p.Wccode 
-                        where p.WcfaId==plant || plant==0
+                        //where p.WcfaId==plant || plant==0
                         select p).ToList();
             ViewBag.ListProd=queryca;
             }
