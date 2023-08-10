@@ -209,7 +209,7 @@
 @Html.Partial("_pmenuWCe_com")
 @using (Html.BeginForm("WCeEdit","TEngine", new { id= @Model.WcdId, wrem = 0,panem=@VPanem(), wass=0,assign=@VAssign()})) {
     <div class="div-edit">
-    @*@Html.HiddenFor(p => p.WcdId)*@
+    @Html.HiddenFor(p => p.WcdId)
     @Html.ValidationSummary(true)
     <table class="table-edit">
          <tr>

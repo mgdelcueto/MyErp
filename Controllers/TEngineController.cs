@@ -1337,7 +1337,7 @@ namespace MyErp.Controllers {
                 }
                 catch{}
                 }
-                else {
+            else {
                     CreateViewBags(0,wcenter.WcfaId);    
                     ViewData["panel"]=2;
                  return View(wcenter);
@@ -1384,7 +1384,7 @@ namespace MyErp.Controllers {
                 }
                 catch{}
                 }
-                else {
+            else {
                     CreateViewBags(0,location.LocFaId,"",id);    
                     ViewData["panel"]=5;
                  return View(location);
@@ -1659,7 +1659,8 @@ namespace MyErp.Controllers {
             try{
             VTMRouting model =(from pl in _dbContext.TMRoutings 
             join p in _dbContext.TMaterials on pl.RouRefId equals p.MatId
-            join q in _dbContext.TWorkCenters on pl.RouWcid equals q.WcdId
+            join q in _dbContext.TWorkCenters on pl.RouWcid equals q.WcdId into qWC
+            from q in qWC.DefaultIfEmpty()
             orderby p.MatDescr 
             where pl.RouId ==id 
             select new VTMRouting { 
@@ -1671,7 +1672,8 @@ namespace MyErp.Controllers {
                 RoRoOper=pl.RouOper,
                 RoRoTunit=pl.RouTunit,
                 RoRoWCId=pl.RouWcid,
-                RoRoWCDe=q.Wcdescr,
+              //RoRoWCDe=q.Wcdescr,
+                RoRoWCDe=(q != null) ? q.Wcdescr : "",
                 RoRoWtime=pl.RouWtime,
                 RoRoWunit=pl.RouWunit,
                 RoRoMinLot=pl.RouMinLot,
