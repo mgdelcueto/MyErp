@@ -1107,7 +1107,10 @@ namespace MyErp.Controllers {
             _dbContext.TMRoutings.Remove(mode);
             _dbContext.SaveChanges();
             }  
-            catch{}          
+            catch(Exception ex) 
+            {
+                string errores = ex.Message;
+            }          
             CreateViewBags(0,0);                
             ViewData["panel"]=4;
             return RedirectToAction("MatRoute",new{id=Mid});
