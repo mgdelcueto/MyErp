@@ -712,7 +712,9 @@ namespace MyErp.Controllers {
             ViewData["Sort"]=sortExpression;
             ViewData["Filter"]=filterExpression;
             }
-            catch{}
+            catch(Exception ex){
+                string mensaje = ex.Message;
+                }
             var model = _dbContext.TSupliers
                 .SingleOrDefault(u => u.SupId.Equals(id));
             string sName = model.SupRasoc+" " +model.SupNif;

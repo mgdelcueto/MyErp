@@ -258,7 +258,8 @@ public static class MyHtmlHelperExtensions {
     }
     public static string getSortExpression(List<List<string>> fields ,int col_orderton,int col_sortorder )
     {
-        string ret =fields[col_orderton][0];
+        int corr_orderton= col_orderton== 0 ? 0: col_orderton+1;
+        string ret =fields[corr_orderton][0];
         if (col_orderton!=0){
             if (col_sortorder!=1){ret+=" DESC ";}
         }
