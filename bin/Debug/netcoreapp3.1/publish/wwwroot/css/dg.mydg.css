@@ -10,6 +10,7 @@
 .with_auto{
         border: 1px;
 }
+/*
 .dropbtn {
         background-color: #dde0e0;
         color: rgb(25, 24, 24);
@@ -19,9 +20,22 @@
         cursor: pointer;
       }
       
-      /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
         background-color: #c8c6c6;
+      }
+*/
+.dropbtn {
+        background-color: rgb(113, 99, 158);
+        color: rgb(19, 18, 19);
+        padding: 9px;
+        font-size: 11px;
+        border: 1px;
+        cursor: pointer;
+      }
+      
+.dropbtn:hover, .dropbtn:focus {
+        background-color:rgb(124, 88, 169);
+        color: #FFFFFF;
       }
       
 .menu-hor {
